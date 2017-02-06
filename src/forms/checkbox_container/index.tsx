@@ -89,9 +89,8 @@ class CheckboxContainer extends React.Component<Props, State> {
                 return regex.test(option.name);
             })
             .map(option => {
-
+                const index = queries.indexOf(option.id);
                 let handler = () => {
-                    const index = queries.indexOf(option.id);
                     if (index < 0) { // wasn't selected
                         this.props.input.onChange(queries.concat(option.id));
                     } else {
@@ -102,7 +101,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                 }
                 
                 return (
-                    <li className="checkbox-container-item" key={option.id} onClick={handler} style={{cursor: "pointer"}}>
+                    <li className={`checkbox-container-item ${index < 0 ? 'active' : ''}`} key={option.id} onClick={handler} style={{cursor: "pointer"}}>
                         <input
                             type="checkbox"
                             checked={queries.indexOf(option.id) >= 0}
