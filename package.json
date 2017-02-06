@@ -2,7 +2,7 @@
   "name": "mergado-ui-kit",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/js/index.js",
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
@@ -10,7 +10,7 @@
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register,jsx:babel-core/register --require ./resources/assets/js/tests/test_helper.js --recursive ./resources/assets/js/tests",
     "test:watch": "npm run test -- --watch"
   },
-  "repository": "git@github.com:REglendo/rc-mergado-hints.git",
+  "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
   "contributors": [
     {
       "name": "Samuel Hudec",
