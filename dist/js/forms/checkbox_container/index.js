@@ -23,8 +23,8 @@ class CheckboxContainer extends React.Component {
             return regex.test(option.name);
         })
             .map(option => {
+            const index = queries.indexOf(option.id);
             let handler = () => {
-                const index = queries.indexOf(option.id);
                 if (index < 0) {
                     this.props.input.onChange(queries.concat(option.id));
                 }
@@ -34,7 +34,7 @@ class CheckboxContainer extends React.Component {
                     this.props.input.onChange(copy);
                 }
             };
-            return (React.createElement("li", { className: "checkbox-container-item", key: option.id, onClick: handler, style: { cursor: "pointer" } },
+            return (React.createElement("li", { className: `checkbox-container-item ${index >= 0 ? 'active' : ''}`, key: option.id, onClick: handler, style: { cursor: "pointer" } },
                 React.createElement("input", { type: "checkbox", checked: queries.indexOf(option.id) >= 0, onChange: handler }),
                 React.createElement("label", null,
                     option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name,
