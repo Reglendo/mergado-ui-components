@@ -101,7 +101,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                 }
                 
                 return (
-                    <li className={`checkbox-container-item ${index < 0 ? 'active' : ''}`} key={option.id} onClick={handler} style={{cursor: "pointer"}}>
+                    <li className={`checkbox-container-item ${index >= 0 ? 'active' : ''}`} key={option.id} onClick={handler} style={{cursor: "pointer"}}>
                         <input
                             type="checkbox"
                             checked={queries.indexOf(option.id) >= 0}
