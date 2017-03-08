@@ -29,7 +29,6 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <div>
-
                 <div style={{width: "400px"}} >
                     <Field name={"queries"} component={CheckboxContainer} props={{availibleQueries: [{
                         id: 1,
