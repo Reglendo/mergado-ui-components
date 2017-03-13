@@ -14,7 +14,7 @@ export interface State {
 }
 declare class TextInput extends React.Component<Props, State> {
     static defaultProps: Props;
-    renderInvalid(): JSX.JSXElement;
-    render(): JSX.JSXElement;
+    renderInvalid(): JSX.Element;
+    render(): JSX.Element;
 }
 export default TextInput;

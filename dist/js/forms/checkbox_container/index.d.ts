@@ -21,7 +21,7 @@ export interface State {
 declare class CheckboxContainer extends React.Component<Props, State> {
     static defaultProps: Props;
     constructor(props: Props);
-    renderBoxes(): JSX.JSXElement[];
-    render(): JSX.JSXElement;
+    renderBoxes(): JSX.Element[];
+    render(): JSX.Element;
 }
 export default CheckboxContainer;

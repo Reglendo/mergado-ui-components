@@ -35,6 +35,6 @@ declare class PopUp extends React.Component<Props, State> {
     fadeIn(el: any, display?: any): void;
     getPosition(element: any): Position;
     getArrowPosition(buttonPosition: Position): Position;
-    render(): JSX.JSXElement;
+    render(): JSX.Element;
 }
 export default PopUp;

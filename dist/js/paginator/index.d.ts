@@ -27,6 +27,6 @@ declare class Paginator extends React.Component<Props, State> {
     renderFirstButton(): JSX.Element;
     renderLastButton(): JSX.Element;
     pageClicked(evt: any, pageNumber: number): void;
-    render(): JSX.JSXElement;
+    render(): JSX.Element;
 }
 export default Paginator;
