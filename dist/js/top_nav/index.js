@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 class TopNav extends React.Component {
     renderLinks() {
@@ -10,6 +11,5 @@ class TopNav extends React.Component {
             React.createElement("div", { className: "wrapper" }, this.renderLinks())));
     }
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = TopNav;
 //# sourceMappingURL=index.js.map

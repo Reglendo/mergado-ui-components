@@ -2,7 +2,7 @@ import * as React from "react"
 
 export interface Props {
     title: string
-    type: "warning" | "ok" | "failed" | ""
+    type: "warning" | "ok" | "failed" | "inactive" | ""
 }
 export interface State {}
 

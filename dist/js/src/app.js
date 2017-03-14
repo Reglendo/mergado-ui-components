@@ -28,7 +28,23 @@ class App extends React.Component {
                                 name: "All a",
                                 productCount: 100
                             }] } }),
-                React.createElement(redux_form_2.Field, { name: "text", component: index_1.TextInput }))));
+                React.createElement(redux_form_2.Field, { name: "text", component: index_1.TextInput })),
+            React.createElement("div", { style: { marginTop: "10px", padding: "10px" } },
+                React.createElement("h3", null, "Top Nav:"),
+                React.createElement(index_1.TopNav, { links: [
+                        React.createElement(index_1.NavLink, { key: 1, active: true, link: (React.createElement("a", { href: '#1' }, "First")) }),
+                        React.createElement(index_1.NavLink, { key: 2, active: false, link: (React.createElement("a", { href: '#2' }, "Second")) }),
+                        React.createElement(index_1.NavLink, { key: 3, active: false, link: (React.createElement("a", { href: '#3' }, "Third")) }),
+                    ] }),
+                React.createElement("h3", null, "Little Status:"),
+                React.createElement(index_1.LittleStatus, { type: "inactive", title: "Inactive" }),
+                " Inactive  \u00A0",
+                React.createElement(index_1.LittleStatus, { type: "ok", title: "Ok" }),
+                " Ok  \u00A0",
+                React.createElement(index_1.LittleStatus, { type: "failed", title: "Failed" }),
+                " Failed  \u00A0",
+                React.createElement(index_1.LittleStatus, { type: "warning", title: "Warning" }),
+                " Warning")));
     }
 }
 function validate(values) {

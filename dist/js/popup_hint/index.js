@@ -1,12 +1,5 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 class PopUp extends React.Component {
     constructor(props) {
@@ -128,12 +121,12 @@ class PopUp extends React.Component {
         };
     }
     render() {
-        var hint = (React.createElement("div", { ref: "hint", className: "hint-popup", style: __assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.hintStyle), tabIndex: 0, onBlur: this.collapse },
+        var hint = (React.createElement("div", { ref: "hint", className: "hint-popup", style: Object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.hintStyle), tabIndex: 0, onBlur: this.collapse },
             React.createElement("div", { className: "hint-popup-inner-wrapper" },
                 React.createElement("div", { className: "hint-popup-border" },
                     React.createElement("div", { className: "hint-popup-text" }, this.props.content)),
                 React.createElement("span", { ref: "arrow", className: "hint-popup-arrow", style: this.props.arrowStyle }))));
-        return (React.createElement("div", { style: __assign({ display: 'inline-block' }, this.props.wrapperStyle) },
+        return (React.createElement("div", { style: Object.assign({ display: 'inline-block' }, this.props.wrapperStyle) },
             React.createElement("div", { ref: "button", className: `popup-hint-trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, style: this.props.buttonStyle }),
             hint));
     }
@@ -145,6 +138,5 @@ PopUp.defaultProps = {
     hintStyle: {},
     buttonStyle: {},
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = PopUp;
 //# sourceMappingURL=index.js.map
