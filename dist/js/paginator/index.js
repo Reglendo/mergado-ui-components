@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const unique_id_1 = require("../unique_id");
 class Paginator extends React.Component {
@@ -86,6 +87,5 @@ Paginator.defaultProps = {
     labelPrevious: "Previous",
     maxLinks: 5,
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Paginator;
 //# sourceMappingURL=index.js.map

@@ -31,8 +31,8 @@ class CheckboxContainer extends React.Component {
                     this.props.input.onChange(queries.concat(option.id));
                 }
                 else {
-                    const copy = [...queries]; // make copy to not mutate value
-                    copy.splice(index, 1); // remove item at index
+                    const copy = [...queries];
+                    copy.splice(index, 1);
                     this.props.input.onChange(copy);
                 }
             };
