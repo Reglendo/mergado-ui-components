@@ -20,6 +20,7 @@
   ],
   "authors": "Reglendo Technologies s. r. o.",
   "dependencies": {
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
@@ -33,12 +34,18 @@
     "@types/redux-form": "^6.3.2",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "css-loader": "^0.27.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "http-server": "^0.9.0",
     "jquery": "^2.2.1",
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.14.0",
     "ts-loader": "^2.0.0",
     "typescript": "^2.1.5",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
   }
 }

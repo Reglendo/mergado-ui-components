@@ -1,0 +1,22 @@
+@import "../base/all"
+
+.#{$prefix}little_status
+	vertical-align: middle
+	&__indikator
+		width: 10px
+		height: 10px
+		border-radius: 100%
+		border-bottom: none
+		display: inline-block
+
+	&--success &__indikator
+		background-color: #85bd3c
+
+	&--warning &__indikator
+		background-color: #FF9900
+
+	&--error &__indikator
+		background-color: #d00
+
+	&--inactive &__indikator
+		background-color: #888

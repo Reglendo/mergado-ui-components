@@ -18,7 +18,8 @@ export interface Position {
 }
 
 class PopUp extends React.Component<Props, State> {
-    public static defaultProps: Props = { 
+
+public static defaultProps: Props = { 
         content: "",
         wrapperStyle: {marginLeft: '10px'},
         arrowStyle: {},

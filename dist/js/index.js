@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var paginator_1 = require("./paginator");
+var paginator_1 = require("./components/paginator");
 exports.Paginator = paginator_1.default;
 var popup_hint_1 = require("./popup_hint");
 exports.PopupHint = popup_hint_1.default;

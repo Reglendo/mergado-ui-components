@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import uniqueId from "../unique_id"
+import uniqueId from "../../helpers/unique_id"
+import {prefix} from "../../config"
 
 export interface Props {
     currentPage: number
@@ -22,6 +23,7 @@ export interface State {
 }
 
 class Paginator extends React.Component<Props, State> {
+	readonly name = prefix+"paginator";
     public static defaultProps: Props = {
         currentPage: 1,
         onPageChange: () => {},
@@ -45,12 +47,17 @@ class Paginator extends React.Component<Props, State> {
         }
     }
 
-    renderButton(label: any, page: number, active: boolean): JSX.Element {
+    renderButton(label: any, page: number, clickable: boolean, active: boolean = false): JSX.Element {
         let key = `${this.state.id}-${label}-${page}`
-        if(active) {
-            return <a href="#" onClick={(evt) => {this.pageClicked(evt, page)} } key={key} >{label}</a>
+		let classLink = `${this.name}__item`
+		let classDisabled = `${this.name}__item--disabled`
+		if(active) {
+			classDisabled = `${this.name}__item--disabled ${this.name}__item--active`
+		}
+        if(clickable) {
+            return <a className={classLink} href="#" onClick={(evt) => {this.pageClicked(evt, page)} } key={key} >{label}</a>
         } else {
-            return <span key={key}>{label}</span>
+            return <span className={classDisabled} key={key}>{label}</span>
         }
     }
 
@@ -84,7 +91,7 @@ class Paginator extends React.Component<Props, State> {
         }
 
         for(let i = bottomLimit; i <= topLimit; i++) {
-            let button = this.renderButton(i, i, i !== this.props.currentPage)
+            let button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage)
             buttons.push(button)
         }
 
@@ -114,7 +121,7 @@ class Paginator extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className="paginator" data-active={this.props.currentPage}>
+            <div className={this.name} data-active={this.props.currentPage}>
                 {this.props.showFirstAndLast && this.renderFirstButton()}
                 {this.props.showPrevAndNext && this.renderPreviousButton()}
                 {this.renderMainButtons()}

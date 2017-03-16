@@ -5042,35 +5042,6 @@ select {
     margin: 0px 0;
     float: right !important; }
 
-.paginator {
-  margin-top: 20px;
-  text-align: center; }
-  .paginator a {
-    display: inline-block;
-    height: 30px;
-    min-width: 30px;
-    background: rgba(255, 255, 255, 0.25);
-    border: 1px solid #dbcba3;
-    line-height: 30px;
-    padding: 0px 5px 0 5px;
-    margin-bottom: 5px; }
-    .paginator a:hover {
-      background: white;
-      border: 1px solid #b79748;
-      text-decoration: none; }
-  .paginator span {
-    display: inline-block;
-    height: 30px;
-    min-width: 30px;
-    line-height: 30px;
-    padding: 0px 5px 0 5px;
-    margin-bottom: 5px;
-    border: 1px dotted rgba(219, 203, 163, 0.5); }
-    .paginator span.current {
-      font-weight: bold;
-      border: 1px solid #b79748;
-      background: #fff; }
-
 .active-invitations .faux-row .faux-cell {
   padding-bottom: 10px; }
 
@@ -6790,20 +6761,6 @@ textarea.ajax-active {
 .progress-stop {
   background: url("../img/progress_stop.png") left top; }
 
-.lite-status {
-  width: 10px;
-  height: 10px;
-  border-radius: 100%;
-  border-bottom: none;
-  display: inline-block; }
-  .lite-status.ok {
-    background-color: #85bd3c; }
-  .lite-status.warning {
-    background-color: #FF9900; }
-  .lite-status.failed {
-    background-color: #d00; }
-  .lite-status.inactive {
-    background-color: #888; }
 
 .faux-table {
   display: table; }

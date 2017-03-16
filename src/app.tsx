@@ -3,10 +3,7 @@ import * as ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 import {reducer as formReducer} from "redux-form"
 
-
 import { createStore, combineReducers } from 'redux'
-
-
 
 const rootReducer = combineReducers({
     form: formReducer
@@ -14,21 +11,48 @@ const rootReducer = combineReducers({
 
 var store = createStore(rootReducer)
 
-
 import {Field, reduxForm} from "redux-form"
-import {CheckboxContainer, TextInput, LittleStatus, TopNav, NavLink} from "./index"
+import {CheckboxContainer, TextInput, LittleStatus, TopNav, NavLink, Paginator} from "./index"
 
 export interface Props {
 
 }
 export interface State {
-
+	activePage: number;
 }
 class App extends React.Component<Props, State> {
+
+    constructor(props: any){
+        super(props);
+        this.state = { activePage: 1 };
+    }
+
+
+	handlePageClicked(page: any): void {
+		this.setState({ activePage: page });
+	}
+	
 
     render() {
         return (
             <div>
+				<h2>Done</h2>
+				<h3>paginator:</h3>
+				<Paginator currentPage={this.state.activePage} lastPage={10}  onPageChange={this.handlePageClicked.bind(this)} />
+
+				<h3>little_status:</h3>
+				<LittleStatus type="inactive" title="inactive" text="inactive" />  &nbsp; 
+				<LittleStatus type="success" title="success" text="success" />  &nbsp; 
+				<LittleStatus type="error" title="error"  text="error" />  &nbsp; 
+				<LittleStatus type="warning" title="warning" text="warning" />
+				<br/>No text: <LittleStatus type="success" title="no text" />
+
+				<hr className="separator" />
+				<h2>Undone</h2>
+
+
+
+
                 <div style={{width: "400px"}} >
                     <Field name={"queries"} component={CheckboxContainer} props={{availibleQueries: [{
                         id: 1,
@@ -46,7 +70,7 @@ class App extends React.Component<Props, State> {
 
                     <Field name={"text"} component={TextInput} />
                 </div>
-				
+
 				<div style={{marginTop: "10px", padding: "10px"}}>
 					<h3>Top Nav:</h3>
 					<TopNav links={[
@@ -55,11 +79,7 @@ class App extends React.Component<Props, State> {
 						React.createElement(NavLink, { key: 3, active: false, link: (<a href='#3'>Third</a>) }),
 					]} />
 
-					<h3>Little Status:</h3>
-					<LittleStatus type="inactive" title="Inactive" /> Inactive  &nbsp; 
-					<LittleStatus type="ok" title="Ok" /> Ok  &nbsp; 
-					<LittleStatus type="failed" title="Failed" /> Failed  &nbsp; 
-					<LittleStatus type="warning" title="Warning" /> Warning
+
 				</div>
             </div>
         )
