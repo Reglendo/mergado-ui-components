@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
-const config_1 = require("../../config");
+const config_1 = require("config");
 const Style2 = require("../../stylesheets/components/_little_status.sass");
 class LittleStatus extends React.Component {
     constructor() {

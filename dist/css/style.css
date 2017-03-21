@@ -9,7 +9,9 @@
     border: 1px solid #dbcba3;
     line-height: 30px;
     padding: 0px 5px 0 5px;
-    margin-bottom: 5px; }
+    text-decoration: none;
+    margin-bottom: 5px;
+    color: black; }
     .muk-paginator__item:hover {
       background: white;
       border: 1px solid #b79748;
@@ -22,6 +24,9 @@
       padding: 0px 5px 0 5px;
       margin-bottom: 5px;
       border: 1px dotted rgba(219, 203, 163, 0.5); }
+  .muk-paginator a {
+    text-decoration: none; }
+
 .muk-little_status {
   vertical-align: middle; }
   .muk-little_status__indikator {

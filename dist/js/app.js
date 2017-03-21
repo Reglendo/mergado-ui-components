@@ -1,20 +1,41 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const ReactDOM = require("react-dom");
-const react_redux_1 = require("react-redux");
-const redux_form_1 = require("redux-form");
-const redux_1 = require("redux");
-const Style = require("./Hello.css");
-const rootReducer = redux_1.combineReducers({
+var React = require("react");
+var ReactDOM = require("react-dom");
+var react_redux_1 = require("react-redux");
+var redux_form_1 = require("redux-form");
+var redux_1 = require("redux");
+var Style = require("./stylesheets/main.sass");
+var rootReducer = redux_1.combineReducers({
     form: redux_form_1.reducer
 });
 var store = redux_1.createStore(rootReducer);
-const redux_form_2 = require("redux-form");
-const index_1 = require("./index");
-class App extends React.Component {
-    render() {
+var redux_form_2 = require("redux-form");
+var index_1 = require("./index");
+var App = (function (_super) {
+    __extends(App, _super);
+    function App(props) {
+        var _this = _super.call(this, props) || this;
+        _this.state = { activePage: 1 };
+        return _this;
+    }
+    App.prototype.handlePageClicked = function (page) {
+        this.setState({ activePage: page });
+    };
+    App.prototype.render = function () {
         return (React.createElement("div", null,
+            React.createElement("hr", { className: "separator" }),
+            React.createElement("h2", null, "Undone"),
             React.createElement("div", { style: { width: "400px" } },
                 React.createElement(redux_form_2.Field, { name: "queries", component: index_1.CheckboxContainer, props: { availibleQueries: [{
                                 id: 1,
@@ -30,35 +51,21 @@ class App extends React.Component {
                                 productCount: 100
                             }] } }),
                 React.createElement(redux_form_2.Field, { name: "text", component: index_1.TextInput })),
-            React.createElement("div", { style: { marginTop: "10px", padding: "10px" } },
-                React.createElement("h3", null, "Top Nav:"),
-                React.createElement(index_1.TopNav, { links: [
-                        React.createElement(index_1.NavLink, { key: 1, active: true, link: (React.createElement("a", { href: '#1' }, "First")) }),
-                        React.createElement(index_1.NavLink, { key: 2, active: false, link: (React.createElement("a", { href: '#2' }, "Second")) }),
-                        React.createElement(index_1.NavLink, { key: 3, active: false, link: (React.createElement("a", { href: '#3' }, "Third")) }),
-                    ] }),
-                React.createElement("h3", null, "Little Status:"),
-                React.createElement(index_1.LittleStatus, { type: "inactive", title: "Inactive" }),
-                " Inactive  \u00A0",
-                React.createElement(index_1.LittleStatus, { type: "ok", title: "Ok" }),
-                " Ok  \u00A0",
-                React.createElement(index_1.LittleStatus, { type: "failed", title: "Failed" }),
-                " Failed  \u00A0",
-                React.createElement(index_1.LittleStatus, { type: "warning", title: "Warning" }),
-                " Warning")));
-    }
-}
+            React.createElement("div", { style: { marginTop: "10px", padding: "10px" } })));
+    };
+    return App;
+}(React.Component));
 function validate(values) {
-    let errors = {
+    var errors = {
         text: ""
     };
     errors.text = "ERROR";
     console.log(errors);
     return errors;
 }
-const Form = redux_form_2.reduxForm({
+var Form = redux_form_2.reduxForm({
     form: "SampleForm",
-    validate,
+    validate: validate,
     initialValues: {
         "queries": [1],
         "text": "Default"

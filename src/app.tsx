@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import {reducer as formReducer} from "redux-form"
 
 import { createStore, combineReducers } from 'redux'
+const Style = require<any> ("./stylesheets/main.sass")
 
 const rootReducer = combineReducers({
     form: formReducer
@@ -12,7 +13,7 @@ const rootReducer = combineReducers({
 var store = createStore(rootReducer)
 
 import {Field, reduxForm} from "redux-form"
-import {CheckboxContainer, TextInput, LittleStatus, TopNav, NavLink, Paginator} from "./index"
+import {CheckboxContainer, TextInput} from "./index"
 
 export interface Props {
 
@@ -36,16 +37,6 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <div>
-				<h2>Done</h2>
-				<h3>paginator:</h3>
-				<Paginator currentPage={this.state.activePage} lastPage={10}  onPageChange={this.handlePageClicked.bind(this)} />
-
-				<h3>little_status:</h3>
-				<LittleStatus type="inactive" title="inactive" text="inactive" />  &nbsp; 
-				<LittleStatus type="success" title="success" text="success" />  &nbsp; 
-				<LittleStatus type="error" title="error"  text="error" />  &nbsp; 
-				<LittleStatus type="warning" title="warning" text="warning" />
-				<br/>No text: <LittleStatus type="success" title="no text" />
 
 				<hr className="separator" />
 				<h2>Undone</h2>
@@ -72,12 +63,6 @@ class App extends React.Component<Props, State> {
                 </div>
 
 				<div style={{marginTop: "10px", padding: "10px"}}>
-					<h3>Top Nav:</h3>
-					<TopNav links={[
-						React.createElement(NavLink, { key: 1, active: true, link: (<a href='#1'>First</a>) }),
-						React.createElement(NavLink, { key: 2, active: false, link: (<a href='#2'>Second</a>) }),
-						React.createElement(NavLink, { key: 3, active: false, link: (<a href='#3'>Third</a>) }),
-					]} />
 
 
 				</div>

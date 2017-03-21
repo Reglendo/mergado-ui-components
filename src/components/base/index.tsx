@@ -1,20 +1,32 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import uniqueId from "../../helpers/unique_id"
-import {prefix} from "../../config"
+import uniqueId from "helpers/unique_id"
+import {prefix} from "config"
 
 export interface Props {
+	/** currentPage currentpage */
     currentPage: number
+	/** onPageChange currentpage */
     onPageChange: (page: number)  => any
+	/** firstPage currentpage */
     firstPage?: number
+	/** lastPage currentpage */
     lastPage?: number
+	/** showPrevAndNext currentpage */
     showPrevAndNext?: boolean
+	/** showFirstAndLast currentpage */
     showFirstAndLast?: boolean
+	/** advanced currentpage */
     advanced?: boolean
+	/** labelLast currentpage */
     labelLast?: string
+	/** labelFirst currentpage */
     labelFirst?: string
+	/** labelNext currentpage */
     labelNext?: string
+	/** labelPrevious currentpage */
     labelPrevious?: string
+	/** maxLinks currentpage */
     maxLinks?: number
 }
 
