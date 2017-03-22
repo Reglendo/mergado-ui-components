@@ -30,9 +30,9 @@ var Paginator = (function (_super) {
         if (active === void 0) { active = false; }
         var key = this.state.id + "-" + label + "-" + page;
         var classLink = this.name + "__item";
-        var classDisabled = this.name + "__item--disabled";
+        var classDisabled = this.name + "__item " + this.name + "__item--disabled";
         if (active) {
-            classDisabled = this.name + "__item--disabled " + this.name + "__item--active";
+            classDisabled = this.name + "__item " + this.name + "__item--active";
         }
         if (clickable) {
             return React.createElement("a", { className: classLink, href: "#", onClick: function (evt) { _this.pageClicked(evt, page); }, key: key }, label);
@@ -104,8 +104,8 @@ Paginator.defaultProps = {
     lastPage: 1,
     showPrevAndNext: true,
     showFirstAndLast: false,
-    labelLast: "Last",
-    labelFirst: "First",
+    labelLast: "« Last",
+    labelFirst: "First »",
     labelNext: "Next",
     labelPrevious: "Previous",
     maxLinks: 5,

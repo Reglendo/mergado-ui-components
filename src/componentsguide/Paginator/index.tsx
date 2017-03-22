@@ -46,8 +46,8 @@ class Paginator extends React.Component<Props, State> {
 		lastPage: 1,
 		showPrevAndNext: true,
 		showFirstAndLast: false,
-		labelLast: "Last",
-		labelFirst: "First",
+		labelLast: "« Last",
+		labelFirst: "First »",
 		labelNext: "Next",
 		labelPrevious: "Previous",
 		maxLinks: 5,
@@ -65,9 +65,9 @@ class Paginator extends React.Component<Props, State> {
 	renderButton(label: any, page: number, clickable: boolean, active: boolean = false): JSX.Element {
 		let key = `${this.state.id}-${label}-${page}`
 		let classLink = `${this.name}__item`
-		let classDisabled = `${this.name}__item--disabled`
+		let classDisabled = `${this.name}__item ${this.name}__item--disabled`
 		if(active) {
-			classDisabled = `${this.name}__item--disabled ${this.name}__item--active`
+			classDisabled = `${this.name}__item ${this.name}__item--active`
 		}
 		if(clickable) {
 			return <a className={classLink} href="#" onClick={(evt) => {this.pageClicked(evt, page)} } key={key} >{label}</a>

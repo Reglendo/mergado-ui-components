@@ -1,36 +1,39 @@
 @import "../base/all"
 
 .#{$prefix}paginator
-    margin-top: 20px
+    margin: 10px 0
     text-align: center
-    
+    font-size: 13px
+
     &__item
         display: inline-block
         height: 30px
-        min-width: 30px
+        min-width: 20px
         background: rgba(255, 255, 255, 0.25)
         border: 1px solid #dbcba3
         line-height: 30px
         padding: 0px 5px 0 5px
         text-decoration: none
         margin-bottom: 5px
-        color: black
+        color: #009ba9
+        margin: 0 2px
 
-        &:hover 
+        &:not(&--disabled):hover 
             background: white
             border: 1px solid #b79748
             text-decoration: none
 
         &--disabled
             display: inline-block
-            height: 30px
-            min-width: 30px
-            line-height: 30px
-            padding: 0px 5px 0 5px
-            margin-bottom: 5px
-            border: 1px dotted rgba(219, 203, 163, 0.5)
+            opacity: 0.3;
+            color: black;
     
         &--active
+            font-weight: bold;
+            border: 1px solid #b79748;
+            background: #fff;
+            color: black;
+            
 
     a
         text-decoration: none

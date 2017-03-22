@@ -1,6 +1,7 @@
 import update from 'react-addons-update';
 import { PropTypes } from 'react';
 
+import s from './StyleGuide.css';
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
 
@@ -9,24 +10,24 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
 
     var filtered = update(components, { props: { components: { $set: props } } })
 
-return (
-	<div>
-		<main>
-			<h1>{title}</h1>
-			<div>
-				<div>
-					{filtered}
-					<footer>
-						Generated with <a  href="https://github.com/styleguidist/react-styleguidist">React Styleguidist</a>
-					</footer>
-				</div>
-				{sidebar &&
-					<div>{toc}</div>
-				}
-			</div>
-		</main>
-	</div>
-);
+    return (
+    <div className={s.root}>
+    		<main className={s.content}>
+    			<h1 className={s.heading}>{title}</h1>
+    			<div className={s.wrapper}>
+    				<div className={s.components}>
+    					{filtered}
+    					<footer className={s.footer}>
+    						Generated with <a className={s.link} href="https://github.com/styleguidist/react-styleguidist">React Styleguidist</a>
+    					</footer>
+    				</div>
+    				{sidebar &&
+    					<div className={s.sidebar}>{toc}</div>
+    				}
+    			</div>
+    		</main>
+    	</div>
+    );
 }
 
 StyleGuideRenderer.propTypes = {
