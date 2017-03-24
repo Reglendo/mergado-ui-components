@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 import uniqueId from "../../helpers/unique_id"
 import {prefix} from "../../config"
 
-const Style = require<any> ("../../stylesheets/components/_paginator.sass")
+import "../../stylesheets/components/_paginator.sass"
 
 export interface Props {
 	/** Active page number */

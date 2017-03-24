@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {reducer as formReducer} from "redux-form"
 
 import { createStore, combineReducers } from 'redux'
-const Style = require<any> ("./stylesheets/main.sass")
+import "./stylesheets/main.sass";
 
 const rootReducer = combineReducers({
     form: formReducer
@@ -40,9 +40,6 @@ class App extends React.Component<Props, State> {
 
 				<hr className="separator" />
 				<h2>Undone</h2>
-
-
-
 
                 <div style={{width: "400px"}} >
                     <Field name={"queries"} component={CheckboxContainer} props={{availibleQueries: [{

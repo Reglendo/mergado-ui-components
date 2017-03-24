@@ -18,12 +18,23 @@ module.exports = {
 
         webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] =
             path.join(__dirname, 'styleguide/components/StyleGuide');
-
+        
         webpackConfig.resolve.alias['rsg-components/ReactComponent/ReactComponentRenderer'] =
             path.join(__dirname, 'styleguide/components/ReactComponent');
             
-        if (process.env.NODE_ENV === 'production') {
+        if (process.env.NODE_ENV == 'production') {
+            console.log('production')
             webpackConfig.module.loaders.push(
+                {
+                    test: /\.jsx?$/,
+                    include: dir,
+                    loader: 'babel',
+                },
+                {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                loader: 'style!css?modules&importLoaders=1',
+               },                                
                 {
                   exclude: /node_modules/,
                   loader: 'ts-loader',
@@ -32,7 +43,7 @@ module.exports = {
                       configFileName: "./tsconfig.json"
                       
                   }
-                  },
+                },
                   {
                       test: /\.sass$/,
                        exclude: /node_modules/,
@@ -54,6 +65,8 @@ module.exports = {
                 })
             );
         } else {
+            
+            console.log('dev')
             webpackConfig.module.loaders.push(
                 {
                     test: /\.jsx?$/,
@@ -66,7 +79,7 @@ module.exports = {
                 loader: 'style!css?modules&importLoaders=1',
                },
                 {
-                  exclude: /node_modules/,
+                  include: /.*/,
                   loader: 'ts-loader',
                   test: /\.(ts|tsx)$/,
                   options: {

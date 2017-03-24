@@ -1,7 +1,7 @@
 import * as React from "react"
 import {prefix} from "../../config"
 
-const Style = require<any> ("../../stylesheets/components/_little_status.sass")
+import "../../stylesheets/components/_little_status.sass"
 
 export interface Props {
 	/** Status title */

@@ -2,7 +2,7 @@ import * as React from 'react'
 import NavLink from "./nav_link"
 import {prefix} from "../../config"
 
-const Style = require<any> ("../../stylesheets/components/_top_nav.sass")
+import "../../stylesheets/components/_top_nav.sass";
 
 export interface Props {
     /** Links */
