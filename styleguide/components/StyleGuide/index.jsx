@@ -1,5 +1,6 @@
 import update from 'react-addons-update';
 import { PropTypes } from 'react';
+import Icon from '../../../src/componentsguide/Icon';
 
 import s from './StyleGuide.css';
 
@@ -13,7 +14,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     return (
     <div className={s.root}>
     		<main className={s.content}>
-    			<h1 className={s.heading}>{title}</h1>
+    			<h1 className={s.heading}><Icon type="mergado" size="32" /> &nbsp; {title}</h1>
     			<div className={s.wrapper}>
     				<div className={s.components}>
     					{filtered}

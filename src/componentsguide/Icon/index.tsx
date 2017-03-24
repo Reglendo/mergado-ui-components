@@ -8,7 +8,7 @@ export interface Props {
     type: string
 
     /** Size */
-    size: number
+    size?: number
 
 	/** Icon text */
 	text?: string
@@ -23,7 +23,7 @@ class Icon extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         type: "reglendo",
-        size: 16,
+        size: 48,
     }
 
     render() {
