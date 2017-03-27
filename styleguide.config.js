@@ -5,7 +5,7 @@ var path = require("path");
 
 module.exports = {
     title: 'MUK / Mergado UI Kit',
-    components: './src/componentsguide/**/*.tsx',
+    components: './src/components/**/*.tsx',
     propsParser: require('react-docgen-typescript').parse,
     showCode: true,
     template: './styleguide/index.html',

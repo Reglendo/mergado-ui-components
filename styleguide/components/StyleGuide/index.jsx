@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 import { PropTypes } from 'react';
-import Icon from '../../../src/componentsguide/Icon';
+import Icon from '../../../src/components/Icon';
 
 import s from './StyleGuide.css';
 
