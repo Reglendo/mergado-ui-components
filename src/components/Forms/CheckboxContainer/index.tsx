@@ -1,6 +1,6 @@
 import * as React from "react"
 import InputProps from "../default_props"
-
+import {prefix} from "../../../config"
 
 export interface Query {
     id: number
@@ -9,7 +9,7 @@ export interface Query {
 }
 
 export interface Props extends InputProps {
-    availibleQueries: Array<Query>
+    availableQueries: Array<Query>
     labels: {
         main: string
         placeholder: string
@@ -23,6 +23,8 @@ export interface State {
 }
 
 class CheckboxContainer extends React.Component<Props, State> {
+
+	readonly name = prefix+"checkbox-container";
 
     public static defaultProps: Props = {
         input: {
@@ -52,7 +54,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             visited: false,
             warning: ""
         },
-        availibleQueries: [],
+        availableQueries: [],
         labels: {
             main: "Apply on queries",
             allProducts: "All products",
@@ -70,7 +72,7 @@ class CheckboxContainer extends React.Component<Props, State> {
     }
 
     renderBoxes() {
-        let options = this.props.availibleQueries;
+        let options = this.props.availableQueries;
 
         if (typeof options === "object") {
             let arr = Object.keys(options).map((key: any) => options[key])
@@ -119,7 +121,7 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         const queries = this.props.input.value
         return (
-            <div>
+            <div className={this.name}>
                 <h3 title={this.props.meta.invalid ? this.props.labels.invalid :
                     ''}>{this.props.labels.main}</h3>
                 <div id="queries" className={`queries-list ${this.props.meta.dirty && this.props.meta.invalid ?
