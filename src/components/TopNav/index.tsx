@@ -1,5 +1,5 @@
 import * as React from 'react'
-import NavLink from "./nav_link"
+import NavLink from "./NavLink"
 import {prefix} from "../../config"
 
 import "../../stylesheets/components/_top_nav.sass";

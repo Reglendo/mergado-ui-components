@@ -1,6 +1,5 @@
 import * as React from "react"
 import {prefix} from "../../config"
-import * as Icons from "mergado-ui-icons/lib"
 import "../../stylesheets/components/icon/_icon.sass"
 
 export interface Props {
@@ -19,21 +18,24 @@ export interface Props {
 export interface State {}
 
 class Icon extends React.Component<Props, State> {
-	readonly name = prefix+"icon";
+
+    readonly name = prefix+"icon";
 
     public static defaultProps: Props = {
         type: "reglendo",
-        size: 48,
+        size: 16,
     }
 
     render() {
-        
-        console.log(Icons)
-        
+        var iconImport;
+        try {
+            iconImport = require(`mergado-ui-icons/lib/export/tsx/${this.props.type}.js`)
+        } catch(e) {
+        }
+
 		let className = `${this.name} ${this.name}--${this.props.type}`
         let iconName = `Icon`+`${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase());
-        
-        const icon = Icons[iconName];
+        let icon = iconImport[iconName] ? iconImport[iconName] : null
 
         return (
             <span className={className}>
