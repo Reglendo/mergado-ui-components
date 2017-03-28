@@ -3,7 +3,7 @@ import { Component, PropTypes } from 'react';
 const s = require('./ReactComponent.css');
 
 const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
-    console.log(examples)
+
 	return (
 		<div className={s.root} id={name}>
 			<div className={s.meta}>

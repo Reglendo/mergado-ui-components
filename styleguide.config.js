@@ -18,9 +18,21 @@ module.exports = {
 
         webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] =
             path.join(__dirname, 'styleguide/components/StyleGuide');
-        
+
+        webpackConfig.resolve.alias['rsg-components/Playground'] =
+            path.join(__dirname, 'styleguide/components/Playground');
+
+        webpackConfig.resolve.alias['rsg-components/Playground/PlaygroundRenderer'] =
+            path.join(__dirname, 'styleguide/components/Playground/PlaygroundRenderer');
+
+        webpackConfig.resolve.alias['rsg-components/Preview'] =
+            path.join(__dirname, 'styleguide/components/Preview');
+    
         webpackConfig.resolve.alias['rsg-components/ReactComponent/ReactComponentRenderer'] =
             path.join(__dirname, 'styleguide/components/ReactComponent');
+
+        webpackConfig.resolve.alias['rsg-components/Editor'] =
+            path.join(__dirname, 'styleguide/components/Editor');
             
         if (process.env.NODE_ENV == 'production') {
             console.log('production')
