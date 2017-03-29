@@ -11,13 +11,14 @@ export interface Query {
 
 export interface Props extends InputProps {
     availableQueries: Array<Query>
-    multipleChoice: boolean
     labels: {
         main: string
         placeholder: string
         allProducts: string
         invalid: string
     }
+    singleChoice?: boolean
+    withoutFilter?: boolean
 }
 
 export interface State {
@@ -63,7 +64,8 @@ class CheckboxContainer extends React.Component<Props, State> {
             placeholder: "Filter",
             invalid: "Invalid input"
         },
-        multipleChoice: true
+        singleChoice: false,
+        withoutFilter: false
     }
 
     constructor(props: Props) {
@@ -98,7 +100,11 @@ class CheckboxContainer extends React.Component<Props, State> {
 
                 let handler = () => {
                     if (index < 0) { // wasn't selected
-                        this.props.input.onChange(queries.concat(option.id));
+                        if(this.props.singleChoice === false) {
+                            this.props.input.onChange(queries.concat(option.id));
+                        } else {
+                            this.props.input.onChange([option.id]);
+                        }
                     } else {
                         const copy = [...queries]; // make copy to not mutate value
                         copy.splice(index, 1); // remove item at index
@@ -108,7 +114,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                 
                 return (
                     <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`} key={option.id} onClick={handler}>
-                        {this.props.multipleChoice == true ? ( 
+                        {this.props.singleChoice == false ? ( 
                         <input
                             type="checkbox"
                             className={`${this.name}__checkbox`} 
@@ -132,6 +138,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                     ''}>{this.props.labels.main}</h3>
                 <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?
                     `${this.name}__queries--invalid` : ''}`}>
+                     {this.props.withoutFilter === false ? (
                         <div className={`${this.name}__filter`}>
                             <label className={`${this.name}__filter_label`} htmlFor="filter">
                                 {this.props.labels.placeholder}
@@ -140,6 +147,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 value={this.state.filter}
                                 onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
                         </div>
+                    ): null}
                         <ul className={`${this.name}__list`}>
                             {this.renderBoxes()}
                         </ul>
