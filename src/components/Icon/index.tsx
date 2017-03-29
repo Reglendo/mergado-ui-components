@@ -39,7 +39,7 @@ class Icon extends React.Component<Props, State> {
 
         return (
             <span className={className}>
-                <svg style={{verticalAlign: "middle"}} preserveAspectRatio='xMidYMid meet'
+                <svg className={`${this.name}__image`} preserveAspectRatio='xMidYMid meet'
                   fill='currentColor'
                   height={this.props.size}
                   width={this.props.size}
@@ -47,7 +47,7 @@ class Icon extends React.Component<Props, State> {
                   >
                     {icon}
                 </svg>
-                <span className="icon__text" style={{fontSize: this.props.size+'px', verticalAlign: "middle"}}>
+                <span className={`${this.name}__text`} style={{fontSize: this.props.size+'px'}}>
                     {this.props.text}
                 </span>
             </span>

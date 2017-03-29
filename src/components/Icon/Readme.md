@@ -1,5 +1,5 @@
-example
+Some icons
 
     <div>
-    <Icon type="mergado"/> <Icon type="reglendo"/> <Icon type="biddingfox"/>  <Icon type="dataowl"/> <Icon type="female"/>
+    <Icon type="mergado" text="mergado"/> <Icon type="reglendo" text="reglendo"/> <Icon type="biddingfox" text="biddingfox"/>  <Icon type="dataowl" text="dataowl"/> <Icon type="feedimageeditor" text="feedimageeditor"/>
     </div>
