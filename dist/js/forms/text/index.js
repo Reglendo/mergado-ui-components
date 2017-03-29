@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -7,8 +17,9 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-const React = require("react");
-const Styles = {
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var Styles = {
     group: {
         display: 'block',
         margin: '5px',
@@ -29,27 +40,32 @@ const Styles = {
     },
     input: {}
 };
-class TextInput extends React.Component {
-    renderInvalid() {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+var TextInput = (function (_super) {
+    __extends(TextInput, _super);
+    function TextInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    render() {
-        const inputId = `${this.props.meta.form}-${this.props.input.name}`;
+    TextInput.prototype.renderInvalid = function () {
+        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+    };
+    TextInput.prototype.render = function () {
+        var inputId = this.props.meta.form + "-" + this.props.input.name;
         return (React.createElement("div", { className: "form-group", title: this.props.showTitle ? this.props.labels.title : "" },
             this.renderInvalid(),
             React.createElement("label", { className: "form-label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", __assign({ className: `form-control ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`, id: inputId, type: "text" }, this.props.input))));
-    }
-}
+            React.createElement("input", __assign({ className: "form-control " + (this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''), id: inputId, type: "text" }, this.props.input))));
+    };
+    return TextInput;
+}(React.Component));
 TextInput.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: (value) => { },
-        onChange: (value) => { },
-        onDragstart: (value) => { },
-        onDrop: (value) => { },
-        onFocus: (value) => { },
+        onBlur: function (value) { },
+        onChange: function (value) { },
+        onDragstart: function (value) { },
+        onDrop: function (value) { },
+        onFocus: function (value) { },
         value: ""
     },
     meta: {
@@ -77,6 +93,4 @@ TextInput.defaultProps = {
     },
     showTitle: false
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = TextInput;
-//# sourceMappingURL=index.js.map

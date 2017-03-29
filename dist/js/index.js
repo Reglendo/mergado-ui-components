@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var paginator_1 = require("./paginator");
 exports.Paginator = paginator_1.default;
 var popup_hint_1 = require("./popup_hint");
@@ -11,4 +12,3 @@ var top_nav_1 = require("./top_nav");
 exports.TopNav = top_nav_1.default;
 var nav_link_1 = require("./top_nav/nav_link");
 exports.NavLink = nav_link_1.default;
-//# sourceMappingURL=index.js.map

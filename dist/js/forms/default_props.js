@@ -1,2 +1,2 @@
 "use strict";
-//# sourceMappingURL=default_props.js.map
+Object.defineProperty(exports, "__esModule", { value: true });
