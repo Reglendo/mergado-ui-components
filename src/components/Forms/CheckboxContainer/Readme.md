@@ -1,8 +1,7 @@
 Hello world
 
-    //<hide_start
     var Field = require('redux-form').Field;
-    //hide_end>
+
     <Field component={CheckboxContainer} name="queries"
                 props={{
                         availableQueries: [{
@@ -24,5 +23,3 @@ Hello world
                     }}
 
         />
-        //<hide_start
-        //hide_end>

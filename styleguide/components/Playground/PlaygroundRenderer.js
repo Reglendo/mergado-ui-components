@@ -20,7 +20,6 @@ const PlaygroundRenderer = ({
     var previewToString = preview
     
     // Hide unwanted text from Readme
-    code = code.replace(/\/\/<hide_start[\s\S]*?\/\/hide_end>/g,'')
 return (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
@@ -66,10 +65,6 @@ return (
 	</div>
 )
 };
-
-function htmlEntities(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
 
 PlaygroundRenderer.propTypes = {
 	code: PropTypes.string.isRequired,
