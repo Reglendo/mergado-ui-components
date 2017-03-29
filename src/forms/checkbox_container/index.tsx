@@ -78,6 +78,7 @@ class CheckboxContainer extends React.Component<Props, State> {
         }
 
         let queries = this.props.input.value
+        let queriesType: typeof queries
 
         let querieType: string = typeof queries
         if(! (querieType === "array" || querieType === "object") ) {

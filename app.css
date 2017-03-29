@@ -6794,6 +6794,7 @@ textarea.ajax-active {
   width: 10px;
   height: 10px;
   border-radius: 100%;
+  border-bottom: none;
   display: inline-block; }
   .lite-status.ok {
     background-color: #85bd3c; }
@@ -6801,6 +6802,8 @@ textarea.ajax-active {
     background-color: #FF9900; }
   .lite-status.failed {
     background-color: #d00; }
+  .lite-status.inactive {
+    background-color: #888; }
 
 .faux-table {
   display: table; }
