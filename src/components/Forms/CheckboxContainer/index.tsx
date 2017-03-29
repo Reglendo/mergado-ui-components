@@ -1,6 +1,7 @@
 import * as React from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
+import "../../../stylesheets/components/forms/_checkbox_container.sass"
 
 export interface Query {
     id: number
@@ -10,6 +11,7 @@ export interface Query {
 
 export interface Props extends InputProps {
     availableQueries: Array<Query>
+    multipleChoice: boolean
     labels: {
         main: string
         placeholder: string
@@ -24,7 +26,7 @@ export interface State {
 
 class CheckboxContainer extends React.Component<Props, State> {
 
-	readonly name = prefix+"checkbox-container";
+	readonly name = prefix+"checkbox_container";
 
     public static defaultProps: Props = {
         input: {
@@ -60,7 +62,8 @@ class CheckboxContainer extends React.Component<Props, State> {
             allProducts: "All products",
             placeholder: "Filter",
             invalid: "Invalid input"
-        }
+        },
+        multipleChoice: true
     }
 
     constructor(props: Props) {
@@ -81,7 +84,6 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         let queries = this.props.input.value
         let queriesType: typeof queries
-
         if(! (queriesType === "array" || queriesType === "object") ) {
             queries = []
         }
@@ -93,6 +95,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             })
             .map(option => {
                 const index = queries.indexOf(option.id);
+
                 let handler = () => {
                     if (index < 0) { // wasn't selected
                         this.props.input.onChange(queries.concat(option.id));
@@ -104,13 +107,16 @@ class CheckboxContainer extends React.Component<Props, State> {
                 }
                 
                 return (
-                    <li className={`checkbox-container-item ${index >= 0 ? 'active' : ''}`} key={option.id} onClick={handler} style={{cursor: "pointer"}}>
+                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`} key={option.id} onClick={handler}>
+                        {this.props.multipleChoice == true ? ( 
                         <input
                             type="checkbox"
+                            className={`${this.name}__checkbox`} 
                             checked={queries.indexOf(option.id) >= 0}
                             onChange={handler} />
-                        <label>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
-                            {" "}<span className="query-info-count">{typeof option.productCount !== "undefined" ? `(${option.productCount})` : "" }</span>
+                        ) : null}                        
+                        <label className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
+                            {" "}<span className={`${this.name}__count`}>{typeof option.productCount !== "undefined" ? `(${option.productCount})` : "" }</span>
                         </label>
                     </li>
                 )
@@ -122,22 +128,21 @@ class CheckboxContainer extends React.Component<Props, State> {
         const queries = this.props.input.value
         return (
             <div className={this.name}>
-                <h3 title={this.props.meta.invalid ? this.props.labels.invalid :
+                <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
                     ''}>{this.props.labels.main}</h3>
-                <div id="queries" className={`queries-list ${this.props.meta.dirty && this.props.meta.invalid ?
-                    'invalid' : ''}`}>
-                    <div style={{ paddingRight: 0 }}>
-                        <div className="quick-filter" style={{ display: 'block' }}>
-                            <input className="string form-control" type="text" name="filter" id="quick-filter"
-                                placeholder={this.props.labels.placeholder}
+                <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?
+                    `${this.name}__queries--invalid` : ''}`}>
+                        <div className={`${this.name}__filter`}>
+                            <label className={`${this.name}__filter_label`} htmlFor="filter">
+                                {this.props.labels.placeholder}
+                            </label>
+                            <input className={`${this.name}__filter_input ${prefix}input--text`} type="text" id="filter" name="filter" 
                                 value={this.state.filter}
                                 onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
                         </div>
-
-                        <ul className={`query-list-control`}>
+                        <ul className={`${this.name}__list`}>
                             {this.renderBoxes()}
                         </ul>
-                    </div>
                 </div>
             </div>
         )

@@ -47,7 +47,7 @@ class Icon extends React.Component<Props, State> {
                   >
                     {icon}
                 </svg>
-                <span className="icon__text" style={{fontSize: this.props.size, verticalAlign: "middle"}}>
+                <span className="icon__text" style={{fontSize: this.props.size+'px', verticalAlign: "middle"}}>
                     {this.props.text}
                 </span>
             </span>

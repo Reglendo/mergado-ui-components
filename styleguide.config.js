@@ -35,11 +35,11 @@ module.exports = {
             path.join(__dirname, 'styleguide/components/Editor');
             
         if (process.env.NODE_ENV == 'production') {
-            console.log('production')
+
             webpackConfig.module.loaders.push(
                 {
-                    test: /\.jsx?$/,
-                    include: dir,
+                    test: /\.(jsx|js)$/,
+                    exclude: /node_modules/,
                     loader: 'babel',
                 },
                 {
@@ -78,11 +78,10 @@ module.exports = {
             );
         } else {
             
-            console.log('dev')
             webpackConfig.module.loaders.push(
                 {
-                    test: /\.jsx?$/,
-                    include: dir,
+                    test: /\.(jsx|js)$/,
+                    exclude: /node_modules/,
                     loader: 'babel',
                 },
                 {

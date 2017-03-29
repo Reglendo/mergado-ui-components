@@ -10,9 +10,31 @@ import Wrapper from 'rsg-components/Wrapper';
 import Editor from 'rsg-components/Editor';
 const s = require('../Playground/Playground.css');
 
+import { Provider } from 'react-redux'
+import {reducer as formReducer} from "redux-form"
+
+import { createStore, combineReducers } from 'redux'
+import {Field, reduxForm} from "redux-form"
+
 const compileCode = code => transform(code, {
 	objectAssign: 'Object.assign',
 }).code;
+
+
+function validate(values: Object) {
+    let errors = {
+        text: ""
+    }
+
+    errors.text= "ERROR"
+    return errors
+}
+
+const rootReducer = combineReducers({
+    form: formReducer
+});
+
+var store = createStore(rootReducer)
 
 export default class Preview extends Component {
 	static propTypes = {
@@ -67,7 +89,7 @@ export default class Preview extends Component {
 					${compiledCode}
 				}
 				catch (e) {
-					// IgnoringRú
+					// Ignoring
 				}
 				finally {
 					__initialStateCB(initialState);
@@ -111,15 +133,23 @@ export default class Preview extends Component {
 					if (error) {
 						return <PlaygroundError message={error} />;
 					}
-
 					return exampleComponent(this.state, this.setState.bind(this), null);
 				}
 			}
 
+            const Form = reduxForm({
+                form: "SampleForm",
+                validate,
+                initialValues: {
+                }
+            })(PreviewComponent)
+
 			const wrappedComponent = (
-				<Wrapper>
-					<PreviewComponent />
-				</Wrapper>
+                    <Provider store={store}>
+                        <Wrapper>
+                            <Form />
+                        </Wrapper>
+                    </Provider>
 			);
 
 			ReactDOM.render(wrappedComponent, this.mountNode);

@@ -1,0 +1,47 @@
+@import "../../base/all"
+@import "./input"
+
+.#{$prefix}checkbox_container
+    font-size: 14px
+    &__header
+        padding-left: 10px
+        border-left: 5px rgba(219,203,163,0.5) solid
+        font-size: 1.2em
+
+    &__list
+        list-style: none
+        margin: 0
+        padding: 0
+        border: 1px solid #dbcba3
+        height: 300px
+        overflow: auto
+        background: rgba(255,255,255,0.2)
+    
+    &__item
+        display: table
+        border-bottom: 1px solid #dbcba3
+        width: 100%
+        box-sizing: border-box
+        background: #fff
+        padding: 10px
+        font-size: 0.8em
+        vertical-align: middle
+        
+        &:hover
+            background: #fdf7d2
+        
+    &__checkbox
+        margin: 0
+        margin-right: 10px
+        vertical-align: text-bottom
+        
+    &__filter_label
+        padding: 10px 0
+        font-size: 0.9em
+        display: block
+        
+    &__filter_input
+        
+    &__count
+        color: #888
+        font-size: 0.8em

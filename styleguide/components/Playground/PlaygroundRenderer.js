@@ -18,7 +18,9 @@ const PlaygroundRenderer = ({
 }) => {
     var preview = (<Preview code={code} evalInContext={evalInContext} />)
     var previewToString = preview
-
+    
+    // Hide unwanted text from Readme
+    code = code.replace(/\/\/<hide_start[\s\S]*?\/\/hide_end>/g,'')
 return (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
