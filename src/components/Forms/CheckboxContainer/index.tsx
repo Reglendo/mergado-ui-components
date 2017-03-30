@@ -19,6 +19,8 @@ export interface Props extends InputProps {
     }
     singleChoice?: boolean
     withoutFilter?: boolean
+    /** Height of box with queries (in px) */
+    height?: string|number
 }
 
 export interface State {
@@ -65,7 +67,8 @@ class CheckboxContainer extends React.Component<Props, State> {
             invalid: "Invalid input"
         },
         singleChoice: false,
-        withoutFilter: false
+        withoutFilter: false,
+        height: 300
     }
 
     constructor(props: Props) {
@@ -148,7 +151,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
                         </div>
                     ): null}
-                        <ul className={`${this.name}__list`}>
+                        <ul className={`${this.name}__list`} style={{height: this.props.height }}>
                             {this.renderBoxes()}
                         </ul>
                 </div>

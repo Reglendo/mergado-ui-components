@@ -24,7 +24,7 @@ Multiple choices
 
         />
 
-Single choice box without filter
+Flexible size single choice box without filter
 
     var Field = require('redux-form').Field;
 
