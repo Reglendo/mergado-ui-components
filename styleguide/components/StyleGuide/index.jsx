@@ -19,7 +19,6 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     return (
     <div className={s.root}>
     		<main className={s.content}>
-    			<h1 className={s.heading}><Icon type="mergado" size="32" /> &nbsp; {title}</h1>
     			<div className={s.wrapper}>
     				<div className={s.components}>
     					{filteredComponents}
@@ -28,7 +27,12 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     					</footer>
     				</div>
     				{sidebar &&
-    					<div className={s.sidebar}>{filteredToc}</div>
+    					<div className={s.sidebar}>
+    			        <h1 className={s.heading}><Icon type="mergado" size="32" /> &nbsp; <span className={s.title}>{title}</span></h1>
+
+                        {filteredToc}
+                        
+                        </div>
     				}
     			</div>
     		</main>

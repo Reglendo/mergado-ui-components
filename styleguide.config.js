@@ -4,8 +4,17 @@ var webpack = require("webpack");
 var path = require("path");
 
 module.exports = {
-    title: 'MUK / Mergado UI Kit',
-    components: './src/components/**/*.tsx',
+    title: '/ MUK / Mergado UI Kit',
+    sections: [
+        {
+            name: 'Form',
+            components: './src/components/Forms/**/*.tsx'
+        },
+        {
+            name: 'Elements',
+            components: './src/components/**/*.tsx'
+        }
+    ],
     propsParser: require('react-docgen-typescript').parse,
     showCode: true,
     template: './styleguide/index.html',

@@ -13,37 +13,42 @@
 
 
 .sidebar {
-	width: 200px;
+	width: 250px;
 	flex-shrink: 0;
-	padding-left: 15px;
     background: #69a120;
     order: -1;
     position: fixed;
     z-index: 100;
-    padding-top: 100px;
     height: 100vh;
     top: 0;
+    white-space: nowrap;
 }
 
 .heading {
 	composes: reset font from "../../styles/common.css";
 	margin: 0;
-	font-size: 28px;
+	font-size: 14px;
     background: #333;
     color: white;
-    padding: 30px;
+    padding: 22px;
     font-weight: bold;
-    position: fixed;
     z-index: 101;
-    width: 100vw;
+    display: inline-block;
+    width: auto;
+    box-sizing: border-box;
+    width: 250px;
+}
+
+.title {
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .components {
     box-sizing: border-box;
 	padding: 30px;
     width: 100%;
-    padding-left: 240px;
-    padding-top: 115px;
+    padding-left: 260px;
 }
 
 .empty {
@@ -59,4 +64,10 @@
 
 .link {
 	composes: link from "../../styles/colors.css";
+}
+
+.ReactStyleguidist-TableOfContents__search {
+    border: none;
+    outline: none;
+    border-radius: 0;
 }
