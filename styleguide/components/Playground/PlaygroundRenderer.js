@@ -30,7 +30,7 @@ return (
 			)}
 			{preview}
             
-            <div className={s.htmlCode} style={{ display: showHtml?'block':'none'}} ></div>
+            <div className={s.htmlCode} style={{ maxHeight: showHtml?1000:0, overflow: showHtml?'auto':'hidden'}} ></div>
 		</div>
         {showHtml ? (
 			<div>

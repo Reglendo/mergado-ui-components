@@ -154,11 +154,12 @@ export default class Preview extends Component {
 
 			ReactDOM.render(wrappedComponent, this.mountNode);
             
-            var htmlcode = this.formatXml(ReactDOMServer.renderToStaticMarkup(wrappedComponent))
                     
-            if(this.mountNode.parentElement.parentElement.children[2])
-                ReactDOM.render(( <Editor code={htmlcode} onChange={() => {}} />), this.mountNode.parentElement.parentElement.children[2]); 
-
+            if(this.mountNode.parentElement.parentElement.children[2]) {
+                var htmlcode = this.formatXml(ReactDOMServer.renderToStaticMarkup(wrappedComponent))
+                ReactDOM.render(( <Editor code={htmlcode} onChange={() => { this.executeCode() }} />), this.mountNode.parentElement.parentElement.children[2]); 
+            }
+        
 		}
 		catch (err) {
 			ReactDOM.unmountComponentAtNode(this.mountNode);
