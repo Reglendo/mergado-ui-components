@@ -5,7 +5,7 @@ interface FieldProps {
         name: string
         onBlur: (value: any) => void
         onChange: (value: any) => void
-        onDragstart: (value: any) => void
+        onDragStart: (value: any) => void
         onDrop: (value: any) => void
         onFocus: (value: any) => void
     }

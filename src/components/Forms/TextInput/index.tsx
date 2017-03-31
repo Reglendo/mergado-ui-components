@@ -1,50 +1,29 @@
 import * as React  from "react"
 import InputProps from "../default_props"
+import {prefix} from "../../../config"
 
 export interface Props extends InputProps {
-    labels: {
+    labels?: {
         main: string | JSX.Element
         placeholder: string 
         invalid: string | JSX.Element
         title: string
     }
-    showTitle?: boolean
 }
 
 export interface State {}
 
-const Styles = {
-    group: {
-        display: 'block',
-        margin: '5px',
-        width: '100%',
-    },
-    label: {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        boxSizing: 'border-box',
-        fontWeight: 'bold',
-        textAlign: 'left',
-        paddingTop: '10px',
-        paddingBottom: '10px',
-        display: 'inline-block',
-        width: '30%',
-        fontSize: '12pt',
-    },
-    input: {
-
-    }
-}
-
 class TextInput extends React.Component<Props, State> {
+    
+	readonly name = prefix+"text_input";
+    
     public static defaultProps: Props = {
         input: {
             checked: false,
             name: "",
             onBlur: (value) => {},
             onChange: (value) => {},
-            onDragstart: (value) => {},
+            onDragStart: (value) => {},
             onDrop: (value) => {},
             onFocus: (value) => {},
             value: ""
@@ -71,8 +50,7 @@ class TextInput extends React.Component<Props, State> {
             placeholder: "Fill out here...",
             invalid: "Invalid input",
             title: ""
-        },
-        showTitle: false
+        }
     }
 
     renderInvalid() {
@@ -84,10 +62,10 @@ class TextInput extends React.Component<Props, State> {
     render() {
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
-            <div className="form-group" title={this.props.showTitle ? this.props.labels.title : ""}>
+            <div className={`${this.name} ${prefix}form__group`} title={this.props.labels.title}>
                 {this.renderInvalid()}
-                 <label className="form-label" htmlFor={inputId} >{this.props.labels.main }</label>
-                 <input className={`form-control ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`} id={inputId} type="text" 
+                 <label className={`${this.name}__label`} htmlFor={inputId} >{this.props.labels.main }</label>
+                 <input className={`${this.name}__input ${prefix}form__control ${prefix}input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`} id={inputId} type="text" placeholder={this.props.labels.placeholder}
                    {...this.props.input} />
             </div>
         )

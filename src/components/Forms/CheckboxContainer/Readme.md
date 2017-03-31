@@ -24,7 +24,7 @@ Multiple choices
 
         />
 
-Flexible size single choice box without filter
+Flexible height single choice box without filter
 
     var Field = require('redux-form').Field;
 
@@ -45,6 +45,7 @@ Flexible size single choice box without filter
                         }],
                         singleChoice: true,
                         withoutFilter: true,
+                        height: 'auto',
                         labels: {
                          main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
                         }

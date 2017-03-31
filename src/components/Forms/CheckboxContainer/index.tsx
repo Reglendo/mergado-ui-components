@@ -37,7 +37,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             name: "",
             onBlur: (value) => {},
             onChange: (value) => {},
-            onDragstart: (value) => {},
+            onDragStart: (value) => {},
             onDrop: (value) => {},
             onFocus: (value) => {},
             value: []
