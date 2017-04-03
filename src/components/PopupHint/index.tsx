@@ -1,11 +1,16 @@
 import * as React from 'react'
+import Icon from '../Icon'
+import Bubble from './Bubble'
+import {prefix} from "../../config"
+import * as ReactDOM from "react-dom"
+
+import "../../stylesheets/components/_popup_hint.sass"
+
 
 export interface Props {
     content?: string | JSX.Element
-    wrapperStyle?: Object
-    arrowStyle?: Object
-    hintStyle?: Object
-    buttonStyle?: Object
+    icon?: Icon
+    iconType?: string
 }
 
 export interface State {
@@ -19,12 +24,12 @@ export interface Position {
 
 class PopupHint extends React.Component<Props, State> {
 
-public static defaultProps: Props = { 
+    readonly name = prefix+"popup_hint";
+
+    public static defaultProps: Props = {
         content: "",
-        wrapperStyle: {marginLeft: '10px'},
-        arrowStyle: {},
-        hintStyle: {},
-        buttonStyle: {},
+        icon: null,
+        iconType: "",
     }
 
     refs: {
@@ -81,7 +86,6 @@ public static defaultProps: Props = {
 
     styleElements() {
         const buttonPosition = this.getPosition(this.refs["button"])
-
         const windowWidth = this.getWindowWidth()
         const widthLeft = buttonPosition.left
         const windowRight = windowWidth - buttonPosition.left
@@ -99,10 +103,10 @@ public static defaultProps: Props = {
     }
 
     styleHint(buttonPosition: Position, renderLeft: boolean) {
-
         let hint = this.refs["hint"]
 
         hint.style.opacity = `0`
+        hint.style.display = 'block'
 
         let newX: number
         let arrowLeft: string
@@ -122,8 +126,8 @@ public static defaultProps: Props = {
             hint.style.left === `${newX}px`) {
             if(this.state.expanded) {
                 this.styleArrow(arrowLeft, arrowRight)
-                this.refs["hint"].focus()
                 this.fadeIn(this.refs["hint"])
+                this.refs["hint"].focus()
             }
         } else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`
@@ -180,22 +184,23 @@ public static defaultProps: Props = {
 
     render() {
         var hint: JSX.Element = (
-            <div ref="hint" className="hint-popup" style={{display: this.state.expanded ? "" : "none", position: "absolute", ...this.props.hintStyle}}
-             tabIndex={0} onBlur={ this.collapse }>
-                <div className="hint-popup-inner-wrapper">
-                    <div className="hint-popup-border">
-                        <div className="hint-popup-text">{this.props.content}</div>
+            <Bubble>
+                <div ref="hint" className={`${this.name}__bubble`} style={{display: this.state.expanded ? "" : "none", position: "absolute"}} tabIndex={0} onBlur={ this.collapse }>
+                    <div className={`${this.name}__innerwrapper`}>
+                        <div className={`${this.name}__border`}>
+                            <div className={`${this.name}__content`}>{this.props.content}</div>
+                        </div>
+                        <span ref="arrow" className={`${this.name}__arrow`}></span>
                     </div>
-                    <span ref="arrow" className="hint-popup-arrow" style={this.props.arrowStyle} ></span>
                 </div>
-            </div>
+            </Bubble>
         )
-        
 
         return (
-            <div style={{display: 'inline-block', ...this.props.wrapperStyle}}>
-                <div ref="button" className={`popup-hint-trigger ${this.state.expanded ? "active" : ""}`} 
-                onMouseDown={this.state.expanded ? ()=>{} : this.expand}  style={this.props.buttonStyle}>
+            <div className={this.name} style={{display: 'inline-block'}}>
+                <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
+                    onMouseDown={this.state.expanded ? ()=>{} : this.expand}>
+                        {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}
             </div>
