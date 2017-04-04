@@ -1,4 +1,4 @@
-import {default as CheckboxContainer } from "./CheckboxContainer"
+import {default as CheckboxContainer} from "./CheckboxContainer"
 export default {
     CheckboxContainer
 }

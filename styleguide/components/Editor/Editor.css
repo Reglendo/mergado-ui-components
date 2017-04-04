@@ -1,14 +1,19 @@
-/* Tweak CodeMirror styles */
 .root :global .CodeMirror {
-	height: auto;
-	padding: 5px 12px;
-	font-size: 12px;
+    height: auto;
+    padding: 0;
+    font-size: 12px;
 }
 .root :global .CodeMirror-scroll {
-	height: auto;
-	overflow-y: hidden;
-	overflow-x: auto;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 .root :global .cm-error {
-	background: none !important;
+    background: none !important;
 }
+
+.root :global .CodeMirror-line,
+.root :global .CodeMirror-linenumber {
+    line-height: 1.8em;
+}
+

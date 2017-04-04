@@ -5,6 +5,7 @@ var path = require("path");
 
 module.exports = {
     title: '/ MUK / Mergado UI Kit',
+    highlightTheme: 'rubyblue',
     sections: [
         {
             name: 'Form',
@@ -42,7 +43,7 @@ module.exports = {
 
         webpackConfig.resolve.alias['rsg-components/Editor'] =
             path.join(__dirname, 'styleguide/components/Editor');
-            
+
         if (process.env.NODE_ENV == 'production') {
 
             webpackConfig.module.loaders.push(
@@ -65,13 +66,13 @@ module.exports = {
                       
                   }
                 },
-                  {
-                      test: /\.sass$/,
-                       exclude: /node_modules/,
-                      loader: ExtractTextPlugin.extract({
-                          loader: 'css-loader!sass-loader'
-                      })
-                   }
+                {
+                  test: /\.sass$/,
+                   exclude: /node_modules/,
+                  loader: ExtractTextPlugin.extract({
+                      loader: 'css-loader!sass-loader'
+                  })
+                }
             );
             
             webpackConfig.plugins.push(

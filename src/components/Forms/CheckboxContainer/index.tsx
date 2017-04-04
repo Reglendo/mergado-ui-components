@@ -29,17 +29,22 @@ export interface State {
 
 class CheckboxContainer extends React.Component<Props, State> {
 
-	readonly name = prefix+"checkbox_container";
+    readonly name = prefix + "checkbox_container";
 
     public static defaultProps: Props = {
         input: {
             checked: false,
             name: "",
-            onBlur: (value) => {},
-            onChange: (value) => {},
-            onDragStart: (value) => {},
-            onDrop: (value) => {},
-            onFocus: (value) => {},
+            onBlur: (value) => {
+            },
+            onChange: (value) => {
+            },
+            onDragStart: (value) => {
+            },
+            onDrop: (value) => {
+            },
+            onFocus: (value) => {
+            },
             value: []
         },
         meta: {
@@ -89,7 +94,7 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         let queries = this.props.input.value
 
-        if(!(queries instanceof Array) && !(queries instanceof Object) ) {
+        if (!(queries instanceof Array) && !(queries instanceof Object)) {
             queries = []
         }
 
@@ -103,7 +108,7 @@ class CheckboxContainer extends React.Component<Props, State> {
 
                 let handler = () => {
                     if (index < 0) { // wasn't selected
-                        if(this.props.singleChoice === false) {
+                        if (this.props.singleChoice === false) {
                             this.props.input.onChange(queries.concat(option.id));
                         } else {
                             this.props.input.onChange([option.id]);
@@ -114,18 +119,21 @@ class CheckboxContainer extends React.Component<Props, State> {
                         this.props.input.onChange(copy);
                     }
                 }
-                
+
                 return (
-                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`} key={option.id} onClick={handler}>
-                        {this.props.singleChoice == false ? ( 
-                        <input
-                            type="checkbox"
-                            className={`${this.name}__checkbox`} 
-                            checked={queries.indexOf(option.id) >= 0}
-                            onChange={handler} />
-                        ) : null}                        
-                        <label className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
-                            {" "}<span className={`${this.name}__count`}>{typeof option.productCount !== "undefined" ? `(${option.productCount})` : "" }</span>
+                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`}
+                        key={option.id} onClick={handler}>
+                        {this.props.singleChoice == false ? (
+                                <input
+                                    type="checkbox"
+                                    className={`${this.name}__checkbox`}
+                                    checked={queries.indexOf(option.id) >= 0}
+                                    onChange={handler}/>
+                            ) : null}
+                        <label
+                            className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
+                            {" "}<span
+                                className={`${this.name}__count`}>{typeof option.productCount !== "undefined" ? `(${option.productCount})` : "" }</span>
                         </label>
                     </li>
                 )
@@ -141,19 +149,20 @@ class CheckboxContainer extends React.Component<Props, State> {
                     ''}>{this.props.labels.main}</h3>
                 <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?
                     `${this.name}__queries--invalid` : ''}`}>
-                     {this.props.withoutFilter === false ? (
-                        <div className={`${this.name}__filter`}>
-                            <label className={`${this.name}__filter_label`} htmlFor="filter">
-                                {this.props.labels.placeholder}
-                            </label>
-                            <input className={`${this.name}__filter_input ${prefix}input--text`} type="text" id="filter" name="filter" 
-                                value={this.state.filter}
-                                onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
-                        </div>
-                    ): null}
-                        <ul className={`${this.name}__list`} style={{height: this.props.height }}>
-                            {this.renderBoxes()}
-                        </ul>
+                    {this.props.withoutFilter === false ? (
+                            <div className={`${this.name}__filter`}>
+                                <label className={`${this.name}__filter_label`} htmlFor="filter">
+                                    {this.props.labels.placeholder}
+                                </label>
+                                <input className={`${this.name}__filter_input ${prefix}input--text`} type="text"
+                                       id="filter" name="filter"
+                                       value={this.state.filter}
+                                       onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
+                            </div>
+                        ) : null}
+                    <ul className={`${this.name}__list`} style={{height: this.props.height }}>
+                        {this.renderBoxes()}
+                    </ul>
                 </div>
             </div>
         )

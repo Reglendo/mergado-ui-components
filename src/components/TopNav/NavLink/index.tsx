@@ -6,7 +6,8 @@ export interface Props {
     link: JSX.Element
 }
 
-export interface State {}
+export interface State {
+}
 
 
 /**
@@ -14,21 +15,21 @@ export interface State {}
  */
 class NavLink extends React.Component<Props, State> {
 
-	readonly name = prefix+"top_nav__item";
+    readonly name = prefix + "top_nav__item";
 
     public static defaultProps: Props = {
         active: false,
-        link: (<a href="#" />)
+        link: (<a href="#"/>)
     }
 
     render() {
         const {link, active} = this.props
-        var className =`${this.name}`
-        if(active) {
+        var className = `${this.name}`
+        if (active) {
             className += ` ${this.name}--active`
         }
         return (
-            <li className={`${className}`} >
+            <li className={`${className}`}>
                 {link}
             </li>
         )

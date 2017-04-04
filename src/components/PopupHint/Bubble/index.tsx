@@ -4,11 +4,12 @@ import {prefix} from "../../../config"
 
 export interface Props {
 }
-export interface State {}
+export interface State {
+}
 
 class Bubble extends React.Component<Props, State> {
 
-    readonly name = prefix+"popup_hint__bubble";
+    readonly name = prefix + "popup_hint__bubble";
     public popup;
 
 
@@ -23,7 +24,7 @@ class Bubble extends React.Component<Props, State> {
     componentDidUpdate() {
         this._renderLayer();
     }
-    
+
     componentWillUnmount() {
         ReactDOM.unmountComponentAtNode(this.popup);
         document.body.removeChild(this.popup);

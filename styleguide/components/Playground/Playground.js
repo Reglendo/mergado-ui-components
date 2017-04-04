@@ -9,6 +9,7 @@ export default class Playground extends Component {
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
 		name: PropTypes.string.isRequired,
+        innerHtml: PropTypes.string,
 	};
 	static contextTypes = {
 		config: PropTypes.object.isRequired,
@@ -20,10 +21,12 @@ export default class Playground extends Component {
 		const { code } = props;
         const showCode = cookie.load('show_code_' + props.name) == "1" ? true : false;
         const showHtml = cookie.load('show_html_' + props.name) == "1" ? true : false;
+        const innerHtml = '';
 		this.state = {
 			code,
 			showCode,
-            showHtml
+            showHtml,
+			innerHtml
 		};
 	}
 
@@ -38,8 +41,9 @@ export default class Playground extends Component {
 		return (
 			nextState.code !== this.state.code ||
 			nextState.showCode !== this.state.showCode ||
-			nextState.showHtml !== this.state.showHtml
-		);
+			nextState.showHtml !== this.state.showHtml ||
+            nextState.innerHtml !== this.state.innerHtml
+        );
 	}
 
 	componentWillUnmount() {
@@ -80,6 +84,13 @@ export default class Playground extends Component {
         cookie.save('show_code_' + this.props.name, this.state.showCode == "1" ? 0 : 1, { path: '/' });
 	}
 
+    handleChangeHtml(html) {
+		this.setState({
+            innerHtml: html
+		})
+    }
+
+
 	handleHtmlToggle() {
 		this.setState({
 			showHtml: !this.state.showHtml,
@@ -88,7 +99,7 @@ export default class Playground extends Component {
 	}
 
 	render() {
-		const { code, showCode,showHtml } = this.state;
+		const { code, showCode,showHtml,innerHtml } = this.state;
 		const { evalInContext, index, name } = this.props;
 		const { singleExample } = this.context;
 		return (
@@ -103,6 +114,8 @@ export default class Playground extends Component {
 				onChange={code => this.handleChange(code)}
 				onCodeToggle={() => this.handleCodeToggle()}
 				onHtmlToggle={() => this.handleHtmlToggle()}
+				onHtmlChange={(e) => this.handleChangeHtml(e)}
+				innerHtml={innerHtml}
 			/>
 		);
 	}

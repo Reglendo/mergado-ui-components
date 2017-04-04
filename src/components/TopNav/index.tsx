@@ -9,13 +9,14 @@ export interface Props {
     links: Array<NavLink> | Array<JSX.Element>
 }
 
-export interface State {}
+export interface State {
+}
 
 class TopNav extends React.Component<Props, State> {
 
-	readonly name = prefix+"top_nav";
+    readonly name = prefix + "top_nav";
 
-    
+
     public static defaultProps: Props = {
         links: []
     }
@@ -31,9 +32,9 @@ class TopNav extends React.Component<Props, State> {
     }
 
     render() {
-        
-		let className = `${this.name}`
-		let classWrapper = `${this.name}__wrapper"`
+
+        let className = `${this.name}`
+        let classWrapper = `${this.name}__wrapper"`
 
         return (
             <nav className={className}>

@@ -14,12 +14,10 @@ const PlaygroundRenderer = ({
 	evalInContext,
 	onChange,
 	onCodeToggle,
-    onHtmlToggle
+    onHtmlToggle,
+    onHtmlChange,
+    innerHtml
 }) => {
-    var preview = (<Preview code={code} evalInContext={evalInContext} />)
-    var previewToString = preview
-    
-    // Hide unwanted text from Readme
 return (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
@@ -28,9 +26,13 @@ return (
 			) : (
 				<a className={s.isolatedLink} href={'#!/' + name + '/' + index}>Open isolated ⇢</a>
 			)}
-			{preview}
+            <Preview code={code} evalInContext={evalInContext} changeHtml={onHtmlChange} />
             
-            <div className={s.htmlCode} style={{ maxHeight: showHtml?1000:0, overflow: showHtml?'auto':'hidden'}} ></div>
+            <div className={s.htmlCode} style={{ maxHeight: showHtml?1000:0, overflow: showHtml?'auto':'hidden'}} >
+                {innerHtml ? (
+                    <Editor code={innerHtml} onChange={() => {}} />
+                    ) : null }
+			</div>
 		</div>
         {showHtml ? (
 			<div>
@@ -46,7 +48,6 @@ return (
             </div>
 		)            
         }
-        
         
 		{showCode ? (
 			<div>
@@ -75,6 +76,7 @@ PlaygroundRenderer.propTypes = {
 	onChange: PropTypes.func.isRequired,
 	onCodeToggle: PropTypes.func.isRequired,
 	singleExample: PropTypes.bool,
+    innerHtml: PropTypes.string
 };
 
 export default PlaygroundRenderer;

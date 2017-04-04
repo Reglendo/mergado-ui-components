@@ -5,27 +5,33 @@ import {prefix} from "../../../config"
 export interface Props extends InputProps {
     labels?: {
         main: string | JSX.Element
-        placeholder: string 
+        placeholder: string
         invalid: string | JSX.Element
         title: string
     }
 }
 
-export interface State {}
+export interface State {
+}
 
 class TextInput extends React.Component<Props, State> {
-    
-	readonly name = prefix+"text_input";
-    
+
+    readonly name = prefix + "text_input";
+
     public static defaultProps: Props = {
         input: {
             checked: false,
             name: "",
-            onBlur: (value) => {},
-            onChange: (value) => {},
-            onDragStart: (value) => {},
-            onDrop: (value) => {},
-            onFocus: (value) => {},
+            onBlur: (value) => {
+            },
+            onChange: (value) => {
+            },
+            onDragStart: (value) => {
+            },
+            onDrop: (value) => {
+            },
+            onFocus: (value) => {
+            },
             value: ""
         },
         meta: {
@@ -55,7 +61,8 @@ class TextInput extends React.Component<Props, State> {
 
     renderInvalid() {
         return (
-            <div className="form-validation-box">{this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}</div>
+            <div
+                className="form-validation-box">{this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}</div>
         )
     }
 
@@ -64,9 +71,11 @@ class TextInput extends React.Component<Props, State> {
         return (
             <div className={`${this.name} ${prefix}form__group`} title={this.props.labels.title}>
                 {this.renderInvalid()}
-                 <label className={`${this.name}__label`} htmlFor={inputId} >{this.props.labels.main }</label>
-                 <input className={`${this.name}__input ${prefix}form__control ${prefix}input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`} id={inputId} type="text" placeholder={this.props.labels.placeholder}
-                   {...this.props.input} />
+                <label className={`${this.name}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                <input
+                    className={`${this.name}__input ${prefix}form__control ${prefix}input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`}
+                    id={inputId} type="text" placeholder={this.props.labels.placeholder}
+                    {...this.props.input} />
             </div>
         )
     }
