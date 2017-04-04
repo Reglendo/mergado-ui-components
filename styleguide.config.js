@@ -12,14 +12,13 @@ module.exports = {
             components: './src/components/Forms/**/*.tsx'
         },
         {
-            name: 'Elements',
+            name: 'Components',
             components: './src/components/**/*.tsx'
         }
     ],
     propsParser: require('react-docgen-typescript').parse,
     showCode: true,
     template: './styleguide/index.html',
-    skipComponentsWithoutExample: true,
     updateWebpackConfig(webpackConfig) {
         // Your source files folder or array of folders, should not include node_modules
         const dir = path.join(__dirname, 'styleguide');

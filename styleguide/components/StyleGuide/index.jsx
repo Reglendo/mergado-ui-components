@@ -5,18 +5,28 @@ import Icon from '../../../src/components/Icon';
 import s from './StyleGuide.css';
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
-
+    var exported = [];
     var components = update(components, { props: { sections: { $set: components.props.sections.map((obj) => {
+
         var filtered = obj.components.filter(
             (obj) => {
+                if(exported.indexOf(obj.pathLine) !== -1) {
+                    return false;
+                }
+                exported.push(obj.pathLine);
                 return obj.props.description !== 'disable-styleguide'
             })
         return update(obj, { components: { $set: filtered } })
     }) } } })
 
+    var exported = [];
     var toc = update(toc, { props: { sections: { $set: toc.props.sections.map((obj) => {
         var filtered = obj.components.filter(
             (obj) => {
+                if(exported.indexOf(obj.pathLine) !== -1) {
+                    return false;
+                }
+                exported.push(obj.pathLine);
                 return obj.props.description !== 'disable-styleguide'
             })
         return update(obj, { components: { $set: filtered } })
