@@ -1,9 +1,11 @@
-Full paginator:
+Fullweight paginator:
 
-    <Paginator currentPage={1} firstPage={1} lastPage={20} maxLinks={10} showFirstAndLast={true}
-               labelFirst="« První" labelLast="Poslední »"  labelNext=" Další " labelPrevious="Předchozí"  />
+    <Paginator currentPage={state.current} firstPage={1} lastPage={20} maxLinks={10} showFirstAndLast={true}
+               labelFirst="« První" labelLast="Poslední »"  labelNext=" Další " labelPrevious="Předchozí"
+               onPageChange={(o) => { console.log(o); setState({ current: o}) } } />
 
-Light pagination:
+Mini paginator:
 
-    <Paginator currentPage={3} firstPage={1} lastPage={10} maxLinks={5} showPrevAndNext={false} />
-
+    initialState = { current: 3 };
+    <Paginator currentPage={state.current} firstPage={1} lastPage={10} maxLinks={5} showPrevAndNext={false}
+     onPageChange={(o) => { setState({ current: o}) } } />

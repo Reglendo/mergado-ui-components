@@ -6,22 +6,28 @@ import s from './StyleGuide.css';
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
 
-    var componentProps = components.props.components.filter(
-        (obj) => { return obj.props.description !== 'disable-styleguide' } )
+    var components = update(components, { props: { sections: { $set: components.props.sections.map((obj) => {
+        var filtered = obj.components.filter(
+            (obj) => {
+                return obj.props.description !== 'disable-styleguide'
+            })
+        return update(obj, { components: { $set: filtered } })
+    }) } } })
 
-    var filteredComponents = update(components, { props: { components: { $set: componentProps } } })
+    var toc = update(toc, { props: { sections: { $set: toc.props.sections.map((obj) => {
+        var filtered = obj.components.filter(
+            (obj) => {
+                return obj.props.description !== 'disable-styleguide'
+            })
+        return update(obj, { components: { $set: filtered } })
+    }) } } })
 
-    var tocProps = toc.props.components.filter(
-        (obj) => { return obj.props.description !== 'disable-styleguide' } )
-    
-    var filteredToc = update(toc, { props: { components: { $set: tocProps } } })
-    
     return (
     <div className={s.root}>
     		<main className={s.content}>
     			<div className={s.wrapper}>
     				<div className={s.components}>
-    					{filteredComponents}
+    					{components}
     					<footer className={s.footer}>
     						Generated with <a className={s.link} href="https://github.com/styleguidist/react-styleguidist">React Styleguidist</a>
     					</footer>
@@ -30,7 +36,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     					<div className={s.sidebar}>
     			        <h1 className={s.heading}><Icon type="mergado" size="32" /> &nbsp; <span className={s.title}>{title}</span></h1>
 
-                        {filteredToc}
+                        {toc}
                         
                         </div>
     				}
