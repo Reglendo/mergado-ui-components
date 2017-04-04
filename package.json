@@ -22,6 +22,7 @@
   ],
   "authors": "Reglendo Technologies s. r. o.",
   "dependencies": {
+    "@types/node": "^7.0.12",
     "capitalize": "^1.0.0",
     "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons",
     "optimize-css-assets-webpack-plugin": "^1.3.0",

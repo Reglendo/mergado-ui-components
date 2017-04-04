@@ -4,4 +4,4 @@ Example hint
     
 Example hint
         
-    <PopupHint content="Hello second popup!" icon={<Icon type="mergado" text="Click me second" />} />
+    <PopupHint content="Hello second popup!" icon={<Icon type="info" text="Click me second" />} />

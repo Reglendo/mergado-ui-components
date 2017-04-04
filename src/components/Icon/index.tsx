@@ -27,12 +27,8 @@ class Icon extends React.Component<Props, State> {
     }
 
     render() {
-        var iconImport;
-        try {
-            iconImport = require(`mergado-ui-icons/lib/export/tsx/${this.props.type}.js`)
-        } catch(e) {
-        }
 
+        const iconImport = require(`mergado-ui-icons/lib/${this.props.type}.js`)
 		let className = `${this.name} ${this.name}--${this.props.type}`
         let iconName = `Icon`+`${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase());
         let icon = iconImport[iconName] ? iconImport[iconName] : null
