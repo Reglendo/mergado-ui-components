@@ -1,0 +1,77 @@
+@import "../base/all"
+
+.#{$prefix}toast
+  background: #fff
+  border: 1px solid #dbcba3
+  margin: 10px 0 20px 0
+  box-sizing: border-box
+  display: table
+  width: 100%
+
+  &--success
+    background: $color-success
+    color: white
+    path
+      fill: white !important
+
+  &--error
+    background: $color-error
+    color: white
+    path
+      fill: white !important
+
+  &--warning
+    background: $color-warning
+
+  &--inactive
+    background: $color-inactive
+    color: #666
+
+  &__wrapper
+    overflow: hidden
+    will-change: opacity, max-height
+    &.hidden
+      animation: fadeaway 0.2s
+      animation-fill-mode: forwards
+
+  
+  &__button, &__icon, &__close
+    display: table-cell
+
+  &__button
+    width: 20px
+    text-decoration: none
+    display: inline-block
+    padding: 0 20px 0 10px
+
+  &__content
+    width: 100%
+    padding: 20px 0px
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+  &__icon
+    width: 20px
+    padding: 0 10px
+    padding-right: 5px
+    text-align: center
+    position: relative
+    top: -1px
+
+  &__close
+    text-align: right
+    cursor: pointer
+
+
+@keyframes fadeaway
+    0%
+      opacity: 1
+
+    50%
+      opacity: 0
+      max-height: 100px
+
+    100%
+      opacity: 0
+      max-height: 0

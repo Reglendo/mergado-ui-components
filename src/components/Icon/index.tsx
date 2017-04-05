@@ -35,7 +35,6 @@ class Icon extends React.Component<Props, State> {
         }
         let className = `${this.name} ${this.name}--${this.props.type}`
         let iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace('-','')
-        console.log(iconName)
         let icon = iconImport[iconName] ? iconImport[iconName] : null
 
         return (
@@ -48,9 +47,11 @@ class Icon extends React.Component<Props, State> {
                 >
                     {icon}
                 </svg>
-                <span className={`${this.name}__text`} style={{fontSize: this.props.size+'px'}}>
-                    {this.props.text}
-                </span>
+                {this.props.text ? (
+                    <span className={`${this.name}__text`} style={{fontSize: this.props.size+'px'}}>
+                        {this.props.text}
+                    </span>
+                ) : null}
             </span>
         )
     }

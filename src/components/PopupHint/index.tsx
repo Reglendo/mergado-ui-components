@@ -2,7 +2,6 @@ import * as React from 'react'
 import Icon from '../Icon'
 import Bubble from './Bubble'
 import {prefix} from "../../config"
-import * as ReactDOM from "react-dom"
 
 import "../../stylesheets/components/_popup_hint.sass"
 
@@ -96,14 +95,14 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     styleArrow(left: string, right: string) {
-        let arrow = this.refs["arrow"]
+        let arrow : any = this.refs["arrow"]
 
         arrow.style.left = left
         arrow.style.right = right
     }
 
     styleHint(buttonPosition: Position, renderLeft: boolean) {
-        let hint = this.refs["hint"]
+        let hint : any = this.refs["hint"]
 
         hint.style.opacity = `0`
         hint.style.display = 'block'

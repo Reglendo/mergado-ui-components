@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/js/index.js",
   "scripts": {
-    "build": "webpack",
-    "build:watch": "webpack --watch",
+    "build": "npm run styleguide-build",
+    "build:watch": "npm run styleguide-server",
+    "build-server": "npm run styleguide-server",
     "tsc": "tsc",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register,jsx:babel-core/register --require ./resources/assets/js/tests/test_helper.js --recursive ./resources/assets/js/tests",
     "test:watch": "npm run test -- --watch",
