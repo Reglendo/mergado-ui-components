@@ -4,7 +4,7 @@ import "../../stylesheets/components/icon/_icon.sass"
 
 export interface Props {
     /** Icon type */
-        type: string
+    type: string
 
     /** Size */
     size?: number
@@ -24,7 +24,7 @@ class Icon extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         type: "reglendo",
-        size: 16,
+        size: 15,
     }
 
     render() {
@@ -34,7 +34,8 @@ class Icon extends React.Component<Props, State> {
         } catch(e) {
         }
         let className = `${this.name} ${this.name}--${this.props.type}`
-        let iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase());
+        let iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace('-','')
+        console.log(iconName)
         let icon = iconImport[iconName] ? iconImport[iconName] : null
 
         return (
