@@ -1,9 +1,15 @@
 Some of our best toasts
 
-    <Toasts toasts={[
-        <Toast text="Hello toast!" icon={<Icon type="mergado" />} />,
-        <Toast text="Hello success!" type="success" icon={<Icon type="check" />} />,
-        <Toast text="Hello error with maxi icon!" type="error" icon={<Icon type="exclamation-circle" size={50} />}/>,
-        <Toast text="Hello inactive, try to close me." type="inactive" onClose={() => { alert('You can\'t escape me!'); return false; } }  icon={<Icon type="hourglass-2" />} />
-    ]
-    } />
+    initialState = { paused: true };
+    <div>
+        <Toasts paused={state.paused} toasts={[
+            <Toast text="Hello toast!" icon={<Icon type="mergado" />} />,
+            <Toast text="Hello success!" type="success" icon={<Icon type="check" />} />,
+            <Toast text="Hello error!" type="error" icon={<Icon type="exclamation-circle" />}/>,
+            <Toast text="Hello inactive, try to close me." type="inactive" icon={<Icon type="bell-slash" />}
+                     onClose={() => { alert('You can\'t escape me!'); return false; }} />,
+            <Toast text="I'll vanish in %seconds% seconds" icon={<Icon type="hourglass-2" />} timeout={5000} />
+        ]
+        } />
+        <button onClick={e => setState({ paused: false })} >Start countdown</button>
+    </div>
