@@ -1,6 +1,6 @@
 import * as React from "react"
 import {prefix} from "../../config"
-import "../../stylesheets/components/icon/_icon.sass"
+import "../../stylesheets/components/_icon.sass"
 
 export interface Props {
     /** Icon type */
@@ -48,7 +48,7 @@ class Icon extends React.Component<Props, State> {
                     {icon}
                 </svg>
                 {this.props.text ? (
-                    <span className={`${this.name}__text`} style={{fontSize: this.props.size+'px'}}>
+                    <span className={`${this.name}__text`}>
                         {this.props.text}
                     </span>
                 ) : null}
