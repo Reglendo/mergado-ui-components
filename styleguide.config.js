@@ -6,6 +6,7 @@ var path = require("path");
 module.exports = {
     title: '/ MUK / Mergado UI Kit',
     highlightTheme: 'rubyblue',
+    serverPort: '3001',
     sections: [
         {
             name: 'Form',
@@ -74,7 +75,7 @@ module.exports = {
         if (process.env.NODE_ENV == 'production') {
 
             webpackConfig.plugins.push(
-                new ExtractTextPlugin({ filename: 'dist/css/style.min.css', 
+                new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
                                         allChunks: true
                                     })
             );
@@ -87,7 +88,7 @@ module.exports = {
         } else {
 
             webpackConfig.plugins.push(
-                new ExtractTextPlugin({ filename: 'dist/css/style.css', 
+                new ExtractTextPlugin({ filename: 'dist/css/style.css',
                                         allChunks: true
                                     })
             );
