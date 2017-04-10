@@ -9990,11 +9990,6 @@ module.exports = getIteratorFn;
 "use strict";
 
 exports.__esModule = true;
-try {
-    __webpack_require__(83);
-}
-catch ($e) {
-}
 var CheckboxContainer_1 = __webpack_require__(817);
 exports.CheckboxContainer = CheckboxContainer_1["default"];
 var TextInput_1 = __webpack_require__(818);
@@ -10013,6 +10008,10 @@ var TopNav_1 = __webpack_require__(826);
 exports.TopNav = TopNav_1["default"];
 var NavLink_1 = __webpack_require__(825);
 exports.NavLink = NavLink_1["default"];
+try {
+    __webpack_require__(83);
+}
+catch (e) { }
 
 
 /***/ }),
@@ -31014,7 +31013,8 @@ var Spinner = (function (_super) {
         if (this.props.type == 'mergado') {
             style = { borderWidth: this.props.size / 2 };
         }
-        return (React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type, style: style }));
+        return (React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type, style: style },
+            React.createElement("div", { className: this.name + "__content", style: { overflow: 'hidden', maxHeight: '0px', maxWidth: '0px' } }, this.props.children)));
     };
     return Spinner;
 }(React.Component));
