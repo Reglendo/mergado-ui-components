@@ -12,7 +12,7 @@ const config = {
   output: {
     path: __dirname,
     publicPath: './',
-    filename: "dist/index.js"
+    filename: "index.js"
   },
   module: {
     loaders: [
