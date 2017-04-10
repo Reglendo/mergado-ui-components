@@ -4,8 +4,9 @@ import Icon from '../../../src/components/Icon';
 
 import s from './StyleGuide.css';
 
-import "../../../src/sass/main.sass"
-
+try {
+    require("../../../src/sass/main.sass")
+} catch(e) { }
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     var exported = [];
