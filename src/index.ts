@@ -1,3 +1,5 @@
+import "./sass/main.sass"
+
 export {default as CheckboxContainer} from "./components/Forms/CheckboxContainer"
 export {default as TextInput} from "./components/Forms/TextInput"
 export {default as Icon} from "./components/Icon"

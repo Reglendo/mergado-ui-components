@@ -12,7 +12,7 @@ const config = {
   output: {
     path: __dirname,
     publicPath: './',
-    filename: "index.js"
+    filename: "dist/index.js"
   },
   module: {
     loaders: [
@@ -37,12 +37,16 @@ const config = {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
 	}
 };
+console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'production') {
 	config.plugins = [
-	    new ExtractTextPlugin({ filename: 'dist/css/style.min.css', 
+	    new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
 	        					allChunks: true
 	    					}),
+        new ExtractTextPlugin({ filename: 'dist/css/style.css',
+            					allChunks: true
+        }),
 		new OptimizeCssAssetsPlugin({
 				assetNameRegExp: /\.min\.css$/,
 				cssProcessorOptions: { discardComments: { removeAll: true } }
@@ -50,7 +54,7 @@ if (process.env.NODE_ENV === 'production') {
 	]
 } else {
 	config.plugins = [
-	    new ExtractTextPlugin({ filename: 'dist/css/style.css', 
+	    new ExtractTextPlugin({ filename: 'dist/css/style.css',
 	        					allChunks: true
 	    					})
 	]

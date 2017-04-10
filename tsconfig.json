@@ -3,9 +3,9 @@
     "compilerOptions": {
 		"baseUrl": "src/",
         "module": "commonjs",
-        "target": "es5",
+        "target": "es3",
         "jsx": "react",
-        "outDir": "./dist/js",
+        "outDir": "./lib",
         "sourceMap": true,
         "declaration": true
     },
