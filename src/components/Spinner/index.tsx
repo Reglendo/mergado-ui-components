@@ -79,7 +79,9 @@ class Spinner extends React.Component<Props, State> {
             style = { borderWidth: this.props.size / 2}
         }
 
-        return ( <div className={`${this.name} ${this.name}--${this.props.type}`} style={style}></div> )
+        return ( <div className={`${this.name} ${this.name}--${this.props.type}`} style={style}>
+                    <div className={`${this.name}__content`} style={{overflow: 'hidden', maxHeight: '0px', maxWidth: '0px'}}>{this.props.children}</div>
+                </div>)
     }
 }
 
