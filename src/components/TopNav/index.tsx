@@ -2,8 +2,6 @@ import * as React from 'react'
 import NavLink from "./NavLink"
 import {prefix} from "../../config"
 
-import "../../stylesheets/components/_top_nav.sass";
-
 export interface Props {
     /** Links */
     links: Array<NavLink> | Array<JSX.Element>

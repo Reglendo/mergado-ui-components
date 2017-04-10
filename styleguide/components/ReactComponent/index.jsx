@@ -3,7 +3,9 @@ import { Component, PropTypes } from 'react';
 const s = require('./ReactComponent.css');
 
 const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
-
+	console.log(pathLine)
+	var importJsLine = 'import ' + name + ' from "' + pathLine.replace('src/components/','').replace('/index.tsx','') + '"'
+    var importSassLine = '@import \'~mergado-ui-kit/' + name + '\''
 	return (
 		<div className={s.root} id={name}>
 			<div className={s.meta}>
@@ -12,12 +14,10 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 						<h2 className={s.heading}>{name}</h2>
 					</a>
 					<p className={s.pathLine}>
-						{sidebar ? (
-							<a className={s.isolatedLink} href={'#!/' + name} title="Open isolated">⇢</a>
-						) : (
-							<a className={s.isolatedLink} href="/" title="Back">←</a>
-						)}
-						{pathLine}
+						<span style={{whiteSpace: 'nowrap'}}>
+							&nbsp;&nbsp;JS: {importJsLine}<br/>
+							SASS: {importSassLine}
+						</span>
 					</p>
 					<div className={s.description}>
 						{description}
@@ -26,6 +26,9 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 				<div className={s.props}>
 					{props}
 				</div>
+			</div>
+			<div>
+
 			</div>
 			<div className={s.examples}>
 				{examples}

@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var config_1 = require("../../config");
-require("../../stylesheets/components/_top_nav.sass");
+require("../../sass/components/_top_nav.sass");
 var TopNav = (function (_super) {
     __extends(TopNav, _super);
     function TopNav() {

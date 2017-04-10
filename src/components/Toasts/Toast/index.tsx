@@ -1,7 +1,6 @@
 import * as React from "react"
 import {prefix} from "../../../config"
 import Icon from "../../Icon"
-import "../../../stylesheets/components/_toast.sass"
 import uniqueId from "../../../helpers/unique_id"
 
 export interface Props {
@@ -38,7 +37,7 @@ class Toast extends React.Component<Props, State> {
         this.state = {
             visible: true,
             paused: false,
-            secondsLeft: this.props.timeout/1000
+            secondsLeft: props.timeout/1000
         }
     }
 

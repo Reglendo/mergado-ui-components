@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var config_1 = require("../../../config");
-require("../../../stylesheets/components/forms/_checkbox_container.sass");
+require("../../../sass/components/forms/_checkbox_container.sass");
 var CheckboxContainer = (function (_super) {
     __extends(CheckboxContainer, _super);
     function CheckboxContainer(props) {

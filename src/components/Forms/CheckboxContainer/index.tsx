@@ -1,7 +1,6 @@
 import * as React from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
-import "../../../stylesheets/components/forms/_checkbox_container.sass"
 
 export interface Query {
     id: number

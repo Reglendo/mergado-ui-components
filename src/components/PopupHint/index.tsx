@@ -3,9 +3,6 @@ import Icon from '../Icon'
 import Bubble from './Bubble'
 import {prefix} from "../../config"
 
-import "../../stylesheets/components/_popup_hint.sass"
-
-
 export interface Props {
     content?: string | JSX.Element
     icon?: Icon

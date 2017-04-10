@@ -43,37 +43,36 @@ module.exports = {
         webpackConfig.resolve.alias['rsg-components/Editor'] =
             path.join(__dirname, 'styleguide/components/Editor');
 
-        if (process.env.NODE_ENV == 'production') {
 
-            webpackConfig.module.loaders.push(
-                {
-                    test: /\.(jsx|js)$/,
-                    exclude: /node_modules/,
-                    loader: 'babel',
-                },
-                {
+        webpackConfig.module.loaders.push(
+            {
+                test: /\.(jsx|js)$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+            },
+            {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 loader: 'style!css?modules&importLoaders=1',
-               },                                
-                {
-                  exclude: /node_modules/,
-                  loader: 'ts-loader',
-                  test: /\.(ts|tsx)$/,
-                  options: {
-                      configFileName: "./tsconfig.json"
-                      
-                  }
-                },
-                {
-                  test: /\.sass$/,
-                   exclude: /node_modules/,
-                  loader: ExtractTextPlugin.extract({
-                      loader: 'css-loader!sass-loader'
-                  })
+            },
+            {
+                include: /.*/,
+                loader: 'ts-loader',
+                test: /\.(ts|tsx)$/,
+                options: {
+                    configFileName: "./tsconfig.json"
+
                 }
-            );
-            
+            },
+            {
+                test: /\.sass$/,
+                exclude: /node_modules/,
+                loader: 'style-loader!css-loader!sass-loader'
+            }
+        );
+
+        if (process.env.NODE_ENV == 'production') {
+
             webpackConfig.plugins.push(
                 new ExtractTextPlugin({ filename: 'dist/css/style.min.css', 
                                         allChunks: true
@@ -86,41 +85,12 @@ module.exports = {
                 })
             );
         } else {
-            
-            webpackConfig.module.loaders.push(
-                {
-                    test: /\.(jsx|js)$/,
-                    exclude: /node_modules/,
-                    loader: 'babel',
-                },
-                {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                loader: 'style!css?modules&importLoaders=1',
-               },
-                {
-                  include: /.*/,
-                  loader: 'ts-loader',
-                  test: /\.(ts|tsx)$/,
-                  options: {
-                      configFileName: "./tsconfig.json"
-                      
-                  }
-                  },
-                  {
-                      test: /\.sass$/,
-                       exclude: /node_modules/,
-                      loader: 'style-loader!css-loader!sass-loader'
-                   }
-            );   
 
             webpackConfig.plugins.push(
                 new ExtractTextPlugin({ filename: 'dist/css/style.css', 
                                         allChunks: true
                                     })
             );
-            
-         
             
         }
 

@@ -1,6 +1,5 @@
 import * as React from "react"
 import {prefix} from "../../config"
-import "../../stylesheets/components/_spinner.sass"
 
 export interface Props {
     type?: string

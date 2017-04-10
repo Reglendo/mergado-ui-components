@@ -4,6 +4,9 @@ import Icon from '../../../src/components/Icon';
 
 import s from './StyleGuide.css';
 
+import "../../../src/sass/main.sass"
+
+
 const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     var exported = [];
     var components = update(components, { props: { sections: { $set: components.props.sections.map((obj) => {

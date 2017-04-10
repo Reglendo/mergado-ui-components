@@ -13,7 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var unique_id_1 = require("../../helpers/unique_id");
 var config_1 = require("../../config");
-require("../../stylesheets/components/_paginator.sass");
+require("../../sass/components/_paginator.sass");
 var Paginator = (function (_super) {
     __extends(Paginator, _super);
     function Paginator(props) {

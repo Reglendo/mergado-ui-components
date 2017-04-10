@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var config_1 = require("../../config");
-require("../../stylesheets/components/icon/_icon.sass");
+require("../../sass/components/icon/_icon.sass");
 var Icon = (function (_super) {
     __extends(Icon, _super);
     function Icon() {

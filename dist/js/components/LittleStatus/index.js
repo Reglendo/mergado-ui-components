@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var config_1 = require("../../config");
-require("../../stylesheets/components/_little_status.sass");
+require("../../sass/components/_little_status.sass");
 var LittleStatus = (function (_super) {
     __extends(LittleStatus, _super);
     function LittleStatus() {

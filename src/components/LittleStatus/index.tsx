@@ -1,8 +1,6 @@
 import * as React from "react"
 import {prefix} from "../../config"
 
-import "../../stylesheets/components/_little_status.sass"
-
 export interface Props {
     /** Status title */
     title: string

@@ -7,10 +7,10 @@ var path = require("path");
 const config = {
   devtool: "cheap-module-source-map",
   entry: [
-    './src/app.tsx'
+    './src/index.ts'
   ],
   output: {
-    path: "./",
+    path: __dirname,
     publicPath: './',
     filename: "index.js"
   },
