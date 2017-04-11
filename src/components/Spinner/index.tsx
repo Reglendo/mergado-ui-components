@@ -8,7 +8,7 @@ export interface Props {
     size?: number
     loaded?: boolean
     color?: "black" | "white" | "green" | "blue"
-    speed?: number
+    speed? : number
     style?: any
 }
 export interface State {
@@ -58,7 +58,7 @@ class Spinner extends React.Component<Props, State> {
     render() {
 
         if(this.state.loaded) {
-            return (<div>{this.props.children}</div>)
+            return (<div style={{opacity: 1}}>{this.props.children}</div>)
         }
         const { size, type, color, speed } = this.props
 
@@ -91,7 +91,7 @@ class Spinner extends React.Component<Props, State> {
         var object : any = Object
         var style = object.assign(defaultStyle, this.props.style)
         return ( <div className={`${this.name} ${this.name}--${this.props.type}`} style={style}>
-                    <div className={`${this.name}__content`} style={{overflow: 'hidden', maxHeight: '0px', maxWidth: '0px'}}>{this.props.children}</div>
+                    <div className={`${this.name}__content`} style={{opacity: 0}}>{this.props.children}</div>
                 </div>)
     }
 }

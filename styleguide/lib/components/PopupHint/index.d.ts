@@ -5,6 +5,7 @@ export interface Props {
     content?: string | JSX.Element;
     icon?: Icon;
     iconType?: string;
+    style?: any;
 }
 export interface State {
     expanded: boolean;

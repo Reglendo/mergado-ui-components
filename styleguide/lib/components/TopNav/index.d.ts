@@ -4,6 +4,7 @@ import NavLink from "./NavLink";
 export interface Props {
     /** Links */
     links: Array<NavLink> | Array<JSX.Element>;
+    style?: any;
 }
 export interface State {
 }

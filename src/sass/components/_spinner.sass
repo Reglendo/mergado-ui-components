@@ -39,6 +39,11 @@
     animation: pulse 10s linear infinite
     position: relative
 
+    .#{$prefix}spinner__content
+      max-width: 0
+      max-height: 0
+      overflow: hidden
+
     @keyframes pulse
       0%
         border-left-color: $left

@@ -4,15 +4,15 @@
   text-align: center;
   font-size: 13px; }
   .muk-paginator__item {
+    box-sizing: border-box;
     display: inline-block;
     height: 30px;
-    min-width: 20px;
+    min-width: 30px;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid #dbcba3;
     line-height: 30px;
     padding: 0px 5px 0 5px;
     text-decoration: none;
-    margin-bottom: 5px;
     color: #009ba9;
     margin: 0 2px; }
     .muk-paginator__item:not(.muk-paginator__item--disabled):hover {
@@ -28,8 +28,9 @@
       border: 1px solid #b79748;
       background: #fff;
       color: black; }
-  .muk-paginator a {
-    text-decoration: none; }
+  .muk-paginator a, .muk-paginator a:hover, .muk-paginator a:focus, .muk-paginator a:active {
+    text-decoration: none;
+    color: #009ba9; }
 
 /* COLORS */
 .muk-little_status {
@@ -160,6 +161,10 @@
     border-color: transparent #7fba2c #00a9b8 #007b20;
     animation: pulse 10s linear infinite;
     position: relative; }
+    .muk-spinner--mergado .muk-spinner__content {
+      max-width: 0;
+      max-height: 0;
+      overflow: hidden; }
 
 @keyframes pulse {
   0% {

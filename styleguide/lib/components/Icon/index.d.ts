@@ -9,6 +9,7 @@ export interface Props {
     text?: string;
     /** Icon title */
     title?: string;
+    style?: any;
 }
 export interface State {
 }

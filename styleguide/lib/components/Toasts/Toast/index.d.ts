@@ -9,6 +9,7 @@ export interface Props {
     isPaused?: () => boolean;
     onClose?: (number) => boolean;
     timeout?: number;
+    style?: any;
 }
 export interface State {
     visible: boolean;
