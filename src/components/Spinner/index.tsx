@@ -8,7 +8,7 @@ export interface Props {
     size?: number
     loaded?: boolean
     color?: "black" | "white" | "green" | "blue"
-    speed: number
+    speed?: number
     style?: any
 }
 export interface State {
