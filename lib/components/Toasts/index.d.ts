@@ -4,6 +4,7 @@ import Toast from "./Toast";
 export interface Props {
     toasts?: Array<Toast>;
     paused: boolean;
+    style?: any;
 }
 export interface State {
     toasts: Array<Toast>;

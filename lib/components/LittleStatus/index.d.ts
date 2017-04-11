@@ -7,6 +7,7 @@ export interface Props {
     type: "warning" | "success" | "error" | "inactive" | "";
     /** Status text */
     text?: string;
+    style?: any;
 }
 export interface State {
 }

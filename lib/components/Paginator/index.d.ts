@@ -23,6 +23,7 @@ export interface Props {
     labelPrevious?: string;
     /** Maximum number of shown pages at once */
     maxLinks?: number;
+    style?: any;
 }
 export interface State {
     id: string;

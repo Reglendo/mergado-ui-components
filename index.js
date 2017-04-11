@@ -30547,7 +30547,7 @@ var Icon = (function (_super) {
         var className = this.name + " " + this.name + "--" + this.props.type;
         var iconName = "Icon" + ("" + this.props.type).replace(/\b(\w)/g, function (s) { return s.toUpperCase(); }).replace('-', '');
         var icon = iconImport[iconName] ? iconImport[iconName] : null;
-        return (React.createElement("span", { className: className },
+        return (React.createElement("span", { className: className, style: this.props.style },
             React.createElement("svg", { className: this.name + "__image", preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: "0 0 40 40" }, icon),
             this.props.text ? (React.createElement("span", { className: this.name + "__text" }, this.props.text)) : null));
     };
@@ -30555,7 +30555,8 @@ var Icon = (function (_super) {
 }(React.Component));
 Icon.defaultProps = {
     type: "reglendo",
-    size: 15
+    size: 15,
+    style: {}
 };
 exports["default"] = Icon;
 
@@ -30593,7 +30594,7 @@ var LittleStatus = (function (_super) {
         var text = this.props.text ? (React.createElement("span", { className: classText },
             " ",
             this.props.text)) : "";
-        return (React.createElement("span", { className: className },
+        return (React.createElement("span", { className: className, style: this.props.style },
             React.createElement("span", { className: classIndikator, title: this.props.title }),
             text));
     };
@@ -30602,7 +30603,8 @@ var LittleStatus = (function (_super) {
 LittleStatus.defaultProps = {
     title: "",
     type: "success",
-    text: ""
+    text: "",
+    style: {}
 };
 exports["default"] = LittleStatus;
 
@@ -30701,7 +30703,7 @@ var Paginator = (function (_super) {
         this.props.onPageChange(pageNumber);
     };
     Paginator.prototype.render = function () {
-        return (React.createElement("div", { className: this.name, "data-active": this.props.currentPage },
+        return (React.createElement("div", { className: this.name, "data-active": this.props.currentPage, style: this.props.style },
             this.props.showFirstAndLast && this.renderFirstButton(),
             this.props.showPrevAndNext && this.renderPreviousButton(),
             this.renderMainButtons(),
@@ -30722,7 +30724,8 @@ Paginator.defaultProps = {
     labelFirst: "First »",
     labelNext: "Next",
     labelPrevious: "Previous",
-    maxLinks: 5
+    maxLinks: 5,
+    style: {}
 };
 exports["default"] = Paginator;
 
@@ -30925,8 +30928,10 @@ var PopupHint = (function (_super) {
         };
     };
     PopupHint.prototype.render = function () {
+        var object = Object;
+        var style = object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.style);
         var hint = (React.createElement(Bubble_1["default"], null,
-            React.createElement("div", { ref: "hint", className: this.name + "__bubble", style: { display: this.state.expanded ? "" : "none", position: "absolute" }, tabIndex: 0, onBlur: this.collapse },
+            React.createElement("div", { ref: "hint", className: this.name + "__bubble", style: style, tabIndex: 0, onBlur: this.collapse },
                 React.createElement("div", { className: this.name + "__innerwrapper" },
                     React.createElement("div", { className: this.name + "__border" },
                         React.createElement("div", { className: this.name + "__content" }, this.props.content)),
@@ -30940,7 +30945,8 @@ var PopupHint = (function (_super) {
 PopupHint.defaultProps = {
     content: "",
     icon: null,
-    iconType: ""
+    iconType: "",
+    style: {}
 };
 exports["default"] = PopupHint;
 
@@ -30993,29 +30999,34 @@ var Spinner = (function (_super) {
         if (this.state.loaded) {
             return (React.createElement("div", null, this.props.children));
         }
-        var style = { width: this.props.size,
-            height: this.props.size,
+        var _a = this.props, size = _a.size, type = _a.type, color = _a.color, speed = _a.speed;
+        var defaultStyle = { width: size,
+            height: size,
             borderColor: "rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)",
-            fontSize: this.props.size
+            fontSize: size,
+            animationDuration: 1.2 / speed + 's'
         };
-        if (this.props.color == 'black') {
-            style.borderColor = "rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)";
+        if (color == 'black') {
+            defaultStyle.borderColor = "rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)";
         }
-        else if (this.props.color == 'green') {
-            style.borderColor = "rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)";
+        else if (color == 'green') {
+            defaultStyle.borderColor = "rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)";
         }
-        else if (this.props.color == 'blue') {
-            style.borderColor = "rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)";
+        else if (color == 'blue') {
+            defaultStyle.borderColor = "rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)";
         }
-        if (this.props.type == 'dashed') {
-            style.borderStyle = 'dashed';
+        if (type == 'dashed') {
+            defaultStyle.borderStyle = 'dashed';
         }
-        else if (this.props.type == 'dotted') {
-            style.borderStyle = 'dotted';
+        else if (type == 'dotted') {
+            defaultStyle.borderStyle = 'dotted';
         }
-        if (this.props.type == 'mergado') {
-            style = { borderWidth: this.props.size / 2 };
+        if (type == 'mergado') {
+            defaultStyle = { borderWidth: size / 2 };
+            defaultStyle.animationDuration = 10 / speed + 's';
         }
+        var object = Object;
+        var style = object.assign(defaultStyle, this.props.style);
         return (React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type, style: style },
             React.createElement("div", { className: this.name + "__content", style: { overflow: 'hidden', maxHeight: '0px', maxWidth: '0px' } }, this.props.children)));
     };
@@ -31025,7 +31036,9 @@ Spinner.defaultProps = {
     type: "default",
     size: 30,
     loaded: false,
-    color: "white"
+    color: "white",
+    style: {},
+    speed: 1
 };
 exports["default"] = Spinner;
 
@@ -31065,13 +31078,14 @@ var NavLink = (function (_super) {
         if (active) {
             className += " " + this.name + "--active";
         }
-        return (React.createElement("li", { className: "" + className }, link));
+        return (React.createElement("li", { className: "" + className, style: this.props.style }, link));
     };
     return NavLink;
 }(React.Component));
 NavLink.defaultProps = {
     active: false,
-    link: (React.createElement("a", { href: "#" }))
+    link: (React.createElement("a", { href: "#" })),
+    style: {}
 };
 exports["default"] = NavLink;
 
@@ -31110,13 +31124,14 @@ var TopNav = (function (_super) {
     TopNav.prototype.render = function () {
         var className = "" + this.name;
         var classWrapper = this.name + "__wrapper\"";
-        return (React.createElement("nav", { className: className },
+        return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
     };
     return TopNav;
 }(React.Component));
 TopNav.defaultProps = {
-    links: []
+    links: [],
+    style: {}
 };
 exports["default"] = TopNav;
 
