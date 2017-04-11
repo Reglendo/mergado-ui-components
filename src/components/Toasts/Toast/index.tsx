@@ -11,6 +11,7 @@ export interface Props {
     isPaused?: () => boolean
     onClose?: (number) => boolean
     timeout?: number
+    style?: any
 }
 export interface State {
     visible: boolean,
@@ -28,7 +29,8 @@ class Toast extends React.Component<Props, State> {
         type: "info",
         icon: null,
         onClose: () => { return true; },
-        timeout: 0
+        timeout: 0,
+        style: {}
     }
 
     constructor(props: Props) {
@@ -78,7 +80,7 @@ class Toast extends React.Component<Props, State> {
     render() {
 
         return (
-            <div className={`${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}`}>
+            <div style={this.props.style} className={`${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}`}>
                 <div className={`${this.name} ${this.name}--${this.props.type}`}>
                     {this.props.icon ? (
                             <div className={`${this.name}__icon`}>{this.props.icon}</div>

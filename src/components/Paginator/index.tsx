@@ -26,6 +26,7 @@ export interface Props {
     labelPrevious?: string
     /** Maximum number of shown pages at once */
     maxLinks?: number
+    style?: any
 }
 
 export interface State {
@@ -50,6 +51,7 @@ class Paginator extends React.Component<Props, State> {
         labelNext: "Next",
         labelPrevious: "Previous",
         maxLinks: 5,
+        style: {}
     }
 
     constructor(props: Props) {
@@ -136,7 +138,7 @@ class Paginator extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className={this.name} data-active={this.props.currentPage}>
+            <div className={this.name} data-active={this.props.currentPage} style={this.props.style}>
                 {this.props.showFirstAndLast && this.renderFirstButton()}
                 {this.props.showPrevAndNext && this.renderPreviousButton()}
                 {this.renderMainButtons()}

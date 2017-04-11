@@ -5,6 +5,7 @@ import {prefix} from "../../config"
 export interface Props {
     /** Links */
     links: Array<NavLink> | Array<JSX.Element>
+    style?: any
 }
 
 export interface State {
@@ -16,7 +17,8 @@ class TopNav extends React.Component<Props, State> {
 
 
     public static defaultProps: Props = {
-        links: []
+        links: [],
+        style: {}
     }
 
     renderLinks() {
@@ -35,7 +37,7 @@ class TopNav extends React.Component<Props, State> {
         let classWrapper = `${this.name}__wrapper"`
 
         return (
-            <nav className={className}>
+            <nav className={className} style={this.props.style}>
                 <div className={classWrapper}>
                     {this.renderLinks() }
                 </div>

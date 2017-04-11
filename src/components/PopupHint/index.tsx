@@ -7,6 +7,7 @@ export interface Props {
     content?: string | JSX.Element
     icon?: Icon
     iconType?: string
+    style?: any
 }
 
 export interface State {
@@ -26,6 +27,7 @@ class PopupHint extends React.Component<Props, State> {
         content: "",
         icon: null,
         iconType: "",
+        style: {}
     }
 
     refs: {
@@ -179,10 +181,13 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     render() {
+        var object : any = Object
+        var style = object.assign({display: this.state.expanded ? "" : "none", position: "absolute"}, this.props.style)
+
         var hint: JSX.Element = (
             <Bubble>
                 <div ref="hint" className={`${this.name}__bubble`}
-                     style={{display: this.state.expanded ? "" : "none", position: "absolute"}} tabIndex={0}
+                     style={style} tabIndex={0}
                      onBlur={ this.collapse }>
                     <div className={`${this.name}__innerwrapper`}>
                         <div className={`${this.name}__border`}>

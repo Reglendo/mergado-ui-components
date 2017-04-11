@@ -4,6 +4,7 @@ import {prefix} from "../../../config"
 export interface Props {
     active: boolean
     link: JSX.Element
+    style: any
 }
 
 export interface State {
@@ -19,7 +20,8 @@ class NavLink extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         active: false,
-        link: (<a href="#"/>)
+        link: (<a href="#"/>),
+        style: {}
     }
 
     render() {
@@ -29,7 +31,7 @@ class NavLink extends React.Component<Props, State> {
             className += ` ${this.name}--active`
         }
         return (
-            <li className={`${className}`}>
+            <li className={`${className}`} style={this.props.style}>
                 {link}
             </li>
         )

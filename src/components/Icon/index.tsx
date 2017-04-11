@@ -12,6 +12,7 @@ export interface Props {
     text?: string
     /** Icon title */
     title?: string
+    style?: any
 
 }
 export interface State {
@@ -24,6 +25,7 @@ class Icon extends React.Component<Props, State> {
     public static defaultProps: Props = {
         type: "reglendo",
         size: 15,
+        style: {}
     }
 
     render() {
@@ -37,7 +39,7 @@ class Icon extends React.Component<Props, State> {
         let icon = iconImport[iconName] ? iconImport[iconName] : null
 
         return (
-            <span className={className}>
+            <span className={className} style={this.props.style}>
                 <svg className={`${this.name}__image`} preserveAspectRatio='xMidYMid meet'
                      fill='currentColor'
                      height={this.props.size}

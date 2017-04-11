@@ -6,6 +6,7 @@ import uniqueId from "../../helpers/unique_id"
 export interface Props {
     toasts?: Array<Toast>
     paused: boolean
+    style?: any
 }
 export interface State {
     toasts: Array<Toast>
@@ -17,7 +18,8 @@ class Toasts extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         toasts: [],
-        paused: false
+        paused: false,
+        style: {}
     }
 
 
@@ -42,11 +44,10 @@ class Toasts extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className={`${this.name}`}>
+            <div className={`${this.name}`} style={this.props.style}>
                 <div className={`${this.name}__wrapper`}>
                     {this.renderToasts()}
                 </div>
-
             </div>
         )
     }
