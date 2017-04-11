@@ -7,7 +7,3 @@ export {default as PopupHint} from "./components/PopupHint"
 export {default as Spinner} from "./components/Spinner"
 export {default as TopNav} from "./components/TopNav"
 export {default as NavLink} from "./components/TopNav/NavLink"
-
-try {
-    require("../src/sass/main.sass")
-} catch(e) { }

@@ -4,10 +4,12 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 var webpack = require("webpack");
 var path = require("path");
 
+
 const config = {
   devtool: "cheap-module-source-map",
   entry: [
-    './src/index.ts'
+    './src/index.ts',
+    './src/load_styles.ts'
   ],
   output: {
     path: __dirname,
@@ -37,7 +39,6 @@ const config = {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
 	}
 };
-console.log(process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'production') {
 	config.plugins = [

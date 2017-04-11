@@ -2,7 +2,7 @@ Fullweight paginator:
 
     <Paginator currentPage={state.current} firstPage={1} lastPage={20} maxLinks={10} showFirstAndLast={true}
                labelFirst="« První" labelLast="Poslední »"  labelNext=" Další " labelPrevious="Předchozí"
-               onPageChange={(o) => { console.log(o); setState({ current: o}) } } />
+               onPageChange={(o) => { setState({ current: o}) } } />
 
 Mini paginator:
 
