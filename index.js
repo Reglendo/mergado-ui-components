@@ -10133,6 +10133,7 @@ Toast.defaultProps = {
     text: '',
     type: "info",
     icon: null,
+    isPaused: function () { return false; },
     onClose: function () { return true; },
     timeout: 0,
     closeable: true,

@@ -3,7 +3,7 @@ Some of our best toasts
     initialState = { paused: true };
     <div>
         <Toasts paused={state.paused} toasts={[
-            <Toast text="Hello toast!" icon={<Icon type="mergado" />} />,
+            <Toast text="Hello toasts!" icon={<Icon type="mergado" />} />,
             <Toast text="Hello success!" type="success" icon={<Icon type="check" />} />,
             <Toast text="Hello warning!" type="warning" closeable={false} icon={<Icon type="exclamation-triangle" />}/>,
             <Toast text="Hello error!" type="error" icon={<Icon type="exclamation-circle" />}/>,

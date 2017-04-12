@@ -30,6 +30,7 @@ class Toast extends React.Component<Props, State> {
         text: '',
         type: "info",
         icon: null,
+        isPaused: () => { return false; },
         onClose: () => { return true; },
         timeout: 0,
         closeable: true,
