@@ -7,3 +7,5 @@ export { default as PopupHint } from "./components/PopupHint";
 export { default as Spinner } from "./components/Spinner";
 export { default as TopNav } from "./components/TopNav";
 export { default as NavLink } from "./components/TopNav/NavLink";
+export { default as Toasts } from "./components/Toasts";
+export { default as Toast } from "./components/Toasts/Toast";
