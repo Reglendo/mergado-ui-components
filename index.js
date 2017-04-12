@@ -10117,7 +10117,7 @@ var Toast = (function (_super) {
         var _this = this;
         return (React.createElement("div", { style: this.props.style, className: this.name + "__wrapper " + (this.state.visible ? '' : 'hidden') },
             React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type },
-                React.createElement("div", { className: this.name + "__icon" }, this.props.icon ? this.props.icon : null),
+                React.createElement("div", { className: this.name + "__icon" }, this.props.icon),
                 React.createElement("div", { className: this.name + "__content" }, this.props.text.replace('%seconds%', this.state.secondsLeft + 's')),
                 this.props.closeable &&
                     React.createElement("div", { className: this.name + "__close" },

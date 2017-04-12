@@ -5,7 +5,7 @@ export interface Props {
     id?: string;
     text?: string;
     type?: "warning" | "success" | "error" | "inactive" | "info";
-    icon?: Icon;
+    icon?: Icon | JSX.Element;
     isPaused?: () => boolean;
     onClose?: (number) => boolean;
     timeout?: number;

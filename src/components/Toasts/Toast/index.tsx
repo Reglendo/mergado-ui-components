@@ -7,7 +7,7 @@ export interface Props {
     id?: string,
     text?: string,
     type?: "warning" | "success" | "error" | "inactive" | "info",
-    icon?: Icon
+    icon?: Icon | JSX.Element
     isPaused?: () => boolean
     onClose?: (number) => boolean
     timeout?: number
@@ -86,7 +86,7 @@ class Toast extends React.Component<Props, State> {
         return (
             <div style={this.props.style} className={`${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}`}>
                 <div className={`${this.name} ${this.name}--${this.props.type}`}>
-                    <div className={`${this.name}__icon`}>{this.props.icon ? this.props.icon : null}</div>
+                    <div className={`${this.name}__icon`}>{this.props.icon}</div>
                     <div className={`${this.name}__content`}>
                         {this.props.text.replace('%seconds%',this.state.secondsLeft + 's')}
                     </div>
