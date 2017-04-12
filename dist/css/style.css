@@ -137,8 +137,11 @@
 /* COLORS */
 .muk-spinner {
   display: inline-block;
-  margin: 10px; }
-  .muk-spinner--default, .muk-spinner--dashed, .muk-spinner--dotted {
+  overflow: hidden; }
+  .muk-spinner__wrapper {
+    display: inline-block;
+    margin: 0px; }
+  .muk-spinner--default .muk-spinner__wrapper, .muk-spinner--dashed .muk-spinner__wrapper, .muk-spinner--dotted .muk-spinner__wrapper {
     border-radius: 80%;
     box-sizing: border-box;
     position: relative;
@@ -152,16 +155,16 @@
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
-  .muk-spinner--dashed, .muk-spinner--dotted {
+  .muk-spinner--dashed .muk-spinner__wrapper, .muk-spinner--dotted .muk-spinner__wrapper {
     border-width: 0.1em;
     border-color: #7fba2c rgba(127, 186, 44, 0.4) rgba(127, 186, 44, 0.6) rgba(127, 186, 44, 0.8); }
-  .muk-spinner--mergado {
+  .muk-spinner--mergado .muk-spinner__wrapper {
     box-sizing: border-box;
     border-style: solid;
     border-color: transparent #7fba2c #00a9b8 #007b20;
     animation: pulse 10s linear infinite;
     position: relative; }
-    .muk-spinner--mergado .muk-spinner__content {
+    .muk-spinner--mergado .muk-spinner__wrapper .muk-spinner__content {
       max-width: 0;
       max-height: 0;
       overflow: hidden; }

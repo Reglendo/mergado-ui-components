@@ -31119,6 +31119,10 @@ var Spinner = (function (_super) {
             fontSize: size,
             animationDuration: 1.2 / speed + 's'
         };
+        var containerStyle = {
+            width: size,
+            height: size
+        };
         if (color == 'black') {
             defaultStyle.borderColor = "rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)";
         }
@@ -31140,8 +31144,9 @@ var Spinner = (function (_super) {
         }
         var object = Object;
         var style = object.assign(defaultStyle, this.props.style);
-        return (React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type, style: style },
-            React.createElement("div", { className: this.name + "__content", style: { opacity: 0 } }, this.props.children)));
+        return (React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type, style: containerStyle },
+            React.createElement("div", { className: this.name + "__wrapper", style: style },
+                React.createElement("div", { className: this.name + "__content", style: { opacity: 0 } }, this.props.children))));
     };
     return Spinner;
 }(React.Component));

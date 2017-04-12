@@ -68,6 +68,10 @@ class Spinner extends React.Component<Props, State> {
                                     fontSize: size,
                                     animationDuration: 1.2/speed + 's'
                                 }
+        var containerStyle: any = {
+                                    width: size,
+                                    height: size,
+                                }
         if(color == 'black') {
             defaultStyle.borderColor = `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)`
         } else if(color == 'green') {
@@ -91,8 +95,10 @@ class Spinner extends React.Component<Props, State> {
         var object : any = Object
         var style = object.assign(defaultStyle, this.props.style)
         return (
-            <div className={`${this.name} ${this.name}--${this.props.type}`} style={style}>
-                <div className={`${this.name}__content`} style={{opacity: 0}}>{this.props.children}</div>
+            <div className={`${this.name} ${this.name}--${this.props.type}`} style={containerStyle}>
+                <div className={`${this.name}__wrapper`} style={style}>
+                    <div className={`${this.name}__content`} style={{opacity: 0}}>{this.props.children}</div>
+                </div>
             </div>
         )
     }

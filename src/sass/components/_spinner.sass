@@ -2,76 +2,82 @@
 
 .#{$prefix}spinner
   display: inline-block
-  margin: 10px
+  overflow: hidden
+
+  &__wrapper
+    display: inline-block
+    margin: 0px
 
   &--default, &--dashed, &--dotted
+    .#{$prefix}spinner__wrapper
 
-    border-radius: 80%
-    box-sizing: border-box
-    position: relative
-    border: 0.2em solid
-    border-color: rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)
-    transform: translateZ(0)
-    animation: spin 1.2s infinite linear
+      border-radius: 80%
+      box-sizing: border-box
+      position: relative
+      border: 0.2em solid
+      border-color: rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)
+      transform: translateZ(0)
+      animation: spin 1.2s infinite linear
 
-    @keyframes spin
-      0%
-        transform: rotate(0deg)
+      @keyframes spin
+        0%
+          transform: rotate(0deg)
 
-      100%
-        transform: rotate(360deg)
+        100%
+          transform: rotate(360deg)
 
 
   &--dashed, &--dotted
-      border-width: 0.1em
-      border-color: rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)
+    .#{$prefix}spinner__wrapper
+        border-width: 0.1em
+        border-color: rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)
 
   &--mergado
-    $left: #7fba2c
-    $bottom: #007b20
-    $right: #00a9b8
-    $top: transparent
+    .#{$prefix}spinner__wrapper
+      $left: #7fba2c
+      $bottom: #007b20
+      $right: #00a9b8
+      $top: transparent
 
-    box-sizing: border-box
-    border-style: solid
-    border-color: $top $left $right $bottom
+      box-sizing: border-box
+      border-style: solid
+      border-color: $top $left $right $bottom
 
-    animation: pulse 10s linear infinite
-    position: relative
+      animation: pulse 10s linear infinite
+      position: relative
 
-    .#{$prefix}spinner__content
-      max-width: 0
-      max-height: 0
-      overflow: hidden
+      .#{$prefix}spinner__content
+        max-width: 0
+        max-height: 0
+        overflow: hidden
 
-    @keyframes pulse
-      0%
-        border-left-color: $left
-        border-bottom-color: $bottom
-        border-right-color: $right
-        border-top-color: $top
+      @keyframes pulse
+        0%
+          border-left-color: $left
+          border-bottom-color: $bottom
+          border-right-color: $right
+          border-top-color: $top
 
-      25%
-        border-left-color: $right
-        border-bottom-color: $top
-        border-right-color: $left
-        border-top-color: $bottom
+        25%
+          border-left-color: $right
+          border-bottom-color: $top
+          border-right-color: $left
+          border-top-color: $bottom
 
-      50%
-        border-left-color: $bottom
-        border-bottom-color: $left
-        border-right-color: $top
-        border-top-color: $right
+        50%
+          border-left-color: $bottom
+          border-bottom-color: $left
+          border-right-color: $top
+          border-top-color: $right
 
-      75%
-        border-left-color: $top
-        border-bottom-color: $right
-        border-right-color: $bottom
-        border-top-color: $left
+        75%
+          border-left-color: $top
+          border-bottom-color: $right
+          border-right-color: $bottom
+          border-top-color: $left
 
-
-      100%
-        border-left-color: $left
-        border-bottom-color: $bottom
-        border-right-color: $right
-        border-top-color: $top
+        100%
+          border-left-color: $left
+          border-bottom-color: $bottom
+          border-right-color: $right
+          border-top-color: $top
