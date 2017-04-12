@@ -212,11 +212,15 @@
     .muk-toast--error path {
       fill: white !important; }
   .muk-toast--warning {
-    background: #ff7f2a; }
+    background: #ff7f2a;
+    color: white; }
+    .muk-toast--warning path {
+      fill: white !important; }
   .muk-toast--inactive {
     background: #cccccc;
     color: #666; }
   .muk-toast__wrapper {
+    width: 100%;
     overflow: hidden;
     will-change: opacity, max-height; }
     .muk-toast__wrapper.hidden {
@@ -234,7 +238,9 @@
     padding: 20px 0px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: left; }
   .muk-toast__icon {
     width: 20px;
     padding: 0 10px;
@@ -245,6 +251,8 @@
   .muk-toast__close {
     text-align: right;
     cursor: pointer; }
+  .muk-toast .muk-icon__image {
+    margin-bottom: 2px; }
 
 @keyframes fadeaway {
   0% {

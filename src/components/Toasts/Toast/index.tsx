@@ -11,7 +11,9 @@ export interface Props {
     isPaused?: () => boolean
     onClose?: (number) => boolean
     timeout?: number
+    closeable?: boolean
     style?: any
+
 }
 export interface State {
     visible: boolean,
@@ -30,6 +32,7 @@ class Toast extends React.Component<Props, State> {
         icon: null,
         onClose: () => { return true; },
         timeout: 0,
+        closeable: true,
         style: {}
     }
 
@@ -82,17 +85,17 @@ class Toast extends React.Component<Props, State> {
         return (
             <div style={this.props.style} className={`${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}`}>
                 <div className={`${this.name} ${this.name}--${this.props.type}`}>
-                    {this.props.icon ? (
-                            <div className={`${this.name}__icon`}>{this.props.icon}</div>
-                        ): null}
+                    <div className={`${this.name}__icon`}>{this.props.icon ? this.props.icon : null}</div>
                     <div className={`${this.name}__content`}>
                         {this.props.text.replace('%seconds%',this.state.secondsLeft + 's')}
                     </div>
-                    <div className={`${this.name}__close`}>
-                        <a className={`${this.name}__button`} onClick={(evt) => {
-                            this.removeToast(evt)
-                        }}><Icon type="close" /></a>
-                    </div>
+                    {this.props.closeable &&
+                        <div className={`${this.name}__close`}>
+                            <a className={`${this.name}__button`} onClick={(evt) => {
+                                this.removeToast(evt)
+                            }}><Icon type="close"/></a>
+                        </div>
+                    }
                 </div>
             </div>
         )

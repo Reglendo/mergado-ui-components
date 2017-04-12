@@ -32,7 +32,7 @@ class Spinner extends React.Component<Props, State> {
         loaded: false,
         color: "white",
         style: {},
-        speed: 1
+        speed: 1,
     }
 
     updateState(props) {

@@ -22,12 +22,16 @@
 
   &--warning
     background: $color-warning
+    color: white
+    path
+      fill: white !important
 
   &--inactive
     background: $color-inactive
     color: #666
 
   &__wrapper
+    width: 100%
     overflow: hidden
     will-change: opacity, max-height
     &.hidden
@@ -50,7 +54,8 @@
     -webkit-box-sizing: border-box
     -moz-box-sizing: border-box
     box-sizing: border-box
-
+    font-size: 16px
+    text-align: left
   &__icon
     width: 20px
     padding: 0 10px
@@ -63,6 +68,8 @@
     text-align: right
     cursor: pointer
 
+  .#{$prefix}icon__image
+    margin-bottom: 2px;
 
 @keyframes fadeaway
     0%
