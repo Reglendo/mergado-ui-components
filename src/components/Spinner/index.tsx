@@ -58,7 +58,7 @@ class Spinner extends React.Component<Props, State> {
     render() {
 
         if(this.state.loaded) {
-            return (<div style={{opacity: 1}}>{this.props.children}</div>)
+            return (<span style={{opacity: 1}}>{this.props.children}</span>)
         }
         const { size, type, color, speed } = this.props
 
@@ -90,9 +90,11 @@ class Spinner extends React.Component<Props, State> {
 
         var object : any = Object
         var style = object.assign(defaultStyle, this.props.style)
-        return ( <div className={`${this.name} ${this.name}--${this.props.type}`} style={style}>
-                    <div className={`${this.name}__content`} style={{opacity: 0}}>{this.props.children}</div>
-                </div>)
+        return (
+            <div className={`${this.name} ${this.name}--${this.props.type}`} style={style}>
+                <div className={`${this.name}__content`} style={{opacity: 0}}>{this.props.children}</div>
+            </div>
+        )
     }
 }
 
