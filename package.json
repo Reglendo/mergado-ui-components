@@ -7,7 +7,7 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "tsc": "tsc",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register,jsx:babel-core/register --require ./resources/assets/js/tests/test_helper.js --recursive ./resources/assets/js/tests",
+    "test": "NODE_ENV=test mocha -r ts-node/register test/components/paginator_test.tsx",
     "test:watch": "npm run test -- --watch"
   },
   "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
@@ -27,7 +27,13 @@
     "redux-form": "^6.5.0"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/chai-jquery": "^1.1.33",
+    "@types/jquery": "^2.0.40",
+    "@types/jsdom": "^2.0.30",
+    "@types/mocha": "^2.2.39",
     "@types/react": "^15.0.4",
+    "@types/react-addons-test-utils": "^0.14.17",
     "@types/react-dom": "^0.14.21",
     "@types/react-redux": "^4.4.36",
     "@types/redux-form": "^6.3.2",
@@ -37,7 +43,9 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^4.5.0",
+    "react-addons-test-utils": "^15.4.2",
     "ts-loader": "^2.0.0",
+    "ts-node": "^2.1.0",
     "typescript": "^2.1.5",
     "webpack": "^2.2.1"
   }
