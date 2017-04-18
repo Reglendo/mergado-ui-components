@@ -9,7 +9,7 @@
     "build-server": "npm run styleguide-server",
     "tsc": "tsc",
     "test": "NODE_ENV=test mocha -r ts-node/register test/components/paginator_test.tsx",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
     "prepublish": "NODE_ENV='production' webpack --progress && tsc -d"
   },
   "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
