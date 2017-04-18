@@ -10,7 +10,9 @@
     "tsc": "tsc",
     "test": "NODE_ENV=test mocha -r ts-node/register test/components/paginator_test.tsx",
     "test:watch": "npm run test -- --watch",
-    "prepublish": "NODE_ENV='production' webpack --progress && tsc -d"
+    "styleguide-server": "styleguidist server",
+    "styleguide-build": "styleguidist build",
+    "prepublish": "NODE_ENV='production' npm run build && tsc -d"
   },
   "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
   "contributors": [
@@ -24,6 +26,7 @@
   "dependencies": {
     "@types/node": "^7.0.12",
     "capitalize": "^1.0.0",
+    "jsdomify": "^3.1.0",
     "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "react": "^15.4.2",
@@ -34,6 +37,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "react-styleguidist": "4.6.3",
+    "react-test-renderer": "^15.5.4",
     "redux": "^3.6.0",
     "redux-form": "^6.5.0"
   },
@@ -57,10 +61,10 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "node-sass": "^4.5.0",
+    "react-addons-test-utils": "^15.4.2",
     "react-docgen-typescript": "https://github.com/Reglendo/react-docgen-typescript",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.14.0",
-    "react-addons-test-utils": "^15.4.2",
     "ts-loader": "^2.0.0",
     "ts-node": "^2.1.0",
     "typescript": "^2.1.5",
