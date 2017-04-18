@@ -4,12 +4,12 @@ import Toast from "./Toast"
 import uniqueId from "../../helpers/unique_id"
 
 export interface Props {
-    toasts?: Array<Toast>
+    toasts?: Array<Toast|JSX.Element>
     paused: boolean
     style?: any
 }
 export interface State {
-    toasts: Array<Toast>
+    toasts: Array<Toast|JSX.Element>
 }
 
 class Toasts extends React.Component<Props, State> {
