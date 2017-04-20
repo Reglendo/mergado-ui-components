@@ -1,5 +1,5 @@
 interface FieldProps {
-    input: {
+    input?: {
         checked?: boolean;
         value: any;
         name: string;
@@ -9,7 +9,7 @@ interface FieldProps {
         onDrop: (value: any) => void;
         onFocus: (value: any) => void;
     };
-    meta: {
+    meta?: {
         active: boolean;
         autofilled: boolean;
         asyncValidating: boolean;

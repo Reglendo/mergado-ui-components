@@ -1,9 +1,9 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    active: boolean;
-    link: JSX.Element;
-    style: any;
+    active?: boolean;
+    link?: JSX.Element;
+    style?: any;
 }
 export interface State {
 }
