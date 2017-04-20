@@ -1,12 +1,12 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+		"baseUrl": "src/",
         "module": "commonjs",
-        "noImplicitAny": true,
-        "target": "es5",
+        "target": "es3",
         "jsx": "react",
-        "outDir": "./dist/js",
-        "sourceMap": false,
+        "outDir": "./lib",
+        "sourceMap": true,
         "declaration": true
     },
     "include": [

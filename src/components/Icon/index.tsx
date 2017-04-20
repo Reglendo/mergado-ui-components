@@ -1,0 +1,61 @@
+import * as React from "react"
+import {prefix} from "../../config"
+
+export interface Props {
+    /** Icon type */
+    type: string
+
+    /** Size */
+    size?: number
+
+    /** Icon text */
+    text?: string
+    /** Icon title */
+    title?: string
+    style?: any
+
+}
+export interface State {
+}
+
+class Icon extends React.Component<Props, State> {
+
+    readonly name = prefix + "icon";
+
+    public static defaultProps: Props = {
+        type: "reglendo",
+        size: 15,
+        style: {}
+    }
+
+    render() {
+        var iconImport = []
+        try {
+            iconImport = require(`mergado-ui-icons/lib/${this.props.type}.js`)
+        } catch(e) {
+        }
+        let className = `${this.name} ${this.name}--${this.props.type}`
+        let iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace('-','')
+        let icon = iconImport[iconName] ? iconImport[iconName] : null
+
+        return (
+            <span className={className} style={this.props.style}>
+                <svg className={`${this.name}__image`} preserveAspectRatio='xMidYMid meet'
+                     fill='currentColor'
+                     height={this.props.size}
+                     width={this.props.size}
+                     viewBox={`0 0 40 40`}
+                >
+                    {icon}
+                </svg>
+                {this.props.text ? (
+                    <span className={`${this.name}__text`}>
+                        {this.props.text}
+                    </span>
+                ) : null}
+            </span>
+        )
+    }
+}
+
+export default Icon

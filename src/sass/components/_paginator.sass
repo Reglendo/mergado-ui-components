@@ -1,0 +1,40 @@
+@import "../base/all"
+
+.#{$prefix}paginator
+    margin: 10px 0
+    text-align: center
+    font-size: 13px
+
+    &__item
+        box-sizing: border-box
+        display: inline-block
+        height: 30px
+        min-width: 30px
+        background: rgba(255, 255, 255, 0.25)
+        border: 1px solid #dbcba3
+        line-height: 28px
+        padding: 0px 5px 0 5px
+        text-decoration: none
+        color: #009ba9
+        margin: 0 2px
+
+        &:not(&--disabled):hover 
+            background: white
+            border: 1px solid #b79748
+            text-decoration: none
+
+        &--disabled
+            display: inline-block
+            opacity: 0.3;
+            color: black;
+    
+        &--active
+            font-weight: bold;
+            border: 1px solid #b79748;
+            background: #fff;
+            color: black;
+            
+
+    a,a:hover,a:focus,a:active
+        text-decoration: none
+        color: #009ba9

@@ -1,14 +1,18 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 var webpack = require("webpack");
 var path = require("path");
 
+
 const config = {
   devtool: "cheap-module-source-map",
   entry: [
-    './src/app.tsx'
+    './src/index.ts',
+    './src/load_styles.ts'
   ],
   output: {
-    path: "./",
+    path: __dirname,
     publicPath: './',
     filename: "index.js"
   },
@@ -21,11 +25,40 @@ const config = {
       options: {
         silent: true
       },
-    },]
+    },
+	{
+		test: /\.sass$/,
+ 		exclude: /node_modules/,
+		loader: ExtractTextPlugin.extract({
+			loader: 'css-loader!sass-loader'
+		})
+ 	}
+	]
   },
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  }
+	resolve: {
+		extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+	}
 };
+
+if (process.env.NODE_ENV === 'production') {
+	config.plugins = [
+	    new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
+	        					allChunks: true
+	    					}),
+        new ExtractTextPlugin({ filename: 'dist/css/style.css',
+            					allChunks: true
+        }),
+		new OptimizeCssAssetsPlugin({
+				assetNameRegExp: /\.min\.css$/,
+				cssProcessorOptions: { discardComments: { removeAll: true } }
+		})
+	]
+} else {
+	config.plugins = [
+	    new ExtractTextPlugin({ filename: 'dist/css/style.css',
+	        					allChunks: true
+	    					})
+	]
+}
 
 module.exports = config;
