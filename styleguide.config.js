@@ -68,7 +68,7 @@ module.exports = {
             {
                 test: /\.sass$/,
                 exclude: /node_modules/,
-                loader:  ExtractTextPlugin.extract("style", 'style-loader!css-loader!sass-loader')
+                loader:  'style-loader!css-loader!sass-loader'
             }
         );
         webpackConfig.plugins.push(
@@ -78,7 +78,6 @@ module.exports = {
         );
 
         if (process.env.NODE_ENV == 'production') {
-            console.log('PRODUCTION')
             webpackConfig.plugins.push(
                 new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
                                         allChunks: true
@@ -91,8 +90,6 @@ module.exports = {
                 })
             );
         }
-
-        console.log(webpackConfig)
 
         return webpackConfig;
     },
