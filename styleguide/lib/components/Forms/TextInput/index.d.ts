@@ -13,6 +13,7 @@ export interface State {
 }
 declare class TextInput extends React.Component<Props, State> {
     readonly name: string;
+    readonly form: string;
     static defaultProps: Props;
     renderInvalid(): JSX.Element;
     render(): JSX.Element;

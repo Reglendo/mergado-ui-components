@@ -68,12 +68,17 @@ module.exports = {
             {
                 test: /\.sass$/,
                 exclude: /node_modules/,
-                loader: 'style-loader!css-loader!sass-loader'
+                loader:  ExtractTextPlugin.extract("style", 'style-loader!css-loader!sass-loader')
             }
+        );
+        webpackConfig.plugins.push(
+            new ExtractTextPlugin({ filename: 'dist/css/style.css',
+                allChunks: true
+            })
         );
 
         if (process.env.NODE_ENV == 'production') {
-
+            console.log('PRODUCTION')
             webpackConfig.plugins.push(
                 new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
                                         allChunks: true
@@ -85,15 +90,9 @@ module.exports = {
                         cssProcessorOptions: { discardComments: { removeAll: true } }
                 })
             );
-        } else {
-
-            webpackConfig.plugins.push(
-                new ExtractTextPlugin({ filename: 'dist/css/style.css',
-                                        allChunks: true
-                                    })
-            );
-            
         }
+
+        console.log(webpackConfig)
 
         return webpackConfig;
     },
