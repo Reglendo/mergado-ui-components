@@ -17,6 +17,7 @@ export interface State {
 class TextInput extends React.Component<Props, State> {
 
     readonly name = prefix + "text_input";
+    readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         input: {
@@ -69,11 +70,11 @@ class TextInput extends React.Component<Props, State> {
     render() {
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
-            <div className={`${this.name} ${prefix}form__group`} title={this.props.labels.title}>
+            <div className={`${this.name} ${this.form}__group`} title={this.props.labels.title}>
                 {this.renderInvalid()}
-                <label className={`${this.name}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
-                    className={`${this.name}__input ${prefix}form__control ${prefix}input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`}
+                    className={`${this.name}__input ${this.form}__input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`}
                     id={inputId} type="text" placeholder={this.props.labels.placeholder}
                     {...this.props.input} />
             </div>
