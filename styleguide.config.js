@@ -1,7 +1,7 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-var webpack = require("webpack");
-var path = require("path");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require("webpack");
+const path = require("path");
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     title: '/ MUK / Mergado UI Kit',
@@ -19,7 +19,6 @@ module.exports = {
     ],
     propsParser: require('react-docgen-typescript').parse,
     showCode: true,
-    template: './styleguide/index.html',
     updateWebpackConfig(webpackConfig) {
         // Your source files folder or array of folders, should not include node_modules
         const dir = path.join(__dirname, 'styleguide');
@@ -54,7 +53,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: 'style!css?modules&importLoaders=1',
+                loader: 'style!css?modules&importLoaders=1'
             },
             {
                 include: /.*/,
@@ -68,28 +67,16 @@ module.exports = {
             {
                 test: /\.sass$/,
                 exclude: /node_modules/,
-                loader:  'style-loader!css-loader!sass-loader'
+                loader: ExtractTextPlugin.extract({
+                    loader: 'css-loader?-autoprefixer!postcss-loader!sass-loader'
+                })
             }
         );
         webpackConfig.plugins.push(
-            new ExtractTextPlugin({ filename: 'dist/css/style.css',
+            new ExtractTextPlugin({ filename: 'dist/css/styleguide.css',
                 allChunks: true
             })
         );
-
-        if (process.env.NODE_ENV == 'production') {
-            webpackConfig.plugins.push(
-                new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
-                                        allChunks: true
-                                    })
-            );
-            webpackConfig.plugins.push(
-                new OptimizeCssAssetsPlugin({
-                        assetNameRegExp: /\.min\.css$/,
-                        cssProcessorOptions: { discardComments: { removeAll: true } }
-                })
-            );
-        }
 
         return webpackConfig;
     },

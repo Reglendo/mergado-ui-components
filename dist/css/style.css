@@ -309,8 +309,6 @@
   text-align: left; }
 
 .muk-datepicker .CalendarMonthGrid--animating {
-  -webkit-transition: -webkit-transform 0.2s ease-in-out;
-  -moz-transition: -moz-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
   z-index: 1; }
 
@@ -332,8 +330,6 @@
 
 .muk-datepicker .DayPicker--horizontal {
   background: #fff;
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.66);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.66);
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.66);
   border-radius: 3px; }
 
@@ -444,8 +440,6 @@
 
 .muk-datepicker .DayPickerNavigation--horizontal .DayPickerNavigation__prev,
 .muk-datepicker .DayPickerNavigation--horizontal .DayPickerNavigation__next {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 32px;
   height: 32px;
@@ -992,8 +986,6 @@
   .muk-toast__content {
     width: 100%;
     padding: 20px 0px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-size: 16px;
     text-align: left; }

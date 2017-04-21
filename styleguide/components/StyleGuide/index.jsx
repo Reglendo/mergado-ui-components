@@ -4,6 +4,37 @@ import Icon from '../../../src/components/Icon';
 
 import s from './StyleGuide.css';
 
+const style = `
+            .ReactStyleguidist-TableOfContents__search {
+                border: none;
+                outline: none;
+                border-radius: 0;
+            }
+
+            .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link {
+                color: white !important;
+                font-size: 1.2em;
+                line-height: 1.5em;
+                transition: color 0.2s;
+            }
+            
+            .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link:hover {
+                color: rgba(255,255,255,0.6) !important;
+            }
+
+            .ReactStyleguidist-Playground__preview {
+                background: #f5ecd5;
+            }
+
+            .ReactStyleguidist-TableOfContents__search {
+                border: none;
+                border-radius: 0;
+                outline: 0;
+                width: 220px;
+            }
+`
+
+
 try {
     require("../../../src/sass/main.sass")
 } catch(e) { }
@@ -56,6 +87,9 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     				}
     			</div>
     		</main>
+            <style>
+                {style}
+            </style>
     	</div>
     );
 }

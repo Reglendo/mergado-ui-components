@@ -67,9 +67,3 @@
 .link {
 	composes: link from "../../styles/colors.css";
 }
-
-.ReactStyleguidist-TableOfContents__search {
-    border: none;
-    outline: none;
-    border-radius: 0;
-}
