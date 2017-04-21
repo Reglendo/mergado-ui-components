@@ -12,7 +12,7 @@
     "test:watch": "npm run test -- --watch",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
-    "prepublish": "NODE_ENV='production' npm run build && tsc -d"
+    "prepublish": "NODE_ENV='production' webpack && tsc -d && styleguidist-build"
   },
   "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
   "contributors": [
