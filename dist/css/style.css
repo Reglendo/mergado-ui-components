@@ -874,6 +874,124 @@
   fill: black; }
 
 /* COLORS */
+/* COLORS */
+/* COLORS */
+.muk-form__label {
+  display: block; }
+
+.muk-form__input--text, .muk-datepicker .DateInput {
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #dbcba3;
+  display: block;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  padding: 0 10px;
+  color: #333;
+  height: 40px;
+  line-height: 40px; }
+  .muk-form__input--text:focus, .muk-datepicker .DateInput:focus {
+    border-color: #85bd3c;
+    outline: 3px solid #85bd3c; }
+
+.muk-button {
+  display: inline-block;
+  vertical-align: top; }
+  .muk-button__item {
+    box-sizing: border-box;
+    border-radius: 0px;
+    display: inline-block;
+    font-family: Trebuchet MS,Geneva CE,lucida,sans-serif;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    color: white;
+    padding: 0px 20px;
+    height: 38px;
+    line-height: 38px;
+    background-color: #009ba9;
+    background: linear-gradient(to bottom, #009ba9 5%, #008490 100%);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #008490; }
+    .muk-button__item:last-child {
+      margin-right: 0; }
+    .muk-button__item:hover {
+      background-color: #008490;
+      background: linear-gradient(to bottom, #008490 5%, #009ba9 100%); }
+    .muk-button__item:active {
+      background-color: #008490; }
+  .muk-button .muk-icon {
+    margin-right: 5px;
+    position: relative;
+    top: -1px; }
+    .muk-button .muk-icon path {
+      fill: white !important; }
+  .muk-button--disabled .muk-button__item, .muk-button--disabled .muk-button__item:hover, .muk-button--disabled .muk-button__item:focus, .muk-button--disabled [disabled] {
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none; }
+  .muk-button--notext .muk-button__item {
+    padding: 0px 12px; }
+  .muk-button--notext .muk-icon {
+    margin-right: 0px; }
+  .muk-button--small .muk-button__item {
+    padding: 0 10px;
+    height: 32px;
+    line-height: 30px; }
+  .muk-button--tiny .muk-button__item {
+    padding: 0 5px;
+    height: 20px;
+    line-height: 18px; }
+  .muk-button--green .muk-button__item {
+    background-color: #85bd3c;
+    background: linear-gradient(to bottom, #85bd3c 5%, #77aa36 100%);
+    border-color: #77aa36; }
+    .muk-button--green .muk-button__item:active {
+      background: #77aa36; }
+    .muk-button--green .muk-button__item:hover {
+      background-color: #77aa36;
+      background: linear-gradient(to bottom, #77aa36 5%, #85bd3c 100%); }
+  .muk-button--grey .muk-button__item, .muk-button--gray .muk-button__item {
+    background-color: #888;
+    background: linear-gradient(to bottom, #888 5%, #6f6f6f 100%);
+    border-color: #6f6f6f; }
+    .muk-button--grey .muk-button__item:active, .muk-button--gray .muk-button__item:active {
+      background: #6f6f6f; }
+    .muk-button--grey .muk-button__item:hover, .muk-button--gray .muk-button__item:hover {
+      background-color: #6f6f6f;
+      background: linear-gradient(to bottom, #6f6f6f 5%, #888 100%); }
+  .muk-button--red .muk-button__item {
+    background-color: #CF5A42;
+    background: linear-gradient(to bottom, #CF5A42 5%, #ab4f38 100%);
+    border-color: #ab4f38; }
+    .muk-button--red .muk-button__item:active {
+      background: #ab4f38; }
+    .muk-button--red .muk-button__item:hover {
+      background-color: #ab4f38;
+      background: linear-gradient(to bottom, #ab4f38 5%, #CF5A42 100%); }
+  .muk-button--nocolor .muk-button__item {
+    background: transparent;
+    border-color: transparent;
+    color: #333;
+    text-shadow: none; }
+    .muk-button--nocolor .muk-button__item:active, .muk-button--nocolor .muk-button__item:hover {
+      background: transparent;
+      color: #008490; }
+      .muk-button--nocolor .muk-button__item:active path, .muk-button--nocolor .muk-button__item:hover path {
+        fill: #008490 !important; }
+    .muk-button--nocolor .muk-button__item path {
+      fill: #333 !important; }
+
+/* COLORS */
 .muk-icon__text {
   vertical-align: middle;
   margin-left: 2px;
