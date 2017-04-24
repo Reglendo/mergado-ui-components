@@ -44,6 +44,12 @@ if (process.env.NODE_ENV === 'production') {
 	    new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
 	        					allChunks: true
 	    					}),
+        new ExtractTextPlugin({ filename: 'dist/css/style.min.scss',
+            allChunks: true
+        }),
+        new ExtractTextPlugin({ filename: 'dist/css/style.scss',
+            allChunks: true
+        }),
         new ExtractTextPlugin({ filename: 'dist/css/style.css',
             					allChunks: true
         }),
