@@ -1,0 +1,160 @@
+@import "../../base/all"
+@import "./input"
+
+
+$button-height: 40px
+$buttons-separation: 10px
+
+$button-small-height: 25px
+$button-big-height: $button-height
+
+$color-blue-light: #009ba9
+$color-blue-dark: #008490
+
+$color-gray-light: #888
+$color-gray-dark: #6f6f6f
+
+$color-green-light: #85bd3c
+$color-green-dark: #77aa36
+
+$color-red-light: #CF5A42
+$color-red-dark: #ab4f38
+
+
+
+.#{$prefix}button
+  display: inline-block
+  vertical-align: top
+
+  &__item
+    box-sizing: border-box
+    border-radius: 0px
+    display: inline-block
+    font-family: Trebuchet MS,Geneva CE,lucida,sans-serif
+    cursor: pointer
+    text-align: center
+    text-decoration: none
+    text-transform: uppercase
+    font-size: 14px
+    font-weight: bold
+    user-select: none
+    color: white
+    padding: 0px 20px
+    height: 38px
+    line-height: 38px
+    background-color: $color-blue-light
+    background: linear-gradient(to bottom, $color-blue-light 5%, $color-blue-dark 100%)
+    text-shadow: 0 1px 0 rgba(0,0,0,.1)
+    border: 1px solid $color-blue-dark
+
+    &:last-child
+      margin-right: 0
+
+    &:hover
+      background-color: $color-blue-dark
+      background: linear-gradient(to bottom, $color-blue-dark 5%, $color-blue-light 100%)
+
+    &:active
+      background-color: $color-blue-dark
+
+
+  // ICON
+  .#{$prefix}icon
+    margin-right: 5px
+    position: relative
+    top: -1px
+
+    path
+      fill: white !important
+
+  // STATE
+  &--disabled
+    .#{$prefix}button__item, .#{$prefix}button__item:hover, .#{$prefix}button__item:focus, [disabled]
+      cursor: default
+      opacity: 0.5
+      pointer-events: none
+
+
+  // NO LABEL
+  &--notext
+    .#{$prefix}button__item
+        padding: 0px 12px
+
+    .#{$prefix}icon
+      margin-right: 0px
+
+  // SIZE
+  &--small
+    .#{$prefix}button__item
+      padding: 0 10px
+      height: 32px
+      line-height: 30px
+
+  &--tiny
+    .#{$prefix}button__item
+      padding: 0 5px
+      height: 20px
+      line-height: 18px
+
+
+  // COLOR
+  &--green
+
+    .#{$prefix}button__item
+      background-color: $color-green-light
+      background: linear-gradient(to bottom, $color-green-light 5%, $color-green-dark 100%)
+      border-color: $color-green-dark
+
+      &:active
+        background: $color-green-dark
+
+      &:hover
+        background-color: $color-green-dark
+        background: linear-gradient(to bottom, $color-green-dark 5%, $color-green-light 100%)
+
+  &--grey,&--gray
+
+    .#{$prefix}button__item
+      background-color: $color-gray-light
+      background: linear-gradient(to bottom, $color-gray-light 5%, $color-gray-dark 100%)
+      border-color: $color-gray-dark
+
+      &:active
+        background: $color-gray-dark
+
+      &:hover
+        background-color: $color-gray-dark
+        background: linear-gradient(to bottom, $color-gray-dark 5%, $color-gray-light 100%)
+
+
+  &--red
+
+    .#{$prefix}button__item
+      background-color: $color-red-light
+      background: linear-gradient(to bottom, $color-red-light 5%, $color-red-dark 100%)
+      border-color: $color-red-dark
+
+      &:active
+        background: $color-red-dark
+
+      &:hover
+        background-color: $color-red-dark
+        background: linear-gradient(to bottom, $color-red-dark 5%, $color-red-light 100%)
+
+  &--nocolor
+
+    .#{$prefix}button__item
+      background: transparent
+      border-color: transparent
+      color: #333
+      text-shadow: none
+
+      &:active,&:hover
+        background: transparent
+        color: $color-blue-dark
+
+        path
+          fill: $color-blue-dark !important
+
+      path
+        fill: #333 !important
