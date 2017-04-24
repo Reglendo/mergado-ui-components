@@ -10,6 +10,7 @@ export interface Props extends InputProps {
     size?: "small" | "tiny" | "";
     state?: "disabled" | "";
     onClick?: (event: any) => boolean;
+    style?: any;
     labels?: {
         main?: string | JSX.Element;
         invalid?: string | JSX.Element;

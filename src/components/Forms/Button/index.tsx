@@ -11,6 +11,7 @@ export interface Props extends InputProps {
     size?: "small" | "tiny" | ""
     state?: "disabled" | ""
     onClick?: (event: any) => boolean
+    style?: any
     labels?: {
         main?: string | JSX.Element
         invalid?: string | JSX.Element
@@ -35,6 +36,7 @@ class Button extends React.Component<Props, State> {
         color: "blue",
         state: "",
         size: "",
+        style: null,
         input: {
             checked: false,
             name: "",
@@ -99,7 +101,7 @@ class Button extends React.Component<Props, State> {
         const { type,color,state, size } = this.props
 
         return (
-            <div className={`${this.name} ${this.name}--${color} ${!this.props.labels.main?this.name+`--notext`:``} ${size?this.name+`--`+size:``} ${state?this.name+`--`+state:``} ${this.form}__group `} title={this.props.labels.title}>
+            <div className={`${this.name} ${this.name}--${color} ${!this.props.labels.main?this.name+`--notext`:``} ${size?this.name+`--`+size:``} ${state?this.name+`--`+state:``} ${this.form}__group `} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
                 {type == 'button' && this.renderButton()}
                 {type == 'link' && this.renderLink()}

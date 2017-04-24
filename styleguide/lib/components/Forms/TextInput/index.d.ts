@@ -8,6 +8,7 @@ export interface Props extends InputProps {
         invalid: string | JSX.Element;
         title: string;
     };
+    style?: any;
 }
 export interface State {
 }

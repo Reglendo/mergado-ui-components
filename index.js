@@ -31108,7 +31108,7 @@ var Button = (function (_super) {
     };
     Button.prototype.render = function () {
         var _a = this.props, type = _a.type, color = _a.color, state = _a.state, size = _a.size;
-        return (React.createElement("div", { className: this.name + " " + this.name + "--" + color + " " + (!this.props.labels.main ? this.name + "--notext" : "") + " " + (size ? this.name + "--" + size : "") + " " + (state ? this.name + "--" + state : "") + " " + this.form + "__group ", title: this.props.labels.title },
+        return (React.createElement("div", { className: this.name + " " + this.name + "--" + color + " " + (!this.props.labels.main ? this.name + "--notext" : "") + " " + (size ? this.name + "--" + size : "") + " " + (state ? this.name + "--" + state : "") + " " + this.form + "__group ", title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             type == 'button' && this.renderButton(),
             type == 'link' && this.renderLink(),
@@ -31125,6 +31125,7 @@ Button.defaultProps = {
     color: "blue",
     state: "",
     size: "",
+    style: null,
     input: {
         checked: false,
         name: "",
@@ -31239,7 +31240,7 @@ var CheckboxContainer = (function (_super) {
     CheckboxContainer.prototype.render = function () {
         var _this = this;
         var queries = this.props.input.value;
-        return (React.createElement("div", { className: this.name },
+        return (React.createElement("div", { className: this.name, style: this.props.style },
             React.createElement("h3", { className: this.name + "__header", title: this.props.meta.invalid ? this.props.labels.invalid :
                     '' }, this.props.labels.main),
             React.createElement("div", { className: this.name + "__queries " + (this.props.meta.dirty && this.props.meta.invalid ?
@@ -31338,7 +31339,7 @@ var TextInput = (function (_super) {
     };
     TextInput.prototype.render = function () {
         var inputId = this.props.meta.form + "-" + this.props.input.name;
-        return (React.createElement("div", { className: this.name + " " + this.form + "__group", title: this.props.labels.title },
+        return (React.createElement("div", { className: this.name + " " + this.form + "__group", title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
             React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + (this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''), id: inputId, type: "text", placeholder: this.props.labels.placeholder }, this.props.input))));

@@ -18,6 +18,7 @@ export interface Props extends InputProps {
     withoutFilter?: boolean;
     /** Height of box with queries (in px) */
     height?: string | number;
+    style?: any;
 }
 export interface State {
     filter: string;

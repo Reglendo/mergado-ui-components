@@ -22,6 +22,7 @@ export interface Props extends InputProps {
     }
     defaults_range?: {
     }
+    style?: any
 }
 
 export interface State {
@@ -234,7 +235,7 @@ class DatePicker extends React.Component<Props, State> {
             />
         }
         return (
-            <div className={`${this.name}`}>
+            <div className={`${this.name}`} style={this.props.style}>
                 <span className={`${this.name}__label ${this.form}__label`}>{labels.main}</span>
                 <div className={`${this.name}__picker`}>
                     {picker}

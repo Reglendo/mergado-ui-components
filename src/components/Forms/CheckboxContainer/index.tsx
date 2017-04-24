@@ -20,6 +20,7 @@ export interface Props extends InputProps {
     withoutFilter?: boolean
     /** Height of box with queries (in px) */
     height?: string|number
+    style?: any
 }
 
 export interface State {
@@ -143,7 +144,7 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         const queries = this.props.input.value
         return (
-            <div className={this.name}>
+            <div className={this.name} style={this.props.style}>
                 <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
                     ''}>{this.props.labels.main}</h3>
                 <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?

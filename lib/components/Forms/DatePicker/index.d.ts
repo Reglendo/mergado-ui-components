@@ -17,6 +17,7 @@ export interface Props extends InputProps {
     };
     defaults_single?: {};
     defaults_range?: {};
+    style?: any;
 }
 export interface State {
     startDate: Moment.Moment | null;

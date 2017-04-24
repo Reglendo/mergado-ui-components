@@ -9,6 +9,7 @@ export interface Props extends InputProps {
         invalid: string | JSX.Element
         title: string
     }
+    style?: any
 }
 
 export interface State {
@@ -70,7 +71,7 @@ class TextInput extends React.Component<Props, State> {
     render() {
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
-            <div className={`${this.name} ${this.form}__group`} title={this.props.labels.title}>
+            <div className={`${this.name} ${this.form}__group`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
