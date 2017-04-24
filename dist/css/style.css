@@ -2958,56 +2958,56 @@ a:hover, a:focus, a:active {
     cursor: default;
     opacity: 0.5;
     pointer-events: none; }
-  .muk-button--notext .muk-button__item {
+  .muk-button--notext .muk-button__item, .muk-button--notext a.muk-button__item {
     padding: 0px 12px; }
   .muk-button--notext .muk-icon {
     margin-right: 0px; }
-  .muk-button--small .muk-button__item {
+  .muk-button--small .muk-button__item, .muk-button--small a.muk-button__item {
     padding: 0 10px;
     height: 32px;
     line-height: 30px; }
-  .muk-button--tiny .muk-button__item {
+  .muk-button--tiny .muk-button__item, .muk-button--tiny a.muk-button__item {
     padding: 0 5px;
     height: 20px;
     line-height: 18px; }
-  .muk-button--green .muk-button__item {
+  .muk-button--green .muk-button__item, .muk-button--green a.muk-button__item {
     background-color: #85bd3c;
     background: linear-gradient(to bottom, #85bd3c 5%, #77aa36 100%);
     border-color: #77aa36; }
-    .muk-button--green .muk-button__item:active {
+    .muk-button--green .muk-button__item:active, .muk-button--green a.muk-button__item:active {
       background: #77aa36; }
-    .muk-button--green .muk-button__item:hover {
+    .muk-button--green .muk-button__item:hover, .muk-button--green a.muk-button__item:hover {
       background-color: #77aa36;
       background: linear-gradient(to bottom, #77aa36 5%, #85bd3c 100%); }
-  .muk-button--grey .muk-button__item, .muk-button--gray .muk-button__item {
+  .muk-button--grey .muk-button__item, .muk-button--grey a.muk-button__item, .muk-button--gray .muk-button__item, .muk-button--gray a.muk-button__item {
     background-color: #888;
     background: linear-gradient(to bottom, #888 5%, #6f6f6f 100%);
     border-color: #6f6f6f; }
-    .muk-button--grey .muk-button__item:active, .muk-button--gray .muk-button__item:active {
+    .muk-button--grey .muk-button__item:active, .muk-button--grey a.muk-button__item:active, .muk-button--gray .muk-button__item:active, .muk-button--gray a.muk-button__item:active {
       background: #6f6f6f; }
-    .muk-button--grey .muk-button__item:hover, .muk-button--gray .muk-button__item:hover {
+    .muk-button--grey .muk-button__item:hover, .muk-button--grey a.muk-button__item:hover, .muk-button--gray .muk-button__item:hover, .muk-button--gray a.muk-button__item:hover {
       background-color: #6f6f6f;
       background: linear-gradient(to bottom, #6f6f6f 5%, #888 100%); }
-  .muk-button--red .muk-button__item {
+  .muk-button--red .muk-button__item, .muk-button--red a.muk-button__item {
     background-color: #CF5A42;
     background: linear-gradient(to bottom, #CF5A42 5%, #ab4f38 100%);
     border-color: #ab4f38; }
-    .muk-button--red .muk-button__item:active {
+    .muk-button--red .muk-button__item:active, .muk-button--red a.muk-button__item:active {
       background: #ab4f38; }
-    .muk-button--red .muk-button__item:hover {
+    .muk-button--red .muk-button__item:hover, .muk-button--red a.muk-button__item:hover {
       background-color: #ab4f38;
       background: linear-gradient(to bottom, #ab4f38 5%, #CF5A42 100%); }
-  .muk-button--nocolor .muk-button__item {
+  .muk-button--nocolor .muk-button__item, .muk-button--nocolor a.muk-button__item {
     background: transparent;
     border-color: transparent;
     color: #333;
     text-shadow: none; }
-    .muk-button--nocolor .muk-button__item:active, .muk-button--nocolor .muk-button__item:hover {
+    .muk-button--nocolor .muk-button__item:active, .muk-button--nocolor .muk-button__item:hover, .muk-button--nocolor a.muk-button__item:active, .muk-button--nocolor a.muk-button__item:hover {
       background: transparent;
       color: #008490; }
-      .muk-button--nocolor .muk-button__item:active path, .muk-button--nocolor .muk-button__item:hover path {
+      .muk-button--nocolor .muk-button__item:active path, .muk-button--nocolor .muk-button__item:hover path, .muk-button--nocolor a.muk-button__item:active path, .muk-button--nocolor a.muk-button__item:hover path {
         fill: #008490 !important; }
-    .muk-button--nocolor .muk-button__item path {
+    .muk-button--nocolor .muk-button__item path, .muk-button--nocolor a.muk-button__item path {
       fill: #333 !important; }
 
 /* COLORS */
