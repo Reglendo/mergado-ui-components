@@ -31279,7 +31279,7 @@ var CheckboxContainer = (function (_super) {
                 React.createElement("label", { className: _this.name + "__label" },
                     option.name === "♥ALLPRODUCTS♥" ? _this.props.labels.allProducts : option.name,
                     " ",
-                    React.createElement("span", { className: _this.name + "__count" }, typeof option.productCount !== "undefined" ? "(" + option.productCount + ")" : ""))));
+                    React.createElement("span", { className: _this.name + "__count" }, typeof option.product_count !== "undefined" ? "(" + option.product_count + ")" : ""))));
         });
     };
     CheckboxContainer.prototype.render = function () {

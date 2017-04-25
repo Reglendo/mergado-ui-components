@@ -5,7 +5,7 @@ import {prefix} from "../../../config"
 export interface Query {
     id: number
     name: string
-    productCount: number
+    product_count: number
 }
 
 export interface Props extends InputProps {
@@ -133,7 +133,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                         <label
                             className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
                             {" "}<span
-                                className={`${this.name}__count`}>{typeof option.productCount !== "undefined" ? `(${option.productCount})` : "" }</span>
+                                className={`${this.name}__count`}>{typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }</span>
                         </label>
                     </li>
                 )

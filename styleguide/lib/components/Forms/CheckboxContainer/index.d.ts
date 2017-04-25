@@ -4,7 +4,7 @@ import InputProps from "../default_props";
 export interface Query {
     id: number;
     name: string;
-    productCount: number;
+    product_count: number;
 }
 export interface Props extends InputProps {
     availableQueries: Array<Query>;
