@@ -25,6 +25,7 @@ export interface State {
 }
 declare class CheckboxContainer extends React.Component<Props, State> {
     readonly name: string;
+    readonly form: string;
     static defaultProps: Props;
     constructor(props: Props);
     renderBoxes(): JSX.Element[];

@@ -31235,6 +31235,7 @@ var CheckboxContainer = (function (_super) {
     function CheckboxContainer(props) {
         var _this = _super.call(this, props) || this;
         _this.name = config_1.prefix + "checkbox_container";
+        _this.form = config_1.prefix + "form";
         _this.state = {
             filter: ''
         };
@@ -31290,8 +31291,7 @@ var CheckboxContainer = (function (_super) {
             React.createElement("div", { className: this.name + "__queries " + (this.props.meta.dirty && this.props.meta.invalid ?
                     this.name + "__queries--invalid" : '') },
                 this.props.withoutFilter === false ? (React.createElement("div", { className: this.name + "__filter" },
-                    React.createElement("label", { className: this.name + "__filter_label", htmlFor: "filter" }, this.props.labels.placeholder),
-                    React.createElement("input", { className: this.name + "__filter_input " + config_1.prefix + "input--text", type: "text", id: "filter", name: "filter", value: this.state.filter, onChange: function (evt) { _this.setState({ filter: evt.target.value }); } }))) : null,
+                    React.createElement("input", { className: this.name + "__filter_input " + this.form + "__input--text", type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: function (evt) { _this.setState({ filter: evt.target.value }); } }))) : null,
                 React.createElement("ul", { className: this.name + "__list", style: { height: this.props.height } }, this.renderBoxes()))));
     };
     return CheckboxContainer;

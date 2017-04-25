@@ -30,6 +30,7 @@ export interface State {
 class CheckboxContainer extends React.Component<Props, State> {
 
     readonly name = prefix + "checkbox_container";
+    readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         input: {
@@ -97,7 +98,6 @@ class CheckboxContainer extends React.Component<Props, State> {
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
             queries = []
         }
-
         return options
             .filter((option) => {
                 var regex = new RegExp(this.state.filter, 'i');
@@ -151,13 +151,10 @@ class CheckboxContainer extends React.Component<Props, State> {
                     `${this.name}__queries--invalid` : ''}`}>
                     {this.props.withoutFilter === false ? (
                             <div className={`${this.name}__filter`}>
-                                <label className={`${this.name}__filter_label`} htmlFor="filter">
-                                    {this.props.labels.placeholder}
-                                </label>
-                                <input className={`${this.name}__filter_input ${prefix}input--text`} type="text"
+                                <input className={`${this.name}__filter_input ${this.form}__input--text`} type="text"
                                        id="filter" name="filter"
-                                       value={this.state.filter}
-                                       onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
+                                       value={this.state.filter} placeholder={this.props.labels.placeholder}
+                                       onChange={(evt) => { this.setState({ filter: evt.target.value }) } } />
                             </div>
                         ) : null}
                     <ul className={`${this.name}__list`} style={{height: this.props.height }}>
