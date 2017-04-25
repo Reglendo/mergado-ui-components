@@ -3,7 +3,7 @@ import * as React from "react";
 import InputProps from "../default_props";
 import Icon from "../../Icon";
 export interface Props extends InputProps {
-    type?: "button" | "link" | "submit";
+    type?: "button" | "link" | "submit" | "void";
     link?: string;
     icon?: Icon | JSX.Element;
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor";
@@ -11,6 +11,7 @@ export interface Props extends InputProps {
     state?: "disabled" | "";
     onClick?: (event: any) => boolean;
     style?: any;
+    addClass?: string;
     labels?: {
         main?: string | JSX.Element;
         invalid?: string | JSX.Element;
@@ -27,6 +28,7 @@ declare class Button extends React.Component<Props, State> {
     renderButton(): JSX.Element;
     renderLink(): JSX.Element;
     renderSubmit(): JSX.Element;
+    renderVoid(): JSX.Element;
     render(): JSX.Element;
 }
 export default Button;

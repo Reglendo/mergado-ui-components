@@ -5,6 +5,7 @@ Simple button
         <Button labels={{main: 'I\'m button!'}} onClick={() => alert('Hello') } />
         <Button labels={{main: 'I\'m link!'}} type="link" />
         <Field component={Button} name="first-name" props={{ type: 'submit', labels: { main: "I\'m submit!" }}} />
+        <Button labels={{main: 'I\'m void!'}} type="void" />
     </div>
     
 Buttons with icons

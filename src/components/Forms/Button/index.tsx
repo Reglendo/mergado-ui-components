@@ -4,7 +4,7 @@ import {prefix} from "../../../config"
 import Icon from "../../Icon"
 
 export interface Props extends InputProps {
-    type?: "button" | "link" | "submit"
+    type?: "button" | "link" | "submit" | "void"
     link?: string
     icon?: Icon | JSX.Element
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
@@ -12,6 +12,7 @@ export interface Props extends InputProps {
     state?: "disabled" | ""
     onClick?: (event: any) => boolean
     style?: any
+    addClass?: string
     labels?: {
         main?: string | JSX.Element
         invalid?: string | JSX.Element
@@ -37,6 +38,7 @@ class Button extends React.Component<Props, State> {
         state: "",
         size: "",
         style: null,
+        addClass: null,
         input: {
             checked: false,
             name: "",
@@ -96,16 +98,20 @@ class Button extends React.Component<Props, State> {
         const inputId = `${meta.form}-${input.name}`
         return (<input type="submit" className={`${this.name}__item`} value={`${labels.main}`} id={inputId} name={input.name} title={labels.title} onClick={onClick} />)
     }
+    renderVoid() {
+        const { input, labels, icon, onClick } = this.props
+        return (<span className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>{icon}{labels.main}</span>)
+    }
 
     render() {
-        const { type,color,state, size } = this.props
-
+        const { type,color,state, size, addClass } = this.props
         return (
-            <div className={`${this.name} ${this.name}--${color} ${!this.props.labels.main?this.name+`--notext`:``} ${size?this.name+`--`+size:``} ${state?this.name+`--`+state:``} ${this.form}__group `} title={this.props.labels.title} style={this.props.style}>
-                {this.renderInvalid()}
+            <div className={`${this.name} ${this.name}--${color} ${!this.props.labels.main?this.name+`--notext`:``} ${size?this.name+`--`+size:``} ${state?this.name+`--`+state:``} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={this.props.style}>
+                {type == 'submit' && this.renderInvalid()}
                 {type == 'button' && this.renderButton()}
                 {type == 'link' && this.renderLink()}
                 {type == 'submit' && this.renderSubmit()}
+                {type == 'void' && this.renderVoid()}
             </div>
         )
     }
