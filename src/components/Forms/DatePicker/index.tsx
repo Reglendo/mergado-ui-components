@@ -3,7 +3,6 @@ import InputProps from "../default_props"
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import * as Moment from "moment"
 import {prefix} from "../../../config"
-// import { SingleDatePickerPhrases, DateRangePickerPhrases } from 'react-dates/src/defaultPhrases';
 
 export interface Props extends InputProps {
     type?: 'single' | 'range'

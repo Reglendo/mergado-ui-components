@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === 'production') {
             					allChunks: true
         }),
 		new OptimizeCssAssetsPlugin({
-				assetNameRegExp: /\.min\.css$/,
+				assetNameRegExp: /\.min\.s?css$/,
 				cssProcessorOptions: { discardComments: { removeAll: true } }
 		})
 	]

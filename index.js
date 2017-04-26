@@ -31374,7 +31374,7 @@ var TextInput = (function (_super) {
     __extends(TextInput, _super);
     function TextInput() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "text_input";
+        _this.name = config_1.prefix + "input-text";
         _this.form = config_1.prefix + "form";
         return _this;
     }

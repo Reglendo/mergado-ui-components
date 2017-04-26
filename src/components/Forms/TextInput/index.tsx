@@ -17,7 +17,7 @@ export interface State {
 
 class TextInput extends React.Component<Props, State> {
 
-    readonly name = prefix + "text_input";
+    readonly name = prefix + "input-text";
     readonly form = prefix + "form";
 
     public static defaultProps: Props = {

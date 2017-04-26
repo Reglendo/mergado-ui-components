@@ -36,6 +36,7 @@
     "react-addons-shallow-compare": "^15.5.2",
     "react-addons-update": "^15.4.2",
     "react-codemirror": "^0.3.0",
+    "react-color": "^2.11.6",
     "react-cookie": "^1.0.5",
     "react-dates": "^10.1.1",
     "react-day-picker": "^5.2.3",
