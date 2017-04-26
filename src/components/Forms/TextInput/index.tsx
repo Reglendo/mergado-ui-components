@@ -10,6 +10,8 @@ export interface Props extends InputProps {
         title: string
     }
     style?: any
+    addClass?: string
+    id?: string
 }
 
 export interface State {
@@ -69,6 +71,7 @@ class TextInput extends React.Component<Props, State> {
     }
 
     render() {
+        const { id } = this.props
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
             <div className={`${this.name} ${this.form}__group`} title={this.props.labels.title} style={this.props.style}>
@@ -76,7 +79,7 @@ class TextInput extends React.Component<Props, State> {
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
                     className={`${this.name}__input ${this.form}__input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`}
-                    id={inputId} type="text" placeholder={this.props.labels.placeholder}
+                    id={id?id:inputId} type="text" placeholder={this.props.labels.placeholder}
                     {...this.props.input} />
             </div>
         )

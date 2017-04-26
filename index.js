@@ -72168,11 +72168,12 @@ var TextInput = (function (_super) {
         return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
     };
     TextInput.prototype.render = function () {
+        var id = this.props.id;
         var inputId = this.props.meta.form + "-" + this.props.input.name;
         return (React.createElement("div", { className: this.name + " " + this.form + "__group", title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + (this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''), id: inputId, type: "text", placeholder: this.props.labels.placeholder }, this.props.input))));
+            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + (this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: "text", placeholder: this.props.labels.placeholder }, this.props.input))));
     };
     return TextInput;
 }(React.Component));

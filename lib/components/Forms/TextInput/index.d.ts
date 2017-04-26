@@ -9,6 +9,8 @@ export interface Props extends InputProps {
         title: string;
     };
     style?: any;
+    addClass?: string;
+    id?: string;
 }
 export interface State {
 }
