@@ -71404,6 +71404,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 exports.__esModule = true;
 var React = __webpack_require__(0);
 var config_1 = __webpack_require__(11);
@@ -71419,11 +71427,11 @@ var Checkbox = (function (_super) {
         return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
     };
     Checkbox.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input;
+        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id;
         var inputId = this.props.meta.form + "-" + input.name;
         return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: style },
             React.createElement("label", { className: this.name + "__label " + this.form + "__label" },
-                React.createElement("input", { className: this.name + "__item", id: inputId, type: "checkbox", onChange: input.onChange, name: input.name, value: input.value, required: !!required, disabled: !!disabled }),
+                React.createElement("input", __assign({ className: this.name + "__item", id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input)),
                 " ",
                 this.props.labels.main)));
     };
@@ -71434,6 +71442,7 @@ Checkbox.defaultProps = {
     required: false,
     style: null,
     addClass: null,
+    id: null,
     input: {
         checked: false,
         name: "",
@@ -71945,6 +71954,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 exports.__esModule = true;
 var React = __webpack_require__(0);
 var config_1 = __webpack_require__(11);
@@ -71960,11 +71977,11 @@ var Radio = (function (_super) {
         return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
     };
     Radio.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input;
+        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id;
         var inputId = this.props.meta.form + "-" + input.name;
         return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: style },
             React.createElement("label", { className: this.name + "__label " + this.form + "__label" },
-                React.createElement("input", { className: this.name + "__item", id: inputId, type: "radio", onChange: input.onChange, name: input.name, value: input.value, required: !!required, disabled: !!disabled }),
+                React.createElement("input", __assign({ className: this.name + "__item", id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input)),
                 " ",
                 this.props.labels.main)));
     };
@@ -71975,6 +71992,7 @@ Radio.defaultProps = {
     required: false,
     style: null,
     addClass: null,
+    id: null,
     input: {
         checked: false,
         name: "",
@@ -72053,11 +72071,11 @@ var Select = (function (_super) {
         });
     };
     Select.prototype.render = function () {
-        var _a = this.props, multiple = _a.multiple, disabled = _a.disabled, required = _a.required, size = _a.size, addClass = _a.addClass, style = _a.style;
+        var _a = this.props, multiple = _a.multiple, disabled = _a.disabled, required = _a.required, size = _a.size, addClass = _a.addClass, style = _a.style, id = _a.id;
         var inputId = this.props.meta.form + "-" + this.props.input.name;
         return (React.createElement("div", { className: this.name + " " + (multiple && this.name + "--" + multiple) + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: style },
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("select", { className: this.name + "__item", id: inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.renderOptions())));
+            React.createElement("select", { className: this.name + "__item", id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.renderOptions())));
     };
     return Select;
 }(React.Component));
@@ -72069,6 +72087,7 @@ Select.defaultProps = {
     size: 0,
     style: null,
     addClass: null,
+    id: null,
     input: {
         checked: false,
         name: "",

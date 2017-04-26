@@ -7,6 +7,8 @@ export interface Props extends InputProps {
     required?: boolean
     style?: any
     addClass?: string
+    id?: string
+
     labels?: {
         main?: string | JSX.Element
         invalid?: string | JSX.Element
@@ -27,6 +29,7 @@ class Radio extends React.Component<Props, State> {
         required: false,
         style: null,
         addClass: null,
+        id: null,
         input: {
             checked: false,
             name: "",
@@ -75,12 +78,12 @@ class Radio extends React.Component<Props, State> {
     }
 
     render() {
-        const { disabled, required, addClass, style, input } = this.props
+        const { disabled, required, addClass, style, input, id } = this.props
         const inputId = `${this.props.meta.form}-${input.name}`
         return (
             <div className={`${this.name} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={style}>
                 <label className={`${this.name}__label ${this.form}__label`}>
-                    <input className={`${this.name}__item`} id={inputId} type="radio" onChange={input.onChange} name={input.name} value={input.value} required={!!required} disabled={!!disabled} /> {this.props.labels.main }
+                    <input className={`${this.name}__item`} id={id?id:inputId} type="radio" required={!!required} disabled={!!disabled} {...this.props.input} /> {this.props.labels.main }
                 </label>
             </div>
         )

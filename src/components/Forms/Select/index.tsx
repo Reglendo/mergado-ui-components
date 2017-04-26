@@ -12,6 +12,7 @@ export interface Props extends InputProps {
 
     style?: any
     addClass?: string
+    id?: string
     labels?: {
         main?: string | JSX.Element
         invalid?: string | JSX.Element
@@ -35,6 +36,7 @@ class Select extends React.Component<Props, State> {
         size: 0,
         style: null,
         addClass: null,
+        id: null,
         input: {
             checked: false,
             name: "",
@@ -89,12 +91,12 @@ class Select extends React.Component<Props, State> {
     }
 
     render() {
-        const { multiple, disabled,required, size, addClass, style } = this.props
+        const { multiple, disabled,required, size, addClass, style, id } = this.props
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
             <div className={`${this.name} ${multiple && this.name+`--`+multiple} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={style}>
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
-                <select className={`${this.name}__item`} id={inputId}
+                <select className={`${this.name}__item`} id={id?id:inputId}
                         multiple={!!multiple} disabled={!!disabled}
                         required={!!required} size={size}>
                             {this.renderOptions()}
