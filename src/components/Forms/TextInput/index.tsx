@@ -3,6 +3,7 @@ import InputProps from "../default_props"
 import {prefix} from "../../../config"
 
 export interface Props extends InputProps {
+    type: "text" | "number" | "password" | "hidden" | "email" | "range" | "search" | "tel" | "url"
     labels?: {
         main: string | JSX.Element
         placeholder: string
@@ -23,6 +24,7 @@ class TextInput extends React.Component<Props, State> {
     readonly form = prefix + "form";
 
     public static defaultProps: Props = {
+        type: "text",
         input: {
             checked: false,
             name: "",
@@ -71,15 +73,15 @@ class TextInput extends React.Component<Props, State> {
     }
 
     render() {
-        const { id } = this.props
-        const inputId = `${this.props.meta.form}-${this.props.input.name}`
+        const { id, type, meta, input } = this.props
+        const inputId = `${meta.form}-${input.name}`
         return (
             <div className={`${this.name} ${this.form}__group`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
-                    className={`${this.name}__input ${this.form}__input--text ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? 'invalid' : ''}`}
-                    id={id?id:inputId} type="text" placeholder={this.props.labels.placeholder}
+                    className={`${this.name}__input ${this.form}__input--text ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
+                    id={id?id:inputId} type={type} placeholder={this.props.labels.placeholder}
                     {...this.props.input} />
             </div>
         )

@@ -2,6 +2,7 @@
 import * as React from "react";
 import InputProps from "../default_props";
 export interface Props extends InputProps {
+    type: "text" | "number" | "password" | "hidden" | "email" | "range" | "search" | "tel" | "url";
     labels?: {
         main: string | JSX.Element;
         placeholder: string;
