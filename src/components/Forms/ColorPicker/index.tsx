@@ -100,12 +100,12 @@ class ColorPicker extends React.Component<Props, State> {
     }
 
     handleChange(evt) {
-        return this.props.input.onChange;
+        return false
     }
 
     handleChanged(evt) {
         this.setState({color: evt.rgb})
-        return this.props.input.onChange;
+        return this.props.input.onChange(evt)
     }
 
     renderPicker() {

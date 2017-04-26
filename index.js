@@ -71653,11 +71653,11 @@ var ColorPicker = (function (_super) {
         this.setState({ displayColorPicker: false });
     };
     ColorPicker.prototype.handleChange = function (evt) {
-        return this.props.input.onChange;
+        return false;
     };
     ColorPicker.prototype.handleChanged = function (evt) {
         this.setState({ color: evt.rgb });
-        return this.props.input.onChange;
+        return this.props.input.onChange(evt);
     };
     ColorPicker.prototype.renderPicker = function () {
         return (React.createElement("div", { className: this.name + "__popover" },

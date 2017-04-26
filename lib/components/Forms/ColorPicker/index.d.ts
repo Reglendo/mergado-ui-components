@@ -24,8 +24,8 @@ declare class ColorPicker extends React.Component<Props, State> {
     renderInvalid(): JSX.Element;
     handleClick(evt: any): void;
     handleClose(evt: any): void;
-    handleChange(evt: any): (value: any) => void;
-    handleChanged(evt: any): (value: any) => void;
+    handleChange(evt: any): boolean;
+    handleChanged(evt: any): void;
     renderPicker(): JSX.Element;
     renderItem(): JSX.Element;
     render(): JSX.Element;
