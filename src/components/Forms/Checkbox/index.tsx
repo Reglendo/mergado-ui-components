@@ -80,7 +80,7 @@ class Checkbox extends React.Component<Props, State> {
         return (
             <div className={`${this.name} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={style}>
                 <label className={`${this.name}__label ${this.form}__label`}>
-                    <input className={`${this.name}__item`} id={inputId} type="checkbox"  name={input.name} value={input.value} required={!!required} disabled={!!disabled} /> {this.props.labels.main }
+                    <input className={`${this.name}__item`} id={inputId} type="checkbox" onChange={input.onChange}  name={input.name} value={input.value} required={!!required} disabled={!!disabled} /> {this.props.labels.main }
                 </label>
             </div>
         )
