@@ -8,6 +8,7 @@ export interface Props extends InputProps {
     required?: boolean
     style?: any
     addClass?: string
+    color?: any
     labels?: {
         main?: string | JSX.Element
         invalid?: string | JSX.Element
@@ -73,7 +74,7 @@ class ColorPicker extends React.Component<Props, State> {
         super(props)
         this.state = {
             displayColorPicker: false,
-            color: {r:255,g:255,b:255,a:1}
+            color: props.color
         }
 
         this.handleClick = this.handleClick.bind(this)

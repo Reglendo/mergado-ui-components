@@ -6,6 +6,7 @@ export interface Props extends InputProps {
     required?: boolean;
     style?: any;
     addClass?: string;
+    color?: any;
     labels?: {
         main?: string | JSX.Element;
         invalid?: string | JSX.Element;

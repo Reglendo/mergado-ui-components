@@ -71635,7 +71635,7 @@ var ColorPicker = (function (_super) {
         _this.form = config_1.prefix + "form";
         _this.state = {
             displayColorPicker: false,
-            color: { r: 255, g: 255, b: 255, a: 1 }
+            color: props.color
         };
         _this.handleClick = _this.handleClick.bind(_this);
         _this.handleClose = _this.handleClose.bind(_this);
