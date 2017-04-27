@@ -14,7 +14,7 @@ Input types
         <TextInput type="search" labels={{placeholder: 'Give me some search'}} input={{ onChange: () => { return true; } }} />
         <TextInput type="tel" labels={{placeholder: 'Give me some tel'}} input={{ onChange: () => { return true; } }} />
         <TextInput type="url" labels={{placeholder: 'Give me some url'}} input={{ onChange: () => { return true; } }} />
-        <TextInput type="range" labels={{main: 'Give me some range'}} input={{ onChange: () => { return true; } }} />
-        
+        <TextInput type="file" labels={{main: 'Give me some file'}} input={{ onChange: () => { return true; } }} />
+
         <TextInput type="hidden" labels={{main: '+ hidden'}} />
     </div>

@@ -4,8 +4,11 @@ export {default as CheckboxContainer} from "./components/Forms/CheckboxContainer
 export {default as ColorPicker} from "./components/Forms/ColorPicker"
 export {default as DatePicker} from "./components/Forms/DatePicker"
 export {default as Radio} from "./components/Forms/Radio"
+export {default as Range} from "./components/Forms/Range"
+
 export {default as Select} from "./components/Forms/Select"
 export {default as TextInput} from "./components/Forms/TextInput"
+export {default as Textarea} from "./components/Forms/Textarea"
 export {default as Icon} from "./components/Icon"
 export {default as LittleStatus} from "./components/LittleStatus"
 export {default as Paginator} from "./components/Paginator"

@@ -3,7 +3,9 @@ import InputProps from "../default_props"
 import {prefix} from "../../../config"
 
 export interface Props extends InputProps {
-    type: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
+    max: number
+    min: number
+    step: number
     labels?: {
         main: string | JSX.Element
         placeholder: string
@@ -16,15 +18,18 @@ export interface Props extends InputProps {
 }
 
 export interface State {
+    value: any
 }
 
-class TextInput extends React.Component<Props, State> {
+class Range extends React.Component<Props, State> {
 
-    readonly name = prefix + "input-text";
+    readonly name = prefix + "input-range";
     readonly form = prefix + "form";
 
     public static defaultProps: Props = {
-        type: "text",
+        max: 50,
+        min: 0,
+        step: 1,
         input: {
             checked: false,
             name: "",
@@ -38,7 +43,7 @@ class TextInput extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: ""
+            value: "",
         },
         meta: {
             active: false,
@@ -65,6 +70,22 @@ class TextInput extends React.Component<Props, State> {
         }
     }
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            value: props.input.value
+        }
+        this.handleChange = this.handleChange.bind(this)
+
+    }
+
+
+    handleChange(evt) {
+        this.setState({value: evt.target.value});
+        this.props.input.onChange(evt);
+        return true;
+    }
+
     renderInvalid() {
         return (
             <div
@@ -73,19 +94,36 @@ class TextInput extends React.Component<Props, State> {
     }
 
     render() {
-        const { id, type, meta, input } = this.props
+        const { id, meta, input } = this.props
         const inputId = `${meta.form}-${input.name}`
+        const outputId = `${meta.form}-${input.name}_output`
+        const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
+
         return (
             <div className={`${this.name} ${this.form}__group`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
+                <div style={{position: 'relative'}}>
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
-                    className={`${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
-                    id={id?id:inputId} type={type} placeholder={this.props.labels.placeholder}
-                    {...this.props.input} />
+                    className={`${this.name}__item ${this.form}__input--text ${this.form}__input--range ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
+                    id={id?id:inputId} type='range' placeholder={this.props.labels.placeholder}
+                    {...this.props.input}
+                    max={this.props.max}
+                    min={this.props.min}
+                    step={this.props.step}
+                    onChange={this.handleChange}
+                    onInput={(evt) => {
+                                let target : any = evt.target;
+                                let output : any = document.getElementById(outputId);
+                                output.value = target.value;
+                            }}
+                    value={this.state.value}
+                    />
+                <output className={`${this.form}__input--range__output`} style={{left: 'calc('+((this.state.value/this.props.max) * 100) + '% - '+outputWidth/2+'px)' }} id={outputId}>{this.state.value}</output>
+                </div>
             </div>
         )
     }
 }
 
-export default TextInput
+export default Range

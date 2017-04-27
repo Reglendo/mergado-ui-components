@@ -2,7 +2,9 @@
 import * as React from "react";
 import InputProps from "../default_props";
 export interface Props extends InputProps {
-    type: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file";
+    max: number;
+    min: number;
+    step: number;
     labels?: {
         main: string | JSX.Element;
         placeholder: string;
@@ -14,12 +16,15 @@ export interface Props extends InputProps {
     id?: string;
 }
 export interface State {
+    value: any;
 }
-declare class TextInput extends React.Component<Props, State> {
+declare class Range extends React.Component<Props, State> {
     readonly name: string;
     readonly form: string;
     static defaultProps: Props;
+    constructor(props: any);
+    handleChange(evt: any): boolean;
     renderInvalid(): JSX.Element;
     render(): JSX.Element;
 }
-export default TextInput;
+export default Range;
