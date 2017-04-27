@@ -106,9 +106,9 @@ class Select extends React.Component<Props, State> {
             <div className={`${this.name} ${multiple && this.name+`--`+multiple} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={style}>
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <select className={`${this.name}__item`} id={id?id:inputId}
-                        multiple={!!multiple} disabled={!!disabled}
-                        required={!!required} size={size}>
-                            {this.renderOptions()}
+                    multiple={!!multiple} disabled={!!disabled}
+                    required={!!required} size={size} {...this.props.input}>
+                        {this.renderOptions()}
                 </select>
             </div>
         )

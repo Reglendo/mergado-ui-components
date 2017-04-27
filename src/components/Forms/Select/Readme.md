@@ -9,5 +9,5 @@ Example
 Example
 
     <div>
-        <Select labels={{main: 'I\'m select'}} options={[<option >Hello world</option>,<option >Foobar</option>]}  />
+        <Select labels={{main: 'I\'m select'}} options={[<option >Hello world</option>,<option >Foobar</option>]} />
     </div>
