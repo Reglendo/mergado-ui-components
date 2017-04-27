@@ -86,7 +86,16 @@ class Select extends React.Component<Props, State> {
 
     renderOptions() {
         return this.props.options.map( option => {
-            return(<option value={option.value} key={uniqueId()}>{option.title}</option>)
+            if(React.isValidElement(option)) {
+                if(option.key) {
+                    return option;
+                } else {
+                    let object : any = Object
+                    return object.assign({}, option, { key: uniqueId() })
+                }
+            } else {
+                return(<option value={option.value} key={uniqueId()}>{option.title}</option>)
+            }
         })
     }
 

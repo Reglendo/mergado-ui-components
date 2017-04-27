@@ -72067,7 +72067,18 @@ var Select = (function (_super) {
     };
     Select.prototype.renderOptions = function () {
         return this.props.options.map(function (option) {
-            return (React.createElement("option", { value: option.value, key: unique_id_1["default"]() }, option.title));
+            if (React.isValidElement(option)) {
+                if (option.key) {
+                    return option;
+                }
+                else {
+                    var object = Object;
+                    return object.assign({}, option, { key: unique_id_1["default"]() });
+                }
+            }
+            else {
+                return (React.createElement("option", { value: option.value, key: unique_id_1["default"]() }, option.title));
+            }
         });
     };
     Select.prototype.render = function () {
