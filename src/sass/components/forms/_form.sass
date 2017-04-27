@@ -1,4 +1,18 @@
 @import "../../core/all"
+@mixin input
+  font-size: 14px
+  box-sizing: border-box
+  background-color: #fff
+  border: 1px solid #dbcba3
+  display: block
+  width: 100%
+  text-align: left
+  outline: none
+  padding: 0 10px
+  color: #333
+  height: 40px
+  line-height: 40px
+
 .#{$prefix}form
     &__label
       display: block
@@ -21,3 +35,5 @@
         border-color: #85bd3c
         outline: 3px solid #85bd3c
 
+    &__input--textarea
+      height: 100px
