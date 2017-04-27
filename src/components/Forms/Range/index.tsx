@@ -79,11 +79,9 @@ class Range extends React.Component<Props, State> {
 
     }
 
-
     handleChange(evt) {
         this.setState({value: evt.target.value});
-        this.props.input.onChange(evt);
-        return true;
+        return this.props.input.onChange(evt.target.value);
     }
 
     renderInvalid() {

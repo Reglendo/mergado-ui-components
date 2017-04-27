@@ -23,7 +23,7 @@ declare class Range extends React.Component<Props, State> {
     readonly form: string;
     static defaultProps: Props;
     constructor(props: any);
-    handleChange(evt: any): boolean;
+    handleChange(evt: any): void;
     renderInvalid(): JSX.Element;
     render(): JSX.Element;
 }

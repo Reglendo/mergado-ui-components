@@ -72073,8 +72073,7 @@ var Range = (function (_super) {
     }
     Range.prototype.handleChange = function (evt) {
         this.setState({ value: evt.target.value });
-        this.props.input.onChange(evt);
-        return true;
+        return this.props.input.onChange(evt.target.value);
     };
     Range.prototype.renderInvalid = function () {
         return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
