@@ -2,7 +2,6 @@ export { default as Button } from "./components/Forms/Button";
 export { default as Checkbox } from "./components/Forms/Checkbox";
 export { default as CheckboxContainer } from "./components/Forms/CheckboxContainer";
 export { default as ColorPicker } from "./components/Forms/ColorPicker";
-export { default as DatePicker } from "./components/Forms/DatePicker";
 export { default as Radio } from "./components/Forms/Radio";
 export { default as Range } from "./components/Forms/Range";
 export { default as Select } from "./components/Forms/Select";

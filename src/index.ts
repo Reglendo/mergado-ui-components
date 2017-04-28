@@ -2,7 +2,7 @@ export {default as Button} from "./components/Forms/Button"
 export {default as Checkbox} from "./components/Forms/Checkbox"
 export {default as CheckboxContainer} from "./components/Forms/CheckboxContainer"
 export {default as ColorPicker} from "./components/Forms/ColorPicker"
-export {default as DatePicker} from "./components/Forms/DatePicker"
+
 export {default as Radio} from "./components/Forms/Radio"
 export {default as Range} from "./components/Forms/Range"
 
@@ -18,4 +18,3 @@ export {default as Toasts} from "./components/Toasts"
 export {default as Toast} from "./components/Toasts/Toast"
 export {default as TopNav} from "./components/TopNav"
 export {default as NavLink} from "./components/TopNav/NavLink"
-
