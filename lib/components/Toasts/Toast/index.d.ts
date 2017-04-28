@@ -1,11 +1,10 @@
 /// <reference types="react" />
 import * as React from "react";
-import Icon from "../../Icon";
 export interface Props {
     id?: string;
     text?: string;
     type?: "warning" | "success" | "error" | "inactive" | "info";
-    icon?: Icon | JSX.Element;
+    icon?: JSX.Element;
     isPaused?: () => boolean;
     onClose?: (number) => boolean;
     timeout?: number;

@@ -1,9 +1,8 @@
 /// <reference types="react" />
 import * as React from 'react';
-import Icon from '../Icon';
 export interface Props {
     content?: string | JSX.Element;
-    icon?: Icon;
+    icon?: JSX.Element;
     iconType?: string;
     style?: any;
 }

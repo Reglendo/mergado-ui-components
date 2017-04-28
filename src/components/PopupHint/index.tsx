@@ -1,11 +1,11 @@
 import * as React from 'react'
-import Icon from '../Icon'
+
 import Bubble from './Bubble'
 import {prefix} from "../../config"
 
 export interface Props {
     content?: string | JSX.Element
-    icon?: Icon
+    icon?: JSX.Element
     iconType?: string
     style?: any
 }

@@ -1,11 +1,10 @@
 /// <reference types="react" />
 import * as React from "react";
 import InputProps from "../default_props";
-import Icon from "../../Icon";
 export interface Props extends InputProps {
     type?: "button" | "link" | "submit" | "void";
     link?: string;
-    icon?: Icon | JSX.Element;
+    icon?: JSX.Element;
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor";
     size?: "small" | "tiny" | "";
     state?: "disabled" | "";

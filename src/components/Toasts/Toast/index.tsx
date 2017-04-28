@@ -1,13 +1,13 @@
 import * as React from "react"
 import {prefix} from "../../../config"
-import Icon from "../../Icon"
+import IconClose from "mergado-ui-icons/lib/icons/close"
 import uniqueId from "../../../helpers/unique_id"
 
 export interface Props {
     id?: string,
     text?: string,
     type?: "warning" | "success" | "error" | "inactive" | "info",
-    icon?: Icon | JSX.Element
+    icon?: JSX.Element
     isPaused?: () => boolean
     onClose?: (number) => boolean
     timeout?: number
@@ -94,7 +94,7 @@ class Toast extends React.Component<Props, State> {
                         <div className={`${this.name}__close`}>
                             <a className={`${this.name}__button`} onClick={(evt) => {
                                 this.removeToast(evt)
-                            }}><Icon type="close"/></a>
+                            }}><IconClose type="close"/></a>
                         </div>
                     }
                 </div>
