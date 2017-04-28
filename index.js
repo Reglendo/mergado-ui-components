@@ -12439,7 +12439,7 @@ var Toast = (function (_super) {
                         React.createElement("a", { className: this.name + "__button", onClick: function (evt) {
                                 _this.removeToast(evt);
                             } },
-                            React.createElement(close_1["default"], { type: "close" }))))));
+                            React.createElement(close_1["default"], null))))));
     };
     return Toast;
 }(React.Component));
@@ -16783,7 +16783,7 @@ var IconClose = (function (_super) {
         return _this;
     }
     IconClose.prototype.render = function () {
-        var className = this.name + " " + this.name + "--" + this.props.type;
+        var className = this.name + " " + this.name + "--close";
         return (React.createElement("span", { className: className, style: this.props.style },
             React.createElement("svg", { className: this.name + "__image", preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: "0 0 40 40" },
                 React.createElement("g", null,
@@ -16793,7 +16793,6 @@ var IconClose = (function (_super) {
     return IconClose;
 }(React.Component));
 IconClose.defaultProps = {
-    type: "reglendo",
     size: 15,
     style: {}
 };

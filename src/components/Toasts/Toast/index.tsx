@@ -94,7 +94,7 @@ class Toast extends React.Component<Props, State> {
                         <div className={`${this.name}__close`}>
                             <a className={`${this.name}__button`} onClick={(evt) => {
                                 this.removeToast(evt)
-                            }}><IconClose type="close"/></a>
+                            }}><IconClose /></a>
                         </div>
                     }
                 </div>

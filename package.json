@@ -24,7 +24,7 @@
   ],
   "authors": "Reglendo Technologies s. r. o.",
   "dependencies": {
-    "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons#0.1",
+    "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons#0.1.1",
     "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-color": "^2.11.6"
