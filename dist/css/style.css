@@ -168,6 +168,69 @@ a, a:visited {
 a:hover, a:focus, a:active {
   text-decoration: underline; }
 
+hr {
+  display: none; }
+
+h1, h2, h3 {
+  font-family: "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+  font-weight: bold;
+  vertical-align: middle; }
+  h1:first-child, h2:first-child, h3:first-child {
+    margin-top: 0; }
+
+h2 {
+  font-size: 14pt;
+  margin: 30px 0 10px 0; }
+
+header + h2 {
+  margin-top: 0; }
+
+pre {
+  text-align: left; }
+
+p, pre, table, fieldset {
+  margin: 10px 0 10px 0; }
+  p:last-child, pre:last-child, table:last-child, fieldset:last-child {
+    margin-bottom: 0; }
+  p:first-child, pre:first-child, table:first-child, fieldset:first-child {
+    margin-top: 0; }
+  p td.operation, pre td.operation, table td.operation, fieldset td.operation {
+    width: 10px !important;
+    padding-left: 10px;
+    white-space: nowrap;
+    text-align: right; }
+    p td.operation .space, pre td.operation .space, table td.operation .space, fieldset td.operation .space {
+      margin-left: 10px;
+      margin-right: 10px; }
+      p td.operation .space:last-child, p td.operation .space.no-right, pre td.operation .space:last-child, pre td.operation .space.no-right, table td.operation .space:last-child, table td.operation .space.no-right, fieldset td.operation .space:last-child, fieldset td.operation .space.no-right {
+        margin-right: 0; }
+      p td.operation .space:first-child, p td.operation .space.no-left, pre td.operation .space:first-child, pre td.operation .space.no-left, table td.operation .space:first-child, table td.operation .space.no-left, fieldset td.operation .space:first-child, fieldset td.operation .space.no-left {
+        margin-left: 0; }
+
+section header.main {
+  min-height: 36px;
+  width: 100%;
+  position: relative;
+  margin: 10px 0 20px 0;
+  display: table;
+  background-color: rgba(219, 203, 163, 0.25); }
+  section header.main h1, section header.main h2, section header.main h3 {
+    display: table-cell;
+    position: relative;
+    font-size: 20pt;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 15px;
+    margin-bottom: 0; }
+  section header.main h1 {
+    border-left: 10px rgba(219, 203, 163, 0.5) solid; }
+  section header.main h2 {
+    border-left: 5px rgba(219, 203, 163, 0.5) solid;
+    font-size: 14pt; }
+  section header.main h3 {
+    border-left: 5px rgba(219, 203, 163, 0.5) solid;
+    font-size: 12pt; }
+
 /* COLORS */
 .muk-paginator {
   margin: 10px 0;
@@ -210,7 +273,11 @@ a:hover, a:focus, a:active {
     height: 10px;
     border-radius: 100%;
     border-bottom: none;
-    display: inline-block; }
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px; }
+  .muk-little_status__text {
+    vertical-align: middle; }
   .muk-little_status--success .muk-little_status__indikator {
     background-color: #85bd3c; }
   .muk-little_status--warning .muk-little_status__indikator {

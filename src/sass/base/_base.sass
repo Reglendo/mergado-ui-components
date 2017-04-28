@@ -1,0 +1,78 @@
+$header-height: 36px
+
+hr
+  display: none
+
+h1, h2, h3
+  font-family: $header-font-family
+  font-weight: bold
+  vertical-align: middle
+
+  &:first-child
+    margin-top: 0
+
+h2
+  font-size: 14pt
+  margin: 30px 0 10px 0
+
+header + h2
+  margin-top: 0
+
+pre
+  text-align: left
+
+p, pre, table, fieldset
+  margin: 10px 0 10px 0
+
+  &:last-child
+    margin-bottom: 0
+
+  &:first-child
+    margin-top: 0
+
+  td
+    &.operation
+      width: 10px !important
+      padding-left: 10px
+      white-space: nowrap
+      text-align: right
+
+      .space
+        margin-left: 10px
+        margin-right: 10px
+
+        &:last-child, &.no-right
+          margin-right: 0
+
+        &:first-child, &.no-left
+          margin-left: 0
+
+section
+
+  header.main
+    min-height: $header-height
+    width: 100%
+    position: relative
+    margin: 10px 0 20px 0
+    display: table
+    background-color: rgba(219, 203, 163, 0.25)
+
+    h1, h2, h3
+      display: table-cell
+      position: relative
+      font-size: 20pt
+      text-overflow: ellipsis
+      overflow: hidden
+      padding-left: 15px
+      margin-bottom: 0
+
+    h1
+      border-left: 10px rgba($color-line, 0.5) solid
+
+    h2
+      border-left: 5px rgba($color-line, 0.5) solid
+      font-size: 14pt
+
+    h3
+      border-left: 5px rgba($color-line, 0.5) solid
+      font-size: 12pt
