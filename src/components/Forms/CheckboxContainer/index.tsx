@@ -5,7 +5,7 @@ import {prefix} from "../../../config"
 export interface Query {
     id: number
     name: string
-    productCount: number
+    product_count: number
 }
 
 export interface Props extends InputProps {
@@ -20,6 +20,7 @@ export interface Props extends InputProps {
     withoutFilter?: boolean
     /** Height of box with queries (in px) */
     height?: string|number
+    style?: any
 }
 
 export interface State {
@@ -29,6 +30,7 @@ export interface State {
 class CheckboxContainer extends React.Component<Props, State> {
 
     readonly name = prefix + "checkbox_container";
+    readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         input: {
@@ -96,7 +98,6 @@ class CheckboxContainer extends React.Component<Props, State> {
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
             queries = []
         }
-
         return options
             .filter((option) => {
                 var regex = new RegExp(this.state.filter, 'i');
@@ -132,7 +133,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                         <label
                             className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
                             {" "}<span
-                                className={`${this.name}__count`}>{typeof option.productCount !== "undefined" ? `(${option.productCount})` : "" }</span>
+                                className={`${this.name}__count`}>{typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }</span>
                         </label>
                     </li>
                 )
@@ -143,20 +144,17 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         const queries = this.props.input.value
         return (
-            <div className={this.name}>
+            <div className={this.name} style={this.props.style}>
                 <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
                     ''}>{this.props.labels.main}</h3>
                 <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?
                     `${this.name}__queries--invalid` : ''}`}>
                     {this.props.withoutFilter === false ? (
                             <div className={`${this.name}__filter`}>
-                                <label className={`${this.name}__filter_label`} htmlFor="filter">
-                                    {this.props.labels.placeholder}
-                                </label>
-                                <input className={`${this.name}__filter_input ${prefix}input--text`} type="text"
+                                <input className={`${this.name}__filter_input ${this.form}__input--text`} type="text"
                                        id="filter" name="filter"
-                                       value={this.state.filter}
-                                       onChange={(evt) => { this.setState({ filter: evt.target.value }) } }></input>
+                                       value={this.state.filter} placeholder={this.props.labels.placeholder}
+                                       onChange={(evt) => { this.setState({ filter: evt.target.value }) } } />
                             </div>
                         ) : null}
                     <ul className={`${this.name}__list`} style={{height: this.props.height }}>

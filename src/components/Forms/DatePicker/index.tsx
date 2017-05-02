@@ -1,9 +1,8 @@
 import * as React  from "react"
 import InputProps from "../default_props"
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+// import { SingleDatePicker } from 'react-dates';
 import * as Moment from "moment"
 import {prefix} from "../../../config"
-// import { SingleDatePickerPhrases, DateRangePickerPhrases } from 'react-dates/src/defaultPhrases';
 
 export interface Props extends InputProps {
     type?: 'single' | 'range'
@@ -22,6 +21,7 @@ export interface Props extends InputProps {
     }
     defaults_range?: {
     }
+    style?: any
 }
 
 export interface State {
@@ -209,32 +209,34 @@ class DatePicker extends React.Component<Props, State> {
         const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays } = this.props
         var object : any = Object
 
+        var picker = <div>todo</div>
+
         if(type == 'single') {
-            var picker = <SingleDatePicker
-                {...defaults_single}
-                placeholder={labels.placeholder}
-                date={startDate}
-                focused={focused}
-                numberOfMonths={numberOfMonths}
-                onDateChange={this.onDateChange.bind(this)}
-                onFocusChange={this.onFocusChange.bind(this)}
-            />
+            // var picker = <SingleDatePicker
+            //     {...defaults_single}
+            //     placeholder={labels.placeholder}
+            //     date={startDate}
+            //     focused={focused}
+            //     numberOfMonths={numberOfMonths}
+            //     onDateChange={this.onDateChange.bind(this)}
+            //     onFocusChange={this.onFocusChange.bind(this)}
+            // />
         } else {
-            var picker = <DateRangePicker
-                {...defaults_range}
-                numberOfMonths={numberOfMonths}
-                minimumNights={minimumDays - 1}
-                onDatesChange={this.onDatesChange.bind(this)}
-                onFocusChange={this.onFocusChange.bind(this)}
-                startDatePlaceholderText={labels.placeholderFrom}
-                endDatePlaceholderText={labels.placeholderTo}
-                focusedInput={this.state.focused}
-                startDate={startDate}
-                endDate={endDate}
-            />
+            // var picker = <DateRangePicker
+            //     {...defaults_range}
+            //     numberOfMonths={numberOfMonths}
+            //     minimumNights={minimumDays - 1}
+            //     onDatesChange={this.onDatesChange.bind(this)}
+            //     onFocusChange={this.onFocusChange.bind(this)}
+            //     startDatePlaceholderText={labels.placeholderFrom}
+            //     endDatePlaceholderText={labels.placeholderTo}
+            //     focusedInput={this.state.focused}
+            //     startDate={startDate}
+            //     endDate={endDate}
+            // />
         }
         return (
-            <div className={`${this.name}`}>
+            <div className={`${this.name}`} style={this.props.style}>
                 <span className={`${this.name}__label ${this.form}__label`}>{labels.main}</span>
                 <div className={`${this.name}__picker`}>
                     {picker}

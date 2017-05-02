@@ -1,22 +1,55 @@
-@import "../../base/all"
+@import "../../core/all"
+
 .#{$prefix}form
-    &__label
-      display: block
+  &__label
+    display: block
 
-    &__input--text
-      font-size: 14px
-      box-sizing: border-box
-      background-color: #fff
-      border: 1px solid #dbcba3
-      display: block
-      width: 100%
-      text-align: left
-      outline: none
-      padding: 0 10px
-      color: #333
-      height: 40px
-      line-height: 40px
+  &__input--text
+    font-size: 14px
+    box-sizing: border-box
+    background-color: #fff
+    border: 1px solid #dbcba3
+    display: block
+    width: 100%
+    text-align: left
+    outline: none
+    padding: 0 10px
+    color: #333
+    height: 40px
+    line-height: 40px
 
-      &:focus
-        border-color: #85bd3c
-        outline: 3px solid #85bd3c
+
+  &__input--range
+    padding: 0 0 0 0
+    border: none
+    background: transparent
+
+    &:hover + .#{$prefix}form__input--range__output
+        opacity: 1
+
+
+  &__input--range__output
+    background: $color-blue-dark
+    position: absolute
+    pointer-events: none
+    margin: auto
+    color: white
+    display: inline-block
+    padding: 2px 5px
+    margin-top: -50px
+    border-radius: 2px
+    font-size: 10px
+    opacity: 0
+    transition: opacity 0.2s
+
+  &__input--file
+    line-height: initial
+    padding: 8px
+    height: auto
+
+    &:focus
+      border-color: #85bd3c
+      outline: 3px solid #85bd3c
+
+  &__input--textarea
+    height: 100px

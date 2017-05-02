@@ -1,0 +1,27 @@
+@import "../../core/all"
+
+.#{$prefix}colorpicker
+  &__picker
+    padding: 5px
+    border-radius: 1px
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1)
+    display: inline-block
+    width: 100%
+    background: white
+
+  &__colorbox
+    border: 2px solid black
+    height: 34px
+    border-radius: 2px
+    cursor: pointer
+
+  &__popover
+    position: absolute
+    z-index: 200
+
+  &__cover
+    position: fixed
+    top: 0px
+    right: 0px
+    bottom: 0px
+    left: 0px

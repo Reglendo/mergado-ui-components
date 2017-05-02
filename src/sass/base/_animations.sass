@@ -1,0 +1,51 @@
+@keyframes fadein
+  from
+    bottom: 0
+    opacity: 0
+  to
+    bottom: 30px
+    opacity: 1
+
+
+@keyframes fadeOutUp
+  from
+    opacity: 1
+    transition: none
+  to
+    opacity: 0
+    transform: translate3d(0, -100%, 0)
+
+.fadeOutUp
+  animation: fadeOutUp 0.30s ease-in
+
+
+@keyframes fadeInDown
+  from
+    opacity: 0
+    transform: translate3d(0, -20%, 0)
+  to
+    opacity: 1
+    transform: none
+
+.fadeInDown
+  animation: fadeInDown 0.25s ease-out
+
+
+
+@keyframes fadeOut
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+.fadeOut
+  animation: fadeOut 0.30s ease
+
+@keyframes fadeIn
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+.fadeIn
+  animation: fadeIn 0.30s ease
