@@ -237,6 +237,34 @@ section header.main {
     font-size: 12pt; }
 
 /* COLORS */
+.muk-datagrid {
+  width: 100%; }
+  .muk-datagrid__row {
+    background: #fff; }
+    .muk-datagrid__row:not(.no-hover):hover .muk-datagrid__cell {
+      background: #fdf7d2; }
+    .muk-datagrid__row--header {
+      font-size: 13px;
+      background: #333;
+      height: 30px;
+      line-height: 30px;
+      color: #fff;
+      text-align: left; }
+  .muk-datagrid__cell {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dbcba3;
+    font-weight: normal;
+    border-right: #dbcba3 1px dotted;
+    font-size: 13.3px; }
+    .muk-datagrid__cell--header {
+      background: #333 !important;
+      padding: 0 10px;
+      border-color: transparent;
+      font-weight: bold;
+      white-space: nowrap; }
+
+/* COLORS */
 .muk-paginator {
   margin: 10px 0;
   text-align: center;
