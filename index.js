@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 395);
+/******/ 	return __webpack_require__(__webpack_require__.s = 397);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -8330,7 +8330,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(394)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(396)))
 
 /***/ }),
 /* 103 */
@@ -12498,6 +12498,10 @@ var TopNav_1 = __webpack_require__(393);
 exports.TopNav = TopNav_1["default"];
 var NavLink_1 = __webpack_require__(392);
 exports.NavLink = NavLink_1["default"];
+var WizardNav_1 = __webpack_require__(395);
+exports.WizardNav = WizardNav_1["default"];
+var WizardStep_1 = __webpack_require__(394);
+exports.WizardStep = WizardStep_1["default"];
 
 
 /***/ }),
@@ -32837,6 +32841,101 @@ exports["default"] = TopNav;
 
 /***/ }),
 /* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(3);
+var config_1 = __webpack_require__(7);
+/**
+ * disable-styleguide
+ */
+var WizardStep = (function (_super) {
+    __extends(WizardStep, _super);
+    function WizardStep() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = config_1.prefix + "wizard_nav__item";
+        return _this;
+    }
+    WizardStep.prototype.render = function () {
+        var _a = this.props, link = _a.link, active = _a.active, style = _a.style, onClick = _a.onClick;
+        var className = "" + this.name;
+        if (active) {
+            className += " " + this.name + "--active";
+        }
+        return (React.createElement("li", { className: "" + className, style: style },
+            React.createElement("a", { className: this.name + "__step", onClick: onClick }, link)));
+    };
+    return WizardStep;
+}(React.Component));
+WizardStep.defaultProps = {
+    active: false,
+    link: '',
+    style: {},
+    onClick: function () { }
+};
+exports["default"] = WizardStep;
+
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(3);
+var config_1 = __webpack_require__(7);
+var WizardNav = (function (_super) {
+    __extends(WizardNav, _super);
+    function WizardNav() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = config_1.prefix + "wizard_nav";
+        return _this;
+    }
+    WizardNav.prototype.renderLinks = function () {
+        var links = this.props.links;
+        var classList = this.name + "__list";
+        return (React.createElement("ul", { className: classList }, links));
+    };
+    WizardNav.prototype.render = function () {
+        var className = "" + this.name;
+        var classWrapper = this.name + "__wrapper\"";
+        return (React.createElement("nav", { className: className, style: this.props.style },
+            React.createElement("div", { className: classWrapper }, this.renderLinks())));
+    };
+    return WizardNav;
+}(React.Component));
+WizardNav.defaultProps = {
+    links: [],
+    style: {}
+};
+exports["default"] = WizardNav;
+
+
+/***/ }),
+/* 396 */
 /***/ (function(module, exports) {
 
 var g;
@@ -32863,7 +32962,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 395 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(151);
