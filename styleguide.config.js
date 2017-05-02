@@ -19,29 +19,30 @@ module.exports = {
     ],
     propsParser: require('react-docgen-typescript').parse,
     showCode: true,
+    styleguideDir: path.join(__dirname, 'docs'),
     updateWebpackConfig(webpackConfig) {
         // Your source files folder or array of folders, should not include node_modules
-        const dir = path.join(__dirname, 'styleguide');
+        const dir = path.join(__dirname, 'docs');
 
         webpackConfig.resolve.extensions = ['.js', '.jsx', '.ts', '.tsx','.json'];
 
         webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] =
-            path.join(__dirname, 'styleguide/components/StyleGuide');
+            path.join(dir, 'components/StyleGuide');
 
         webpackConfig.resolve.alias['rsg-components/Playground'] =
-            path.join(__dirname, 'styleguide/components/Playground');
+            path.join(dir, 'components/Playground');
 
         webpackConfig.resolve.alias['rsg-components/Playground/PlaygroundRenderer'] =
-            path.join(__dirname, 'styleguide/components/Playground/PlaygroundRenderer');
+            path.join(dir, 'components/Playground/PlaygroundRenderer');
 
         webpackConfig.resolve.alias['rsg-components/Preview'] =
-            path.join(__dirname, 'styleguide/components/Preview');
+            path.join(dir, 'components/Preview');
     
         webpackConfig.resolve.alias['rsg-components/ReactComponent/ReactComponentRenderer'] =
-            path.join(__dirname, 'styleguide/components/ReactComponent');
+            path.join(dir, 'components/ReactComponent');
 
         webpackConfig.resolve.alias['rsg-components/Editor'] =
-            path.join(__dirname, 'styleguide/components/Editor');
+            path.join(dir, 'components/Editor');
 
 
         webpackConfig.module.loaders.push(
@@ -63,15 +64,32 @@ module.exports = {
                     configFileName: "./tsconfig.json"
 
                 }
-            },
-            {
-                test: /\.sass$/,
-                exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract({
-                    loader: 'css-loader?-autoprefixer!postcss-loader!sass-loader'
-                })
             }
+
         );
+
+        if (process.env.NODE_ENV === 'production') {
+            webpackConfig.module.loaders.push(
+                {
+                    test: /\.sass$/,
+                    exclude: /node_modules/,
+                    loader: ExtractTextPlugin.extract({
+                        loader: 'css-loader?-autoprefixer!postcss-loader!sass-loader'
+                    })
+
+                }
+            );
+        } else {
+            webpackConfig.module.loaders.push(
+                {
+                    test: /\.sass$/,
+                    exclude: /node_modules/,
+                    loader: 'style-loader!css-loader!sass-loader'
+                }
+            );
+        }
+
+
         webpackConfig.plugins.push(
             new ExtractTextPlugin({ filename: 'dist/css/styleguide.css',
                 allChunks: true
