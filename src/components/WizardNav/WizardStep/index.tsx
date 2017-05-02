@@ -2,9 +2,10 @@ import * as React from "react"
 import {prefix} from "../../../config"
 
 export interface Props {
-    current?: boolean
-    link?: JSX.Element
+    active?: boolean
+    link?: JSX.Element | string
     style?: any
+    onClick?: (event: any) => any
 }
 
 export interface State {
@@ -19,20 +20,23 @@ class WizardStep extends React.Component<Props, State> {
     readonly name = prefix + "wizard_nav__item";
 
     public static defaultProps: Props = {
-        current: false,
-        link: (<a href="#"/>),
-        style: {}
+        active: false,
+        link: '',
+        style: {},
+        onClick: () => {}
     }
 
     render() {
-        const {link, current} = this.props
+        const {link, active, style, onClick} = this.props
         var className = `${this.name}`
-        if (current) {
-            className += ` ${this.name}--current`
+        if (active) {
+            className += ` ${this.name}--active`
         }
         return (
-            <li className={`${className}`} style={this.props.style}>
-                {link}
+            <li className={`${className}`} style={style}>
+                <a className={`${this.name}__step`} onClick={onClick}>
+                    {link}
+                </a>
             </li>
         )
     }

@@ -1,9 +1,10 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    current?: boolean;
-    link?: JSX.Element;
+    active?: boolean;
+    link?: JSX.Element | string;
     style?: any;
+    onClick?: (event: any) => any;
 }
 export interface State {
 }
