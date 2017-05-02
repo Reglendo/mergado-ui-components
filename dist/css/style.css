@@ -1735,8 +1735,8 @@ section header.main {
     .muk-wizard_nav__item:after {
       content: '';
       display: inline-block;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       transform: rotate(-45deg);
       background: #777;
       vertical-align: middle;
@@ -1760,6 +1760,7 @@ section header.main {
     margin-left: 35px;
     min-width: 60px; }
     .muk-wizard_nav__item__step:hover {
-      text-decoration: none; }
+      text-decoration: none;
+      color: #fff; }
 
 /*# sourceMappingURL=style.css.map*/
