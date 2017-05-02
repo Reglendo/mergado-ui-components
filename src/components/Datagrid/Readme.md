@@ -1,6 +1,7 @@
 Example
     
     <Datagrid 
+    sortable={true}
         header={<DataHeader cells={[
                     <DataCell key={1} type='header' content='Priorita' />, 
                     <DataCell key={2} type='header' content=''/>,

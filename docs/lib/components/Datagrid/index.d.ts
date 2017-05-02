@@ -6,6 +6,9 @@ export interface Props {
     addClass?: string;
     rows: Array<DataRow> | Array<JSX.Element>;
     header: Array<DataRow> | Array<JSX.Element>;
+    sortable?: boolean;
+    sortableOptions?: any;
+    sortableOnChange: (order: any, sortable: any) => any;
 }
 export interface State {
 }
