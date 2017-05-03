@@ -33608,18 +33608,17 @@ var DataCell = (function (_super) {
         return _this;
     }
     DataCell.prototype.render = function () {
-        var _a = this.props, content = _a.content, style = _a.style, type = _a.type, addClass = _a.addClass;
+        var _a = this.props, style = _a.style, type = _a.type, addClass = _a.addClass;
         if (type === 'cell') {
-            return (React.createElement("td", { className: this.name + " " + addClass, style: style }, content));
+            return (React.createElement("td", { className: this.name + " " + addClass, style: style }, this.props.children));
         }
         else {
-            return (React.createElement("th", { className: this.name + " " + this.name + "--header " + addClass, style: style }, content));
+            return (React.createElement("th", { className: this.name + " " + this.name + "--header " + addClass, style: style }, this.props.children));
         }
     };
     return DataCell;
 }(React.Component));
 DataCell.defaultProps = {
-    content: null,
     addClass: '',
     style: {},
     type: 'cell'

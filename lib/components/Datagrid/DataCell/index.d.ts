@@ -1,7 +1,6 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    content?: JSX.Element;
     style?: any;
     addClass?: string;
     type?: 'cell' | 'header';

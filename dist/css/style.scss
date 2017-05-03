@@ -250,8 +250,12 @@ section header.main {
       line-height: 30px;
       color: #fff;
       text-align: left; }
+    .muk-datagrid__row--inactive {
+      color: #ccc; }
+      .muk-datagrid__row--inactive .muk-icon--pause, .muk-datagrid__row--inactive .muk-icon--play {
+        color: #333; }
   .muk-datagrid__cell {
-    padding: 10px;
+    padding: 8px 10px;
     text-align: left;
     border-bottom: 1px solid #dbcba3;
     font-weight: normal;

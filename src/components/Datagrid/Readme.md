@@ -4,37 +4,37 @@ Example
     sortable={true}
     sortableProps={{onChange: () => console.log('hello world'), options: { handle: '.muk-icon--arrows-v' } }}
         header={<DataHeader cells={[
-                    <DataCell key={1} type='header' content='Priorita' />, 
-                    <DataCell key={2} type='header' content=''/>,
-                    <DataCell key={3} type='header' content='Názov šablóny'/>,
-                    <DataCell key={4} type='header' content='Formát'/>,
-                    <DataCell key={5} type='header' content='Dátum'/>,
-                    <DataCell key={6} type='header' content='Akcia'/>
+                    <DataCell key={1} type='header'>Priorita</DataCell>, 
+                    <DataCell key={2} type='header'/>,
+                    <DataCell key={3} type='header'>Názov šablóny</DataCell>,
+                    <DataCell key={4} type='header'>Formát</DataCell>,
+                    <DataCell key={5} type='header'>Dátum</DataCell>,
+                    <DataCell key={6} type='header'>Akcia</DataCell>
             ]} />}
         rows={[
             <DataRow dataId={1} key={1} cells={[
-                                <DataCell key={1} content={<Icon type="arrows-v" />}  style={{textAlign: 'center'}} />,
-                                <DataCell key={2} content='1' style={{textAlign: 'center'}} />,
-                                <DataCell key={3} content='[Ukázková šablona] Akce'/>,
-                                <DataCell key={4} content='1200x628' />,
-                                <DataCell key={5} content='8. 3. 2017' />,
-                                <DataCell key={6} content={<div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div>} />,
+                                <DataCell key={1} style={{textAlign: 'center'}}><Icon type="arrows-v" /></DataCell>,
+                                <DataCell key={2} style={{textAlign: 'center'}}>1</DataCell>,
+                                <DataCell key={3}>[Ukázková šablona] Akce</DataCell>,
+                                <DataCell key={4}>1200x628</DataCell>,
+                                <DataCell key={5}>8. 3. 2017</DataCell>,
+                                <DataCell key={6}><div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div></DataCell>,
                                 ]} />,
             <DataRow dataId={2}  key={2} inactive={true} cells={[
-                                <DataCell key={1} content={<Icon type="arrows-v" />}  style={{textAlign: 'center'}} />,
-                                <DataCell key={2} content='2' style={{textAlign: 'center'}} />,
-                                <DataCell key={3} content='[Ukázková šablona] Skladem'/>,
-                                <DataCell key={4} content='600x600' />,
-                                <DataCell key={5} content='8. 3. 2017' />,
-                                <DataCell key={6} content={<div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div>} />,
+                                <DataCell key={1} style={{textAlign: 'center'}}><Icon type="arrows-v" /></DataCell>,
+                                <DataCell key={2} style={{textAlign: 'center'}}>2</DataCell>,
+                                <DataCell key={3}>[Ukázková šablona] Skladem</DataCell>,
+                                <DataCell key={4}>600x600</DataCell>,
+                                <DataCell key={5}>8. 3. 2017</DataCell>,
+                                <DataCell key={6}><div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div></DataCell>,
                                 ]} />,
             <DataRow dataId={3}  key={3} cells={[
-                                <DataCell key={1} content={<Icon type="arrows-v" />}  style={{textAlign: 'center'}} />,
-                                <DataCell key={2} content='3' style={{textAlign: 'center'}} />,
-                                <DataCell key={3} content='[Ukázková šablona] Doprava zdarma'/>,
-                                <DataCell key={4} content='1200x628' />,
-                                <DataCell key={5} content='18. 3. 2017' />,
-                                <DataCell key={6} content={<div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div>} />,
+                                <DataCell key={1} style={{textAlign: 'center'}}><Icon type="arrows-v" /></DataCell>,
+                                <DataCell key={2} style={{textAlign: 'center'}}>3</DataCell>,
+                                <DataCell key={3}>[Ukázková šablona] Doprava zdarma</DataCell>,
+                                <DataCell key={4}>1200x628</DataCell>,
+                                <DataCell key={5}>18. 3. 2017</DataCell>,
+                                <DataCell key={6}><div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div></DataCell>,
                                 ]} />
         ]}
     />
