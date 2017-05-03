@@ -7,8 +7,7 @@ export interface Props {
     rows: Array<DataRow> | Array<JSX.Element>;
     header: Array<DataRow> | Array<JSX.Element>;
     sortable?: boolean;
-    sortableOptions?: any;
-    sortableOnChange: (order: any, sortable: any) => any;
+    sortableProps?: any;
 }
 export interface State {
 }

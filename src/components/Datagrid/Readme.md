@@ -2,6 +2,7 @@ Example
     
     <Datagrid 
     sortable={true}
+    sortableProps={{onChange: () => console.log('hello world'), options: { handle: '.muk-icon--arrows-v' } }}
         header={<DataHeader cells={[
                     <DataCell key={1} type='header' content='Priorita' />, 
                     <DataCell key={2} type='header' content=''/>,

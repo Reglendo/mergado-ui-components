@@ -33725,10 +33725,18 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 exports.__esModule = true;
 var React = __webpack_require__(3);
 var config_1 = __webpack_require__(5);
-var react_sortablejs_1 = __webpack_require__(362);
+var Sortable = __webpack_require__(362);
 var Datagrid = (function (_super) {
     __extends(Datagrid, _super);
     function Datagrid() {
@@ -33737,9 +33745,11 @@ var Datagrid = (function (_super) {
         return _this;
     }
     Datagrid.prototype.render = function () {
+        var _a = this.props, rows = _a.rows, header = _a.header, sortable = _a.sortable, sortableProps = _a.sortableProps, addClass = _a.addClass, style = _a.style;
         var className = this.name + " " + this.props.addClass;
-        return (React.createElement("div", null,
-            React.createElement(react_sortablejs_1["default"], null, this.props.rows)));
+        return (React.createElement("table", { className: className, style: style },
+            header,
+            sortable ? React.createElement(Sortable, __assign({ tag: "tbody" }, sortableProps), rows) : React.createElement("tbody", null, rows)));
     };
     return Datagrid;
 }(React.Component));
@@ -33749,8 +33759,7 @@ Datagrid.defaultProps = {
     rows: [],
     header: [],
     sortable: false,
-    sortableOptions: {},
-    sortableOnChange: function () { }
+    sortableProps: {}
 };
 exports["default"] = Datagrid;
 
