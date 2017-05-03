@@ -4,6 +4,7 @@ export interface Props {
     style?: any;
     addClass?: string;
     type?: 'cell' | 'header';
+    onClick: (event: any) => any;
 }
 export interface State {
 }
