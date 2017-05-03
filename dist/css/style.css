@@ -256,6 +256,7 @@ section header.main {
     background: repeating-linear-gradient(-55deg, #ccc, #ccc 10px, #ddd 10px, #ddd 20px);
     animation: sliding 0.5s linear infinite;
     transform: translateZ(0);
+    will-change: background-position;
     background-size: 25px 100%;
     outline: 3px solid #dbcba3; }
 
