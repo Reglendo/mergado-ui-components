@@ -33746,9 +33746,9 @@ var Datagrid = (function (_super) {
         return _this;
     }
     Datagrid.prototype.render = function () {
-        var _a = this.props, rows = _a.rows, header = _a.header, sortable = _a.sortable, sortableProps = _a.sortableProps, addClass = _a.addClass, style = _a.style, setRef = _a.setRef;
+        var _a = this.props, rows = _a.rows, header = _a.header, sortable = _a.sortable, sortableProps = _a.sortableProps, addClass = _a.addClass, style = _a.style;
         var className = this.name + " " + this.props.addClass;
-        return (React.createElement("table", { className: className, style: style, ref: setRef },
+        return (React.createElement("table", { className: className, style: style },
             header,
             sortable ? React.createElement(Sortable, __assign({ tag: "tbody" }, sortableProps), rows) : React.createElement("tbody", null, rows)));
     };
@@ -33760,8 +33760,7 @@ Datagrid.defaultProps = {
     rows: [],
     header: [],
     sortable: false,
-    sortableProps: {},
-    setRef: null
+    sortableProps: {}
 };
 exports["default"] = Datagrid;
 

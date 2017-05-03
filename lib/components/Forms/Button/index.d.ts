@@ -8,7 +8,7 @@ export interface Props extends InputProps {
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor";
     size?: "small" | "tiny" | "";
     state?: "disabled" | "";
-    onClick?: (event: any) => boolean;
+    onClick?: (event: any) => any;
     style?: any;
     addClass?: string;
     labels?: {
