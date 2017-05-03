@@ -5,6 +5,7 @@ export interface Props {
     style?: any;
     addClass?: string;
     inactive?: boolean;
+    dataId?: number;
 }
 export interface State {
 }

@@ -33695,8 +33695,8 @@ var DataRow = (function (_super) {
         return _this;
     }
     DataRow.prototype.render = function () {
-        var _a = this.props, cells = _a.cells, style = _a.style, addClass = _a.addClass, inactive = _a.inactive;
-        return (React.createElement("tr", { className: this.name + " " + (inactive && this.name + "--inactive") + " " + addClass, style: style }, cells));
+        var _a = this.props, cells = _a.cells, style = _a.style, addClass = _a.addClass, inactive = _a.inactive, dataId = _a.dataId;
+        return (React.createElement("tr", { className: this.name + " " + (inactive && this.name + "--inactive") + " " + addClass, "data-id": dataId, style: style }, cells));
     };
     return DataRow;
 }(React.Component));
@@ -33704,7 +33704,8 @@ DataRow.defaultProps = {
     cells: [],
     addClass: '',
     style: {},
-    inactive: false
+    inactive: false,
+    dataId: null
 };
 exports["default"] = DataRow;
 

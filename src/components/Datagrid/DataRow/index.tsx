@@ -6,7 +6,7 @@ export interface Props {
     style?: any
     addClass?: string
     inactive?: boolean
-
+    dataId?: number
 }
 
 export interface State {
@@ -20,13 +20,14 @@ class DataRow extends React.Component<Props, State> {
         cells: [],
         addClass: '',
         style: {},
-        inactive: false
+        inactive: false,
+        dataId: null
     }
 
     render() {
-        const { cells, style, addClass, inactive } = this.props;
+        const { cells, style, addClass, inactive, dataId } = this.props;
         return (
-            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`} style={style}>{cells}</tr>
+            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`} data-id={dataId} style={style}>{cells}</tr>
         )
     }
 }

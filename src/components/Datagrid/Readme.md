@@ -12,7 +12,7 @@ Example
                     <DataCell key={6} type='header' content='Akcia'/>
             ]} />}
         rows={[
-            <DataRow key={1} cells={[
+            <DataRow dataId={1} key={1} cells={[
                                 <DataCell key={1} content={<Icon type="arrows-v" />}  style={{textAlign: 'center'}} />,
                                 <DataCell key={2} content='1' style={{textAlign: 'center'}} />,
                                 <DataCell key={3} content='[Ukázková šablona] Akce'/>,
@@ -20,7 +20,7 @@ Example
                                 <DataCell key={5} content='8. 3. 2017' />,
                                 <DataCell key={6} content={<div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div>} />,
                                 ]} />,
-            <DataRow key={2} inactive={true} cells={[
+            <DataRow dataId={2}  key={2} inactive={true} cells={[
                                 <DataCell key={1} content={<Icon type="arrows-v" />}  style={{textAlign: 'center'}} />,
                                 <DataCell key={2} content='2' style={{textAlign: 'center'}} />,
                                 <DataCell key={3} content='[Ukázková šablona] Skladem'/>,
@@ -28,7 +28,7 @@ Example
                                 <DataCell key={5} content='8. 3. 2017' />,
                                 <DataCell key={6} content={<div><Icon type="search" /> <Icon type="edit" /> <Icon type="pause" /> <Icon type="copy" /> <Icon type="trash" /></div>} />,
                                 ]} />,
-            <DataRow key={3} cells={[
+            <DataRow dataId={3}  key={3} cells={[
                                 <DataCell key={1} content={<Icon type="arrows-v" />}  style={{textAlign: 'center'}} />,
                                 <DataCell key={2} content='3' style={{textAlign: 'center'}} />,
                                 <DataCell key={3} content='[Ukázková šablona] Doprava zdarma'/>,
