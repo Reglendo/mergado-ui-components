@@ -8,7 +8,7 @@ export interface Props {
     header: Array<DataRow> | Array<JSX.Element>;
     sortable?: boolean;
     sortableProps?: any;
-    ref?: string;
+    setRef?: string;
 }
 export interface State {
 }

@@ -10,7 +10,7 @@ export interface Props {
     header: Array<DataRow> | Array<JSX.Element>
     sortable?: boolean
     sortableProps?: any
-    ref?: string
+    setRef?: string
 }
 export interface State {
 }
@@ -26,14 +26,14 @@ class Datagrid extends React.Component<Props, State> {
         header: [],
         sortable: false,
         sortableProps: {},
-        ref: null
+        setRef: null
     }
 
     render() {
-        const { rows, header, sortable, sortableProps, addClass, style, ref } = this.props
+        const { rows, header, sortable, sortableProps, addClass, style, setRef } = this.props
         let className = `${this.name} ${this.props.addClass}`
         return (
-            <table className={className} style={style} ref={ref}>
+            <table className={className} style={style} ref={setRef}>
                 {header}
                 {sortable ? <Sortable tag="tbody" {...sortableProps}>{rows}</Sortable> : <tbody>{rows}</tbody>}
             </table>
