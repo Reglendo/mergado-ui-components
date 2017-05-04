@@ -28,6 +28,7 @@ declare class CheckboxContainer extends React.Component<Props, State> {
     readonly form: string;
     static defaultProps: Props;
     constructor(props: Props);
+    renderInvalid(): JSX.Element;
     renderBoxes(): JSX.Element[];
     render(): JSX.Element;
 }

@@ -3,15 +3,24 @@
 .#{$prefix}form
   &__label
     display: block
-
+    padding: 0 10px 2px 2px
 
   &__validation
     background: red
     color: white
     font-size: 13px
     padding: 1px 5px
+    margin: -2px
+    margin-bottom: 2px
+    position: absolute
+    width: 100%
+    top: 0
 
   &__group
+    border: 2px solid transparent
+    padding: 2px
+    padding-top: 15px
+    position: relative
     &--invalid
       border: 2px solid red
 
@@ -29,6 +38,8 @@
     height: 40px
     line-height: 40px
 
+  &__input--search
+    width: calc(100% - 22px)
 
   &__input--range
     padding: 0 0 0 0

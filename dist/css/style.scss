@@ -111,7 +111,7 @@ svg:not(:root) {
 table {
   border-spacing: 0; }
 
-input.button, input[type="submit"], input[type="button"], label[for] {
+input.button, input[type="submit"], input[type="button"] {
   cursor: pointer; }
 
 fieldset {
@@ -179,13 +179,20 @@ hr {
 h1, h2, h3 {
   font-family: "Trebuchet MS", "Geneva CE", lucida, sans-serif;
   font-weight: bold;
-  vertical-align: middle; }
-  h1:first-child, h2:first-child, h3:first-child {
-    margin-top: 0; }
+  vertical-align: middle;
+  padding: 0 2px; }
+
+h1 {
+  font-size: 38px;
+  margin-top: 30px; }
 
 h2 {
-  font-size: 14pt;
-  margin: 30px 0 10px 0; }
+  font-size: 24px;
+  margin: 20px 0 10px 0; }
+
+h3 {
+  font-size: 18px;
+  margin-top: 15px; }
 
 header + h2 {
   margin-top: 0; }
@@ -235,6 +242,12 @@ section header.main {
   section header.main h3 {
     border-left: 5px rgba(219, 203, 163, 0.5) solid;
     font-size: 12pt; }
+
+input[type="checkbox"], input[type="radio"] {
+  vertical-align: middle; }
+
+input[type="radio"] {
+  margin-top: -1px; }
 
 /* COLORS */
 .muk-helper-loading {
@@ -454,7 +467,7 @@ section header.main {
     margin: 10px 0; }
   .muk-checkbox_container__list {
     list-style: none;
-    margin: 0;
+    margin: 5px 0 0 0;
     padding: 0;
     border: 1px solid #dbcba3;
     height: 300px;
@@ -578,7 +591,27 @@ section header.main {
 
 /* COLORS */
 .muk-form__label {
-  display: block; }
+  display: block;
+  padding: 0 10px 2px 2px; }
+
+.muk-form__validation {
+  background: red;
+  color: white;
+  font-size: 13px;
+  padding: 1px 5px;
+  margin: -2px;
+  margin-bottom: 2px;
+  position: absolute;
+  width: 100%;
+  top: 0; }
+
+.muk-form__group {
+  border: 2px solid transparent;
+  padding: 2px;
+  padding-top: 15px;
+  position: relative; }
+  .muk-form__group--invalid {
+    border: 2px solid red; }
 
 .muk-form__input--text, .muk-datepicker .DateInput {
   font-size: 14px;
@@ -593,6 +626,9 @@ section header.main {
   color: #333;
   height: 40px;
   line-height: 40px; }
+
+.muk-form__input--search {
+  width: calc(100% - 22px); }
 
 .muk-form__input--range {
   padding: 0 0 0 0;

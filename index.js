@@ -33793,7 +33793,9 @@ var Button = (function (_super) {
         return _this;
     }
     Button.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     Button.prototype.renderButton = function () {
         var _a = this.props, input = _a.input, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
@@ -33819,9 +33821,9 @@ var Button = (function (_super) {
             labels.main));
     };
     Button.prototype.render = function () {
-        var _a = this.props, type = _a.type, color = _a.color, state = _a.state, size = _a.size, addClass = _a.addClass;
-        return (React.createElement("div", { className: this.name + " " + this.name + "--" + color + " " + (!this.props.labels.main ? this.name + "--notext" : "") + " " + (size ? this.name + "--" + size : "") + " " + (state ? this.name + "--" + state : "") + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: this.props.style },
-            type == 'submit' && this.renderInvalid(),
+        var _a = this.props, type = _a.type, color = _a.color, state = _a.state, size = _a.size, addClass = _a.addClass, meta = _a.meta;
+        return (React.createElement("div", { className: this.name + " " + this.name + "--" + color + "\n                             " + (!this.props.labels.main ? this.name + "--notext" : "") + "\n                             " + (size ? this.name + "--" + size : "") + "\n                             " + (state ? this.name + "--" + state : "") + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                         ", title: this.props.labels.title, style: this.props.style },
+            this.renderInvalid(),
             type == 'button' && this.renderButton(),
             type == 'link' && this.renderLink(),
             type == 'submit' && this.renderSubmit(),
@@ -33917,13 +33919,16 @@ var Checkbox = (function (_super) {
         return _this;
     }
     Checkbox.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     Checkbox.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id;
+        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id, meta = _a.meta, labels = _a.labels;
         var inputId = this.props.meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: style },
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label" },
+        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                         ", title: labels.title, style: style },
+            this.renderInvalid(),
+            React.createElement("label", { className: this.name + "__label " + this.form + "__label " + this.form + "__input" },
                 React.createElement("input", __assign({ className: this.name + "__item", id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input)),
                 " ",
                 this.props.labels.main)));
@@ -34007,6 +34012,11 @@ var CheckboxContainer = (function (_super) {
         };
         return _this;
     }
+    CheckboxContainer.prototype.renderInvalid = function () {
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
+    };
     CheckboxContainer.prototype.renderBoxes = function () {
         var _this = this;
         var options = this.props.availableQueries;
@@ -34050,12 +34060,11 @@ var CheckboxContainer = (function (_super) {
     };
     CheckboxContainer.prototype.render = function () {
         var _this = this;
-        var queries = this.props.input.value;
         return (React.createElement("div", { className: this.name, style: this.props.style },
             React.createElement("h3", { className: this.name + "__header", title: this.props.meta.invalid ? this.props.labels.invalid :
                     '' }, this.props.labels.main),
-            React.createElement("div", { className: this.name + "__queries " + (this.props.meta.dirty && this.props.meta.invalid ?
-                    this.name + "__queries--invalid" : '') },
+            React.createElement("div", { className: this.name + "__queries\n                                 " + this.form + "__group\n                                 " + (this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.form + "__group--invalid" : '') + "\n                             " },
+                this.renderInvalid(),
                 this.props.withoutFilter === false ? (React.createElement("div", { className: this.name + "__filter" },
                     React.createElement("input", { className: this.name + "__filter_input " + this.form + "__input--text", type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: function (evt) { _this.setState({ filter: evt.target.value }); } }))) : null,
                 React.createElement("ul", { className: this.name + "__list", style: { height: this.props.height } }, this.renderBoxes()))));
@@ -34144,7 +34153,9 @@ var ColorPicker = (function (_super) {
         return _this;
     }
     ColorPicker.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     ColorPicker.prototype.handleClick = function (evt) {
         evt.preventDefault();
@@ -34171,14 +34182,15 @@ var ColorPicker = (function (_super) {
         var input = this.props.input;
         var background = typeof color == "string" ? "#" + color.substring(0, 6) : "rgba(" + color.r + "," + color.g + "," + color.b + "," + color.a + ")";
         var inputId = this.props.meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + "__picker" },
+        return (React.createElement("div", { className: this.name + "__picker " + this.form + "__input" },
             React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),
             React.createElement("div", { className: this.name + "__colorbox", style: { background: background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     };
     ColorPicker.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, labels = _a.labels;
-        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: labels.title, style: style },
+        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, labels = _a.labels, meta = _a.meta;
+        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                          ", title: labels.title, style: style },
+            this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label" }, labels.main),
             this.renderItem()));
     };
@@ -34266,12 +34278,15 @@ var Radio = (function (_super) {
         return _this;
     }
     Radio.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     Radio.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id;
+        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id, meta = _a.meta;
         var inputId = this.props.meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: style },
+        return (React.createElement("div", { className: this.name + "\n                             " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                         ", title: this.props.labels.title, style: style },
+            this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label" },
                 React.createElement("input", __assign({ className: this.name + "__item", id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input)),
                 " ",
@@ -34370,14 +34385,16 @@ var Range = (function (_super) {
         return this.props.input.onChange(evt.target.value);
     };
     Range.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     Range.prototype.render = function () {
         var _a = this.props, id = _a.id, meta = _a.meta, input = _a.input;
         var inputId = meta.form + "-" + input.name;
         var outputId = meta.form + "-" + input.name + "_output";
         var outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
-        return (React.createElement("div", { className: this.name + " " + this.form + "__group", title: this.props.labels.title, style: this.props.style },
+        return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("div", { style: { position: 'relative' } },
                 React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
@@ -34473,7 +34490,9 @@ var Select = (function (_super) {
         return _this;
     }
     Select.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     Select.prototype.renderOptions = function () {
         return this.props.options.map(function (option) {
@@ -34492,9 +34511,10 @@ var Select = (function (_super) {
         });
     };
     Select.prototype.render = function () {
-        var _a = this.props, multiple = _a.multiple, disabled = _a.disabled, required = _a.required, size = _a.size, addClass = _a.addClass, style = _a.style, id = _a.id;
+        var _a = this.props, multiple = _a.multiple, disabled = _a.disabled, required = _a.required, size = _a.size, addClass = _a.addClass, style = _a.style, id = _a.id, meta = _a.meta;
         var inputId = this.props.meta.form + "-" + this.props.input.name;
-        return (React.createElement("div", { className: this.name + " " + (multiple && this.name + "--" + multiple) + " " + (disabled && this.name + "--" + disabled) + "  " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + " " + this.form + "__group ", title: this.props.labels.title, style: style },
+        return (React.createElement("div", { className: this.name + "\n                             " + (multiple && this.name + "--" + multiple) + "\n                             " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                             ", title: this.props.labels.title, style: style },
+            this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
             React.createElement("select", __assign({ className: this.name + "__item", id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.props.input), this.renderOptions())));
     };
@@ -34586,12 +34606,14 @@ var TextInput = (function (_super) {
         return _this;
     }
     TextInput.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     TextInput.prototype.render = function () {
         var _a = this.props, id = _a.id, type = _a.type, meta = _a.meta, input = _a.input;
         var inputId = meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + this.form + "__group", title: this.props.labels.title, style: this.props.style },
+        return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
             React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--" + type + " " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input))));
@@ -34678,12 +34700,14 @@ var Textarea = (function (_super) {
         return _this;
     }
     Textarea.prototype.renderInvalid = function () {
-        return (React.createElement("div", { className: "form-validation-box" }, this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""));
+        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+        }
     };
     Textarea.prototype.render = function () {
         var _a = this.props, id = _a.id, meta = _a.meta, input = _a.input;
         var inputId = meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + this.form + "__group", title: this.props.labels.title, style: this.props.style },
+        return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
             React.createElement("textarea", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--textarea " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input), input.value)));

@@ -14,7 +14,8 @@ module.exports = {
         },
         {
             name: 'Form',
-            components: './src/components/Forms/**/*.tsx'
+            components: './src/components/Forms/**/*.tsx',
+            content: './src/components/Forms/Readme.md'
         },
         {
             name: 'Components',
