@@ -76,3 +76,32 @@ Invalid container
                         }}
                         meta={{invalid: true, dirty: true}}
                     />
+
+Multilevel options
+
+    <CheckboxContainer availableQueries={{
+                        'First group': [
+                            {
+                                id: 1,
+                                name: "First query",
+                                productCount: 50
+                            },{
+                                id: 2,
+                                name: "♥ALLPRODUCTS♥",
+                                productCount: 100
+                            }
+                         ],
+                         'Second group': [
+                            {
+                                id: 3,
+                                name: "Third query",
+                                productCount: 100
+                            }
+                         ]
+                        }}
+                        singleChoice={true}
+                        height='auto'
+                        labels={{
+                         main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
+                        }}
+                    />

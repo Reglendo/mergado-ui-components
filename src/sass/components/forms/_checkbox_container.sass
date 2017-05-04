@@ -17,7 +17,14 @@
         height: 300px
         overflow: auto
         background: rgba(255,255,255,0.2)
-    
+
+    &__group
+        background: #888
+        color: white
+        padding: 5px 10px
+        font-weight: bold
+        font-size: 0.9em
+
     &__item
         display: table
         border-bottom: 1px solid #dbcba3
@@ -27,6 +34,7 @@
         padding: 10px
         font-size: 0.9em
         vertical-align: middle
+        cursor: pointer
         
         &--active
             font-weight: bold
@@ -39,7 +47,10 @@
         margin: 0
         margin-right: 10px
         vertical-align: text-bottom
-        
+
+    &__label
+        cursor: pointer
+
     &__filter_label
         padding: 10px 0 2px 0
         font-size: 1em

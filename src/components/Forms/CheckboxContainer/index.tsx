@@ -5,16 +5,16 @@ import {prefix} from "../../../config"
 export interface Query {
     id: number
     name: string
-    product_count: number
+    product_count?: number
 }
 
 export interface Props extends InputProps {
-    availableQueries: Array<Query>
-    labels: {
-        main: string
-        placeholder: string
-        allProducts: string
-        invalid: string
+    availableQueries?: Array<Query>
+    labels?: {
+        main?: string
+        placeholder?: string
+        allProducts?: string
+        invalid?: string
     }
     singleChoice?: boolean
     withoutFilter?: boolean
@@ -95,9 +95,7 @@ class CheckboxContainer extends React.Component<Props, State> {
         }
     }
 
-    renderBoxes() {
-        let options = this.props.availableQueries;
-
+    renderOptions(options) {
         if (typeof options === "object") {
             let arr = Object.keys(options).map((key: any) => options[key])
             options = arr
@@ -149,6 +147,20 @@ class CheckboxContainer extends React.Component<Props, State> {
                 )
             })
     }
+
+    renderBoxes() {
+        let options = this.props.availableQueries
+        const render = (options) => this.renderOptions(options)
+        const className = this.name+`__group`
+        if(options.constructor === Array) {
+            return render(options)
+        } else {
+            return Object.keys(options).map(function(key) {
+                return (<div><li className={className}>{key}</li>{render(options[key])}</div>)
+            })
+        }
+    }
+
 
     render() {
 

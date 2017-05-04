@@ -4,15 +4,15 @@ import InputProps from "../default_props";
 export interface Query {
     id: number;
     name: string;
-    product_count: number;
+    product_count?: number;
 }
 export interface Props extends InputProps {
-    availableQueries: Array<Query>;
-    labels: {
-        main: string;
-        placeholder: string;
-        allProducts: string;
-        invalid: string;
+    availableQueries?: Array<Query>;
+    labels?: {
+        main?: string;
+        placeholder?: string;
+        allProducts?: string;
+        invalid?: string;
     };
     singleChoice?: boolean;
     withoutFilter?: boolean;
@@ -29,7 +29,8 @@ declare class CheckboxContainer extends React.Component<Props, State> {
     static defaultProps: Props;
     constructor(props: Props);
     renderInvalid(): JSX.Element;
-    renderBoxes(): JSX.Element[];
+    renderOptions(options: any): any;
+    renderBoxes(): any;
     render(): JSX.Element;
 }
 export default CheckboxContainer;

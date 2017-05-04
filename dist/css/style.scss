@@ -476,6 +476,12 @@ input[type="radio"] {
     height: 300px;
     overflow: auto;
     background: rgba(255, 255, 255, 0.2); }
+  .muk-checkbox_container__group {
+    background: #888;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.9em; }
   .muk-checkbox_container__item {
     display: table;
     border-bottom: 1px solid #dbcba3;
@@ -484,7 +490,8 @@ input[type="radio"] {
     background: #fff;
     padding: 10px;
     font-size: 0.9em;
-    vertical-align: middle; }
+    vertical-align: middle;
+    cursor: pointer; }
     .muk-checkbox_container__item--active {
       font-weight: bold;
       background: #fbeea5; }
@@ -494,6 +501,8 @@ input[type="radio"] {
     margin: 0;
     margin-right: 10px;
     vertical-align: text-bottom; }
+  .muk-checkbox_container__label {
+    cursor: pointer; }
   .muk-checkbox_container__filter_label {
     padding: 10px 0 2px 0;
     font-size: 1em;
