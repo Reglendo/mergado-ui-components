@@ -1,6 +1,7 @@
 import * as React  from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
+import {Link} from "react-router"
 
 export interface Props extends InputProps {
     type?: "button" | "link" | "submit" | "void"
@@ -94,7 +95,7 @@ class Button extends React.Component<Props, State> {
     }
     renderLink() {
         const { link, labels, icon, onClick } = this.props
-        return (<a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</a>)
+        return (<Link to={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</Link>)
     }
     renderSubmit() {
         const { meta, input, labels, onClick } = this.props
