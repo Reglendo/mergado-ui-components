@@ -5,12 +5,12 @@ Example form
     <div>
         <h2>Inquiry form</h2>
         <TextInput labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
-        <div style={{width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Identification</h3>
             <TextInput labels={{ main: 'First name*:', invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
             <TextInput labels={{main: 'Last name:' }} />
         </div>
-        <div style={{width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Contact</h3>
             <TextInput labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
             <TextInput labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
