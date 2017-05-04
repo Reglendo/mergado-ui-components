@@ -40263,12 +40263,12 @@ var TextInput = (function (_super) {
         }
     };
     TextInput.prototype.render = function () {
-        var _a = this.props, id = _a.id, type = _a.type, meta = _a.meta, input = _a.input, defaultValue = _a.defaultValue;
+        var _a = this.props, id = _a.id, type = _a.type, meta = _a.meta, input = _a.input;
         var inputId = meta.form + "-" + input.name;
         return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--" + type + " " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input, { value: input.value !== "" ? input.value : defaultValue }))));
+            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--" + type + " " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input))));
     };
     return TextInput;
 }(React.Component));
