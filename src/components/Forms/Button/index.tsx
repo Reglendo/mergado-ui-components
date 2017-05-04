@@ -78,11 +78,15 @@ class Button extends React.Component<Props, State> {
     }
 
     renderInvalid() {
-        return (
-            <div
-                className="form-validation-box">{this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}</div>
-        )
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
     }
+
 
     renderButton() {
         const { input, labels, icon, onClick } = this.props
@@ -103,10 +107,17 @@ class Button extends React.Component<Props, State> {
     }
 
     render() {
-        const { type,color,state, size, addClass } = this.props
+        const { type,color,state, size, addClass, meta } = this.props
         return (
-            <div className={`${this.name} ${this.name}--${color} ${!this.props.labels.main?this.name+`--notext`:``} ${size?this.name+`--`+size:``} ${state?this.name+`--`+state:``} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={this.props.style}>
-                {type == 'submit' && this.renderInvalid()}
+            <div className={`${this.name} ${this.name}--${color}
+                             ${!this.props.labels.main?this.name+`--notext`:``}
+                             ${size?this.name+`--`+size:``}
+                             ${state?this.name+`--`+state:``}
+                             ${addClass?addClass:``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                         `} title={this.props.labels.title} style={this.props.style}>
+                {this.renderInvalid()}
                 {type == 'button' && this.renderButton()}
                 {type == 'link' && this.renderLink()}
                 {type == 'submit' && this.renderSubmit()}

@@ -85,6 +85,16 @@ class CheckboxContainer extends React.Component<Props, State> {
         }
     }
 
+    renderInvalid() {
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
+    }
+
     renderBoxes() {
         let options = this.props.availableQueries;
 
@@ -142,13 +152,16 @@ class CheckboxContainer extends React.Component<Props, State> {
 
     render() {
 
-        const queries = this.props.input.value
         return (
             <div className={this.name} style={this.props.style}>
+
                 <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
                     ''}>{this.props.labels.main}</h3>
-                <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?
-                    `${this.name}__queries--invalid` : ''}`}>
+                <div className={`${this.name}__queries
+                                 ${this.form}__group
+                                 ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
+                             `}>
+                    {this.renderInvalid()}
                     {this.props.withoutFilter === false ? (
                             <div className={`${this.name}__filter`}>
                                 <input className={`${this.name}__filter_input ${this.form}__input--text`} type="text"

@@ -18,3 +18,9 @@ Input types
 
         <TextInput type="hidden" labels={{main: '+ hidden'}} />
     </div>
+    
+
+Validation
+
+    <TextInput labels={{main: 'Give me some text', invalid: 'I am invalid'}} meta={{invalid: true, dirty: true}} input={{ onChange: () => { return true; } }} />
+    

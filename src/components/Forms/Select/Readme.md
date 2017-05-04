@@ -6,8 +6,6 @@ Example
     </div>
     
     
-Example
+Validation
 
-    <div>
-        <Select labels={{main: 'I\'m select'}} options={[<option >Hello world</option>,<option >Foobar</option>]} />
-    </div>
+    <Select labels={{main: 'I\'m select', invalid: 'I am invalid'}} meta={{invalid: true, dirty: true}}  options={[<option >Hello world</option>,<option >Foobar</option>]} />

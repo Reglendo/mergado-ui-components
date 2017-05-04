@@ -29,8 +29,12 @@ Button colors
 
 Button state
 
-    <Button labels={{main: 'I\'m disabled'}} state="disabled" />
+    <div>
+    <Button labels={{main: 'I\'m disabled'}} state="disabled"  style={{verticalAlign: 'bottom'}} />   
 
+    <Button labels={{main: 'Button', invalid: 'I\'m invalid'}} meta={{invalid: true, touched: true}} />
+    </div>
+    
 Button sizes
 
     <div>

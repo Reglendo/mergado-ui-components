@@ -204,9 +204,19 @@ class DatePicker extends React.Component<Props, State> {
         }
     }
 
+    renderInvalid() {
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
+    }
+
     render() {
         const { focused, startDate, endDate } = this.state
-        const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays } = this.props
+        const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays, meta } = this.props
         var object : any = Object
 
         var picker = <div>todo</div>
@@ -236,7 +246,8 @@ class DatePicker extends React.Component<Props, State> {
             // />
         }
         return (
-            <div className={`${this.name}`} style={this.props.style}>
+            <div className={`${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} style={this.props.style}>
+                {this.renderInvalid()}
                 <span className={`${this.name}__label ${this.form}__label`}>{labels.main}</span>
                 <div className={`${this.name}__picker`}>
                     {picker}

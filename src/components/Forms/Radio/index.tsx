@@ -70,18 +70,27 @@ class Radio extends React.Component<Props, State> {
     }
 
     renderInvalid() {
-        return (
-            <div className="form-validation-box">
-                {this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}
-            </div>
-        )
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
     }
 
     render() {
-        const { disabled, required, addClass, style, input, id } = this.props
+        const { disabled, required, addClass, style, input, id, meta } = this.props
         const inputId = `${this.props.meta.form}-${input.name}`
         return (
-            <div className={`${this.name} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={style}>
+            <div className={`${this.name}
+                             ${disabled && this.name+`--`+disabled}
+                             ${required && this.name+`--`+required}
+                             ${addClass?addClass:``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                         `} title={this.props.labels.title} style={style}>
+                {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`}>
                     <input className={`${this.name}__item`} id={id?id:inputId} type="radio" required={!!required} disabled={!!disabled} {...this.props.input} /> {this.props.labels.main }
                 </label>

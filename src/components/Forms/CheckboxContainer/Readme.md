@@ -52,3 +52,28 @@ Flexible height single choice box without filter
                     }}
 
         />
+        
+Invalid container
+
+    <CheckboxContainer availableQueries={[
+                        {
+                            id: 1,
+                            name: "First query",
+                            productCount: 50
+                        },{
+                            id: 2,
+                            name: "♥ALLPRODUCTS♥",
+                            productCount: 100
+                        },{
+                            id: 3,
+                            name: "Third query",
+                            productCount: 100
+                        }]}
+                        singleChoice={true}
+                        withoutFilter={true}
+                        height='auto'
+                        labels={{
+                         main: 'Select exactly one query', invalid: 'I am invalid', placeholder: 'Filter:', allProducts: 'All products'
+                        }}
+                        meta={{invalid: true, dirty: true}}
+                    />

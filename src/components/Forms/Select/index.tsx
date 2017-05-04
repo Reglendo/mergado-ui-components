@@ -77,12 +77,15 @@ class Select extends React.Component<Props, State> {
     }
 
     renderInvalid() {
-        return (
-            <div className="form-validation-box">
-                {this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}
-            </div>
-        )
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
     }
+
 
     renderOptions() {
         return this.props.options.map( option => {
@@ -100,10 +103,18 @@ class Select extends React.Component<Props, State> {
     }
 
     render() {
-        const { multiple, disabled,required, size, addClass, style, id } = this.props
+        const { multiple, disabled,required, size, addClass, style, id, meta } = this.props
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
-            <div className={`${this.name} ${multiple && this.name+`--`+multiple} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={style}>
+            <div className={`${this.name}
+                             ${multiple && this.name+`--`+multiple}
+                             ${disabled && this.name+`--`+disabled}
+                             ${required && this.name+`--`+required}
+                             ${addClass?addClass:``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             `} title={this.props.labels.title} style={style}>
+                {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <select className={`${this.name}__item`} id={id?id:inputId}
                     multiple={!!multiple} disabled={!!disabled}
