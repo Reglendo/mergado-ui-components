@@ -70,10 +70,9 @@ Invalid container
                             productCount: 100
                         }]}
                         singleChoice={true}
-                        withoutFilter={true}
                         height='auto'
                         labels={{
-                         main: 'Select exactly one query', invalid: 'I am invalid', placeholder: 'Filter:', allProducts: 'All products'
+                         main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
                         }}
                         meta={{invalid: true, dirty: true}}
                     />
