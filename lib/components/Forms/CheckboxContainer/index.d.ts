@@ -7,7 +7,7 @@ export interface Query {
     product_count?: number;
 }
 export interface Props extends InputProps {
-    availableQueries?: Array<Query>;
+    availableQueries?: Array<Query> | any;
     labels?: {
         main?: string;
         placeholder?: string;

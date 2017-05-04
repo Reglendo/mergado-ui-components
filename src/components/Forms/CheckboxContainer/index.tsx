@@ -9,7 +9,7 @@ export interface Query {
 }
 
 export interface Props extends InputProps {
-    availableQueries?: Array<Query>
+    availableQueries?: Array<Query> | any
     labels?: {
         main?: string
         placeholder?: string
