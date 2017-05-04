@@ -39442,6 +39442,12 @@ var Button = (function (_super) {
             return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
         }
     };
+    Button.prototype.renderHref = function () {
+        var _a = this.props, link = _a.link, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
+        return (React.createElement("a", { href: link, className: this.name + "__item", onClick: onClick, title: labels.title },
+            icon,
+            labels.main));
+    };
     Button.prototype.renderButton = function () {
         var _a = this.props, input = _a.input, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
         return (React.createElement("button", { className: this.name + "__item", onClick: onClick, name: input.name, title: labels.title },
@@ -39472,7 +39478,8 @@ var Button = (function (_super) {
             type == 'button' && this.renderButton(),
             type == 'link' && this.renderLink(),
             type == 'submit' && this.renderSubmit(),
-            type == 'void' && this.renderVoid()));
+            type == 'void' && this.renderVoid(),
+            type == 'href' && this.renderHref()));
     };
     return Button;
 }(React.Component));
@@ -40256,12 +40263,12 @@ var TextInput = (function (_super) {
         }
     };
     TextInput.prototype.render = function () {
-        var _a = this.props, id = _a.id, type = _a.type, meta = _a.meta, input = _a.input;
+        var _a = this.props, id = _a.id, type = _a.type, meta = _a.meta, input = _a.input, defaultValue = _a.defaultValue;
         var inputId = meta.form + "-" + input.name;
         return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--" + type + " " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input))));
+            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--" + type + " " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input, { value: input.value !== "" ? input.value : defaultValue }))));
     };
     return TextInput;
 }(React.Component));

@@ -4,7 +4,7 @@ import {prefix} from "../../../config"
 import {Link} from "react-router"
 
 export interface Props extends InputProps {
-    type?: "button" | "link" | "submit" | "void"
+    type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
     icon?: JSX.Element
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
@@ -88,7 +88,10 @@ class Button extends React.Component<Props, State> {
         }
     }
 
-
+    renderHref() {
+        const { link, labels, icon, onClick } = this.props
+        return (<a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</a>)
+    }
     renderButton() {
         const { input, labels, icon, onClick } = this.props
         return (<button className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>{icon}{labels.main}</button>)
@@ -123,6 +126,7 @@ class Button extends React.Component<Props, State> {
                 {type == 'link' && this.renderLink()}
                 {type == 'submit' && this.renderSubmit()}
                 {type == 'void' && this.renderVoid()}
+                {type == 'href' && this.renderHref()}
             </div>
         )
     }
