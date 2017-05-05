@@ -29,9 +29,12 @@ class Placeholder extends React.Component<Props, State> {
 
         return (
             <div className={className} style={styles}>
-                <div className={`${this.name}__shadow`}></div>
-                <div className={`${this.name}__content`}>
-                    {this.props.children}
+                <div className={`${this.name}__shadow`}>
+                    <div className={`${this.name}__wrapper`}>
+                        <div className={`${this.name}__container`}>
+                            {this.props.children}
+                        </div>
+                    </div>
                 </div>
             </div>
         )
