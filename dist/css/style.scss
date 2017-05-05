@@ -499,6 +499,14 @@ input[type="radio"] {
       background: #fbeea5; }
     .muk-checkbox_container__item:hover {
       background: #fdf7d2; }
+    .muk-checkbox_container__item--disabled {
+      cursor: default; }
+      .muk-checkbox_container__item--disabled:hover {
+        background: white; }
+      .muk-checkbox_container__item--disabled .muk-checkbox_container__label {
+        cursor: default;
+        font-style: italic;
+        color: #888; }
   .muk-checkbox_container__checkbox {
     margin: 0;
     margin-right: 10px;

@@ -132,7 +132,9 @@ class CheckboxContainer extends React.Component<Props, State> {
                 }
 
                 return (
-                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`}
+                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
+                                    ${option.disabled ? `${this.name}__item--disabled` : ''}
+                                `}
                         key={option.id} onClick={handler}>
                         {this.props.singleChoice == false &&
                             <input

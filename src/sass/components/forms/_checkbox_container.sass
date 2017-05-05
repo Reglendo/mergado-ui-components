@@ -35,14 +35,27 @@
         font-size: 0.9em
         vertical-align: middle
         cursor: pointer
-        
+
+
         &--active
             font-weight: bold
             background: #fbeea5
         
         &:hover
             background: #fdf7d2
-        
+
+
+        &--disabled
+            cursor: default
+
+            &:hover
+                background: white
+
+            .muk-checkbox_container__label
+                cursor: default
+                font-style: italic
+                color: #888
+
     &__checkbox
         margin: 0
         margin-right: 10px

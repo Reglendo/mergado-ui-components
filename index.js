@@ -39751,7 +39751,7 @@ var CheckboxContainer = (function (_super) {
                     _this.props.input.onChange(copy);
                 }
             };
-            return (React.createElement("li", { className: _this.name + "__item " + (index >= 0 ? _this.name + "__item--active" : ''), key: option.id, onClick: handler },
+            return (React.createElement("li", { className: _this.name + "__item " + (index >= 0 ? _this.name + "__item--active" : '') + "\n                                    " + (option.disabled ? _this.name + "__item--disabled" : '') + "\n                                ", key: option.id, onClick: handler },
                 _this.props.singleChoice == false &&
                     React.createElement("input", { type: "checkbox", className: _this.name + "__checkbox", checked: queries.indexOf(option.id) >= 0, onChange: handler }),
                 _this.renderLabel(option)));

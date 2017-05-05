@@ -88,7 +88,7 @@ Multilevel options
                             {
                                 id: 999,
                                 name: "Empty query",
-                                product_count: 0
+                                disabled: 1
                             }
                         ],
                         'First group': [
