@@ -8,6 +8,7 @@ interface FieldProps {
         onDragStart?: (value: any) => void;
         onDrop?: (value: any) => void;
         onFocus?: (value: any) => void;
+        style?: any;
     };
     meta?: {
         active: boolean;
