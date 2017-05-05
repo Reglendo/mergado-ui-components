@@ -9,6 +9,7 @@ export { default as TextInput } from "./components/Forms/TextInput";
 export { default as Textarea } from "./components/Forms/Textarea";
 export { default as LittleStatus } from "./components/LittleStatus";
 export { default as Paginator } from "./components/Paginator";
+export { default as Placeholder } from "./components/Placeholder";
 export { default as PopupHint } from "./components/PopupHint";
 export { default as Spinner } from "./components/Spinner";
 export { default as Toasts } from "./components/Toasts";

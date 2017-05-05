@@ -33,3 +33,19 @@
             ]}
         />
     
+**.muk-helper-clearfix**
+
+    <div>
+        <em>I have clearfix:</em>
+        <div className="muk-helper-clearfix" style={{border: '1px dashed black' }}>
+            <div style={{ width: '30%', float: 'left', padding: '10px' }}>
+                <Placeholder width={100} height={100}>Float left</Placeholder>
+            </div>
+            <div style={{ width: '30%', float: 'left', padding: '10px' }}>
+                <Placeholder width={100} height={100}>Float left</Placeholder>
+            </div>
+            <div style={{ width: '30%', float: 'right', padding: '10px' }} >
+              <Placeholder width={100} height={100}>Float right</Placeholder>
+            </div>
+        </div>
+    </div>

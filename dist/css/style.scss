@@ -282,6 +282,13 @@ input[type="radio"] {
   to {
     background-position-x: 25px; } }
 
+.muk-helper-clearfix {
+  zoom: 1; }
+  .muk-helper-clearfix:after {
+    content: '';
+    display: table;
+    clear: both; }
+
 /* COLORS */
 .muk-datagrid {
   width: 100%; }
@@ -1880,3 +1887,24 @@ input[type="radio"] {
     .muk-wizard_nav__item__step:hover {
       text-decoration: none;
       color: #fff; }
+
+/* COLORS */
+.muk-placeholder {
+  position: relative; }
+  .muk-placeholder__shadow {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(219, 203, 163, 0.25);
+    margin: auto;
+    display: table-cell;
+    vertical-align: middle; }
+  .muk-placeholder__content {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0; }

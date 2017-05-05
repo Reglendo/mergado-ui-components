@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 472);
+/******/ 	return __webpack_require__(__webpack_require__.s = 473);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -801,7 +801,7 @@ exports.__esModule = true;
 exports.default = routerWarning;
 exports._resetWarned = _resetWarned;
 
-var _warning = __webpack_require__(470);
+var _warning = __webpack_require__(471);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -10874,7 +10874,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 
 module.exports = freeGlobal;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(471)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(472)))
 
 /***/ }),
 /* 126 */
@@ -15744,21 +15744,23 @@ var LittleStatus_1 = __webpack_require__(183);
 exports.LittleStatus = LittleStatus_1["default"];
 var Paginator_1 = __webpack_require__(461);
 exports.Paginator = Paginator_1["default"];
-var PopupHint_1 = __webpack_require__(463);
+var Placeholder_1 = __webpack_require__(462);
+exports.Placeholder = Placeholder_1["default"];
+var PopupHint_1 = __webpack_require__(464);
 exports.PopupHint = PopupHint_1["default"];
-var Spinner_1 = __webpack_require__(464);
+var Spinner_1 = __webpack_require__(465);
 exports.Spinner = Spinner_1["default"];
-var Toasts_1 = __webpack_require__(465);
+var Toasts_1 = __webpack_require__(466);
 exports.Toasts = Toasts_1["default"];
 var Toast_1 = __webpack_require__(184);
 exports.Toast = Toast_1["default"];
-var TopNav_1 = __webpack_require__(467);
+var TopNav_1 = __webpack_require__(468);
 exports.TopNav = TopNav_1["default"];
-var NavLink_1 = __webpack_require__(466);
+var NavLink_1 = __webpack_require__(467);
 exports.NavLink = NavLink_1["default"];
-var WizardNav_1 = __webpack_require__(469);
+var WizardNav_1 = __webpack_require__(470);
 exports.WizardNav = WizardNav_1["default"];
-var WizardStep_1 = __webpack_require__(468);
+var WizardStep_1 = __webpack_require__(469);
 exports.WizardStep = WizardStep_1["default"];
 var Datagrid_1 = __webpack_require__(451);
 exports.Datagrid = Datagrid_1["default"];
@@ -40629,6 +40631,50 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(1);
+var config_1 = __webpack_require__(5);
+var Placeholder = (function (_super) {
+    __extends(Placeholder, _super);
+    function Placeholder() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = config_1.prefix + "placeholder";
+        return _this;
+    }
+    Placeholder.prototype.render = function () {
+        var _a = this.props, addClass = _a.addClass, style = _a.style, width = _a.width, height = _a.height;
+        var className = this.name + " " + (addClass ? addClass : '');
+        var object = Object;
+        var styles = object.assign({}, style, { paddingBottom: (height * 100 / width) + "%" });
+        return (React.createElement("div", { className: className, style: styles },
+            React.createElement("div", { className: this.name + "__shadow" }),
+            React.createElement("div", { className: this.name + "__content" }, this.props.children)));
+    };
+    return Placeholder;
+}(React.Component));
+Placeholder.defaultProps = {
+    width: 100,
+    height: 100
+};
+exports["default"] = Placeholder;
+
+
+/***/ }),
+/* 463 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var React = __webpack_require__(1);
 var ReactDOM = __webpack_require__(148);
 var config_1 = __webpack_require__(5);
 var Bubble = (function (_super) {
@@ -40664,7 +40710,7 @@ exports["default"] = Bubble;
 
 
 /***/ }),
-/* 463 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40681,7 +40727,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var React = __webpack_require__(1);
-var Bubble_1 = __webpack_require__(462);
+var Bubble_1 = __webpack_require__(463);
 var config_1 = __webpack_require__(5);
 var PopupHint = (function (_super) {
     __extends(PopupHint, _super);
@@ -40833,7 +40879,7 @@ exports["default"] = PopupHint;
 
 
 /***/ }),
-/* 464 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40930,7 +40976,7 @@ exports["default"] = Spinner;
 
 
 /***/ }),
-/* 465 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40993,7 +41039,7 @@ exports["default"] = Toasts;
 
 
 /***/ }),
-/* 466 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41040,7 +41086,7 @@ exports["default"] = NavLink;
 
 
 /***/ }),
-/* 467 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41086,7 +41132,7 @@ exports["default"] = TopNav;
 
 
 /***/ }),
-/* 468 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41135,7 +41181,7 @@ exports["default"] = WizardStep;
 
 
 /***/ }),
-/* 469 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41181,7 +41227,7 @@ exports["default"] = WizardNav;
 
 
 /***/ }),
-/* 470 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41249,7 +41295,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 471 */
+/* 472 */
 /***/ (function(module, exports) {
 
 var g;
@@ -41276,7 +41322,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 472 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(185);
