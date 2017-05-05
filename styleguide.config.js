@@ -9,8 +9,13 @@ module.exports = {
     serverPort: '3001',
     sections: [
         {
+            name: 'Helpers',
+            content: './src/docs/helpers/Readme.md'
+        },
+        {
             name: 'Form',
-            components: './src/components/Forms/**/*.tsx'
+            components: './src/components/Forms/**/*.tsx',
+            content: './src/components/Forms/Readme.md'
         },
         {
             name: 'Components',

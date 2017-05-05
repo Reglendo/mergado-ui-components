@@ -82,11 +82,13 @@ class ColorPicker extends React.Component<Props, State> {
     }
 
     renderInvalid() {
-        return (
-            <div className="form-validation-box">
-                {this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}
-            </div>
-        )
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
     }
 
     handleClick(evt) {
@@ -131,7 +133,7 @@ class ColorPicker extends React.Component<Props, State> {
         const inputId = `${this.props.meta.form}-${input.name}`
 
         return(
-            <div className={`${this.name}__picker`}>
+            <div className={`${this.name}__picker ${this.form}__input`}>
                 <input id={inputId} type="hidden" name={input.name} value={background} />
                 <div className={`${this.name}__colorbox`} style={{background: background }} onClick={ this.handleClick } />
                 { this.state.displayColorPicker && this.renderPicker()}
@@ -140,10 +142,17 @@ class ColorPicker extends React.Component<Props, State> {
     }
 
     render() {
-        const { disabled, required, addClass, style, labels } = this.props
+        const { disabled, required, addClass, style, labels, meta } = this.props
 
         return (
-            <div className={`${this.name} ${disabled && this.name+`--`+disabled}  ${required && this.name+`--`+required} ${addClass?addClass:``} ${this.form}__group `} title={labels.title} style={style}>
+            <div className={`${this.name} ${disabled && this.name+`--`+disabled}
+                             ${required && this.name+`--`+required}
+                             ${addClass?addClass:``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                          `}
+                 title={labels.title} style={style}>
+                {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`}>{labels.main}</label>
                 {this.renderItem()}
             </div>

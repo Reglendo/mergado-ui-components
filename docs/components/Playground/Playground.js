@@ -8,7 +8,7 @@ export default class Playground extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
 		index: PropTypes.number.isRequired,
-		name: PropTypes.string.isRequired,
+		name: PropTypes.string,
         innerHtml: PropTypes.string,
 	};
 	static contextTypes = {

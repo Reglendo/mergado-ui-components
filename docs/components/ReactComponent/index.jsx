@@ -3,7 +3,7 @@ import { Component, PropTypes } from 'react';
 const s = require('./ReactComponent.css');
 
 const ReactComponentRenderer = ({ name, pathLine, description, props, examples, sidebar }) => {
-	var importJsLine = 'import ' + name + ' from "' + pathLine.replace('src/components/','').replace('/index.tsx','') + '"'
+	var importJsLine = 'import {' + name + '} from "mergado-ui-kit/lib"'
     var importSassLine = '@import \'~mergado-ui-kit/' + name + '\''
 	return (
 		<div className={s.root} id={name}>

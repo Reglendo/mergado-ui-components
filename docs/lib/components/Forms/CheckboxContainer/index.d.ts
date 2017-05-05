@@ -1,18 +1,21 @@
 /// <reference types="react" />
 import * as React from "react";
 import InputProps from "../default_props";
+import { Link } from "react-router";
 export interface Query {
     id: number;
     name: string;
-    product_count: number;
+    product_count?: number;
+    active?: boolean;
+    link?: Link | JSX.Element;
 }
 export interface Props extends InputProps {
-    availableQueries: Array<Query>;
-    labels: {
-        main: string;
-        placeholder: string;
-        allProducts: string;
-        invalid: string;
+    availableQueries?: Array<Query> | any;
+    labels?: {
+        main?: string;
+        placeholder?: string;
+        allProducts?: string;
+        invalid?: string;
     };
     singleChoice?: boolean;
     withoutFilter?: boolean;
@@ -28,7 +31,10 @@ declare class CheckboxContainer extends React.Component<Props, State> {
     readonly form: string;
     static defaultProps: Props;
     constructor(props: Props);
-    renderBoxes(): JSX.Element[];
+    renderInvalid(): JSX.Element;
+    renderOptions(options: any): any;
+    renderLabel(option: any): JSX.Element;
+    renderBoxes(): any;
     render(): JSX.Element;
 }
 export default CheckboxContainer;

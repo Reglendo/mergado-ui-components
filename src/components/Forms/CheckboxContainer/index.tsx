@@ -1,20 +1,24 @@
 import * as React from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
+import LittleStatus from "../../LittleStatus"
+import {Link} from "react-router"
 
 export interface Query {
     id: number
     name: string
-    product_count: number
+    product_count?: number
+    active?: boolean
+    link?: Link | JSX.Element
 }
 
 export interface Props extends InputProps {
-    availableQueries: Array<Query>
-    labels: {
-        main: string
-        placeholder: string
-        allProducts: string
-        invalid: string
+    availableQueries?: Array<Query> | any
+    labels?: {
+        main?: string
+        placeholder?: string
+        allProducts?: string
+        invalid?: string
     }
     singleChoice?: boolean
     withoutFilter?: boolean
@@ -85,9 +89,17 @@ class CheckboxContainer extends React.Component<Props, State> {
         }
     }
 
-    renderBoxes() {
-        let options = this.props.availableQueries;
+    renderInvalid() {
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
+    }
 
+    renderOptions(options) {
         if (typeof options === "object") {
             let arr = Object.keys(options).map((key: any) => options[key])
             options = arr
@@ -105,7 +117,6 @@ class CheckboxContainer extends React.Component<Props, State> {
             })
             .map(option => {
                 const index = queries.indexOf(option.id);
-
                 let handler = () => {
                     if (index < 0) { // wasn't selected
                         if (this.props.singleChoice === false) {
@@ -121,34 +132,74 @@ class CheckboxContainer extends React.Component<Props, State> {
                 }
 
                 return (
-                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`}
+                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
+                                    ${option.disabled ? `${this.name}__item--disabled` : ''}
+                                `}
                         key={option.id} onClick={handler}>
-                        {this.props.singleChoice == false ? (
-                                <input
-                                    type="checkbox"
-                                    className={`${this.name}__checkbox`}
-                                    checked={queries.indexOf(option.id) >= 0}
-                                    onChange={handler}/>
-                            ) : null}
-                        <label
-                            className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
-                            {" "}<span
-                                className={`${this.name}__count`}>{typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }</span>
-                        </label>
+                        {this.props.singleChoice == false &&
+                            <input
+                                type="checkbox"
+                                className={`${this.name}__checkbox`}
+                                checked={queries.indexOf(option.id) >= 0}
+                                onChange={handler} />
+                        }
+                        {this.renderLabel(option)}
                     </li>
                 )
             })
     }
 
+    renderLabel(option) {
+        let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name)
+
+        if(option.link !== undefined) {
+            label = <Link to={option.link}>{label}</Link>
+        }
+
+        if(option.active !== undefined) {
+            label = <LittleStatus type={option.active ? "success" : "inactive"}>{label}</LittleStatus>
+        }
+        return (
+            <label className={`${this.name}__label`}>
+                {label}
+                {" "}
+                <span className={`${this.name}__count`}>
+                    {typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }
+                </span>
+            </label>
+        )
+    }
+
+    renderBoxes() {
+        let options = this.props.availableQueries
+        const render = (options) => this.renderOptions(options)
+        const className = this.name+`__group`
+        if(options.constructor === Array) {
+            return render(options)
+        } else {
+            return Object.keys(options).map(function(key) {
+                if(key === '') {
+                    return render(options[key])
+                } else {
+                    return (<div key={`size_${key}`}><li key={`size_${key}`} className={className}>{key}</li>{render(options[key])}</div>)
+                }
+            })
+        }
+    }
+
+
     render() {
 
-        const queries = this.props.input.value
         return (
             <div className={this.name} style={this.props.style}>
+
                 <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
                     ''}>{this.props.labels.main}</h3>
-                <div className={`${this.name}__queries ${this.props.meta.dirty && this.props.meta.invalid ?
-                    `${this.name}__queries--invalid` : ''}`}>
+                <div className={`${this.name}__queries
+                                 ${this.form}__group
+                                 ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
+                             `}>
+                    {this.renderInvalid()}
                     {this.props.withoutFilter === false ? (
                             <div className={`${this.name}__filter`}>
                                 <input className={`${this.name}__filter_input ${this.form}__input--text`} type="text"

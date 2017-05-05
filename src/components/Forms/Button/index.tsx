@@ -1,15 +1,16 @@
 import * as React  from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
+import {Link} from "react-router"
 
 export interface Props extends InputProps {
-    type?: "button" | "link" | "submit" | "void"
+    type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
     icon?: JSX.Element
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
     state?: "disabled" | ""
-    onClick?: (event: any) => boolean
+    onClick?: (event: any) => any
     style?: any
     addClass?: string
     labels?: {
@@ -78,19 +79,26 @@ class Button extends React.Component<Props, State> {
     }
 
     renderInvalid() {
-        return (
-            <div
-                className="form-validation-box">{this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.props.labels.invalid : ""}</div>
-        )
+        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (
+                <div className={`${this.form}__validation`}>
+                    {this.props.labels.invalid}
+                </div>
+            )
+        }
     }
 
+    renderHref() {
+        const { link, labels, icon, onClick } = this.props
+        return (<a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</a>)
+    }
     renderButton() {
         const { input, labels, icon, onClick } = this.props
         return (<button className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>{icon}{labels.main}</button>)
     }
     renderLink() {
         const { link, labels, icon, onClick } = this.props
-        return (<a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</a>)
+        return (<Link to={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</Link>)
     }
     renderSubmit() {
         const { meta, input, labels, onClick } = this.props
@@ -103,14 +111,22 @@ class Button extends React.Component<Props, State> {
     }
 
     render() {
-        const { type,color,state, size, addClass } = this.props
+        const { type,color,state, size, addClass, meta } = this.props
         return (
-            <div className={`${this.name} ${this.name}--${color} ${!this.props.labels.main?this.name+`--notext`:``} ${size?this.name+`--`+size:``} ${state?this.name+`--`+state:``} ${addClass?addClass:``} ${this.form}__group `} title={this.props.labels.title} style={this.props.style}>
+            <div className={`${this.name} ${this.name}--${color}
+                             ${!this.props.labels.main?this.name+`--notext`:``}
+                             ${size?this.name+`--`+size:``}
+                             ${state?this.name+`--`+state:``}
+                             ${addClass?addClass:``}
+                             ${type ==='submit'? `{this.form}__group`: ''}
+                             ${type ==='submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                         `} title={this.props.labels.title} style={this.props.style}>
                 {type == 'submit' && this.renderInvalid()}
                 {type == 'button' && this.renderButton()}
                 {type == 'link' && this.renderLink()}
                 {type == 'submit' && this.renderSubmit()}
                 {type == 'void' && this.renderVoid()}
+                {type == 'href' && this.renderHref()}
             </div>
         )
     }

@@ -2,13 +2,13 @@
 import * as React from "react";
 import InputProps from "../default_props";
 export interface Props extends InputProps {
-    type?: "button" | "link" | "submit" | "void";
+    type?: "button" | "link" | "submit" | "void" | "href";
     link?: string;
     icon?: JSX.Element;
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor";
     size?: "small" | "tiny" | "";
     state?: "disabled" | "";
-    onClick?: (event: any) => boolean;
+    onClick?: (event: any) => any;
     style?: any;
     addClass?: string;
     labels?: {
@@ -24,6 +24,7 @@ declare class Button extends React.Component<Props, State> {
     readonly form: string;
     static defaultProps: Props;
     renderInvalid(): JSX.Element;
+    renderHref(): JSX.Element;
     renderButton(): JSX.Element;
     renderLink(): JSX.Element;
     renderSubmit(): JSX.Element;

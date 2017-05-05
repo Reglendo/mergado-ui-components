@@ -7,15 +7,15 @@ Multiple choices
                         availableQueries: [{
                             id: 1,
                             name: "First query",
-                            productCount: 50
+                            product_count: 50
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",
-                            productCount: 100
+                            product_count: 100
                         },{
                             id: 3,
                             name: "Third query",
-                            productCount: 100
+                            product_count: 100
                         }],
                         labels: {
                          main: 'Select queries', placeholder: 'Filter:', allProducts: 'All products'
@@ -33,15 +33,19 @@ Flexible height single choice box without filter
                         availableQueries: [{
                             id: 1,
                             name: "First query",
-                            productCount: 50
+                            product_count: 50,
+                            active: 0,
+                            link: '/something'
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",
-                            productCount: 100
+                            product_count: 100,
+                            active: 1
                         },{
                             id: 3,
                             name: "Third query",
-                            productCount: 100
+                            product_count: 100,
+                            active: 0
                         }],
                         singleChoice: true,
                         withoutFilter: true,
@@ -52,3 +56,63 @@ Flexible height single choice box without filter
                     }}
 
         />
+        
+Invalid container
+
+    <CheckboxContainer availableQueries={[
+                        {
+                            id: 1,
+                            name: "First query",
+                            product_count: 50
+                        },{
+                            id: 2,
+                            name: "♥ALLPRODUCTS♥",
+                            product_count: 100
+                        },{
+                            id: 3,
+                            name: "Third query",
+                            product_count: 100
+                        }]}
+                        singleChoice={true}
+                        height='auto'
+                        labels={{
+                         main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
+                        }}
+                        meta={{invalid: true, dirty: true}}
+                    />
+
+Multilevel options
+
+    <CheckboxContainer availableQueries={{
+                        '': [
+                            {
+                                id: 999,
+                                name: "Empty query",
+                                disabled: 1
+                            }
+                        ],
+                        'First group': [
+                            {
+                                id: 1,
+                                name: "First query",
+                                product_count: 50
+                            },{
+                                id: 2,
+                                name: "♥ALLPRODUCTS♥",
+                                product_count: 100
+                            }
+                         ],
+                         'Second group': [
+                            {
+                                id: 3,
+                                name: "Third query",
+                                product_count: 100
+                            }
+                         ]
+                        }}
+                        singleChoice={true}
+                        height='auto'
+                        labels={{
+                         main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
+                        }}
+                    />

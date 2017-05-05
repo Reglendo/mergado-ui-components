@@ -13,13 +13,22 @@ h1, h2, h3
   font-family: $header-font-family
   font-weight: bold
   vertical-align: middle
+  padding: 0 2px
 
   &:first-child
     margin-top: 0
 
+h1
+  font-size: 38px
+  margin-top: 30px
+
 h2
-  font-size: 14pt
-  margin: 30px 0 10px 0
+  font-size: 24px
+  margin: 20px 0 10px 0
+
+h3
+  font-size: 18px
+  margin-top: 15px
 
 header + h2
   margin-top: 0
@@ -71,7 +80,7 @@ section
       overflow: hidden
       padding-left: 15px
       margin-bottom: 0
-
+      margin-top: 0
     h1
       border-left: 10px rgba($color-line, 0.5) solid
 
@@ -83,3 +92,9 @@ section
       border-left: 5px rgba($color-line, 0.5) solid
       font-size: 12pt
 
+
+input[type="checkbox"], input[type="radio"]
+  vertical-align: middle
+
+input[type="radio"]
+  margin-top: -1px

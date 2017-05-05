@@ -1,13 +1,13 @@
 interface FieldProps {
     input?: {
         checked?: boolean;
-        value: any;
-        name: string;
-        onBlur: (value: any) => void;
-        onChange: (value: any) => void;
-        onDragStart: (value: any) => void;
-        onDrop: (value: any) => void;
-        onFocus: (value: any) => void;
+        value?: any;
+        name?: string;
+        onBlur?: (value: any) => void;
+        onChange?: (value: any) => void;
+        onDragStart?: (value: any) => void;
+        onDrop?: (value: any) => void;
+        onFocus?: (value: any) => void;
     };
     meta?: {
         active: boolean;

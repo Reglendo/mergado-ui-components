@@ -32,6 +32,7 @@ declare class DatePicker extends React.Component<Props, State> {
     onDateChange(date: any): void;
     onDatesChange(dates: any): void;
     onFocusChange(action: any): void;
+    renderInvalid(): JSX.Element;
     render(): JSX.Element;
 }
 export default DatePicker;

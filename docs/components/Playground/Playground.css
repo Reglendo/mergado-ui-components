@@ -51,6 +51,7 @@
 	font-size: 14px;
 	padding: 6px 8px;
 	opacity: 0;
+	z-index: 100000;
 	transition: opacity ease-in-out .15s .2s;
 }
 
