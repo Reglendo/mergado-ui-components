@@ -35,6 +35,7 @@ Flexible height single choice box without filter
                             name: "First query",
                             product_count: 50,
                             active: 0,
+                            link: '/something'
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",

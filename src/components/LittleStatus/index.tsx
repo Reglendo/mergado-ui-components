@@ -7,7 +7,7 @@ export interface Props {
     /** Status type */
     type: "warning" | "success" | "error" | "inactive" | ""
     /** Status text */
-    text?: string,
+    text?: string
     style?: any
 }
 export interface State {
@@ -31,7 +31,7 @@ class LittleStatus extends React.Component<Props, State> {
         let classIndikator = `${this.name}__indikator tooltip`
         let classText = `${this.name}__text`
 
-        let text = this.props.text ? (<span className={classText}> {this.props.text}</span>) : ""
+        let text = this.props.text ? (<span className={classText}> {this.props.text}</span>) : this.props.children
         return (
             <span className={className}  style={this.props.style}>
 				<span className={classIndikator} title={this.props.title}></span>{text}

@@ -2,12 +2,14 @@ import * as React from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
 import LittleStatus from "../../LittleStatus"
+import {Link} from "react-router"
 
 export interface Query {
     id: number
     name: string
     product_count?: number
     active?: boolean
+    link?: Link | JSX.Element
 }
 
 export interface Props extends InputProps {
@@ -147,8 +149,13 @@ class CheckboxContainer extends React.Component<Props, State> {
 
     renderLabel(option) {
         let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name)
+
+        if(option.link !== undefined) {
+            label = <Link to={option.link}>{label}</Link>
+        }
+
         if(option.active !== undefined) {
-            label = <LittleStatus text={label} type={option.active ? "success" : "inactive"}  />
+            label = <LittleStatus type={option.active ? "success" : "inactive"}>{label}</LittleStatus>
         }
         return (
             <label className={`${this.name}__label`}>

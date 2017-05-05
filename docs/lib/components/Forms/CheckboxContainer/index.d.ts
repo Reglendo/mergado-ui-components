@@ -1,11 +1,13 @@
 /// <reference types="react" />
 import * as React from "react";
 import InputProps from "../default_props";
+import { Link } from "react-router";
 export interface Query {
     id: number;
     name: string;
     product_count?: number;
     active?: boolean;
+    link?: Link | JSX.Element;
 }
 export interface Props extends InputProps {
     availableQueries?: Array<Query> | any;
