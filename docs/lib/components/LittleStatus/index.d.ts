@@ -2,7 +2,7 @@
 import * as React from "react";
 export interface Props {
     /** Status title */
-    title: string;
+    title?: string;
     /** Status type */
     type: "warning" | "success" | "error" | "inactive" | "";
     /** Status text */

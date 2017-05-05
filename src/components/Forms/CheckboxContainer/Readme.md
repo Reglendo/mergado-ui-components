@@ -7,15 +7,15 @@ Multiple choices
                         availableQueries: [{
                             id: 1,
                             name: "First query",
-                            productCount: 50
+                            product_count: 50
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",
-                            productCount: 100
+                            product_count: 100
                         },{
                             id: 3,
                             name: "Third query",
-                            productCount: 100
+                            product_count: 100
                         }],
                         labels: {
                          main: 'Select queries', placeholder: 'Filter:', allProducts: 'All products'
@@ -33,15 +33,18 @@ Flexible height single choice box without filter
                         availableQueries: [{
                             id: 1,
                             name: "First query",
-                            productCount: 50
+                            product_count: 50,
+                            active: 0,
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",
-                            productCount: 100
+                            product_count: 100,
+                            active: 1
                         },{
                             id: 3,
                             name: "Third query",
-                            productCount: 100
+                            product_count: 100,
+                            active: 0
                         }],
                         singleChoice: true,
                         withoutFilter: true,
@@ -59,15 +62,15 @@ Invalid container
                         {
                             id: 1,
                             name: "First query",
-                            productCount: 50
+                            product_count: 50
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",
-                            productCount: 100
+                            product_count: 100
                         },{
                             id: 3,
                             name: "Third query",
-                            productCount: 100
+                            product_count: 100
                         }]}
                         singleChoice={true}
                         height='auto'
@@ -84,18 +87,18 @@ Multilevel options
                             {
                                 id: 1,
                                 name: "First query",
-                                productCount: 50
+                                product_count: 50
                             },{
                                 id: 2,
                                 name: "♥ALLPRODUCTS♥",
-                                productCount: 100
+                                product_count: 100
                             }
                          ],
                          'Second group': [
                             {
                                 id: 3,
                                 name: "Third query",
-                                productCount: 100
+                                product_count: 100
                             }
                          ]
                         }}

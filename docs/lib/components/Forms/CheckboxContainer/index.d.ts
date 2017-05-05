@@ -5,6 +5,7 @@ export interface Query {
     id: number;
     name: string;
     product_count?: number;
+    active?: boolean;
 }
 export interface Props extends InputProps {
     availableQueries?: Array<Query> | any;
@@ -30,6 +31,7 @@ declare class CheckboxContainer extends React.Component<Props, State> {
     constructor(props: Props);
     renderInvalid(): JSX.Element;
     renderOptions(options: any): any;
+    renderLabel(option: any): JSX.Element;
     renderBoxes(): any;
     render(): JSX.Element;
 }

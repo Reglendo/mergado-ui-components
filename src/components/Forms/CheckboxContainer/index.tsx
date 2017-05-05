@@ -1,11 +1,13 @@
 import * as React from "react"
 import InputProps from "../default_props"
 import {prefix} from "../../../config"
+import LittleStatus from "../../LittleStatus"
 
 export interface Query {
     id: number
     name: string
     product_count?: number
+    active?: boolean
 }
 
 export interface Props extends InputProps {
@@ -113,7 +115,6 @@ class CheckboxContainer extends React.Component<Props, State> {
             })
             .map(option => {
                 const index = queries.indexOf(option.id);
-
                 let handler = () => {
                     if (index < 0) { // wasn't selected
                         if (this.props.singleChoice === false) {
@@ -131,21 +132,33 @@ class CheckboxContainer extends React.Component<Props, State> {
                 return (
                     <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}`}
                         key={option.id} onClick={handler}>
-                        {this.props.singleChoice == false ? (
-                                <input
-                                    type="checkbox"
-                                    className={`${this.name}__checkbox`}
-                                    checked={queries.indexOf(option.id) >= 0}
-                                    onChange={handler}/>
-                            ) : null}
-                        <label
-                            className={`${this.name}__label`}>{option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name }
-                            {" "}<span
-                                className={`${this.name}__count`}>{typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }</span>
-                        </label>
+                        {this.props.singleChoice == false &&
+                            <input
+                                type="checkbox"
+                                className={`${this.name}__checkbox`}
+                                checked={queries.indexOf(option.id) >= 0}
+                                onChange={handler} />
+                        }
+                        {this.renderLabel(option)}
                     </li>
                 )
             })
+    }
+
+    renderLabel(option) {
+        let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name)
+        if(option.active !== undefined) {
+            label = <LittleStatus text={label} type={option.active ? "success" : "inactive"}  />
+        }
+        return (
+            <label className={`${this.name}__label`}>
+                {label}
+                {" "}
+                <span className={`${this.name}__count`}>
+                    {typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }
+                </span>
+            </label>
+        )
     }
 
     renderBoxes() {
@@ -156,7 +169,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             return render(options)
         } else {
             return Object.keys(options).map(function(key) {
-                return (<div><li className={className}>{key}</li>{render(options[key])}</div>)
+                return (<div><li key={`size_${key}`} className={className}>{key}</li>{render(options[key])}</div>)
             })
         }
     }

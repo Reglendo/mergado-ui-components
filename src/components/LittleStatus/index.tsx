@@ -3,9 +3,9 @@ import {prefix} from "../../config"
 
 export interface Props {
     /** Status title */
-    title: string
+    title?: string
     /** Status type */
-        type: "warning" | "success" | "error" | "inactive" | ""
+    type: "warning" | "success" | "error" | "inactive" | ""
     /** Status text */
     text?: string,
     style?: any
