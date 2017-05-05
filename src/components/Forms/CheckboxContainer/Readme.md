@@ -84,6 +84,13 @@ Invalid container
 Multilevel options
 
     <CheckboxContainer availableQueries={{
+                        '': [
+                            {
+                                id: 999,
+                                name: "Empty query",
+                                product_count: 0
+                            }
+                        ],
                         'First group': [
                             {
                                 id: 1,

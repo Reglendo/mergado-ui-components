@@ -176,7 +176,11 @@ class CheckboxContainer extends React.Component<Props, State> {
             return render(options)
         } else {
             return Object.keys(options).map(function(key) {
-                return (<div><li key={`size_${key}`} className={className}>{key}</li>{render(options[key])}</div>)
+                if(key === '') {
+                    return render(options[key])
+                } else {
+                    return (<div key={`size_${key}`}><li key={`size_${key}`} className={className}>{key}</li>{render(options[key])}</div>)
+                }
             })
         }
     }
