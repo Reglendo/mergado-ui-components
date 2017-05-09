@@ -72,7 +72,7 @@ node {
                                 sh 'git checkout -f master'
                                 sh 'git pull -f origin master'
                                 sh 'git checkout stash -- . || echo "Unstash failed. There is probably nothing stashed."'
-                                sh 'git add --all *'
+                                sh 'git add --all .'
                                 sh 'git commit -m "js+css build [ci skip]" || echo "Commit failed. There is probably nothing to commit."'
                                 sh 'git push'
 
