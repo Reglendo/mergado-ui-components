@@ -79,7 +79,7 @@ node {
                                 sh 'npm publish'
 
                                 commit_msg = sh(script: "git log -2", returnStdout: true)
-                                slackSend channel: '#reglendo_devs', color: 'good', message: "MUK published - *${env.JOB_NAME}* [${env.BUILD_NUMBER}] ${env.BUILD_URL}\n${commit_msg}", teamDomain: 'mergado', token: 'hGX8um8R0miKaAOedZyX7GvC'
+                                slackSend channel: '#reglendo_devs', color: 'good', message: "Mergado-UI-kit published - *${env.JOB_NAME}* [${env.BUILD_NUMBER}] ${env.BUILD_URL}\n${commit_msg}", teamDomain: 'mergado', token: 'hGX8um8R0miKaAOedZyX7GvC'
                             }
                         }
                     }
