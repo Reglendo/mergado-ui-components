@@ -77,8 +77,9 @@ node {
                                 sh 'git push'
 
                                 echo 'Publish'
-                                withCredentials([usernamePassword(credentialsId: 'npm', passwordVariable: 'NPM_PWD', usernameVariable: 'NPM_LOGIN')]) {
-                                    sh 'echo -e "$NPM_LOGIN\n$NPM_PWD\nping@reglendo.com" | npm login'
+                                reglendo-bot-npm-token
+                                withCredentials([string(credentialsId: 'reglendo-bot-npm-token', variable: 'NPM_TOKEN')]) {
+                                    sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /home/jenkins/.npmrc'
                                     sh 'npm publish'
                                 }
 
