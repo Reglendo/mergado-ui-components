@@ -79,7 +79,7 @@ node {
                                 echo 'Publish'
                                 withCredentials([string(credentialsId: 'reglendo-bot-npm-token', variable: 'NPM_TOKEN')]) {
                                     sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /home/jenkins/.npmrc'
-                                    sh 'npm publish'
+                                    sh 'npm publish || echo "Publish failed. No new version?"'
                                 }
 
                                 commit_msg = sh(script: "git log -2", returnStdout: true)
