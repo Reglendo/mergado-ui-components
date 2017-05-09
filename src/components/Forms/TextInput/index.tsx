@@ -77,10 +77,10 @@ class TextInput extends React.Component<Props, State> {
 
 
     render() {
-        const { id, type, meta, input } = this.props
+        const { id, type, meta, input, addClass } = this.props
         const inputId = id?id:`${meta.form}-${input.name}`
         return (
-            <div className={`${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
+            <div className={`${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
