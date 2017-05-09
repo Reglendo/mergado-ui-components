@@ -61,7 +61,7 @@ node {
                             sh 'npm run test test/**/*'
                         }
                     }
-                    if(env.BRANCH_NAME == 'master') {
+                    if(env.BRANCH_NAME != 'master') {
                         stage("publishing") {
                             steps {
                                 echo 'Commit'
@@ -76,7 +76,10 @@ node {
                                 sh 'git push'
 
                                 echo 'Publish'
-                                sh 'npm publish'
+                                withCredentials([usernamePassword(credentialsId: 'npm', passwordVariable: 'NPM_PWD', usernameVariable: 'NPM_EMAIL')]) {
+                                    sh 'echo -e "reglendo-bot\n$NPM_PWD\n$NPM_EMAIL" | npm login'
+                                    sh 'npm publish'
+                                }
 
                                 commit_msg = sh(script: "git log -2", returnStdout: true)
                                 slackSend channel: '#reglendo_devs', color: 'good', message: "Mergado-UI-kit published - *${env.JOB_NAME}* [${env.BUILD_NUMBER}] ${env.BUILD_URL}\n${commit_msg}", teamDomain: 'mergado', token: 'hGX8um8R0miKaAOedZyX7GvC'
