@@ -26,7 +26,7 @@
       "companyEmail": "martin.hrncir@reglendo.com"
     }
   ],
-  "authors": "Reglendo Technologies s. r. o.",
+  "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
     "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons#0.1.1",
     "moment": "^2.18.1",

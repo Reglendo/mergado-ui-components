@@ -77,8 +77,8 @@ node {
                                 sh 'git push'
 
                                 echo 'Publish'
-                                withCredentials([usernamePassword(credentialsId: 'npm', passwordVariable: 'NPM_PWD', usernameVariable: 'NPM_EMAIL')]) {
-                                    sh 'echo -e "reglendo-bot\n$NPM_PWD\n$NPM_EMAIL" | npm login'
+                                withCredentials([usernamePassword(credentialsId: 'npm', passwordVariable: 'NPM_PWD', usernameVariable: 'NPM_LOGIN')]) {
+                                    sh 'echo -e "$NPM_LOGIN\n$NPM_PWD\nping@reglendo.com" | npm login'
                                     sh 'npm publish'
                                 }
 
