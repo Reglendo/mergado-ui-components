@@ -61,7 +61,7 @@ node {
                             sh 'npm run test test/**/*'
                         }
                     }
-                    if(env.BRANCH_NAME != 'master') {
+                    if(env.BRANCH_NAME == 'master') {
                         stage("publishing") {
                             steps {
                                 echo 'Commit'
