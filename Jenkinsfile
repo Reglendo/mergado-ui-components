@@ -53,12 +53,12 @@ node {
                     }
                     stage("build") {
                         steps {
-                            sh 'npm prepublish'
+                            sh 'npm run build-prod'
                         }
                     }
                     stage("test") {
                         steps {
-                            sh 'npm test test/**/*'
+                            sh 'npm run test test/**/*'
                         }
                     }
                     if(env.BRANCH_NAME == 'master') {
