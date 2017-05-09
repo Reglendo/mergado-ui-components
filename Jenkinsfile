@@ -1,5 +1,3 @@
-#npm publish
-
 node {
     checkout scm
     skip_build = sh (script: "git log -1 | grep '\\[ci skip\\]'", returnStatus: true)
@@ -66,6 +64,18 @@ node {
                     if(env.BRANCH_NAME == 'master') {
                         stage("publishing") {
                             steps {
+                                echo 'Commit'
+                                sh 'git stash'
+                                sh 'git fetch --all'
+                                sh 'git reset --hard'
+                                sh 'git checkout -f master'
+                                sh 'git pull -f origin master'
+                                sh 'git checkout stash -- . || echo "Unstash failed. There is probably nothing stashed."'
+                                sh 'git add --all www/*'
+                                sh 'git commit -m "js+css build [ci skip]" || echo "Commit failed. There is probably nothing to commit."'
+                                sh 'git push'
+
+                                echo 'Publish'
                                 sh 'npm publish'
 
                                 commit_msg = sh(script: "git log -2", returnStdout: true)
