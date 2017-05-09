@@ -16,26 +16,32 @@ describe("Button", () => {
         renderer.render(<Button icon={<Icon type="mergado" />} labels={{main: 'Button'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 4);
-        chai.assert.strictEqual(result.props.children[0].type, 'div');
+        chai.assert.strictEqual(result.props.children.length, 6);
         chai.assert.strictEqual(result.props.children[1].type, 'button');
+    });
+
+    it("should render correctly href", () => {
+        renderer.render(<Button type="href" icon={<Icon type="mergado"/>} labels={{main: 'Link'}} />);
+        const result = renderer.getRenderOutput();
+        chai.assert.strictEqual(result.type, "div");
+        chai.assert.strictEqual(result.props.children.length, 6);
+        chai.assert.strictEqual(result.props.children[5].type, 'a');
     });
 
     it("should render correctly link", () => {
         renderer.render(<Button type="link" icon={<Icon type="mergado"/>} labels={{main: 'Link'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 4);
-        chai.assert.strictEqual(result.props.children[0].type, 'div');
-        chai.assert.strictEqual(result.props.children[2].type, 'a');
+        chai.assert.strictEqual(result.props.children.length, 6);
+        chai.assert.strictEqual(result.props.children[2].type.displayName, 'Link');
     });
+
 
     it("should render correctly submit", () => {
         renderer.render(<Button type="submit" icon={<Icon type="mergado"/>} labels={{main: 'Link'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 4);
-        chai.assert.strictEqual(result.props.children[0].type, 'div');
+        chai.assert.strictEqual(result.props.children.length, 6);
         chai.assert.strictEqual(result.props.children[3].type, 'input');
     });
 

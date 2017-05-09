@@ -1,6 +1,6 @@
 {
   "name": "mergado-ui-kit",
-  "version": "1.2.1-dev",
+  "version": "1.2.2-dev",
   "description": "",
   "main": "dist/js/index.js",
   "scripts": {
@@ -20,6 +20,10 @@
       "name": "Samuel Hudec",
       "email": "hudecsamuel@gmail.com",
       "companyEmail": "samuel.hudec.reglendo.com"
+    },
+    {
+      "name": "Martin Hrncir",
+      "companyEmail": "martin.hrncir@reglendo.com"
     }
   ],
   "authors": "Reglendo Technologies s. r. o.",

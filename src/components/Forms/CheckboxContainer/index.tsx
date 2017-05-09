@@ -3,6 +3,8 @@ import InputProps from "../default_props"
 import {prefix} from "../../../config"
 import LittleStatus from "../../LittleStatus"
 import {Link} from "react-router"
+import uniqueId from "../../../helpers/unique_id"
+
 
 export interface Query {
     id: number
@@ -110,6 +112,16 @@ class CheckboxContainer extends React.Component<Props, State> {
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
             queries = []
         }
+
+        let allProductsOption : any;
+        const isAllProducts = options.map( (option,key) => {
+            if(option.name === "♥ALLPRODUCTS♥") {
+                let object : any = Object
+                allProductsOption = object.assign({}, option, { key: key })
+            }
+            return (option.name === "♥ALLPRODUCTS♥" && queries.indexOf(option.id))
+        })
+
         return options
             .filter((option) => {
                 var regex = new RegExp(this.state.filter, 'i');
@@ -119,6 +131,10 @@ class CheckboxContainer extends React.Component<Props, State> {
                 const index = queries.indexOf(option.id);
                 let handler = () => {
                     if (index < 0) { // wasn't selected
+                        if(isAllProducts[allProductsOption['key']] !== false && isAllProducts[allProductsOption['key']] > -1) {
+                            // 'All products' option is already selected, remove it
+                            queries.splice(queries.indexOf(allProductsOption['id']), 1)
+                        }
                         if (this.props.singleChoice === false) {
                             this.props.input.onChange(queries.concat(option.id));
                         } else {
@@ -133,9 +149,9 @@ class CheckboxContainer extends React.Component<Props, State> {
 
                 return (
                     <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
-                                    ${option.disabled ? `${this.name}__item--disabled` : ''}
-                                `}
-                        key={option.id} onClick={handler}>
+                                    ${option.disabled ? `${this.name}__item--disabled` : ''}` }
+                        key={uniqueId()}
+                        onClick={handler}>
                         {this.props.singleChoice == false &&
                             <input
                                 type="checkbox"
@@ -181,7 +197,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                 if(key === '') {
                     return render(options[key])
                 } else {
-                    return (<div key={`size_${key}`}><li key={`size_${key}`} className={className}>{key}</li>{render(options[key])}</div>)
+                    return (<div key={`size_${key}_${uniqueId()}`}><li key={`option_${key}_${uniqueId()}`} className={className}>{key}</li>{render(options[key])}</div>)
                 }
             })
         }

@@ -5,15 +5,15 @@ Multiple choices
     <Field component={CheckboxContainer} name="queries"
                 props={{
                         availableQueries: [{
-                            id: 1,
+                            id: 999,
                             name: "First query",
                             product_count: 50
                         },{
-                            id: 2,
+                            id: 1000,
                             name: "♥ALLPRODUCTS♥",
                             product_count: 100
                         },{
-                            id: 3,
+                            id: 1001,
                             name: "Third query",
                             product_count: 100
                         }],
