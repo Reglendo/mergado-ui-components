@@ -31,9 +31,11 @@
       transform: rotate(-45deg)
       background: #777
       vertical-align: middle
-      border: 3px solid #777
+      border: solid #777
+      border-width: 0 3px 3px 0
       margin-right: -14px
-      clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%);
+      margin-left: -14px
+      clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%)
       position: relative
       z-index: 1
 
@@ -44,6 +46,9 @@
       &:after
         background: $color-wizard
 
+      .#{$prefix}wizard_nav__item__step
+        background-color: $color-wizard
+
 
   &__item__step
     font-size: 13px
@@ -53,6 +58,8 @@
     color: #fff
     margin-left: 35px
     min-width: 60px
+    position: relative
+    z-index: 2
 
     &:hover
       text-decoration: none

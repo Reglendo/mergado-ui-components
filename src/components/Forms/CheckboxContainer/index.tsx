@@ -113,7 +113,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             queries = []
         }
 
-        let allProductsOption : any;
+        let allProductsOption : any = null;
         const isAllProducts = options.map( (option,key) => {
             if(option.name === "♥ALLPRODUCTS♥") {
                 let object : any = Object
@@ -131,9 +131,11 @@ class CheckboxContainer extends React.Component<Props, State> {
                 const index = queries.indexOf(option.id);
                 let handler = () => {
                     if (index < 0) { // wasn't selected
-                        if(isAllProducts[allProductsOption['key']] !== false && isAllProducts[allProductsOption['key']] > -1) {
-                            // 'All products' option is already selected, remove it
-                            queries.splice(queries.indexOf(allProductsOption['id']), 1)
+                        if(allProductsOption &&
+                            isAllProducts[allProductsOption['key']] !== false &&
+                            isAllProducts[allProductsOption['key']] > -1) {
+                                // 'All products' option is already selected, remove it
+                                queries.splice(queries.indexOf(allProductsOption['id']), 1)
                         }
                         if (this.props.singleChoice === false) {
                             this.props.input.onChange(queries.concat(option.id));
