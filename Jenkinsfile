@@ -65,13 +65,14 @@ node {
                         stage("publishing") {
                             steps {
                                 echo 'Commit'
+                                sh 'git status'
                                 sh 'git stash'
                                 sh 'git fetch --all'
                                 sh 'git reset --hard'
                                 sh 'git checkout -f master'
                                 sh 'git pull -f origin master'
                                 sh 'git checkout stash -- . || echo "Unstash failed. There is probably nothing stashed."'
-                                sh 'git add --all www/*'
+                                sh 'git add --all *'
                                 sh 'git commit -m "js+css build [ci skip]" || echo "Commit failed. There is probably nothing to commit."'
                                 sh 'git push'
 
