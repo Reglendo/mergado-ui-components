@@ -9,6 +9,8 @@ interface FieldProps {
         onDrop?: (value: any) => void
         onFocus?: (value: any) => void
         style?: any
+        readonly?: boolean
+        disabled?: boolean
     }
     meta?: {
         active: boolean

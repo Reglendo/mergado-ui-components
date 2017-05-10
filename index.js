@@ -447,7 +447,7 @@ module.exports = reactProdInvariant;
 
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.prefix = "muk-";
 
 
@@ -4377,14 +4377,14 @@ module.exports = SyntheticUIEvent;
 
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 function default_1() {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.
     return '_' + Math.random().toString(36).substr(2, 9);
 }
-exports["default"] = default_1;
+exports.default = default_1;
 
 
 /***/ }),
@@ -15580,46 +15580,33 @@ module.exports = ReactPropTypesSecret;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var LittleStatus = (function (_super) {
-    __extends(LittleStatus, _super);
-    function LittleStatus() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "little_status";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class LittleStatus extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "little_status";
     }
-    LittleStatus.prototype.render = function () {
-        var className = this.name + " " + this.name + "--" + this.props.type;
-        var classIndikator = this.name + "__indikator tooltip";
-        var classText = this.name + "__text";
-        var text = this.props.text ? (React.createElement("span", { className: classText },
+    render() {
+        let className = `${this.name} ${this.name}--${this.props.type}`;
+        let classIndikator = `${this.name}__indikator tooltip`;
+        let classText = `${this.name}__text`;
+        let text = this.props.text ? (React.createElement("span", { className: classText },
             " ",
             this.props.text)) : this.props.children;
         return (React.createElement("span", { className: className, style: this.props.style },
             React.createElement("span", { className: classIndikator, title: this.props.title }),
             text));
-    };
-    return LittleStatus;
-}(React.Component));
+    }
+}
 LittleStatus.defaultProps = {
     title: "",
     type: "success",
     text: "",
     style: {}
 };
-exports["default"] = LittleStatus;
+exports.default = LittleStatus;
 
 
 /***/ }),
@@ -15628,91 +15615,76 @@ exports["default"] = LittleStatus;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var close_1 = __webpack_require__(312);
-var unique_id_1 = __webpack_require__(44);
-var Toast = (function (_super) {
-    __extends(Toast, _super);
-    function Toast(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "toast";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const close_1 = __webpack_require__(312);
+const unique_id_1 = __webpack_require__(44);
+class Toast extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "toast";
+        this.state = {
             visible: true,
             paused: false,
             secondsLeft: props.timeout / 1000
         };
-        return _this;
     }
-    Toast.prototype.componentDidMount = function () {
-        var _this = this;
+    componentDidMount() {
         if (this.props.isPaused() !== true && this.props.timeout > 0) {
-            var interval = window.setInterval(function () {
-                if (_this.state.secondsLeft < 1) {
-                    _this.hideToast();
+            var interval = window.setInterval(() => {
+                if (this.state.secondsLeft < 1) {
+                    this.hideToast();
                     window.clearInterval(interval);
                 }
                 else {
-                    _this.setState({
+                    this.setState({
                         visible: true,
                         paused: false,
-                        secondsLeft: _this.state.secondsLeft > 0 ? _this.state.secondsLeft - 1 : _this.state.secondsLeft
+                        secondsLeft: this.state.secondsLeft > 0 ? this.state.secondsLeft - 1 : this.state.secondsLeft
                     });
                 }
             }, 1000);
         }
-    };
-    Toast.prototype.hideToast = function () {
+    }
+    hideToast() {
         this.setState({
             visible: false,
             paused: true,
             secondsLeft: 0
         });
-    };
-    Toast.prototype.removeToast = function (evt) {
+    }
+    removeToast(evt) {
         evt.preventDefault();
         if (this.props.onClose(this.props.id) === true) {
             this.hideToast();
         }
-    };
-    Toast.prototype.render = function () {
-        var _this = this;
-        return (React.createElement("div", { style: this.props.style, className: this.name + "__wrapper " + (this.state.visible ? '' : 'hidden') },
-            React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type },
-                React.createElement("div", { className: this.name + "__icon" }, this.props.icon),
-                React.createElement("div", { className: this.name + "__content" }, this.props.text.replace('%seconds%', this.state.secondsLeft + 's')),
+    }
+    render() {
+        return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}` },
+            React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}` },
+                React.createElement("div", { className: `${this.name}__icon` }, this.props.icon),
+                React.createElement("div", { className: `${this.name}__content` }, this.props.text.replace('%seconds%', this.state.secondsLeft + 's')),
                 this.props.closeable &&
-                    React.createElement("div", { className: this.name + "__close" },
-                        React.createElement("a", { className: this.name + "__button", onClick: function (evt) {
-                                _this.removeToast(evt);
+                    React.createElement("div", { className: `${this.name}__close` },
+                        React.createElement("a", { className: `${this.name}__button`, onClick: (evt) => {
+                                this.removeToast(evt);
                             } },
-                            React.createElement(close_1["default"], null))))));
-    };
-    return Toast;
-}(React.Component));
+                            React.createElement(close_1.default, null))))));
+    }
+}
 Toast.defaultProps = {
-    id: unique_id_1["default"](),
+    id: unique_id_1.default(),
     text: '',
     type: "info",
     icon: null,
-    isPaused: function () { return false; },
-    onClose: function () { return true; },
+    isPaused: () => { return false; },
+    onClose: () => { return true; },
     timeout: 0,
     closeable: true,
     style: {}
 };
-exports["default"] = Toast;
+exports.default = Toast;
 
 
 /***/ }),
@@ -15721,55 +15693,55 @@ exports["default"] = Toast;
 
 "use strict";
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Button_1 = __webpack_require__(452);
-exports.Button = Button_1["default"];
+exports.Button = Button_1.default;
 var Checkbox_1 = __webpack_require__(453);
-exports.Checkbox = Checkbox_1["default"];
+exports.Checkbox = Checkbox_1.default;
 var CheckboxContainer_1 = __webpack_require__(454);
-exports.CheckboxContainer = CheckboxContainer_1["default"];
+exports.CheckboxContainer = CheckboxContainer_1.default;
 var ColorPicker_1 = __webpack_require__(455);
-exports.ColorPicker = ColorPicker_1["default"];
+exports.ColorPicker = ColorPicker_1.default;
 var Radio_1 = __webpack_require__(456);
-exports.Radio = Radio_1["default"];
+exports.Radio = Radio_1.default;
 var Range_1 = __webpack_require__(457);
-exports.Range = Range_1["default"];
+exports.Range = Range_1.default;
 var Select_1 = __webpack_require__(458);
-exports.Select = Select_1["default"];
+exports.Select = Select_1.default;
 var TextInput_1 = __webpack_require__(459);
-exports.TextInput = TextInput_1["default"];
+exports.TextInput = TextInput_1.default;
 var Textarea_1 = __webpack_require__(460);
-exports.Textarea = Textarea_1["default"];
+exports.Textarea = Textarea_1.default;
 var LittleStatus_1 = __webpack_require__(183);
-exports.LittleStatus = LittleStatus_1["default"];
+exports.LittleStatus = LittleStatus_1.default;
 var Paginator_1 = __webpack_require__(461);
-exports.Paginator = Paginator_1["default"];
+exports.Paginator = Paginator_1.default;
 var Placeholder_1 = __webpack_require__(462);
-exports.Placeholder = Placeholder_1["default"];
+exports.Placeholder = Placeholder_1.default;
 var PopupHint_1 = __webpack_require__(464);
-exports.PopupHint = PopupHint_1["default"];
+exports.PopupHint = PopupHint_1.default;
 var Spinner_1 = __webpack_require__(465);
-exports.Spinner = Spinner_1["default"];
+exports.Spinner = Spinner_1.default;
 var Toasts_1 = __webpack_require__(466);
-exports.Toasts = Toasts_1["default"];
+exports.Toasts = Toasts_1.default;
 var Toast_1 = __webpack_require__(184);
-exports.Toast = Toast_1["default"];
+exports.Toast = Toast_1.default;
 var TopNav_1 = __webpack_require__(468);
-exports.TopNav = TopNav_1["default"];
+exports.TopNav = TopNav_1.default;
 var NavLink_1 = __webpack_require__(467);
-exports.NavLink = NavLink_1["default"];
+exports.NavLink = NavLink_1.default;
 var WizardNav_1 = __webpack_require__(470);
-exports.WizardNav = WizardNav_1["default"];
+exports.WizardNav = WizardNav_1.default;
 var WizardStep_1 = __webpack_require__(469);
-exports.WizardStep = WizardStep_1["default"];
+exports.WizardStep = WizardStep_1.default;
 var Datagrid_1 = __webpack_require__(451);
-exports.Datagrid = Datagrid_1["default"];
+exports.Datagrid = Datagrid_1.default;
 var DataRow_1 = __webpack_require__(450);
-exports.DataRow = DataRow_1["default"];
+exports.DataRow = DataRow_1.default;
 var DataCell_1 = __webpack_require__(448);
-exports.DataCell = DataCell_1["default"];
+exports.DataCell = DataCell_1.default;
 var DataHeader_1 = __webpack_require__(449);
-exports.DataHeader = DataHeader_1["default"];
+exports.DataHeader = DataHeader_1.default;
 
 
 /***/ }),
@@ -39281,44 +39253,31 @@ module.exports = function (str) {
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var DataCell = (function (_super) {
-    __extends(DataCell, _super);
-    function DataCell() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "datagrid__cell";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class DataCell extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "datagrid__cell";
     }
-    DataCell.prototype.render = function () {
-        var _a = this.props, style = _a.style, type = _a.type, addClass = _a.addClass, onClick = _a.onClick;
+    render() {
+        const { style, type, addClass, onClick } = this.props;
         if (type === 'cell') {
-            return (React.createElement("td", { className: this.name + " " + addClass, style: style, onClick: onClick }, this.props.children));
+            return (React.createElement("td", { className: `${this.name} ${addClass}`, style: style, onClick: onClick }, this.props.children));
         }
         else {
-            return (React.createElement("th", { className: this.name + " " + this.name + "--header " + addClass, style: style, onClick: onClick }, this.props.children));
+            return (React.createElement("th", { className: `${this.name} ${this.name}--header ${addClass}`, style: style, onClick: onClick }, this.props.children));
         }
-    };
-    return DataCell;
-}(React.Component));
+    }
+}
 DataCell.defaultProps = {
     addClass: '',
     style: {},
     type: 'cell',
-    onClick: function () { }
+    onClick: () => { }
 };
-exports["default"] = DataCell;
+exports.default = DataCell;
 
 
 /***/ }),
@@ -39327,39 +39286,26 @@ exports["default"] = DataCell;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var DataHeader = (function (_super) {
-    __extends(DataHeader, _super);
-    function DataHeader() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "datagrid__row";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class DataHeader extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "datagrid__row";
     }
-    DataHeader.prototype.render = function () {
-        var _a = this.props, cells = _a.cells, style = _a.style, addClass = _a.addClass;
+    render() {
+        const { cells, style, addClass } = this.props;
         return (React.createElement("thead", null,
-            React.createElement("tr", { className: this.name + " " + this.name + "--header " + addClass, style: style }, cells)));
-    };
-    return DataHeader;
-}(React.Component));
+            React.createElement("tr", { className: `${this.name} ${this.name}--header ${addClass}`, style: style }, cells)));
+    }
+}
 DataHeader.defaultProps = {
     cells: [],
     addClass: '',
-    style: {}
+    style: {},
 };
-exports["default"] = DataHeader;
+exports.default = DataHeader;
 
 
 /***/ }),
@@ -39368,32 +39314,19 @@ exports["default"] = DataHeader;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var DataRow = (function (_super) {
-    __extends(DataRow, _super);
-    function DataRow() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "datagrid__row";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class DataRow extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "datagrid__row";
     }
-    DataRow.prototype.render = function () {
-        var _a = this.props, cells = _a.cells, style = _a.style, addClass = _a.addClass, inactive = _a.inactive, dataId = _a.dataId;
-        return (React.createElement("tr", { className: this.name + " " + (inactive && this.name + "--inactive") + " " + addClass, "data-id": dataId, style: style }, cells));
-    };
-    return DataRow;
-}(React.Component));
+    render() {
+        const { cells, style, addClass, inactive, dataId } = this.props;
+        return (React.createElement("tr", { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, "data-id": dataId, style: style }, cells));
+    }
+}
 DataRow.defaultProps = {
     cells: [],
     addClass: '',
@@ -39401,7 +39334,7 @@ DataRow.defaultProps = {
     inactive: false,
     dataId: null
 };
-exports["default"] = DataRow;
+exports.default = DataRow;
 
 
 /***/ }),
@@ -39410,53 +39343,32 @@ exports["default"] = DataRow;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const Sortable = __webpack_require__(424);
+class Datagrid extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "datagrid";
     }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Sortable = __webpack_require__(424);
-var Datagrid = (function (_super) {
-    __extends(Datagrid, _super);
-    function Datagrid() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "datagrid";
-        return _this;
-    }
-    Datagrid.prototype.render = function () {
-        var _a = this.props, rows = _a.rows, header = _a.header, sortable = _a.sortable, sortableProps = _a.sortableProps, addClass = _a.addClass, style = _a.style;
-        var className = this.name + " " + this.props.addClass;
+    render() {
+        const { rows, header, sortable, sortableProps, addClass, style } = this.props;
+        let className = `${this.name} ${this.props.addClass}`;
         return (React.createElement("table", { className: className, style: style },
             header,
-            sortable ? React.createElement(Sortable, __assign({ tag: "tbody" }, sortableProps), rows) : React.createElement("tbody", null, rows)));
-    };
-    return Datagrid;
-}(React.Component));
+            sortable ? React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), rows) : React.createElement("tbody", null, rows)));
+    }
+}
 Datagrid.defaultProps = {
     style: {},
     addClass: '',
     rows: [],
     header: [],
     sortable: false,
-    sortableProps: {}
+    sortableProps: {},
 };
-exports["default"] = Datagrid;
+exports.default = Datagrid;
 
 
 /***/ }),
@@ -39465,77 +39377,71 @@ exports["default"] = Datagrid;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var react_router_1 = __webpack_require__(175);
-var Button = (function (_super) {
-    __extends(Button, _super);
-    function Button() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "button";
-        _this.form = config_1.prefix + "form";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const react_router_1 = __webpack_require__(175);
+class Button extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "button";
+        this.form = config_1.prefix + "form";
     }
-    Button.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    Button.prototype.renderHref = function () {
-        var _a = this.props, link = _a.link, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
-        return (React.createElement("a", { href: link, className: this.name + "__item", onClick: onClick, title: labels.title },
+    }
+    renderHref() {
+        const { link, labels, icon, onClick } = this.props;
+        return (React.createElement("a", { href: link, className: `${this.name}__item`, onClick: onClick, title: labels.title },
             icon,
             labels.main));
-    };
-    Button.prototype.renderButton = function () {
-        var _a = this.props, input = _a.input, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
-        return (React.createElement("button", { className: this.name + "__item", onClick: onClick, name: input.name, title: labels.title },
+    }
+    renderButton() {
+        const { input, labels, icon, onClick } = this.props;
+        return (React.createElement("button", { className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title },
             icon,
             labels.main));
-    };
-    Button.prototype.renderLink = function () {
-        var _a = this.props, link = _a.link, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
-        return (React.createElement(react_router_1.Link, { to: link, className: this.name + "__item", onClick: onClick, title: labels.title },
+    }
+    renderLink() {
+        const { link, labels, icon, onClick } = this.props;
+        return (React.createElement(react_router_1.Link, { to: link, className: `${this.name}__item`, onClick: onClick, title: labels.title },
             icon,
             labels.main));
-    };
-    Button.prototype.renderSubmit = function () {
-        var _a = this.props, meta = _a.meta, input = _a.input, labels = _a.labels, onClick = _a.onClick;
-        var inputId = meta.form + "-" + input.name;
-        return (React.createElement("input", { type: "submit", className: this.name + "__item", value: "" + labels.main, id: inputId, name: input.name, title: labels.title, onClick: onClick }));
-    };
-    Button.prototype.renderVoid = function () {
-        var _a = this.props, input = _a.input, labels = _a.labels, icon = _a.icon, onClick = _a.onClick;
-        return (React.createElement("span", { className: this.name + "__item", onClick: onClick, name: input.name, title: labels.title },
+    }
+    renderSubmit() {
+        const { meta, input, labels, onClick } = this.props;
+        const inputId = `${meta.form}-${input.name}`;
+        return (React.createElement("input", { type: "submit", className: `${this.name}__item`, value: `${labels.main}`, id: inputId, name: input.name, title: labels.title, onClick: onClick }));
+    }
+    renderVoid() {
+        const { input, labels, icon, onClick } = this.props;
+        return (React.createElement("span", { className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title },
             icon,
             labels.main));
-    };
-    Button.prototype.render = function () {
-        var _a = this.props, type = _a.type, color = _a.color, state = _a.state, size = _a.size, addClass = _a.addClass, meta = _a.meta;
-        return (React.createElement("div", { className: this.name + " " + this.name + "--" + color + "\n                             " + (!this.props.labels.main ? this.name + "--notext" : "") + "\n                             " + (size ? this.name + "--" + size : "") + "\n                             " + (state ? this.name + "--" + state : "") + "\n                             " + (addClass ? addClass : "") + "\n                             " + (type === 'submit' ? "{this.form}__group" : '') + "\n                             " + (type === 'submit' && meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                         ", title: this.props.labels.title, style: this.props.style },
+    }
+    render() {
+        const { type, color, state, size, addClass, meta } = this.props;
+        return (React.createElement("div", { className: `${this.name} ${this.name}--${color}
+                             ${!this.props.labels.main ? this.name + `--notext` : ``}
+                             ${size ? this.name + `--` + size : ``}
+                             ${state ? this.name + `--` + state : ``}
+                             ${addClass ? addClass : ``}
+                             ${type === 'submit' ? `{this.form}__group` : ''}
+                             ${type === 'submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                         `, title: this.props.labels.title, style: this.props.style },
             type == 'submit' && this.renderInvalid(),
             type == 'button' && this.renderButton(),
             type == 'link' && this.renderLink(),
             type == 'submit' && this.renderSubmit(),
             type == 'void' && this.renderVoid(),
             type == 'href' && this.renderHref()));
-    };
-    return Button;
-}(React.Component));
+    }
+}
 Button.defaultProps = {
     type: "button",
-    onClick: function (event) {
+    onClick: (event) => {
         return true;
     },
     icon: null,
@@ -39547,15 +39453,15 @@ Button.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -39582,7 +39488,7 @@ Button.defaultProps = {
         title: ""
     }
 };
-exports["default"] = Button;
+exports.default = Button;
 
 
 /***/ }),
@@ -39591,52 +39497,35 @@ exports["default"] = Button;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class Checkbox extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "input-checkbox";
+        this.form = config_1.prefix + "form";
     }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Checkbox = (function (_super) {
-    __extends(Checkbox, _super);
-    function Checkbox() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "input-checkbox";
-        _this.form = config_1.prefix + "form";
-        return _this;
-    }
-    Checkbox.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    Checkbox.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id, meta = _a.meta, labels = _a.labels;
-        var inputId = this.props.meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + " " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                         ", title: labels.title, style: style },
+    }
+    render() {
+        const { disabled, required, addClass, style, input, id, meta, labels } = this.props;
+        const inputId = `${this.props.meta.form}-${input.name}`;
+        return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
+                             ${required && this.name + `--` + required} ${addClass ? addClass : ``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                         `, title: labels.title, style: style },
             this.renderInvalid(),
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label " + this.form + "__input" },
-                React.createElement("input", __assign({ className: this.name + "__item", id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input)),
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label ${this.form}__input` },
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input)),
                 " ",
                 this.props.labels.main)));
-    };
-    return Checkbox;
-}(React.Component));
+    }
+}
 Checkbox.defaultProps = {
     disabled: false,
     required: false,
@@ -39646,15 +39535,15 @@ Checkbox.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -39681,7 +39570,7 @@ Checkbox.defaultProps = {
         title: ""
     }
 };
-exports["default"] = Checkbox;
+exports.default = Checkbox;
 
 
 /***/ }),
@@ -39690,106 +39579,95 @@ exports["default"] = Checkbox;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var LittleStatus_1 = __webpack_require__(183);
-var react_router_1 = __webpack_require__(175);
-var unique_id_1 = __webpack_require__(44);
-var CheckboxContainer = (function (_super) {
-    __extends(CheckboxContainer, _super);
-    function CheckboxContainer(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "checkbox_container";
-        _this.form = config_1.prefix + "form";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const LittleStatus_1 = __webpack_require__(183);
+const react_router_1 = __webpack_require__(175);
+const unique_id_1 = __webpack_require__(44);
+class CheckboxContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "checkbox_container";
+        this.form = config_1.prefix + "form";
+        this.state = {
             filter: ''
         };
-        return _this;
     }
-    CheckboxContainer.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    CheckboxContainer.prototype.renderOptions = function (options) {
-        var _this = this;
+    }
+    renderOptions(options) {
         if (typeof options === "object") {
-            var arr = Object.keys(options).map(function (key) { return options[key]; });
+            let arr = Object.keys(options).map((key) => options[key]);
             options = arr;
         }
-        var queries = this.props.input.value;
+        let queries = this.props.input.value;
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
             queries = [];
         }
-        var allProductsOption;
-        var isAllProducts = options.map(function (option, key) {
+        let allProductsOption = null;
+        const isAllProducts = options.map((option, key) => {
             if (option.name === "♥ALLPRODUCTS♥") {
-                var object = Object;
+                let object = Object;
                 allProductsOption = object.assign({}, option, { key: key });
             }
             return (option.name === "♥ALLPRODUCTS♥" && queries.indexOf(option.id));
         });
         return options
-            .filter(function (option) {
-            var regex = new RegExp(_this.state.filter, 'i');
+            .filter((option) => {
+            var regex = new RegExp(this.state.filter, 'i');
             return regex.test(option.name);
         })
-            .map(function (option) {
-            var index = queries.indexOf(option.id);
-            var handler = function () {
+            .map(option => {
+            const index = queries.indexOf(option.id);
+            let handler = () => {
                 if (index < 0) {
-                    if (isAllProducts[allProductsOption['key']] !== false && isAllProducts[allProductsOption['key']] > -1) {
+                    if (allProductsOption &&
+                        isAllProducts[allProductsOption['key']] !== false &&
+                        isAllProducts[allProductsOption['key']] > -1) {
                         // 'All products' option is already selected, remove it
                         queries.splice(queries.indexOf(allProductsOption['id']), 1);
                     }
-                    if (_this.props.singleChoice === false) {
-                        _this.props.input.onChange(queries.concat(option.id));
+                    if (this.props.singleChoice === false) {
+                        this.props.input.onChange(queries.concat(option.id));
                     }
                     else {
-                        _this.props.input.onChange([option.id]);
+                        this.props.input.onChange([option.id]);
                     }
                 }
                 else {
-                    var copy = queries.slice(); // make copy to not mutate value
+                    const copy = [...queries]; // make copy to not mutate value
                     copy.splice(index, 1); // remove item at index
-                    _this.props.input.onChange(copy);
+                    this.props.input.onChange(copy);
                 }
             };
-            return (React.createElement("li", { className: _this.name + "__item " + (index >= 0 ? _this.name + "__item--active" : '') + "\n                                    " + (option.disabled ? _this.name + "__item--disabled" : ''), key: unique_id_1["default"](), onClick: handler },
-                _this.props.singleChoice == false &&
-                    React.createElement("input", { type: "checkbox", className: _this.name + "__checkbox", checked: queries.indexOf(option.id) >= 0, onChange: handler }),
-                _this.renderLabel(option)));
+            return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
+                                    ${option.disabled ? `${this.name}__item--disabled` : ''}`, key: unique_id_1.default(), onClick: handler },
+                this.props.singleChoice == false &&
+                    React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler }),
+                this.renderLabel(option)));
         });
-    };
-    CheckboxContainer.prototype.renderLabel = function (option) {
-        var label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name);
+    }
+    renderLabel(option) {
+        let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name);
         if (option.link !== undefined) {
             label = React.createElement(react_router_1.Link, { to: option.link }, label);
         }
         if (option.active !== undefined) {
-            label = React.createElement(LittleStatus_1["default"], { type: option.active ? "success" : "inactive" }, label);
+            label = React.createElement(LittleStatus_1.default, { type: option.active ? "success" : "inactive" }, label);
         }
-        return (React.createElement("label", { className: this.name + "__label" },
+        return (React.createElement("label", { className: `${this.name}__label` },
             label,
             " ",
-            React.createElement("span", { className: this.name + "__count" }, typeof option.product_count !== "undefined" ? "(" + option.product_count + ")" : "")));
-    };
-    CheckboxContainer.prototype.renderBoxes = function () {
-        var _this = this;
-        var options = this.props.availableQueries;
-        var render = function (options) { return _this.renderOptions(options); };
-        var className = this.name + "__group";
+            React.createElement("span", { className: `${this.name}__count` }, typeof option.product_count !== "undefined" ? `(${option.product_count})` : "")));
+    }
+    renderBoxes() {
+        let options = this.props.availableQueries;
+        const render = (options) => this.renderOptions(options);
+        const className = this.name + `__group`;
         if (options.constructor === Array) {
             return render(options);
         }
@@ -39799,39 +39677,40 @@ var CheckboxContainer = (function (_super) {
                     return render(options[key]);
                 }
                 else {
-                    return (React.createElement("div", { key: "size_" + key + "_" + unique_id_1["default"]() },
-                        React.createElement("li", { key: "option_" + key + "_" + unique_id_1["default"](), className: className }, key),
+                    return (React.createElement("div", { key: `size_${key}_${unique_id_1.default()}` },
+                        React.createElement("li", { key: `option_${key}_${unique_id_1.default()}`, className: className }, key),
                         render(options[key])));
                 }
             });
         }
-    };
-    CheckboxContainer.prototype.render = function () {
-        var _this = this;
+    }
+    render() {
         return (React.createElement("div", { className: this.name, style: this.props.style },
-            React.createElement("h3", { className: this.name + "__header", title: this.props.meta.invalid ? this.props.labels.invalid :
+            React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid :
                     '' }, this.props.labels.main),
-            React.createElement("div", { className: this.name + "__queries\n                                 " + this.form + "__group\n                                 " + (this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? this.form + "__group--invalid" : '') + "\n                             " },
+            React.createElement("div", { className: `${this.name}__queries
+                                 ${this.form}__group
+                                 ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ` },
                 this.renderInvalid(),
-                this.props.withoutFilter === false ? (React.createElement("div", { className: this.name + "__filter" },
-                    React.createElement("input", { className: this.name + "__filter_input " + this.form + "__input--text", type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: function (evt) { _this.setState({ filter: evt.target.value }); } }))) : null,
-                React.createElement("ul", { className: this.name + "__list", style: { height: this.props.height } }, this.renderBoxes()))));
-    };
-    return CheckboxContainer;
-}(React.Component));
+                this.props.withoutFilter === false ? (React.createElement("div", { className: `${this.name}__filter` },
+                    React.createElement("input", { className: `${this.name}__filter_input ${this.form}__input--text`, type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: (evt) => { this.setState({ filter: evt.target.value }); } }))) : null,
+                React.createElement("ul", { className: `${this.name}__list`, style: { height: this.props.height } }, this.renderBoxes()))));
+    }
+}
 CheckboxContainer.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: []
     },
@@ -39863,7 +39742,7 @@ CheckboxContainer.defaultProps = {
     withoutFilter: false,
     height: 300
 };
-exports["default"] = CheckboxContainer;
+exports.default = CheckboxContainer;
 
 
 /***/ }),
@@ -39872,78 +39751,70 @@ exports["default"] = CheckboxContainer;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Chrome_1 = __webpack_require__(318);
-var ColorPicker = (function (_super) {
-    __extends(ColorPicker, _super);
-    function ColorPicker(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "colorpicker";
-        _this.form = config_1.prefix + "form";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const Chrome_1 = __webpack_require__(318);
+class ColorPicker extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "colorpicker";
+        this.form = config_1.prefix + "form";
+        this.state = {
             displayColorPicker: false,
             color: props.color
         };
-        _this.handleClick = _this.handleClick.bind(_this);
-        _this.handleClose = _this.handleClose.bind(_this);
-        return _this;
+        this.handleClick = this.handleClick.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
-    ColorPicker.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    ColorPicker.prototype.handleClick = function (evt) {
+    }
+    handleClick(evt) {
         evt.preventDefault();
         this.setState({ displayColorPicker: !this.state.displayColorPicker });
-    };
-    ColorPicker.prototype.handleClose = function (evt) {
+    }
+    handleClose(evt) {
         evt.preventDefault();
         this.setState({ displayColorPicker: false });
-    };
-    ColorPicker.prototype.handleChange = function (evt) {
+    }
+    handleChange(evt) {
         return false;
-    };
-    ColorPicker.prototype.handleChanged = function (evt) {
+    }
+    handleChanged(evt) {
         this.setState({ color: evt.rgb });
         return this.props.input.onChange(evt);
-    };
-    ColorPicker.prototype.renderPicker = function () {
-        return (React.createElement("div", { className: this.name + "__popover" },
-            React.createElement("div", { className: this.name + "__cover", onClick: this.handleClose }),
-            React.createElement(Chrome_1["default"], { color: this.state.color, onChange: this.handleChange.bind(this), onChangeComplete: this.handleChanged.bind(this) })));
-    };
-    ColorPicker.prototype.renderItem = function () {
-        var color = this.state.color;
-        var input = this.props.input;
-        var background = typeof color == "string" ? "#" + color.substring(0, 6) : "rgba(" + color.r + "," + color.g + "," + color.b + "," + color.a + ")";
-        var inputId = this.props.meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + "__picker " + this.form + "__input" },
+    }
+    renderPicker() {
+        return (React.createElement("div", { className: `${this.name}__popover` },
+            React.createElement("div", { className: `${this.name}__cover`, onClick: this.handleClose }),
+            React.createElement(Chrome_1.default, { color: this.state.color, onChange: this.handleChange.bind(this), onChangeComplete: this.handleChanged.bind(this) })));
+    }
+    renderItem() {
+        const { color } = this.state;
+        const { input } = this.props;
+        const background = typeof color == "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
+        const inputId = `${this.props.meta.form}-${input.name}`;
+        return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input` },
             React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),
-            React.createElement("div", { className: this.name + "__colorbox", style: { background: background }, onClick: this.handleClick }),
+            React.createElement("div", { className: `${this.name}__colorbox`, style: { background: background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
-    };
-    ColorPicker.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, labels = _a.labels, meta = _a.meta;
-        return (React.createElement("div", { className: this.name + " " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                          ", title: labels.title, style: style },
+    }
+    render() {
+        const { disabled, required, addClass, style, labels, meta } = this.props;
+        return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
+                             ${required && this.name + `--` + required}
+                             ${addClass ? addClass : ``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                          `, title: labels.title, style: style },
             this.renderInvalid(),
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label" }, labels.main),
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, labels.main),
             this.renderItem()));
-    };
-    return ColorPicker;
-}(React.Component));
+    }
+}
 ColorPicker.defaultProps = {
     disabled: false,
     required: false,
@@ -39952,15 +39823,15 @@ ColorPicker.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -39987,7 +39858,7 @@ ColorPicker.defaultProps = {
         title: ""
     }
 };
-exports["default"] = ColorPicker;
+exports.default = ColorPicker;
 
 
 /***/ }),
@@ -39996,52 +39867,37 @@ exports["default"] = ColorPicker;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class Radio extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "input-checkbox";
+        this.form = config_1.prefix + "form";
     }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Radio = (function (_super) {
-    __extends(Radio, _super);
-    function Radio() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "input-checkbox";
-        _this.form = config_1.prefix + "form";
-        return _this;
-    }
-    Radio.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    Radio.prototype.render = function () {
-        var _a = this.props, disabled = _a.disabled, required = _a.required, addClass = _a.addClass, style = _a.style, input = _a.input, id = _a.id, meta = _a.meta;
-        var inputId = this.props.meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + "\n                             " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                         ", title: this.props.labels.title, style: style },
+    }
+    render() {
+        const { disabled, required, addClass, style, input, id, meta } = this.props;
+        const inputId = `${this.props.meta.form}-${input.name}`;
+        return (React.createElement("div", { className: `${this.name}
+                             ${disabled && this.name + `--` + disabled}
+                             ${required && this.name + `--` + required}
+                             ${addClass ? addClass : ``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                         `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label" },
-                React.createElement("input", __assign({ className: this.name + "__item", id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input)),
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label` },
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input)),
                 " ",
                 this.props.labels.main)));
-    };
-    return Radio;
-}(React.Component));
+    }
+}
 Radio.defaultProps = {
     disabled: false,
     required: false,
@@ -40051,15 +39907,15 @@ Radio.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -40086,7 +39942,7 @@ Radio.defaultProps = {
         title: ""
     }
 };
-exports["default"] = Radio;
+exports.default = Radio;
 
 
 /***/ }),
@@ -40095,66 +39951,45 @@ exports["default"] = Radio;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Range = (function (_super) {
-    __extends(Range, _super);
-    function Range(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "input-range";
-        _this.form = config_1.prefix + "form";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class Range extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "input-range";
+        this.form = config_1.prefix + "form";
+        this.state = {
             value: props.input.value
         };
-        _this.handleChange = _this.handleChange.bind(_this);
-        return _this;
+        this.handleChange = this.handleChange.bind(this);
     }
-    Range.prototype.handleChange = function (evt) {
+    handleChange(evt) {
         this.setState({ value: evt.target.value });
         return this.props.input.onChange(evt.target.value);
-    };
-    Range.prototype.renderInvalid = function () {
+    }
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    Range.prototype.render = function () {
-        var _a = this.props, id = _a.id, meta = _a.meta, input = _a.input;
-        var inputId = meta.form + "-" + input.name;
-        var outputId = meta.form + "-" + input.name + "_output";
-        var outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
-        return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
+    }
+    render() {
+        const { id, meta, input } = this.props;
+        const inputId = `${meta.form}-${input.name}`;
+        const outputId = `${meta.form}-${input.name}_output`;
+        const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("div", { style: { position: 'relative' } },
-                React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-                React.createElement("input", __assign({ className: this.name + "__item " + this.form + "__input--text " + this.form + "__input--range " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, type: 'range', placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: function (evt) {
-                        var target = evt.target;
-                        var output = document.getElementById(outputId);
+                React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+                React.createElement("input", Object.assign({ className: `${this.name}__item ${this.form}__input--text ${this.form}__input--range ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, type: 'range', placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
+                        let target = evt.target;
+                        let output = document.getElementById(outputId);
                         output.value = target.value;
                     }, value: this.state.value })),
-                React.createElement("output", { className: this.form + "__input--range__output", style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
-    };
-    return Range;
-}(React.Component));
+                React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
+    }
+}
 Range.defaultProps = {
     max: 50,
     min: 0,
@@ -40162,17 +39997,17 @@ Range.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -40198,7 +40033,7 @@ Range.defaultProps = {
         title: ""
     }
 };
-exports["default"] = Range;
+exports.default = Range;
 
 
 /***/ }),
@@ -40207,67 +40042,53 @@ exports["default"] = Range;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const unique_id_1 = __webpack_require__(44);
+class Select extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "select";
+        this.form = config_1.prefix + "form";
     }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var unique_id_1 = __webpack_require__(44);
-var Select = (function (_super) {
-    __extends(Select, _super);
-    function Select() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "select";
-        _this.form = config_1.prefix + "form";
-        return _this;
-    }
-    Select.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    Select.prototype.renderOptions = function () {
-        return this.props.options.map(function (option) {
+    }
+    renderOptions() {
+        return this.props.options.map(option => {
             if (React.isValidElement(option)) {
                 if (option.key) {
                     return option;
                 }
                 else {
-                    var object = Object;
-                    return object.assign({}, option, { key: unique_id_1["default"]() });
+                    let object = Object;
+                    return object.assign({}, option, { key: unique_id_1.default() });
                 }
             }
             else {
-                return (React.createElement("option", { value: option.value, key: unique_id_1["default"]() }, option.title));
+                return (React.createElement("option", { value: option.value, key: unique_id_1.default() }, option.title));
             }
         });
-    };
-    Select.prototype.render = function () {
-        var _a = this.props, multiple = _a.multiple, disabled = _a.disabled, required = _a.required, size = _a.size, addClass = _a.addClass, style = _a.style, id = _a.id, meta = _a.meta;
-        var inputId = this.props.meta.form + "-" + this.props.input.name;
-        return (React.createElement("div", { className: this.name + "\n                             " + (multiple && this.name + "--" + multiple) + "\n                             " + (disabled && this.name + "--" + disabled) + "\n                             " + (required && this.name + "--" + required) + "\n                             " + (addClass ? addClass : "") + "\n                             " + this.form + "__group\n                             " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : '') + "\n                             ", title: this.props.labels.title, style: style },
+    }
+    render() {
+        const { multiple, disabled, required, size, addClass, style, id, meta } = this.props;
+        const inputId = `${this.props.meta.form}-${this.props.input.name}`;
+        return (React.createElement("div", { className: `${this.name}
+                             ${multiple && this.name + `--` + multiple}
+                             ${disabled && this.name + `--` + disabled}
+                             ${required && this.name + `--` + required}
+                             ${addClass ? addClass : ``}
+                             ${this.form}__group
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("select", __assign({ className: this.name + "__item", id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.props.input), this.renderOptions())));
-    };
-    return Select;
-}(React.Component));
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+            React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.props.input), this.renderOptions())));
+    }
+}
 Select.defaultProps = {
     options: [],
     multiple: false,
@@ -40280,15 +40101,15 @@ Select.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -40315,7 +40136,7 @@ Select.defaultProps = {
         title: ""
     }
 };
-exports["default"] = Select;
+exports.default = Select;
 
 
 /***/ }),
@@ -40324,64 +40145,43 @@ exports["default"] = Select;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class TextInput extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "input-text";
+        this.form = config_1.prefix + "form";
     }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var TextInput = (function (_super) {
-    __extends(TextInput, _super);
-    function TextInput() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "input-text";
-        _this.form = config_1.prefix + "form";
-        return _this;
-    }
-    TextInput.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    TextInput.prototype.render = function () {
-        var _a = this.props, id = _a.id, type = _a.type, meta = _a.meta, input = _a.input, addClass = _a.addClass;
-        var inputId = id ? id : meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + addClass + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
+    }
+    render() {
+        const { id, type, meta, input, addClass } = this.props;
+        const inputId = id ? id : `${meta.form}-${input.name}`;
+        return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--" + type + " " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input))));
-    };
-    return TextInput;
-}(React.Component));
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+            React.createElement("input", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: inputId, type: type, placeholder: this.props.labels.placeholder }, this.props.input))));
+    }
+}
 TextInput.defaultProps = {
     type: "text",
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -40409,7 +40209,7 @@ TextInput.defaultProps = {
         title: ""
     }
 };
-exports["default"] = TextInput;
+exports.default = TextInput;
 
 
 /***/ }),
@@ -40418,63 +40218,42 @@ exports["default"] = TextInput;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class Textarea extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "textarea";
+        this.form = config_1.prefix + "form";
     }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Textarea = (function (_super) {
-    __extends(Textarea, _super);
-    function Textarea() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "textarea";
-        _this.form = config_1.prefix + "form";
-        return _this;
-    }
-    Textarea.prototype.renderInvalid = function () {
+    renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: this.form + "__validation" }, this.props.labels.invalid));
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
-    };
-    Textarea.prototype.render = function () {
-        var _a = this.props, id = _a.id, meta = _a.meta, input = _a.input;
-        var inputId = meta.form + "-" + input.name;
-        return (React.createElement("div", { className: this.name + " " + this.form + "__group " + (meta.invalid && (meta.dirty || meta.touched) ? this.form + "__group--invalid" : ''), title: this.props.labels.title, style: this.props.style },
+    }
+    render() {
+        const { id, meta, input } = this.props;
+        const inputId = `${meta.form}-${input.name}`;
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
-            React.createElement("label", { className: this.name + "__label " + this.form + "__label", htmlFor: inputId }, this.props.labels.main),
-            React.createElement("textarea", __assign({ className: this.name + "__input " + this.form + "__input--text " + this.form + "__input--textarea " + (meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''), id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input), input.value)));
-    };
-    return Textarea;
-}(React.Component));
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input), input.value)));
+    }
+}
 Textarea.defaultProps = {
     input: {
         checked: false,
         name: "",
-        onBlur: function (value) {
+        onBlur: (value) => {
         },
-        onChange: function (value) {
+        onChange: (value) => {
         },
-        onDragStart: function (value) {
+        onDragStart: (value) => {
         },
-        onDrop: function (value) {
+        onDrop: (value) => {
         },
-        onFocus: function (value) {
+        onFocus: (value) => {
         },
         value: ""
     },
@@ -40502,7 +40281,7 @@ Textarea.defaultProps = {
         title: ""
     }
 };
-exports["default"] = Textarea;
+exports.default = Textarea;
 
 
 /***/ }),
@@ -40511,106 +40290,91 @@ exports["default"] = Textarea;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var unique_id_1 = __webpack_require__(44);
-var config_1 = __webpack_require__(5);
-var Paginator = (function (_super) {
-    __extends(Paginator, _super);
-    function Paginator(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "paginator";
-        _this.state = {
-            id: unique_id_1["default"](),
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const unique_id_1 = __webpack_require__(44);
+const config_1 = __webpack_require__(5);
+class Paginator extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "paginator";
+        this.state = {
+            id: unique_id_1.default(),
             current: 2
         };
-        return _this;
     }
-    Paginator.prototype.renderButton = function (label, page, clickable, active) {
-        var _this = this;
-        if (active === void 0) { active = false; }
-        var key = this.state.id + "-" + label + "-" + page;
-        var classLink = this.name + "__item";
-        var classDisabled = this.name + "__item " + this.name + "__item--disabled";
+    renderButton(label, page, clickable, active = false) {
+        let key = `${this.state.id}-${label}-${page}`;
+        let classLink = `${this.name}__item`;
+        let classDisabled = `${this.name}__item ${this.name}__item--disabled`;
         if (active) {
-            classDisabled = this.name + "__item " + this.name + "__item--active";
+            classDisabled = `${this.name}__item ${this.name}__item--active`;
         }
         if (clickable) {
-            return React.createElement("a", { className: classLink, href: "#", onClick: function (evt) { _this.pageClicked(evt, page); }, key: key }, label);
+            return React.createElement("a", { className: classLink, href: "#", onClick: (evt) => { this.pageClicked(evt, page); }, key: key }, label);
         }
         else {
             return React.createElement("span", { className: classDisabled, key: key }, label);
         }
-    };
-    Paginator.prototype.renderMainButtons = function () {
-        var buttons = [];
-        var range;
+    }
+    renderMainButtons() {
+        let buttons = [];
+        let range;
         if (this.props.maxLinks % 2 === 0) {
             range = (this.props.maxLinks - 2) / 2;
         }
         else {
             range = (this.props.maxLinks - 1) / 2;
         }
-        var topLimit = this.props.currentPage + range;
-        var bottomLimit = this.props.currentPage - range;
+        let topLimit = this.props.currentPage + range;
+        let bottomLimit = this.props.currentPage - range;
         if (topLimit > this.props.lastPage) {
-            var diff = topLimit - this.props.lastPage;
+            let diff = topLimit - this.props.lastPage;
             topLimit -= diff;
             bottomLimit -= diff;
         }
         if (bottomLimit < 1) {
-            var diff = Math.abs(1 - bottomLimit);
+            let diff = Math.abs(1 - bottomLimit);
             topLimit += diff;
             bottomLimit += diff;
         }
         if (topLimit > this.props.lastPage) {
             topLimit = this.props.lastPage;
         }
-        for (var i = bottomLimit; i <= topLimit; i++) {
-            var button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage);
+        for (let i = bottomLimit; i <= topLimit; i++) {
+            let button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage);
             buttons.push(button);
         }
         return buttons;
-    };
-    Paginator.prototype.renderPreviousButton = function () {
+    }
+    renderPreviousButton() {
         return this.renderButton(this.props.labelPrevious, this.props.currentPage - 1, this.props.currentPage !== 1);
-    };
-    Paginator.prototype.renderNextButton = function () {
+    }
+    renderNextButton() {
         return this.renderButton(this.props.labelNext, this.props.currentPage + 1, this.props.currentPage !== this.props.lastPage);
-    };
-    Paginator.prototype.renderFirstButton = function () {
+    }
+    renderFirstButton() {
         return this.renderButton(this.props.labelFirst, 1, this.props.currentPage !== 1);
-    };
-    Paginator.prototype.renderLastButton = function () {
+    }
+    renderLastButton() {
         return this.renderButton(this.props.labelLast, this.props.lastPage, this.props.currentPage !== this.props.lastPage);
-    };
-    Paginator.prototype.pageClicked = function (evt, pageNumber) {
+    }
+    pageClicked(evt, pageNumber) {
         evt.preventDefault();
         this.props.onPageChange(pageNumber);
-    };
-    Paginator.prototype.render = function () {
+    }
+    render() {
         return (React.createElement("div", { className: this.name, "data-active": this.props.currentPage, style: this.props.style },
             this.props.showFirstAndLast && this.renderFirstButton(),
             this.props.showPrevAndNext && this.renderPreviousButton(),
             this.renderMainButtons(),
             this.props.showPrevAndNext && this.renderNextButton(),
             this.props.showFirstAndLast && this.renderLastButton()));
-    };
-    return Paginator;
-}(React.Component));
+    }
+}
 Paginator.defaultProps = {
     currentPage: 1,
-    onPageChange: function () {
+    onPageChange: () => {
     },
     firstPage: 1,
     lastPage: 1,
@@ -40623,7 +40387,7 @@ Paginator.defaultProps = {
     maxLinks: 5,
     style: {}
 };
-exports["default"] = Paginator;
+exports.default = Paginator;
 
 
 /***/ }),
@@ -40632,43 +40396,30 @@ exports["default"] = Paginator;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Placeholder = (function (_super) {
-    __extends(Placeholder, _super);
-    function Placeholder() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "placeholder";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class Placeholder extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "placeholder";
     }
-    Placeholder.prototype.render = function () {
-        var _a = this.props, addClass = _a.addClass, style = _a.style, width = _a.width, height = _a.height;
-        var className = this.name + " " + (addClass ? addClass : '');
-        var object = Object;
-        var styles = object.assign({}, style, { paddingBottom: (height * 100 / width) + "%" });
+    render() {
+        const { addClass, style, width, height } = this.props;
+        let className = `${this.name} ${addClass ? addClass : ''}`;
+        let object = Object;
+        let styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` });
         return (React.createElement("div", { className: className, style: styles },
-            React.createElement("div", { className: this.name + "__shadow" },
-                React.createElement("div", { className: this.name + "__wrapper" },
-                    React.createElement("div", { className: this.name + "__container" }, this.props.children)))));
-    };
-    return Placeholder;
-}(React.Component));
+            React.createElement("div", { className: `${this.name}__shadow` },
+                React.createElement("div", { className: `${this.name}__wrapper` },
+                    React.createElement("div", { className: `${this.name}__container` }, this.props.children)))));
+    }
+}
 Placeholder.defaultProps = {
     width: 100,
     height: 100
 };
-exports["default"] = Placeholder;
+exports.default = Placeholder;
 
 
 /***/ }),
@@ -40677,50 +40428,37 @@ exports["default"] = Placeholder;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var ReactDOM = __webpack_require__(148);
-var config_1 = __webpack_require__(5);
-var Bubble = (function (_super) {
-    __extends(Bubble, _super);
-    function Bubble() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "popup_hint__bubble";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const ReactDOM = __webpack_require__(148);
+const config_1 = __webpack_require__(5);
+class Bubble extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "popup_hint__bubble";
     }
-    Bubble.prototype.componentDidMount = function () {
+    componentDidMount() {
         this.popup = document.createElement("span");
-        this.popup.className = this.name + "__wrapper";
+        this.popup.className = `${this.name}__wrapper`;
         this.popup.ref = 'bubble';
         document.getElementById('app').appendChild(this.popup);
         this._renderLayer();
-    };
-    Bubble.prototype.componentDidUpdate = function () {
+    }
+    componentDidUpdate() {
         this._renderLayer();
-    };
-    Bubble.prototype.componentWillUnmount = function () {
+    }
+    componentWillUnmount() {
         ReactDOM.unmountComponentAtNode(this.popup);
         document.body.removeChild(this.popup);
-    };
-    Bubble.prototype._renderLayer = function () {
+    }
+    _renderLayer() {
         ReactDOM.render((React.createElement("span", null, this.props.children)), this.popup);
-    };
-    Bubble.prototype.render = function () {
+    }
+    render() {
         return (React.createElement("div", null));
-    };
-    return Bubble;
-}(React.Component));
-exports["default"] = Bubble;
+    }
+}
+exports.default = Bubble;
 
 
 /***/ }),
@@ -40729,49 +40467,36 @@ exports["default"] = Bubble;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var Bubble_1 = __webpack_require__(463);
-var config_1 = __webpack_require__(5);
-var PopupHint = (function (_super) {
-    __extends(PopupHint, _super);
-    function PopupHint(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "popup_hint";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const Bubble_1 = __webpack_require__(463);
+const config_1 = __webpack_require__(5);
+class PopupHint extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "popup_hint";
+        this.state = {
             expanded: false
         };
-        _this.collapse = _this.collapse.bind(_this);
-        _this.expand = _this.expand.bind(_this);
-        return _this;
+        this.collapse = this.collapse.bind(this);
+        this.expand = this.expand.bind(this);
     }
-    PopupHint.prototype.expand = function (event) {
+    expand(event) {
         event.preventDefault();
         this.setState({ expanded: true });
-    };
-    PopupHint.prototype.collapse = function () {
-        var _this = this;
-        this.fadeOut(this.refs["hint"], function () {
-            _this.setState({ expanded: false });
+    }
+    collapse() {
+        this.fadeOut(this.refs["hint"], () => {
+            this.setState({ expanded: false });
         });
-    };
-    PopupHint.prototype.componentDidMount = function () {
+    }
+    componentDidMount() {
         this.styleElements();
-    };
-    PopupHint.prototype.componentDidUpdate = function (prevProps, prevState) {
+    }
+    componentDidUpdate(prevProps, prevState) {
         this.styleElements();
-    };
-    PopupHint.prototype.getWindowWidth = function () {
+    }
+    getWindowWidth() {
         if (window.innerWidth) {
             return window.innerWidth;
         }
@@ -40782,27 +40507,27 @@ var PopupHint = (function (_super) {
             return document.body.clientWidth;
         }
         return 0;
-    };
-    PopupHint.prototype.styleElements = function () {
-        var buttonPosition = this.getPosition(this.refs["button"]);
-        var windowWidth = this.getWindowWidth();
-        var widthLeft = buttonPosition.left;
-        var windowRight = windowWidth - buttonPosition.left;
-        var renderLeft = widthLeft > windowWidth / 2;
+    }
+    styleElements() {
+        const buttonPosition = this.getPosition(this.refs["button"]);
+        const windowWidth = this.getWindowWidth();
+        const widthLeft = buttonPosition.left;
+        const windowRight = windowWidth - buttonPosition.left;
+        const renderLeft = widthLeft > windowWidth / 2;
         this.styleHint(buttonPosition, renderLeft);
-    };
-    PopupHint.prototype.styleArrow = function (left, right) {
-        var arrow = this.refs["arrow"];
+    }
+    styleArrow(left, right) {
+        let arrow = this.refs["arrow"];
         arrow.style.left = left;
         arrow.style.right = right;
-    };
-    PopupHint.prototype.styleHint = function (buttonPosition, renderLeft) {
-        var hint = this.refs["hint"];
-        hint.style.opacity = "0";
+    }
+    styleHint(buttonPosition, renderLeft) {
+        let hint = this.refs["hint"];
+        hint.style.opacity = `0`;
         hint.style.display = 'block';
-        var newX;
-        var arrowLeft;
-        var arrowRight;
+        let newX;
+        let arrowLeft;
+        let arrowRight;
         if (renderLeft) {
             newX = buttonPosition.left - hint.offsetWidth + 30;
             arrowLeft = "";
@@ -40813,8 +40538,8 @@ var PopupHint = (function (_super) {
             arrowLeft = buttonPosition.left - newX + "px";
             arrowRight = "";
         }
-        if (hint.style.top === buttonPosition.top - hint.offsetHeight + "px" &&
-            hint.style.left === newX + "px") {
+        if (hint.style.top === `${buttonPosition.top - hint.offsetHeight}px` &&
+            hint.style.left === `${newX}px`) {
             if (this.state.expanded) {
                 this.styleArrow(arrowLeft, arrowRight);
                 this.fadeIn(this.refs["hint"]);
@@ -40822,12 +40547,12 @@ var PopupHint = (function (_super) {
             }
         }
         else {
-            hint.style.top = buttonPosition.top - hint.offsetHeight + "px";
-            hint.style.left = newX + "px";
+            hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`;
+            hint.style.left = `${newX}px`;
             this.styleHint(buttonPosition, renderLeft);
         }
-    };
-    PopupHint.prototype.fadeOut = function (el, callback) {
+    }
+    fadeOut(el, callback) {
         el.style.opacity = 1;
         (function fade() {
             if ((el.style.opacity -= .1) < 0) {
@@ -40837,9 +40562,8 @@ var PopupHint = (function (_super) {
                 requestAnimationFrame(fade);
             }
         })();
-    };
-    PopupHint.prototype.fadeIn = function (el, display) {
-        if (display === void 0) { display = null; }
+    }
+    fadeIn(el, display = null) {
         el.style.opacity = 0;
         el.style.display = display || "block";
         (function fade() {
@@ -40849,8 +40573,8 @@ var PopupHint = (function (_super) {
                 requestAnimationFrame(fade);
             }
         })();
-    };
-    PopupHint.prototype.getPosition = function (element) {
+    }
+    getPosition(element) {
         var top = 0, left = 0;
         do {
             top += element.offsetTop || 0;
@@ -40859,37 +40583,36 @@ var PopupHint = (function (_super) {
         } while (element);
         return {
             top: top,
-            left: left
+            left: left,
         };
-    };
-    PopupHint.prototype.getArrowPosition = function (buttonPosition) {
+    }
+    getArrowPosition(buttonPosition) {
         return {
             top: buttonPosition.top - 15 / 2,
-            left: buttonPosition.left - 21 / 2
+            left: buttonPosition.left - 21 / 2,
         };
-    };
-    PopupHint.prototype.render = function () {
+    }
+    render() {
         var object = Object;
         var style = object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.style);
-        var hint = (React.createElement(Bubble_1["default"], null,
-            React.createElement("div", { ref: "hint", className: this.name + "__bubble", style: style, tabIndex: 0, onBlur: this.collapse },
-                React.createElement("div", { className: this.name + "__innerwrapper" },
-                    React.createElement("div", { className: this.name + "__border" },
-                        React.createElement("div", { className: this.name + "__content" }, this.props.content)),
-                    React.createElement("span", { ref: "arrow", className: this.name + "__arrow" })))));
+        var hint = (React.createElement(Bubble_1.default, null,
+            React.createElement("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
+                React.createElement("div", { className: `${this.name}__innerwrapper` },
+                    React.createElement("div", { className: `${this.name}__border` },
+                        React.createElement("div", { className: `${this.name}__content` }, this.props.content)),
+                    React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
         return (React.createElement("div", { className: this.name, style: { display: 'inline-block' } },
-            React.createElement("div", { ref: "button", className: this.name + "__trigger " + (this.state.expanded ? "active" : ""), onMouseDown: this.state.expanded ? function () { } : this.expand }, this.props.icon ? this.props.icon : null),
+            React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand }, this.props.icon ? this.props.icon : null),
             hint));
-    };
-    return PopupHint;
-}(React.Component));
+    }
+}
 PopupHint.defaultProps = {
     content: "",
     icon: null,
     iconType: "",
     style: {}
 };
-exports["default"] = PopupHint;
+exports.default = PopupHint;
 
 
 /***/ }),
@@ -40898,30 +40621,18 @@ exports["default"] = PopupHint;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Spinner = (function (_super) {
-    __extends(Spinner, _super);
-    function Spinner(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "spinner";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class Spinner extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "spinner";
+        this.state = {
             loaded: false
         };
-        return _this;
     }
-    Spinner.prototype.updateState = function (props) {
+    updateState(props) {
         var loaded = this.state.loaded;
         if (props.loaded) {
             loaded = !!props.loaded;
@@ -40929,36 +40640,36 @@ var Spinner = (function (_super) {
         this.setState({
             loaded: loaded
         });
-    };
-    Spinner.prototype.componentDidMount = function () {
+    }
+    componentDidMount() {
         this.updateState(this.props);
-    };
-    Spinner.prototype.componentWillReceiveProps = function (nextProps) {
+    }
+    componentWillReceiveProps(nextProps) {
         this.updateState(nextProps);
-    };
-    Spinner.prototype.render = function () {
+    }
+    render() {
         if (this.state.loaded) {
             return (React.createElement("span", { style: { opacity: 1 } }, this.props.children));
         }
-        var _a = this.props, size = _a.size, type = _a.type, color = _a.color, speed = _a.speed;
+        const { size, type, color, speed } = this.props;
         var defaultStyle = { width: size,
             height: size,
-            borderColor: "rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)",
+            borderColor: `rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)`,
             fontSize: size,
             animationDuration: 1.2 / speed + 's'
         };
         var containerStyle = {
             width: size,
-            height: size
+            height: size,
         };
         if (color == 'black') {
-            defaultStyle.borderColor = "rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)";
+            defaultStyle.borderColor = `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)`;
         }
         else if (color == 'green') {
-            defaultStyle.borderColor = "rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)";
+            defaultStyle.borderColor = `rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)`;
         }
         else if (color == 'blue') {
-            defaultStyle.borderColor = "rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)";
+            defaultStyle.borderColor = `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)`;
         }
         if (type == 'dashed') {
             defaultStyle.borderStyle = 'dashed';
@@ -40972,21 +40683,20 @@ var Spinner = (function (_super) {
         }
         var object = Object;
         var style = object.assign(defaultStyle, this.props.style);
-        return (React.createElement("div", { className: this.name + " " + this.name + "--" + this.props.type, style: containerStyle },
-            React.createElement("div", { className: this.name + "__wrapper", style: style },
-                React.createElement("div", { className: this.name + "__content", style: { opacity: 0 } }, this.props.children))));
-    };
-    return Spinner;
-}(React.Component));
+        return (React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}`, style: containerStyle },
+            React.createElement("div", { className: `${this.name}__wrapper`, style: style },
+                React.createElement("div", { className: `${this.name}__content`, style: { opacity: 0 } }, this.props.children))));
+    }
+}
 Spinner.defaultProps = {
     type: "default",
     size: 30,
     loaded: false,
     color: "white",
     style: {},
-    speed: 1
+    speed: 1,
 };
-exports["default"] = Spinner;
+exports.default = Spinner;
 
 
 /***/ }),
@@ -40995,61 +40705,39 @@ exports["default"] = Spinner;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var Toast_1 = __webpack_require__(184);
-var unique_id_1 = __webpack_require__(44);
-var Toasts = (function (_super) {
-    __extends(Toasts, _super);
-    function Toasts(props) {
-        var _this = _super.call(this, props) || this;
-        _this.name = config_1.prefix + "toasts-container";
-        _this.state = {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+const Toast_1 = __webpack_require__(184);
+const unique_id_1 = __webpack_require__(44);
+class Toasts extends React.Component {
+    constructor(props) {
+        super(props);
+        this.name = config_1.prefix + "toasts-container";
+        this.state = {
             toasts: []
         };
-        return _this;
     }
-    Toasts.prototype.isPaused = function () {
+    isPaused() {
         return this.props.paused;
-    };
-    Toasts.prototype.renderToasts = function () {
-        var _this = this;
-        return this.props.toasts.map(function (toast) {
-            return (React.createElement("div", { key: unique_id_1["default"](), className: _this.name + "__item" },
-                React.createElement(Toast_1["default"], __assign({ isPaused: _this.isPaused.bind(_this) }, toast.props))));
+    }
+    renderToasts() {
+        return this.props.toasts.map((toast) => {
+            return (React.createElement("div", { key: unique_id_1.default(), className: `${this.name}__item` },
+                React.createElement(Toast_1.default, Object.assign({ isPaused: this.isPaused.bind(this) }, toast.props))));
         });
-    };
-    Toasts.prototype.render = function () {
-        return (React.createElement("div", { className: "" + this.name, style: this.props.style },
-            React.createElement("div", { className: this.name + "__wrapper" }, this.renderToasts())));
-    };
-    return Toasts;
-}(React.Component));
+    }
+    render() {
+        return (React.createElement("div", { className: `${this.name}`, style: this.props.style },
+            React.createElement("div", { className: `${this.name}__wrapper` }, this.renderToasts())));
+    }
+}
 Toasts.defaultProps = {
     toasts: [],
     paused: false,
     style: {}
 };
-exports["default"] = Toasts;
+exports.default = Toasts;
 
 
 /***/ }),
@@ -41058,45 +40746,32 @@ exports["default"] = Toasts;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
 /**
  * disable-styleguide
  */
-var NavLink = (function (_super) {
-    __extends(NavLink, _super);
-    function NavLink() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "top_nav__item";
-        return _this;
+class NavLink extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "top_nav__item";
     }
-    NavLink.prototype.render = function () {
-        var _a = this.props, link = _a.link, active = _a.active;
-        var className = "" + this.name;
+    render() {
+        const { link, active } = this.props;
+        var className = `${this.name}`;
         if (active) {
-            className += " " + this.name + "--active";
+            className += ` ${this.name}--active`;
         }
-        return (React.createElement("li", { className: "" + className, style: this.props.style }, link));
-    };
-    return NavLink;
-}(React.Component));
+        return (React.createElement("li", { className: `${className}`, style: this.props.style }, link));
+    }
+}
 NavLink.defaultProps = {
     active: false,
     link: (React.createElement("a", { href: "#" })),
     style: {}
 };
-exports["default"] = NavLink;
+exports.default = NavLink;
 
 
 /***/ }),
@@ -41105,44 +40780,31 @@ exports["default"] = NavLink;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var TopNav = (function (_super) {
-    __extends(TopNav, _super);
-    function TopNav() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "top_nav";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class TopNav extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "top_nav";
     }
-    TopNav.prototype.renderLinks = function () {
-        var links = this.props.links;
-        var classList = this.name + "__list";
+    renderLinks() {
+        const { links } = this.props;
+        let classList = `${this.name}__list`;
         return (React.createElement("ul", { className: classList }, links));
-    };
-    TopNav.prototype.render = function () {
-        var className = "" + this.name;
-        var classWrapper = this.name + "__wrapper\"";
+    }
+    render() {
+        let className = `${this.name}`;
+        let classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
-    };
-    return TopNav;
-}(React.Component));
+    }
+}
 TopNav.defaultProps = {
     links: [],
     style: {}
 };
-exports["default"] = TopNav;
+exports.default = TopNav;
 
 
 /***/ }),
@@ -41151,47 +40813,34 @@ exports["default"] = TopNav;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
 /**
  * disable-styleguide
  */
-var WizardStep = (function (_super) {
-    __extends(WizardStep, _super);
-    function WizardStep() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "wizard_nav__item";
-        return _this;
+class WizardStep extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "wizard_nav__item";
     }
-    WizardStep.prototype.render = function () {
-        var _a = this.props, link = _a.link, active = _a.active, style = _a.style, onClick = _a.onClick;
-        var className = "" + this.name;
+    render() {
+        const { link, active, style, onClick } = this.props;
+        var className = `${this.name}`;
         if (active) {
-            className += " " + this.name + "--active";
+            className += ` ${this.name}--active`;
         }
-        return (React.createElement("li", { className: "" + className, style: style },
-            React.createElement("a", { className: this.name + "__step", onClick: onClick }, link)));
-    };
-    return WizardStep;
-}(React.Component));
+        return (React.createElement("li", { className: `${className}`, style: style },
+            React.createElement("a", { className: `${this.name}__step`, onClick: onClick }, link)));
+    }
+}
 WizardStep.defaultProps = {
     active: false,
     link: '',
     style: {},
-    onClick: function () { }
+    onClick: () => { }
 };
-exports["default"] = WizardStep;
+exports.default = WizardStep;
 
 
 /***/ }),
@@ -41200,44 +40849,31 @@ exports["default"] = WizardStep;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-exports.__esModule = true;
-var React = __webpack_require__(1);
-var config_1 = __webpack_require__(5);
-var WizardNav = (function (_super) {
-    __extends(WizardNav, _super);
-    function WizardNav() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.name = config_1.prefix + "wizard_nav";
-        return _this;
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
+const config_1 = __webpack_require__(5);
+class WizardNav extends React.Component {
+    constructor() {
+        super(...arguments);
+        this.name = config_1.prefix + "wizard_nav";
     }
-    WizardNav.prototype.renderLinks = function () {
-        var links = this.props.links;
-        var classList = this.name + "__list";
+    renderLinks() {
+        const { links } = this.props;
+        let classList = `${this.name}__list`;
         return (React.createElement("ul", { className: classList }, links));
-    };
-    WizardNav.prototype.render = function () {
-        var className = "" + this.name;
-        var classWrapper = this.name + "__wrapper\"";
+    }
+    render() {
+        let className = `${this.name}`;
+        let classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
-    };
-    return WizardNav;
-}(React.Component));
+    }
+}
 WizardNav.defaultProps = {
     links: [],
     style: {}
 };
-exports["default"] = WizardNav;
+exports.default = WizardNav;
 
 
 /***/ }),
