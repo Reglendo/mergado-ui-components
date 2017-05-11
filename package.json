@@ -1,12 +1,11 @@
 {
   "name": "mergado-ui-kit",
-  "version": "1.2.4-dev",
+  "version": "1.2.5-dev",
   "description": "",
   "main": "dist/js/index.js",
   "scripts": {
+    "start": "npm run styleguide-server",
     "build": "npm run styleguide-build",
-    "build:watch": "npm run styleguide-server",
-    "build-server": "npm run styleguide-server",
     "tsc": "tsc",
     "test": "NODE_ENV=test mocha -r ts-node/register --",
     "test:watch": "npm run test -- --watch",
