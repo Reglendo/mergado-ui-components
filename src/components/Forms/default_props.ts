@@ -8,6 +8,9 @@ interface FieldProps {
         onDragStart?: (value: any) => void
         onDrop?: (value: any) => void
         onFocus?: (value: any) => void
+        onKeyDown?: (value: any) => void
+        onKeyUp?: (value: any) => void
+        onClick?: (value: any) => void
         style?: any
         disabled?: boolean
     }
