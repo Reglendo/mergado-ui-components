@@ -39,10 +39,8 @@ declare class Autocomplete extends React.Component<Props, State> {
     protected _ignoreBlur: boolean;
     static defaultProps: Props;
     constructor(props: any);
-    componentWillMount(): void;
     componentWillReceiveProps(nextProps: any): void;
     isOpen(): boolean;
-    maybeScrollItemIntoView(): void;
     componentDidMount(): void;
     componentDidUpdate(prevProps: any, prevState: any): void;
     setMenuPositions(): void;
