@@ -118,31 +118,16 @@ class Autocomplete extends React.Component < Props, State > {
         }
 
     }
-    componentWillMount() {
-        this.refs = {}
-    }
 
     componentWillReceiveProps(nextProps) {
-        console.log('component will receive props')
         if (this.props.items !== nextProps.items ||
-        // The entries in `items` may have been changed even though the object reference
-        // remains the same, double check by seeing if `highlightedIndex` points to an
-        // existing item
-        this.state.highlightedIndex >= nextProps.items.length) {
-            this.setState({highlightedIndex: null})
+            this.state.highlightedIndex >= nextProps.items.length) {
+                this.setState({highlightedIndex: null})
         }
     }
 
     isOpen() {
         return 'open' in this.props ? this.props.open : this.state.isOpen
-    }
-
-    maybeScrollItemIntoView() {
-        console.log('maybe scroll')
-        if (this.isOpen() && this.state.highlightedIndex !== null) {
-            const itemNode = this.refs[`item-${this.state.highlightedIndex}`]
-            const menuNode = this.refs.menu
-        }
     }
 
     componentDidMount() {
@@ -161,7 +146,6 @@ class Autocomplete extends React.Component < Props, State > {
             this.maybeAutoCompleteText()
         }
 
-        this.maybeScrollItemIntoView()
         if (prevState.isOpen !== this.state.isOpen) {
             this
                 .props
@@ -411,6 +395,7 @@ class Autocomplete extends React.Component < Props, State > {
             <div className={`${className}`}>
                 <TextInput 
                     ref="input"
+                    type="search"
                     labels={labels}
                     meta={meta}
                     input={{
