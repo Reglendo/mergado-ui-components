@@ -8,6 +8,12 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 	return (
 		<div className={s.root} id={name}>
 			<div className={s.meta}>
+				{sidebar ? 
+					<a className={s.isolatedLink} href={'#!/' + name }>Open isolated ⇢</a>
+					:
+					<a className={s.isolatedLink} href={'#' + name}>⇽ Exit Isolation</a>
+				}
+
 				<header className={s.header}>
 					<a className={s.anchor} href={'#' + name}>
 						<h2 className={s.heading}>{name}</h2>

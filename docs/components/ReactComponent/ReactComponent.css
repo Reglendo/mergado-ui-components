@@ -7,20 +7,23 @@
 }
 
 .meta {
-	display: flex;
 	margin-bottom: 10px;
 	border-bottom: 1px dotted #ccc;
+	position: relative;
 }
 
 .header {
 	flex-basis: 40%;
 	padding: 20px;
+	padding-bottom: 0;
 	font-weight: normal;
 	background: white;
 	overflow: hidden;
 }
 
+
 .heading {
+	display: inline-block;
 	position: relative;
 	margin: 0;
 	font-size: 36px;
@@ -65,6 +68,20 @@
 	font-size: 14px;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	display: inline-block;
+	float: right
+}
+
+.isolatedLink {
+	composes: link from "../../styles/colors.css";
+	position: absolute;
+	right: 0;
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+.meta:hover .isolatedLink {
+	opacity: 1;
 }
 
 .props {

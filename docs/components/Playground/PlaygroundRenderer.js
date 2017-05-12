@@ -21,11 +21,6 @@ const PlaygroundRenderer = ({
 return (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
-			{singleExample ? (
-				<a className={s.isolatedLink} href={'#!/' + name}>⇽ Exit Isolation</a>
-			) : (
-				<a className={s.isolatedLink} href={'#!/' + name + '/' + index}>Open isolated ⇢</a>
-			)}
             <Preview code={code} evalInContext={evalInContext} changeHtml={onHtmlChange} />
             
             <div className={s.htmlCode} style={{ maxHeight: showHtml?1000:0, overflow: showHtml?'auto':'hidden'}} >

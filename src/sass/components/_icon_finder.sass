@@ -1,0 +1,42 @@
+@import "../core/all"
+
+
+.#{$prefix}icon-finder
+
+    &__icon
+        cursor: pointer
+        &:focus
+            outline: none
+            .#{$prefix}icon
+                z-index: 1000
+            .#{$prefix}icon__text
+                display: inline-block
+            svg
+                outline: 1px solid #888
+                transform: scale3d(3,3,1)
+                background: #fff
+
+    svg
+        transition: transform 0.2s
+        will-change: transform
+
+    .#{$prefix}icon
+        padding: 4px
+        position: relative
+        border: 1px solid transparent
+
+        &:hover
+            background: white
+            border: 1px solid #ccc
+
+    .#{$prefix}icon__text
+        border-radius: 2px
+        position: absolute
+        top: -50px
+        left: -29px
+        display: none
+        background: #888
+        color: white
+        font-size: 12px
+        padding: 5px
+

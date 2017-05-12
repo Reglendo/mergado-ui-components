@@ -5,12 +5,6 @@ import Icon from '../../../src/components/Icon';
 import s from './StyleGuide.css';
 
 const style = `
-            .ReactStyleguidist-TableOfContents__search {
-                border: none;
-                outline: none;
-                border-radius: 0;
-            }
-
             .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link {
                 color: white !important;
                 font-size: 1.2em;
@@ -27,10 +21,10 @@ const style = `
             }
 
             .ReactStyleguidist-TableOfContents__search {
+                width: 210px;
                 border: none;
+                outline: none;
                 border-radius: 0;
-                outline: 0;
-                width: 220px;
             }
 `
 
@@ -68,10 +62,10 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar }) => {
     }) } } })
 
     return (
-    <div className={s.root}>
+    <div className={`${s.root}`}>
     		<main className={s.content}>
     			<div className={s.wrapper}>
-    				<div className={s.components}>
+    				<div className={`${s.components} ${!sidebar && s.withsidebar}`}>
     					{components}
     					<footer className={s.footer}>
     						Generated with <a className={s.link} href="https://github.com/styleguidist/react-styleguidist">React Styleguidist</a>
