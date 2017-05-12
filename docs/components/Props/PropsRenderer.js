@@ -8,6 +8,7 @@ import s from './Props.css';
 
 function renderRows(props) {
 	const rows = [];
+	
 	for (const name in props) {
 		const prop = props[name];
 		rows.push(
@@ -20,7 +21,7 @@ function renderRows(props) {
 		const description = renderDescription(prop)
 		if(description.props.children[0] !== '') {
 			rows.push(
-				<tr>
+				<tr key={`${name}--description`}>
 					<td colSpan="3" className={s.cell + ' ' + s.cellDesc}>{renderDescription(prop)}</td>
 				</tr>
 			)
@@ -147,20 +148,25 @@ function renderShape(props) {
 }
 
 export default function PropsRenderer({ props }) {
-	return (
-		<table className={s.table}>
-			<thead className={s.tableHead}>
-				<tr>
-					<th style={{ width: '20%'}} className={s.cellHeading}>Name</th>
-					<th style={{ width: '40%'}} className={s.cellHeading}>Type</th>
-					<th style={{ width: '40%'}} className={s.cellHeading}>Default</th>
-				</tr>
-			</thead>
-			<tbody className={s.tableBody}>
-				{renderRows(props)}
-			</tbody>
-		</table>
-	);
+
+	if(Object.keys(props).length === 0) {
+		return null
+	} else {
+		return (
+			<table className={s.table}>
+				<thead className={s.tableHead}>
+					<tr>
+						<th style={{ width: '20%'}} className={s.cellHeading}>Name</th>
+						<th style={{ width: '40%'}} className={s.cellHeading}>Type</th>
+						<th style={{ width: '40%'}} className={s.cellHeading}>Default</th>
+					</tr>
+				</thead>
+				<tbody className={s.tableBody}>
+					{renderRows(props)}
+				</tbody>
+			</table>
+		);
+	}
 }
 
 PropsRenderer.propTypes = {

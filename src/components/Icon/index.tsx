@@ -3,13 +3,11 @@ import {prefix} from "../../config"
 import  * as Icons from "mergado-ui-icons/lib"
 
 export interface Props {
-    /** Icon type */
-    type: string
-    /** Size */
+    type?: string
+    name?: string
+
     size?: number
-    /** Icon text */
     text?: string
-    /** Icon title */
     title?: string
     style?: any
 }
@@ -28,7 +26,13 @@ class Icon extends React.Component<Props, State> {
 
     render() {
         let className = `${this.name} ${this.name}--${this.props.type}`
-        let iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace('-','')
+        let iconName : string;
+        if(this.props.name) {
+            iconName = this.props.name
+        } else {
+            iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace('-','')
+        }
+
         let icon = Icons[iconName] ? Icons[iconName] : null
 
         return (
