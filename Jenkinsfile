@@ -30,16 +30,12 @@ node {
                             sh 'echo "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/jenkins/.ssh/config'
                         }
                     }
-                    stage("clean") {
-                        steps {
-                            echo 'Removing node_modules'
-                            sh 'rm -rf node_modules'
-                        }
-                    }
                     stage("prepare") {
                         steps {
                             echo 'Yarn install'
                             sh '''
+                                rm -rf node_modules
+
                                 export YARN_HASH=`sha1sum yarn.lock --text | awk \'{print $1}\'`
                                 export YARN_CACHE_DIR="/home/jenkins/supercache/yarn/$YARN_HASH"
                                 echo $YARN_HASH
