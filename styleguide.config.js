@@ -31,6 +31,9 @@ module.exports = {
 
         webpackConfig.resolve.extensions = ['.js', '.jsx', '.ts', '.tsx','.json'];
 
+        webpackConfig.resolve.alias['rsg-components/Props'] =
+            path.join(dir, 'components/Props');
+
         webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] =
             path.join(dir, 'components/StyleGuide');
 
@@ -45,6 +48,8 @@ module.exports = {
     
         webpackConfig.resolve.alias['rsg-components/ReactComponent/ReactComponentRenderer'] =
             path.join(dir, 'components/ReactComponent');
+
+
 
         webpackConfig.resolve.alias['rsg-components/Editor'] =
             path.join(dir, 'components/Editor');
