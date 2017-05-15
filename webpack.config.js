@@ -11,9 +11,9 @@ const config = {
     './src/load_styles.ts'
   ],
   output: {
-    path: __dirname,
+    path: path.join(__dirname,'dist'),
     publicPath: './',
-    filename: "index.js"
+    filename: "bundle.js"
   },
   module: {
     loaders: [
@@ -36,31 +36,26 @@ const config = {
   },
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+    modules: [ path.resolve(__dirname, "src"), path.resolve(__dirname, "src/components"), 'node_modules']
 	}
 };
 
 if (process.env.NODE_ENV === 'production') {
 	config.plugins = [
-	    new ExtractTextPlugin({ filename: 'dist/css/style.min.css',
-	        					allChunks: true
-	    					}),
-        new ExtractTextPlugin({ filename: 'dist/css/style.min.scss',
-            allChunks: true
-        }),
-        new ExtractTextPlugin({ filename: 'dist/css/style.scss',
-            allChunks: true
-        }),
-        new ExtractTextPlugin({ filename: 'dist/css/style.css',
-            					allChunks: true
-        }),
+	    new ExtractTextPlugin({ filename: 'css/style.min.css',
+                  allChunks: true
+      }),
+      new ExtractTextPlugin({ filename: 'css/style.css',
+                allChunks: true
+      }),
 		new OptimizeCssAssetsPlugin({
-				assetNameRegExp: /\.min\.s?css$/,
+				assetNameRegExp: /\.min\.css$/,
 				cssProcessorOptions: { discardComments: { removeAll: true } }
 		})
 	]
 } else {
 	config.plugins = [
-	    new ExtractTextPlugin({ filename: 'dist/css/style.css',
+	    new ExtractTextPlugin({ filename: 'css/style.css',
 	        					allChunks: true
 	    					})
 	]

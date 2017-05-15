@@ -13,6 +13,16 @@ module.exports = {
             content: './src/docs/helpers/Readme.md'
         },
         {
+            name: 'Datagrid',
+            components: './src/components/Datagrid/**/*.tsx',
+            content: './src/components/Datagrid/Readme.section.md'
+        },
+        {
+            name: 'Icons',
+            components: './src/components/Icon/index.tsx',
+            content: './src/components/Icon/Readme.section.md'
+        },
+        {
             name: 'Form',
             components: './src/components/Forms/**/*.tsx',
             content: './src/components/Forms/Readme.md'
@@ -31,6 +41,9 @@ module.exports = {
 
         webpackConfig.resolve.extensions = ['.js', '.jsx', '.ts', '.tsx','.json'];
 
+        webpackConfig.resolve.modules.push(path.resolve(__dirname, "src/components"));
+        webpackConfig.resolve.modules.push(path.resolve(__dirname, "src"));
+        
         webpackConfig.resolve.alias['rsg-components/Props'] =
             path.join(dir, 'components/Props');
 

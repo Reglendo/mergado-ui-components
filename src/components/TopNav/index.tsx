@@ -1,10 +1,9 @@
-import * as React from 'react'
-import NavLink from "./NavLink"
-import {prefix} from "../../config"
+import * as React from "react"
+import NavLink from "components/TopNav/NavLink"
+import {prefix} from "config"
 
 export interface Props {
-    /** Links */
-    links: Array<NavLink> | Array<JSX.Element>
+    links: Array<JSX.Element>
     style?: any
 }
 

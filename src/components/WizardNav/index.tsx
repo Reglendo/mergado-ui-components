@@ -1,10 +1,9 @@
-import * as React from 'react'
-import WizardStep from "./WizardStep"
-import {prefix} from "../../config"
+import * as React from "react"
+import WizardStep from "components/WizardNav/WizardStep"
+import {prefix} from "config"
 
 export interface Props {
-    /** Links */
-    links: Array<WizardStep> | Array<JSX.Element>
+    links: Array<JSX.Element>
     style?: any
 }
 

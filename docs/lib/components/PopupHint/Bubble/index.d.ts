@@ -4,6 +4,9 @@ export interface Props {
 }
 export interface State {
 }
+/**
+ * disable-styleguide
+ */
 declare class Bubble extends React.Component<Props, State> {
     readonly name: string;
     popup: any;

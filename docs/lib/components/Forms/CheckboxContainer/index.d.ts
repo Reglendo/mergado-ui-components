@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from "react";
-import InputProps from "../default_props";
+import InputProps from "components/Forms/default_props";
 import { Link } from "react-router";
 export interface Query {
     id: number;
@@ -20,7 +20,7 @@ export interface Props extends InputProps {
     singleChoice?: boolean;
     withoutFilter?: boolean;
     /** Height of box with queries (in px) */
-    height?: string | number;
+    height?: number | string;
     style?: any;
 }
 export interface State {

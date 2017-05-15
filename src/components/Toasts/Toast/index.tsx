@@ -1,7 +1,7 @@
 import * as React from "react"
-import {prefix} from "../../../config"
+import {prefix} from "config"
 import IconClose from "mergado-ui-icons/lib/icons/close"
-import uniqueId from "../../../helpers/unique_id"
+import uniqueId from "helpers/unique_id"
 
 export interface Props {
     id?: string,

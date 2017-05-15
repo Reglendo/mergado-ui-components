@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from "react";
-import Toast from "./Toast";
+import Toast from "components/Toasts/Toast";
 export interface Props {
     toasts?: Array<Toast | JSX.Element>;
     paused: boolean;

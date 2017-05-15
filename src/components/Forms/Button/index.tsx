@@ -1,6 +1,6 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
 import {Link} from "react-router"
 
 export interface Props extends InputProps {
@@ -38,7 +38,7 @@ class Button extends React.Component<Props, State> {
         state: "",
         size: "",
         style: null,
-        addClass: null,
+        addClass: "",
         input: {
             checked: false,
             name: "",

@@ -1,12 +1,15 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import {prefix} from "../../../config"
+import {prefix} from "config"
 
 export interface Props {
 }
 export interface State {
 }
 
+/**
+ * disable-styleguide
+ */
 class Bubble extends React.Component<Props, State> {
 
     readonly name = prefix + "popup_hint__bubble";

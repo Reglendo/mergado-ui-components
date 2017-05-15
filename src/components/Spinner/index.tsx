@@ -1,9 +1,9 @@
 import * as React from "react"
-import {prefix} from "../../config"
+import {prefix} from "config"
 
 
 export interface Props {
-    type?: string
+    type?: "default" | "dashed" | "dotted" | "mergado"
     /** Maximum dimension (width or height) */
     size?: number
     loaded?: boolean
@@ -72,21 +72,21 @@ class Spinner extends React.Component<Props, State> {
                                     width: size,
                                     height: size,
                                 }
-        if(color == 'black') {
+        if(color === 'black') {
             defaultStyle.borderColor = `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)`
-        } else if(color == 'green') {
+        } else if(color === 'green') {
             defaultStyle.borderColor = `rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)`
-        } else if(color == 'blue') {
+        } else if(color === 'blue') {
             defaultStyle.borderColor = `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)`
         }
 
-        if(type == 'dashed') {
+        if(type === 'dashed') {
             defaultStyle.borderStyle = 'dashed'
-        } else if(type == 'dotted') {
+        } else if(type === 'dotted') {
             defaultStyle.borderStyle = 'dotted'
         }
 
-        if(type == 'mergado') {
+        if(type === 'mergado') {
             defaultStyle = { borderWidth: size / 2}
             defaultStyle.animationDuration = 10/speed + 's';
         }

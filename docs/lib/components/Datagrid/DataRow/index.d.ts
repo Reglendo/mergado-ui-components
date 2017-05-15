@@ -1,10 +1,11 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    cells?: JSX.Element | Array<JSX.Element>;
+    cells?: Array<JSX.Element>;
     style?: any;
     addClass?: string;
     inactive?: boolean;
+    /** optional attribute "data-id" for sortablejs */
     dataId?: number | string;
 }
 export interface State {

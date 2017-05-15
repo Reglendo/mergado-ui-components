@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import uniqueId from "../../helpers/unique_id"
-import {prefix} from "../../config"
+import uniqueId from "helpers/unique_id"
+import {prefix} from "config"
 
 export interface Props {
     /** Active page number */

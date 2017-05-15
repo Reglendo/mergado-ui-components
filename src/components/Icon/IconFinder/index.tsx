@@ -1,7 +1,7 @@
 import * as React from "react"
-import {prefix} from "../../../config"
-import  Icon from "../../Icon"
-import  TextInput from "../../Forms/TextInput"
+import {prefix} from "config"
+import  Icon from "components/Icon"
+import  TextInput from "components/Forms/TextInput"
 import  * as Icons from "mergado-ui-icons/lib"
 
 export interface Props {
@@ -9,7 +9,9 @@ export interface Props {
 export interface State {
     value: string
 }
-
+/**
+ * disable-styleguide
+ */
 class IconFinder extends React.Component<Props, State> {
 
     readonly name = prefix + "icon-finder";

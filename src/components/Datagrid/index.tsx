@@ -1,20 +1,20 @@
 import * as React from "react"
-import {prefix} from "../../config"
-import DataRow from './DataRow'
+import {prefix} from "config"
+import DataRow from 'components/Datagrid/DataRow'
 import * as Sortable from 'react-sortablejs'
 
 export interface Props {
     style?: any
     addClass?: string
-    rows: Array<DataRow> | Array<JSX.Element>
-    header: Array<DataRow> | Array<JSX.Element>
+    rows: Array<JSX.Element>
+    header: Array<JSX.Element>
     sortable?: boolean
     sortableProps?: any
 }
 export interface State {
 }
 
-class Datagrid extends React.Component<Props, State> {
+class DataTable extends React.Component<Props, State> {
 
     readonly name = prefix + "datagrid";
 
@@ -39,4 +39,4 @@ class Datagrid extends React.Component<Props, State> {
     }
 }
 
-export default Datagrid
+export default DataTable

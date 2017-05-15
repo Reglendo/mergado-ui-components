@@ -1,12 +1,9 @@
 import * as React from "react"
-import {prefix} from "../../config"
+import {prefix} from "config"
 
 export interface Props {
-    /** Status title */
     title?: string
-    /** Status type */
-    type: "warning" | "success" | "error" | "inactive" | ""
-    /** Status text */
+    type: "warning" | "success" | "error" | "inactive"
     text?: string
     style?: any
 }
