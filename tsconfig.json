@@ -7,8 +7,7 @@
         "jsx": "react",
         "outDir": "./lib_ts",
         "sourceMap": true,
-        "declaration": false,
-        "rootDir": "./src"
+        "declaration": false
     },
     "include": [
         "src/"
