@@ -7,7 +7,7 @@
     "start": "npm run styleguide-server",
     "build": "npm run styleguide-build",
     "tsc": "tsc",
-    "test": "NODE_ENV=test mocha -r ts-node/register --",
+    "test": "NODE_PATH=./src NODE_ENV=test mocha -r ts-node/register --",
     "test:watch": "npm run test -- --watch",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
