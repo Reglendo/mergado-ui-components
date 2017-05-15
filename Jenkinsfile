@@ -78,6 +78,7 @@ node {
                                 sh 'cp -r dist build/'
                                 sh 'cp -r docs build/'
                                 sh 'cp -r lib build/'
+                                sh 'cp -r lib_ts build/'
 
                                 echo 'Reset to base branch'
                                 sh 'git status'
@@ -91,6 +92,7 @@ node {
                                 sh 'cp -rfT build/dist dist'
                                 sh 'cp -rfT build/docs docs'
                                 sh 'cp -rfT build/lib lib'
+                                sh 'cp -rfT build/lib_ts lib_ts'
 
                                 echo 'Commit build files and push'
                                 sh 'git add --all .'
