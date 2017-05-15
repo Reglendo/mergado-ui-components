@@ -57,7 +57,7 @@ function renderDefault(prop) {
 		var value = prop.defaultValue.value;
 		
 		if(value.trim()[0] === '{') {
-			return <pre className={s.pre}>{value.replace(/ {3}/g,' ').replace(/ +}/,' }')}</pre>
+			return <pre className={s.pre}>{value.replace(/ {3}/g,' ').replace(/ +}/,'}')}</pre>
 		}
 
 		if(value.indexOf('“') > -1) {
