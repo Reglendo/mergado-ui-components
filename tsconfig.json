@@ -3,11 +3,11 @@
     "compilerOptions": {
 		"baseUrl": "src/",
         "module": "commonjs",
-        "target": "es3",
+        "target": "es2015",
         "jsx": "react",
-        "outDir": "./lib",
+        "outDir": "./lib_ts",
         "sourceMap": true,
-        "declaration": true
+        "declaration": false
     },
     "include": [
         "src/"
