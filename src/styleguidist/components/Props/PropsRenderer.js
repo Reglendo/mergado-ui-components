@@ -53,13 +53,20 @@ function renderDefault(prop) {
 		);
 	}
 	else if (prop.defaultValue) {
-		if(prop.defaultValue.value.indexOf('“') > -1) {
+
+		var value = prop.defaultValue.value;
+		
+		if(value.trim()[0] === '{') {
+			return <pre className={s.pre}>{value.replace(/ {3}/g,' ').replace(/ +}/,' }')}</pre>
+		}
+
+		if(value.indexOf('“') > -1) {
 			return (
-				<em className={s.string}>{prop.defaultValue.value.replace(/[“]/g,'').replace(/[”]/g,'')}</em>
+				<em className={s.string}>{value.replace(/[“]/g,'').replace(/[”]/g,'')}</em>
 			);
 		} else {
 			return (
-				<Code className={s.code}>{prop.defaultValue.value}</Code>
+				<Code className={s.code}><pre style={{whiteSpace: 'pre', overflow: 'auto'}}>{value}</pre></Code>
 			);
 
 		}

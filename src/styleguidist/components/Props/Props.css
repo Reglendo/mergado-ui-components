@@ -39,6 +39,7 @@
 
 .string {
 	font-size: 14px;
+	margin-left: 8px;
 }
 
 .string:before,.string:after {
@@ -57,12 +58,12 @@
 }
 
 
-.code {
+.code, .pre {
 	color: #666;
 }
 
 .required {
-	composes: light from "../../styles/colors.css";
+	color: #ccc;
 }
 .name {
 	composes: name from "../../styles/colors.css";
