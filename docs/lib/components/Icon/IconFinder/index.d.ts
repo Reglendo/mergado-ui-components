@@ -5,12 +5,9 @@ export interface Props {
 export interface State {
     value: string;
 }
-<<<<<<< HEAD
 /**
  * disable-styleguide
  */
-=======
->>>>>>> master
 declare class IconFinder extends React.Component<Props, State> {
     readonly name: string;
     static defaultProps: Props;
