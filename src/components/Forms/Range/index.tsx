@@ -1,6 +1,6 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
 
 export interface Props extends InputProps {
     max: number
@@ -30,6 +30,9 @@ class Range extends React.Component<Props, State> {
         max: 50,
         min: 0,
         step: 1,
+        style: null,
+        addClass: "",
+        id: "",
         input: {
             checked: false,
             name: "",

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Bubble from './Bubble'
-import {prefix} from "../../config"
+import {prefix} from "config"
 
 export interface Props {
     content?: string | JSX.Element

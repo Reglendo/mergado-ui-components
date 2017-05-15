@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from "react";
-import InputProps from "../default_props";
+import InputProps from "components/Forms/default_props";
 import * as Moment from "moment";
 export interface Props extends InputProps {
     type?: 'single' | 'range';

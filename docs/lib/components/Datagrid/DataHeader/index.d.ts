@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    cells?: JSX.Element | Array<JSX.Element>;
+    cells?: Array<JSX.Element>;
     style?: any;
     addClass?: string;
 }

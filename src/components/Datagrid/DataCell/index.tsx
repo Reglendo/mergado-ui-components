@@ -1,5 +1,5 @@
 import * as React from "react"
-import {prefix} from "../../../config"
+import {prefix} from "config"
 
 export interface Props {
     style?: any
@@ -16,9 +16,8 @@ class DataCell extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         addClass: '',
-        style: {},
+        style: null,
         type: 'cell',
-        onClick: () => {}
     }
 
     render() {

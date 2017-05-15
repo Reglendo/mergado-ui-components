@@ -1,9 +1,7 @@
 /// <reference types="react" />
-import * as React from 'react';
-import WizardStep from "./WizardStep";
+import * as React from "react";
 export interface Props {
-    /** Links */
-    links: Array<WizardStep> | Array<JSX.Element>;
+    links: Array<JSX.Element>;
     style?: any;
 }
 export interface State {

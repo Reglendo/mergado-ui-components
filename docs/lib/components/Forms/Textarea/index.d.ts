@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from "react";
-import InputProps from "../default_props";
+import InputProps from "components/Forms/default_props";
 export interface Props extends InputProps {
     labels?: {
         main: string | JSX.Element;

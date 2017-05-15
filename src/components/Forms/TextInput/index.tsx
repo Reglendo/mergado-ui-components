@@ -1,6 +1,6 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
 
 export interface Props extends InputProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
@@ -25,6 +25,9 @@ class TextInput extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         type: "text",
+        style: null,
+        addClass: "",
+        id: "",
         input: {
             checked: false,
             name: "",

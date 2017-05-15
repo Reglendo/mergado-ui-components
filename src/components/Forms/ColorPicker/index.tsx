@@ -1,7 +1,7 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
-import ChromePicker from 'react-color/lib/components/chrome/Chrome'
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
+import ChromePicker from "react-color/lib/components/chrome/Chrome"
 
 export interface Props extends InputProps {
     disabled?: boolean
@@ -30,7 +30,8 @@ class ColorPicker extends React.Component<Props, State> {
         disabled: false,
         required: false,
         style: null,
-        addClass: null,
+        addClass: "",
+        color: { r: 0, g: 0, b: 0, a: 1 },
         input: {
             checked: false,
             name: "",

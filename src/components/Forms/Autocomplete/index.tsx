@@ -1,8 +1,8 @@
 import * as React from "react"
 import {findDOMNode} from "react-dom"
-import {prefix} from "../../../config"
-import TextInput from "../TextInput"
-import InputProps from "../default_props"
+import {prefix} from "config"
+import TextInput from "components/Forms/TextInput"
+import InputProps from "components/Forms/default_props"
 
 export interface Item {
     value: string

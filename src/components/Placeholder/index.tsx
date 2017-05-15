@@ -1,5 +1,5 @@
 import * as React from "react"
-import {prefix} from "../../config"
+import {prefix} from "config"
 
 export interface Props {
     width: number
@@ -16,7 +16,9 @@ class Placeholder extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         width: 100,
-        height: 100
+        height: 100,
+        style: {},
+        addClass: "",
     }
 
     render() {

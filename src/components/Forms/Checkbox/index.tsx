@@ -1,6 +1,6 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
 
 export interface Props extends InputProps {
     disabled?: boolean
@@ -27,8 +27,8 @@ class Checkbox extends React.Component<Props, State> {
         disabled: false,
         required: false,
         style: null,
-        addClass: null,
-        id: null,
+        addClass: "",
+        id: "",
         input: {
             checked: false,
             name: "",

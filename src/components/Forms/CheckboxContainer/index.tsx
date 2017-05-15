@@ -1,9 +1,9 @@
 import * as React from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
-import LittleStatus from "../../LittleStatus"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
+import LittleStatus from "components/LittleStatus"
 import {Link} from "react-router"
-import uniqueId from "../../../helpers/unique_id"
+import uniqueId from "helpers/unique_id"
 
 
 export interface Query {
@@ -25,7 +25,7 @@ export interface Props extends InputProps {
     singleChoice?: boolean
     withoutFilter?: boolean
     /** Height of box with queries (in px) */
-    height?: string|number
+    height?: number | string
     style?: any
 }
 

@@ -1,6 +1,6 @@
 **.muk-helper-loading**
 
-    <Datagrid setRef="datagrid" addClass="muk-helper-loading"
+    <DataTable setRef="datagrid" addClass="muk-helper-loading"
             header={<DataHeader cells={[
                         <DataCell key={2} type='header'/>,
                         <DataCell key={3} type='header'>Názov šablóny</DataCell>,

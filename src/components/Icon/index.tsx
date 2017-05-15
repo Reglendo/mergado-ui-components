@@ -1,5 +1,5 @@
 import * as React from "react"
-import {prefix} from "../../config"
+import {prefix} from "config"
 import  * as Icons from "mergado-ui-icons/lib"
 
 export interface Props {
@@ -21,7 +21,10 @@ class Icon extends React.Component<Props, State> {
     public static defaultProps: Props = {
         type: "reglendo",
         size: 15,
-        style: {}
+        style: {},
+        name: "",
+        text: "",
+        title: "",
     }
 
     render() {

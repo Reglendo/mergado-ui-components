@@ -1,6 +1,6 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
 
 export interface Props extends InputProps {
     labels?: {
@@ -23,6 +23,9 @@ class Textarea extends React.Component<Props, State> {
     readonly form = prefix + "form";
 
     public static defaultProps: Props = {
+        style: null,
+        addClass: "",
+        id: "",
         input: {
             checked: false,
             name: "",

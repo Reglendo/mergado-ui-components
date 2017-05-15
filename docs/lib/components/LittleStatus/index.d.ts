@@ -1,11 +1,8 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    /** Status title */
     title?: string;
-    /** Status type */
-    type: "warning" | "success" | "error" | "inactive" | "";
-    /** Status text */
+    type: "warning" | "success" | "error" | "inactive";
     text?: string;
     style?: any;
 }

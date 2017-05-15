@@ -1,5 +1,5 @@
 import * as React from "react"
-import {prefix} from "../../../config"
+import {prefix} from "config"
 
 export interface Props {
     active?: boolean

@@ -1,11 +1,12 @@
 import * as React from "react"
-import {prefix} from "../../../config"
+import {prefix} from "config"
 
 export interface Props {
-    cells?: JSX.Element | Array<JSX.Element>
+    cells?: Array<JSX.Element>
     style?: any
     addClass?: string
     inactive?: boolean
+    /** optional attribute "data-id" for sortablejs */
     dataId?: number | string
 }
 
@@ -21,7 +22,7 @@ class DataRow extends React.Component<Props, State> {
         addClass: '',
         style: {},
         inactive: false,
-        dataId: null
+        dataId: ""
     }
 
     render() {

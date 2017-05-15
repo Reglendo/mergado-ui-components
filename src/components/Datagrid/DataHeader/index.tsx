@@ -1,8 +1,8 @@
 import * as React from "react"
-import {prefix} from "../../../config"
+import {prefix} from "config"
 
 export interface Props {
-    cells?: JSX.Element | Array<JSX.Element>
+    cells?: Array<JSX.Element>
     style?: any
     addClass?: string
 

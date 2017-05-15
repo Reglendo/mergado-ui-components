@@ -1,7 +1,7 @@
 import * as React  from "react"
-import InputProps from "../default_props"
-import {prefix} from "../../../config"
-import uniqueId from "../../../helpers/unique_id"
+import InputProps from "components/Forms/default_props"
+import {prefix} from "config"
+import uniqueId from "helpers/unique_id"
 
 export interface Props extends InputProps {
     options?: any
@@ -35,8 +35,8 @@ class Select extends React.Component<Props, State> {
         required: false,
         size: 0,
         style: null,
-        addClass: null,
-        id: null,
+        addClass: "",
+        id: "",
         input: {
             checked: false,
             name: "",

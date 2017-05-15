@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import * as React from "react";
 export interface Props {
-    type?: string;
+    type?: "default" | "dashed" | "dotted" | "mergado";
     /** Maximum dimension (width or height) */
     size?: number;
     loaded?: boolean;
