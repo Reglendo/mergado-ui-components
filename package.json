@@ -11,7 +11,7 @@
     "test:watch": "npm run test -- --watch",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
-    "build-prod": "NODE_ENV='production' webpack && tsc -d && styleguidist build"
+    "build-prod": "NODE_ENV='production' webpack && tsc && babel lib_ts -d lib && styleguidist build"
   },
   "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
   "contributors": [
@@ -27,6 +27,8 @@
   ],
   "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-module-resolver": "^2.7.0",
     "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons#0.1.2",
     "moment": "^2.18.1",
     "react": "^15.4.2",

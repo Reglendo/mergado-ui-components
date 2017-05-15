@@ -37,7 +37,7 @@ module.exports = {
     styleguideDir: path.join(__dirname, 'docs'),
     updateWebpackConfig(webpackConfig) {
         // Your source files folder or array of folders, should not include node_modules
-        const dir = path.join(__dirname, 'docs');
+        const dir = path.join(__dirname, 'src', 'styleguidist');
 
         webpackConfig.resolve.extensions = ['.js', '.jsx', '.ts', '.tsx','.json'];
 
