@@ -98,6 +98,12 @@ node {
                                 sh 'git push'
 
                                 echo 'Publish'
+                                withCredentials([string(credentialsId: 'reglendo-bot-npm-token', variable: 'NPM_TOKEN')]) {
+                                    sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /home/jenkins/.npmrc'
+                                    sh 'npm publish || echo "Publish failed. No new version?"'
+                                }
+                                commit_msg = sh(script: "git log -2", returnStdout: true)
+                                slackSend channel: '#reglendo_devs', color: 'good', message: "Mergado-UI-kit published - *${env.JOB_NAME}* [${env.BUILD_NUMBER}] ${env.BUILD_URL}\n${commit_msg}", teamDomain: 'mergado', token: 'hGX8um8R0miKaAOedZyX7GvC'
                             }
                         }
                     }
