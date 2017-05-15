@@ -78,6 +78,7 @@ node {
                                 sh 'cp -r dist build/'
                                 sh 'cp -r docs build/'
                                 sh 'cp -r lib build/'
+                                sh 'cp -r lib_ts build/'
 
                                 echo 'Reset to base branch'
                                 sh 'git status'
@@ -91,6 +92,7 @@ node {
                                 sh 'cp -rfT build/dist dist'
                                 sh 'cp -rfT build/docs docs'
                                 sh 'cp -rfT build/lib lib'
+                                sh 'cp -rfT build/lib_ts lib_ts'
 
                                 echo 'Commit build files and push'
                                 sh 'git add --all .'
@@ -98,6 +100,12 @@ node {
                                 sh 'git push'
 
                                 echo 'Publish'
+                                withCredentials([string(credentialsId: 'reglendo-bot-npm-token', variable: 'NPM_TOKEN')]) {
+                                    sh 'echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > /home/jenkins/.npmrc'
+                                    sh 'npm publish || echo "Publish failed. No new version?"'
+                                }
+                                commit_msg = sh(script: "git log -2", returnStdout: true)
+                                slackSend channel: '#reglendo_devs', color: 'good', message: "Mergado-UI-kit published - *${env.JOB_NAME}* [${env.BUILD_NUMBER}] ${env.BUILD_URL}\n${commit_msg}", teamDomain: 'mergado', token: 'hGX8um8R0miKaAOedZyX7GvC'
                             }
                         }
                     }
