@@ -8,12 +8,11 @@ class DataRow extends React.Component {
         this.name = config_1.prefix + "datagrid__row";
     }
     render() {
-        const { cells, style, addClass, inactive, dataId } = this.props;
-        return (React.createElement("tr", { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, "data-id": dataId, style: style }, cells));
+        const { style, addClass, inactive, dataId } = this.props;
+        return (React.createElement("tr", { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, "data-id": dataId, style: style }, this.props.children));
     }
 }
 DataRow.defaultProps = {
-    cells: [],
     addClass: '',
     style: {},
     inactive: false,
