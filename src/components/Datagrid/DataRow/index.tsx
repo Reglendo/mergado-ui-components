@@ -2,7 +2,6 @@ import * as React from "react"
 import {prefix} from "config"
 
 export interface Props {
-    cells?: Array<JSX.Element>
     style?: any
     addClass?: string
     inactive?: boolean
@@ -18,7 +17,6 @@ class DataRow extends React.Component<Props, State> {
     readonly name = prefix + "datagrid__row";
 
     public static defaultProps: Props = {
-        cells: [],
         addClass: '',
         style: {},
         inactive: false,
@@ -26,9 +24,11 @@ class DataRow extends React.Component<Props, State> {
     }
 
     render() {
-        const { cells, style, addClass, inactive, dataId } = this.props;
+        const { style, addClass, inactive, dataId } = this.props;
         return (
-            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`} data-id={dataId} style={style}>{cells}</tr>
+            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`} data-id={dataId} style={style}>
+                {this.props.children}
+            </tr>
         )
     }
 }
