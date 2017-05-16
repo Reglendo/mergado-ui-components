@@ -9,26 +9,31 @@ module.exports = {
     serverPort: '3001',
     sections: [
         {
+            name: 'Layout',
+            content: './src/docs/Layout.md'
+        },        
+        {
             name: 'Helpers',
-            content: './src/docs/helpers/Readme.md'
+            content: './src/docs/Helpers.md'
         },
         {
             name: 'Datagrid',
             components: './src/components/Datagrid/**/*.tsx',
-            content: './src/components/Datagrid/Readme.section.md'
+            content: './src/docs/Datagrid.md'
         },
         {
             name: 'Icons',
             components: './src/components/Icon/index.tsx',
-            content: './src/components/Icon/Readme.section.md'
+            content: './src/docs/Icons.md'
         },
         {
             name: 'Form',
             components: './src/components/Forms/**/*.tsx',
-            content: './src/components/Forms/Readme.md'
+            content: './src/docs/Forms.md'
         },
         {
             name: 'Components',
+            content: './src/docs/Components.md',
             components: './src/components/**/*.tsx'
         }
     ],

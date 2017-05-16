@@ -14,7 +14,7 @@
 
 .header {
 	flex-basis: 40%;
-	padding: 20px;
+	padding: 12px;
 	padding-bottom: 0;
 	font-weight: normal;
 	background: white;
@@ -49,12 +49,11 @@
 	font-size: 20px;
 	width: 32px;
 	height: 32px;
-	background: white;
 	z-index: 0;
 }
 
 .anchor:hover:before {
-	margin-left: -28px;
+	margin-left: -21px;
 }
 
 .isolatedLink {
@@ -64,19 +63,19 @@
 .pathLine {
 	composes: monospace from "../../styles/common.css";
 	composes: light from "../../styles/colors.css";
-	margin-top: 5px;
+	margin-top: 0px;
+	margin-left: 5px;
 	font-size: 14px;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	display: inline-block;
-	float: right
 }
 
 .isolatedLink {
 	composes: link from "../../styles/colors.css";
 	position: absolute;
-	right: 0;
-	opacity: 0;
+	right: 5px;
+	top: 5px;
+	opacity: 1;
 	transition: opacity 0.5s;
 }
 
