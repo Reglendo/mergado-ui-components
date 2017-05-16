@@ -74,6 +74,8 @@ node {
                         stage("publishing") {
                             steps {
                                 echo 'Copy build files to ignored directory'
+                                sh 'ls -la build'
+                                sh 'rm -rf build'
                                 sh 'mkdir build'
                                 sh 'cp -r dist build/'
                                 sh 'cp -r docs build/'
