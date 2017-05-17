@@ -15209,11 +15209,7 @@ exports.default = LittleStatus;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(1);
 const config_1 = __webpack_require__(5);
-<<<<<<< HEAD
 const IconClose_1 = __webpack_require__(312);
-=======
-const close_1 = __webpack_require__(312);
->>>>>>> master
 const unique_id_1 = __webpack_require__(44);
 class Toast extends React.Component {
     constructor(props) {
