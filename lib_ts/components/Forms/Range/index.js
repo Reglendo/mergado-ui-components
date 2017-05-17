@@ -34,7 +34,7 @@ class Range extends React.Component {
                         let target = evt.target;
                         let output = document.getElementById(outputId);
                         output.value = target.value;
-                    }, value: this.state.value })),
+                    }, value: this.state.value }, this.props.addProps)),
                 React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
     }
 }

@@ -27,4 +27,8 @@ Example form
         <Button color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
     </div>
     
+All forms components have common redux-form's [Field props](http://redux-form.com/6.0.0-alpha.4/docs/api/Field.md/#props) and:
 
+    <pre>
+        addProps?: any  // can add _any_ prop to input element
+    </pre>

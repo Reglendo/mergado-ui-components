@@ -91,6 +91,7 @@ class TextInput extends React.Component<Props, State> {
                     id={inputId} type={type} placeholder={this.props.labels.placeholder}
                     ref="input"
                     {...this.props.input}
+                    {...this.props.addProps}
                 />
             </div>
         )

@@ -94,7 +94,7 @@ class Button extends React.Component<Props, State> {
     }
     renderButton() {
         const { input, labels, icon, onClick } = this.props
-        return (<button className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>{icon}{labels.main}</button>)
+        return (<button className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title} {...this.props.addProps}>{icon}{labels.main}</button>)
     }
     renderLink() {
         const { link, labels, icon, onClick } = this.props
@@ -103,7 +103,7 @@ class Button extends React.Component<Props, State> {
     renderSubmit() {
         const { meta, input, labels, onClick } = this.props
         const inputId = `${meta.form}-${input.name}`
-        return (<input type="submit" className={`${this.name}__item`} value={`${labels.main}`} id={inputId} name={input.name} title={labels.title} onClick={onClick} />)
+        return (<input type="submit" className={`${this.name}__item`} value={`${labels.main}`} id={inputId} name={input.name} title={labels.title} onClick={onClick} {...this.props.addProps} />)
     }
     renderVoid() {
         const { input, labels, icon, onClick } = this.props
@@ -121,12 +121,12 @@ class Button extends React.Component<Props, State> {
                              ${type ==='submit'? `{this.form}__group`: ''}
                              ${type ==='submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `} title={this.props.labels.title} style={this.props.style}>
-                {type == 'submit' && this.renderInvalid()}
-                {type == 'button' && this.renderButton()}
-                {type == 'link' && this.renderLink()}
-                {type == 'submit' && this.renderSubmit()}
-                {type == 'void' && this.renderVoid()}
-                {type == 'href' && this.renderHref()}
+                {type === 'submit' && this.renderInvalid()}
+                {type === 'button' && this.renderButton()}
+                {type === 'link' && this.renderLink()}
+                {type === 'submit' && this.renderSubmit()}
+                {type === 'void' && this.renderVoid()}
+                {type === 'href' && this.renderHref()}
             </div>
         )
     }

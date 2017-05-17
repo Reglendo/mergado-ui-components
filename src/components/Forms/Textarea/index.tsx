@@ -77,7 +77,7 @@ class Textarea extends React.Component<Props, State> {
     }
 
     render() {
-        const { id,  meta, input } = this.props
+        const { id,  meta, input, addProps } = this.props
         const inputId = `${meta.form}-${input.name}`
         return (
             <div className={`${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
@@ -86,7 +86,8 @@ class Textarea extends React.Component<Props, State> {
                 <textarea
                     className={`${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
                     id={id?id:inputId} placeholder={this.props.labels.placeholder}
-                    {...input}>{input.value}</textarea>
+                    {...input} {...addProps}
+                >{input.value}</textarea>
             </div>
         )
     }

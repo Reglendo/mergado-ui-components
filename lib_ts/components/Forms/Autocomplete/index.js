@@ -274,7 +274,7 @@ class Autocomplete extends React.Component {
                     onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
                     onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
                     onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
-                } }),
+                }, addProps: this.props.addProps }),
             open && this.renderMenu()));
     }
 }

@@ -31,6 +31,7 @@ interface FieldProps {
         visited: boolean
         warning: string
     }
+    addProps?: any
 }
 
 export default FieldProps

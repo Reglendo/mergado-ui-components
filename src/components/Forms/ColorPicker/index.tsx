@@ -130,7 +130,7 @@ class ColorPicker extends React.Component<Props, State> {
         const { color } = this.state
         const { input } = this.props
 
-        const background = typeof color == "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`
+        const background = typeof color === "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`
         const inputId = `${this.props.meta.form}-${input.name}`
 
         return(
