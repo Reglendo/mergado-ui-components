@@ -37803,8 +37803,10 @@ class CheckboxContainer extends React.Component {
             };
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
                                     ${option.disabled ? `${this.name}__item--disabled` : ''}`, key: unique_id_1.default(), onClick: handler },
-                this.props.singleChoice === false &&
-                    React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler }),
+                this.props.singleChoice === false ?
+                    React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler })
+                    :
+                        React.createElement("input", { type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? 'inline-block' : 'none' } }),
                 this.renderLabel(option)));
         });
     }
@@ -37843,8 +37845,11 @@ class CheckboxContainer extends React.Component {
     }
     render() {
         return (React.createElement("div", { className: this.name, style: this.props.style },
-            React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid :
-                    '' }, this.props.labels.main),
+            this.props.showLabel ?
+                React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, this.props.labels.main)
+                :
+                    React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid :
+                            '' }, this.props.labels.main),
             React.createElement("div", { className: `${this.name}__queries
                                  ${this.form}__group
                                  ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
@@ -37897,7 +37902,9 @@ CheckboxContainer.defaultProps = {
     },
     singleChoice: false,
     withoutFilter: false,
-    height: 300
+    height: 300,
+    showRadio: false,
+    showLabel: false,
 };
 exports.default = CheckboxContainer;
 
