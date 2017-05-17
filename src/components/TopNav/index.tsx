@@ -5,7 +5,7 @@ import {prefix} from "config"
 export interface Props {
     links: Array<JSX.Element>
     style?: any
-    addClass: string
+    addClass?: string
 }
 
 export interface State {
