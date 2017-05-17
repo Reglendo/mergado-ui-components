@@ -15115,7 +15115,7 @@ class TextInput extends React.Component {
         return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input))));
+            React.createElement("input", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, this.props.addProps))));
     }
 }
 TextInput.defaultProps = {
@@ -37462,7 +37462,7 @@ class Autocomplete extends React.Component {
                     onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
                     onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
                     onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
-                } }),
+                }, addProps: this.props.addProps }),
             open && this.renderMenu()));
     }
 }
@@ -37557,7 +37557,7 @@ class Button extends React.Component {
     }
     renderButton() {
         const { input, labels, icon, onClick } = this.props;
-        return (React.createElement("button", { className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title },
+        return (React.createElement("button", Object.assign({ className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title }, this.props.addProps),
             icon,
             labels.main));
     }
@@ -37570,7 +37570,7 @@ class Button extends React.Component {
     renderSubmit() {
         const { meta, input, labels, onClick } = this.props;
         const inputId = `${meta.form}-${input.name}`;
-        return (React.createElement("input", { type: "submit", className: `${this.name}__item`, value: `${labels.main}`, id: inputId, name: input.name, title: labels.title, onClick: onClick }));
+        return (React.createElement("input", Object.assign({ type: "submit", className: `${this.name}__item`, value: `${labels.main}`, id: inputId, name: input.name, title: labels.title, onClick: onClick }, this.props.addProps)));
     }
     renderVoid() {
         const { input, labels, icon, onClick } = this.props;
@@ -37588,12 +37588,12 @@ class Button extends React.Component {
                              ${type === 'submit' ? `{this.form}__group` : ''}
                              ${type === 'submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `, title: this.props.labels.title, style: this.props.style },
-            type == 'submit' && this.renderInvalid(),
-            type == 'button' && this.renderButton(),
-            type == 'link' && this.renderLink(),
-            type == 'submit' && this.renderSubmit(),
-            type == 'void' && this.renderVoid(),
-            type == 'href' && this.renderHref()));
+            type === 'submit' && this.renderInvalid(),
+            type === 'button' && this.renderButton(),
+            type === 'link' && this.renderLink(),
+            type === 'submit' && this.renderSubmit(),
+            type === 'void' && this.renderVoid(),
+            type === 'href' && this.renderHref()));
     }
 }
 Button.defaultProps = {
@@ -37678,7 +37678,7 @@ class Checkbox extends React.Component {
                          `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label ${this.form}__input` },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input)),
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input, this.props.addProps)),
                 " ",
                 this.props.labels.main)));
     }
@@ -37803,7 +37803,7 @@ class CheckboxContainer extends React.Component {
             };
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
                                     ${option.disabled ? `${this.name}__item--disabled` : ''}`, key: unique_id_1.default(), onClick: handler },
-                this.props.singleChoice == false &&
+                this.props.singleChoice === false &&
                     React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler }),
                 this.renderLabel(option)));
         });
@@ -37952,7 +37952,7 @@ class ColorPicker extends React.Component {
     renderItem() {
         const { color } = this.state;
         const { input } = this.props;
-        const background = typeof color == "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
+        const background = typeof color === "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
         const inputId = `${this.props.meta.form}-${input.name}`;
         return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input` },
             React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),
@@ -38051,7 +38051,7 @@ class Radio extends React.Component {
                          `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label` },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input)),
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input, this.props.addProps)),
                 " ",
                 this.props.labels.main)));
     }
@@ -38144,7 +38144,7 @@ class Range extends React.Component {
                         let target = evt.target;
                         let output = document.getElementById(outputId);
                         output.value = target.value;
-                    }, value: this.state.value })),
+                    }, value: this.state.value }, this.props.addProps)),
                 React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
     }
 }
@@ -38235,7 +38235,7 @@ class Select extends React.Component {
         });
     }
     render() {
-        const { multiple, disabled, required, size, addClass, style, id, meta } = this.props;
+        const { multiple, disabled, required, size, addClass, style, id, meta, addProps, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
         return (React.createElement("div", { className: `${this.name}
                              ${multiple && this.name + `--` + multiple}
@@ -38247,7 +38247,7 @@ class Select extends React.Component {
                              `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.props.input), this.renderOptions())));
+            React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, input, addProps), this.renderOptions())));
     }
 }
 Select.defaultProps = {
@@ -38321,12 +38321,12 @@ class Textarea extends React.Component {
         }
     }
     render() {
-        const { id, meta, input } = this.props;
+        const { id, meta, input, addProps } = this.props;
         const inputId = `${meta.form}-${input.name}`;
         return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input), input.value)));
+            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input, addProps), input.value)));
     }
 }
 Textarea.defaultProps = {
