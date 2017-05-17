@@ -66,7 +66,7 @@ class CheckboxContainer extends React.Component {
             };
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
                                     ${option.disabled ? `${this.name}__item--disabled` : ''}`, key: unique_id_1.default(), onClick: handler },
-                this.props.singleChoice == false &&
+                this.props.singleChoice === false &&
                     React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler }),
                 this.renderLabel(option)));
         });

@@ -92,7 +92,8 @@ class Radio extends React.Component<Props, State> {
                          `} title={this.props.labels.title} style={style}>
                 {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`}>
-                    <input className={`${this.name}__item`} id={id?id:inputId} type="radio" required={!!required} disabled={!!disabled} {...this.props.input} /> {this.props.labels.main }
+                    <input className={`${this.name}__item`} id={id?id:inputId} type="radio" required={!!required} disabled={!!disabled} 
+                        {...this.props.input} {...this.props.addProps}/> {this.props.labels.main }
                 </label>
             </div>
         )

@@ -22,7 +22,7 @@ class Button extends React.Component {
     }
     renderButton() {
         const { input, labels, icon, onClick } = this.props;
-        return (React.createElement("button", { className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title },
+        return (React.createElement("button", Object.assign({ className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title }, this.props.addProps),
             icon,
             labels.main));
     }
@@ -35,7 +35,7 @@ class Button extends React.Component {
     renderSubmit() {
         const { meta, input, labels, onClick } = this.props;
         const inputId = `${meta.form}-${input.name}`;
-        return (React.createElement("input", { type: "submit", className: `${this.name}__item`, value: `${labels.main}`, id: inputId, name: input.name, title: labels.title, onClick: onClick }));
+        return (React.createElement("input", Object.assign({ type: "submit", className: `${this.name}__item`, value: `${labels.main}`, id: inputId, name: input.name, title: labels.title, onClick: onClick }, this.props.addProps)));
     }
     renderVoid() {
         const { input, labels, icon, onClick } = this.props;
@@ -53,12 +53,12 @@ class Button extends React.Component {
                              ${type === 'submit' ? `{this.form}__group` : ''}
                              ${type === 'submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `, title: this.props.labels.title, style: this.props.style },
-            type == 'submit' && this.renderInvalid(),
-            type == 'button' && this.renderButton(),
-            type == 'link' && this.renderLink(),
-            type == 'submit' && this.renderSubmit(),
-            type == 'void' && this.renderVoid(),
-            type == 'href' && this.renderHref()));
+            type === 'submit' && this.renderInvalid(),
+            type === 'button' && this.renderButton(),
+            type === 'link' && this.renderLink(),
+            type === 'submit' && this.renderSubmit(),
+            type === 'void' && this.renderVoid(),
+            type === 'href' && this.renderHref()));
     }
 }
 Button.defaultProps = {

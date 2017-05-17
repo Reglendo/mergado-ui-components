@@ -43,7 +43,7 @@ class ColorPicker extends React.Component {
     renderItem() {
         const { color } = this.state;
         const { input } = this.props;
-        const background = typeof color == "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
+        const background = typeof color === "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
         const inputId = `${this.props.meta.form}-${input.name}`;
         return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input` },
             React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),

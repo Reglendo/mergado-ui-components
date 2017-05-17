@@ -103,7 +103,7 @@ class Select extends React.Component<Props, State> {
     }
 
     render() {
-        const { multiple, disabled,required, size, addClass, style, id, meta } = this.props
+        const { multiple, disabled,required, size, addClass, style, id, meta, addProps, input } = this.props
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
             <div className={`${this.name}
@@ -118,7 +118,7 @@ class Select extends React.Component<Props, State> {
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <select className={`${this.name}__item`} id={id?id:inputId}
                     multiple={!!multiple} disabled={!!disabled}
-                    required={!!required} size={size} {...this.props.input}>
+                    required={!!required} size={size} {...input} {...addProps}>
                         {this.renderOptions()}
                 </select>
             </div>

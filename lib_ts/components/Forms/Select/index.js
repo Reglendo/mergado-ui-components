@@ -31,7 +31,7 @@ class Select extends React.Component {
         });
     }
     render() {
-        const { multiple, disabled, required, size, addClass, style, id, meta } = this.props;
+        const { multiple, disabled, required, size, addClass, style, id, meta, addProps, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
         return (React.createElement("div", { className: `${this.name}
                              ${multiple && this.name + `--` + multiple}
@@ -43,7 +43,7 @@ class Select extends React.Component {
                              `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, this.props.input), this.renderOptions())));
+            React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, input, addProps), this.renderOptions())));
     }
 }
 Select.defaultProps = {
