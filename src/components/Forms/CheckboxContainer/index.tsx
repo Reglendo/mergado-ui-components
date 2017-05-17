@@ -26,6 +26,10 @@ export interface Props extends InputProps {
     withoutFilter?: boolean
     /** Height of box with queries (in px) */
     height?: number | string
+    /** Show small label instead of bigger header  */
+    showLabel?: boolean
+    /** Show radio input if singleChoice is active. Otherwise show only link */
+    showRadio?: boolean
     style?: any
 }
 
@@ -80,7 +84,9 @@ class CheckboxContainer extends React.Component<Props, State> {
         },
         singleChoice: false,
         withoutFilter: false,
-        height: 300
+        height: 300,
+        showRadio: false,
+        showLabel: false,
     }
 
     constructor(props: Props) {
@@ -154,12 +160,19 @@ class CheckboxContainer extends React.Component<Props, State> {
                                     ${option.disabled ? `${this.name}__item--disabled` : ''}` }
                         key={uniqueId()}
                         onClick={handler}>
-                        {this.props.singleChoice === false &&
+                        {this.props.singleChoice === false ?
                             <input
                                 type="checkbox"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
                                 onChange={handler} />
+                            :
+                            <input
+                                type="radio"
+                                className={`${this.name}__checkbox`}
+                                checked={queries.indexOf(option.id) >= 0}
+                                onChange={handler} style={{display: this.props.showRadio?'inline-block':'none'}}/>
+
                         }
                         {this.renderLabel(option)}
                     </li>
@@ -210,9 +223,12 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         return (
             <div className={this.name} style={this.props.style}>
-
-                <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
-                    ''}>{this.props.labels.main}</h3>
+                {this.props.showLabel ? 
+                    <label className={`${this.name}__label ${this.form}__label`}>{this.props.labels.main}</label>
+                :
+                    <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
+                        ''}>{this.props.labels.main}</h3>
+                }
                 <div className={`${this.name}__queries
                                  ${this.form}__group
                                  ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}

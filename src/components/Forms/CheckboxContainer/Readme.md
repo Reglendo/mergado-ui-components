@@ -48,7 +48,9 @@ Flexible height single choice box without filter
                             active: 0
                         }],
                         singleChoice: true,
+                        showRadio: true,
                         withoutFilter: true,
+                        showLabel: true,
                         height: 'auto',
                         labels: {
                          main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
