@@ -15209,7 +15209,11 @@ exports.default = LittleStatus;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(1);
 const config_1 = __webpack_require__(5);
+<<<<<<< HEAD
+const IconClose_1 = __webpack_require__(312);
+=======
 const close_1 = __webpack_require__(312);
+>>>>>>> master
 const unique_id_1 = __webpack_require__(44);
 class Toast extends React.Component {
     constructor(props) {
@@ -15261,7 +15265,7 @@ class Toast extends React.Component {
                         React.createElement("a", { className: `${this.name}__button`, onClick: (evt) => {
                                 this.removeToast(evt);
                             } },
-                            React.createElement(close_1.default, null))))));
+                            React.createElement(IconClose_1.default, null))))));
     }
 }
 Toast.defaultProps = {
@@ -20329,7 +20333,7 @@ IconClose.defaultProps = {
     style: {}
 };
 exports.default = IconClose;
-//# sourceMappingURL=close.js.map
+//# sourceMappingURL=IconClose.js.map
 
 /***/ }),
 /* 313 */

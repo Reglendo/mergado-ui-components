@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
-const close_1 = require("mergado-ui-icons/lib/icons/close");
+const IconClose_1 = require("mergado-ui-icons/lib/icons/IconClose");
 const unique_id_1 = require("helpers/unique_id");
 class Toast extends React.Component {
     constructor(props) {
@@ -54,7 +54,7 @@ class Toast extends React.Component {
                         React.createElement("a", { className: `${this.name}__button`, onClick: (evt) => {
                                 this.removeToast(evt);
                             } },
-                            React.createElement(close_1.default, null))))));
+                            React.createElement(IconClose_1.default, null))))));
     }
 }
 Toast.defaultProps = {
