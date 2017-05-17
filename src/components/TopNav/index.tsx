@@ -5,6 +5,7 @@ import {prefix} from "config"
 export interface Props {
     links: Array<JSX.Element>
     style?: any
+    addClass: string
 }
 
 export interface State {
@@ -17,7 +18,8 @@ class TopNav extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         links: [],
-        style: {}
+        style: {},
+        addClass: ""
     }
 
     renderLinks() {
@@ -32,7 +34,7 @@ class TopNav extends React.Component<Props, State> {
 
     render() {
 
-        let className = `${this.name}`
+        let className = `${this.name} ${this.props.addClass}`
         let classWrapper = `${this.name}__wrapper"`
 
         return (
