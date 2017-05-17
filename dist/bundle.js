@@ -38890,7 +38890,7 @@ class TopNav extends React.Component {
         return (React.createElement("ul", { className: classList }, links));
     }
     render() {
-        let className = `${this.name}`;
+        let className = `${this.name} ${this.props.addClass}`;
         let classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
@@ -38898,7 +38898,8 @@ class TopNav extends React.Component {
 }
 TopNav.defaultProps = {
     links: [],
-    style: {}
+    style: {},
+    addClass: ""
 };
 exports.default = TopNav;
 

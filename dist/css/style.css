@@ -221,30 +221,26 @@ p, pre, table, fieldset {
       p td.operation .space:first-child, p td.operation .space.no-left, pre td.operation .space:first-child, pre td.operation .space.no-left, table td.operation .space:first-child, table td.operation .space.no-left, fieldset td.operation .space:first-child, fieldset td.operation .space.no-left {
         margin-left: 0; }
 
-section header.main {
-  min-height: 36px;
-  width: 100%;
+section h1, section h2, section h3 {
+  display: table-cell;
   position: relative;
-  margin: 10px 0 20px 0;
-  display: table;
-  background-color: rgba(219, 203, 163, 0.25); }
-  section header.main h1, section header.main h2, section header.main h3 {
-    display: table-cell;
-    position: relative;
-    font-size: 20pt;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-left: 15px;
-    margin-bottom: 0;
-    margin-top: 0; }
-  section header.main h1 {
-    border-left: 10px rgba(219, 203, 163, 0.5) solid; }
-  section header.main h2 {
-    border-left: 5px rgba(219, 203, 163, 0.5) solid;
-    font-size: 14pt; }
-  section header.main h3 {
-    border-left: 5px rgba(219, 203, 163, 0.5) solid;
-    font-size: 12pt; }
+  font-size: 20pt;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-left: 15px;
+  margin-bottom: 0;
+  margin-top: 0; }
+
+section h1 {
+  border-left: 10px rgba(219, 203, 163, 0.5) solid; }
+
+section h2 {
+  border-left: 5px rgba(219, 203, 163, 0.5) solid;
+  font-size: 14pt; }
+
+section h3 {
+  border-left: 5px rgba(219, 203, 163, 0.5) solid;
+  font-size: 12pt; }
 
 input[type="checkbox"], input[type="radio"] {
   vertical-align: middle; }
@@ -339,6 +335,64 @@ input[type="radio"] {
 
 .muk-col-right {
   float: right; }
+
+.document-style {
+  position: relative;
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 3px;
+  padding-right: 3px; }
+
+#container {
+  min-width: 800px; }
+
+header.main {
+  min-height: 36px;
+  width: 100%;
+  position: relative;
+  margin: 40px 0 20px;
+  display: table;
+  background-color: rgba(219, 203, 163, 0.25); }
+
+.app-presenter {
+  margin-bottom: 15px; }
+
+.top-nav {
+  margin-bottom: 30px; }
+
+.app-presenter .logo-wrapper {
+  cursor: pointer;
+  background: white;
+  display: inline-block; }
+
+.app-presenter .info {
+  float: right;
+  height: 120px;
+  position: relative;
+  display: table; }
+
+.app-presenter .export-name {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 60px;
+  height: 60px;
+  font-size: 20px;
+  border: none; }
+
+.widget {
+  display: table;
+  margin: 0 5px;
+  width: calc(100% - 10px);
+  margin-top: 7px;
+  font-size: 8pt;
+  line-height: 17px; }
+  .widget .widget-row {
+    display: table-row;
+    height: 17px; }
+  .widget .widget-cell {
+    display: table-cell; }
+  .widget .widget-status {
+    width: 100%; }
 
 /* COLORS */
 .muk-datagrid {
