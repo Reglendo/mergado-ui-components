@@ -165,13 +165,15 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 type="checkbox"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
-                                onChange={handler} />
+                                onChange={handler} 
+                                {...this.props.input} />
                             :
                             <input
                                 type="radio"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
-                                onChange={handler} style={{display: this.props.showRadio?'inline-block':'none'}}/>
+                                onChange={handler} style={{display: this.props.showRadio?'inline-block':'none'}}
+                                {...this.props.input} />
 
                         }
                         {this.renderLabel(option)}
@@ -222,7 +224,7 @@ class CheckboxContainer extends React.Component<Props, State> {
     render() {
 
         return (
-            <div className={this.name} style={this.props.style}>
+            <div className={`${this.name} ${this.form}__group`} style={this.props.style}>
                 {this.props.showLabel ? 
                     <label className={`${this.name}__label ${this.form}__label`}>{this.props.labels.main}</label>
                 :
@@ -230,7 +232,6 @@ class CheckboxContainer extends React.Component<Props, State> {
                         ''}>{this.props.labels.main}</h3>
                 }
                 <div className={`${this.name}__queries
-                                 ${this.form}__group
                                  ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
                              `}>
                     {this.renderInvalid()}
