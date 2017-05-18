@@ -1,21 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const config_1 = require("config");
-class DataTable extends React.Component {
-    constructor() {
-        super(...arguments);
-        this.name = config_1.prefix + "datagrid";
-    }
-    render() {
-        const { addClass, style } = this.props;
-        let className = `${this.name} ${this.props.addClass}`;
-        return (React.createElement("table", { className: className, style: style }, this.props.children));
-    }
-}
-DataTable.defaultProps = {
-    style: {},
-    addClass: ''
-};
-exports.default = DataTable;
+var DataTable_1 = require("components/Datagrid/DataTable");
+exports.DataTable = DataTable_1.default;
+var DataRow_1 = require("components/Datagrid/DataRow");
+exports.DataRow = DataRow_1.default;
+var DataCell_1 = require("components/Datagrid/DataCell");
+exports.DataCell = DataCell_1.default;
+var DataHeader_1 = require("components/Datagrid/DataHeader");
+exports.DataHeader = DataHeader_1.default;
 //# sourceMappingURL=index.js.map

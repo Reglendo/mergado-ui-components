@@ -87,11 +87,11 @@ class TextInput extends React.Component<Props, State> {
                 {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 <input
-                    className={`${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
                     id={inputId} type={type} placeholder={this.props.labels.placeholder}
                     ref="input"
                     {...this.props.input}
                     {...this.props.addProps}
+                    className={`${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps?this.props.addProps.addClass:''}`}
                 />
             </div>
         )

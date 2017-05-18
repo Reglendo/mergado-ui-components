@@ -1,7 +1,6 @@
 **.muk-helper-loading**
-
-    <DataTable setRef="datagrid" addClass="muk-helper-loading">
     
+    <DataTable setRef="datagrid" addClass="muk-helper-loading">
         <DataHeader>
             <DataCell key={2} type='header'/>
             <DataCell key={3} type='header'>Názov šablóny</DataCell>
@@ -30,6 +29,11 @@
             </DataRow>
         </DataBody>
     </DataTable>
+    
+**.muk-helper-loading--in**    
+    
+    <TextInput addProps={{addClass: 'muk-helper-loading--in'}} />
+
     
 **.muk-helper-clearfix**
 

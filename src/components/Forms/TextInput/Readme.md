@@ -23,4 +23,3 @@ Input types
 Validation
 
     <TextInput labels={{main: 'Give me some text', invalid: 'I am invalid'}} meta={{invalid: true, dirty: true}} input={{ onChange: () => { return true; } }} />
-    
