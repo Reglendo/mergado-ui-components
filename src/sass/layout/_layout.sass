@@ -1,3 +1,5 @@
+@import "../core/all"
+
 .document-style
     position: relative
     margin: 0 auto
@@ -6,7 +8,7 @@
     padding-right: 3px
 
 #container
-    min-width: 800px
+    min-width: 500px
 
 header.main
     min-height: 36px
@@ -19,6 +21,9 @@ header.main
 .app-presenter 
     margin-bottom: 15px
 
+.app-presenter > header
+    @extend .muk-helper-clearfix
+
 .top-nav
     margin-bottom: 30px;
 
@@ -29,7 +34,6 @@ header.main
 
 .app-presenter .info
     float: right
-    height: 120px
     position: relative
     display: table
     
