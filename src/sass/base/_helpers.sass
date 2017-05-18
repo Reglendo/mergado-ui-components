@@ -28,6 +28,13 @@
     to
       background-position-x: 25px
 
+.#{$prefix}helper-loading--in
+    background: repeating-linear-gradient(-55deg,rgba(220,220,220,0.8),rgba(200,220,220,0.8) 10px,rgba(230,230,230,0.8) 10px,rgba(230,230,230,0.8) 20px)
+    will-change: background-position
+    background-size: 25px 100%
+    animation: sliding 0.5s linear infinite
+    transform: translateZ(0)
+    will-change: background-position
 
 .#{$prefix}helper-clearfix
   @include clearfix()
