@@ -77,3 +77,31 @@ Application
 
     </div>
 
+
+**.muk-grid--table**
+
+    <div className="muk-grid--table" style={{fontSize: '11px'}}>
+        <div>
+            <div className={`muk-1-2`}>
+                <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}}>.muk-1-2</Placeholder>
+            </div>
+            <div className={`muk-1-4`}>
+                <Placeholder width={100} height={20} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+            </div>
+            <div className={`muk-1-4`}>
+                <Placeholder width={100} height={30} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+            </div>
+        </div>
+        <div>
+            <div className={`muk-1-2`}>
+                <Placeholder width={100} height={15} style={{border: "1px solid #aaa"}}>.muk-1-2</Placeholder>
+            </div>
+            <div className={`muk-1-4`}>
+                <Placeholder width={100} height={20} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+            </div>
+            <div className={`muk-1-4`}>
+                <Placeholder width={100} height={10} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+            </div>
+        </div>
+        
+    </div>

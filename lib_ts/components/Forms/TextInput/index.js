@@ -60,9 +60,9 @@ TextInput.defaultProps = {
         warning: ""
     },
     labels: {
-        main: "Text",
-        placeholder: "Fill out here...",
-        invalid: "Invalid input",
+        main: "",
+        placeholder: "",
+        invalid: "",
         title: ""
     }
 };

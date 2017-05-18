@@ -52,4 +52,6 @@ var DataCell_1 = require("./components/Datagrid/DataCell");
 exports.DataCell = DataCell_1.default;
 var DataHeader_1 = require("./components/Datagrid/DataHeader");
 exports.DataHeader = DataHeader_1.default;
+var DataBody_1 = require("./components/Datagrid/DataBody");
+exports.DataBody = DataBody_1.default;
 //# sourceMappingURL=index.js.map

@@ -8,62 +8,63 @@
 
     @extend .muk-helper-clearfix
 
-.col-mixin
-    float: left
-    min-height: 1px
-    padding-right: 20px
+
+    & > div
+        float: left
+        min-height: 1px
+        
+        &.#{$prefix}col-right
+            float: right
+
+
+.#{$prefix}grid--table
+    width: 100%
+    max-width: 2140px
+    min-width: 300px
+    margin: 0 auto
+    display: table
+
+    & > div
+        display: table-row
+        min-height: 1px
+        
+        & > div
+            display: table-cell
+            vertical-align: middle
 
 .#{$prefix}1-1
     width: 100%
-    @extend .col-mixin
 
 .#{$prefix}2-3, .#{$prefix}8-12
     width: 66.66%
-    @extend .col-mixin
 
 .#{$prefix}1-2, .#{$prefix}6-12
     width: 50%
-    @extend .col-mixin
 
 .#{$prefix}1-3, .#{$prefix}4-12
     width: 33.33%
-    @extend .col-mixin
 
 .#{$prefix}1-4, .#{$prefix}3-12
     width: 25%
-    @extend .col-mixin
 
 .#{$prefix}1-6, .#{$prefix}2-12
     width: 16.667%
-    @extend .col-mixin
 
 .#{$prefix}1-12
     width: 8.33%
-    @extend .col-mixin
-
 
 .#{$prefix}11-12
     width: 91.66%
-    @extend .col-mixin
 
 .#{$prefix}10-12
     width: 83.333%
-    @extend .col-mixin
-
 
 .#{$prefix}9-12
     width: 75%
-    @extend .col-mixin
-
 
 .#{$prefix}5-12
     width: 41.66%
-    @extend .col-mixin
-
 
 .#{$prefix}7-12
     width: 58.33%
-    @extend .col-mixin
 
-.#{$prefix}col-right
-    float: right
