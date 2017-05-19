@@ -49,7 +49,9 @@ class IconFinder extends React.Component<Props, State> {
             return <p style={{padding: '10px'}}>no icon found :(</p>
         }
         return found.map( obj => {
-            return (<span className={`${this.name}__icon`} tabIndex={1}><Icon name={`${obj}`} size={30} title={obj} text={obj} style={{display: 'inline-block', margin: '5px' }} /></span>)
+            return (<span className={`${this.name}__icon`} title={obj} tabIndex={1}>
+                        <Icon name={`${obj}`} size={30}  text={`import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`} style={{display: 'inline-block', margin: '5px' }} />
+                    </span>)
         }) 
     }
 

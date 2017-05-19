@@ -265,16 +265,16 @@ class Autocomplete extends React.Component {
         let className = `${this.name}`;
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
+        let inputProps = Object.assign({}, this.props.input, {
+            onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
+            onBlur: this.composeEventHandlers(this.handleInputBlur.bind(this), input.onBlur),
+            onChange: this.handleChange.bind(this),
+            onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
+            onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
+            onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
+        });
         return (React.createElement("div", { className: `${className}` },
-            React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: {
-                    value: this.state.value,
-                    onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
-                    onBlur: this.composeEventHandlers(this.handleInputBlur.bind(this), input.onBlur),
-                    onChange: this.handleChange.bind(this),
-                    onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
-                    onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
-                    onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
-                }, addProps: this.props.addProps }),
+            React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps, addProps: this.props.addProps }),
             open && this.renderMenu()));
     }
 }

@@ -39,7 +39,7 @@ class Icon extends React.Component<Props, State> {
         let icon = Icons[iconName] ? Icons[iconName] : null
 
         return (
-            <span className={className} style={this.props.style}>
+            <span className={className} style={this.props.style} title={this.props.title}>
                 <svg className={`${this.name}__image`} preserveAspectRatio='xMidYMid meet'
                      fill='currentColor'
                      height={this.props.size}
