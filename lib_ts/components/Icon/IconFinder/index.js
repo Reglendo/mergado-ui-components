@@ -34,8 +34,8 @@ class IconFinder extends React.Component {
             return React.createElement("p", { style: { padding: '10px' } }, "no icon found :(");
         }
         return found.map(obj => {
-            return (React.createElement("span", { className: `${this.name}__icon`, tabIndex: 1 },
-                React.createElement(Icon_1.default, { name: `${obj}`, size: 30, title: obj, text: obj, style: { display: 'inline-block', margin: '5px' } })));
+            return (React.createElement("span", { className: `${this.name}__icon`, title: obj, tabIndex: 1 },
+                React.createElement(Icon_1.default, { name: `${obj}`, size: 30, text: `import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`, style: { display: 'inline-block', margin: '5px' } })));
         });
     }
     render() {

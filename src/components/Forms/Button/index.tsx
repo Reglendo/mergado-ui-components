@@ -118,7 +118,7 @@ class Button extends React.Component<Props, State> {
                              ${size?this.name+`--`+size:``}
                              ${state?this.name+`--`+state:``}
                              ${addClass?addClass:``}
-                             ${type ==='submit'? `{this.form}__group`: ''}
+                             ${type ==='submit'? `${this.form}__group`: ''}
                              ${type ==='submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `} title={this.props.labels.title} style={this.props.style}>
                 {type === 'submit' && this.renderInvalid()}
