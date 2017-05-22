@@ -207,6 +207,7 @@ class Autocomplete extends React.Component < Props, State > {
     onSelect(value, item) {
         this.setState({ value: value })
         this.setIgnoreBlur(false)
+        this.props.input.onChange(value)
     }
 
     handleChange(event) {
@@ -394,15 +395,13 @@ class Autocomplete extends React.Component < Props, State > {
         const {labels, meta, input} = this.props
 
         let inputProps = Object.assign({}, this.props.input, {
-                value: this.state.value,
                 onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
-                onBlur: this.composeEventHandlers(this.handleInputBlur.bind(this), input.onBlur),
+                onBlur: this.handleInputBlur.bind(this),
                 onChange: this.handleChange.bind(this),
                 onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
                 onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
                 onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
         })
-
         return (
             <div className={`${className}`}>
                 <TextInput
