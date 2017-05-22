@@ -3,6 +3,7 @@ import {findDOMNode} from "react-dom"
 import {prefix} from "config"
 import TextInput from "components/Forms/TextInput"
 import InputProps from "components/Forms/default_props"
+import uniqueId from "helpers/unique_id"
 
 export interface Item {
     value: string
@@ -10,7 +11,7 @@ export interface Item {
 }
 
 export interface Props extends InputProps {
-    
+
     items : Array<Item>
     shouldItemRender?: (item : any, value : any) => any
     sortItems?: (a : any, b : any, value : any) => any
@@ -56,7 +57,7 @@ class Autocomplete extends React.Component < Props, State > {
         renderItem: (item: Item, highlighted, style) => {
             let className = `${prefix + "autocomplete"}__item `
             className += highlighted ? className + `${prefix + "autocomplete"}__item--selected` : ''
-            return (<div key={`${item.value}`} className={`${className}`}>{item.text}</div>)
+            return (<div key={`${item.value}-${uniqueId()}`} className={`${className}`}>{item.text}</div>)
         },
         getItemValue: (item: Item) => {
             return item.text
@@ -393,6 +394,7 @@ class Autocomplete extends React.Component < Props, State > {
         const {labels, meta, input} = this.props
 
         let inputProps = Object.assign({}, this.props.input, {
+                value: this.state.value,
                 onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
                 onBlur: this.composeEventHandlers(this.handleInputBlur.bind(this), input.onBlur),
                 onChange: this.handleChange.bind(this),
@@ -400,10 +402,10 @@ class Autocomplete extends React.Component < Props, State > {
                 onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
                 onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
         })
-        
+
         return (
             <div className={`${className}`}>
-                <TextInput 
+                <TextInput
                     ref="input"
                     type="search"
                     labels={labels}

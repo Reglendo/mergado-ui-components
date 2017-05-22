@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const TextInput_1 = require("components/Forms/TextInput");
+const unique_id_1 = require("helpers/unique_id");
 class Autocomplete extends React.Component {
     constructor(props) {
         super(props);
@@ -266,6 +267,7 @@ class Autocomplete extends React.Component {
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
         let inputProps = Object.assign({}, this.props.input, {
+            value: this.state.value,
             onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
             onBlur: this.composeEventHandlers(this.handleInputBlur.bind(this), input.onBlur),
             onChange: this.handleChange.bind(this),
@@ -287,7 +289,7 @@ Autocomplete.defaultProps = {
     renderItem: (item, highlighted, style) => {
         let className = `${config_1.prefix + "autocomplete"}__item `;
         className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : '';
-        return (React.createElement("div", { key: `${item.value}`, className: `${className}` }, item.text));
+        return (React.createElement("div", { key: `${item.value}-${unique_id_1.default()}`, className: `${className}` }, item.text));
     },
     getItemValue: (item) => {
         return item.text;

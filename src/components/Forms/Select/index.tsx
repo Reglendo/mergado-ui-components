@@ -107,10 +107,10 @@ class Select extends React.Component<Props, State> {
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         return (
             <div className={`${this.name}
-                             ${multiple && this.name+`--`+multiple}
-                             ${disabled && this.name+`--`+disabled}
-                             ${required && this.name+`--`+required}
-                             ${addClass?addClass:``}
+                             ${multiple ? this.name+`--`+multiple : ''}
+                             ${disabled ? this.name+`--`+disabled : ''}
+                             ${required ? this.name+`--`+required : ''}
+                             ${addClass ? addClass:``}
                              ${this.form}__group
                              ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                              `} title={this.props.labels.title} style={style}>

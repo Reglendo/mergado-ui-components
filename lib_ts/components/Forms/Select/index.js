@@ -34,9 +34,9 @@ class Select extends React.Component {
         const { multiple, disabled, required, size, addClass, style, id, meta, addProps, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
         return (React.createElement("div", { className: `${this.name}
-                             ${multiple && this.name + `--` + multiple}
-                             ${disabled && this.name + `--` + disabled}
-                             ${required && this.name + `--` + required}
+                             ${multiple ? this.name + `--` + multiple : ''}
+                             ${disabled ? this.name + `--` + disabled : ''}
+                             ${required ? this.name + `--` + required : ''}
                              ${addClass ? addClass : ``}
                              ${this.form}__group
                              ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
