@@ -55,7 +55,7 @@ class CheckboxContainer extends React.Component {
                         this.props.input.onChange(queries.concat(option.id));
                     }
                     else {
-                        this.props.input.onChange([option.id]);
+                        this.props.input.onChange(option.id);
                     }
                 }
                 else {
@@ -136,7 +136,7 @@ CheckboxContainer.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: []
+        value: null
     },
     meta: {
         active: false,

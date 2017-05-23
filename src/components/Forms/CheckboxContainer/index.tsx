@@ -56,7 +56,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: []
+            value: null
         },
         meta: {
             active: false,
@@ -146,7 +146,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                         if (this.props.singleChoice === false) {
                             this.props.input.onChange(queries.concat(option.id));
                         } else {
-                            this.props.input.onChange([option.id]);
+                            this.props.input.onChange(option.id);
                         }
                     } else {
                         const copy = [...queries]; // make copy to not mutate value
@@ -222,7 +222,6 @@ class CheckboxContainer extends React.Component<Props, State> {
 
 
     render() {
-
         return (
             <div className={`${this.name} ${this.form}__group`} style={this.props.style}>
                 {this.props.showLabel ?
