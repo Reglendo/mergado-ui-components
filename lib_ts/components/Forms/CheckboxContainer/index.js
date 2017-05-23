@@ -26,7 +26,7 @@ class CheckboxContainer extends React.Component {
         }
         let queries = this.props.input.value;
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
-            queries = [];
+            queries = [queries];
         }
         let allProductsOption = null;
         const isAllProducts = options.map((option, key) => {

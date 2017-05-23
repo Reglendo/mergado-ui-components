@@ -82,6 +82,8 @@ class TextInput extends React.Component<Props, State> {
     render() {
         const { id, type, meta, input, addClass } = this.props
         const inputId = id?id:`${meta.form}-${input.name}`
+        let addProps = Object.assign({}, this.props.addProps)
+        delete addProps['addClass']
         return (
             <div className={`${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
@@ -90,7 +92,7 @@ class TextInput extends React.Component<Props, State> {
                     id={inputId} type={type} placeholder={this.props.labels.placeholder}
                     ref="input"
                     {...this.props.input}
-                    {...this.props.addProps}
+                    {...addProps}
                     className={`${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps?this.props.addProps.addClass:''}`}
                 />
             </div>

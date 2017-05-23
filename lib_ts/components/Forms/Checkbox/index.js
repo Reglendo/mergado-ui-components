@@ -16,6 +16,8 @@ class Checkbox extends React.Component {
     render() {
         const { disabled, required, addClass, style, input, id, meta, labels } = this.props;
         const inputId = `${this.props.meta.form}-${input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
                              ${required && this.name + `--` + required} ${addClass ? addClass : ``}
                              ${this.form}__group
@@ -23,7 +25,7 @@ class Checkbox extends React.Component {
                          `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label ${this.form}__input` },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input, this.props.addProps)),
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input, addProps)),
                 " ",
                 this.props.labels.main)));
     }

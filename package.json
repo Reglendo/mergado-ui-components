@@ -1,6 +1,6 @@
 {
   "name": "mergado-ui-kit",
-  "version": "1.5.11-dev",
+  "version": "1.5.12-dev",
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {

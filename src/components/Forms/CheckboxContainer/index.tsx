@@ -116,7 +116,7 @@ class CheckboxContainer extends React.Component<Props, State> {
         let queries = this.props.input.value
 
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
-            queries = []
+            queries = [queries]
         }
 
         let allProductsOption : any = null;
@@ -165,7 +165,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 type="checkbox"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
-                                onChange={handler} 
+                                onChange={handler}
                                 {...this.props.input} />
                             :
                             <input
@@ -225,7 +225,7 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         return (
             <div className={`${this.name} ${this.form}__group`} style={this.props.style}>
-                {this.props.showLabel ? 
+                {this.props.showLabel ?
                     <label className={`${this.name}__label ${this.form}__label`}>{this.props.labels.main}</label>
                 :
                     <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
