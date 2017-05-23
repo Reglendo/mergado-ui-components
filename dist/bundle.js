@@ -15669,10 +15669,12 @@ class TextInput extends React.Component {
     render() {
         const { id, type, meta, input, addClass } = this.props;
         const inputId = id ? id : `${meta.form}-${input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, this.props.addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps ? this.props.addProps.addClass : ''}` }))));
+            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps ? this.props.addProps.addClass : ''}` }))));
     }
 }
 TextInput.defaultProps = {
@@ -39481,6 +39483,8 @@ class Checkbox extends React.Component {
     render() {
         const { disabled, required, addClass, style, input, id, meta, labels } = this.props;
         const inputId = `${this.props.meta.form}-${input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
                              ${required && this.name + `--` + required} ${addClass ? addClass : ``}
                              ${this.form}__group
@@ -39488,7 +39492,7 @@ class Checkbox extends React.Component {
                          `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label ${this.form}__input` },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input, this.props.addProps)),
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "checkbox", required: !!required, disabled: !!disabled }, this.props.input, addProps)),
                 " ",
                 this.props.labels.main)));
     }
@@ -39573,7 +39577,7 @@ class CheckboxContainer extends React.Component {
         }
         let queries = this.props.input.value;
         if (!(queries instanceof Array) && !(queries instanceof Object)) {
-            queries = [];
+            queries = [queries];
         }
         let allProductsOption = null;
         const isAllProducts = options.map((option, key) => {
@@ -39858,6 +39862,8 @@ class Radio extends React.Component {
     render() {
         const { disabled, required, addClass, style, input, id, meta } = this.props;
         const inputId = `${this.props.meta.form}-${input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name}
                              ${disabled && this.name + `--` + disabled}
                              ${required && this.name + `--` + required}
@@ -39867,7 +39873,7 @@ class Radio extends React.Component {
                          `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label` },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input, this.props.addProps)),
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input, addProps)),
                 " ",
                 this.props.labels.main)));
     }
@@ -39952,6 +39958,8 @@ class Range extends React.Component {
         const inputId = `${meta.form}-${input.name}`;
         const outputId = `${meta.form}-${input.name}_output`;
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("div", { style: { position: 'relative' } },
@@ -39960,7 +39968,7 @@ class Range extends React.Component {
                         let target = evt.target;
                         let output = document.getElementById(outputId);
                         output.value = target.value;
-                    }, value: this.state.value }, this.props.addProps)),
+                    }, value: this.state.value }, addProps)),
                 React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
     }
 }
@@ -40051,8 +40059,10 @@ class Select extends React.Component {
         });
     }
     render() {
-        const { multiple, disabled, required, size, addClass, style, id, meta, addProps, input } = this.props;
+        const { multiple, disabled, required, size, addClass, style, id, meta, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name}
                              ${multiple ? this.name + `--` + multiple : ''}
                              ${disabled ? this.name + `--` + disabled : ''}
@@ -40137,8 +40147,9 @@ class Textarea extends React.Component {
         }
     }
     render() {
-        const { id, meta, input, addProps } = this.props;
+        const { id, meta, input } = this.props;
         const inputId = `${meta.form}-${input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
         return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
