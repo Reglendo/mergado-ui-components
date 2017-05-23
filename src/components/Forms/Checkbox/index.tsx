@@ -82,6 +82,8 @@ class Checkbox extends React.Component<Props, State> {
     render() {
         const { disabled, required, addClass, style, input, id, meta, labels } = this.props
         const inputId = `${this.props.meta.form}-${input.name}`
+        let addProps = Object.assign({}, this.props.addProps)
+        delete addProps['addClass']
         return (
             <div className={`${this.name} ${disabled && this.name+`--`+disabled}
                              ${required && this.name+`--`+required} ${addClass?addClass:``}
@@ -91,7 +93,7 @@ class Checkbox extends React.Component<Props, State> {
                  title={labels.title} style={style}>
                 {this.renderInvalid()}
                 <label className={`${this.name}__label ${this.form}__label ${this.form}__input`}>
-                    <input className={`${this.name}__item`} id={id?id:inputId} type="checkbox" required={!!required} disabled={!!disabled} {...this.props.input} {...this.props.addProps} /> {this.props.labels.main }
+                    <input className={`${this.name}__item`} id={id?id:inputId} type="checkbox" required={!!required} disabled={!!disabled} {...this.props.input} {...addProps} /> {this.props.labels.main }
                 </label>
             </div>
         )

@@ -31,8 +31,10 @@ class Select extends React.Component {
         });
     }
     render() {
-        const { multiple, disabled, required, size, addClass, style, id, meta, addProps, input } = this.props;
+        const { multiple, disabled, required, size, addClass, style, id, meta, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name}
                              ${multiple ? this.name + `--` + multiple : ''}
                              ${disabled ? this.name + `--` + disabled : ''}

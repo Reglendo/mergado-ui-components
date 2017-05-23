@@ -26,6 +26,8 @@ class Range extends React.Component {
         const inputId = `${meta.form}-${input.name}`;
         const outputId = `${meta.form}-${input.name}_output`;
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
+        let addProps = Object.assign({}, this.props.addProps);
+        delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("div", { style: { position: 'relative' } },
@@ -34,7 +36,7 @@ class Range extends React.Component {
                         let target = evt.target;
                         let output = document.getElementById(outputId);
                         output.value = target.value;
-                    }, value: this.state.value }, this.props.addProps)),
+                    }, value: this.state.value }, addProps)),
                 React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
     }
 }
