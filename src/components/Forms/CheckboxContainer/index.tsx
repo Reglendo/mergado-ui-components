@@ -166,13 +166,15 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
                                 onChange={handler}
+                                style={{pointerEvents: 'none'}}
                                 {...this.props.input} />
                             :
                             <input
                                 type="radio"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
-                                onChange={handler} style={{display: this.props.showRadio?'inline-block':'none'}}
+                                onChange={handler}
+                                style={{display: this.props.showRadio?'inline-block':'none', pointerEvents: 'none'}}
                                 {...this.props.input} />
 
                         }
