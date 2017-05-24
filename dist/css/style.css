@@ -364,9 +364,6 @@ input[type="radio"] {
   padding-left: 3px;
   padding-right: 3px; }
 
-#container {
-  min-width: 500px; }
-
 header.main {
   min-height: 36px;
   width: 100%;
@@ -410,7 +407,8 @@ header.main {
     display: table-row;
     height: 17px; }
   .widget .widget-cell {
-    display: table-cell; }
+    display: table-cell;
+    vertical-align: middle; }
   .widget .widget-status {
     width: 100%; }
 
@@ -2145,7 +2143,8 @@ header.main {
   .muk-top_nav__item {
     float: left;
     margin-left: 1.5em;
-    list-style-type: none; }
+    list-style-type: none;
+    cursor: pointer; }
     .muk-top_nav__item a {
       color: #333;
       text-decoration: none; }
