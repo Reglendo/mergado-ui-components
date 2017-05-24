@@ -15662,8 +15662,8 @@ class TextInput extends React.Component {
         this.form = config_1.prefix + "form";
     }
     renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
+        if (this.props.meta.error && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.meta.error));
         }
     }
     render() {
@@ -15673,7 +15673,8 @@ class TextInput extends React.Component {
         delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
-            React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+            this.props.labels.main !== '' &&
+                React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
             React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps ? this.props.addProps.addClass : ''}` }))));
     }
 }
@@ -39265,6 +39266,7 @@ class Autocomplete extends React.Component {
         let className = `${this.name}`;
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
+        const addProps = Object.assign({}, this.props.addProps, { autoComplete: 'off' });
         let inputProps = Object.assign({}, this.props.input, {
             onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
             onBlur: this.handleInputBlur.bind(this),
@@ -39274,7 +39276,7 @@ class Autocomplete extends React.Component {
             onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
         });
         return (React.createElement("div", { className: `${className}` },
-            React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps, addProps: this.props.addProps }),
+            React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps, addProps: addProps }),
             open && this.renderMenu()));
     }
 }
