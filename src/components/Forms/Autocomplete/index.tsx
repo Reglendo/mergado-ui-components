@@ -393,7 +393,7 @@ class Autocomplete extends React.Component < Props, State > {
         let className = `${this.name}`
         const open = this.isOpen()
         const {labels, meta, input} = this.props
-
+        const addProps = Object.assign({},this.props.addProps,{autoComplete: 'off'})
         let inputProps = Object.assign({}, this.props.input, {
                 onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
                 onBlur: this.handleInputBlur.bind(this),
@@ -410,7 +410,7 @@ class Autocomplete extends React.Component < Props, State > {
                     labels={labels}
                     meta={meta}
                     input={inputProps}
-                    addProps={this.props.addProps}
+                    addProps={addProps}
                 />
                 {open && this.renderMenu()}
 

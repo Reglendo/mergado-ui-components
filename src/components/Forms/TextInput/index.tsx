@@ -69,10 +69,10 @@ class TextInput extends React.Component<Props, State> {
     }
 
     renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
+        if(this.props.meta.error && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
+                    {this.props.meta.error}
                 </div>
             )
         }
@@ -87,7 +87,9 @@ class TextInput extends React.Component<Props, State> {
         return (
             <div className={`${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
-                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                {this.props.labels.main !== '' &&
+                    <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                }
                 <input
                     id={inputId} type={type} placeholder={this.props.labels.placeholder}
                     ref="input"
