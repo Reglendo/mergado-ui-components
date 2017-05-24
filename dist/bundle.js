@@ -15673,7 +15673,7 @@ class TextInput extends React.Component {
         delete addProps['addClass'];
         return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
-            this.props.labels.main !== '' &&
+            this.props.labels.main &&
                 React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
             React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps ? this.props.addProps.addClass : ''}` }))));
     }
@@ -39358,11 +39358,6 @@ class Button extends React.Component {
         this.name = config_1.prefix + "button";
         this.form = config_1.prefix + "form";
     }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
-    }
     renderHref() {
         const { link, labels, icon, onClick } = this.props;
         return (React.createElement("a", { href: link, className: `${this.name}__item`, onClick: onClick, title: labels.title },
@@ -39399,10 +39394,7 @@ class Button extends React.Component {
                              ${size ? this.name + `--` + size : ``}
                              ${state ? this.name + `--` + state : ``}
                              ${addClass ? addClass : ``}
-                             ${type === 'submit' ? `${this.form}__group` : ''}
-                             ${type === 'submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `, title: this.props.labels.title, style: this.props.style },
-            type === 'submit' && this.renderInvalid(),
             type === 'button' && this.renderButton(),
             type === 'link' && this.renderLink(),
             type === 'submit' && this.renderSubmit(),
