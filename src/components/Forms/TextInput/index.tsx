@@ -87,7 +87,7 @@ class TextInput extends React.Component<Props, State> {
         return (
             <div className={`${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
-                {this.props.labels.main !== '' &&
+                {this.props.labels.main &&
                     <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
                 }
                 <input

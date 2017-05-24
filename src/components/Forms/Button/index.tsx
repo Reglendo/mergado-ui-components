@@ -78,16 +78,6 @@ class Button extends React.Component<Props, State> {
         }
     }
 
-    renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
-                </div>
-            )
-        }
-    }
-
     renderHref() {
         const { link, labels, icon, onClick } = this.props
         return (<a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</a>)
@@ -118,10 +108,7 @@ class Button extends React.Component<Props, State> {
                              ${size?this.name+`--`+size:``}
                              ${state?this.name+`--`+state:``}
                              ${addClass?addClass:``}
-                             ${type ==='submit'? `${this.form}__group`: ''}
-                             ${type ==='submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `} title={this.props.labels.title} style={this.props.style}>
-                {type === 'submit' && this.renderInvalid()}
                 {type === 'button' && this.renderButton()}
                 {type === 'link' && this.renderLink()}
                 {type === 'submit' && this.renderSubmit()}

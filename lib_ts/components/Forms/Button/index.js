@@ -9,11 +9,6 @@ class Button extends React.Component {
         this.name = config_1.prefix + "button";
         this.form = config_1.prefix + "form";
     }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
-    }
     renderHref() {
         const { link, labels, icon, onClick } = this.props;
         return (React.createElement("a", { href: link, className: `${this.name}__item`, onClick: onClick, title: labels.title },
@@ -50,10 +45,7 @@ class Button extends React.Component {
                              ${size ? this.name + `--` + size : ``}
                              ${state ? this.name + `--` + state : ``}
                              ${addClass ? addClass : ``}
-                             ${type === 'submit' ? `${this.form}__group` : ''}
-                             ${type === 'submit' && meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
                          `, title: this.props.labels.title, style: this.props.style },
-            type === 'submit' && this.renderInvalid(),
             type === 'button' && this.renderButton(),
             type === 'link' && this.renderLink(),
             type === 'submit' && this.renderSubmit(),
