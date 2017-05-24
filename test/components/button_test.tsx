@@ -16,24 +16,24 @@ describe("Button", () => {
         renderer.render(<Button icon={<Icon type="mergado" />} labels={{main: 'Button'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 6);
-        chai.assert.strictEqual(result.props.children[1].type, 'button');
+        chai.assert.strictEqual(result.props.children.length, 5);
+        chai.assert.strictEqual(result.props.children[0].type, 'button');
     });
 
     it("should render correctly href", () => {
         renderer.render(<Button type="href" icon={<Icon type="mergado"/>} labels={{main: 'Link'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 6);
-        chai.assert.strictEqual(result.props.children[5].type, 'a');
+        chai.assert.strictEqual(result.props.children.length, 5);
+        chai.assert.strictEqual(result.props.children[4].type, 'a');
     });
 
     it("should render correctly link", () => {
         renderer.render(<Button type="link" icon={<Icon type="mergado"/>} labels={{main: 'Link'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 6);
-        chai.assert.strictEqual(result.props.children[2].type.displayName, 'Link');
+        chai.assert.strictEqual(result.props.children.length, 5);
+        chai.assert.strictEqual(result.props.children[1].type.displayName, 'Link');
     });
 
 
@@ -41,8 +41,8 @@ describe("Button", () => {
         renderer.render(<Button type="submit" icon={<Icon type="mergado"/>} labels={{main: 'Link'}} />);
         const result = renderer.getRenderOutput();
         chai.assert.strictEqual(result.type, "div");
-        chai.assert.strictEqual(result.props.children.length, 6);
-        chai.assert.strictEqual(result.props.children[3].type, 'input');
+        chai.assert.strictEqual(result.props.children.length, 5);
+        chai.assert.strictEqual(result.props.children[2].type, 'input');
     });
 
 });
