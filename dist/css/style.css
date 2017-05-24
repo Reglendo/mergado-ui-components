@@ -763,14 +763,16 @@ header.main {
   color: white;
   font-size: 13px;
   padding: 1px 5px;
-  margin: -2px;
-  margin-bottom: 2px; }
+  margin-bottom: 0;
+  position: absolute;
+  top: 100%;
+  left: -2px; }
 
 .muk-form__group {
-  border: 2px solid transparent;
-  padding: 2px;
+  padding: 0;
   position: relative; }
   .muk-form__group--invalid {
+    margin: -2px;
     border: 2px solid red; }
 
 .muk-form__input--text, .muk-datepicker .DateInput {
