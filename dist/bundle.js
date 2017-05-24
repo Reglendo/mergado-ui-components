@@ -39618,9 +39618,9 @@ class CheckboxContainer extends React.Component {
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
                                     ${option.disabled ? `${this.name}__item--disabled` : ''}`, key: unique_id_1.default(), onClick: handler },
                 this.props.singleChoice === false ?
-                    React.createElement("input", Object.assign({ type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler }, this.props.input))
+                    React.createElement("input", Object.assign({ type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: 'none' } }, this.props.input))
                     :
-                        React.createElement("input", Object.assign({ type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? 'inline-block' : 'none' } }, this.props.input)),
+                        React.createElement("input", Object.assign({ type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? 'inline-block' : 'none', pointerEvents: 'none' } }, this.props.input)),
                 this.renderLabel(option)));
         });
     }

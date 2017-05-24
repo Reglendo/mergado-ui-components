@@ -645,8 +645,6 @@ header.main {
     margin: 0;
     margin-right: 10px;
     vertical-align: text-bottom; }
-  .muk-checkbox_container__label {
-    cursor: pointer; }
   .muk-checkbox_container__filter_label {
     padding: 10px 0 2px 0;
     font-size: 1em;
@@ -754,7 +752,7 @@ header.main {
 /* COLORS */
 .muk-form__label {
   display: block;
-  padding: 0 10px 2px 2px; }
+  padding: 6px 10px 4px 2px; }
 
 .muk-form__validation {
   background: red;
@@ -768,7 +766,8 @@ header.main {
 
 .muk-form__group {
   padding: 0;
-  position: relative; }
+  position: relative;
+  margin-bottom: 10px; }
   .muk-form__group--invalid {
     margin: -2px;
     border: 2px solid red; }
