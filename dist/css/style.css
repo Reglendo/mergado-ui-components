@@ -757,7 +757,8 @@ header.main {
 .muk-form__validation {
   background: red;
   color: white;
-  font-size: 13px;
+  font-size: 10px;
+  z-index: 1000;
   padding: 1px 5px;
   margin-bottom: 0;
   position: absolute;
@@ -767,9 +768,9 @@ header.main {
 .muk-form__group {
   padding: 0;
   position: relative;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  border: 2px solid transparent; }
   .muk-form__group--invalid {
-    margin: -2px;
     border: 2px solid red; }
 
 .muk-form__input--text, .muk-datepicker .DateInput {
