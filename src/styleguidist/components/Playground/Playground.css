@@ -3,6 +3,7 @@
 	composes: border from "../../styles/colors.css";
 	margin-bottom: 30px;
 	border-radius: 3px 3px 0 3px;
+    background: #f5ecd5;
 }
 
 .preview {
@@ -20,9 +21,15 @@
 	border-bottom-right-radius: 3px;
 	border-top: 0;
 	padding: 6px 8px;
-	font-size: 14px;
+	font-size: 10px;
 	line-height: 1;
 	margin: 0;
+    color: white;
+    background: #7e7e7e;
+}
+
+.codeToggle:focus {
+    outline: none;
 }
 
 
@@ -37,8 +44,7 @@
 }
 
 .showHtml,.hideHtml {
-    right: 100px;
-    bottom: -27px;
+    right: 80px;
 }
 
 
@@ -61,7 +67,6 @@
 
 .liveExample {
     padding: 15px;
-    background: #f5ecd5;
 }
 
 .htmlCode {

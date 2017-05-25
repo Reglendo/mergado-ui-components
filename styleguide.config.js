@@ -11,7 +11,7 @@ module.exports = {
         {
             name: 'Layout',
             content: './src/docs/Layout.md'
-        },        
+        },
         {
             name: 'Helpers',
             content: './src/docs/Helpers.md'
@@ -48,12 +48,17 @@ module.exports = {
 
         webpackConfig.resolve.modules.push(path.resolve(__dirname, "src/components"));
         webpackConfig.resolve.modules.push(path.resolve(__dirname, "src"));
-        
+
         webpackConfig.resolve.alias['rsg-components/Props'] =
             path.join(dir, 'components/Props');
 
+
+
+        webpackConfig.resolve.alias['rsg-components/StyleGuide'] =
+            path.join(dir, 'components/StyleGuide/StyleGuide');
+
         webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] =
-            path.join(dir, 'components/StyleGuide');
+            path.join(dir, 'components/StyleGuide/StyleGuideRenderer');
 
         webpackConfig.resolve.alias['rsg-components/Playground'] =
             path.join(dir, 'components/Playground');
@@ -63,7 +68,7 @@ module.exports = {
 
         webpackConfig.resolve.alias['rsg-components/Preview'] =
             path.join(dir, 'components/Preview');
-    
+
         webpackConfig.resolve.alias['rsg-components/ReactComponent/ReactComponentRenderer'] =
             path.join(dir, 'components/ReactComponent');
 

@@ -46,6 +46,34 @@ Application
     </div>
     </div>
 
+Headers
+
+    <div className="muk-grid">
+        <div className="muk-6-12" style={{padding: '0px 10px'}}>
+            <h1>Title H1</h1>
+            <Placeholder width="10" height="1">...content....</Placeholder>
+            <h2>Title H2</h2>
+            <Placeholder width="10" height="1">...content....</Placeholder>
+            <h3>Title H3</h3>
+            <Placeholder width="10" height="1">...content....</Placeholder>
+            <h4>Title H4</h4>
+            <Placeholder width="10" height="1">...content....</Placeholder>
+            <h5>Title H5</h5>
+            <Placeholder width="10" height="1">...content....</Placeholder>
+            <h6>Title H6</h6>
+            <Placeholder width="10" height="1">...content....</Placeholder>
+        </div>
+        <div className="muk-6-12" style={{padding: '0px 10px'}}>
+            <header className="main" style={{marginTop: '0px'}}><h1>Header H1</h1></header>
+            <header className="main"><h2>Header H2</h2></header>
+            <header className="main"><h3>Header H3</h3></header>
+            <header className="main"><h4>Header H4</h4></header>
+            <header className="main"><h5>Header H5</h5></header>
+            <header className="main"><h6>Header H6</h6></header>
+        </div>
+
+    </div>
+
 **.muk-grid**
 
     <div className="muk-grid" style={{fontSize: '11px'}}>
@@ -103,5 +131,5 @@ Application
                 <Placeholder width={100} height={10} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
             </div>
         </div>
-        
+
     </div>

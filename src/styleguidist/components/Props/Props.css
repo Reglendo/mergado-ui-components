@@ -13,7 +13,7 @@
 }
 .tableHead {
 	composes: border from "../../styles/colors.css";
-	border-width: 0 0 1px 0;
+	border-width: 0 0 0 0;
 }
 .tableBody {
 }
@@ -71,4 +71,3 @@
 .type {
 	composes: type from "../../styles/colors.css";
 }
-
