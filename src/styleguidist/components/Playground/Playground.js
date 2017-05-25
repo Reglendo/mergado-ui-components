@@ -19,8 +19,8 @@ export default class Playground extends Component {
 	constructor(props, context) {
 		super(props, context);
 		const { code } = props;
-        const showCode = cookie.load('show_code_' + props.name) == "1" ? true : false;
-        const showHtml = cookie.load('show_html_' + props.name) == "1" ? true : false;
+        const showCode = cookie.load('show_code_' + props.name + '_' + props.index) == "1" ? true : false;
+        const showHtml = cookie.load('show_html_' + props.name + '_' + props.index) == "1" ? true : false;
         const innerHtml = '';
 		this.state = {
 			code,
@@ -81,7 +81,7 @@ export default class Playground extends Component {
 		this.setState({
 			showCode: !this.state.showCode,
 		});
-        cookie.save('show_code_' + this.props.name, this.state.showCode == "1" ? 0 : 1, { path: '/' });
+        cookie.save('show_code_' + this.props.name + '_' + this.props.index, !this.state.showCode ? '1' : '0', { path: '/' });
 	}
 
     handleChangeHtml(html) {
@@ -95,7 +95,7 @@ export default class Playground extends Component {
 		this.setState({
 			showHtml: !this.state.showHtml,
 		});
-        cookie.save('show_html_' + this.props.name, this.state.showHtml == "1" ? 0 : 1, { path: '/' });
+        cookie.save('show_html_' + this.props.name + '_' + this.props.index, !this.state.showHtml ? '1' : '0', { path: '/' });
 	}
 
 	render() {

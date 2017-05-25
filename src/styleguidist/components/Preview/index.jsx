@@ -41,7 +41,7 @@ export default class Preview extends Component {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,
         innerHtml: PropTypes.string,
-        config: PropTypes.object
+        config: PropTypes.object,
 	};
 
 	constructor() {
@@ -55,11 +55,11 @@ export default class Preview extends Component {
 
 	componentDidMount() {
 		this.executeCode();
-        
+
 	}
 
 	componentDidUpdate(prevProps) {
-		if (this.props.code !== prevProps.code) {
+		if (this.props.code !== prevProps.code || this.props.showHtml !== prevProps.showHtml) {
 			this.executeCode();
 		}
 	}
@@ -153,13 +153,11 @@ export default class Preview extends Component {
 			);
 
 			ReactDOM.render(wrappedComponent, this.mountNode);
-
-
-            if(this.mountNode.parentElement.parentElement.children[2]) {
+            if(this.props.showHtml) {
                 var htmlcode = this.formatXml(ReactDOMServer.renderToStaticMarkup(wrappedComponent))
                 this.props.changeHtml(htmlcode)
             }
-        
+
 		}
 		catch (err) {
 			ReactDOM.unmountComponentAtNode(this.mountNode);
@@ -178,7 +176,7 @@ export default class Preview extends Component {
 			</div>
 		);
 	}
-    
+
     formatXml(xml) {
         var reg = /(>)\s*(<)(\/*)/g; // updated Mar 30, 2015
         var wsexp = / *(.*) +\n/g;
@@ -189,7 +187,7 @@ export default class Preview extends Component {
         var lines = xml.split('\n');
         var indent = 0;
         var lastType = 'other';
-        // 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions 
+        // 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions
         var transitions = {
             'single->single': 0,
             'single->closing': -1,
@@ -232,4 +230,3 @@ export default class Preview extends Component {
         return formatted;
     }
 }
-

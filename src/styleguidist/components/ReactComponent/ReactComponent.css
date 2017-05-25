@@ -86,7 +86,7 @@
 .props {
 	flex: 0 0 60%;
 	padding: 5px 15px;
-	border-left: 1px dotted #ccc;
+	border-top: 1px dotted #ccc;
 }
 
 .props h3 {
@@ -96,6 +96,7 @@
 .description {
 	composes: font from "../../styles/common.css";
 	margin-top: 15px;
+
 }
 
 .examples {

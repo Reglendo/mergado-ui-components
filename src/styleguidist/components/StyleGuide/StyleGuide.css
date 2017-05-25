@@ -73,3 +73,20 @@
 .link {
 	composes: link from "../../styles/colors.css";
 }
+
+.toggleCompact {
+	composes: font from "../../styles/common.css";
+	composes: border link from "../../styles/colors.css";
+	cursor: pointer;
+	border-radius: 3px;
+	padding: 6px 8px;
+	font-size: 12px;
+	line-height: 1;
+	margin: 0;
+    margin-left: 5px;
+    color: white;
+    background: #7e7e7e;
+    float: right;
+    position: relative;
+    top: -28px;
+}

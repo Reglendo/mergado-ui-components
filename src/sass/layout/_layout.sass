@@ -10,12 +10,31 @@
 #container
 
 header.main
-    min-height: 36px
+    min-height: 42px
     width: 100%
     position: relative
     margin: 40px 0 20px
     display: table
     background-color: hsla(43,44%,75%,.25)
+    height: 42px
+    h1, h2, h3, h4, h5, h6
+      display: table-cell
+      position: relative
+      text-overflow: ellipsis
+      overflow: hidden
+      padding: 0 20px
+      line-height: 42px
+    h1
+      border-left: 10px rgba($color-line, 0.5) solid
+      padding-left: 10px
+
+    h2
+      border-left: 5px rgba($color-line, 0.5) solid
+      padding-left: 15px
+
+    h3,h4,h5
+      border-left: 3px rgba($color-line, 0.5) solid
+      padding-left: 17px
 
 .app-presenter
     margin-bottom: 15px

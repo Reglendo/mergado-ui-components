@@ -18,12 +18,12 @@ const PlaygroundRenderer = ({
     onHtmlChange,
     innerHtml
 }) => {
+
 return (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
-            <Preview code={code} evalInContext={evalInContext} changeHtml={onHtmlChange} />
-            
-            <div className={s.htmlCode} style={{ maxHeight: showHtml?1000:0, overflow: showHtml?'auto':'hidden'}} >
+            <Preview code={code} evalInContext={evalInContext} changeHtml={onHtmlChange} showHtml={showHtml} />
+            <div className={s.htmlCode} style={{ display: showHtml?'block':'none'}} >
                 {innerHtml ? (
                     <Editor code={innerHtml} onChange={() => {}} />
                     ) : null }
@@ -41,9 +41,9 @@ return (
     				Show HTML
     			</button>
             </div>
-		)            
+		)
         }
-        
+
 		{showCode ? (
 			<div>
 				<Editor code={code} onChange={onChange} />
