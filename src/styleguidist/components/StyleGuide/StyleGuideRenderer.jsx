@@ -29,6 +29,11 @@ const style = `
                 outline: none;
                 border-radius: 0;
             }
+
+            body {
+                overflow: hidden;
+                position: relative;
+            }
 `
 
 

@@ -4,9 +4,7 @@ import Bubble from './Bubble'
 import {prefix} from "config"
 
 export interface Props {
-    content?: string | JSX.Element
     icon?: JSX.Element
-    iconType?: string
     style?: any
 }
 
@@ -24,9 +22,7 @@ class PopupHint extends React.Component<Props, State> {
     readonly name = prefix + "popup_hint";
 
     public static defaultProps: Props = {
-        content: "",
         icon: null,
-        iconType: "",
         style: {}
     }
 
@@ -130,7 +126,6 @@ class PopupHint extends React.Component<Props, State> {
         } else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`
             hint.style.left = `${newX}px`
-            this.styleHint(buttonPosition, renderLeft)
         }
     }
 
@@ -191,7 +186,7 @@ class PopupHint extends React.Component<Props, State> {
                      onBlur={ this.collapse }>
                     <div className={`${this.name}__innerwrapper`}>
                         <div className={`${this.name}__border`}>
-                            <div className={`${this.name}__content`}>{this.props.content}</div>
+                            <div className={`${this.name}__content`}>{this.props.children}</div>
                         </div>
                         <span ref="arrow" className={`${this.name}__arrow`}></span>
                     </div>
