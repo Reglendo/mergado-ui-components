@@ -178,29 +178,6 @@ body {
 hr {
   display: none; }
 
-h1, h2, h3 {
-  font-family: "Trebuchet MS", "Geneva CE", lucida, sans-serif;
-  font-weight: bold;
-  vertical-align: middle;
-  padding: 0 2px; }
-  h1:first-child, h2:first-child, h3:first-child {
-    margin-top: 0; }
-
-h1 {
-  font-size: 38px;
-  margin-top: 30px; }
-
-h2 {
-  font-size: 24px;
-  margin: 20px 0 10px 0; }
-
-h3 {
-  font-size: 18px;
-  margin-top: 15px; }
-
-header + h2 {
-  margin-top: 0; }
-
 pre {
   text-align: left; }
 
@@ -223,26 +200,8 @@ p, pre, table, fieldset {
       p td.operation .space:first-child, p td.operation .space.no-left, pre td.operation .space:first-child, pre td.operation .space.no-left, table td.operation .space:first-child, table td.operation .space.no-left, fieldset td.operation .space:first-child, fieldset td.operation .space.no-left {
         margin-left: 0; }
 
-section h1, section h2, section h3 {
-  display: table-cell;
-  position: relative;
-  font-size: 20pt;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  padding-left: 15px;
-  margin-bottom: 0;
+p {
   margin-top: 0; }
-
-section h1 {
-  border-left: 10px rgba(219, 203, 163, 0.5) solid; }
-
-section h2 {
-  border-left: 5px rgba(219, 203, 163, 0.5) solid;
-  font-size: 14pt; }
-
-section h3 {
-  border-left: 5px rgba(219, 203, 163, 0.5) solid;
-  font-size: 12pt; }
 
 input[type="checkbox"], input[type="radio"] {
   vertical-align: middle; }
@@ -288,9 +247,9 @@ input[type="radio"] {
   transform: translateZ(0);
   will-change: background-position; }
 
-.muk-helper-clearfix, .muk-grid, .app-presenter > header {
+.muk-helper-clearfix, .muk-grid, .app-presenter > header, .muk-top_nav__list {
   zoom: 1; }
-  .muk-helper-clearfix:after, .muk-grid:after, .app-presenter > header:after {
+  .muk-helper-clearfix:after, .muk-grid:after, .app-presenter > header:after, .muk-top_nav__list:after {
     content: '';
     display: table;
     clear: both; }
@@ -365,12 +324,29 @@ input[type="radio"] {
   padding-right: 3px; }
 
 header.main {
-  min-height: 36px;
+  min-height: 42px;
   width: 100%;
   position: relative;
   margin: 40px 0 20px;
   display: table;
-  background-color: rgba(219, 203, 163, 0.25); }
+  background-color: rgba(219, 203, 163, 0.25);
+  height: 42px; }
+  header.main h1, header.main h2, header.main h3, header.main h4, header.main h5, header.main h6 {
+    display: table-cell;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 20px;
+    line-height: 42px; }
+  header.main h1 {
+    border-left: 10px rgba(219, 203, 163, 0.5) solid;
+    padding-left: 10px; }
+  header.main h2 {
+    border-left: 5px rgba(219, 203, 163, 0.5) solid;
+    padding-left: 15px; }
+  header.main h3, header.main h4, header.main h5 {
+    border-left: 3px rgba(219, 203, 163, 0.5) solid;
+    padding-left: 17px; }
 
 .app-presenter {
   margin-bottom: 15px; }
@@ -411,6 +387,161 @@ header.main {
     vertical-align: middle; }
   .widget .widget-status {
     width: 100%; }
+
+/*
+
+--- Vertical Rhythm Tool - http://soqr.fr/vertical-rhythm/ ---
+           Font-size : 14px  Line-height : 1.5
+
+*/
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.4em;
+  line-height: 1.5; }
+
+p,
+ul,
+ol,
+dl,
+blockquote,
+pre,
+td,
+th,
+textarea,
+caption {
+  font-size: 1em;
+  /* equiv 14px */
+  line-height: 1.5;
+  margin: 1.5em 0; }
+
+h1,
+.h1-like {
+  font-size: 1.4286em;
+  /* equiv 20px */
+  line-height: 1.05;
+  margin: 1.05em 0 0 0; }
+
+h2,
+.h2-like {
+  font-size: 1.2857em;
+  /* equiv 18px */
+  line-height: 1.1667;
+  margin: 1.1667em 0 0 0; }
+
+h3,
+.h3-like {
+  font-size: 1.1429em;
+  /* equiv 16px */
+  line-height: 1.3125;
+  margin: 1.3125em 0 0 0; }
+
+h4,
+.h4-like {
+  font-size: 1em;
+  /* equiv 14px */
+  line-height: 1.5;
+  margin: 1.5em 0 0 0; }
+
+h5,
+.h5-like {
+  font-size: .9286em;
+  /* equiv 13px */
+  line-height: 1.6154;
+  margin: 1.6154em 0 0 0; }
+
+h6,
+.h6-like {
+  font-size: .8571em;
+  /* equiv 12px */
+  line-height: 1.75;
+  margin: 1.75em 0 0 0; }
+
+.smaller {
+  font-size: .7143em;
+  /* equiv 10px */
+  line-height: 2.1;
+  margin: 2.1em 0  2.1em 0; }
+
+.small {
+  font-size: .8571em;
+  /* equiv 12px */
+  line-height: 1.75;
+  margin: 1.75em 0  1.75em 0; }
+
+.big {
+  font-size: 1.1429em;
+  /* equiv 16px */
+  line-height: 1.3125;
+  margin: 1.3125em 0  1.3125em 0; }
+
+.bigger {
+  font-size: 1.2857em;
+  /* equiv 18px */
+  line-height: 1.1667;
+  margin: 1.1667em 0  1.1667em 0; }
+
+.biggest {
+  font-size: 1.4286em;
+  /* equiv 20px */
+  line-height: 1.05;
+  margin: 1.05em 0  1.05em 0; }
+
+/* avoid collapsing margins
+you might need this, depending on your design
+*/
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0; }
+
+/* avoid last-child bottom margin */
+p:last-child,
+ul:last-child,
+ol:last-child,
+dl:last-child,
+blockquote:last-child,
+pre:last-child,
+table:last-child {
+  margin-bottom: 0; }
+
+/* avoid supp margin on nested elements */
+li p,
+li ul {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+/* you shall not pass */
+textarea,
+table,
+td,
+th,
+code,
+pre,
+samp,
+div,
+p {
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto; }
+
+code,
+pre,
+samp {
+  white-space: pre-wrap;
+  font-family: consolas, 'DejaVu Sans Mono', courier, monospace; }
+
+code {
+  line-height: 1; }
+
+table {
+  margin-bottom: 1.5em; }
 
 /* COLORS */
 .muk-datagrid {
@@ -2143,6 +2274,7 @@ header.main {
   .muk-top_nav__item {
     float: left;
     margin-left: 1.5em;
+    margin-top: 0.95em;
     list-style-type: none;
     cursor: pointer; }
     .muk-top_nav__item a {
