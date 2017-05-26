@@ -126,7 +126,6 @@ class PopupHint extends React.Component<Props, State> {
         } else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`
             hint.style.left = `${newX}px`
-            this.styleHint(buttonPosition, renderLeft)
         }
     }
 

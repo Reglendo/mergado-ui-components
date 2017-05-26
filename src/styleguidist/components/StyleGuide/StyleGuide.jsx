@@ -77,6 +77,12 @@ export default class StyleGuide extends Component {
         cookie.save('sidebar', !this.state.showSidebar ? '1' : '0', { path: '/' });
     }
 
+    componentDidUpdate() {
+        if(location.hash.indexOf('#_') !== -1) {
+            const newHash = location.hash.replace('#_','#');
+            location.hash = newHash;
+        }
+    }
 
 	render() {
 		let { config, components, sections, sidebar, singleExample } = this.props;

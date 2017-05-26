@@ -160,6 +160,7 @@ export default class Preview extends Component {
 
 		}
 		catch (err) {
+            console.log(err);
 			ReactDOM.unmountComponentAtNode(this.mountNode);
 			this.setState({
 				error: err.toString(),

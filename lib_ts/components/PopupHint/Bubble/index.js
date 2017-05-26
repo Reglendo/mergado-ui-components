@@ -22,8 +22,10 @@ class Bubble extends React.Component {
         this._renderLayer();
     }
     componentWillUnmount() {
-        ReactDOM.unmountComponentAtNode(this.popup);
-        document.body.removeChild(this.popup);
+        if (this.popup) {
+            ReactDOM.unmountComponentAtNode(this.popup);
+            document.getElementById('app').removeChild(this.popup);
+        }
     }
     _renderLayer() {
         ReactDOM.render((React.createElement("span", null, this.props.children)), this.popup);
