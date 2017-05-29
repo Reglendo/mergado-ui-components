@@ -76,7 +76,7 @@
 	composes: link from "../../styles/colors.css";
 	position: absolute;
 	right: 5px;
-	top: 5px;
+	top: 25px;
 	opacity: 1;
 	transition: opacity 0.5s;
 }

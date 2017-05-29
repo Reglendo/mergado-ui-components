@@ -24,40 +24,47 @@ return (
 		<div className={s.preview + ' rsg--example-preview'}>
             <Preview code={code} evalInContext={evalInContext} changeHtml={onHtmlChange} showHtml={showHtml} />
             <div className={s.htmlCode} style={{ display: showHtml?'block':'none'}} >
-                {innerHtml ? (
+                {innerHtml &&
                     <Editor code={innerHtml} onChange={() => {}} />
-                    ) : null }
+                }
 			</div>
+            <div className={s.jsxCode} style={{ display: showCode?'block':'none', borderTop: '1px solid #f5ecd5'}} >
+                {showCode &&
+                    <Editor code={code} onChange={onChange} />
+                }
+            </div>
 		</div>
-        {showHtml ? (
-			<div>
-				<button type="button" className={s.hideHtml} onClick={onHtmlToggle}>
-					Hide HTML
-				</button>
-			</div>
-		) : (
-            <div>
-    			<button type="button" className={s.showHtml} onClick={onHtmlToggle}>
-    				Show HTML
-    			</button>
-            </div>
-		)
-        }
+        <div className={s.buttons}>
+            {showHtml ? (
+                <div>
+                    <button type="button" className={s.hideHtml} onClick={onHtmlToggle}>
+                        Hide HTML
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <button type="button" className={s.showHtml} onClick={onHtmlToggle}>
+                        Show HTML
+                    </button>
+                </div>
+            )
+            }
 
-		{showCode ? (
-			<div>
-				<Editor code={code} onChange={onChange} />
-				<button type="button" className={s.hideCode} onClick={onCodeToggle}>
-					Hide JSX
-				</button>
-			</div>
-		) : (
-            <div>
-    			<button type="button" className={s.showCode} onClick={onCodeToggle}>
-    				Show JSX
-    			</button>
-            </div>
-		)}
+            {showCode ? (
+                <div>
+                    <button type="button" className={s.hideCode} onClick={onCodeToggle}>
+                        Hide JSX
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <button type="button" className={s.showCode} onClick={onCodeToggle}>
+                        Show JSX
+                    </button>
+                </div>
+            )}
+        </div>
+
 	</div>
 )
 };

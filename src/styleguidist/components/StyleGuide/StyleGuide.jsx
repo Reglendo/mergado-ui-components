@@ -5,6 +5,9 @@ import TableOfContents from 'rsg-components/TableOfContents';
 import Message from 'rsg-components/Message';
 import StyleGuideRenderer from './StyleGuideRenderer';
 import cookie from 'react-cookie';
+import { browserHistory } from "react-router";
+import _debounce from "lodash/debounce";
+
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -103,3 +106,24 @@ export default class StyleGuide extends Component {
 		);
 	}
 }
+
+
+var scrollChangeHash = function() {
+    var range = document.caretRangeFromPoint(260,0); // screen coordinates of upper-left corner of a scolled area (in this case screen itself)
+    if(range) {
+        var hashLocator = document.getElementById('hashLocator');
+        var section = range.startContainer.parentNode.closest(".ReactStyleguidist-Section__heading"); // this an upper onscreen element
+        if(section) {
+            hashLocator.innerHTML = '#'+section.getAttribute('id');
+            browserHistory.push('#'+section.getAttribute('id'));
+            return;
+        }
+        var element = range.startContainer.parentNode.closest(".Styleguidist-Component"); // this an upper onscreen element
+        if(element) {
+            hashLocator.innerHTML = '#'+element.getAttribute('id');
+            browserHistory.push('#'+element.getAttribute('id'));
+        }
+    }
+}
+
+window.addEventListener('scroll', _debounce(scrollChangeHash,250));

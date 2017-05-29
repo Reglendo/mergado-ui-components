@@ -7,7 +7,7 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 
     var importJsLine = 'import ' + name + ' from "mergado-ui-kit/lib/'+path+'"'
 	return (
-		<div className={s.root} id={name}>
+		<div className={`${s.root} Styleguidist-Component`} id={name}>
 			<div className={s.meta}>
 				{sidebar ?
 					<a className={s.isolatedLink} href={'#!/' + name }>Open isolated ⇢</a>
