@@ -7,17 +7,17 @@ const unique_id_1 = require("helpers/unique_id");
 class Autocomplete extends React.Component {
     constructor(props) {
         super(props);
+        this.performAutoCompleteOnUpdate = true;
+        this.performAutoCompleteOnKeyUp = true;
+        this.ignoreBlur = false;
         this.name = config_1.prefix + "autocomplete";
-        this._performAutoCompleteOnUpdate = true;
-        this._performAutoCompleteOnKeyUp = true;
-        this._ignoreBlur = false;
         this.state = {
-            value: props.value ? props.value : '',
+            value: props.value ? props.value : "",
             isOpen: false,
             highlightedIndex: null,
             menuLeft: 0,
             menuTop: 0,
-            menuWidth: 0
+            menuWidth: 0,
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -27,7 +27,7 @@ class Autocomplete extends React.Component {
         }
     }
     isOpen() {
-        return 'open' in this.props ? this.props.open : this.state.isOpen;
+        return "open" in this.props ? this.props.open : this.state.isOpen;
     }
     componentDidMount() {
         if (this.isOpen()) {
@@ -35,11 +35,11 @@ class Autocomplete extends React.Component {
         }
     }
     componentDidUpdate(prevProps, prevState) {
-        if ((this.state.isOpen && !prevState.isOpen) || ('open' in this.props && this.props.open && !prevProps.open)) {
+        if ((this.state.isOpen && !prevState.isOpen) || ("open" in this.props && this.props.open && !prevProps.open)) {
             this.setMenuPositions();
         }
-        if (this.isOpen() && this._performAutoCompleteOnUpdate) {
-            this._performAutoCompleteOnUpdate = false;
+        if (this.isOpen() && this.performAutoCompleteOnUpdate) {
+            this.performAutoCompleteOnUpdate = false;
             this.maybeAutoCompleteText();
         }
         if (prevState.isOpen !== this.state.isOpen) {
@@ -60,11 +60,11 @@ class Autocomplete extends React.Component {
         this.setState({
             menuTop: rect.bottom + marginBottom,
             menuLeft: rect.left + marginLeft,
-            menuWidth: rect.width + marginLeft + marginRight
+            menuWidth: rect.width + marginLeft + marginRight,
         });
     }
     maybeAutoCompleteText() {
-        if (!this.props.autoHighlight || this.state.value === '') {
+        if (!this.props.autoHighlight || this.state.value === "") {
             return;
         }
         const { highlightedIndex } = this.state;
@@ -94,32 +94,32 @@ class Autocomplete extends React.Component {
         return items;
     }
     onSelect(value, item) {
-        this.setState({ value: value });
+        this.setState({ value });
         this.setIgnoreBlur(false);
         this.props.input.onChange(value);
     }
     handleChange(event) {
-        this._performAutoCompleteOnKeyUp = true;
+        this.performAutoCompleteOnKeyUp = true;
         this.setState({ highlightedIndex: null, value: event.target.value });
         this.props.input.onChange(event);
     }
     handleKeyUp() {
-        if (this._performAutoCompleteOnKeyUp) {
-            this._performAutoCompleteOnKeyUp = false;
+        if (this.performAutoCompleteOnKeyUp) {
+            this.performAutoCompleteOnKeyUp = false;
             this.maybeAutoCompleteText();
         }
     }
     handleKeyDown(event) {
-        if (event.key === 'ArrowDown') {
+        if (event.key === "ArrowDown") {
             this.handleArrowDown(event);
         }
-        else if (event.key === 'ArrowUp') {
+        else if (event.key === "ArrowUp") {
             this.handleArrowUp(event);
         }
-        else if (event.key === 'Enter') {
+        else if (event.key === "Enter") {
             this.handleEnter(event);
         }
-        else if (event.key === 'Escape') {
+        else if (event.key === "Escape") {
             this.handleEscape();
         }
         else if (!this.isOpen()) {
@@ -138,7 +138,7 @@ class Autocomplete extends React.Component {
         const index = (highlightedIndex === null || highlightedIndex === itemsLength - 1)
             ? 0
             : highlightedIndex + 1;
-        this._performAutoCompleteOnKeyUp = true;
+        this.performAutoCompleteOnKeyUp = true;
         this.setState({ highlightedIndex: index, isOpen: true });
     }
     handleArrowUp(event) {
@@ -153,7 +153,7 @@ class Autocomplete extends React.Component {
         const index = (highlightedIndex === 0 || highlightedIndex === null)
             ? itemsLength - 1
             : highlightedIndex - 1;
-        this._performAutoCompleteOnKeyUp = true;
+        this.performAutoCompleteOnKeyUp = true;
         this.setState({ highlightedIndex: index, isOpen: true });
     }
     handleEnter(event) {
@@ -165,7 +165,7 @@ class Autocomplete extends React.Component {
             // input has focus but no menu item is selected + enter is hit -> close the
             // menu, highlight whatever's in input
             this.setState({
-                isOpen: false
+                isOpen: false,
             }, () => {
                 // TODO this.refs.input.select()
             });
@@ -180,7 +180,7 @@ class Autocomplete extends React.Component {
                 .getItemValue(item);
             this.setState({
                 isOpen: false,
-                highlightedIndex: null
+                highlightedIndex: null,
             }, () => {
                 // this.refs.input.focus() // TODO: file issue
                 // this.refs.input.setSelectionRange(     value.length,     value.length   )
@@ -192,13 +192,13 @@ class Autocomplete extends React.Component {
         this.setState({ highlightedIndex: null, isOpen: false });
     }
     handleInputBlur() {
-        if (this._ignoreBlur) {
+        if (this.ignoreBlur) {
             return;
         }
         this.setState({ isOpen: false, highlightedIndex: null });
     }
     handleInputFocus() {
-        if (this._ignoreBlur) {
+        if (this.ignoreBlur) {
             this.setIgnoreBlur(false);
             return;
         }
@@ -228,14 +228,14 @@ class Autocomplete extends React.Component {
             .getItemValue(item);
         this.setState({
             isOpen: false,
-            highlightedIndex: null
+            highlightedIndex: null,
         }, () => {
             this.onSelect(value, item);
             // this.refs.input.focus()
         });
     }
     setIgnoreBlur(ignore) {
-        this._ignoreBlur = ignore;
+        this.ignoreBlur = ignore;
     }
     renderMenu() {
         const items = this
@@ -243,38 +243,38 @@ class Autocomplete extends React.Component {
             .map((item, index) => {
             const element = this
                 .props
-                .renderItem(item, this.state.highlightedIndex === index, { cursor: 'default' });
+                .renderItem(item, this.state.highlightedIndex === index, { cursor: "default" });
             return React.cloneElement(element, {
                 onMouseDown: () => this.setIgnoreBlur(true),
                 onMouseEnter: () => this.highlightItemFromMouse(index),
                 onClick: () => this.selectItemFromMouse(item),
-                ref: e => this.refs[`item-${index}`] = e
+                ref: e => this.refs[`item-${index}`] = e,
             });
         });
         const style = {
             left: this.state.menuLeft,
             top: this.state.menuTop,
-            minWidth: this.state.menuWidth
+            minWidth: this.state.menuWidth,
         };
         const menu = this
             .props
             .renderMenu(items, this.state.value, style);
         return React.cloneElement(menu, {
-            ref: e => this.refs.menu = e
+            ref: e => this.refs.menu = e,
         });
     }
     render() {
-        let className = `${this.name}`;
+        const className = `${this.name}`;
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
-        const addProps = Object.assign({}, this.props.addProps, { autoComplete: 'off' });
-        let inputProps = Object.assign({}, this.props.input, {
+        const addProps = Object.assign({}, this.props.addProps, { autoComplete: "off" });
+        const inputProps = Object.assign({}, this.props.input, {
             onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
             onBlur: this.handleInputBlur.bind(this),
             onChange: this.handleChange.bind(this),
             onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
             onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
-            onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
+            onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         });
         return (React.createElement("div", { className: `${className}` },
             React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps, addProps: addProps }),
@@ -289,7 +289,7 @@ Autocomplete.defaultProps = {
     onMenuVisibilityChange: () => { },
     renderItem: (item, highlighted, style) => {
         let className = `${config_1.prefix + "autocomplete"}__item `;
-        className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : '';
+        className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : "";
         return (React.createElement("div", { key: `${item.value}-${unique_id_1.default()}`, className: `${className}` }, item.text));
     },
     getItemValue: (item) => {
@@ -313,7 +313,7 @@ Autocomplete.defaultProps = {
         },
         onKeyDown: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -330,7 +330,7 @@ Autocomplete.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "",

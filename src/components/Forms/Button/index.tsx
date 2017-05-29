@@ -1,4 +1,4 @@
-import * as React  from "react"
+import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import {Link} from "react-router"
@@ -14,9 +14,9 @@ export interface Props extends InputProps {
     style?: any
     addClass?: string
     labels?: {
-        main?: string | JSX.Element
-        invalid?: string | JSX.Element
-        title?: string
+        main?: string | JSX.Element,
+        invalid?: string | JSX.Element,
+        title?: string,
     }
 }
 
@@ -25,8 +25,8 @@ export interface State {
 
 class Button extends React.Component<Props, State> {
 
-    readonly name = prefix + "button";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "button";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         type: "button",
@@ -52,7 +52,7 @@ class Button extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: ""
+            value: "",
         },
         meta: {
             active: false,
@@ -69,38 +69,53 @@ class Button extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         labels: {
             main: null,
             invalid: "Invalid input",
-            title: ""
-        }
+            title: "",
+        },
     }
 
-    renderHref() {
+    protected renderHref() {
         const { link, labels, icon, onClick } = this.props
-        return (<a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</a>)
+        return (
+            <a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>
+                {icon}{labels.main}
+            </a>)
     }
-    renderButton() {
+    protected renderButton() {
         const { input, labels, icon, onClick } = this.props
-        return (<button className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title} {...this.props.addProps}>{icon}{labels.main}</button>)
+        return (
+            <button className={`${this.name}__item`} onClick={onClick}
+             name={input.name} title={labels.title} {...this.props.addProps}>
+                {icon}{labels.main}
+            </button>)
     }
-    renderLink() {
+    protected renderLink() {
         const { link, labels, icon, onClick } = this.props
-        return (<Link to={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>{icon}{labels.main}</Link>)
+        return (
+            <Link to={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>
+                {icon}{labels.main}
+            </Link>)
     }
-    renderSubmit() {
+    protected renderSubmit() {
         const { meta, input, labels, onClick } = this.props
         const inputId = `${meta.form}-${input.name}`
-        return (<input type="submit" className={`${this.name}__item`} value={`${labels.main}`} id={inputId} name={input.name} title={labels.title} onClick={onClick} {...this.props.addProps} />)
+        return (
+            <input type="submit" className={`${this.name}__item`} value={`${labels.main}`} id={inputId}
+                name={input.name} title={labels.title} onClick={onClick} {...this.props.addProps} />)
     }
-    renderVoid() {
+    protected renderVoid() {
         const { input, labels, icon, onClick } = this.props
-        return (<span className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>{icon}{labels.main}</span>)
+        return (
+            <span className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>
+                    {icon}{labels.main}
+            </span>)
     }
 
-    render() {
+    public render() {
         const { type,color,state, size, addClass, meta } = this.props
         return (
             <div className={`${this.name} ${this.name}--${color}
@@ -109,11 +124,11 @@ class Button extends React.Component<Props, State> {
                              ${state?this.name+`--`+state:``}
                              ${addClass?addClass:``}
                          `} title={this.props.labels.title} style={this.props.style}>
-                {type === 'button' && this.renderButton()}
-                {type === 'link' && this.renderLink()}
-                {type === 'submit' && this.renderSubmit()}
-                {type === 'void' && this.renderVoid()}
-                {type === 'href' && this.renderHref()}
+                {type === "button" && this.renderButton()}
+                {type === "link" && this.renderLink()}
+                {type === "submit" && this.renderSubmit()}
+                {type === "void" && this.renderVoid()}
+                {type === "href" && this.renderHref()}
             </div>
         )
     }

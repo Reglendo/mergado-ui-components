@@ -1,4 +1,4 @@
-import * as React  from "react"
+import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
@@ -10,9 +10,9 @@ export interface Props extends InputProps {
     addClass?: string
     color?: any
     labels?: {
-        main?: string | JSX.Element
-        invalid?: string | JSX.Element
-        title?: string
+        main?: string | JSX.Element,
+        invalid?: string | JSX.Element,
+        title?: string,
     }
 }
 
@@ -23,8 +23,8 @@ export interface State {
 
 class ColorPicker extends React.Component<Props, State> {
 
-    readonly name = prefix + "colorpicker";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "colorpicker";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         disabled: false,
@@ -45,7 +45,7 @@ class ColorPicker extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: ""
+            value: "",
         },
         meta: {
             active: false,
@@ -62,27 +62,27 @@ class ColorPicker extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         labels: {
             main: null,
             invalid: "Invalid input",
-            title: ""
-        }
+            title: "",
+        },
     }
 
     constructor(props) {
         super(props)
         this.state = {
             displayColorPicker: false,
-            color: props.color
+            color: props.color,
         }
 
         this.handleClick = this.handleClick.bind(this)
         this.handleClose = this.handleClose.bind(this)
     }
 
-    renderInvalid() {
+    protected renderInvalid() {
         if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
@@ -92,27 +92,26 @@ class ColorPicker extends React.Component<Props, State> {
         }
     }
 
-    handleClick(evt) {
+    protected handleClick(evt) {
         evt.preventDefault()
         this.setState({displayColorPicker: !this.state.displayColorPicker})
     }
 
-
-    handleClose(evt) {
+    protected handleClose(evt) {
         evt.preventDefault()
         this.setState({displayColorPicker: false})
     }
 
-    handleChange(evt) {
+    protected handleChange(evt) {
         return false
     }
 
-    handleChanged(evt) {
+    protected handleChanged(evt) {
         this.setState({color: evt.rgb})
         return this.props.input.onChange(evt)
     }
 
-    renderPicker() {
+    protected renderPicker() {
 
         return (
             <div className={`${this.name}__popover`}>
@@ -126,23 +125,26 @@ class ColorPicker extends React.Component<Props, State> {
         )
     }
 
-    renderItem() {
+    protected renderItem() {
         const { color } = this.state
         const { input } = this.props
 
-        const background = typeof color === "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`
+        const background = typeof color === "string"
+                            ? "#" + color.substring(0, 6)
+                            : `rgba(${color.r},${color.g},${color.b},${color.a})`
         const inputId = `${this.props.meta.form}-${input.name}`
 
         return(
             <div className={`${this.name}__picker ${this.form}__input`}>
                 <input id={inputId} type="hidden" name={input.name} value={background} />
-                <div className={`${this.name}__colorbox`} style={{background: background }} onClick={ this.handleClick } />
-                { this.state.displayColorPicker && this.renderPicker()}
+                <div className={`${this.name}__colorbox`}
+                     style={{ background }} onClick={ this.handleClick } />
+                {this.state.displayColorPicker && this.renderPicker()}
             </div>
         )
     }
 
-    render() {
+    public render() {
         const { disabled, required, addClass, style, labels, meta } = this.props
 
         return (
@@ -150,7 +152,7 @@ class ColorPicker extends React.Component<Props, State> {
                              ${required && this.name+`--`+required}
                              ${addClass?addClass:``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                           `}
                  title={labels.title} style={style}>
                 {this.renderInvalid()}

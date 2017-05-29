@@ -9,13 +9,13 @@ class DatePicker extends React.Component {
         super(props);
         this.name = config_1.prefix + "datepicker";
         this.form = config_1.prefix + "form";
-        var startDate = props.input.value ? Moment(props.input.value) : null;
+        const startDate = props.input.value ? Moment(props.input.value) : null;
         this.state = {
-            startDate: startDate,
+            startDate,
             endDate: null,
-            focused: null
+            focused: null,
         };
-        require('moment/locale/' + props.locale);
+        require("moment/locale/" + props.locale);
     }
     onDateChange(date) {
         this.setState({ startDate: date });
@@ -24,16 +24,16 @@ class DatePicker extends React.Component {
         this.setState({ startDate: dates.startDate, endDate: dates.endDate });
     }
     onFocusChange(action) {
-        if (action === 'startDate') {
-            this.setState({ focused: 'startDate' });
+        if (action === "startDate") {
+            this.setState({ focused: "startDate" });
         }
-        else if (action === 'endDate') {
-            this.setState({ focused: 'endDate' });
+        else if (action === "endDate") {
+            this.setState({ focused: "endDate" });
         }
         else if (action) {
             this.setState({ focused: action.focused });
         }
-        if (action === null) {
+        else if (action === null) {
             this.setState({ focused: null });
         }
     }
@@ -46,23 +46,25 @@ class DatePicker extends React.Component {
         const { focused, startDate, endDate } = this.state;
         const { type, labels, defaults_single, defaults_range, numberOfMonths, minimumDays, meta } = this.props;
         let picker;
-        if (type === 'single') {
+        if (type === "single") {
             picker = React.createElement(react_dates_1.SingleDatePicker, Object.assign({}, defaults_single, { placeholder: labels.placeholder, date: startDate, focused: focused, numberOfMonths: numberOfMonths, onDateChange: this.onDateChange.bind(this), onFocusChange: this.onFocusChange.bind(this) }));
         }
         else {
             picker = React.createElement(react_dates_1.DateRangePicker, Object.assign({}, defaults_range, { numberOfMonths: numberOfMonths, minimumNights: minimumDays - 1, onDatesChange: this.onDatesChange.bind(this), onFocusChange: this.onFocusChange.bind(this), startDatePlaceholderText: labels.placeholderFrom, endDatePlaceholderText: labels.placeholderTo, focusedInput: this.state.focused, startDate: startDate, endDate: endDate }));
         }
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, style: this.props.style },
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
+                            `, style: this.props.style },
             this.renderInvalid(),
             React.createElement("span", { className: `${this.name}__label ${this.form}__label` }, labels.main),
             React.createElement("div", { className: `${this.name}__picker` }, picker)));
     }
 }
 DatePicker.defaultProps = {
-    type: 'single',
+    type: "single",
     numberOfMonths: 1,
     minimumDays: 1,
-    locale: 'cs',
+    locale: "cs",
     style: null,
     input: {
         checked: false,
@@ -94,7 +96,7 @@ DatePicker.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "Pick date:",
@@ -102,19 +104,19 @@ DatePicker.defaultProps = {
         invalid: "Invalid input",
         title: "",
         placeholderFrom: "Date from",
-        placeholderTo: "Date to"
+        placeholderTo: "Date to",
     },
     defaults_single: {
         // input related props
-        id: 'date',
-        placeholder: 'Date',
+        id: "date",
+        placeholder: "Date",
         disabled: false,
         required: false,
-        screenReaderInputMessage: '',
+        screenReaderInputMessage: "",
         showClearDate: true,
         // calendar presentation and interaction related props
-        orientation: 'horizontal',
-        anchorDirection: 'left',
+        orientation: "horizontal",
+        anchorDirection: "left",
         horizontalMargin: 0,
         withPortal: false,
         withFullScreenPortal: false,
@@ -124,8 +126,8 @@ DatePicker.defaultProps = {
         reopenPickerOnClearDate: false,
         // navigation related props
         daySize: 30,
-        navPrev: '<',
-        navNext: '>',
+        navPrev: "<",
+        navNext: ">",
         onPrevMonthClick() { },
         onNextMonthClick() { },
         // day presentation and interaction related props
@@ -133,25 +135,25 @@ DatePicker.defaultProps = {
         enableOutsideDays: false,
         isDayBlocked: () => false,
         isOutsideRange: day => false,
-        isDayHighlighted: day => { return day.startOf('day').toString() === Moment().startOf('day').toString(); },
+        isDayHighlighted: day => day.startOf("day").toString() === Moment().startOf("day").toString(),
         // internationalization props
-        displayFormat: () => Moment.localeData().longDateFormat('L'),
-        monthFormat: 'MMMM YYYY',
+        displayFormat: () => Moment.localeData().longDateFormat("L"),
+        monthFormat: "MMMM YYYY",
     },
     defaults_range: {
         // input related props
-        startDateId: 'startDate',
-        startDatePlaceholderText: '',
-        endDateId: 'endDate',
-        endDatePlaceholderText: '',
+        startDateId: "startDate",
+        startDatePlaceholderText: "",
+        endDateId: "endDate",
+        endDatePlaceholderText: "",
         disabled: false,
         required: false,
-        screenReaderInputMessage: '',
+        screenReaderInputMessage: "",
         showClearDates: true,
         showDefaultInputIcon: false,
         // calendar presentation and interaction related props
-        orientation: 'horizontal',
-        anchorDirection: 'left',
+        orientation: "horizontal",
+        anchorDirection: "left",
         horizontalMargin: 0,
         withPortal: false,
         withFullScreenPortal: false,
@@ -160,8 +162,8 @@ DatePicker.defaultProps = {
         keepOpenOnDateSelect: false,
         reopenPickerOnClearDates: false,
         // navigation related props
-        navPrev: '<',
-        navNext: '>',
+        navPrev: "<",
+        navNext: ">",
         onPrevMonthClick() { },
         onNextMonthClick() { },
         // day presentation and interaction related props
@@ -171,11 +173,11 @@ DatePicker.defaultProps = {
         enableOutsideDays: false,
         isDayBlocked: () => false,
         isOutsideRange: day => false,
-        isDayHighlighted: day => { return day.startOf('day').toString() === Moment().startOf('day').toString(); },
+        isDayHighlighted: day => day.startOf("day").toString() === Moment().startOf("day").toString(),
         // internationalization
-        displayFormat: () => Moment.localeData().longDateFormat('L'),
-        monthFormat: 'MMMM YYYY',
-    }
+        displayFormat: () => Moment.localeData().longDateFormat("L"),
+        monthFormat: "MMMM YYYY",
+    },
 };
 exports.default = DatePicker;
 //# sourceMappingURL=index.js.map

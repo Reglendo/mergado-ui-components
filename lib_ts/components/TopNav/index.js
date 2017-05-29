@@ -9,12 +9,12 @@ class TopNav extends React.Component {
     }
     renderLinks() {
         const { links } = this.props;
-        let classList = `${this.name}__list`;
+        const classList = `${this.name}__list`;
         return (React.createElement("ul", { className: classList }, links));
     }
     render() {
-        let className = `${this.name} ${this.props.addClass}`;
-        let classWrapper = `${this.name}__wrapper"`;
+        const className = `${this.name} ${this.props.addClass}`;
+        const classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
     }
@@ -22,7 +22,7 @@ class TopNav extends React.Component {
 TopNav.defaultProps = {
     links: [],
     style: {},
-    addClass: ""
+    addClass: "",
 };
 exports.default = TopNav;
 //# sourceMappingURL=index.js.map

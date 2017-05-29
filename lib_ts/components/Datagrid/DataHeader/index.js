@@ -14,7 +14,7 @@ class DataHeader extends React.Component {
     }
 }
 DataHeader.defaultProps = {
-    addClass: '',
+    addClass: "",
     style: {},
 };
 exports.default = DataHeader;

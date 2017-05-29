@@ -9,9 +9,9 @@ class Placeholder extends React.Component {
     }
     render() {
         const { addClass, style, width, height } = this.props;
-        let className = `${this.name} ${addClass ? addClass : ''}`;
-        let object = Object;
-        let styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` });
+        const className = `${this.name} ${addClass ? addClass : ""}`;
+        const object = Object;
+        const styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` });
         return (React.createElement("div", { className: className, style: styles },
             React.createElement("div", { className: `${this.name}__shadow` },
                 React.createElement("div", { className: `${this.name}__wrapper` },

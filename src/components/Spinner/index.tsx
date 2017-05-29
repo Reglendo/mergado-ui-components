@@ -1,14 +1,13 @@
 import * as React from "react"
 import {prefix} from "config"
 
-
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado"
     /** Maximum dimension (width or height) */
     size?: number
     loaded?: boolean
     color?: "black" | "white" | "green" | "blue"
-    speed? : number
+    speed?: number
     style?: any
 }
 export interface State {
@@ -17,12 +16,12 @@ export interface State {
 
 class Spinner extends React.Component<Props, State> {
 
-    readonly name = prefix + "spinner";
+    private readonly name = prefix + "spinner";
     constructor(props: Props) {
         super(props)
 
         this.state = {
-            loaded: false
+            loaded: false,
         }
     }
 
@@ -35,65 +34,64 @@ class Spinner extends React.Component<Props, State> {
         speed: 1,
     }
 
-    updateState(props) {
-        var loaded = this.state.loaded
+    protected updateState(props) {
+        let loaded = this.state.loaded
 
         if(props.loaded) {
             loaded = !!props.loaded;
         }
 
         this.setState({
-            loaded: loaded
+            loaded,
         })
     }
 
-    componentDidMount() {
+    protected componentDidMount() {
         this.updateState(this.props);
     }
 
-    componentWillReceiveProps(nextProps) {
+    protected componentWillReceiveProps(nextProps) {
         this.updateState(nextProps);
     }
 
-    render() {
+    public render() {
 
         if(this.state.loaded) {
             return (<span style={{opacity: 1}}>{this.props.children}</span>)
         }
         const { size, type, color, speed } = this.props
 
-        var defaultStyle : any = {  width: size,
-                                    height: size,
-                                    borderColor: `rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)`,
-                                    fontSize: size,
-                                    animationDuration: 1.2/speed + 's'
-                                }
-        var containerStyle: any = {
+        let defaultStyle: any = {
+                    width: size,
+                    height: size,
+                    borderColor: `rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)`,
+                    fontSize: size,
+                    animationDuration: 1.2/speed + "s",
+                }
+        const containerStyle: any = {
                                     width: size,
                                     height: size,
                                 }
-        if(color === 'black') {
+        if(color === "black") {
             defaultStyle.borderColor = `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)`
-        } else if(color === 'green') {
+        } else if(color === "green") {
             defaultStyle.borderColor = `rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)`
-        } else if(color === 'blue') {
-            defaultStyle.borderColor = `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)`
+        } else if(color === "blue") {
+            defaultStyle.borderColor = `
+                                rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)
+                                `
         }
 
-        if(type === 'dashed') {
-            defaultStyle.borderStyle = 'dashed'
-        } else if(type === 'dotted') {
-            defaultStyle.borderStyle = 'dotted'
-        }
-
-        if(type === 'mergado') {
+        if(type === "dashed" || type === "dotted") {
+            defaultStyle.borderStyle = type
+        } else
+        if(type === "mergado") {
             defaultStyle = { borderWidth: size / 2}
-            defaultStyle.animationDuration = 10/speed + 's';
+            defaultStyle.animationDuration = 10/speed + "s";
         }
 
-
-        var object : any = Object
-        var style = object.assign(defaultStyle, this.props.style)
+        const object: any = Object
+        const style = object.assign(defaultStyle, this.props.style)
         return (
             <div className={`${this.name} ${this.name}--${this.props.type}`} style={containerStyle}>
                 <div className={`${this.name}__wrapper`} style={style}>

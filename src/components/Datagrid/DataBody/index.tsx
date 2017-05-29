@@ -1,6 +1,6 @@
 import * as React from "react"
 import {prefix} from "config"
-import * as Sortable from 'react-sortablejs'
+import * as Sortable from "react-sortablejs"
 
 export interface Props {
     style?: any
@@ -14,16 +14,15 @@ export interface State {
 
 class DataBody extends React.Component<Props, State> {
 
-    readonly name = prefix + "datagrid__body";
-
     public static defaultProps: Props = {
         sortable: false,
         sortableProps: {},
-        addClass: '',
+        addClass: "",
         style: {},
     }
+    private readonly name = prefix + "datagrid__body";
 
-    render() {
+    public render() {
         const { sortable, sortableProps, style, addClass } = this.props;
         if(sortable) {
             return (

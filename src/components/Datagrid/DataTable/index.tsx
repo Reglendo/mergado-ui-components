@@ -10,16 +10,16 @@ export interface State {
 
 class DataTable extends React.Component<Props, State> {
 
-    readonly name = prefix + "datagrid";
-
     public static defaultProps: Props = {
         style: {},
-        addClass: ''
+        addClass: "",
     }
 
-    render() {
+    private readonly name = prefix + "datagrid";
+
+    public render() {
         const { addClass, style } = this.props
-        let className = `${this.name} ${this.props.addClass}`
+        const className = `${this.name} ${this.props.addClass}`
         return (
             <table className={className} style={style}>
                 {this.props.children}

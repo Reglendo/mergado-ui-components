@@ -9,19 +9,19 @@ class WizardNav extends React.Component {
     }
     renderLinks() {
         const { links } = this.props;
-        let classList = `${this.name}__list`;
+        const classList = `${this.name}__list`;
         return (React.createElement("ul", { className: classList }, links));
     }
     render() {
-        let className = `${this.name}`;
-        let classWrapper = `${this.name}__wrapper"`;
+        const className = `${this.name}`;
+        const classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
     }
 }
 WizardNav.defaultProps = {
     links: [],
-    style: {}
+    style: {},
 };
 exports.default = WizardNav;
 //# sourceMappingURL=index.js.map

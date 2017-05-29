@@ -11,31 +11,36 @@ class Toast extends React.Component {
         this.state = {
             visible: true,
             paused: false,
-            secondsLeft: props.timeout / 1000
+            secondsLeft: props.timeout / 1000,
         };
     }
     componentDidMount() {
         if (this.props.isPaused() !== true && this.props.timeout > 0) {
-            var interval = window.setInterval(() => {
-                if (this.state.secondsLeft < 1) {
-                    this.hideToast();
-                    window.clearInterval(interval);
-                }
-                else {
-                    this.setState({
-                        visible: true,
-                        paused: false,
-                        secondsLeft: this.state.secondsLeft > 0 ? this.state.secondsLeft - 1 : this.state.secondsLeft
-                    });
-                }
-            }, 1000);
+            this.countdown = setInterval(this.timer.bind(this), 1000);
         }
+    }
+    timer() {
+        const { secondsLeft } = this.state;
+        if (secondsLeft < 1) {
+            this.hideToast();
+            clearInterval(this.countdown);
+        }
+        else {
+            this.setState({
+                visible: true,
+                paused: false,
+                secondsLeft: secondsLeft > 0 ? secondsLeft - 1 : secondsLeft,
+            });
+        }
+    }
+    componentWillUnmount() {
+        clearInterval(this.countdown);
     }
     hideToast() {
         this.setState({
             visible: false,
             paused: true,
-            secondsLeft: 0
+            secondsLeft: 0,
         });
     }
     removeToast(evt) {
@@ -45,10 +50,10 @@ class Toast extends React.Component {
         }
     }
     render() {
-        return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}` },
+        return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? "" : "hidden"}` },
             React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}` },
                 React.createElement("div", { className: `${this.name}__icon` }, this.props.icon),
-                React.createElement("div", { className: `${this.name}__content` }, this.props.text.replace('%seconds%', this.state.secondsLeft + 's')),
+                React.createElement("div", { className: `${this.name}__content` }, this.props.text.replace("%seconds%", this.state.secondsLeft + "s")),
                 this.props.closeable &&
                     React.createElement("div", { className: `${this.name}__close` },
                         React.createElement("a", { className: `${this.name}__button`, onClick: (evt) => {
@@ -59,14 +64,14 @@ class Toast extends React.Component {
 }
 Toast.defaultProps = {
     id: unique_id_1.default(),
-    text: '',
+    text: "",
     type: "info",
     icon: null,
     isPaused: () => { return false; },
     onClose: () => { return true; },
     timeout: 0,
     closeable: true,
-    style: {}
+    style: {},
 };
 exports.default = Toast;
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 import * as React from "react"
 import {prefix} from "config"
-import  * as Icons from "mergado-ui-icons/lib"
+import * as Icons from "mergado-ui-icons/lib"
 
 export interface Props {
     type?: string
@@ -16,7 +16,7 @@ export interface State {
 
 class Icon extends React.Component<Props, State> {
 
-    readonly name = prefix + "icon";
+    private readonly name = prefix + "icon";
 
     public static defaultProps: Props = {
         type: "reglendo",
@@ -27,21 +27,21 @@ class Icon extends React.Component<Props, State> {
         title: "",
     }
 
-    render() {
-        let className = `${this.name} ${this.name}--${this.props.type}`
-        let iconName : string;
+    public render() {
+        const className = `${this.name} ${this.name}--${this.props.type}`
+        let iconName: string;
         if(this.props.name) {
             iconName = this.props.name
         } else {
-            iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace('-','')
+            iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace("-","")
         }
 
-        let icon = Icons[iconName] ? Icons[iconName] : null
+        const icon = Icons[iconName] ? Icons[iconName] : null
 
         return (
             <span className={className} style={this.props.style} title={this.props.title}>
-                <svg className={`${this.name}__image`} preserveAspectRatio='xMidYMid meet'
-                     fill='currentColor'
+                <svg className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
+                     fill="currentColor"
                      height={this.props.size}
                      width={this.props.size}
                      viewBox={`0 0 40 40`}

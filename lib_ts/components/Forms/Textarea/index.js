@@ -16,11 +16,14 @@ class Textarea extends React.Component {
     render() {
         const { id, meta, input } = this.props;
         const inputId = `${meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input, addProps), input.value)));
+            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input, addProps), input.value)));
     }
 }
 Textarea.defaultProps = {
@@ -40,7 +43,7 @@ Textarea.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -57,14 +60,14 @@ Textarea.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "Text",
         placeholder: "Fill out here...",
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Textarea;
 //# sourceMappingURL=index.js.map

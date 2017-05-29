@@ -10,23 +10,22 @@ export interface Props {
 export interface State {
 }
 
-
 /**
  * disable-styleguide
  */
 class NavLink extends React.Component<Props, State> {
 
-    readonly name = prefix + "top_nav__item";
+    private readonly name = prefix + "top_nav__item";
 
     public static defaultProps: Props = {
         active: false,
         link: (<a href="#"/>),
-        style: {}
+        style: {},
     }
 
-    render() {
+    public render() {
         const {link, active} = this.props
-        var className = `${this.name}`
+        let className = `${this.name}`
         if (active) {
             className += ` ${this.name}--active`
         }

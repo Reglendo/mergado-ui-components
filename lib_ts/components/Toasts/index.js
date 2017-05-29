@@ -9,7 +9,7 @@ class Toasts extends React.Component {
         super(props);
         this.name = config_1.prefix + "toasts-container";
         this.state = {
-            toasts: []
+            toasts: [],
         };
     }
     isPaused() {
@@ -29,7 +29,7 @@ class Toasts extends React.Component {
 Toasts.defaultProps = {
     toasts: [],
     paused: false,
-    style: {}
+    style: {},
 };
 exports.default = Toasts;
 //# sourceMappingURL=index.js.map

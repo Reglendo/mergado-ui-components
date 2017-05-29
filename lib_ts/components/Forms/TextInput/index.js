@@ -16,13 +16,16 @@ class TextInput extends React.Component {
     render() {
         const { id, type, meta, input, addClass } = this.props;
         const inputId = id ? id : `${meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
-        return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
+        return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             this.props.labels.main &&
                 React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps ? this.props.addProps.addClass : ''}` }))));
+            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type}
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}
+                                ${this.props.addProps ? this.props.addProps.addClass : ""}` }))));
     }
 }
 TextInput.defaultProps = {
@@ -43,7 +46,7 @@ TextInput.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -60,14 +63,14 @@ TextInput.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "",
         placeholder: "",
         invalid: "",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = TextInput;
 //# sourceMappingURL=index.js.map

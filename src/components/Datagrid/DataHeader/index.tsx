@@ -12,14 +12,13 @@ export interface State {
 
 class DataHeader extends React.Component<Props, State> {
 
-    readonly name = prefix + "datagrid__row";
-
     public static defaultProps: Props = {
-        addClass: '',
+        addClass: "",
         style: {},
     }
+    private readonly name = prefix + "datagrid__row";
 
-    render() {
+    public render() {
         const { style, addClass } = this.props;
         return (
             <thead>

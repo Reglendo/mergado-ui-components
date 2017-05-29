@@ -16,12 +16,12 @@ class Checkbox extends React.Component {
     render() {
         const { disabled, required, addClass, style, input, id, meta, labels } = this.props;
         const inputId = `${this.props.meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
         return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
                              ${required && this.name + `--` + required} ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                          `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label ${this.form}__input` },
@@ -49,7 +49,7 @@ Checkbox.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -66,13 +66,13 @@ Checkbox.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Checkbox;
 //# sourceMappingURL=index.js.map

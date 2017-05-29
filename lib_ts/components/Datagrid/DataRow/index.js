@@ -13,10 +13,10 @@ class DataRow extends React.Component {
     }
 }
 DataRow.defaultProps = {
-    addClass: '',
+    addClass: "",
     style: {},
     inactive: false,
-    dataId: ""
+    dataId: "",
 };
 exports.default = DataRow;
 //# sourceMappingURL=index.js.map

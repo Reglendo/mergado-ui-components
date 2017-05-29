@@ -12,35 +12,34 @@ export interface State {
  */
 class Bubble extends React.Component<Props, State> {
 
-    readonly name = prefix + "popup_hint__bubble";
+    private readonly name = prefix + "popup_hint__bubble";
     public popup;
 
-
-    componentDidMount() {
+    protected componentDidMount() {
         this.popup = document.createElement("span")
         this.popup.className = `${this.name}__wrapper`
-        this.popup.ref = 'bubble'
-        document.getElementById('app').appendChild(this.popup)
+        this.popup.ref = "bubble"
+        document.getElementById("app").appendChild(this.popup)
         this._renderLayer()
     }
 
-    componentDidUpdate() {
+    protected componentDidUpdate() {
         this._renderLayer();
     }
 
-    componentWillUnmount() {
+    protected componentWillUnmount() {
         if(this.popup) {
             ReactDOM.unmountComponentAtNode(this.popup);
-            document.getElementById('app').removeChild(this.popup);
+            document.getElementById("app").removeChild(this.popup);
         }
     }
 
-    _renderLayer() {
+    protected _renderLayer() {
         ReactDOM.render((<span >{this.props.children}</span>), this.popup);
     }
 
-    render() {
-        return (<div></div>);
+    public render() {
+        return (<div/>);
     }
 }
 

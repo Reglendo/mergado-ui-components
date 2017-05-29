@@ -4541,9 +4541,9 @@ react-docgen-displayname-handler@^1.0.0:
   dependencies:
     recast "0.11.12"
 
-"react-docgen-typescript@https://github.com/Reglendo/react-docgen-typescript#0.1.1":
-  version "0.0.5"
-  resolved "https://github.com/Reglendo/react-docgen-typescript#3ac556fac5a401ba52b69f5927ad6916b840d47b"
+"react-docgen-typescript@https://github.com/Reglendo/react-docgen-typescript#0.1.2":
+  version "0.0.6"
+  resolved "https://github.com/Reglendo/react-docgen-typescript#1667c72067fc715dc3839cbc032b9cfd2049217f"
   dependencies:
     awesome-typescript-loader "^3.0.8"
     typescript "^2.2.1"
