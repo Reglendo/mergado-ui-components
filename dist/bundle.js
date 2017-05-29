@@ -40365,8 +40365,10 @@ class Bubble extends React.Component {
         this._renderLayer();
     }
     componentWillUnmount() {
-        ReactDOM.unmountComponentAtNode(this.popup);
-        document.body.removeChild(this.popup);
+        if (this.popup) {
+            ReactDOM.unmountComponentAtNode(this.popup);
+            document.getElementById('app').removeChild(this.popup);
+        }
     }
     _renderLayer() {
         ReactDOM.render((React.createElement("span", null, this.props.children)), this.popup);
@@ -40466,7 +40468,6 @@ class PopupHint extends React.Component {
         else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`;
             hint.style.left = `${newX}px`;
-            this.styleHint(buttonPosition, renderLeft);
         }
     }
     fadeOut(el, callback) {
@@ -40516,7 +40517,7 @@ class PopupHint extends React.Component {
             React.createElement("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
                 React.createElement("div", { className: `${this.name}__innerwrapper` },
                     React.createElement("div", { className: `${this.name}__border` },
-                        React.createElement("div", { className: `${this.name}__content` }, this.props.content)),
+                        React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
                     React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
         return (React.createElement("div", { className: this.name, style: { display: 'inline-block' } },
             React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand }, this.props.icon ? this.props.icon : null),
@@ -40524,9 +40525,7 @@ class PopupHint extends React.Component {
     }
 }
 PopupHint.defaultProps = {
-    content: "",
     icon: null,
-    iconType: "",
     style: {}
 };
 exports.default = PopupHint;

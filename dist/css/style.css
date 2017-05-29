@@ -407,9 +407,6 @@ ol,
 dl,
 blockquote,
 pre,
-td,
-th,
-textarea,
 caption {
   font-size: 1em;
   /* equiv 14px */
@@ -889,7 +886,7 @@ table {
   background: red;
   color: white;
   font-size: 10px;
-  z-index: 1000;
+  z-index: 1;
   padding: 1px 5px;
   margin-bottom: 0;
   position: absolute;
