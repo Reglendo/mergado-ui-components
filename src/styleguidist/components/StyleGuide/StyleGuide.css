@@ -78,16 +78,31 @@
 	composes: font from "../../styles/common.css";
 	composes: border link from "../../styles/colors.css";
 	cursor: pointer;
-	border-radius: 3px;
 	padding: 6px 8px;
 	font-size: 11px;
 	line-height: 1;
 	margin: 0;
-    margin-left: 5px;
+    margin-left: 0;
     color: white;
     float: right;
     background: transparent;
     background: rgba(0, 0, 0, 0.27);
+}
+
+.toggleCompact:focus {
+    outline: none;
+}
+
+.toggleCompact + .toggleCompact {
+    border-right: none;
+}
+
+.toggleCompact:first-child {
+    border-radius: 0 3px 3px 0;
+}
+
+.toggleCompact:last-child {
+    border-radius: 3px 0 0 3px;
 }
 
 

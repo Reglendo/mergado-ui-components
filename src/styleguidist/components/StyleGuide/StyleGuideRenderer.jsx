@@ -111,9 +111,14 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, switchCo
     			<div className={s.wrapper}>
     				<div className={`${s.components} ${!sidebar && s.withsidebar}`}>
                         <div className={s.buttons}>
-                            <button onClick={switchCompact} className={s.toggleCompact} style={{float: 'right', background: compact?'rgba(127, 186, 44, 0.5)':'rgba(0, 0, 0, 0.27)'}}>Compact</button>
-                            <button onClick={switchSidebar} className={s.toggleCompact} style={{float: 'right', background: sidebar?'rgba(127, 186, 44, 0.5)':'rgba(0, 0, 0, 0.27)'}}>Sidebar</button>
-                            <button className={s.toggleCompact} id="hashLocator" onClick={() => { location.hash = location.hash.replace('#','#_') }} style={{float: 'right'}}> # </button>
+                            <button onClick={switchCompact} className={s.toggleCompact}
+                                    style={{float: 'right',
+                                            background: compact?'rgba(127, 186, 44, 0.5)':'rgba(0, 0, 0, 0.27)'}}>Compact</button>
+                            <button onClick={switchSidebar} className={s.toggleCompact}
+                                    style={{float: 'right', background: !sidebar?'rgba(127, 186, 44, 0.5)':'rgba(0, 0, 0, 0.27)'}}>Hide sidebar</button>
+                            <button className={s.toggleCompact} id="hashLocator"
+                                    onClick={() => { location.hash = location.hash.replace('#','#_') }}
+                                    style={{float: 'right'}}> # </button>
                         </div>
     					{components}
     					<footer className={s.footer}>
