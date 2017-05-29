@@ -14,20 +14,20 @@ export interface State {
 
 class DataRow extends React.Component<Props, State> {
 
-    readonly name = prefix + "datagrid__row";
-
     public static defaultProps: Props = {
-        addClass: '',
+        addClass: "",
         style: {},
         inactive: false,
-        dataId: ""
+        dataId: "",
     }
+    private readonly name = prefix + "datagrid__row";
 
-    render() {
+    public render() {
         const { style, addClass, inactive, dataId } = this.props;
         return (
-            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`} data-id={dataId} style={style}>
-                {this.props.children}
+            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
+                data-id={dataId} style={style}>
+                    {this.props.children}
             </tr>
         )
     }

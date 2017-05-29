@@ -10,7 +10,7 @@ class ColorPicker extends React.Component {
         this.form = config_1.prefix + "form";
         this.state = {
             displayColorPicker: false,
-            color: props.color
+            color: props.color,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -43,11 +43,13 @@ class ColorPicker extends React.Component {
     renderItem() {
         const { color } = this.state;
         const { input } = this.props;
-        const background = typeof color === "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
+        const background = typeof color === "string"
+            ? "#" + color.substring(0, 6)
+            : `rgba(${color.r},${color.g},${color.b},${color.a})`;
         const inputId = `${this.props.meta.form}-${input.name}`;
         return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input` },
             React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),
-            React.createElement("div", { className: `${this.name}__colorbox`, style: { background: background }, onClick: this.handleClick }),
+            React.createElement("div", { className: `${this.name}__colorbox`, style: { background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     }
     render() {
@@ -56,7 +58,7 @@ class ColorPicker extends React.Component {
                              ${required && this.name + `--` + required}
                              ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                           `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, labels.main),
@@ -82,7 +84,7 @@ ColorPicker.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -99,13 +101,13 @@ ColorPicker.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = ColorPicker;
 //# sourceMappingURL=index.js.map

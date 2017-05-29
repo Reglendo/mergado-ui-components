@@ -21,7 +21,7 @@ class Select extends React.Component {
                     return option;
                 }
                 else {
-                    let object = Object;
+                    const object = Object;
                     return object.assign({}, option, { key: unique_id_1.default() });
                 }
             }
@@ -33,15 +33,15 @@ class Select extends React.Component {
     render() {
         const { multiple, disabled, required, size, addClass, style, id, meta, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
         return (React.createElement("div", { className: `${this.name}
-                             ${multiple ? this.name + `--` + multiple : ''}
-                             ${disabled ? this.name + `--` + disabled : ''}
-                             ${required ? this.name + `--` + required : ''}
+                             ${multiple ? this.name + `--` + multiple : ""}
+                             ${disabled ? this.name + `--` + disabled : ""}
+                             ${required ? this.name + `--` + required : ""}
                              ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                              `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
@@ -70,7 +70,7 @@ Select.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -87,13 +87,13 @@ Select.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Select;
 //# sourceMappingURL=index.js.map

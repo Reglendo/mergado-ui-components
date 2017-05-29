@@ -3,7 +3,7 @@ import NavLink from "components/TopNav/NavLink"
 import {prefix} from "config"
 
 export interface Props {
-    links: Array<JSX.Element>
+    links: JSX.Element[]
     style?: any
     addClass?: string
 }
@@ -13,18 +13,17 @@ export interface State {
 
 class TopNav extends React.Component<Props, State> {
 
-    readonly name = prefix + "top_nav";
-
+    private readonly name = prefix + "top_nav";
 
     public static defaultProps: Props = {
         links: [],
         style: {},
-        addClass: ""
+        addClass: "",
     }
 
-    renderLinks() {
+    protected renderLinks() {
         const {links} = this.props
-        let classList = `${this.name}__list`
+        const classList = `${this.name}__list`
         return (
             <ul className={classList}>
                 {links}
@@ -32,10 +31,10 @@ class TopNav extends React.Component<Props, State> {
         )
     }
 
-    render() {
+    public render() {
 
-        let className = `${this.name} ${this.props.addClass}`
-        let classWrapper = `${this.name}__wrapper"`
+        const className = `${this.name} ${this.props.addClass}`
+        const classWrapper = `${this.name}__wrapper"`
 
         return (
             <nav className={className} style={this.props.style}>

@@ -1,13 +1,13 @@
-import * as React  from "react"
+import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 
 export interface Props extends InputProps {
     labels?: {
-        main: string | JSX.Element
-        placeholder: string
-        invalid: string | JSX.Element
-        title: string
+        main: string | JSX.Element,
+        placeholder: string,
+        invalid: string | JSX.Element,
+        title: string,
     }
     style?: any
     addClass?: string
@@ -19,8 +19,8 @@ export interface State {
 
 class Textarea extends React.Component<Props, State> {
 
-    readonly name = prefix + "textarea";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "textarea";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         style: null,
@@ -39,7 +39,7 @@ class Textarea extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: ""
+            value: "",
         },
         meta: {
             active: false,
@@ -56,17 +56,17 @@ class Textarea extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         labels: {
             main: "Text",
             placeholder: "Fill out here...",
             invalid: "Invalid input",
-            title: ""
-        }
+            title: "",
+        },
     }
 
-    renderInvalid() {
+    protected renderInvalid() {
         if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
@@ -76,17 +76,22 @@ class Textarea extends React.Component<Props, State> {
         }
     }
 
-    render() {
+    public render() {
         const { id,  meta, input } = this.props
         const inputId = `${meta.form}-${input.name}`
-        let addProps = Object.assign({}, this.props.addProps)
+        const addProps = Object.assign({}, this.props.addProps)
+        delete addProps.addClass
         return (
-            <div className={`${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`}
-                    title={this.props.labels.title} style={this.props.style}>
+            <div className={`${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`}
+                            title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
-                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>
+                    {this.props.labels.main }
+                </label>
                 <textarea
-                    className={`${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
+                    className={`${this.name}__input ${this.form}__input--text ${this.form}__input--textarea
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`}
                     id={id?id:inputId} placeholder={this.props.labels.placeholder}
                     {...input} {...addProps}
                 >{input.value}</textarea>

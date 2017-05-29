@@ -21,7 +21,7 @@ class DataBody extends React.Component {
 DataBody.defaultProps = {
     sortable: false,
     sortableProps: {},
-    addClass: '',
+    addClass: "",
     style: {},
 };
 exports.default = DataBody;

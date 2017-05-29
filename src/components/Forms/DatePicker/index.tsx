@@ -1,21 +1,21 @@
-import * as React  from "react"
+import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import { SingleDatePicker, DateRangePicker } from "react-dates";
 import * as Moment from "moment"
 import {prefix} from "config"
 
 export interface Props extends InputProps {
-    type?: 'single' | 'range'
+    type?: "single" | "range"
     numberOfMonths?: number
     minimumDays?: number
     locale?: string
     labels?: {
-        main: string | JSX.Element
-        placeholder: string
-        invalid: string | JSX.Element
-        title: string
-        placeholderFrom: string
-        placeholderTo: string
+        main: string | JSX.Element,
+        placeholder: string,
+        invalid: string | JSX.Element,
+        title: string,
+        placeholderFrom: string,
+        placeholderTo: string,
     }
     defaults_single?: {
     }
@@ -30,17 +30,16 @@ export interface State {
     focused: boolean | "startDate" | "endDate"
 }
 
-
 class DatePicker extends React.Component<Props, State> {
 
-    readonly name = prefix + "datepicker";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "datepicker";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
-        type: 'single',
+        type: "single",
         numberOfMonths: 1,
         minimumDays: 1,
-        locale: 'cs',
+        locale: "cs",
         style: null,
         input: {
             checked: false,
@@ -72,7 +71,7 @@ class DatePicker extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         labels: {
             main: "Pick date:",
@@ -80,20 +79,20 @@ class DatePicker extends React.Component<Props, State> {
             invalid: "Invalid input",
             title: "",
             placeholderFrom: "Date from",
-            placeholderTo: "Date to"
+            placeholderTo: "Date to",
         },
         defaults_single: {
             // input related props
-            id: 'date',
-            placeholder: 'Date',
+            id: "date",
+            placeholder: "Date",
             disabled: false,
             required: false,
-            screenReaderInputMessage: '',
+            screenReaderInputMessage: "",
             showClearDate: true,
 
             // calendar presentation and interaction related props
-            orientation: 'horizontal',
-            anchorDirection: 'left',
+            orientation: "horizontal",
+            anchorDirection: "left",
             horizontalMargin: 0,
             withPortal: false,
             withFullScreenPortal: false,
@@ -104,8 +103,8 @@ class DatePicker extends React.Component<Props, State> {
 
             // navigation related props
             daySize: 30,
-            navPrev: '<',
-            navNext: '>',
+            navPrev: "<",
+            navNext: ">",
             onPrevMonthClick() {},
             onNextMonthClick() {},
 
@@ -114,28 +113,28 @@ class DatePicker extends React.Component<Props, State> {
             enableOutsideDays: false,
             isDayBlocked: () => false,
             isOutsideRange: day => false,
-            isDayHighlighted: day => { return day.startOf('day').toString() === Moment().startOf('day').toString()},
+            isDayHighlighted: day => day.startOf("day").toString() === Moment().startOf("day").toString(),
 
             // internationalization props
-            displayFormat: () => Moment.localeData().longDateFormat('L'),
-            monthFormat: 'MMMM YYYY',
+            displayFormat: () => Moment.localeData().longDateFormat("L"),
+            monthFormat: "MMMM YYYY",
         },
         defaults_range: {
 
             // input related props
-            startDateId: 'startDate',
-            startDatePlaceholderText: '',
-            endDateId: 'endDate',
-            endDatePlaceholderText: '',
+            startDateId: "startDate",
+            startDatePlaceholderText: "",
+            endDateId: "endDate",
+            endDatePlaceholderText: "",
             disabled: false,
             required: false,
-            screenReaderInputMessage: '',
+            screenReaderInputMessage: "",
             showClearDates: true,
             showDefaultInputIcon: false,
 
             // calendar presentation and interaction related props
-            orientation: 'horizontal',
-            anchorDirection: 'left',
+            orientation: "horizontal",
+            anchorDirection: "left",
             horizontalMargin: 0,
             withPortal: false,
             withFullScreenPortal: false,
@@ -145,11 +144,10 @@ class DatePicker extends React.Component<Props, State> {
             reopenPickerOnClearDates: false,
 
             // navigation related props
-            navPrev: '<',
-            navNext: '>',
+            navPrev: "<",
+            navNext: ">",
             onPrevMonthClick() {},
             onNextMonthClick() {},
-
 
             // day presentation and interaction related props
             daySize: 30,
@@ -158,54 +156,50 @@ class DatePicker extends React.Component<Props, State> {
             enableOutsideDays: false,
             isDayBlocked: () => false,
             isOutsideRange: day => false,
-            isDayHighlighted: day => { return day.startOf('day').toString() === Moment().startOf('day').toString()},
+            isDayHighlighted: day => day.startOf("day").toString() === Moment().startOf("day").toString(),
 
             // internationalization
-            displayFormat: () => Moment.localeData().longDateFormat('L'),
-            monthFormat: 'MMMM YYYY',
-        }
+            displayFormat: () => Moment.localeData().longDateFormat("L"),
+            monthFormat: "MMMM YYYY",
+        },
     }
 
     constructor(props: Props) {
         super(props)
-        var startDate = props.input.value ? Moment(props.input.value) : null
+        const startDate = props.input.value ? Moment(props.input.value) : null
 
         this.state = {
-            startDate: startDate,
+            startDate,
             endDate: null,
-            focused: null
+            focused: null,
         }
-        require('moment/locale/' + props.locale)
+        require("moment/locale/" + props.locale)
     }
 
-
-    onDateChange(date) {
+    protected onDateChange(date) {
         this.setState({ startDate: date });
     }
 
-    onDatesChange(dates) {
+    protected onDatesChange(dates) {
         this.setState({ startDate: dates.startDate, endDate: dates.endDate });
     }
 
-    onFocusChange(action) {
-        if(action === 'startDate') {
-            this.setState( { focused: 'startDate' } );
-        }
-        else
-        if(action === 'endDate') {
-            this.setState( { focused: 'endDate' } );
-        }
-        else
+    protected onFocusChange(action) {
+        if(action === "startDate") {
+            this.setState( { focused: "startDate" } );
+        } else
+        if(action === "endDate") {
+            this.setState( { focused: "endDate" } );
+        } else
         if(action) {
             this.setState( { focused: action.focused } );
-        }
-
+        } else
         if(action === null) {
             this.setState( { focused: null } );
         }
     }
 
-    renderInvalid() {
+    protected renderInvalid() {
         if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
@@ -215,13 +209,13 @@ class DatePicker extends React.Component<Props, State> {
         }
     }
 
-    render() {
+    public render() {
         const { focused, startDate, endDate } = this.state
         const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays, meta } = this.props
 
-        let picker : SingleDatePicker | DateRangePicker;
+        let picker: SingleDatePicker | DateRangePicker;
 
-        if(type === 'single') {
+        if(type === "single") {
             picker = <SingleDatePicker
                 {...defaults_single}
                 placeholder={labels.placeholder}
@@ -246,7 +240,9 @@ class DatePicker extends React.Component<Props, State> {
             />
         }
         return (
-            <div className={`${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} style={this.props.style}>
+            <div className={`${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
+                            `} style={this.props.style}>
                 {this.renderInvalid()}
                 <span className={`${this.name}__label ${this.form}__label`}>{labels.main}</span>
                 <div className={`${this.name}__picker`}>

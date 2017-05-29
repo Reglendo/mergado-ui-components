@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from "react"
 
-import Bubble from './Bubble'
+import Bubble from "./Bubble"
 import {prefix} from "config"
 
 export interface Props {
@@ -19,50 +19,50 @@ export interface Position {
 
 class PopupHint extends React.Component<Props, State> {
 
-    readonly name = prefix + "popup_hint";
+    private readonly name = prefix + "popup_hint";
 
     public static defaultProps: Props = {
         icon: null,
-        style: {}
+        style: {},
     }
 
-    refs: {
-        [key: string]: Element
-        hint: HTMLElement
-        arrow: HTMLElement
-        button: HTMLElement
+    public refs: {
+        [key: string]: Element,
+        hint: HTMLElement,
+        arrow: HTMLElement,
+        button: HTMLElement,
     }
 
     constructor(props: Props) {
         super(props)
         this.state = {
-            expanded: false
+            expanded: false,
         }
 
         this.collapse = this.collapse.bind(this)
         this.expand = this.expand.bind(this)
     }
 
-    expand(event: any) {
+    protected expand(event: any) {
         event.preventDefault()
         this.setState({expanded: true})
     }
 
-    collapse(): void {
-        this.fadeOut(this.refs["hint"], () => {
+    protected collapse(): void {
+        this.fadeOut(this.refs.hint, () => {
             this.setState({expanded: false})
         })
     }
 
-    componentDidMount() {
+    protected componentDidMount() {
         this.styleElements()
     }
 
-    componentDidUpdate(prevProps: Props, prevState: State) {
+    protected componentDidUpdate(prevProps: Props, prevState: State) {
         this.styleElements()
     }
 
-    getWindowWidth(): number {
+    protected getWindowWidth(): number {
         if (window.innerWidth) {
             return window.innerWidth;
         }
@@ -78,8 +78,8 @@ class PopupHint extends React.Component<Props, State> {
         return 0
     }
 
-    styleElements() {
-        const buttonPosition = this.getPosition(this.refs["button"])
+    protected styleElements() {
+        const buttonPosition = this.getPosition(this.refs.button)
         const windowWidth = this.getWindowWidth()
         const widthLeft = buttonPosition.left
         const windowRight = windowWidth - buttonPosition.left
@@ -89,18 +89,18 @@ class PopupHint extends React.Component<Props, State> {
         this.styleHint(buttonPosition, renderLeft)
     }
 
-    styleArrow(left: string, right: string) {
-        let arrow : any = this.refs["arrow"]
+    protected styleArrow(left: string, right: string) {
+        const arrow: any = this.refs.arrow
 
         arrow.style.left = left
         arrow.style.right = right
     }
 
-    styleHint(buttonPosition: Position, renderLeft: boolean) {
-        let hint : any = this.refs["hint"]
+    protected styleHint(buttonPosition: Position, renderLeft: boolean) {
+        const hint: any = this.refs.hint
 
         hint.style.opacity = `0`
-        hint.style.display = 'block'
+        hint.style.display = "block"
 
         let newX: number
         let arrowLeft: string
@@ -120,8 +120,8 @@ class PopupHint extends React.Component<Props, State> {
             hint.style.left === `${newX}px`) {
             if (this.state.expanded) {
                 this.styleArrow(arrowLeft, arrowRight)
-                this.fadeIn(this.refs["hint"])
-                this.refs["hint"].focus()
+                this.fadeIn(this.refs.hint)
+                this.refs.hint.focus()
             }
         } else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`
@@ -129,11 +129,12 @@ class PopupHint extends React.Component<Props, State> {
         }
     }
 
-    fadeOut(el: any, callback: Function) {
+    protected fadeOut(el: any, callback: () => void) {
         el.style.opacity = 1;
 
         (function fade() {
-            if ((el.style.opacity -= .1) < 0) {
+            el.style.opacicty -= -1
+            if (el.style.opacicty <= 0) {
                 callback()
             } else {
                 requestAnimationFrame(fade)
@@ -141,21 +142,23 @@ class PopupHint extends React.Component<Props, State> {
         })()
     }
 
-    fadeIn(el: any, display: any = null) {
+    protected fadeIn(el: any, display: any = null) {
         el.style.opacity = 0
         el.style.display = display || "block";
 
         (function fade() {
-            var val = parseFloat(el.style.opacity)
-            if (!((val += .1) > 1)) {
+            let val = parseFloat(el.style.opacity)
+            val += 1
+            if (!(val > 1)) {
                 el.style.opacity = val
                 requestAnimationFrame(fade)
             }
         })()
     }
 
-    getPosition(element: any): Position {
-        var top = 0, left = 0
+    protected getPosition(element: any): Position {
+        let top = 0
+        let left = 0
         do {
             top += element.offsetTop || 0
             left += element.offsetLeft || 0
@@ -163,23 +166,24 @@ class PopupHint extends React.Component<Props, State> {
         } while (element)
 
         return {
-            top: top,
-            left: left,
+            top,
+            left,
         }
     }
 
-    getArrowPosition(buttonPosition: Position): Position {
+    protected getArrowPosition(buttonPosition: Position): Position {
         return {
             top: buttonPosition.top - 15 / 2,
             left: buttonPosition.left - 21 / 2,
         }
     }
 
-    render() {
-        var object : any = Object
-        var style = object.assign({display: this.state.expanded ? "" : "none", position: "absolute"}, this.props.style)
+    public render() {
+        const object: any = Object
+        const style = object.assign({display: this.state.expanded ? "" : "none", position: "absolute"},
+                                    this.props.style)
 
-        var hint: JSX.Element = (
+        const hint: JSX.Element = (
             <Bubble>
                 <div ref="hint" className={`${this.name}__bubble`}
                      style={style} tabIndex={0}
@@ -195,9 +199,9 @@ class PopupHint extends React.Component<Props, State> {
         )
 
         return (
-            <div className={this.name} style={{display: 'inline-block'}}>
+            <div className={this.name} style={{display: "inline-block"}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
-                     onMouseDown={this.state.expanded ? ()=>{} : this.expand}>
+                     onMouseDown={this.state.expanded ? ()=> {} : this.expand}>
                     {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}

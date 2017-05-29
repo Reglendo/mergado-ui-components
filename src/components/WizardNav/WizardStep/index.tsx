@@ -17,7 +17,7 @@ export interface State {
  */
 class WizardStep extends React.Component<Props, State> {
 
-    readonly name = prefix + "wizard_nav__item";
+    private readonly name = prefix + "wizard_nav__item";
 
     public static defaultProps: Props = {
         active: false,

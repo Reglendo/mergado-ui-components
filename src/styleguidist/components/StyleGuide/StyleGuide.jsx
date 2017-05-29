@@ -109,6 +109,10 @@ export default class StyleGuide extends Component {
 
 
 var scrollChangeHash = function() {
+    if(location.hash.indexOf('#!') !== -1) {
+        return
+    }
+
     var range = document.caretRangeFromPoint(260,0); // screen coordinates of upper-left corner of a scolled area (in this case screen itself)
     if(range) {
         var hashLocator = document.getElementById('hashLocator');

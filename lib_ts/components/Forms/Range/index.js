@@ -8,7 +8,7 @@ class Range extends React.Component {
         this.name = config_1.prefix + "input-range";
         this.form = config_1.prefix + "form";
         this.state = {
-            value: props.input.value
+            value: props.input.value,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -26,18 +26,20 @@ class Range extends React.Component {
         const inputId = `${meta.form}-${input.name}`;
         const outputId = `${meta.form}-${input.name}_output`;
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
-            React.createElement("div", { style: { position: 'relative' } },
+            React.createElement("div", { style: { position: "relative" } },
                 React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-                React.createElement("input", Object.assign({ className: `${this.name}__item ${this.form}__input--text ${this.form}__input--range ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, type: 'range', placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
-                        let target = evt.target;
-                        let output = document.getElementById(outputId);
+                React.createElement("input", Object.assign({ className: `${this.name}__item ${this.form}__input--text ${this.form}__input--range
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`, id: id ? id : inputId, type: "range", placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
+                        const target = evt.target;
+                        const output = document.getElementById(outputId);
                         output.value = target.value;
                     }, value: this.state.value }, addProps)),
-                React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
+                React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: "calc(" + ((this.state.value / this.props.max) * 100) + "% - " + outputWidth / 2 + "px)" }, id: outputId }, this.state.value))));
     }
 }
 Range.defaultProps = {
@@ -77,14 +79,14 @@ Range.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "Text",
         placeholder: "Fill out here...",
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Range;
 //# sourceMappingURL=index.js.map

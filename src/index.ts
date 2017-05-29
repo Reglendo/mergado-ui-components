@@ -3,7 +3,6 @@ export {default as Checkbox} from "./components/Forms/Checkbox"
 export {default as CheckboxContainer} from "./components/Forms/CheckboxContainer"
 export {default as ColorPicker} from "./components/Forms/ColorPicker"
 
-
 export {default as Autocomplete} from "./components/Forms/Autocomplete"
 export {default as Radio} from "./components/Forms/Radio"
 export {default as Range} from "./components/Forms/Range"

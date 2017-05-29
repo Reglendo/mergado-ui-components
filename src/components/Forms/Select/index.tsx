@@ -1,4 +1,4 @@
-import * as React  from "react"
+import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import uniqueId from "helpers/unique_id"
@@ -14,9 +14,9 @@ export interface Props extends InputProps {
     addClass?: string
     id?: string
     labels?: {
-        main?: string | JSX.Element
-        invalid?: string | JSX.Element
-        title?: string
+        main?: string | JSX.Element,
+        invalid?: string | JSX.Element,
+        title?: string,
     }
 }
 
@@ -25,8 +25,8 @@ export interface State {
 
 class Select extends React.Component<Props, State> {
 
-    readonly name = prefix + "select";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "select";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         options: [],
@@ -50,7 +50,7 @@ class Select extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: ""
+            value: "",
         },
         meta: {
             active: false,
@@ -67,16 +67,16 @@ class Select extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         labels: {
             main: null,
             invalid: "Invalid input",
-            title: ""
-        }
+            title: "",
+        },
     }
 
-    renderInvalid() {
+    protected renderInvalid() {
         if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
@@ -86,14 +86,13 @@ class Select extends React.Component<Props, State> {
         }
     }
 
-
-    renderOptions() {
+    protected renderOptions() {
         return this.props.options.map( option => {
             if(React.isValidElement(option)) {
                 if(option.key) {
                     return option;
                 } else {
-                    let object : any = Object
+                    const object: any = Object
                     return object.assign({}, option, { key: uniqueId() })
                 }
             } else {
@@ -102,22 +101,24 @@ class Select extends React.Component<Props, State> {
         })
     }
 
-    render() {
+    public render() {
         const { multiple, disabled,required, size, addClass, style, id, meta, input } = this.props
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
-        let addProps = Object.assign({}, this.props.addProps)
-        delete addProps['addClass']
+        const addProps = Object.assign({}, this.props.addProps)
+        delete addProps.addClass
         return (
             <div className={`${this.name}
-                             ${multiple ? this.name+`--`+multiple : ''}
-                             ${disabled ? this.name+`--`+disabled : ''}
-                             ${required ? this.name+`--`+required : ''}
+                             ${multiple ? this.name+`--`+multiple : ""}
+                             ${disabled ? this.name+`--`+disabled : ""}
+                             ${required ? this.name+`--`+required : ""}
                              ${addClass ? addClass:``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                              `} title={this.props.labels.title} style={style}>
                 {this.renderInvalid()}
-                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>
+                    {this.props.labels.main }
+                </label>
                 <select className={`${this.name}__item`} id={id?id:inputId}
                     multiple={!!multiple} disabled={!!disabled}
                     required={!!required} size={size} {...input} {...addProps}>

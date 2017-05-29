@@ -1,5 +1,5 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as React from "react"
+import * as ReactDOM from "react-dom"
 import uniqueId from "helpers/unique_id"
 import {prefix} from "config"
 
@@ -36,7 +36,7 @@ export interface State {
 
 class Paginator extends React.Component<Props, State> {
 
-    readonly name = prefix + "paginator";
+    private readonly name = prefix + "paginator";
 
     public static defaultProps: Props = {
         currentPage: 1,
@@ -51,7 +51,7 @@ class Paginator extends React.Component<Props, State> {
         labelNext: "Next",
         labelPrevious: "Previous",
         maxLinks: 5,
-        style: {}
+        style: {},
     }
 
     constructor(props: Props) {
@@ -59,13 +59,13 @@ class Paginator extends React.Component<Props, State> {
 
         this.state = {
             id: uniqueId(),
-            current: 2
+            current: 2,
         }
     }
 
-    renderButton(label: any, page: number, clickable: boolean, active: boolean = false): JSX.Element {
-        let key = `${this.state.id}-${label}-${page}`
-        let classLink = `${this.name}__item`
+    protected renderButton(label: any, page: number, clickable: boolean, active: boolean = false): JSX.Element {
+        const key = `${this.state.id}-${label}-${page}`
+        const classLink = `${this.name}__item`
         let classDisabled = `${this.name}__item ${this.name}__item--disabled`
         if (active) {
             classDisabled = `${this.name}__item ${this.name}__item--active`
@@ -78,8 +78,8 @@ class Paginator extends React.Component<Props, State> {
         }
     }
 
-    renderMainButtons(): Array<JSX.Element> {
-        let buttons: Array<JSX.Element> = []
+    protected renderMainButtons(): JSX.Element[] {
+        const buttons: JSX.Element[] = []
 
         let range: number
         if (this.props.maxLinks % 2 === 0) {
@@ -92,13 +92,13 @@ class Paginator extends React.Component<Props, State> {
         let bottomLimit: number = this.props.currentPage - range
 
         if (topLimit > this.props.lastPage) {
-            let diff: number = topLimit - this.props.lastPage
+            const diff: number = topLimit - this.props.lastPage
             topLimit -= diff
             bottomLimit -= diff
         }
 
         if (bottomLimit < 1) {
-            let diff: number = Math.abs(1 - bottomLimit)
+            const diff: number = Math.abs(1 - bottomLimit)
             topLimit += diff
             bottomLimit += diff
         }
@@ -108,35 +108,39 @@ class Paginator extends React.Component<Props, State> {
         }
 
         for (let i = bottomLimit; i <= topLimit; i++) {
-            let button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage)
+            const button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage)
             buttons.push(button)
         }
 
         return buttons
     }
 
-    renderPreviousButton(): JSX.Element {
+    protected renderPreviousButton(): JSX.Element {
         return this.renderButton(this.props.labelPrevious, this.props.currentPage - 1, this.props.currentPage !== 1)
     }
 
-    renderNextButton(): JSX.Element {
-        return this.renderButton(this.props.labelNext, this.props.currentPage + 1, this.props.currentPage !== this.props.lastPage)
+    protected renderNextButton(): JSX.Element {
+        return this.renderButton(this.props.labelNext,
+                                 this.props.currentPage + 1,
+                                 this.props.currentPage !== this.props.lastPage)
     }
 
-    renderFirstButton(): JSX.Element {
+    protected renderFirstButton(): JSX.Element {
         return this.renderButton(this.props.labelFirst, 1, this.props.currentPage !== 1)
     }
 
-    renderLastButton(): JSX.Element {
-        return this.renderButton(this.props.labelLast, this.props.lastPage, this.props.currentPage !== this.props.lastPage)
+    protected renderLastButton(): JSX.Element {
+        return this.renderButton(this.props.labelLast,
+                                 this.props.lastPage,
+                                 this.props.currentPage !== this.props.lastPage)
     }
 
-    pageClicked(evt: any, pageNumber: number) {
+    protected pageClicked(evt: any, pageNumber: number) {
         evt.preventDefault()
         this.props.onPageChange(pageNumber)
     }
 
-    render() {
+    public render() {
         return (
             <div className={this.name} data-active={this.props.currentPage} style={this.props.style}>
                 {this.props.showFirstAndLast && this.renderFirstButton()}

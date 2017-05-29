@@ -9,7 +9,7 @@ class DataCell extends React.Component {
     }
     render() {
         const { style, type, addClass, onClick } = this.props;
-        if (type === 'cell') {
+        if (type === "cell") {
             return (React.createElement("td", { className: `${this.name} ${addClass}`, style: style, onClick: onClick }, this.props.children));
         }
         else {
@@ -18,9 +18,9 @@ class DataCell extends React.Component {
     }
 }
 DataCell.defaultProps = {
-    addClass: '',
+    addClass: "",
     style: null,
-    type: 'cell',
+    type: "cell",
 };
 exports.default = DataCell;
 //# sourceMappingURL=index.js.map

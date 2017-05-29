@@ -46,11 +46,11 @@ class Button extends React.Component {
                              ${state ? this.name + `--` + state : ``}
                              ${addClass ? addClass : ``}
                          `, title: this.props.labels.title, style: this.props.style },
-            type === 'button' && this.renderButton(),
-            type === 'link' && this.renderLink(),
-            type === 'submit' && this.renderSubmit(),
-            type === 'void' && this.renderVoid(),
-            type === 'href' && this.renderHref()));
+            type === "button" && this.renderButton(),
+            type === "link" && this.renderLink(),
+            type === "submit" && this.renderSubmit(),
+            type === "void" && this.renderVoid(),
+            type === "href" && this.renderHref()));
     }
 }
 Button.defaultProps = {
@@ -77,7 +77,7 @@ Button.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -94,13 +94,13 @@ Button.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Button;
 //# sourceMappingURL=index.js.map

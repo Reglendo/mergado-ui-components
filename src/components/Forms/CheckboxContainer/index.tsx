@@ -5,7 +5,6 @@ import LittleStatus from "components/LittleStatus"
 import {Link} from "react-router"
 import uniqueId from "helpers/unique_id"
 
-
 export interface Query {
     id: number
     name: string
@@ -15,12 +14,12 @@ export interface Query {
 }
 
 export interface Props extends InputProps {
-    availableQueries?: Array<Query> | any
+    availableQueries?: Query[] | any
     labels?: {
-        main?: string
-        placeholder?: string
-        allProducts?: string
-        invalid?: string
+        main?: string,
+        placeholder?: string,
+        allProducts?: string,
+        invalid?: string,
     }
     singleChoice?: boolean
     withoutFilter?: boolean
@@ -39,8 +38,8 @@ export interface State {
 
 class CheckboxContainer extends React.Component<Props, State> {
 
-    readonly name = prefix + "checkbox_container";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "checkbox_container";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         input: {
@@ -56,7 +55,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             },
             onFocus: (value) => {
             },
-            value: null
+            value: "",
         },
         meta: {
             active: false,
@@ -73,14 +72,14 @@ class CheckboxContainer extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         availableQueries: [],
         labels: {
             main: "Apply on queries",
             allProducts: "All products",
             placeholder: "Filter",
-            invalid: "Invalid input"
+            invalid: "Invalid input",
         },
         singleChoice: false,
         withoutFilter: false,
@@ -93,11 +92,11 @@ class CheckboxContainer extends React.Component<Props, State> {
         super(props)
 
         this.state = {
-            filter: ''
+            filter: "",
         }
     }
 
-    renderInvalid() {
+    protected renderInvalid() {
         if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
@@ -107,9 +106,9 @@ class CheckboxContainer extends React.Component<Props, State> {
         }
     }
 
-    renderOptions(options) {
+    protected renderOptions(options) {
         if (typeof options === "object") {
-            let arr = Object.keys(options).map((key: any) => options[key])
+            const arr = Object.keys(options).map((key: any) => options[key])
             options = arr
         }
 
@@ -119,29 +118,29 @@ class CheckboxContainer extends React.Component<Props, State> {
             queries = [queries]
         }
 
-        let allProductsOption : any = null;
+        let allProductsOption: any = null;
         const isAllProducts = options.map( (option,key) => {
             if(option.name === "♥ALLPRODUCTS♥") {
-                let object : any = Object
-                allProductsOption = object.assign({}, option, { key: key })
+                const object: any = Object
+                allProductsOption = object.assign({}, option, { key })
             }
             return (option.name === "♥ALLPRODUCTS♥" && queries.indexOf(option.id))
         })
 
         return options
             .filter((option) => {
-                var regex = new RegExp(this.state.filter, 'i');
+                const regex = new RegExp(this.state.filter, "i");
                 return regex.test(option.name);
             })
             .map(option => {
                 const index = queries.indexOf(option.id);
-                let handler = () => {
+                const handler = () => {
                     if (index < 0) { // wasn't selected
                         if(allProductsOption &&
-                            isAllProducts[allProductsOption['key']] !== false &&
-                            isAllProducts[allProductsOption['key']] > -1) {
+                            isAllProducts[allProductsOption.key] !== false &&
+                            isAllProducts[allProductsOption.key] > -1) {
                                 // 'All products' option is already selected, remove it
-                                queries.splice(queries.indexOf(allProductsOption['id']), 1)
+                                queries.splice(queries.indexOf(allProductsOption.id), 1)
                         }
                         if (this.props.singleChoice === false) {
                             this.props.input.onChange(queries.concat(option.id));
@@ -156,8 +155,8 @@ class CheckboxContainer extends React.Component<Props, State> {
                 }
 
                 return (
-                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
-                                    ${option.disabled ? `${this.name}__item--disabled` : ''}` }
+                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
+                                    ${option.disabled ? `${this.name}__item--disabled` : ""}` }
                         key={uniqueId()}
                         onClick={handler}>
                         {this.props.singleChoice === false ?
@@ -166,7 +165,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
                                 onChange={handler}
-                                style={{pointerEvents: 'none'}}
+                                style={{pointerEvents: "none"}}
                                 {...this.props.input} />
                             :
                             <input
@@ -174,7 +173,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
                                 onChange={handler}
-                                style={{display: this.props.showRadio?'inline-block':'none', pointerEvents: 'none'}}
+                                style={{display: this.props.showRadio?"inline-block":"none", pointerEvents: "none"}}
                                 {...this.props.input} />
 
                         }
@@ -184,7 +183,7 @@ class CheckboxContainer extends React.Component<Props, State> {
             })
     }
 
-    renderLabel(option) {
+    protected renderLabel(option) {
         let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name)
 
         if(option.link !== undefined) {
@@ -205,36 +204,44 @@ class CheckboxContainer extends React.Component<Props, State> {
         )
     }
 
-    renderBoxes() {
-        let options = this.props.availableQueries
-        const render = (options) => this.renderOptions(options)
+    protected renderBoxes() {
+        const options = this.props.availableQueries
+        const render = (items) => this.renderOptions(items)
         const className = this.name+`__group`
         if(options.constructor === Array) {
             return render(options)
         } else {
-            return Object.keys(options).map(function(key) {
-                if(key === '') {
+            return Object.keys(options).map(key => {
+                if(key === "") {
                     return render(options[key])
                 } else {
-                    return (<div key={`size_${key}_${uniqueId()}`}><li key={`option_${key}_${uniqueId()}`} className={className}>{key}</li>{render(options[key])}</div>)
+                    return (
+                        <div key={`size_${key}_${uniqueId()}`}>
+                            <li key={`option_${key}_${uniqueId()}`} className={className}>
+                                {key}
+                            </li>
+                            {render(options[key])}
+                        </div>)
                 }
             })
         }
     }
 
-
-    render() {
+    public render() {
+        const { meta } = this.props
         return (
             <div className={`${this.name} ${this.form}__group`} style={this.props.style}>
                 {this.props.showLabel ?
                     <label className={`${this.name}__label ${this.form}__label`}>{this.props.labels.main}</label>
                 :
-                    <h3 className={`${this.name}__header`} title={this.props.meta.invalid ? this.props.labels.invalid :
-                        ''}>{this.props.labels.main}</h3>
+                    <h3 className={`${this.name}__header`}
+                        title={this.props.meta.invalid ? this.props.labels.invalid : ""}>
+                            {this.props.labels.main}
+                    </h3>
                 }
                 <div className={`${this.name}__queries
-                                 ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
-                             `}>
+                                 ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
+                                `}>
                     {this.renderInvalid()}
                     {this.props.withoutFilter === false ? (
                             <div className={`${this.name}__filter`}>

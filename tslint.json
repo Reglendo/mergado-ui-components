@@ -1,12 +1,22 @@
 {
+    "extends": "tslint:recommended",
 	"rules": {
-		"no-unused-expression": true,
 		"no-duplicate-variable": true,
 		"no-duplicate-key": true,
-		"no-unused-variable": true,
 		"curly": true,
 		"class-name": true,
-		"semicolon": [false],
-		"triple-equals": true
+		"semicolon": false,
+		"triple-equals": true,
+        "no-console": true,
+        "ordered-imports": false,
+        "interface-name": false,
+        "no-empty-interface": false,
+        "no-empty": false,
+        "object-literal-sort-keys": false,
+        "whitespace": false,
+        "arrow-parens": false,
+        "member-ordering": false,
+        "no-var-requires": false,
+        "arrow-return-shorthand": false
 	}
 }

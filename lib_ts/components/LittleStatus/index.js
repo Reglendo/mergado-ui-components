@@ -8,10 +8,10 @@ class LittleStatus extends React.Component {
         this.name = config_1.prefix + "little_status";
     }
     render() {
-        let className = `${this.name} ${this.name}--${this.props.type}`;
-        let classIndikator = `${this.name}__indikator tooltip`;
-        let classText = `${this.name}__text`;
-        let text = this.props.text ? (React.createElement("span", { className: classText },
+        const className = `${this.name} ${this.name}--${this.props.type}`;
+        const classIndikator = `${this.name}__indikator tooltip`;
+        const classText = `${this.name}__text`;
+        const text = this.props.text ? (React.createElement("span", { className: classText },
             " ",
             this.props.text)) : this.props.children;
         return (React.createElement("span", { className: className, style: this.props.style },
@@ -23,7 +23,7 @@ LittleStatus.defaultProps = {
     title: "",
     type: "success",
     text: "",
-    style: {}
+    style: {},
 };
 exports.default = LittleStatus;
 //# sourceMappingURL=index.js.map

@@ -9,13 +9,13 @@ class DataTable extends React.Component {
     }
     render() {
         const { addClass, style } = this.props;
-        let className = `${this.name} ${this.props.addClass}`;
+        const className = `${this.name} ${this.props.addClass}`;
         return (React.createElement("table", { className: className, style: style }, this.props.children));
     }
 }
 DataTable.defaultProps = {
     style: {},
-    addClass: ''
+    addClass: "",
 };
 exports.default = DataTable;
 //# sourceMappingURL=index.js.map

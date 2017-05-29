@@ -12,7 +12,7 @@ class NavLink extends React.Component {
     }
     render() {
         const { link, active } = this.props;
-        var className = `${this.name}`;
+        let className = `${this.name}`;
         if (active) {
             className += ` ${this.name}--active`;
         }
@@ -22,7 +22,7 @@ class NavLink extends React.Component {
 NavLink.defaultProps = {
     active: false,
     link: (React.createElement("a", { href: "#" })),
-    style: {}
+    style: {},
 };
 exports.default = NavLink;
 //# sourceMappingURL=index.js.map

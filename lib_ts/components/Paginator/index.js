@@ -9,12 +9,12 @@ class Paginator extends React.Component {
         this.name = config_1.prefix + "paginator";
         this.state = {
             id: unique_id_1.default(),
-            current: 2
+            current: 2,
         };
     }
     renderButton(label, page, clickable, active = false) {
-        let key = `${this.state.id}-${label}-${page}`;
-        let classLink = `${this.name}__item`;
+        const key = `${this.state.id}-${label}-${page}`;
+        const classLink = `${this.name}__item`;
         let classDisabled = `${this.name}__item ${this.name}__item--disabled`;
         if (active) {
             classDisabled = `${this.name}__item ${this.name}__item--active`;
@@ -27,7 +27,7 @@ class Paginator extends React.Component {
         }
     }
     renderMainButtons() {
-        let buttons = [];
+        const buttons = [];
         let range;
         if (this.props.maxLinks % 2 === 0) {
             range = (this.props.maxLinks - 2) / 2;
@@ -38,12 +38,12 @@ class Paginator extends React.Component {
         let topLimit = this.props.currentPage + range;
         let bottomLimit = this.props.currentPage - range;
         if (topLimit > this.props.lastPage) {
-            let diff = topLimit - this.props.lastPage;
+            const diff = topLimit - this.props.lastPage;
             topLimit -= diff;
             bottomLimit -= diff;
         }
         if (bottomLimit < 1) {
-            let diff = Math.abs(1 - bottomLimit);
+            const diff = Math.abs(1 - bottomLimit);
             topLimit += diff;
             bottomLimit += diff;
         }
@@ -51,7 +51,7 @@ class Paginator extends React.Component {
             topLimit = this.props.lastPage;
         }
         for (let i = bottomLimit; i <= topLimit; i++) {
-            let button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage);
+            const button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage);
             buttons.push(button);
         }
         return buttons;
@@ -94,7 +94,7 @@ Paginator.defaultProps = {
     labelNext: "Next",
     labelPrevious: "Previous",
     maxLinks: 5,
-    style: {}
+    style: {},
 };
 exports.default = Paginator;
 //# sourceMappingURL=index.js.map

@@ -2,20 +2,26 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
-class Radio extends React.Component {
+class FormComponent extends React.Component {
     constructor() {
         super(...arguments);
-        this.name = config_1.prefix + "input-checkbox";
         this.form = config_1.prefix + "form";
+        this.name = config_1.prefix + "form-component";
     }
     renderInvalid() {
         if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
         }
     }
+    renderLabel(inputId, inputClass, props) {
+        return (React.createElement("div", null));
+    }
+    renderInput(inputId, inputClass, props) {
+        return (React.createElement("div", null));
+    }
     render() {
         const { disabled, required, addClass, style, input, id, meta } = this.props;
-        const inputId = `${this.props.meta.form}-${input.name}`;
+        const inputId = id ? id : `${this.props.meta.form}-${input.name}`;
         const addProps = Object.assign({}, this.props.addProps);
         delete addProps.addClass;
         return (React.createElement("div", { className: `${this.name}
@@ -26,12 +32,11 @@ class Radio extends React.Component {
                              ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                          `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
-            React.createElement("label", { className: `${this.name}__label ${this.form}__label` },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input, addProps)),
-                this.props.labels.main)));
+            React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, this.renderLabel(inputId, addClass, addProps)),
+            this.renderInput(inputId, addClass, addProps)));
     }
 }
-Radio.defaultProps = {
+FormComponent.defaultProps = {
     disabled: false,
     required: false,
     style: null,
@@ -75,5 +80,5 @@ Radio.defaultProps = {
         title: "",
     },
 };
-exports.default = Radio;
-//# sourceMappingURL=index.js.map
+exports.FormComponent = FormComponent;
+//# sourceMappingURL=form_component.js.map

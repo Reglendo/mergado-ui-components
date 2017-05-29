@@ -1,4 +1,4 @@
-import * as React  from "react"
+import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 
@@ -7,10 +7,10 @@ export interface Props extends InputProps {
     min: number
     step: number
     labels?: {
-        main: string | JSX.Element
-        placeholder: string
-        invalid: string | JSX.Element
-        title: string
+        main: string | JSX.Element,
+        placeholder: string,
+        invalid: string | JSX.Element,
+        title: string,
     }
     style?: any
     addClass?: string
@@ -23,8 +23,8 @@ export interface State {
 
 class Range extends React.Component<Props, State> {
 
-    readonly name = prefix + "input-range";
-    readonly form = prefix + "form";
+    private readonly name = prefix + "input-range";
+    private readonly form = prefix + "form";
 
     public static defaultProps: Props = {
         max: 50,
@@ -63,31 +63,31 @@ class Range extends React.Component<Props, State> {
             touched: false,
             valid: true,
             visited: false,
-            warning: ""
+            warning: "",
         },
         labels: {
             main: "Text",
             placeholder: "Fill out here...",
             invalid: "Invalid input",
-            title: ""
-        }
+            title: "",
+        },
     }
 
     constructor(props) {
         super(props)
         this.state = {
-            value: props.input.value
+            value: props.input.value,
         }
         this.handleChange = this.handleChange.bind(this)
 
     }
 
-    handleChange(evt) {
+    protected handleChange(evt) {
         this.setState({value: evt.target.value});
         return this.props.input.onChange(evt.target.value);
     }
 
-    renderInvalid() {
+    protected renderInvalid() {
         if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
             return (
                 <div className={`${this.form}__validation`}>
@@ -97,36 +97,44 @@ class Range extends React.Component<Props, State> {
         }
     }
 
-
-    render() {
+    public render() {
         const { id, meta, input } = this.props
         const inputId = `${meta.form}-${input.name}`
         const outputId = `${meta.form}-${input.name}_output`
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
-        let addProps = Object.assign({}, this.props.addProps)
-        delete addProps['addClass']
+        const addProps = Object.assign({}, this.props.addProps)
+        delete addProps.addClass
         return (
-            <div className={`${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`} title={this.props.labels.title} style={this.props.style}>
+            <div className={`${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`}
+                            title={this.props.labels.title} style={this.props.style}>
                 {this.renderInvalid()}
-                <div style={{position: 'relative'}}>
-                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>{this.props.labels.main }</label>
+                <div style={{position: "relative"}}>
+                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>
+                    {this.props.labels.main }
+                </label>
                 <input
-                    className={`${this.name}__item ${this.form}__input--text ${this.form}__input--range ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`}
-                    id={id?id:inputId} type='range' placeholder={this.props.labels.placeholder}
+                    className={`${this.name}__item ${this.form}__input--text ${this.form}__input--range
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`}
+                    id={id?id:inputId} type="range" placeholder={this.props.labels.placeholder}
                     {...this.props.input}
                     max={this.props.max}
                     min={this.props.min}
                     step={this.props.step}
                     onChange={this.handleChange}
                     onInput={(evt) => {
-                                let target : any = evt.target;
-                                let output : any = document.getElementById(outputId);
+                                const target: any = evt.target;
+                                const output: any = document.getElementById(outputId);
                                 output.value = target.value;
                             }}
                     value={this.state.value}
                     {...addProps}
                     />
-                <output className={`${this.form}__input--range__output`} style={{left: 'calc('+((this.state.value/this.props.max) * 100) + '% - '+outputWidth/2+'px)' }} id={outputId}>{this.state.value}</output>
+                <output className={`${this.form}__input--range__output`}
+                        style={{left: "calc("+((this.state.value/this.props.max) * 100)+"% - "+outputWidth/2+"px)" }}
+                        id={outputId}>
+                    {this.state.value}
+                </output>
                 </div>
             </div>
         )

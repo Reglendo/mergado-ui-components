@@ -12,7 +12,7 @@ export interface State {
 
 class Placeholder extends React.Component<Props, State> {
 
-    readonly name = prefix + "placeholder";
+    private readonly name = prefix + "placeholder";
 
     public static defaultProps: Props = {
         width: 100,
@@ -21,13 +21,13 @@ class Placeholder extends React.Component<Props, State> {
         addClass: "",
     }
 
-    render() {
+    public render() {
         const { addClass, style, width, height } = this.props
 
-        let className = `${this.name} ${addClass ? addClass : ''}`
+        const className = `${this.name} ${addClass ? addClass : ""}`
 
-        let object : any = Object
-        let styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` })
+        const object: any = Object
+        const styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` })
 
         return (
             <div className={className} style={styles}>

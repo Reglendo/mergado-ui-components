@@ -3,7 +3,7 @@ import WizardStep from "components/WizardNav/WizardStep"
 import {prefix} from "config"
 
 export interface Props {
-    links: Array<JSX.Element>
+    links: JSX.Element[]
     style?: any
 }
 
@@ -12,17 +12,16 @@ export interface State {
 
 class WizardNav extends React.Component<Props, State> {
 
-    readonly name = prefix + "wizard_nav";
-
+    private readonly name = prefix + "wizard_nav";
 
     public static defaultProps: Props = {
         links: [],
-        style: {}
+        style: {},
     }
 
-    renderLinks() {
+    protected renderLinks() {
         const {links} = this.props
-        let classList = `${this.name}__list`
+        const classList = `${this.name}__list`
         return (
             <ul className={classList}>
                 {links}
@@ -30,10 +29,10 @@ class WizardNav extends React.Component<Props, State> {
         )
     }
 
-    render() {
+    public render() {
 
-        let className = `${this.name}`
-        let classWrapper = `${this.name}__wrapper"`
+        const className = `${this.name}`
+        const classWrapper = `${this.name}__wrapper"`
 
         return (
             <nav className={className} style={this.props.style}>
