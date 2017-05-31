@@ -401,6 +401,7 @@ class Autocomplete extends React.Component < Props, State > {
                 onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
                 onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         })
+
         return (
             <div className={`${className}`}>
                 <TextInput

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
+const Input_1 = require("components/Forms/Input");
 class Range extends React.Component {
     constructor(props) {
         super(props);
@@ -28,13 +29,13 @@ class Range extends React.Component {
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
         const addProps = Object.assign({}, this.props.addProps);
         delete addProps.addClass;
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group
-                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
-            this.renderInvalid(),
+        const props = this.props;
+        return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
+            React.createElement(Input_1.InputError, Object.assign({}, props)),
             React.createElement("div", { style: { position: "relative" } },
-                React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+                React.createElement(Input_1.InputLabel, { name: this.name }, this.props.labels.main),
                 React.createElement("input", Object.assign({ className: `${this.name}__item ${this.form}__input--text ${this.form}__input--range
-                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`, id: id ? id : inputId, type: "range", placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
+                                    ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`, id: id ? id : inputId, type: "range", placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
                         const target = evt.target;
                         const output = document.getElementById(outputId);
                         output.value = target.value;

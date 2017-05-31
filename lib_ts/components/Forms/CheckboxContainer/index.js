@@ -5,6 +5,7 @@ const config_1 = require("config");
 const LittleStatus_1 = require("components/LittleStatus");
 const react_router_1 = require("react-router");
 const unique_id_1 = require("helpers/unique_id");
+const Input_1 = require("components/Forms/Input");
 class CheckboxContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -13,11 +14,6 @@ class CheckboxContainer extends React.Component {
         this.state = {
             filter: "",
         };
-    }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
     }
     renderOptions(options) {
         if (typeof options === "object") {
@@ -108,15 +104,13 @@ class CheckboxContainer extends React.Component {
     }
     render() {
         const { meta } = this.props;
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group`, style: this.props.style },
-            this.props.showLabel ?
-                React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, this.props.labels.main)
+        const props = this.props;
+        return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
+            React.createElement(Input_1.InputLabel, { name: this.name }, this.props.showLabel ? this.props.labels.main
                 :
-                    React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid : "" }, this.props.labels.main),
-            React.createElement("div", { className: `${this.name}__queries
-                                 ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                                ` },
-                this.renderInvalid(),
+                    React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid : "" }, this.props.labels.main)),
+            React.createElement(Input_1.InputError, Object.assign({}, props)),
+            React.createElement("div", { className: `${this.name}__queries` },
                 this.props.withoutFilter === false ? (React.createElement("div", { className: `${this.name}__filter` },
                     React.createElement("input", { className: `${this.name}__filter_input ${this.form}__input--text`, type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: (evt) => { this.setState({ filter: evt.target.value }); } }))) : null,
                 React.createElement("ul", { className: `${this.name}__list`, style: { height: this.props.height } }, this.renderBoxes()))));

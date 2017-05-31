@@ -4,6 +4,7 @@ import {prefix} from "config"
 import LittleStatus from "components/LittleStatus"
 import {Link} from "react-router"
 import uniqueId from "helpers/unique_id"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
 
 export interface Query {
     id: number
@@ -93,16 +94,6 @@ class CheckboxContainer extends React.Component<Props, State> {
 
         this.state = {
             filter: "",
-        }
-    }
-
-    protected renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
-                </div>
-            )
         }
     }
 
@@ -229,20 +220,21 @@ class CheckboxContainer extends React.Component<Props, State> {
 
     public render() {
         const { meta } = this.props
+        const props: any = this.props
+
         return (
-            <div className={`${this.name} ${this.form}__group`} style={this.props.style}>
-                {this.props.showLabel ?
-                    <label className={`${this.name}__label ${this.form}__label`}>{this.props.labels.main}</label>
-                :
-                    <h3 className={`${this.name}__header`}
-                        title={this.props.meta.invalid ? this.props.labels.invalid : ""}>
-                            {this.props.labels.main}
-                    </h3>
-                }
-                <div className={`${this.name}__queries
-                                 ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                                `}>
-                    {this.renderInvalid()}
+            <Input name={this.name} {...props}>
+                <InputLabel name={this.name}>
+                    {this.props.showLabel ? this.props.labels.main
+                     :
+                        <h3 className={`${this.name}__header`}
+                            title={this.props.meta.invalid ? this.props.labels.invalid : ""}>
+                                {this.props.labels.main}
+                        </h3>
+                    }
+                </InputLabel>
+                <InputError {...props}/>
+                <div className={`${this.name}__queries`}>
                     {this.props.withoutFilter === false ? (
                             <div className={`${this.name}__filter`}>
                                 <input className={`${this.name}__filter_input ${this.form}__input--text`} type="text"
@@ -255,7 +247,7 @@ class CheckboxContainer extends React.Component<Props, State> {
                         {this.renderBoxes()}
                     </ul>
                 </div>
-            </div>
+            </Input>
         )
     }
 }

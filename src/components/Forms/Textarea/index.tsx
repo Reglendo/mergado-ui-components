@@ -1,6 +1,7 @@
 import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
 
 export interface Props extends InputProps {
     labels?: {
@@ -66,36 +67,25 @@ class Textarea extends React.Component<Props, State> {
         },
     }
 
-    protected renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
-                </div>
-            )
-        }
-    }
-
     public render() {
         const { id,  meta, input } = this.props
         const inputId = `${meta.form}-${input.name}`
         const addProps = Object.assign({}, this.props.addProps)
         delete addProps.addClass
+        const props: any = this.props
         return (
-            <div className={`${this.name} ${this.form}__group
-                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`}
-                            title={this.props.labels.title} style={this.props.style}>
-                {this.renderInvalid()}
-                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>
+            <Input name={this.name} {...props}>
+                <InputError {...props} />
+                <InputLabel name={this.name}>
                     {this.props.labels.main }
-                </label>
+                </InputLabel>
                 <textarea
                     className={`${this.name}__input ${this.form}__input--text ${this.form}__input--textarea
                                 ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`}
                     id={id?id:inputId} placeholder={this.props.labels.placeholder}
                     {...input} {...addProps}
                 >{input.value}</textarea>
-            </div>
+            </Input>
         )
     }
 }

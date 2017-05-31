@@ -4,6 +4,7 @@ const React = require("react");
 const react_dates_1 = require("react-dates");
 const Moment = require("moment");
 const config_1 = require("config");
+const Input_1 = require("components/Forms/Input");
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
@@ -37,14 +38,10 @@ class DatePicker extends React.Component {
             this.setState({ focused: null });
         }
     }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
-    }
     render() {
         const { focused, startDate, endDate } = this.state;
         const { type, labels, defaults_single, defaults_range, numberOfMonths, minimumDays, meta } = this.props;
+        const props = this.props;
         let picker;
         if (type === "single") {
             picker = React.createElement(react_dates_1.SingleDatePicker, Object.assign({}, defaults_single, { placeholder: labels.placeholder, date: startDate, focused: focused, numberOfMonths: numberOfMonths, onDateChange: this.onDateChange.bind(this), onFocusChange: this.onFocusChange.bind(this) }));
@@ -52,11 +49,9 @@ class DatePicker extends React.Component {
         else {
             picker = React.createElement(react_dates_1.DateRangePicker, Object.assign({}, defaults_range, { numberOfMonths: numberOfMonths, minimumNights: minimumDays - 1, onDatesChange: this.onDatesChange.bind(this), onFocusChange: this.onFocusChange.bind(this), startDatePlaceholderText: labels.placeholderFrom, endDatePlaceholderText: labels.placeholderTo, focusedInput: this.state.focused, startDate: startDate, endDate: endDate }));
         }
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group
-                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                            `, style: this.props.style },
-            this.renderInvalid(),
-            React.createElement("span", { className: `${this.name}__label ${this.form}__label` }, labels.main),
+        return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
+            React.createElement(Input_1.InputError, Object.assign({}, props)),
+            React.createElement(Input_1.InputLabel, { name: this.name }, labels.main),
             React.createElement("div", { className: `${this.name}__picker` }, picker)));
     }
 }

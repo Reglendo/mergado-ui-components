@@ -2,6 +2,7 @@ import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
 
 export interface Props extends InputProps {
     disabled?: boolean
@@ -82,16 +83,6 @@ class ColorPicker extends React.Component<Props, State> {
         this.handleClose = this.handleClose.bind(this)
     }
 
-    protected renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
-                </div>
-            )
-        }
-    }
-
     protected handleClick(evt) {
         evt.preventDefault()
         this.setState({displayColorPicker: !this.state.displayColorPicker})
@@ -146,19 +137,13 @@ class ColorPicker extends React.Component<Props, State> {
 
     public render() {
         const { disabled, required, addClass, style, labels, meta } = this.props
-
+        const props: any = this.props
         return (
-            <div className={`${this.name} ${disabled && this.name+`--`+disabled}
-                             ${required && this.name+`--`+required}
-                             ${addClass?addClass:``}
-                             ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                          `}
-                 title={labels.title} style={style}>
-                {this.renderInvalid()}
-                <label className={`${this.name}__label ${this.form}__label`}>{labels.main}</label>
+            <Input name={this.name} {...props}>
+                <InputError {...props} />
+                <InputLabel name={this.name}>{labels.main}</InputLabel>
                 {this.renderItem()}
-            </div>
+            </Input>
         )
     }
 }
