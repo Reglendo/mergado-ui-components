@@ -6,10 +6,10 @@ import {Input, InputLabel, InputError} from "components/Forms/Input"
 export interface Props extends InputProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
     labels?: {
-        main: string | JSX.Element,
-        placeholder: string,
-        invalid: string | JSX.Element,
-        title: string,
+        main?: string | JSX.Element,
+        placeholder?: string,
+        invalid?: string | JSX.Element,
+        title?: string,
     }
     style?: any
     addClass?: string

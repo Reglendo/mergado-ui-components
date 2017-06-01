@@ -11,10 +11,10 @@ export interface Props extends InputProps {
     minimumDays?: number
     locale?: string
     labels?: {
-        main: string | JSX.Element,
-        placeholder: string,
-        invalid: string | JSX.Element,
-        title: string,
+        main?: string | JSX.Element,
+        placeholder?: string,
+        invalid?: string | JSX.Element,
+        title?: string,
         placeholderFrom: string,
         placeholderTo: string,
     }

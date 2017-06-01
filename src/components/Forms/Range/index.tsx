@@ -8,10 +8,10 @@ export interface Props extends InputProps {
     min: number
     step: number
     labels?: {
-        main: string | JSX.Element,
-        placeholder: string,
-        invalid: string | JSX.Element,
-        title: string,
+        main?: string | JSX.Element,
+        placeholder?: string,
+        invalid?: string | JSX.Element,
+        title?: string,
     }
     style?: any
     addClass?: string
