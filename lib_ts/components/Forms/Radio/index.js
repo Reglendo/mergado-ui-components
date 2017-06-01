@@ -18,7 +18,7 @@ class Radio extends React.Component {
         return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
             React.createElement(Input_1.InputError, Object.assign({}, props)),
             React.createElement(Input_1.InputLabel, { name: this.name },
-                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input, addProps)),
+                React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled, checked: !!this.props.input.value }, this.props.input, addProps)),
                 "\u00A0",
                 this.props.labels.main)));
     }

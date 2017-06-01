@@ -82,7 +82,8 @@ class Radio extends React.Component<Props, State> {
                 <InputLabel name={this.name}>
                     <input className={`${this.name}__item`} id={id?id:inputId}
                             type="radio" required={!!required} disabled={!!disabled}
-                        {...this.props.input} {...addProps}/>&nbsp;
+                            checked={!!this.props.input.value}
+                            {...this.props.input} {...addProps}/>&nbsp;
                     {this.props.labels.main }
                 </InputLabel>
             </Input>

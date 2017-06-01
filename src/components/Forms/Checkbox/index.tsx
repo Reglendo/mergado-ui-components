@@ -81,6 +81,7 @@ class Checkbox extends React.Component<Props, State> {
                 <InputLabel name={this.name}>
                     <input className={`${this.name}__item`} id={id?id:inputId} type="checkbox"
                         required={!!required} disabled={!!disabled}
+                        checked={!!this.props.input.value}
                         {...this.props.input} {...addProps} /> {this.props.labels.main }
                 </InputLabel>
             </Input>

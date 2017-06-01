@@ -141,6 +141,8 @@ export default class Preview extends Component {
                 form: "SampleForm",
                 validate,
                 initialValues: {
+                    checkbox1: 1,
+                    firstname: '!!!Hello world!!!!'
                 }
             })(PreviewComponent)
 
