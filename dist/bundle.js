@@ -3764,7 +3764,7 @@ function default_1() {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.
-    return '_' + Math.random().toString(36).substr(2, 9);
+    return "_" + Math.random().toString(36).substr(2, 9);
 }
 exports.default = default_1;
 
@@ -15635,13 +15635,13 @@ class DataTable extends React.Component {
     }
     render() {
         const { addClass, style } = this.props;
-        let className = `${this.name} ${this.props.addClass}`;
+        const className = `${this.name} ${this.props.addClass}`;
         return (React.createElement("table", { className: className, style: style }, this.props.children));
     }
 }
 DataTable.defaultProps = {
     style: {},
-    addClass: ''
+    addClass: "",
 };
 exports.default = DataTable;
 
@@ -15669,13 +15669,16 @@ class TextInput extends React.Component {
     render() {
         const { id, type, meta, input, addClass } = this.props;
         const inputId = id ? id : `${meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
-        return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
+        return (React.createElement("div", { className: `${this.name} ${addClass} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             this.props.labels.main &&
                 React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type} ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''} ${this.props.addProps ? this.props.addProps.addClass : ''}` }))));
+            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type}
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}
+                                ${this.props.addProps ? this.props.addProps.addClass : ""}` }))));
     }
 }
 TextInput.defaultProps = {
@@ -15696,7 +15699,7 @@ TextInput.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -15713,14 +15716,14 @@ TextInput.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "",
         placeholder: "",
         invalid: "",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = TextInput;
 
@@ -15740,10 +15743,10 @@ class LittleStatus extends React.Component {
         this.name = config_1.prefix + "little_status";
     }
     render() {
-        let className = `${this.name} ${this.name}--${this.props.type}`;
-        let classIndikator = `${this.name}__indikator tooltip`;
-        let classText = `${this.name}__text`;
-        let text = this.props.text ? (React.createElement("span", { className: classText },
+        const className = `${this.name} ${this.name}--${this.props.type}`;
+        const classIndikator = `${this.name}__indikator tooltip`;
+        const classText = `${this.name}__text`;
+        const text = this.props.text ? (React.createElement("span", { className: classText },
             " ",
             this.props.text)) : this.props.children;
         return (React.createElement("span", { className: className, style: this.props.style },
@@ -15755,7 +15758,7 @@ LittleStatus.defaultProps = {
     title: "",
     type: "success",
     text: "",
-    style: {}
+    style: {},
 };
 exports.default = LittleStatus;
 
@@ -15778,31 +15781,36 @@ class Toast extends React.Component {
         this.state = {
             visible: true,
             paused: false,
-            secondsLeft: props.timeout / 1000
+            secondsLeft: props.timeout / 1000,
         };
     }
     componentDidMount() {
         if (this.props.isPaused() !== true && this.props.timeout > 0) {
-            var interval = window.setInterval(() => {
-                if (this.state.secondsLeft < 1) {
-                    this.hideToast();
-                    window.clearInterval(interval);
-                }
-                else {
-                    this.setState({
-                        visible: true,
-                        paused: false,
-                        secondsLeft: this.state.secondsLeft > 0 ? this.state.secondsLeft - 1 : this.state.secondsLeft
-                    });
-                }
-            }, 1000);
+            this.countdown = setInterval(this.timer.bind(this), 1000);
         }
+    }
+    timer() {
+        const { secondsLeft } = this.state;
+        if (secondsLeft < 1) {
+            this.hideToast();
+            clearInterval(this.countdown);
+        }
+        else {
+            this.setState({
+                visible: true,
+                paused: false,
+                secondsLeft: secondsLeft > 0 ? secondsLeft - 1 : secondsLeft,
+            });
+        }
+    }
+    componentWillUnmount() {
+        clearInterval(this.countdown);
     }
     hideToast() {
         this.setState({
             visible: false,
             paused: true,
-            secondsLeft: 0
+            secondsLeft: 0,
         });
     }
     removeToast(evt) {
@@ -15812,10 +15820,10 @@ class Toast extends React.Component {
         }
     }
     render() {
-        return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? '' : 'hidden'}` },
+        return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? "" : "hidden"}` },
             React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}` },
                 React.createElement("div", { className: `${this.name}__icon` }, this.props.icon),
-                React.createElement("div", { className: `${this.name}__content` }, this.props.text.replace('%seconds%', this.state.secondsLeft + 's')),
+                React.createElement("div", { className: `${this.name}__content` }, this.props.text.replace("%seconds%", this.state.secondsLeft + "s")),
                 this.props.closeable &&
                     React.createElement("div", { className: `${this.name}__close` },
                         React.createElement("a", { className: `${this.name}__button`, onClick: (evt) => {
@@ -15826,14 +15834,14 @@ class Toast extends React.Component {
 }
 Toast.defaultProps = {
     id: unique_id_1.default(),
-    text: '',
+    text: "",
     type: "info",
     icon: null,
     isPaused: () => { return false; },
     onClose: () => { return true; },
     timeout: 0,
     closeable: true,
-    style: {}
+    style: {},
 };
 exports.default = Toast;
 
@@ -38899,7 +38907,7 @@ class DataBody extends React.Component {
 DataBody.defaultProps = {
     sortable: false,
     sortableProps: {},
-    addClass: '',
+    addClass: "",
     style: {},
 };
 exports.default = DataBody;
@@ -38921,7 +38929,7 @@ class DataCell extends React.Component {
     }
     render() {
         const { style, type, addClass, onClick } = this.props;
-        if (type === 'cell') {
+        if (type === "cell") {
             return (React.createElement("td", { className: `${this.name} ${addClass}`, style: style, onClick: onClick }, this.props.children));
         }
         else {
@@ -38930,9 +38938,9 @@ class DataCell extends React.Component {
     }
 }
 DataCell.defaultProps = {
-    addClass: '',
+    addClass: "",
     style: null,
-    type: 'cell',
+    type: "cell",
 };
 exports.default = DataCell;
 
@@ -38958,7 +38966,7 @@ class DataHeader extends React.Component {
     }
 }
 DataHeader.defaultProps = {
-    addClass: '',
+    addClass: "",
     style: {},
 };
 exports.default = DataHeader;
@@ -38984,10 +38992,10 @@ class DataRow extends React.Component {
     }
 }
 DataRow.defaultProps = {
-    addClass: '',
+    addClass: "",
     style: {},
     inactive: false,
-    dataId: ""
+    dataId: "",
 };
 exports.default = DataRow;
 
@@ -39006,17 +39014,17 @@ const unique_id_1 = __webpack_require__(37);
 class Autocomplete extends React.Component {
     constructor(props) {
         super(props);
+        this.performAutoCompleteOnUpdate = true;
+        this.performAutoCompleteOnKeyUp = true;
+        this.ignoreBlur = false;
         this.name = config_1.prefix + "autocomplete";
-        this._performAutoCompleteOnUpdate = true;
-        this._performAutoCompleteOnKeyUp = true;
-        this._ignoreBlur = false;
         this.state = {
-            value: props.value ? props.value : '',
+            value: props.value ? props.value : "",
             isOpen: false,
             highlightedIndex: null,
             menuLeft: 0,
             menuTop: 0,
-            menuWidth: 0
+            menuWidth: 0,
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -39026,7 +39034,7 @@ class Autocomplete extends React.Component {
         }
     }
     isOpen() {
-        return 'open' in this.props ? this.props.open : this.state.isOpen;
+        return "open" in this.props ? this.props.open : this.state.isOpen;
     }
     componentDidMount() {
         if (this.isOpen()) {
@@ -39034,11 +39042,11 @@ class Autocomplete extends React.Component {
         }
     }
     componentDidUpdate(prevProps, prevState) {
-        if ((this.state.isOpen && !prevState.isOpen) || ('open' in this.props && this.props.open && !prevProps.open)) {
+        if ((this.state.isOpen && !prevState.isOpen) || ("open" in this.props && this.props.open && !prevProps.open)) {
             this.setMenuPositions();
         }
-        if (this.isOpen() && this._performAutoCompleteOnUpdate) {
-            this._performAutoCompleteOnUpdate = false;
+        if (this.isOpen() && this.performAutoCompleteOnUpdate) {
+            this.performAutoCompleteOnUpdate = false;
             this.maybeAutoCompleteText();
         }
         if (prevState.isOpen !== this.state.isOpen) {
@@ -39059,11 +39067,11 @@ class Autocomplete extends React.Component {
         this.setState({
             menuTop: rect.bottom + marginBottom,
             menuLeft: rect.left + marginLeft,
-            menuWidth: rect.width + marginLeft + marginRight
+            menuWidth: rect.width + marginLeft + marginRight,
         });
     }
     maybeAutoCompleteText() {
-        if (!this.props.autoHighlight || this.state.value === '') {
+        if (!this.props.autoHighlight || this.state.value === "") {
             return;
         }
         const { highlightedIndex } = this.state;
@@ -39093,32 +39101,32 @@ class Autocomplete extends React.Component {
         return items;
     }
     onSelect(value, item) {
-        this.setState({ value: value });
+        this.setState({ value });
         this.setIgnoreBlur(false);
         this.props.input.onChange(value);
     }
     handleChange(event) {
-        this._performAutoCompleteOnKeyUp = true;
+        this.performAutoCompleteOnKeyUp = true;
         this.setState({ highlightedIndex: null, value: event.target.value });
         this.props.input.onChange(event);
     }
     handleKeyUp() {
-        if (this._performAutoCompleteOnKeyUp) {
-            this._performAutoCompleteOnKeyUp = false;
+        if (this.performAutoCompleteOnKeyUp) {
+            this.performAutoCompleteOnKeyUp = false;
             this.maybeAutoCompleteText();
         }
     }
     handleKeyDown(event) {
-        if (event.key === 'ArrowDown') {
+        if (event.key === "ArrowDown") {
             this.handleArrowDown(event);
         }
-        else if (event.key === 'ArrowUp') {
+        else if (event.key === "ArrowUp") {
             this.handleArrowUp(event);
         }
-        else if (event.key === 'Enter') {
+        else if (event.key === "Enter") {
             this.handleEnter(event);
         }
-        else if (event.key === 'Escape') {
+        else if (event.key === "Escape") {
             this.handleEscape();
         }
         else if (!this.isOpen()) {
@@ -39137,7 +39145,7 @@ class Autocomplete extends React.Component {
         const index = (highlightedIndex === null || highlightedIndex === itemsLength - 1)
             ? 0
             : highlightedIndex + 1;
-        this._performAutoCompleteOnKeyUp = true;
+        this.performAutoCompleteOnKeyUp = true;
         this.setState({ highlightedIndex: index, isOpen: true });
     }
     handleArrowUp(event) {
@@ -39152,7 +39160,7 @@ class Autocomplete extends React.Component {
         const index = (highlightedIndex === 0 || highlightedIndex === null)
             ? itemsLength - 1
             : highlightedIndex - 1;
-        this._performAutoCompleteOnKeyUp = true;
+        this.performAutoCompleteOnKeyUp = true;
         this.setState({ highlightedIndex: index, isOpen: true });
     }
     handleEnter(event) {
@@ -39164,7 +39172,7 @@ class Autocomplete extends React.Component {
             // input has focus but no menu item is selected + enter is hit -> close the
             // menu, highlight whatever's in input
             this.setState({
-                isOpen: false
+                isOpen: false,
             }, () => {
                 // TODO this.refs.input.select()
             });
@@ -39179,7 +39187,7 @@ class Autocomplete extends React.Component {
                 .getItemValue(item);
             this.setState({
                 isOpen: false,
-                highlightedIndex: null
+                highlightedIndex: null,
             }, () => {
                 // this.refs.input.focus() // TODO: file issue
                 // this.refs.input.setSelectionRange(     value.length,     value.length   )
@@ -39191,13 +39199,13 @@ class Autocomplete extends React.Component {
         this.setState({ highlightedIndex: null, isOpen: false });
     }
     handleInputBlur() {
-        if (this._ignoreBlur) {
+        if (this.ignoreBlur) {
             return;
         }
         this.setState({ isOpen: false, highlightedIndex: null });
     }
     handleInputFocus() {
-        if (this._ignoreBlur) {
+        if (this.ignoreBlur) {
             this.setIgnoreBlur(false);
             return;
         }
@@ -39227,14 +39235,14 @@ class Autocomplete extends React.Component {
             .getItemValue(item);
         this.setState({
             isOpen: false,
-            highlightedIndex: null
+            highlightedIndex: null,
         }, () => {
             this.onSelect(value, item);
             // this.refs.input.focus()
         });
     }
     setIgnoreBlur(ignore) {
-        this._ignoreBlur = ignore;
+        this.ignoreBlur = ignore;
     }
     renderMenu() {
         const items = this
@@ -39242,38 +39250,38 @@ class Autocomplete extends React.Component {
             .map((item, index) => {
             const element = this
                 .props
-                .renderItem(item, this.state.highlightedIndex === index, { cursor: 'default' });
+                .renderItem(item, this.state.highlightedIndex === index, { cursor: "default" });
             return React.cloneElement(element, {
                 onMouseDown: () => this.setIgnoreBlur(true),
                 onMouseEnter: () => this.highlightItemFromMouse(index),
                 onClick: () => this.selectItemFromMouse(item),
-                ref: e => this.refs[`item-${index}`] = e
+                ref: e => this.refs[`item-${index}`] = e,
             });
         });
         const style = {
             left: this.state.menuLeft,
             top: this.state.menuTop,
-            minWidth: this.state.menuWidth
+            minWidth: this.state.menuWidth,
         };
         const menu = this
             .props
             .renderMenu(items, this.state.value, style);
         return React.cloneElement(menu, {
-            ref: e => this.refs.menu = e
+            ref: e => this.refs.menu = e,
         });
     }
     render() {
-        let className = `${this.name}`;
+        const className = `${this.name}`;
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
-        const addProps = Object.assign({}, this.props.addProps, { autoComplete: 'off' });
-        let inputProps = Object.assign({}, this.props.input, {
+        const addProps = Object.assign({}, this.props.addProps, { autoComplete: "off" });
+        const inputProps = Object.assign({}, this.props.input, {
             onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
             onBlur: this.handleInputBlur.bind(this),
             onChange: this.handleChange.bind(this),
             onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
             onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
-            onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick)
+            onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         });
         return (React.createElement("div", { className: `${className}` },
             React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps, addProps: addProps }),
@@ -39288,7 +39296,7 @@ Autocomplete.defaultProps = {
     onMenuVisibilityChange: () => { },
     renderItem: (item, highlighted, style) => {
         let className = `${config_1.prefix + "autocomplete"}__item `;
-        className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : '';
+        className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : "";
         return (React.createElement("div", { key: `${item.value}-${unique_id_1.default()}`, className: `${className}` }, item.text));
     },
     getItemValue: (item) => {
@@ -39312,7 +39320,7 @@ Autocomplete.defaultProps = {
         },
         onKeyDown: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -39329,7 +39337,7 @@ Autocomplete.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "",
@@ -39395,11 +39403,11 @@ class Button extends React.Component {
                              ${state ? this.name + `--` + state : ``}
                              ${addClass ? addClass : ``}
                          `, title: this.props.labels.title, style: this.props.style },
-            type === 'button' && this.renderButton(),
-            type === 'link' && this.renderLink(),
-            type === 'submit' && this.renderSubmit(),
-            type === 'void' && this.renderVoid(),
-            type === 'href' && this.renderHref()));
+            type === "button" && this.renderButton(),
+            type === "link" && this.renderLink(),
+            type === "submit" && this.renderSubmit(),
+            type === "void" && this.renderVoid(),
+            type === "href" && this.renderHref()));
     }
 }
 Button.defaultProps = {
@@ -39426,7 +39434,7 @@ Button.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -39443,13 +39451,13 @@ Button.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Button;
 
@@ -39477,12 +39485,12 @@ class Checkbox extends React.Component {
     render() {
         const { disabled, required, addClass, style, input, id, meta, labels } = this.props;
         const inputId = `${this.props.meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
         return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
                              ${required && this.name + `--` + required} ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                          `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label ${this.form}__input` },
@@ -39510,7 +39518,7 @@ Checkbox.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -39527,13 +39535,13 @@ Checkbox.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Checkbox;
 
@@ -39556,7 +39564,7 @@ class CheckboxContainer extends React.Component {
         this.name = config_1.prefix + "checkbox_container";
         this.form = config_1.prefix + "form";
         this.state = {
-            filter: ''
+            filter: "",
         };
     }
     renderInvalid() {
@@ -39566,7 +39574,7 @@ class CheckboxContainer extends React.Component {
     }
     renderOptions(options) {
         if (typeof options === "object") {
-            let arr = Object.keys(options).map((key) => options[key]);
+            const arr = Object.keys(options).map((key) => options[key]);
             options = arr;
         }
         let queries = this.props.input.value;
@@ -39576,25 +39584,25 @@ class CheckboxContainer extends React.Component {
         let allProductsOption = null;
         const isAllProducts = options.map((option, key) => {
             if (option.name === "♥ALLPRODUCTS♥") {
-                let object = Object;
-                allProductsOption = object.assign({}, option, { key: key });
+                const object = Object;
+                allProductsOption = object.assign({}, option, { key });
             }
             return (option.name === "♥ALLPRODUCTS♥" && queries.indexOf(option.id));
         });
         return options
             .filter((option) => {
-            var regex = new RegExp(this.state.filter, 'i');
+            const regex = new RegExp(this.state.filter, "i");
             return regex.test(option.name);
         })
             .map(option => {
             const index = queries.indexOf(option.id);
-            let handler = () => {
+            const handler = () => {
                 if (index < 0) {
                     if (allProductsOption &&
-                        isAllProducts[allProductsOption['key']] !== false &&
-                        isAllProducts[allProductsOption['key']] > -1) {
+                        isAllProducts[allProductsOption.key] !== false &&
+                        isAllProducts[allProductsOption.key] > -1) {
                         // 'All products' option is already selected, remove it
-                        queries.splice(queries.indexOf(allProductsOption['id']), 1);
+                        queries.splice(queries.indexOf(allProductsOption.id), 1);
                     }
                     if (this.props.singleChoice === false) {
                         this.props.input.onChange(queries.concat(option.id));
@@ -39609,12 +39617,12 @@ class CheckboxContainer extends React.Component {
                     this.props.input.onChange(copy);
                 }
             };
-            return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ''}
-                                    ${option.disabled ? `${this.name}__item--disabled` : ''}`, key: unique_id_1.default(), onClick: handler },
+            return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
+                                    ${option.disabled ? `${this.name}__item--disabled` : ""}`, key: unique_id_1.default(), onClick: handler },
                 this.props.singleChoice === false ?
-                    React.createElement("input", Object.assign({ type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: 'none' } }, this.props.input))
+                    React.createElement("input", Object.assign({ type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } }, this.props.input))
                     :
-                        React.createElement("input", Object.assign({ type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? 'inline-block' : 'none', pointerEvents: 'none' } }, this.props.input)),
+                        React.createElement("input", Object.assign({ type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }, this.props.input)),
                 this.renderLabel(option)));
         });
     }
@@ -39632,15 +39640,15 @@ class CheckboxContainer extends React.Component {
             React.createElement("span", { className: `${this.name}__count` }, typeof option.product_count !== "undefined" ? `(${option.product_count})` : "")));
     }
     renderBoxes() {
-        let options = this.props.availableQueries;
-        const render = (options) => this.renderOptions(options);
+        const options = this.props.availableQueries;
+        const render = (items) => this.renderOptions(items);
         const className = this.name + `__group`;
         if (options.constructor === Array) {
             return render(options);
         }
         else {
-            return Object.keys(options).map(function (key) {
-                if (key === '') {
+            return Object.keys(options).map(key => {
+                if (key === "") {
                     return render(options[key]);
                 }
                 else {
@@ -39652,15 +39660,15 @@ class CheckboxContainer extends React.Component {
         }
     }
     render() {
+        const { meta } = this.props;
         return (React.createElement("div", { className: `${this.name} ${this.form}__group`, style: this.props.style },
             this.props.showLabel ?
                 React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, this.props.labels.main)
                 :
-                    React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid :
-                            '' }, this.props.labels.main),
+                    React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid : "" }, this.props.labels.main),
             React.createElement("div", { className: `${this.name}__queries
-                                 ${this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched) ? `${this.form}__group--invalid` : ''}
-                             ` },
+                                 ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
+                                ` },
                 this.renderInvalid(),
                 this.props.withoutFilter === false ? (React.createElement("div", { className: `${this.name}__filter` },
                     React.createElement("input", { className: `${this.name}__filter_input ${this.form}__input--text`, type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: (evt) => { this.setState({ filter: evt.target.value }); } }))) : null,
@@ -39681,7 +39689,7 @@ CheckboxContainer.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: null
+        value: "",
     },
     meta: {
         active: false,
@@ -39698,14 +39706,14 @@ CheckboxContainer.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     availableQueries: [],
     labels: {
         main: "Apply on queries",
         allProducts: "All products",
         placeholder: "Filter",
-        invalid: "Invalid input"
+        invalid: "Invalid input",
     },
     singleChoice: false,
     withoutFilter: false,
@@ -39733,7 +39741,7 @@ class ColorPicker extends React.Component {
         this.form = config_1.prefix + "form";
         this.state = {
             displayColorPicker: false,
-            color: props.color
+            color: props.color,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -39766,11 +39774,13 @@ class ColorPicker extends React.Component {
     renderItem() {
         const { color } = this.state;
         const { input } = this.props;
-        const background = typeof color === "string" ? "#" + color.substring(0, 6) : `rgba(${color.r},${color.g},${color.b},${color.a})`;
+        const background = typeof color === "string"
+            ? "#" + color.substring(0, 6)
+            : `rgba(${color.r},${color.g},${color.b},${color.a})`;
         const inputId = `${this.props.meta.form}-${input.name}`;
         return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input` },
             React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),
-            React.createElement("div", { className: `${this.name}__colorbox`, style: { background: background }, onClick: this.handleClick }),
+            React.createElement("div", { className: `${this.name}__colorbox`, style: { background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     }
     render() {
@@ -39779,7 +39789,7 @@ class ColorPicker extends React.Component {
                              ${required && this.name + `--` + required}
                              ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                           `, title: labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, labels.main),
@@ -39805,7 +39815,7 @@ ColorPicker.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -39822,13 +39832,13 @@ ColorPicker.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = ColorPicker;
 
@@ -39856,19 +39866,18 @@ class Radio extends React.Component {
     render() {
         const { disabled, required, addClass, style, input, id, meta } = this.props;
         const inputId = `${this.props.meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
         return (React.createElement("div", { className: `${this.name}
                              ${disabled && this.name + `--` + disabled}
                              ${required && this.name + `--` + required}
                              ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                          `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label` },
                 React.createElement("input", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, type: "radio", required: !!required, disabled: !!disabled }, this.props.input, addProps)),
-                " ",
                 this.props.labels.main)));
     }
 }
@@ -39891,7 +39900,7 @@ Radio.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -39908,13 +39917,13 @@ Radio.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Radio;
 
@@ -39934,7 +39943,7 @@ class Range extends React.Component {
         this.name = config_1.prefix + "input-range";
         this.form = config_1.prefix + "form";
         this.state = {
-            value: props.input.value
+            value: props.input.value,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -39952,18 +39961,20 @@ class Range extends React.Component {
         const inputId = `${meta.form}-${input.name}`;
         const outputId = `${meta.form}-${input.name}_output`;
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
-            React.createElement("div", { style: { position: 'relative' } },
+            React.createElement("div", { style: { position: "relative" } },
                 React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-                React.createElement("input", Object.assign({ className: `${this.name}__item ${this.form}__input--text ${this.form}__input--range ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, type: 'range', placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
-                        let target = evt.target;
-                        let output = document.getElementById(outputId);
+                React.createElement("input", Object.assign({ className: `${this.name}__item ${this.form}__input--text ${this.form}__input--range
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`, id: id ? id : inputId, type: "range", placeholder: this.props.labels.placeholder }, this.props.input, { max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
+                        const target = evt.target;
+                        const output = document.getElementById(outputId);
                         output.value = target.value;
                     }, value: this.state.value }, addProps)),
-                React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: 'calc(' + ((this.state.value / this.props.max) * 100) + '% - ' + outputWidth / 2 + 'px)' }, id: outputId }, this.state.value))));
+                React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: "calc(" + ((this.state.value / this.props.max) * 100) + "% - " + outputWidth / 2 + "px)" }, id: outputId }, this.state.value))));
     }
 }
 Range.defaultProps = {
@@ -40003,14 +40014,14 @@ Range.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "Text",
         placeholder: "Fill out here...",
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Range;
 
@@ -40043,7 +40054,7 @@ class Select extends React.Component {
                     return option;
                 }
                 else {
-                    let object = Object;
+                    const object = Object;
                     return object.assign({}, option, { key: unique_id_1.default() });
                 }
             }
@@ -40055,15 +40066,15 @@ class Select extends React.Component {
     render() {
         const { multiple, disabled, required, size, addClass, style, id, meta, input } = this.props;
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        delete addProps['addClass'];
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
         return (React.createElement("div", { className: `${this.name}
-                             ${multiple ? this.name + `--` + multiple : ''}
-                             ${disabled ? this.name + `--` + disabled : ''}
-                             ${required ? this.name + `--` + required : ''}
+                             ${multiple ? this.name + `--` + multiple : ""}
+                             ${disabled ? this.name + `--` + disabled : ""}
+                             ${required ? this.name + `--` + required : ""}
                              ${addClass ? addClass : ``}
                              ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}
+                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
                              `, title: this.props.labels.title, style: style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
@@ -40092,7 +40103,7 @@ Select.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -40109,13 +40120,13 @@ Select.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: null,
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Select;
 
@@ -40143,11 +40154,14 @@ class Textarea extends React.Component {
     render() {
         const { id, meta, input } = this.props;
         const inputId = `${meta.form}-${input.name}`;
-        let addProps = Object.assign({}, this.props.addProps);
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ''}`, title: this.props.labels.title, style: this.props.style },
+        const addProps = Object.assign({}, this.props.addProps);
+        delete addProps.addClass;
+        return (React.createElement("div", { className: `${this.name} ${this.form}__group
+                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`, title: this.props.labels.title, style: this.props.style },
             this.renderInvalid(),
             React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea ${meta.invalid && (meta.dirty || meta.touched) ? 'invalid' : ''}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input, addProps), input.value)));
+            React.createElement("textarea", Object.assign({ className: `${this.name}__input ${this.form}__input--text ${this.form}__input--textarea
+                                ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}`, id: id ? id : inputId, placeholder: this.props.labels.placeholder }, input, addProps), input.value)));
     }
 }
 Textarea.defaultProps = {
@@ -40167,7 +40181,7 @@ Textarea.defaultProps = {
         },
         onFocus: (value) => {
         },
-        value: ""
+        value: "",
     },
     meta: {
         active: false,
@@ -40184,14 +40198,14 @@ Textarea.defaultProps = {
         touched: false,
         valid: true,
         visited: false,
-        warning: ""
+        warning: "",
     },
     labels: {
         main: "Text",
         placeholder: "Fill out here...",
         invalid: "Invalid input",
-        title: ""
-    }
+        title: "",
+    },
 };
 exports.default = Textarea;
 
@@ -40212,12 +40226,12 @@ class Paginator extends React.Component {
         this.name = config_1.prefix + "paginator";
         this.state = {
             id: unique_id_1.default(),
-            current: 2
+            current: 2,
         };
     }
     renderButton(label, page, clickable, active = false) {
-        let key = `${this.state.id}-${label}-${page}`;
-        let classLink = `${this.name}__item`;
+        const key = `${this.state.id}-${label}-${page}`;
+        const classLink = `${this.name}__item`;
         let classDisabled = `${this.name}__item ${this.name}__item--disabled`;
         if (active) {
             classDisabled = `${this.name}__item ${this.name}__item--active`;
@@ -40230,7 +40244,7 @@ class Paginator extends React.Component {
         }
     }
     renderMainButtons() {
-        let buttons = [];
+        const buttons = [];
         let range;
         if (this.props.maxLinks % 2 === 0) {
             range = (this.props.maxLinks - 2) / 2;
@@ -40241,12 +40255,12 @@ class Paginator extends React.Component {
         let topLimit = this.props.currentPage + range;
         let bottomLimit = this.props.currentPage - range;
         if (topLimit > this.props.lastPage) {
-            let diff = topLimit - this.props.lastPage;
+            const diff = topLimit - this.props.lastPage;
             topLimit -= diff;
             bottomLimit -= diff;
         }
         if (bottomLimit < 1) {
-            let diff = Math.abs(1 - bottomLimit);
+            const diff = Math.abs(1 - bottomLimit);
             topLimit += diff;
             bottomLimit += diff;
         }
@@ -40254,7 +40268,7 @@ class Paginator extends React.Component {
             topLimit = this.props.lastPage;
         }
         for (let i = bottomLimit; i <= topLimit; i++) {
-            let button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage);
+            const button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage);
             buttons.push(button);
         }
         return buttons;
@@ -40297,7 +40311,7 @@ Paginator.defaultProps = {
     labelNext: "Next",
     labelPrevious: "Previous",
     maxLinks: 5,
-    style: {}
+    style: {},
 };
 exports.default = Paginator;
 
@@ -40318,9 +40332,9 @@ class Placeholder extends React.Component {
     }
     render() {
         const { addClass, style, width, height } = this.props;
-        let className = `${this.name} ${addClass ? addClass : ''}`;
-        let object = Object;
-        let styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` });
+        const className = `${this.name} ${addClass ? addClass : ""}`;
+        const object = Object;
+        const styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` });
         return (React.createElement("div", { className: className, style: styles },
             React.createElement("div", { className: `${this.name}__shadow` },
                 React.createElement("div", { className: `${this.name}__wrapper` },
@@ -40357,8 +40371,8 @@ class Bubble extends React.Component {
     componentDidMount() {
         this.popup = document.createElement("span");
         this.popup.className = `${this.name}__wrapper`;
-        this.popup.ref = 'bubble';
-        document.getElementById('app').appendChild(this.popup);
+        this.popup.ref = "bubble";
+        document.getElementById("app").appendChild(this.popup);
         this._renderLayer();
     }
     componentDidUpdate() {
@@ -40367,7 +40381,7 @@ class Bubble extends React.Component {
     componentWillUnmount() {
         if (this.popup) {
             ReactDOM.unmountComponentAtNode(this.popup);
-            document.getElementById('app').removeChild(this.popup);
+            document.getElementById("app").removeChild(this.popup);
         }
     }
     _renderLayer() {
@@ -40395,7 +40409,7 @@ class PopupHint extends React.Component {
         super(props);
         this.name = config_1.prefix + "popup_hint";
         this.state = {
-            expanded: false
+            expanded: false,
         };
         this.collapse = this.collapse.bind(this);
         this.expand = this.expand.bind(this);
@@ -40405,7 +40419,7 @@ class PopupHint extends React.Component {
         this.setState({ expanded: true });
     }
     collapse() {
-        this.fadeOut(this.refs["hint"], () => {
+        this.fadeOut(this.refs.hint, () => {
             this.setState({ expanded: false });
         });
     }
@@ -40428,7 +40442,7 @@ class PopupHint extends React.Component {
         return 0;
     }
     styleElements() {
-        const buttonPosition = this.getPosition(this.refs["button"]);
+        const buttonPosition = this.getPosition(this.refs.button);
         const windowWidth = this.getWindowWidth();
         const widthLeft = buttonPosition.left;
         const windowRight = windowWidth - buttonPosition.left;
@@ -40436,14 +40450,14 @@ class PopupHint extends React.Component {
         this.styleHint(buttonPosition, renderLeft);
     }
     styleArrow(left, right) {
-        let arrow = this.refs["arrow"];
+        const arrow = this.refs.arrow;
         arrow.style.left = left;
         arrow.style.right = right;
     }
     styleHint(buttonPosition, renderLeft) {
-        let hint = this.refs["hint"];
+        const hint = this.refs.hint;
         hint.style.opacity = `0`;
-        hint.style.display = 'block';
+        hint.style.display = "block";
         let newX;
         let arrowLeft;
         let arrowRight;
@@ -40461,8 +40475,8 @@ class PopupHint extends React.Component {
             hint.style.left === `${newX}px`) {
             if (this.state.expanded) {
                 this.styleArrow(arrowLeft, arrowRight);
-                this.fadeIn(this.refs["hint"]);
-                this.refs["hint"].focus();
+                this.fadeIn(this.refs.hint);
+                this.refs.hint.focus();
             }
         }
         else {
@@ -40473,7 +40487,8 @@ class PopupHint extends React.Component {
     fadeOut(el, callback) {
         el.style.opacity = 1;
         (function fade() {
-            if ((el.style.opacity -= .1) < 0) {
+            el.style.opacicty -= -1;
+            if (el.style.opacicty <= 0) {
                 callback();
             }
             else {
@@ -40485,23 +40500,25 @@ class PopupHint extends React.Component {
         el.style.opacity = 0;
         el.style.display = display || "block";
         (function fade() {
-            var val = parseFloat(el.style.opacity);
-            if (!((val += .1) > 1)) {
+            let val = parseFloat(el.style.opacity);
+            val += 1;
+            if (!(val > 1)) {
                 el.style.opacity = val;
                 requestAnimationFrame(fade);
             }
         })();
     }
     getPosition(element) {
-        var top = 0, left = 0;
+        let top = 0;
+        let left = 0;
         do {
             top += element.offsetTop || 0;
             left += element.offsetLeft || 0;
             element = element.offsetParent;
         } while (element);
         return {
-            top: top,
-            left: left,
+            top,
+            left,
         };
     }
     getArrowPosition(buttonPosition) {
@@ -40511,22 +40528,22 @@ class PopupHint extends React.Component {
         };
     }
     render() {
-        var object = Object;
-        var style = object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.style);
-        var hint = (React.createElement(Bubble_1.default, null,
+        const object = Object;
+        const style = object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.style);
+        const hint = (React.createElement(Bubble_1.default, null,
             React.createElement("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
                 React.createElement("div", { className: `${this.name}__innerwrapper` },
                     React.createElement("div", { className: `${this.name}__border` },
                         React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
                     React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
-        return (React.createElement("div", { className: this.name, style: { display: 'inline-block' } },
+        return (React.createElement("div", { className: this.name, style: { display: "inline-block" } },
             React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand }, this.props.icon ? this.props.icon : null),
             hint));
     }
 }
 PopupHint.defaultProps = {
     icon: null,
-    style: {}
+    style: {},
 };
 exports.default = PopupHint;
 
@@ -40545,16 +40562,16 @@ class Spinner extends React.Component {
         super(props);
         this.name = config_1.prefix + "spinner";
         this.state = {
-            loaded: false
+            loaded: false,
         };
     }
     updateState(props) {
-        var loaded = this.state.loaded;
+        let loaded = this.state.loaded;
         if (props.loaded) {
             loaded = !!props.loaded;
         }
         this.setState({
-            loaded: loaded
+            loaded,
         });
     }
     componentDidMount() {
@@ -40568,37 +40585,37 @@ class Spinner extends React.Component {
             return (React.createElement("span", { style: { opacity: 1 } }, this.props.children));
         }
         const { size, type, color, speed } = this.props;
-        var defaultStyle = { width: size,
+        let defaultStyle = {
+            width: size,
             height: size,
             borderColor: `rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8)`,
             fontSize: size,
-            animationDuration: 1.2 / speed + 's'
+            animationDuration: 1.2 / speed + "s",
         };
-        var containerStyle = {
+        const containerStyle = {
             width: size,
             height: size,
         };
-        if (color === 'black') {
+        if (color === "black") {
             defaultStyle.borderColor = `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)`;
         }
-        else if (color === 'green') {
+        else if (color === "green") {
             defaultStyle.borderColor = `rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)`;
         }
-        else if (color === 'blue') {
-            defaultStyle.borderColor = `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)`;
+        else if (color === "blue") {
+            defaultStyle.borderColor = `
+                                rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)
+                                `;
         }
-        if (type === 'dashed') {
-            defaultStyle.borderStyle = 'dashed';
+        if (type === "dashed" || type === "dotted") {
+            defaultStyle.borderStyle = type;
         }
-        else if (type === 'dotted') {
-            defaultStyle.borderStyle = 'dotted';
-        }
-        if (type === 'mergado') {
+        else if (type === "mergado") {
             defaultStyle = { borderWidth: size / 2 };
-            defaultStyle.animationDuration = 10 / speed + 's';
+            defaultStyle.animationDuration = 10 / speed + "s";
         }
-        var object = Object;
-        var style = object.assign(defaultStyle, this.props.style);
+        const object = Object;
+        const style = object.assign(defaultStyle, this.props.style);
         return (React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}`, style: containerStyle },
             React.createElement("div", { className: `${this.name}__wrapper`, style: style },
                 React.createElement("div", { className: `${this.name}__content`, style: { opacity: 0 } }, this.props.children))));
@@ -40631,7 +40648,7 @@ class Toasts extends React.Component {
         super(props);
         this.name = config_1.prefix + "toasts-container";
         this.state = {
-            toasts: []
+            toasts: [],
         };
     }
     isPaused() {
@@ -40651,7 +40668,7 @@ class Toasts extends React.Component {
 Toasts.defaultProps = {
     toasts: [],
     paused: false,
-    style: {}
+    style: {},
 };
 exports.default = Toasts;
 
@@ -40675,7 +40692,7 @@ class NavLink extends React.Component {
     }
     render() {
         const { link, active } = this.props;
-        var className = `${this.name}`;
+        let className = `${this.name}`;
         if (active) {
             className += ` ${this.name}--active`;
         }
@@ -40685,7 +40702,7 @@ class NavLink extends React.Component {
 NavLink.defaultProps = {
     active: false,
     link: (React.createElement("a", { href: "#" })),
-    style: {}
+    style: {},
 };
 exports.default = NavLink;
 
@@ -40706,12 +40723,12 @@ class TopNav extends React.Component {
     }
     renderLinks() {
         const { links } = this.props;
-        let classList = `${this.name}__list`;
+        const classList = `${this.name}__list`;
         return (React.createElement("ul", { className: classList }, links));
     }
     render() {
-        let className = `${this.name} ${this.props.addClass}`;
-        let classWrapper = `${this.name}__wrapper"`;
+        const className = `${this.name} ${this.props.addClass}`;
+        const classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
     }
@@ -40719,7 +40736,7 @@ class TopNav extends React.Component {
 TopNav.defaultProps = {
     links: [],
     style: {},
-    addClass: ""
+    addClass: "",
 };
 exports.default = TopNav;
 
@@ -40776,19 +40793,19 @@ class WizardNav extends React.Component {
     }
     renderLinks() {
         const { links } = this.props;
-        let classList = `${this.name}__list`;
+        const classList = `${this.name}__list`;
         return (React.createElement("ul", { className: classList }, links));
     }
     render() {
-        let className = `${this.name}`;
-        let classWrapper = `${this.name}__wrapper"`;
+        const className = `${this.name}`;
+        const classWrapper = `${this.name}__wrapper"`;
         return (React.createElement("nav", { className: className, style: this.props.style },
             React.createElement("div", { className: classWrapper }, this.renderLinks())));
     }
 }
 WizardNav.defaultProps = {
     links: [],
-    style: {}
+    style: {},
 };
 exports.default = WizardNav;
 
