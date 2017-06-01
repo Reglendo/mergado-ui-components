@@ -1,14 +1,15 @@
 import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
 
 export interface Props extends InputProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
     labels?: {
-        main: string | JSX.Element,
-        placeholder: string,
-        invalid: string | JSX.Element,
-        title: string,
+        main?: string | JSX.Element,
+        placeholder?: string,
+        invalid?: string | JSX.Element,
+        title?: string,
     }
     style?: any
     addClass?: string
@@ -68,31 +69,16 @@ class TextInput extends React.Component<Props, State> {
         },
     }
 
-    protected renderInvalid() {
-        if(this.props.meta.error && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.meta.error}
-                </div>
-            )
-        }
-    }
-
     public render() {
         const { id, type, meta, input, addClass } = this.props
         const inputId = id?id:`${meta.form}-${input.name}`
         const addProps = Object.assign({}, this.props.addProps)
         delete addProps.addClass
+        const props: any = this.props
         return (
-            <div className={`${this.name} ${addClass} ${this.form}__group
-                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}`}
-                            title={this.props.labels.title} style={this.props.style}>
-                {this.renderInvalid()}
-                {this.props.labels.main &&
-                    <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>
-                        {this.props.labels.main}
-                    </label>
-                }
+            <Input name={this.name} {...props}>
+                <InputError {...props} />
+                <InputLabel name={this.name}>{this.props.labels.main}</InputLabel>
                 <input
                     id={inputId} type={type} placeholder={this.props.labels.placeholder}
                     ref="input"
@@ -102,7 +88,7 @@ class TextInput extends React.Component<Props, State> {
                                 ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}
                                 ${this.props.addProps?this.props.addProps.addClass:""}`}
                 />
-            </div>
+            </Input>
         )
     }
 }

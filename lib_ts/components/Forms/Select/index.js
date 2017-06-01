@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const unique_id_1 = require("helpers/unique_id");
+const Input_1 = require("components/Forms/Input");
 class Select extends React.Component {
     constructor() {
         super(...arguments);
@@ -35,16 +36,10 @@ class Select extends React.Component {
         const inputId = `${this.props.meta.form}-${this.props.input.name}`;
         const addProps = Object.assign({}, this.props.addProps);
         delete addProps.addClass;
-        return (React.createElement("div", { className: `${this.name}
-                             ${multiple ? this.name + `--` + multiple : ""}
-                             ${disabled ? this.name + `--` + disabled : ""}
-                             ${required ? this.name + `--` + required : ""}
-                             ${addClass ? addClass : ``}
-                             ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                             `, title: this.props.labels.title, style: style },
-            this.renderInvalid(),
-            React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
+        const props = this.props;
+        return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
+            React.createElement(Input_1.InputError, Object.assign({}, props)),
+            React.createElement(Input_1.InputLabel, { name: this.name }, this.props.labels.main),
             React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, input, addProps), this.renderOptions())));
     }
 }

@@ -2,7 +2,7 @@ Text input with placeholder and label
 
     var Field = require('redux-form').Field;
 
-    <Field component={TextInput} input={{ defaultValue: 'Default input', disabled: true }} name="first-name" props={{ id: "customid", labels: { main: "Your name:", placeholder: "Please enter your name here" }}} />
+    <Field component={TextInput} name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
 
 Input types
 
@@ -18,7 +18,7 @@ Input types
 
         <TextInput type="hidden" labels={{main: '+ hidden'}} />
     </div>
-    
+
 
 Validation
 

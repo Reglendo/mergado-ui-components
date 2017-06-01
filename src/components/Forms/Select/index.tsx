@@ -2,6 +2,7 @@ import * as React from "react"
 import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import uniqueId from "helpers/unique_id"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
 
 export interface Props extends InputProps {
     options?: any
@@ -106,25 +107,19 @@ class Select extends React.Component<Props, State> {
         const inputId = `${this.props.meta.form}-${this.props.input.name}`
         const addProps = Object.assign({}, this.props.addProps)
         delete addProps.addClass
+        const props: any = this.props
         return (
-            <div className={`${this.name}
-                             ${multiple ? this.name+`--`+multiple : ""}
-                             ${disabled ? this.name+`--`+disabled : ""}
-                             ${required ? this.name+`--`+required : ""}
-                             ${addClass ? addClass:``}
-                             ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                             `} title={this.props.labels.title} style={style}>
-                {this.renderInvalid()}
-                <label className={`${this.name}__label ${this.form}__label`} htmlFor={inputId}>
+            <Input name={this.name} {...props}>
+                <InputError {...props} />
+                <InputLabel name={this.name}>
                     {this.props.labels.main }
-                </label>
+                </InputLabel>
                 <select className={`${this.name}__item`} id={id?id:inputId}
                     multiple={!!multiple} disabled={!!disabled}
                     required={!!required} size={size} {...input} {...addProps}>
                         {this.renderOptions()}
                 </select>
-            </div>
+            </Input>
         )
     }
 }

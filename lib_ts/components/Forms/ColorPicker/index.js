@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const Chrome_1 = require("react-color/lib/components/chrome/Chrome");
+const Input_1 = require("components/Forms/Input");
 class ColorPicker extends React.Component {
     constructor(props) {
         super(props);
@@ -14,11 +15,6 @@ class ColorPicker extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
-    }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
     }
     handleClick(evt) {
         evt.preventDefault();
@@ -54,14 +50,10 @@ class ColorPicker extends React.Component {
     }
     render() {
         const { disabled, required, addClass, style, labels, meta } = this.props;
-        return (React.createElement("div", { className: `${this.name} ${disabled && this.name + `--` + disabled}
-                             ${required && this.name + `--` + required}
-                             ${addClass ? addClass : ``}
-                             ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                          `, title: labels.title, style: style },
-            this.renderInvalid(),
-            React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, labels.main),
+        const props = this.props;
+        return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
+            React.createElement(Input_1.InputError, Object.assign({}, props)),
+            React.createElement(Input_1.InputLabel, { name: this.name }, labels.main),
             this.renderItem()));
     }
 }

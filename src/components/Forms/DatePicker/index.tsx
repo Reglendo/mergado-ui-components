@@ -3,6 +3,7 @@ import InputProps from "components/Forms/default_props"
 import { SingleDatePicker, DateRangePicker } from "react-dates";
 import * as Moment from "moment"
 import {prefix} from "config"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
 
 export interface Props extends InputProps {
     type?: "single" | "range"
@@ -10,10 +11,10 @@ export interface Props extends InputProps {
     minimumDays?: number
     locale?: string
     labels?: {
-        main: string | JSX.Element,
-        placeholder: string,
-        invalid: string | JSX.Element,
-        title: string,
+        main?: string | JSX.Element,
+        placeholder?: string,
+        invalid?: string | JSX.Element,
+        title?: string,
         placeholderFrom: string,
         placeholderTo: string,
     }
@@ -199,20 +200,10 @@ class DatePicker extends React.Component<Props, State> {
         }
     }
 
-    protected renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
-                </div>
-            )
-        }
-    }
-
     public render() {
         const { focused, startDate, endDate } = this.state
         const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays, meta } = this.props
-
+        const props: any = this.props
         let picker: SingleDatePicker | DateRangePicker;
 
         if(type === "single") {
@@ -240,15 +231,15 @@ class DatePicker extends React.Component<Props, State> {
             />
         }
         return (
-            <div className={`${this.name} ${this.form}__group
-                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                            `} style={this.props.style}>
-                {this.renderInvalid()}
-                <span className={`${this.name}__label ${this.form}__label`}>{labels.main}</span>
+            <Input name={this.name} {...props}>
+                <InputError {...props} />
+                <InputLabel name={this.name}>
+                    {labels.main}
+                </InputLabel>
                 <div className={`${this.name}__picker`}>
                     {picker}
                 </div>
-            </div>
+            </Input>
         )
     }
 }
