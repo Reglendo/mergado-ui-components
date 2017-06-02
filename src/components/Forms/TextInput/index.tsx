@@ -75,6 +75,10 @@ class TextInput extends React.Component<Props, State> {
         const addProps = Object.assign({}, this.props.addProps)
         delete addProps.addClass
         const props: any = this.props
+        const inputProps: any = this.props.input
+        if(type === "file") {
+            delete inputProps.value
+        }
         return (
             <Input name={this.name} {...props}>
                 <InputError {...props} />
@@ -83,7 +87,7 @@ class TextInput extends React.Component<Props, State> {
                     id={inputId} type={type} placeholder={this.props.labels.placeholder}
                     ref="input"
                     {...this.props.input}
-                    {...addProps}
+                    {...inputProps}
                     className={`${this.name}__input ${this.form}__input--text ${this.form}__input--${type}
                                 ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}
                                 ${this.props.addProps?this.props.addProps.addClass:""}`}
