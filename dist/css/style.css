@@ -773,6 +773,8 @@ table {
     margin: 0;
     margin-right: 10px;
     vertical-align: text-bottom; }
+  .muk-checkbox_container__label {
+    cursor: pointer; }
   .muk-checkbox_container__filter_label {
     padding: 10px 0 2px 0;
     font-size: 1em;
