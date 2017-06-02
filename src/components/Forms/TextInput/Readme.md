@@ -2,7 +2,10 @@ Text input with placeholder and label
 
     var Field = require('redux-form').Field;
 
-    <Field component={TextInput} name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+    <div>
+        <Field component={TextInput} name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+        <Field component={TextInput} name="uploadfile" props={{type: "file"}} labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+    </div>
 
 Input types
 
