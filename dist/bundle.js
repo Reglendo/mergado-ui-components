@@ -39789,7 +39789,7 @@ class ColorPicker extends React.Component {
     }
     handleChanged(evt) {
         this.setState({ color: evt.rgb });
-        return this.props.input.onChange(evt);
+        return this.props.input.onChange(evt.rgb);
     }
     renderPicker() {
         return (React.createElement("div", { className: `${this.name}__popover` },
