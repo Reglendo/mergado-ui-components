@@ -21,11 +21,25 @@ exports.Input = (_a) => {
                      ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}
                  `, title: props.labels.title, style: props.style }, props.children));
 };
+<<<<<<< HEAD
+exports.InputLabel = ({ children, name }) => {
+    if (children === "") {
+        return null;
+    }
+    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label ${config_1.form}__input` }, children));
+};
+exports.InputError = (_a) => {
+    var props = __rest(_a, []);
+    if ((props.meta.error || props.labels.invalid) &&
+        props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
+        return (React.createElement("div", { className: `${config_1.form}__validation` }, props.meta.error || props.labels.invalid));
+=======
 exports.InputLabel = ({ children, name }) => (React.createElement("label", { className: `${name}__label ${config_1.form}__label ${config_1.form}__input` }, children));
 exports.InputError = (_a) => {
     var props = __rest(_a, []);
     if (props.labels.invalid && props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
         return (React.createElement("div", { className: `${config_1.form}__validation` }, props.labels.invalid));
+>>>>>>> master
     }
     else {
         return null;
