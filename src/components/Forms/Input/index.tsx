@@ -14,17 +14,23 @@ export const Input = ({...props}) => (
     </div>
 )
 
-export const InputLabel = ({children, name}) => (
+export const InputLabel = ({children, name}) => {
+    if(children === "") {
+        return null
+    }
+    return (
             <label className={`${name}__label ${form}__label ${form}__input`}>
                 {children}
             </label>
-)
+        )
+}
 
 export const InputError = ({...props}) => {
-        if(props.labels.invalid && props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
+        if((props.meta.error || props.labels.invalid) &&
+            props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
             return (
                 <div className={`${form}__validation`}>
-                    {props.labels.invalid}
+                    {props.meta.error || props.labels.invalid}
                 </div>
             )
         } else {

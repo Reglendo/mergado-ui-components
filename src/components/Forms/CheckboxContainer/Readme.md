@@ -77,7 +77,8 @@ Invalid container
                         singleChoice={true}
                         height='auto'
                         labels={{
-                         main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
+                         main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products',
+                         invalid: 'I am invalid',
                         }}
                         meta={{invalid: true, dirty: true}}
                     />
