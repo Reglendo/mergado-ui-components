@@ -1,134 +1,105 @@
 import * as React from "react"
-import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import {Link} from "react-router"
+import * as MUK from "components/Forms/input"
 
-export interface Props extends InputProps {
+export interface Props extends MUK.Props {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
     icon?: JSX.Element
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
-    state?: "disabled" | ""
-    onClick?: (event: any) => any
-    style?: any
-    addClass?: string
-    labels?: {
-        main?: string | JSX.Element,
-        invalid?: string | JSX.Element,
-        title?: string,
-    }
+    disabled?: boolean
 }
 
 export interface State {
 }
 
-class Button extends React.Component<Props, State> {
-
-    private readonly name = prefix + "button";
-    private readonly form = prefix + "form";
+class Button extends MUK.InputComponent<Props, State> {
+    public readonly props: Props;
+    public state: State;
+    protected readonly name = prefix + "button";
 
     public static defaultProps: Props = {
+        ...MUK.defaultProps,
         type: "button",
-        onClick: (event) => {
-            return true;
-        },
         icon: null,
         color: "blue",
-        state: "",
+        disabled: false,
         size: "",
-        style: null,
-        addClass: "",
-        input: {
-            checked: false,
-            name: "",
-            onBlur: (value) => {
-            },
-            onChange: (value) => {
-            },
-            onDragStart: (value) => {
-            },
-            onDrop: (value) => {
-            },
-            onFocus: (value) => {
-            },
-            value: "",
-        },
-        meta: {
-            active: false,
-            asyncValidating: false,
-            autofilled: false,
-            dirty: false,
-            dispatch: Function,
-            error: "",
-            form: "",
-            invalid: false,
-            pristine: true,
-            submitting: false,
-            submitFailed: false,
-            touched: false,
-            valid: true,
-            visited: false,
-            warning: "",
-        },
-        labels: {
-            main: null,
-            invalid: "Invalid input",
-            title: "",
-        },
     }
 
-    protected renderHref() {
-        const { link, labels, icon, onClick } = this.props
+    protected renderHref(className, props) {
+        const { link, labels, icon, input } = this.props
         return (
-            <a href={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>
-                {icon}{labels.main}
+            <a
+                {...props}
+                href={link}
+                className={`${this.name}__item`}
+                title={labels.title}>
+                    {icon}{labels.main}
             </a>)
     }
-    protected renderButton() {
-        const { input, labels, icon, onClick } = this.props
+    protected renderButton(className, props) {
+        const { input, labels, icon } = this.props
         return (
-            <button className={`${this.name}__item`} onClick={onClick}
-             name={input.name} title={labels.title} {...this.props.addProps}>
-                {icon}{labels.main}
+            <button
+                {...props}
+                className={`${this.name}__item ${className ? className : ""}`}
+                title={labels.title}>
+                    {icon}{labels.main}
             </button>)
     }
-    protected renderLink() {
-        const { link, labels, icon, onClick } = this.props
+    protected renderLink(className, props) {
+        const { link, labels, icon, input } = this.props
         return (
-            <Link to={link} className={`${this.name}__item`} onClick={onClick} title={labels.title}>
-                {icon}{labels.main}
+            <Link
+                {...props}
+                to={link}
+                className={`${this.name}__item ${className ? className : ""}`}
+                title={labels.title}>
+                    {icon}{labels.main}
             </Link>)
     }
-    protected renderSubmit() {
-        const { meta, input, labels, onClick } = this.props
-        const inputId = `${meta.form}-${input.name}`
+    protected renderSubmit(className, props) {
+        const { meta, input, labels } = this.props
         return (
-            <input type="submit" className={`${this.name}__item`} value={`${labels.main}`} id={inputId}
-                name={input.name} title={labels.title} onClick={onClick} {...this.props.addProps} />)
+            <input
+                {...props}
+                type="submit"
+                className={`${this.name}__item ${className ? className : ""}`}
+                value={`${labels.main}`}
+                title={labels.title}
+            />)
     }
-    protected renderVoid() {
-        const { input, labels, icon, onClick } = this.props
+    protected renderVoid(className, props) {
+        const { input, labels, icon } = this.props
         return (
-            <span className={`${this.name}__item`} onClick={onClick} name={input.name} title={labels.title}>
+            <span
+                {...props}
+                className={`${this.name}__item ${className ? className : ""}`}
+                title={labels.title}>
                     {icon}{labels.main}
             </span>)
     }
 
-    public render() {
-        const { type,color,state, size, addClass, meta } = this.props
+    protected renderLabel() {
+        return <span/>
+    }
+
+    protected renderInput(className, props) {
+        const { type,color,disabled, size, meta } = this.props
         return (
-            <div className={`${this.name} ${this.name}--${color}
-                             ${!this.props.labels.main?this.name+`--notext`:``}
-                             ${size?this.name+`--`+size:``}
-                             ${state?this.name+`--`+state:``}
-                             ${addClass?addClass:``}
-                         `} title={this.props.labels.title} style={this.props.style}>
-                {type === "button" && this.renderButton()}
-                {type === "link" && this.renderLink()}
-                {type === "submit" && this.renderSubmit()}
-                {type === "void" && this.renderVoid()}
-                {type === "href" && this.renderHref()}
+            <div className={`${this.name}--${color} \
+${!this.props.labels.main?this.name+`--notext`:``} \
+${size ? this.name+`--`+size:``} \
+${disabled ? this.name+`--disabled`:``} \
+`}>
+                {type === "button" && this.renderButton(className, props)}
+                {type === "link" && this.renderLink(className, props)}
+                {type === "submit" && this.renderSubmit(className, props)}
+                {type === "void" && this.renderVoid(className, props)}
+                {type === "href" && this.renderHref(className, props)}
             </div>
         )
     }

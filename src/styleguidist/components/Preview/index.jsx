@@ -48,36 +48,66 @@ export default class Preview extends Component {
 		super();
 		this.state = {
 			error: null,
-            innerHtml: ''
+            innerHtml: '',
+            code: null,
+            preserved: null,
 		};
 		this.componentState = {};
 	}
 
+    componentWillUpdate(nextProps, nextState) {
+        if(nextState.error !== null) {
+            // preserve code to disable update when error occured
+            this.state.preserved = this.state.code
+        } else {
+            this.state.code = this.props.code
+        }
+    }
+
 	componentDidMount() {
-		this.executeCode();
+        this.state.preserved = this.props.code
+        try {
+          this.executeCode(this.props.code);
+        } catch (err) {
+            console.log(err)
+            this.setState({
+                error: err.toString(),
+            });
+        }
 
 	}
 
 	componentDidUpdate(prevProps) {
 		if (this.props.code !== prevProps.code || this.props.showHtml !== prevProps.showHtml) {
-			this.executeCode();
+            this.setState({
+    			error: null,
+    		});
+
+            let source = this.props.code;
+            try {
+                this.executeCode(source);
+                this.state.preserved = source
+            } catch (err) {
+                console.log(err)
+    			this.setState({
+    				error: err.toString(),
+    			});
+                source = this.state.preserved
+                this.executeCode(source)
+    		}
+
+
 		}
 	}
 
-	executeCode() {
+	executeCode(code) {
 		ReactDOM.unmountComponentAtNode(this.mountNode);
 
-		this.setState({
-			error: null,
-		});
-
-		const { code } = this.props;
 		if (!code) {
 			return;
 		}
 
-		try {
-			const compiledCode = compileCode(this.props.code);
+			const compiledCode = compileCode(code);
 
 			// Initiate state and set with the callback in the bottom component;
 			// Workaround for https://github.com/styleguidist/react-styleguidist/issues/155 - missed props on first render
@@ -160,15 +190,7 @@ export default class Preview extends Component {
                 this.props.changeHtml(htmlcode)
             }
 
-		}
-		catch (err) {
-            console.log(err);
-			ReactDOM.unmountComponentAtNode(this.mountNode);
-			this.setState({
-				error: err.toString(),
-			});
-		}
-	}
+    }
 
 	render() {
 		const { error } = this.state;

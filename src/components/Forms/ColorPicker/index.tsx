@@ -1,75 +1,34 @@
 import * as React from "react"
-import InputProps from "components/Forms/default_props"
 import {prefix} from "config"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
 import {Input, InputLabel, InputError} from "components/Forms/Input"
+import * as MUK from "components/Forms/input"
 
-export interface Props extends InputProps {
-    disabled?: boolean
-    required?: boolean
-    style?: any
-    addClass?: string
-    color?: any
-    labels?: {
-        main?: string | JSX.Element,
-        invalid?: string | JSX.Element,
-        title?: string,
-    }
+export interface Color {
+    r: number,
+    g: number,
+    b: number,
+    a: number,
+}
+
+export interface Props extends MUK.Props {
+    color?: Color
 }
 
 export interface State {
     displayColorPicker: boolean
-    color: any
+    color: Color
 }
 
-class ColorPicker extends React.Component<Props, State> {
+class ColorPicker extends MUK.InputComponent<Props, State> {
 
-    private readonly name = prefix + "colorpicker";
-    private readonly form = prefix + "form";
+    public readonly props: Props
+    public state: State
+    protected readonly name = prefix + "colorpicker"
 
     public static defaultProps: Props = {
-        disabled: false,
-        required: false,
-        style: null,
-        addClass: "",
+        ...MUK.defaultProps,
         color: { r: 0, g: 0, b: 0, a: 1 },
-        input: {
-            checked: false,
-            name: "",
-            onBlur: (value) => {
-            },
-            onChange: (value) => {
-            },
-            onDragStart: (value) => {
-            },
-            onDrop: (value) => {
-            },
-            onFocus: (value) => {
-            },
-            value: "",
-        },
-        meta: {
-            active: false,
-            asyncValidating: false,
-            autofilled: false,
-            dirty: false,
-            dispatch: Function,
-            error: "",
-            form: "",
-            invalid: false,
-            pristine: true,
-            submitting: false,
-            submitFailed: false,
-            touched: false,
-            valid: true,
-            visited: false,
-            warning: "",
-        },
-        labels: {
-            main: null,
-            invalid: "Invalid input",
-            title: "",
-        },
     }
 
     constructor(props) {
@@ -116,14 +75,14 @@ class ColorPicker extends React.Component<Props, State> {
         )
     }
 
-    protected renderItem() {
+    protected renderInput(className, props) {
         const { color } = this.state
-        const { input } = this.props
+        const { input, meta } = this.props
 
         const background = typeof color === "string"
                             ? "#" + color.substring(0, 6)
                             : `rgba(${color.r},${color.g},${color.b},${color.a})`
-        const inputId = `${this.props.meta.form}-${input.name}`
+        const inputId = `${meta.form}-${input.name}`
 
         return(
             <div className={`${this.name}__picker ${this.form}__input`}>
@@ -135,16 +94,8 @@ class ColorPicker extends React.Component<Props, State> {
         )
     }
 
-    public render() {
-        const { disabled, required, addClass, style, labels, meta } = this.props
-        const props: any = this.props
-        return (
-            <Input name={this.name} {...props}>
-                <InputError {...props} />
-                <InputLabel name={this.name}>{labels.main}</InputLabel>
-                {this.renderItem()}
-            </Input>
-        )
+    protected renderLabel() {
+        return this.props.labels.main
     }
 }
 

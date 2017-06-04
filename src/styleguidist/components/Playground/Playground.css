@@ -49,6 +49,11 @@
     right: 80px;
 }
 
+.hideHtml {
+    background: white;
+    color: #222;
+}
+
 
 .isolatedLink {
 	composes: font from "../../styles/common.css";

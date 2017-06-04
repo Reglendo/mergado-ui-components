@@ -2,6 +2,7 @@
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/lib/codemirror.css';
 import 'rsg-codemirror-theme.css';
+import s from './Editor.css';
 
 import React, { Component, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
@@ -21,7 +22,8 @@ const UPDATE_DELAY = 10;
 
 export default class Editor extends Component {
     static propTypes = {
-        code: PropTypes.string.isRequired,
+        code: PropTypes.string,
+        htmlcode: PropTypes.string,
         onChange: PropTypes.func.isRequired,
     };
     static contextTypes = {
@@ -33,7 +35,10 @@ export default class Editor extends Component {
         this.handleChange = debounce(this.handleChange.bind(this), UPDATE_DELAY);
     }
 
-    shouldComponentUpdate() {
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.props.htmlcode !== nextProps.htmlcode) {
+            return true
+        }
         return false;
     }
 
@@ -42,16 +47,17 @@ export default class Editor extends Component {
     }
 
     render() {
-        const { code } = this.props;
+        const { code, htmlcode, theme } = this.props;
         const { highlightTheme } = this.context.config;
         const options = {
             ...codemirrorOptions,
-            theme: highlightTheme,
+            theme: theme ? theme : highlightTheme,
             lineNumbers: true
         };
         return (
             <EditorRenderer>
-                <Codemirror value={code} onChange={this.handleChange} options={options} />
+                <div className={htmlcode ? s.htmlheader : s.header}>{htmlcode ? `HTML code` : `JSX code`}</div>
+                <Codemirror value={code || htmlcode} onChange={this.handleChange} options={options} />
             </EditorRenderer>
         );
     }
