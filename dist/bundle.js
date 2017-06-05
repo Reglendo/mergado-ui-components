@@ -2426,11 +2426,17 @@ exports.Input = (_a) => {
                      ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}
                  `, title: props.labels.title, style: props.style }, props.children));
 };
-exports.InputLabel = ({ children, name }) => (React.createElement("label", { className: `${name}__label ${config_1.form}__label ${config_1.form}__input` }, children));
+exports.InputLabel = ({ children, name }) => {
+    if (children === "") {
+        return null;
+    }
+    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label ${config_1.form}__input` }, children));
+};
 exports.InputError = (_a) => {
     var props = __rest(_a, []);
-    if (props.labels.invalid && props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
-        return (React.createElement("div", { className: `${config_1.form}__validation` }, props.labels.invalid));
+    if ((props.meta.error || props.labels.invalid) &&
+        props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
+        return (React.createElement("div", { className: `${config_1.form}__validation` }, props.meta.error || props.labels.invalid));
     }
     else {
         return null;
@@ -15709,10 +15715,14 @@ class TextInput extends React.Component {
         const addProps = Object.assign({}, this.props.addProps);
         delete addProps.addClass;
         const props = this.props;
+        const inputProps = this.props.input;
+        if (type === "file") {
+            delete inputProps.value;
+        }
         return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
             React.createElement(Input_1.InputError, Object.assign({}, props)),
             React.createElement(Input_1.InputLabel, { name: this.name }, this.props.labels.main),
-            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, addProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type}
+            React.createElement("input", Object.assign({ id: inputId, type: type, placeholder: this.props.labels.placeholder, ref: "input" }, this.props.input, inputProps, { className: `${this.name}__input ${this.form}__input--text ${this.form}__input--${type}
                                 ${meta.invalid && (meta.dirty || meta.touched) ? "invalid" : ""}
                                 ${this.props.addProps ? this.props.addProps.addClass : ""}` }))));
     }
@@ -39783,7 +39793,7 @@ class ColorPicker extends React.Component {
     }
     handleChanged(evt) {
         this.setState({ color: evt.rgb });
-        return this.props.input.onChange(evt);
+        return this.props.input.onChange(evt.rgb);
     }
     renderPicker() {
         return (React.createElement("div", { className: `${this.name}__popover` },
