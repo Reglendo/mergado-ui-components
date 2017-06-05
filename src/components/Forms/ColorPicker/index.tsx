@@ -13,6 +13,7 @@ export interface Color {
 
 export interface Props extends MUK.Props {
     color?: Color
+    hex?: string
 }
 
 export interface State {
@@ -79,14 +80,14 @@ class ColorPicker extends MUK.InputComponent<Props, State> {
         const { color } = this.state
         const { input, meta } = this.props
 
-        const background = typeof color === "string"
-                            ? "#" + color.substring(0, 6)
-                            : `rgba(${color.r},${color.g},${color.b},${color.a})`
-        const inputId = `${meta.form}-${input.name}`
+        const background = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
         return(
-            <div className={`${this.name}__picker ${this.form}__input`}>
-                <input id={inputId} type="hidden" name={input.name} value={background} />
+            <div className={`${this.name}__picker ${this.form}__input ${className}`}>
+                <input  {...input}
+                        {...props}
+                        type="hidden"
+                        value={background} />
                 <div className={`${this.name}__colorbox`}
                      style={{ background }} onClick={ this.handleClick } />
                 {this.state.displayColorPicker && this.renderPicker()}

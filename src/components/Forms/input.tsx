@@ -117,9 +117,9 @@ export class InputComponent<P,S> extends React.Component<Props, State> {
             <Input name={this.name} {...props}>
                 {this.renderError()}
                 <InputLabel name={this.name}>
-                    {this.renderLabel(input ? input.className : "", inputProps)}
+                    {this.renderLabel(input.className ? input.className : "", inputProps)}
                 </InputLabel>
-                {this.renderInput(input ? input.className : "", inputProps)}
+                {this.renderInput(input.className ? input.className : "", inputProps)}
             </Input>
         )
     }

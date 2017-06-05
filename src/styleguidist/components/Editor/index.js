@@ -56,7 +56,6 @@ export default class Editor extends Component {
         };
         return (
             <EditorRenderer>
-                <div className={htmlcode ? s.htmlheader : s.header}>{htmlcode ? `HTML code` : `JSX code`}</div>
                 <Codemirror value={code || htmlcode} onChange={this.handleChange} options={options} />
             </EditorRenderer>
         );

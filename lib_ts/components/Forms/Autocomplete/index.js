@@ -285,23 +285,16 @@ class Autocomplete extends MUK.InputComponent {
             open && this.renderMenu()));
     }
 }
-Autocomplete.defaultProps = {
-    items: [],
-    renderMenu: (items, value, style) => {
+Autocomplete.defaultProps = Object.assign({}, MUK.defaultProps, { items: [], renderMenu: (items, value, style) => {
         return React.createElement("div", { className: `${config_1.prefix + "autocomplete"}__menu`, style: Object.assign({}, style), children: items });
-    },
-    onMenuVisibilityChange: () => { },
-    renderItem: (item, highlighted, style) => {
+    }, onMenuVisibilityChange: () => { }, renderItem: (item, highlighted, style) => {
         let className = `${config_1.prefix + "autocomplete"}__item `;
         className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : "";
         return (React.createElement("div", { key: `${item.value}-${unique_id_1.default()}`, className: `${className}` }, item.text));
-    },
-    getItemValue: (item) => {
+    }, getItemValue: (item) => {
         return item.text;
-    },
-    shouldItemRender: (item, value) => {
+    }, shouldItemRender: (item, value) => {
         return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1);
-    },
-};
+    } });
 exports.default = Autocomplete;
 //# sourceMappingURL=index.js.map

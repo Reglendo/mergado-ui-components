@@ -75,8 +75,8 @@ class InputComponent extends React.Component {
         const inputProps = Object.assign({ id: this.props.meta.form ? `${this.props.meta.form}-${input.name}` : "" }, others);
         return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
             this.renderError(),
-            React.createElement(Input_1.InputLabel, { name: this.name }, this.renderLabel(input ? input.className : "", inputProps)),
-            this.renderInput(input ? input.className : "", inputProps)));
+            React.createElement(Input_1.InputLabel, { name: this.name }, this.renderLabel(input.className ? input.className : "", inputProps)),
+            this.renderInput(input.className ? input.className : "", inputProps)));
     }
 }
 InputComponent.defaultProps = exports.defaultProps;

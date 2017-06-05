@@ -38,12 +38,9 @@ class ColorPicker extends MUK.InputComponent {
     renderInput(className, props) {
         const { color } = this.state;
         const { input, meta } = this.props;
-        const background = typeof color === "string"
-            ? "#" + color.substring(0, 6)
-            : `rgba(${color.r},${color.g},${color.b},${color.a})`;
-        const inputId = `${meta.form}-${input.name}`;
-        return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input` },
-            React.createElement("input", { id: inputId, type: "hidden", name: input.name, value: background }),
+        const background = `rgba(${color.r},${color.g},${color.b},${color.a})`;
+        return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input ${className}` },
+            React.createElement("input", Object.assign({}, input, props, { type: "hidden", value: background })),
             React.createElement("div", { className: `${this.name}__colorbox`, style: { background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     }

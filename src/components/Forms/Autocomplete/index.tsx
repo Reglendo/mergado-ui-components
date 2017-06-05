@@ -40,6 +40,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
     protected ignoreBlur = false
 
     public static defaultProps: Props = {
+        ...MUK.defaultProps,
         items: [],
         renderMenu: (items, value, style) => {
             return <div className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
