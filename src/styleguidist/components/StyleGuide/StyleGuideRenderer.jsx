@@ -30,6 +30,26 @@ const style = `
                 border-radius: 0;
             }
 
+            .ReactStyleguidist-PlaygroundError__root {
+                position: absolute;
+                top: 0;
+                opacity: 0.8;
+                width: 100%;
+                bottom: 0;
+                text-align: left;
+                height: 100%;
+                z-index: 100000;
+                margin: 0;
+            }
+
+            .ReactStyleguidist-PlaygroundError__root + div {
+                opacity: 0.7
+            }
+
+            .rsg--example-preview > div {
+                position: relative;
+            }
+
             body {
                 overflow: hidden;
                 position: relative;

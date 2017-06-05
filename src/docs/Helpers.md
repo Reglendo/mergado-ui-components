@@ -1,5 +1,5 @@
 **.muk-helper-loading**
-    
+
     <DataTable setRef="datagrid" addClass="muk-helper-loading">
         <DataHeader>
             <DataCell key={2} type='header'/>
@@ -29,12 +29,12 @@
             </DataRow>
         </DataBody>
     </DataTable>
-    
-**.muk-helper-loading--in**    
-    
-    <TextInput addProps={{addClass: 'muk-helper-loading--in'}} />
 
-    
+**.muk-helper-loading--in**
+
+    <TextInput input={{className: 'muk-helper-loading--in'}} />
+
+
 **.muk-helper-clearfix**
 
     <div>

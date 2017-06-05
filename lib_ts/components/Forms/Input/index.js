@@ -12,20 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 exports.Input = (_a) => {
-    var props = __rest(_a, []);
-    return (React.createElement("div", { className: `${props.name}
-                     ${props.disabled ? this.name + `--` + props.disabled : ""}
-                     ${props.required ? this.name + `--` + props.required : ""}
-                     ${props.addClass ? props.addClass : ``}
-                     ${config_1.form}__group
-                     ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}
-                 `, title: props.labels.title, style: props.style }, props.children));
+    var addProps = __rest(_a.group, []), props = __rest(_a, ["group"]);
+    return (React.createElement("div", { className: `${props.name} \
+${props.disabled ? props.name + `--disabled` : ""} \
+${props.required ? props.name + `--required` : ""} \
+${addProps.className ? addProps.className : ""} \
+${config_1.form}__group \
+${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}\
+`, title: props.labels.title, style: props.style }, props.children));
 };
 exports.InputLabel = ({ children, name }) => {
     if (children === "") {
         return null;
     }
-    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label ${config_1.form}__input` }, children));
+    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label` }, children));
 };
 exports.InputError = (_a) => {
     var props = __rest(_a, []);

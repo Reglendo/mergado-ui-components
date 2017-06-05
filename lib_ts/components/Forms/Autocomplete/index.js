@@ -4,13 +4,14 @@ const React = require("react");
 const config_1 = require("config");
 const TextInput_1 = require("components/Forms/TextInput");
 const unique_id_1 = require("helpers/unique_id");
-class Autocomplete extends React.Component {
+const MUK = require("components/Forms/input");
+class Autocomplete extends MUK.InputComponent {
     constructor(props) {
         super(props);
+        this.name = config_1.prefix + "autocomplete";
         this.performAutoCompleteOnUpdate = true;
         this.performAutoCompleteOnKeyUp = true;
         this.ignoreBlur = false;
-        this.name = config_1.prefix + "autocomplete";
         this.state = {
             value: props.value ? props.value : "",
             isOpen: false,
@@ -21,8 +22,10 @@ class Autocomplete extends React.Component {
         };
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.items !== nextProps.items ||
-            this.state.highlightedIndex >= nextProps.items.length) {
+        const props = this.props;
+        const state = this.state;
+        if (props.items !== nextProps.items ||
+            state.highlightedIndex >= nextProps.items.length) {
             this.setState({ highlightedIndex: null });
         }
     }
@@ -263,11 +266,12 @@ class Autocomplete extends React.Component {
             ref: e => this.refs.menu = e,
         });
     }
-    render() {
-        const className = `${this.name}`;
+    renderError() {
+        return React.createElement("div", null);
+    }
+    renderInput(className, props) {
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
-        const addProps = Object.assign({}, this.props.addProps, { autoComplete: "off" });
         const inputProps = Object.assign({}, this.props.input, {
             onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
             onBlur: this.handleInputBlur.bind(this),
@@ -276,68 +280,21 @@ class Autocomplete extends React.Component {
             onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
             onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         });
-        return (React.createElement("div", { className: `${className}` },
-            React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps, addProps: addProps }),
+        return (React.createElement("div", null,
+            React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps }),
             open && this.renderMenu()));
     }
 }
-Autocomplete.defaultProps = {
-    items: [],
-    renderMenu: (items, value, style) => {
+Autocomplete.defaultProps = Object.assign({}, MUK.defaultProps, { items: [], renderMenu: (items, value, style) => {
         return React.createElement("div", { className: `${config_1.prefix + "autocomplete"}__menu`, style: Object.assign({}, style), children: items });
-    },
-    onMenuVisibilityChange: () => { },
-    renderItem: (item, highlighted, style) => {
+    }, onMenuVisibilityChange: () => { }, renderItem: (item, highlighted, style) => {
         let className = `${config_1.prefix + "autocomplete"}__item `;
         className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : "";
         return (React.createElement("div", { key: `${item.value}-${unique_id_1.default()}`, className: `${className}` }, item.text));
-    },
-    getItemValue: (item) => {
+    }, getItemValue: (item) => {
         return item.text;
-    },
-    shouldItemRender: (item, value) => {
+    }, shouldItemRender: (item, value) => {
         return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1);
-    },
-    input: {
-        checked: false,
-        name: "",
-        onBlur: (value) => {
-        },
-        onChange: (value) => {
-        },
-        onDragStart: (value) => {
-        },
-        onDrop: (value) => {
-        },
-        onFocus: (value) => {
-        },
-        onKeyDown: (value) => {
-        },
-        value: "",
-    },
-    meta: {
-        active: false,
-        asyncValidating: false,
-        autofilled: false,
-        dirty: false,
-        dispatch: Function,
-        error: "",
-        form: "",
-        invalid: false,
-        pristine: true,
-        submitting: false,
-        submitFailed: false,
-        touched: false,
-        valid: true,
-        visited: false,
-        warning: "",
-    },
-    labels: {
-        main: "",
-        placeholder: "",
-        invalid: "",
-        title: "",
-    },
-};
+    } });
 exports.default = Autocomplete;
 //# sourceMappingURL=index.js.map

@@ -7,7 +7,7 @@ Simple button
         <Field component={Button} name="first-name" props={{ type: 'submit', labels: { main: "I\'m submit!" }}} />
         <Button labels={{main: 'I\'m void!'}} type="void" />
     </div>
-    
+
 Buttons with icons
 
     var Field = require('redux-form').Field;
@@ -30,18 +30,18 @@ Button colors
 Button state
 
     <div>
-    <Button labels={{main: 'I\'m disabled'}} state="disabled"  style={{verticalAlign: 'bottom'}} />   
+    <Button labels={{main: 'I\'m disabled'}} disabled={true}  style={{verticalAlign: 'bottom'}} />   
 
     <Button type="submit" labels={{main: 'Button', invalid: 'I\'m invalid'}} meta={{invalid: true, touched: true}} />
     </div>
-    
+
 Button sizes
 
     <div>
         <Button labels={{main: 'I\'m big'}} />
         <Button labels={{main: 'I\'m small'}} size="small" />
         <Button labels={{main: 'I\'m tiny'}} size="tiny" />
-        
+
     </div>
 
 Icon button
@@ -74,4 +74,3 @@ Icon button
         <Button icon={<Icon type="clipboard" />} color="nocolor" size="tiny" />
         <Button icon={<Icon type="trash" />} color="nocolor" size="tiny" />
     </div>
-    

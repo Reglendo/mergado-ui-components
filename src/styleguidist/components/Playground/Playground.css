@@ -49,6 +49,11 @@
     right: 80px;
 }
 
+.hideHtml {
+    background: white;
+    color: #222;
+}
+
 
 .isolatedLink {
 	composes: font from "../../styles/common.css";
@@ -80,4 +85,25 @@
 
 .buttons {
     position: relative;
+}
+
+
+.header, .htmlheader {
+    padding: 2px 10px;
+    background: #173347;
+    color: white;
+    font-size: 12px;
+}
+
+.htmlheader {
+    background: #5f5e5e;
+}
+
+.closeCode {
+    float: right;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    padding-top: 2px;
 }

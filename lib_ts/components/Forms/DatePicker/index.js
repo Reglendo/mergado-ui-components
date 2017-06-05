@@ -4,12 +4,11 @@ const React = require("react");
 const react_dates_1 = require("react-dates");
 const Moment = require("moment");
 const config_1 = require("config");
-const Input_1 = require("components/Forms/Input");
-class DatePicker extends React.Component {
+const MUK = require("components/Forms/input");
+class DatePicker extends MUK.InputComponent {
     constructor(props) {
         super(props);
         this.name = config_1.prefix + "datepicker";
-        this.form = config_1.prefix + "form";
         const startDate = props.input.value ? Moment(props.input.value) : null;
         this.state = {
             startDate,
@@ -38,70 +37,31 @@ class DatePicker extends React.Component {
             this.setState({ focused: null });
         }
     }
-    render() {
+    renderInput() {
+        let picker;
         const { focused, startDate, endDate } = this.state;
         const { type, labels, defaults_single, defaults_range, numberOfMonths, minimumDays, meta } = this.props;
-        const props = this.props;
-        let picker;
         if (type === "single") {
             picker = React.createElement(react_dates_1.SingleDatePicker, Object.assign({}, defaults_single, { placeholder: labels.placeholder, date: startDate, focused: focused, numberOfMonths: numberOfMonths, onDateChange: this.onDateChange.bind(this), onFocusChange: this.onFocusChange.bind(this) }));
         }
         else {
             picker = React.createElement(react_dates_1.DateRangePicker, Object.assign({}, defaults_range, { numberOfMonths: numberOfMonths, minimumNights: minimumDays - 1, onDatesChange: this.onDatesChange.bind(this), onFocusChange: this.onFocusChange.bind(this), startDatePlaceholderText: labels.placeholderFrom, endDatePlaceholderText: labels.placeholderTo, focusedInput: this.state.focused, startDate: startDate, endDate: endDate }));
         }
-        return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
-            React.createElement(Input_1.InputError, Object.assign({}, props)),
-            React.createElement(Input_1.InputLabel, { name: this.name }, labels.main),
-            React.createElement("div", { className: `${this.name}__picker` }, picker)));
+        return (React.createElement("div", { className: `${this.name}__picker` }, picker));
+    }
+    renderLabel(className, props) {
+        const { labels } = this.props;
+        return labels.main;
     }
 }
-DatePicker.defaultProps = {
-    type: "single",
-    numberOfMonths: 1,
-    minimumDays: 1,
-    locale: "cs",
-    style: null,
-    input: {
-        checked: false,
-        name: "",
-        onBlur: (value) => {
-        },
-        onChange: (value) => {
-        },
-        onDragStart: (value) => {
-        },
-        onDrop: (value) => {
-        },
-        onFocus: (value) => {
-        },
-        value: "2017-04-06",
-    },
-    meta: {
-        active: false,
-        asyncValidating: false,
-        autofilled: false,
-        dirty: false,
-        dispatch: Function,
-        error: "",
-        form: "",
-        invalid: false,
-        pristine: true,
-        submitting: false,
-        submitFailed: false,
-        touched: false,
-        valid: true,
-        visited: false,
-        warning: "",
-    },
-    labels: {
+DatePicker.defaultProps = Object.assign({}, MUK.defaultProps, { type: "single", numberOfMonths: 1, minimumDays: 1, locale: "cs", labels: {
         main: "Pick date:",
         placeholder: "Click here...",
         invalid: "Invalid input",
         title: "",
         placeholderFrom: "Date from",
         placeholderTo: "Date to",
-    },
-    defaults_single: {
+    }, defaults_single: {
         // input related props
         id: "date",
         placeholder: "Date",
@@ -134,8 +94,7 @@ DatePicker.defaultProps = {
         // internationalization props
         displayFormat: () => Moment.localeData().longDateFormat("L"),
         monthFormat: "MMMM YYYY",
-    },
-    defaults_range: {
+    }, defaults_range: {
         // input related props
         startDateId: "startDate",
         startDatePlaceholderText: "",
@@ -172,7 +131,6 @@ DatePicker.defaultProps = {
         // internationalization
         displayFormat: () => Moment.localeData().longDateFormat("L"),
         monthFormat: "MMMM YYYY",
-    },
-};
+    } });
 exports.default = DatePicker;
 //# sourceMappingURL=index.js.map

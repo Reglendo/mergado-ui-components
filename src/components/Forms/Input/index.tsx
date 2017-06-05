@@ -1,25 +1,26 @@
 import * as React from "react"
 import { form } from "config"
 
-export const Input = ({...props}) => (
-    <div className={`${props.name}
-                     ${props.disabled ? this.name+`--`+ props.disabled : ""}
-                     ${props.required ? this.name+`--`+props.required : ""}
-                     ${props.addClass?props.addClass:``}
-                     ${form}__group
-                     ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${form}__group--invalid` : ""}
-                 `}
-         title={props.labels.title} style={props.style}>
+export const Input = ({group: {...addProps}, ...props}) => {
+    return (
+    <div className={`${props.name} \
+${props.disabled ? props.name+`--disabled` : ""} \
+${props.required ? props.name+`--required` : ""} \
+${addProps.className ? addProps.className : ""} \
+${form}__group \
+${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${form}__group--invalid` : ""}\
+`}
+        title={props.labels.title} style={props.style}>
             {props.children}
     </div>
-)
+)}
 
 export const InputLabel = ({children, name}) => {
     if(children === "") {
         return null
     }
     return (
-            <label className={`${name}__label ${form}__label ${form}__input`}>
+            <label className={`${name}__label ${form}__label`}>
                 {children}
             </label>
         )
