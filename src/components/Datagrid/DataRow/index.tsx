@@ -54,12 +54,10 @@ class DataRow extends React.Component<Props, State> {
                     {actions.length > 0 &&
                         <DataCell>
                             <Checkbox
-                                    checked={this.state.checked}
-                                    input={{ className: "bulk-action-item" }}
-                                    data-id={dataId}
-                                    onChange={(evt) => {
-                                                this.setState({ checked: !this.state.checked })
-                                    }} />
+                                input={{ "onChange": evt => this.setState({ checked: !this.state.checked }),
+                                         "checked": this.state.checked,
+                                         "data-id": dataId,
+                                      }} />
                         </DataCell>
                     }
                     {this.props.children}

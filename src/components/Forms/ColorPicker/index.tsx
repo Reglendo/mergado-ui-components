@@ -85,7 +85,6 @@ class ColorPicker extends MUK.InputComponent<Props, State> {
         return(
             <div className={`${this.name}__picker ${this.form}__input ${className}`}>
                 <input  {...input}
-                        {...props}
                         type="hidden"
                         value={background} />
                 <div className={`${this.name}__colorbox`}

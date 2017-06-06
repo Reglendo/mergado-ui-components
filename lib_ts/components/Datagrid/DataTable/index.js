@@ -14,7 +14,7 @@ class DataTable extends React.Component {
     }
     toggleCheckedAll() {
         this.setState({
-            checkedAll: !this.state.checkedAll
+            checkedAll: !this.state.checkedAll,
         });
     }
     renderChildren() {

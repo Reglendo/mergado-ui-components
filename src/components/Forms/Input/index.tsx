@@ -3,7 +3,9 @@ import { form } from "config"
 
 export const Input = ({group: {...addProps}, ...props}) => {
     return (
-    <div className={`${props.name} \
+    <div
+        {...addProps}
+        className={`${props.name} \
 ${props.disabled ? props.name+`--disabled` : ""} \
 ${props.required ? props.name+`--required` : ""} \
 ${addProps.className ? addProps.className : ""} \

@@ -57,7 +57,6 @@ class Range extends MUK.InputComponent<Props,State> {
             <span>
                 <input
                     {...input}
-                    {...props}
                     className={`${this.name}__item
                                 ${this.form}__input--text ${this.form}__input--range
                                 ${className}}`}

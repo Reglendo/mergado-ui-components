@@ -26,7 +26,6 @@ class Textarea extends MUK.InputComponent<Props, State> {
         return (
             <textarea
                 {...input}
-                {...props}
                 className={`${this.name}__input
                             ${this.form}__input--text
                             ${this.form}__input--textarea

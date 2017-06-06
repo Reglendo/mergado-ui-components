@@ -6,6 +6,7 @@ export interface Props {
     group?: {
         className?: string,
         style?: any,
+        [propName: string]: any,
     },
     input?: {
         className?: string,
@@ -20,6 +21,7 @@ export interface Props {
         onKeyDown?: (value: any) => void,
         onKeyUp?: (value: any) => void,
         onClick?: (value: any) => void,
+        [propName: string]: any,
     }
     meta?: {
         active: boolean,
@@ -44,7 +46,6 @@ export interface Props {
         title?: string,
         placeholder?: string,
     }
-    [propName: string]: any,
 }
 
 export interface State {

@@ -15,7 +15,7 @@ class DataHeader extends React.Component {
             React.createElement("tr", { className: `${this.name} ${this.name}--header ${addClass}`, style: style },
                 actions.length > 0 &&
                     React.createElement(DataCell_1.default, { type: "header", style: { width: "1%" } },
-                        React.createElement(Checkbox_1.default, { ref: "bulk-check", onChange: this.props.checkAll, checked: this.props.checkedAll ? true : false })),
+                        React.createElement(Checkbox_1.default, { input: { onChange: this.props.checkAll, checked: this.props.checkedAll ? true : false } })),
                 this.props.children)));
     }
 }

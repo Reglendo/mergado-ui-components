@@ -33,8 +33,8 @@ class DataHeader extends React.Component<Props, State> {
                 <tr className={`${this.name} ${this.name}--header ${addClass}`} style={style}>
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
-                            <Checkbox ref="bulk-check" onChange={this.props.checkAll}
-                                        checked={this.props.checkedAll ? true:false}
+                            <Checkbox
+                                input={{ onChange: this.props.checkAll, checked: this.props.checkedAll ? true:false }}
                             />
                         </DataCell>
                     }

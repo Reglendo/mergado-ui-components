@@ -9485,7 +9485,7 @@ class Checkbox extends MUK.InputComponent {
     renderLabel(className, props) {
         const { input, labels } = this.props;
         return React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, props, { type: "checkbox", className: `${this.name}__item ${className}`, defaultChecked: input ? !!input.value : false })),
+            React.createElement("input", Object.assign({}, input, { type: "checkbox", className: `${this.name}__item ${className}`, defaultChecked: input ? !!input.value : false })),
             labels ? " " + labels.main : "");
     }
 }
@@ -9513,13 +9513,13 @@ const React = __webpack_require__(1);
 const config_1 = __webpack_require__(5);
 exports.Input = (_a) => {
     var addProps = __rest(_a.group, []), props = __rest(_a, ["group"]);
-    return (React.createElement("div", { className: `${props.name} \
+    return (React.createElement("div", Object.assign({}, addProps, { className: `${props.name} \
 ${props.disabled ? props.name + `--disabled` : ""} \
 ${props.required ? props.name + `--required` : ""} \
 ${addProps.className ? addProps.className : ""} \
 ${config_1.form}__group \
 ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}\
-`, title: props.labels.title, style: props.style }, props.children));
+`, title: props.labels.title, style: props.style }), props.children));
 };
 exports.InputLabel = ({ children, name }) => {
     if (children === "") {
@@ -15836,7 +15836,7 @@ class DataTable extends React.Component {
     }
     toggleCheckedAll() {
         this.setState({
-            checkedAll: !this.state.checkedAll
+            checkedAll: !this.state.checkedAll,
         });
     }
     renderChildren() {
@@ -15900,29 +15900,44 @@ class Button extends MUK.InputComponent {
     }
     renderHref(className, props) {
         const { link, labels, icon, input } = this.props;
-        return (React.createElement("a", Object.assign({}, input, props, { href: link, className: `${this.name}__item`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement("a", Object.assign({}, input, { href: link, className: `${this.name}__item`, title: labels.title }),
             icon,
             labels.main));
     }
     renderButton(className, props) {
         const { input, labels, icon } = this.props;
-        return (React.createElement("button", Object.assign({}, input, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement("button", Object.assign({}, input, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
     renderLink(className, props) {
         const { link, labels, icon, input } = this.props;
-        return (React.createElement(react_router_1.Link, Object.assign({}, props, { to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement(react_router_1.Link, { to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title },
             icon,
             labels.main));
     }
     renderSubmit(className, props) {
         const { meta, input, labels } = this.props;
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
         return (React.createElement("input", Object.assign({}, input, { type: "submit", className: `${this.name}__item ${className ? className : ""}`, value: `${labels.main}`, title: labels.title })));
     }
     renderVoid(className, props) {
         const { input, labels, icon } = this.props;
-        return (React.createElement("span", Object.assign({}, input, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement("span", Object.assign({}, input, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
@@ -15971,7 +15986,7 @@ class TextInput extends MUK.InputComponent {
         if (type === "file") {
             delete inputProps.value;
         }
-        return (React.createElement("input", Object.assign({}, input, props, { placeholder: this.props.labels.placeholder, ref: "input", className: `${this.name}__input \
+        return (React.createElement("input", Object.assign({}, input, { placeholder: this.props.labels.placeholder, ref: "input", className: `${this.name}__input \
 ${this.form}__input--text \
 ${this.form}__input--${type} \
 ${className}` })));
@@ -39199,7 +39214,7 @@ class DataHeader extends React.Component {
             React.createElement("tr", { className: `${this.name} ${this.name}--header ${addClass}`, style: style },
                 actions.length > 0 &&
                     React.createElement(DataCell_1.default, { type: "header", style: { width: "1%" } },
-                        React.createElement(Checkbox_1.default, { ref: "bulk-check", onChange: this.props.checkAll, checked: this.props.checkedAll ? true : false })),
+                        React.createElement(Checkbox_1.default, { input: { onChange: this.props.checkAll, checked: this.props.checkedAll ? true : false } })),
                 this.props.children)));
     }
 }
@@ -39245,8 +39260,9 @@ class DataRow extends React.Component {
         return (React.createElement("tr", { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, key: unique_id_1.default(), "data-id": dataId, style: style },
             actions.length > 0 &&
                 React.createElement(DataCell_1.default, null,
-                    React.createElement(Checkbox_1.default, { checked: this.state.checked, input: { className: "bulk-action-item" }, "data-id": dataId, onChange: (evt) => {
-                            this.setState({ checked: !this.state.checked });
+                    React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.setState({ checked: !this.state.checked }),
+                            "checked": this.state.checked,
+                            "data-id": dataId,
                         } })),
             this.props.children));
     }
@@ -39755,7 +39771,7 @@ class ColorPicker extends MUK.InputComponent {
         const { input, meta } = this.props;
         const background = `rgba(${color.r},${color.g},${color.b},${color.a})`;
         return (React.createElement("div", { className: `${this.name}__picker ${this.form}__input ${className}` },
-            React.createElement("input", Object.assign({}, input, props, { type: "hidden", value: background })),
+            React.createElement("input", Object.assign({}, input, { type: "hidden", value: background })),
             React.createElement("div", { className: `${this.name}__colorbox`, style: { background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     }
@@ -39785,7 +39801,7 @@ class Radio extends MUK.InputComponent {
     renderLabel(className, props) {
         const { input, meta, labels } = this.props;
         return (React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, props, { className: `${this.name}__item ${className}`, type: "radio" })),
+            React.createElement("input", Object.assign({}, input, { className: `${this.name}__item ${className}`, type: "radio" })),
             "\u00A0",
             this.props.labels.main));
     }
@@ -39827,7 +39843,7 @@ class Range extends MUK.InputComponent {
         const outputId = `${meta.form}-${input.name}_output`;
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
         return (React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, props, { className: `${this.name}__item
+            React.createElement("input", Object.assign({}, input, { className: `${this.name}__item
                                 ${this.form}__input--text ${this.form}__input--range
                                 ${className}}`, type: "range", max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
                     const target = evt.target;
@@ -39880,7 +39896,7 @@ class Select extends MUK.InputComponent {
     renderInput(className, props) {
         const { meta, input, labels } = this.props;
         delete props.options;
-        return (React.createElement("select", Object.assign({}, input, props, { className: `${this.name}__item ${className}` }), this.renderOptions()));
+        return (React.createElement("select", Object.assign({}, input, { className: `${this.name}__item ${className}` }), this.renderOptions()));
     }
     renderLabel(className, props) {
         return this.props.labels.main;
@@ -39910,7 +39926,7 @@ class Textarea extends MUK.InputComponent {
     }
     renderInput(className, props) {
         const { input, labels } = this.props;
-        return (React.createElement("textarea", Object.assign({}, input, props, { className: `${this.name}__input
+        return (React.createElement("textarea", Object.assign({}, input, { className: `${this.name}__input
                             ${this.form}__input--text
                             ${this.form}__input--textarea
                             ${className}

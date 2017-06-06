@@ -50,7 +50,7 @@ class DataTable extends React.Component<Props, State> {
 
     protected toggleCheckedAll() {
         this.setState({
-            checkedAll: !this.state.checkedAll
+            checkedAll: !this.state.checkedAll,
         })
     }
 

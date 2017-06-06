@@ -25,8 +25,9 @@ class DataRow extends React.Component {
         return (React.createElement("tr", { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, key: unique_id_1.default(), "data-id": dataId, style: style },
             actions.length > 0 &&
                 React.createElement(DataCell_1.default, null,
-                    React.createElement(Checkbox_1.default, { checked: this.state.checked, input: { className: "bulk-action-item" }, "data-id": dataId, onChange: (evt) => {
-                            this.setState({ checked: !this.state.checked });
+                    React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.setState({ checked: !this.state.checked }),
+                            "checked": this.state.checked,
+                            "data-id": dataId,
                         } })),
             this.props.children));
     }

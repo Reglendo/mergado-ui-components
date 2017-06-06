@@ -28,7 +28,7 @@ class Select extends MUK.InputComponent {
     renderInput(className, props) {
         const { meta, input, labels } = this.props;
         delete props.options;
-        return (React.createElement("select", Object.assign({}, input, props, { className: `${this.name}__item ${className}` }), this.renderOptions()));
+        return (React.createElement("select", Object.assign({}, input, { className: `${this.name}__item ${className}` }), this.renderOptions()));
     }
     renderLabel(className, props) {
         return this.props.labels.main;

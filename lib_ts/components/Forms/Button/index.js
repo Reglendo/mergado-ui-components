@@ -11,29 +11,44 @@ class Button extends MUK.InputComponent {
     }
     renderHref(className, props) {
         const { link, labels, icon, input } = this.props;
-        return (React.createElement("a", Object.assign({}, input, props, { href: link, className: `${this.name}__item`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement("a", Object.assign({}, input, { href: link, className: `${this.name}__item`, title: labels.title }),
             icon,
             labels.main));
     }
     renderButton(className, props) {
         const { input, labels, icon } = this.props;
-        return (React.createElement("button", Object.assign({}, input, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement("button", Object.assign({}, input, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
     renderLink(className, props) {
         const { link, labels, icon, input } = this.props;
-        return (React.createElement(react_router_1.Link, Object.assign({}, props, { to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement(react_router_1.Link, { to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title },
             icon,
             labels.main));
     }
     renderSubmit(className, props) {
         const { meta, input, labels } = this.props;
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
         return (React.createElement("input", Object.assign({}, input, { type: "submit", className: `${this.name}__item ${className ? className : ""}`, value: `${labels.main}`, title: labels.title })));
     }
     renderVoid(className, props) {
         const { input, labels, icon } = this.props;
-        return (React.createElement("span", Object.assign({}, input, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        delete props.link;
+        delete props.labels;
+        delete props.icon;
+        return (React.createElement("span", Object.assign({}, input, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }

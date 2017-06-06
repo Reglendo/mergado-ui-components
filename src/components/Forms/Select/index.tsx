@@ -43,7 +43,6 @@ class Select extends MUK.InputComponent<Props, State> {
         return (
             <select
                 {...input}
-                {...props}
                 className={`${this.name}__item ${className}`}
             >
                 {this.renderOptions()}

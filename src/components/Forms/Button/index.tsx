@@ -31,10 +31,12 @@ class Button extends MUK.InputComponent<Props, State> {
 
     protected renderHref(className, props) {
         const { link, labels, icon, input } = this.props
+        delete props.link
+        delete props.labels
+        delete props.icon
         return (
             <a
                 {...input}
-                {...props}
                 href={link}
                 className={`${this.name}__item`}
                 title={labels.title}>
@@ -43,10 +45,12 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderButton(className, props) {
         const { input, labels, icon } = this.props
+        delete props.link
+        delete props.labels
+        delete props.icon
         return (
             <button
                 {...input}
-                {...props}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}
@@ -54,9 +58,11 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderLink(className, props) {
         const { link, labels, icon, input } = this.props
+        delete props.link
+        delete props.labels
+        delete props.icon
         return (
             <Link
-                {...props}
                 to={link}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
@@ -65,6 +71,9 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderSubmit(className, props) {
         const { meta, input, labels } = this.props
+        delete props.link
+        delete props.labels
+        delete props.icon
         return (
             <input
                 {...input}
@@ -76,10 +85,12 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderVoid(className, props) {
         const { input, labels, icon } = this.props
+        delete props.link
+        delete props.labels
+        delete props.icon
         return (
             <span
                 {...input}
-                {...props}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}
