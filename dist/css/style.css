@@ -541,36 +541,57 @@ table {
   margin-bottom: 1.5em; }
 
 /* COLORS */
-.muk-datagrid {
+.muk-datagrid__table {
   width: 100%; }
-  .muk-datagrid__row {
-    background: #fff; }
-    .muk-datagrid__row:not(.no-hover):hover .muk-datagrid__cell {
-      background: #fdf7d2; }
-    .muk-datagrid__row--header {
-      font-size: 13px;
-      background: #333;
-      height: 30px;
-      line-height: 30px;
-      color: #fff;
-      text-align: left; }
-    .muk-datagrid__row--inactive {
-      color: #ccc; }
-      .muk-datagrid__row--inactive .muk-icon--pause, .muk-datagrid__row--inactive .muk-icon--play {
-        color: #333; }
-  .muk-datagrid__cell {
-    padding: 8px 10px;
-    text-align: left;
-    border-bottom: 1px solid #dbcba3;
-    font-weight: normal;
-    border-right: #dbcba3 1px dotted;
-    font-size: 13.3px; }
-    .muk-datagrid__cell--header {
-      background: #333 !important;
-      padding: 0 10px;
-      border-color: transparent;
-      font-weight: bold;
-      white-space: nowrap; }
+
+.muk-datagrid__row {
+  background: #fff; }
+  .muk-datagrid__row:not(.no-hover):hover .muk-datagrid__cell {
+    background: #fdf7d2; }
+  .muk-datagrid__row--header {
+    font-size: 13px;
+    background: #333;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    text-align: left; }
+  .muk-datagrid__row--inactive {
+    color: #ccc; }
+    .muk-datagrid__row--inactive .muk-icon--pause, .muk-datagrid__row--inactive .muk-icon--play {
+      color: #333; }
+
+.muk-datagrid__cell {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #dbcba3;
+  font-weight: normal;
+  border-right: #dbcba3 1px dotted;
+  font-size: 13.3px; }
+  .muk-datagrid__cell--header {
+    background: #333 !important;
+    padding: 0 10px;
+    border-color: transparent;
+    font-weight: bold;
+    white-space: nowrap; }
+
+.muk-datagrid .muk-form__label {
+  padding: 0; }
+
+.muk-datagrid .muk-form__group {
+  margin: 0;
+  border: 0; }
+
+.muk-datagrid__actions_icons {
+  background: white;
+  display: inline-block;
+  height: 36px;
+  line-height: 35px;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 1px solid #dbcba3; }
+  .muk-datagrid__actions_icons svg {
+    width: 18px !important;
+    height: 18px !important; }
 
 /* COLORS */
 .muk-paginator {
