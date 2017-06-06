@@ -11,7 +11,6 @@ class DataHeader extends React.Component {
     }
     render() {
         const { actions, style, addClass } = this.props;
-        console.log(this.props.checkedAll);
         return (React.createElement("thead", null,
             React.createElement("tr", { className: `${this.name} ${this.name}--header ${addClass}`, style: style },
                 actions.length > 0 &&

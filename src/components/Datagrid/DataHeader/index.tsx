@@ -28,7 +28,6 @@ class DataHeader extends React.Component<Props, State> {
 
     public render() {
         const { actions, style, addClass } = this.props;
-        console.log(this.props.checkedAll)
         return (
             <thead>
                 <tr className={`${this.name} ${this.name}--header ${addClass}`} style={style}>

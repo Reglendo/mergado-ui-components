@@ -31,12 +31,10 @@ class DataBody extends React.Component<Props, State> {
     protected renderChildren() {
         const children: any = this.props.children
         return children.map(obj => {
-            if(obj.type.name === "DataRow") {
-
-                return <DataRow {...obj.props} checkedAll={this.props.checkedAll} actions={this.props.actions} />
-            } else {
-                return obj
-            }
+            return React.cloneElement(obj, {
+                actions: this.props.actions,
+                checkedAll: this.props.checkedAll,
+            })
         })
     }
 

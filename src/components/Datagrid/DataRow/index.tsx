@@ -67,4 +67,3 @@ class DataRow extends React.Component<Props, State> {
 }
 
 export default DataRow
-

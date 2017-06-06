@@ -49,7 +49,6 @@ class DataTable extends React.Component<Props, State> {
     }
 
     protected toggleCheckedAll() {
-        console.log('check')
         this.setState({
             checkedAll: !this.state.checkedAll
         })
@@ -58,26 +57,18 @@ class DataTable extends React.Component<Props, State> {
     protected renderChildren() {
         const children: any = this.props.children
         return children.map(obj => {
-            if(obj.type.name === "DataHeader") {
-                return <DataHeader {...obj.props} actions={this.props.bulkActions}
-                            checkAll={this.toggleCheckedAll.bind(this)}
-                            checkedAll={this.state.checkedAll}
-                            labels={this.props.labels} />
-            }
-            if(obj.type.name === "DataBody") {
-                return <DataBody {...obj.props}
-                        inputRef={el => this.inputElement = el}
-                        actions={this.props.bulkActions}
-                        labels={this.props.labels}
-                        checkedAll={this.state.checkedAll}
-                 />
-            }
+
+            return React.cloneElement(obj, {
+                actions: this.props.bulkActions,
+                checkedAll: this.state.checkedAll,
+                checkAll: this.toggleCheckedAll.bind(this),
+                labels: this.props.labels,
+            })
         })
     }
 
     protected renderBulkActionbar() {
         const { labels } = this.props
-        console.log(this)
         return (
             <div className={`${this.name}__actions_bar`}>
                 <InputLabel name="actionbar">{labels.actionsBar}</InputLabel>

@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const Sortable = require("react-sortablejs");
-const DataRow_1 = require("../DataRow");
 class DataBody extends React.Component {
     constructor() {
         super(...arguments);
@@ -12,12 +11,10 @@ class DataBody extends React.Component {
     renderChildren() {
         const children = this.props.children;
         return children.map(obj => {
-            if (obj.type.name === "DataRow") {
-                return React.createElement(DataRow_1.default, Object.assign({}, obj.props, { checkedAll: this.props.checkedAll, actions: this.props.actions }));
-            }
-            else {
-                return obj;
-            }
+            return React.cloneElement(obj, {
+                actions: this.props.actions,
+                checkedAll: this.props.checkedAll,
+            });
         });
     }
     render() {
