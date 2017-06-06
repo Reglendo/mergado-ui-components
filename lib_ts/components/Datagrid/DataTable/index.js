@@ -11,23 +11,40 @@ class DataTable extends React.Component {
         this.name = config_1.prefix + "datagrid";
         this.state = {
             checkedAll: false,
+            selectedRows: [],
         };
     }
-    toggleCheckedAll() {
+    handleCheckAll() {
+        if (this.state.checkedAll) {
+            this.setState({
+                selectedRows: [],
+                checkedAll: false,
+            });
+        }
+        else {
+            const selected = [];
+            for (const checkbox of document.querySelectorAll(".bulk-action-item")) {
+                const item = checkbox;
+                selected.push(parseInt(item.getAttribute("data-id"), 10));
+            }
+            this.setState({
+                selectedRows: selected,
+                checkedAll: true,
+            });
+        }
+    }
+    handleSelectRow(id) {
+        const selected = this.state.selectedRows;
+        const index = selected.indexOf(id);
+        index === -1 ? selected.push(id) : selected.splice(index, 1);
         this.setState({
-            checkedAll: !this.state.checkedAll,
+            selectedRows: selected,
         });
     }
     renderChildren() {
         const children = this.props.children;
         return children.map(obj => {
-            return React.cloneElement(obj, {
-                key: unique_id_1.default(),
-                actions: this.props.bulkActions,
-                checkedAll: this.state.checkedAll,
-                checkAll: this.toggleCheckedAll.bind(this),
-                labels: this.props.labels,
-            });
+            return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, checkedAll: this.state.checkedAll, checkAll: this.handleCheckAll.bind(this), labels: this.props.labels, selectRow: this.handleSelectRow.bind(this), selected: this.state.selectedRows }));
         });
     }
     renderBulkActionbar() {
@@ -37,9 +54,9 @@ class DataTable extends React.Component {
             React.createElement("div", { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {
-        const ButtonEl = Button_1.default;
+        const disabled = this.state.selectedRows.length === 0;
         return this.props.bulkActions.map(obj => {
-            return (React.createElement(ButtonEl, { onClick: obj.action, key: obj.type, icon: obj.icon, color: "nocolor", size: "tiny", disabled: !!obj.disabled }));
+            return (React.createElement(Button_1.default, { onClick: obj.action, key: obj.type, icon: obj.icon, disabled: disabled, color: "nocolor", size: "tiny" }));
         });
     }
     render() {

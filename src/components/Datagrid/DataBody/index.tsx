@@ -11,6 +11,8 @@ export interface Props {
     sortableProps?: any
     actions?: Action[]
     checkedAll?: boolean
+    selectRow?: any
+    selected?: any
 }
 
 export interface State {
@@ -34,6 +36,8 @@ class DataBody extends React.Component<Props, State> {
             return React.cloneElement(obj, {
                 actions: this.props.actions,
                 checkedAll: this.props.checkedAll,
+                selectRow: this.props.selectRow,
+                selected: this.props.selected,
             })
         })
     }

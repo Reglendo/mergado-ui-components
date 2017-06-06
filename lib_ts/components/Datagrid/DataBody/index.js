@@ -14,6 +14,8 @@ class DataBody extends React.Component {
             return React.cloneElement(obj, {
                 actions: this.props.actions,
                 checkedAll: this.props.checkedAll,
+                selectRow: this.props.selectRow,
+                selected: this.props.selected,
             });
         });
     }

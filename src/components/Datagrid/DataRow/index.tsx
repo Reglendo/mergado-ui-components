@@ -13,6 +13,8 @@ export interface Props {
     dataId?: number | string
     actions?: Action[]
     checkedAll?: boolean
+    selectRow?: any
+    selected?: any
 }
 
 export interface State {
@@ -27,6 +29,7 @@ class DataRow extends React.Component<Props, State> {
         inactive: false,
         dataId: "",
         actions: [],
+        selected: [],
     }
     private readonly name = prefix + "datagrid__row"
 
@@ -38,6 +41,7 @@ class DataRow extends React.Component<Props, State> {
     }
 
     public componentWillReceiveProps(nextProps) {
+
         if(this.props.checkedAll !== nextProps.checkedAll) {
             this.setState({
                 checked: nextProps.checkedAll,
@@ -46,7 +50,6 @@ class DataRow extends React.Component<Props, State> {
     }
 
     public render() {
-
         const { style, addClass, inactive, dataId, actions } = this.props
         return (
             <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
@@ -55,8 +58,12 @@ class DataRow extends React.Component<Props, State> {
                     {actions.length > 0 &&
                         <DataCell>
                             <Checkbox
-                                input={{ "onChange": evt => this.setState({ checked: !this.state.checked }),
-                                         "checked": this.state.checked,
+                                input={{ "onChange": evt => {
+                                                this.props.selectRow(dataId)
+                                            },
+                                         "onClick": evt => {
+                                         },
+                                         "checked": this.props.selected.indexOf(dataId) !== -1,
                                          "data-id": dataId,
                                          "className": "bulk-action-item",
                                       }} />

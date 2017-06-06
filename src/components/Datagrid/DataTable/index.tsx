@@ -8,7 +8,7 @@ import uniqueId from "helpers/unique_id"
 export interface Action {
     type: string
     icon: JSX.Element | string
-    action: (evt: any) => void
+    action: () => any
     disabled: boolean
 }
 
@@ -23,6 +23,7 @@ export interface Props {
 }
 export interface State {
     checkedAll: boolean
+    selectedRows: any
 }
 
 class DataTable extends React.Component<Props, State> {
@@ -45,12 +46,37 @@ class DataTable extends React.Component<Props, State> {
 
         this.state = {
             checkedAll: false,
+            selectedRows: [],
         }
     }
 
-    protected toggleCheckedAll() {
+    protected handleCheckAll() {
+        if(this.state.checkedAll) {
+            this.setState({
+                selectedRows: [],
+                checkedAll: false,
+            })
+        } else {
+            const selected = []
+            for ( const checkbox of document.querySelectorAll(".bulk-action-item")) {
+                const item: any = checkbox
+                selected.push(parseInt(item.getAttribute("data-id"), 10))
+            }
+            this.setState({
+                selectedRows: selected,
+                checkedAll: true,
+            })
+        }
+    }
+
+    protected handleSelectRow(id) {
+        const selected = this.state.selectedRows
+        const index = selected.indexOf(id)
+
+        index === -1 ? selected.push(id) : selected.splice(index,1)
+
         this.setState({
-            checkedAll: !this.state.checkedAll,
+            selectedRows: selected,
         })
     }
 
@@ -59,11 +85,14 @@ class DataTable extends React.Component<Props, State> {
         return children.map(obj => {
 
             return React.cloneElement(obj, {
+                ...obj.props,
                 key: uniqueId(),
                 actions: this.props.bulkActions,
                 checkedAll: this.state.checkedAll,
-                checkAll: this.toggleCheckedAll.bind(this),
+                checkAll: this.handleCheckAll.bind(this),
                 labels: this.props.labels,
+                selectRow: this.handleSelectRow.bind(this),
+                selected: this.state.selectedRows,
             })
         })
     }
@@ -81,10 +110,14 @@ class DataTable extends React.Component<Props, State> {
     }
 
     protected renderBulkActions() {
-        const ButtonEl: any = Button
+        const disabled = this.state.selectedRows.length === 0
         return this.props.bulkActions.map(obj => {
-            return (<ButtonEl onClick={obj.action} key={obj.type} icon={obj.icon}
-                            color="nocolor" size="tiny" disabled={!!obj.disabled} />)
+            return (<Button onClick={obj.action}
+                            key={obj.type}
+                            icon={obj.icon}
+                            disabled={disabled}
+                            color="nocolor"
+                            size="tiny" />)
         })
     }
 
