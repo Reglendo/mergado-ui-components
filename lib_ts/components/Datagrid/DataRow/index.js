@@ -10,7 +10,7 @@ class DataRow extends React.Component {
         super(props);
         this.name = config_1.prefix + "datagrid__row";
         this.state = {
-            checked: false,
+            checked: props.checkedAll,
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -28,6 +28,7 @@ class DataRow extends React.Component {
                     React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.setState({ checked: !this.state.checked }),
                             "checked": this.state.checked,
                             "data-id": dataId,
+                            "className": "bulk-action-item",
                         } })),
             this.props.children));
     }

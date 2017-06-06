@@ -34,7 +34,7 @@ class DataHeader extends React.Component<Props, State> {
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
                             <Checkbox
-                                input={{ onChange: this.props.checkAll, checked: this.props.checkedAll ? true:false }}
+                                input={{ onChange: this.props.checkAll, checked: this.props.checkedAll}}
                             />
                         </DataCell>
                     }

@@ -33,7 +33,7 @@ class DataRow extends React.Component<Props, State> {
     public constructor(props) {
         super(props)
         this.state = {
-            checked: false,
+            checked: props.checkedAll,
         }
     }
 
@@ -46,6 +46,7 @@ class DataRow extends React.Component<Props, State> {
     }
 
     public render() {
+
         const { style, addClass, inactive, dataId, actions } = this.props
         return (
             <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
@@ -57,6 +58,7 @@ class DataRow extends React.Component<Props, State> {
                                 input={{ "onChange": evt => this.setState({ checked: !this.state.checked }),
                                          "checked": this.state.checked,
                                          "data-id": dataId,
+                                         "className": "bulk-action-item",
                                       }} />
                         </DataCell>
                     }
