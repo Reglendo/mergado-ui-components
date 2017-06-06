@@ -4,7 +4,7 @@ import DataHeader from "../DataHeader"
 import DataBody from "../DataBody"
 import Button from "components/Forms/Button"
 import {InputLabel} from "components/Forms/Input"
-
+import uniqueId from "helpers/unique_id"
 export interface Action {
     type: string
     icon: JSX.Element | string
@@ -59,6 +59,7 @@ class DataTable extends React.Component<Props, State> {
         return children.map(obj => {
 
             return React.cloneElement(obj, {
+                key: uniqueId(),
                 actions: this.props.bulkActions,
                 checkedAll: this.state.checkedAll,
                 checkAll: this.toggleCheckedAll.bind(this),
@@ -82,7 +83,7 @@ class DataTable extends React.Component<Props, State> {
     protected renderBulkActions() {
         const ButtonEl: any = Button
         return this.props.bulkActions.map(obj => {
-            return (<ButtonEl onClick={obj.action} icon={obj.icon}
+            return (<ButtonEl onClick={obj.action} key={obj.type} icon={obj.icon}
                             color="nocolor" size="tiny" disabled={!!obj.disabled} />)
         })
     }

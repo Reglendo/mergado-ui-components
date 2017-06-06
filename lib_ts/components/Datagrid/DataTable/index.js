@@ -4,6 +4,7 @@ const React = require("react");
 const config_1 = require("config");
 const Button_1 = require("components/Forms/Button");
 const Input_1 = require("components/Forms/Input");
+const unique_id_1 = require("helpers/unique_id");
 class DataTable extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +22,7 @@ class DataTable extends React.Component {
         const children = this.props.children;
         return children.map(obj => {
             return React.cloneElement(obj, {
+                key: unique_id_1.default(),
                 actions: this.props.bulkActions,
                 checkedAll: this.state.checkedAll,
                 checkAll: this.toggleCheckedAll.bind(this),
@@ -37,7 +39,7 @@ class DataTable extends React.Component {
     renderBulkActions() {
         const ButtonEl = Button_1.default;
         return this.props.bulkActions.map(obj => {
-            return (React.createElement(ButtonEl, { onClick: obj.action, icon: obj.icon, color: "nocolor", size: "tiny", disabled: !!obj.disabled }));
+            return (React.createElement(ButtonEl, { onClick: obj.action, key: obj.type, icon: obj.icon, color: "nocolor", size: "tiny", disabled: !!obj.disabled }));
         });
     }
     render() {

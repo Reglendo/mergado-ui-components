@@ -10,6 +10,7 @@ export interface Props extends MUK.Props {
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
     disabled?: boolean
+    onClick?: () => any
 }
 
 export interface State {
@@ -31,12 +32,10 @@ class Button extends MUK.InputComponent<Props, State> {
 
     protected renderHref(className, props) {
         const { link, labels, icon, input } = this.props
-        delete props.link
-        delete props.labels
-        delete props.icon
         return (
             <a
                 {...input}
+                onClick={this.props.onClick}
                 href={link}
                 className={`${this.name}__item`}
                 title={labels.title}>
@@ -45,12 +44,10 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderButton(className, props) {
         const { input, labels, icon } = this.props
-        delete props.link
-        delete props.labels
-        delete props.icon
         return (
             <button
                 {...input}
+                onClick={this.props.onClick}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}
@@ -58,11 +55,9 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderLink(className, props) {
         const { link, labels, icon, input } = this.props
-        delete props.link
-        delete props.labels
-        delete props.icon
         return (
             <Link
+                onClick={this.props.onClick}
                 to={link}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
@@ -71,12 +66,10 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderSubmit(className, props) {
         const { meta, input, labels } = this.props
-        delete props.link
-        delete props.labels
-        delete props.icon
         return (
             <input
                 {...input}
+                onClick={this.props.onClick}
                 type="submit"
                 className={`${this.name}__item ${className ? className : ""}`}
                 value={`${labels.main}`}
@@ -85,12 +78,10 @@ class Button extends MUK.InputComponent<Props, State> {
     }
     protected renderVoid(className, props) {
         const { input, labels, icon } = this.props
-        delete props.link
-        delete props.labels
-        delete props.icon
         return (
             <span
                 {...input}
+                onClick={this.props.onClick}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}
