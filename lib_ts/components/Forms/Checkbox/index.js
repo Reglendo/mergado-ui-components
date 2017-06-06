@@ -12,7 +12,8 @@ class Checkbox extends MUK.InputComponent {
         const { input, labels } = this.props;
         return React.createElement("span", null,
             React.createElement("input", Object.assign({}, input, { type: "checkbox", className: `${this.name}__item ${className}`, defaultChecked: input ? !!input.value : false })),
-            labels ? " " + labels.main : "");
+            labels && " ",
+            labels ? labels.main : "");
     }
 }
 Checkbox.defaultProps = Object.assign({}, MUK.defaultProps);

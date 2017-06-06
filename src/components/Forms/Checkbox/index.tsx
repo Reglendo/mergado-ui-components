@@ -29,7 +29,8 @@ class Checkbox extends MUK.InputComponent<Props, State> {
                         className={`${this.name}__item ${className}`}
                         defaultChecked={input ? !!input.value : false}
                         />
-                    {labels ? " " + labels.main : ""}
+                    {labels && " "}
+                    {labels ? labels.main : ""}
                 </span>
     }
 
