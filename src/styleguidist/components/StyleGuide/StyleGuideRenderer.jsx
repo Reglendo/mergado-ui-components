@@ -30,6 +30,26 @@ const style = `
                 border-radius: 0;
             }
 
+            .ReactStyleguidist-PlaygroundError__root {
+                position: absolute;
+                top: 0;
+                opacity: 0.8;
+                width: 100%;
+                bottom: 0;
+                text-align: left;
+                height: 100%;
+                z-index: 100000;
+                margin: 0;
+            }
+
+            .ReactStyleguidist-PlaygroundError__root + div {
+                opacity: 0.7
+            }
+
+            .rsg--example-preview > div {
+                position: relative;
+            }
+
             body {
                 overflow: hidden;
                 position: relative;
@@ -40,6 +60,7 @@ const style = `
 try {
     require("../../../sass/main.sass")
 } catch(e) { }
+var json = require("../../../../package.json")
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, switchCompact, switchSidebar }) => {
     var exported = [];
@@ -127,7 +148,13 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, switchCo
     				</div>
     				{sidebar &&
     					<div className={s.sidebar}>
-    			        <h1 className={s.heading}><Icon type="mergado" size="32" /> &nbsp; <span className={s.title}>{title}</span></h1>
+    			        <h1 className={s.heading}>
+                            <span style={{display: 'inline-block'}}>
+                                <Icon type="mergado" size="32" text={title}/>
+                                <br/>
+                                <span style={{fontSize: '10px', float: 'right', paddingRight: '5px'}}>{json.version}</span>
+                            </span>
+                        </h1>
 
                         {toc}
 

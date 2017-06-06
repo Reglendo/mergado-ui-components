@@ -3,104 +3,57 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const react_router_1 = require("react-router");
-class Button extends React.Component {
+const MUK = require("components/Forms/input");
+class Button extends MUK.InputComponent {
     constructor() {
         super(...arguments);
         this.name = config_1.prefix + "button";
-        this.form = config_1.prefix + "form";
     }
-    renderHref() {
-        const { link, labels, icon, onClick } = this.props;
-        return (React.createElement("a", { href: link, className: `${this.name}__item`, onClick: onClick, title: labels.title },
+    renderHref(className, props) {
+        const { link, labels, icon, input } = this.props;
+        return (React.createElement("a", Object.assign({}, props, { href: link, className: `${this.name}__item`, title: labels.title }),
             icon,
             labels.main));
     }
-    renderButton() {
-        const { input, labels, icon, onClick } = this.props;
-        return (React.createElement("button", Object.assign({ className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title }, this.props.addProps),
+    renderButton(className, props) {
+        const { input, labels, icon } = this.props;
+        return (React.createElement("button", Object.assign({}, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
-    renderLink() {
-        const { link, labels, icon, onClick } = this.props;
-        return (React.createElement(react_router_1.Link, { to: link, className: `${this.name}__item`, onClick: onClick, title: labels.title },
+    renderLink(className, props) {
+        const { link, labels, icon, input } = this.props;
+        return (React.createElement(react_router_1.Link, Object.assign({}, props, { to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
-    renderSubmit() {
-        const { meta, input, labels, onClick } = this.props;
-        const inputId = `${meta.form}-${input.name}`;
-        return (React.createElement("input", Object.assign({ type: "submit", className: `${this.name}__item`, value: `${labels.main}`, id: inputId, name: input.name, title: labels.title, onClick: onClick }, this.props.addProps)));
+    renderSubmit(className, props) {
+        const { meta, input, labels } = this.props;
+        return (React.createElement("input", Object.assign({}, props, { type: "submit", className: `${this.name}__item ${className ? className : ""}`, value: `${labels.main}`, title: labels.title })));
     }
-    renderVoid() {
-        const { input, labels, icon, onClick } = this.props;
-        return (React.createElement("span", { className: `${this.name}__item`, onClick: onClick, name: input.name, title: labels.title },
+    renderVoid(className, props) {
+        const { input, labels, icon } = this.props;
+        return (React.createElement("span", Object.assign({}, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
-    render() {
-        const { type, color, state, size, addClass, meta } = this.props;
-        return (React.createElement("div", { className: `${this.name} ${this.name}--${color}
-                             ${!this.props.labels.main ? this.name + `--notext` : ``}
-                             ${size ? this.name + `--` + size : ``}
-                             ${state ? this.name + `--` + state : ``}
-                             ${addClass ? addClass : ``}
-                         `, title: this.props.labels.title, style: this.props.style },
-            type === "button" && this.renderButton(),
-            type === "link" && this.renderLink(),
-            type === "submit" && this.renderSubmit(),
-            type === "void" && this.renderVoid(),
-            type === "href" && this.renderHref()));
+    renderLabel() {
+        return React.createElement("span", null);
+    }
+    renderInput(className, props) {
+        const { type, color, disabled, size, meta } = this.props;
+        return (React.createElement("div", { className: `${this.name}--${color} \
+${!this.props.labels.main ? this.name + `--notext` : ``} \
+${size ? this.name + `--` + size : ``} \
+${disabled ? this.name + `--disabled` : ``} \
+` },
+            type === "button" && this.renderButton(className, props),
+            type === "link" && this.renderLink(className, props),
+            type === "submit" && this.renderSubmit(className, props),
+            type === "void" && this.renderVoid(className, props),
+            type === "href" && this.renderHref(className, props)));
     }
 }
-Button.defaultProps = {
-    type: "button",
-    onClick: (event) => {
-        return true;
-    },
-    icon: null,
-    color: "blue",
-    state: "",
-    size: "",
-    style: null,
-    addClass: "",
-    input: {
-        checked: false,
-        name: "",
-        onBlur: (value) => {
-        },
-        onChange: (value) => {
-        },
-        onDragStart: (value) => {
-        },
-        onDrop: (value) => {
-        },
-        onFocus: (value) => {
-        },
-        value: "",
-    },
-    meta: {
-        active: false,
-        asyncValidating: false,
-        autofilled: false,
-        dirty: false,
-        dispatch: Function,
-        error: "",
-        form: "",
-        invalid: false,
-        pristine: true,
-        submitting: false,
-        submitFailed: false,
-        touched: false,
-        valid: true,
-        visited: false,
-        warning: "",
-    },
-    labels: {
-        main: null,
-        invalid: "Invalid input",
-        title: "",
-    },
-};
+Button.defaultProps = Object.assign({}, MUK.defaultProps, { type: "button", icon: null, color: "blue", disabled: false, size: "" });
 exports.default = Button;
 //# sourceMappingURL=index.js.map

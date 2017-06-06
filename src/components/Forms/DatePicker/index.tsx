@@ -1,19 +1,20 @@
 import * as React from "react"
-import InputProps from "components/Forms/default_props"
 import { SingleDatePicker, DateRangePicker } from "react-dates";
 import * as Moment from "moment"
 import {prefix} from "config"
+import {Input, InputLabel, InputError} from "components/Forms/Input"
+import * as MUK from "components/Forms/input"
 
-export interface Props extends InputProps {
+export interface Props extends MUK.Props {
     type?: "single" | "range"
     numberOfMonths?: number
     minimumDays?: number
     locale?: string
     labels?: {
-        main: string | JSX.Element,
-        placeholder: string,
-        invalid: string | JSX.Element,
-        title: string,
+        main?: string | JSX.Element,
+        placeholder?: string,
+        invalid?: string | JSX.Element,
+        title?: string,
         placeholderFrom: string,
         placeholderTo: string,
     }
@@ -21,7 +22,6 @@ export interface Props extends InputProps {
     }
     defaults_range?: {
     }
-    style?: any
 }
 
 export interface State {
@@ -30,49 +30,18 @@ export interface State {
     focused: boolean | "startDate" | "endDate"
 }
 
-class DatePicker extends React.Component<Props, State> {
+class DatePicker extends MUK.InputComponent<Props, State> {
 
-    private readonly name = prefix + "datepicker";
-    private readonly form = prefix + "form";
+    protected readonly name = prefix + "datepicker";
+    public readonly props: Props
+    public state: State
 
     public static defaultProps: Props = {
+        ...MUK.defaultProps,
         type: "single",
         numberOfMonths: 1,
         minimumDays: 1,
         locale: "cs",
-        style: null,
-        input: {
-            checked: false,
-            name: "",
-            onBlur: (value) => {
-            },
-            onChange: (value) => {
-            },
-            onDragStart: (value) => {
-            },
-            onDrop: (value) => {
-            },
-            onFocus: (value) => {
-            },
-            value: "2017-04-06",
-        },
-        meta: {
-            active: false,
-            asyncValidating: false,
-            autofilled: false,
-            dirty: false,
-            dispatch: Function,
-            error: "",
-            form: "",
-            invalid: false,
-            pristine: true,
-            submitting: false,
-            submitFailed: false,
-            touched: false,
-            valid: true,
-            visited: false,
-            warning: "",
-        },
         labels: {
             main: "Pick date:",
             placeholder: "Click here...",
@@ -199,22 +168,10 @@ class DatePicker extends React.Component<Props, State> {
         }
     }
 
-    protected renderInvalid() {
-        if(this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (
-                <div className={`${this.form}__validation`}>
-                    {this.props.labels.invalid}
-                </div>
-            )
-        }
-    }
-
-    public render() {
+    public renderInput() {
+        let picker: SingleDatePicker | DateRangePicker;
         const { focused, startDate, endDate } = this.state
         const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays, meta } = this.props
-
-        let picker: SingleDatePicker | DateRangePicker;
-
         if(type === "single") {
             picker = <SingleDatePicker
                 {...defaults_single}
@@ -239,18 +196,19 @@ class DatePicker extends React.Component<Props, State> {
                 endDate={endDate}
             />
         }
+
         return (
-            <div className={`${this.name} ${this.form}__group
-                            ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                            `} style={this.props.style}>
-                {this.renderInvalid()}
-                <span className={`${this.name}__label ${this.form}__label`}>{labels.main}</span>
-                <div className={`${this.name}__picker`}>
-                    {picker}
-                </div>
+            <div className={`${this.name}__picker`}>
+                {picker}
             </div>
         )
     }
+
+    public renderLabel(className, props) {
+        const { labels } = this.props
+        return labels.main
+    }
+
 }
 
 export default DatePicker

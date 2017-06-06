@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import Editor from 'rsg-components/Editor';
 import Preview from 'rsg-components/Preview';
-
 const s = require('./Playground.css');
 
 const PlaygroundRenderer = ({
@@ -18,21 +17,37 @@ const PlaygroundRenderer = ({
     onHtmlChange,
     innerHtml
 }) => {
-
 return (
 	<div className={s.root}>
 		<div className={s.preview + ' rsg--example-preview'}>
             <Preview code={code} evalInContext={evalInContext} changeHtml={onHtmlChange} showHtml={showHtml} />
-            <div className={s.htmlCode} style={{ display: showHtml?'block':'none'}} >
-                {innerHtml &&
-                    <Editor code={innerHtml} onChange={() => {}} />
-                }
-			</div>
             <div className={s.jsxCode} style={{ display: showCode?'block':'none', borderTop: '1px solid #f5ecd5'}} >
+
                 {showCode &&
-                    <Editor code={code} onChange={onChange} />
-                }
+                    (<div>
+                        <div className={s.header}>
+                            JSX code
+                            <button type="button" className={s.closeCode} onClick={onCodeToggle}>
+                                ✕
+                            </button>
+                        </div>
+                        <Editor code={code} onChange={onChange} />
+                        </div>
+                )}
             </div>
+            <div className={s.htmlCode} style={{ display: showHtml?'block':'none'}} >
+                {innerHtml && (
+                    <div>
+                        <div className={s.htmlheader}>
+                            HTML code
+                            <button type="button" className={s.closeCode} onClick={onHtmlToggle}>
+                                ✕
+                            </button>
+                        </div>
+                    <Editor htmlcode={innerHtml} theme="default" onChange={() => false}  />
+                    </div>
+                )}
+			</div>
 		</div>
         <div className={s.buttons}>
             {showHtml ? (

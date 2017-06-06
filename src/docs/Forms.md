@@ -1,5 +1,51 @@
+All forms components have common empty props based on redux-form's [Field props](http://redux-form.com/6.0.0-alpha.4/docs/api/Field.md/#props)
+
+```jsx
+group?: {
+    className?: string,
+},
+input?: {
+    className?: string,
+    name?: string,
+    value?: any,
+    checked?: boolean,
+    onBlur?: (value: any) => void,
+    onChange?: (value: any) => void,
+    onDragStart?: (value: any) => void,
+    onDrop?: (value: any) => void,
+    onFocus?: (value: any) => void,
+    onKeyDown?: (value: any) => void,
+    onKeyUp?: (value: any) => void,
+    onClick?: (value: any) => void,
+}
+meta?: {
+    active: boolean,
+    autofilled: boolean,
+    asyncValidating: boolean,
+    dirty: boolean,
+    dispatch: () => void,
+    error: string,
+    form: string,
+    invalid: boolean,
+    pristine: boolean,
+    submitting: boolean,
+    submitFailed: boolean,
+    touched: boolean,
+    valid: boolean,
+    visited: boolean,
+    warning: string,
+}
+labels?: {
+    main?: string | JSX.Element,
+    invalid?: string | JSX.Element,
+    title?: string,
+    placeholder?: string,
+}
+```
+
+
 Example form
-        
+
     initialState = { invalid: false };
 
     <div>
@@ -26,9 +72,5 @@ Example form
         <Button labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
         <Button color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
     </div>
-    
-All forms components have common redux-form's [Field props](http://redux-form.com/6.0.0-alpha.4/docs/api/Field.md/#props) and:
 
-    <pre>
-        addProps?: any  // can add _any_ prop to input element
-    </pre>
+

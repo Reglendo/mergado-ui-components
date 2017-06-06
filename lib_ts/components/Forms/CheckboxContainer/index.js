@@ -5,21 +5,18 @@ const config_1 = require("config");
 const LittleStatus_1 = require("components/LittleStatus");
 const react_router_1 = require("react-router");
 const unique_id_1 = require("helpers/unique_id");
-class CheckboxContainer extends React.Component {
+const Input_1 = require("components/Forms/Input");
+const MUK = require("components/Forms/input");
+class CheckboxContainer extends MUK.InputComponent {
     constructor(props) {
         super(props);
         this.name = config_1.prefix + "checkbox_container";
-        this.form = config_1.prefix + "form";
         this.state = {
             filter: "",
         };
     }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
-    }
     renderOptions(options) {
+        const { input } = this.props;
         if (typeof options === "object") {
             const arr = Object.keys(options).map((key) => options[key]);
             options = arr;
@@ -51,17 +48,21 @@ class CheckboxContainer extends React.Component {
                         // 'All products' option is already selected, remove it
                         queries.splice(queries.indexOf(allProductsOption.id), 1);
                     }
-                    if (this.props.singleChoice === false) {
-                        this.props.input.onChange(queries.concat(option.id));
-                    }
-                    else {
-                        this.props.input.onChange(option.id);
+                    if (input) {
+                        if (this.props.singleChoice === false) {
+                            input.onChange(queries.concat(option.id));
+                        }
+                        else {
+                            input.onChange(option.id);
+                        }
                     }
                 }
                 else {
                     const copy = [...queries]; // make copy to not mutate value
                     copy.splice(index, 1); // remove item at index
-                    this.props.input.onChange(copy);
+                    if (input) {
+                        input.onChange(copy);
+                    }
                 }
             };
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
@@ -70,10 +71,10 @@ class CheckboxContainer extends React.Component {
                     React.createElement("input", Object.assign({ type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } }, this.props.input))
                     :
                         React.createElement("input", Object.assign({ type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }, this.props.input)),
-                this.renderLabel(option)));
+                this.renderItemLabel(option)));
         });
     }
-    renderLabel(option) {
+    renderItemLabel(option) {
         let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name);
         if (option.link !== undefined) {
             label = React.createElement(react_router_1.Link, { to: option.link }, label);
@@ -106,67 +107,28 @@ class CheckboxContainer extends React.Component {
             });
         }
     }
-    render() {
-        const { meta } = this.props;
-        return (React.createElement("div", { className: `${this.name} ${this.form}__group`, style: this.props.style },
-            this.props.showLabel ?
-                React.createElement("label", { className: `${this.name}__label ${this.form}__label` }, this.props.labels.main)
-                :
-                    React.createElement("h3", { className: `${this.name}__header`, title: this.props.meta.invalid ? this.props.labels.invalid : "" }, this.props.labels.main),
-            React.createElement("div", { className: `${this.name}__queries
-                                 ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                                ` },
-                this.renderInvalid(),
-                this.props.withoutFilter === false ? (React.createElement("div", { className: `${this.name}__filter` },
-                    React.createElement("input", { className: `${this.name}__filter_input ${this.form}__input--text`, type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: (evt) => { this.setState({ filter: evt.target.value }); } }))) : null,
-                React.createElement("ul", { className: `${this.name}__list`, style: { height: this.props.height } }, this.renderBoxes()))));
+    renderLabel(className, props) {
+        const { showLabel, labels, meta } = this.props;
+        return (React.createElement(Input_1.InputLabel, { name: this.name }, showLabel
+            ? labels.main
+            : React.createElement("h3", { className: `${this.name}__header` }, labels.main)));
+    }
+    renderFilter() {
+        return (React.createElement("div", { className: `${this.name}__filter` },
+            React.createElement("input", { className: `${this.name}__filter_input ${this.form}__input--text`, type: "text", id: "filter", name: "filter", value: this.state.filter, placeholder: this.props.labels.placeholder, onChange: (evt) => { this.setState({ filter: evt.target.value }); } })));
+    }
+    renderInput(className, props) {
+        const { withoutFilter, height, showLabel, labels, meta } = this.props;
+        return (React.createElement("div", { className: `${this.name}__queries` },
+            withoutFilter === false && this.renderFilter(),
+            React.createElement("ul", { className: `${this.name}__list`, style: { height } }, this.renderBoxes())));
     }
 }
-CheckboxContainer.defaultProps = {
-    input: {
-        checked: false,
-        name: "",
-        onBlur: (value) => {
-        },
-        onChange: (value) => {
-        },
-        onDragStart: (value) => {
-        },
-        onDrop: (value) => {
-        },
-        onFocus: (value) => {
-        },
-        value: "",
-    },
-    meta: {
-        active: false,
-        asyncValidating: false,
-        autofilled: false,
-        dirty: false,
-        dispatch: Function,
-        error: "",
-        form: "",
-        invalid: false,
-        pristine: true,
-        submitting: false,
-        submitFailed: false,
-        touched: false,
-        valid: true,
-        visited: false,
-        warning: "",
-    },
-    availableQueries: [],
-    labels: {
-        main: "Apply on queries",
+CheckboxContainer.defaultProps = Object.assign({}, MUK.defaultProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showRadio: false, showLabel: false, labels: {
+        main: "",
         allProducts: "All products",
-        placeholder: "Filter",
-        invalid: "Invalid input",
-    },
-    singleChoice: false,
-    withoutFilter: false,
-    height: 300,
-    showRadio: false,
-    showLabel: false,
-};
+        placeholder: "",
+        invalid: "",
+    } });
 exports.default = CheckboxContainer;
 //# sourceMappingURL=index.js.map

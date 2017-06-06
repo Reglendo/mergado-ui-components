@@ -2,7 +2,10 @@ Text input with placeholder and label
 
     var Field = require('redux-form').Field;
 
-    <Field component={TextInput} input={{ defaultValue: 'Default input', disabled: true }} name="first-name" props={{ id: "customid", labels: { main: "Your name:", placeholder: "Please enter your name here" }}} />
+    <div>
+        <Field component={TextInput} name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+        <Field component={TextInput} name="uploadfile" props={{type: "file"}} labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+    </div>
 
 Input types
 
@@ -14,11 +17,11 @@ Input types
         <TextInput type="search" labels={{placeholder: 'Give me some search'}} input={{ onChange: () => { return true; } }} />
         <TextInput type="tel" labels={{placeholder: 'Give me some tel'}} input={{ onChange: () => { return true; } }} />
         <TextInput type="url" labels={{placeholder: 'Give me some url'}} input={{ onChange: () => { return true; } }} />
-        <TextInput type="file" addProps={{accept: ".csv"}} labels={{main: 'Give me some file'}} input={{ onChange: () => { return true; } }} />
+        <TextInput type="file" accept=".csv" labels={{main: 'Give me some file'}} input={{ onChange: () => { return true; } }} />
 
         <TextInput type="hidden" labels={{main: '+ hidden'}} />
     </div>
-    
+
 
 Validation
 

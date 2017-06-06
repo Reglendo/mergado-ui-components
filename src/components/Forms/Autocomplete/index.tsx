@@ -2,35 +2,24 @@ import * as React from "react"
 import {findDOMNode} from "react-dom"
 import {prefix} from "config"
 import TextInput from "components/Forms/TextInput"
-import InputProps from "components/Forms/default_props"
 import uniqueId from "helpers/unique_id"
+import * as MUK from "components/Forms/input"
 
 export interface Item {
     value: string
     text: string
 }
 
-export interface Props extends InputProps {
-
+export interface Props extends MUK.Props {
     items: Item[]
     shouldItemRender?: (item: any, value: any) => any
     sortItems?: (a: any, b: any, value: any) => any
-
     getItemValue?: (item: any) => any
     renderItem?: (item: any, highlighted: boolean, style: any) => any
     renderMenu?: (items: any, value: any, style: any) => any
     autoHighlight?: boolean
     onMenuVisibilityChange?: (isOpen: boolean) => any
     open?: boolean
-    addClass?: string
-    style?: any
-
-    labels?: {
-        main: string,
-        placeholder: string,
-        invalid: string,
-        title: string,
-    }
 }
 export interface State {
     value: string
@@ -41,9 +30,17 @@ export interface State {
     menuWidth: number
 }
 
-class Autocomplete extends React.Component < Props, State > {
+class Autocomplete extends  MUK.InputComponent<Props, State> {
+    public readonly props: Props;
+    public state: State;
+
+    protected readonly name = prefix + "autocomplete";
+    protected performAutoCompleteOnUpdate = true
+    protected performAutoCompleteOnKeyUp = true
+    protected ignoreBlur = false
 
     public static defaultProps: Props = {
+        ...MUK.defaultProps,
         items: [],
         renderMenu: (items, value, style) => {
             return <div className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
@@ -60,53 +57,7 @@ class Autocomplete extends React.Component < Props, State > {
         shouldItemRender: (item, value) => {
             return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1)
         },
-        input: {
-            checked: false,
-            name: "",
-            onBlur: (value) => {
-            },
-            onChange: (value) => {
-            },
-            onDragStart: (value) => {
-            },
-            onDrop: (value) => {
-            },
-            onFocus: (value) => {
-            },
-            onKeyDown: (value) => {
-            },
-            value: "",
-        },
-        meta: {
-            active: false,
-            asyncValidating: false,
-            autofilled: false,
-            dirty: false,
-            dispatch: Function,
-            error: "",
-            form: "",
-            invalid: false,
-            pristine: true,
-            submitting: false,
-            submitFailed: false,
-            touched: false,
-            valid: true,
-            visited: false,
-            warning: "",
-        },
-        labels: {
-            main: "",
-            placeholder: "",
-            invalid: "",
-            title: "",
-        },
     }
-
-    protected performAutoCompleteOnUpdate = true
-    protected performAutoCompleteOnKeyUp = true
-    protected ignoreBlur = false
-
-    private readonly name = prefix + "autocomplete";
 
     constructor(props) {
         super(props)
@@ -122,8 +73,10 @@ class Autocomplete extends React.Component < Props, State > {
     }
 
     protected componentWillReceiveProps(nextProps) {
-        if (this.props.items !== nextProps.items ||
-            this.state.highlightedIndex >= nextProps.items.length) {
+        const props: any = this.props
+        const state: any = this.state
+        if (props.items !== nextProps.items ||
+            state.highlightedIndex >= nextProps.items.length) {
                 this.setState({highlightedIndex: null})
         }
     }
@@ -388,11 +341,13 @@ class Autocomplete extends React.Component < Props, State > {
         })
     }
 
-    public render() {
-        const className = `${this.name}`
+    protected renderError() {
+        return <div/>
+    }
+
+    protected renderInput(className, props) {
         const open = this.isOpen()
         const {labels, meta, input} = this.props
-        const addProps = Object.assign({},this.props.addProps,{autoComplete: "off"})
         const inputProps = Object.assign({}, this.props.input, {
                 onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
                 onBlur: this.handleInputBlur.bind(this),
@@ -401,21 +356,21 @@ class Autocomplete extends React.Component < Props, State > {
                 onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
                 onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         })
+
         return (
-            <div className={`${className}`}>
+            <div>
                 <TextInput
                     ref="input"
                     type="search"
                     labels={labels}
                     meta={meta}
                     input={inputProps}
-                    addProps={addProps}
                 />
                 {open && this.renderMenu()}
-
             </div>
         )
     }
+
 }
 
 export default Autocomplete

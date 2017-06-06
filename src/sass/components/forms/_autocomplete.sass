@@ -11,12 +11,12 @@
         font-size: 90%
         position: absolute
         top: 100% !important
-        left: 1px !important
+        left: 2px !important
         margin: 1px 0
         overflow: auto
         max-height: 50vh
         z-index: 1000
-
+        margin-top: -12px
     &__item
         padding: 9px 10px
         font-size: 12px
@@ -30,3 +30,7 @@
             background: rgba(0,0,0,0.1)
             font-weight: bold
             border-left: 5px solid rgba(0,0,0,0.3)
+
+    /* disable validation error - its already on textinput */
+    &.#{$prefix}form__group.#{$prefix}form__group--invalid
+        border-color: transparent

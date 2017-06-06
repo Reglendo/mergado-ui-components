@@ -3,16 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const unique_id_1 = require("helpers/unique_id");
-class Select extends React.Component {
+const MUK = require("components/Forms/input");
+class Select extends MUK.InputComponent {
     constructor() {
         super(...arguments);
         this.name = config_1.prefix + "select";
-        this.form = config_1.prefix + "form";
-    }
-    renderInvalid() {
-        if (this.props.labels.invalid && this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)) {
-            return (React.createElement("div", { className: `${this.form}__validation` }, this.props.labels.invalid));
-        }
     }
     renderOptions() {
         return this.props.options.map(option => {
@@ -30,70 +25,15 @@ class Select extends React.Component {
             }
         });
     }
-    render() {
-        const { multiple, disabled, required, size, addClass, style, id, meta, input } = this.props;
-        const inputId = `${this.props.meta.form}-${this.props.input.name}`;
-        const addProps = Object.assign({}, this.props.addProps);
-        delete addProps.addClass;
-        return (React.createElement("div", { className: `${this.name}
-                             ${multiple ? this.name + `--` + multiple : ""}
-                             ${disabled ? this.name + `--` + disabled : ""}
-                             ${required ? this.name + `--` + required : ""}
-                             ${addClass ? addClass : ``}
-                             ${this.form}__group
-                             ${meta.invalid && (meta.dirty || meta.touched) ? `${this.form}__group--invalid` : ""}
-                             `, title: this.props.labels.title, style: style },
-            this.renderInvalid(),
-            React.createElement("label", { className: `${this.name}__label ${this.form}__label`, htmlFor: inputId }, this.props.labels.main),
-            React.createElement("select", Object.assign({ className: `${this.name}__item`, id: id ? id : inputId, multiple: !!multiple, disabled: !!disabled, required: !!required, size: size }, input, addProps), this.renderOptions())));
+    renderInput(className, props) {
+        const { meta, input, labels } = this.props;
+        delete props.options;
+        return (React.createElement("select", Object.assign({}, input, props, { className: `${this.name}__item ${className}` }), this.renderOptions()));
+    }
+    renderLabel(className, props) {
+        return this.props.labels.main;
     }
 }
-Select.defaultProps = {
-    options: [],
-    multiple: false,
-    disabled: false,
-    required: false,
-    size: 0,
-    style: null,
-    addClass: "",
-    id: "",
-    input: {
-        checked: false,
-        name: "",
-        onBlur: (value) => {
-        },
-        onChange: (value) => {
-        },
-        onDragStart: (value) => {
-        },
-        onDrop: (value) => {
-        },
-        onFocus: (value) => {
-        },
-        value: "",
-    },
-    meta: {
-        active: false,
-        asyncValidating: false,
-        autofilled: false,
-        dirty: false,
-        dispatch: Function,
-        error: "",
-        form: "",
-        invalid: false,
-        pristine: true,
-        submitting: false,
-        submitFailed: false,
-        touched: false,
-        valid: true,
-        visited: false,
-        warning: "",
-    },
-    labels: {
-        main: null,
-        invalid: "Invalid input",
-        title: "",
-    },
-};
+Select.defaultProps = Object.assign({}, MUK.defaultProps, { options: [], size: 0 });
 exports.default = Select;
 //# sourceMappingURL=index.js.map

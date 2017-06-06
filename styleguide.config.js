@@ -4,7 +4,7 @@ const path = require("path");
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-    title: '/ MUK / Mergado UI Kit',
+    title: ' MUK / Mergado UI Kit',
     highlightTheme: 'rubyblue',
     serverPort: '3001',
     sections: [

@@ -119,13 +119,13 @@ var scrollChangeHash = function() {
         var section = range.startContainer.parentNode.closest(".ReactStyleguidist-Section__heading"); // this an upper onscreen element
         if(section) {
             hashLocator.innerHTML = '#'+section.getAttribute('id');
-            browserHistory.push('#'+section.getAttribute('id'));
+            browserHistory.push(location.pathname+'#'+section.getAttribute('id'));
             return;
         }
         var element = range.startContainer.parentNode.closest(".Styleguidist-Component"); // this an upper onscreen element
         if(element) {
             hashLocator.innerHTML = '#'+element.getAttribute('id');
-            browserHistory.push('#'+element.getAttribute('id'));
+            browserHistory.push(location.pathname+'#'+element.getAttribute('id'));
         }
     }
 }
