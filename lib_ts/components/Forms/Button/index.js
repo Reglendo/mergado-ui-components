@@ -11,13 +11,13 @@ class Button extends MUK.InputComponent {
     }
     renderHref(className, props) {
         const { link, labels, icon, input } = this.props;
-        return (React.createElement("a", Object.assign({}, props, { href: link, className: `${this.name}__item`, title: labels.title }),
+        return (React.createElement("a", Object.assign({}, input, props, { href: link, className: `${this.name}__item`, title: labels.title }),
             icon,
             labels.main));
     }
     renderButton(className, props) {
         const { input, labels, icon } = this.props;
-        return (React.createElement("button", Object.assign({}, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        return (React.createElement("button", Object.assign({}, input, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }
@@ -29,11 +29,11 @@ class Button extends MUK.InputComponent {
     }
     renderSubmit(className, props) {
         const { meta, input, labels } = this.props;
-        return (React.createElement("input", Object.assign({}, props, { type: "submit", className: `${this.name}__item ${className ? className : ""}`, value: `${labels.main}`, title: labels.title })));
+        return (React.createElement("input", Object.assign({}, input, { type: "submit", className: `${this.name}__item ${className ? className : ""}`, value: `${labels.main}`, title: labels.title })));
     }
     renderVoid(className, props) {
         const { input, labels, icon } = this.props;
-        return (React.createElement("span", Object.assign({}, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
+        return (React.createElement("span", Object.assign({}, input, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
             icon,
             labels.main));
     }

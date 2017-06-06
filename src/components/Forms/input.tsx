@@ -5,6 +5,7 @@ import {Input, InputLabel, InputError} from "components/Forms/Input"
 export interface Props {
     group?: {
         className?: string,
+        style?: any,
     },
     input?: {
         className?: string,
@@ -43,6 +44,7 @@ export interface Props {
         title?: string,
         placeholder?: string,
     }
+    [propName: string]: any,
 }
 
 export interface State {
@@ -51,6 +53,7 @@ export interface State {
 export const defaultProps: Props = {
         group: {
             className: "",
+            style: {},
         },
         input: {
             className: "",

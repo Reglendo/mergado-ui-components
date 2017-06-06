@@ -6,7 +6,7 @@ import * as MUK from "components/Forms/input"
 export interface Props extends MUK.Props {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
-    icon?: JSX.Element
+    icon?: JSX.Element | string
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
     disabled?: boolean
@@ -33,6 +33,7 @@ class Button extends MUK.InputComponent<Props, State> {
         const { link, labels, icon, input } = this.props
         return (
             <a
+                {...input}
                 {...props}
                 href={link}
                 className={`${this.name}__item`}
@@ -44,6 +45,7 @@ class Button extends MUK.InputComponent<Props, State> {
         const { input, labels, icon } = this.props
         return (
             <button
+                {...input}
                 {...props}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
@@ -65,7 +67,7 @@ class Button extends MUK.InputComponent<Props, State> {
         const { meta, input, labels } = this.props
         return (
             <input
-                {...props}
+                {...input}
                 type="submit"
                 className={`${this.name}__item ${className ? className : ""}`}
                 value={`${labels.main}`}
@@ -76,6 +78,7 @@ class Button extends MUK.InputComponent<Props, State> {
         const { input, labels, icon } = this.props
         return (
             <span
+                {...input}
                 {...props}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>

@@ -15,6 +15,7 @@ const Input_1 = require("components/Forms/Input");
 exports.defaultProps = {
     group: {
         className: "",
+        style: {},
     },
     input: {
         className: "",
