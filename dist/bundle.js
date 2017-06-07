@@ -15833,24 +15833,41 @@ class DataTable extends React.Component {
         super(props);
         this.name = config_1.prefix + "datagrid";
         this.state = {
-            checkedAll: false,
+            selectedAll: false,
+            selectedRows: [],
         };
     }
-    toggleCheckedAll() {
+    handleSelectAll() {
+        if (this.state.selectedAll) {
+            this.setState({
+                selectedRows: [],
+                selectedAll: false,
+            });
+        }
+        else {
+            const selected = [];
+            for (const checkbox of document.querySelectorAll(".bulk-action-item")) {
+                const item = checkbox;
+                selected.push(parseInt(item.getAttribute("data-id"), 10));
+            }
+            this.setState({
+                selectedRows: selected,
+                selectedAll: true,
+            });
+        }
+    }
+    handleSelectRow(id) {
+        const selected = this.state.selectedRows;
+        const index = selected.indexOf(id);
+        index === -1 ? selected.push(id) : selected.splice(index, 1);
         this.setState({
-            checkedAll: !this.state.checkedAll,
+            selectedRows: selected,
         });
     }
     renderChildren() {
         const children = this.props.children;
         return children.map(obj => {
-            return React.cloneElement(obj, {
-                key: unique_id_1.default(),
-                actions: this.props.bulkActions,
-                checkedAll: this.state.checkedAll,
-                checkAll: this.toggleCheckedAll.bind(this),
-                labels: this.props.labels,
-            });
+            return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
         });
     }
     renderBulkActionbar() {
@@ -15860,9 +15877,9 @@ class DataTable extends React.Component {
             React.createElement("div", { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {
-        const ButtonEl = Button_1.default;
+        const disabled = this.state.selectedRows.length === 0;
         return this.props.bulkActions.map(obj => {
-            return (React.createElement(ButtonEl, { onClick: obj.action, key: obj.type, icon: obj.icon, color: "nocolor", size: "tiny", disabled: !!obj.disabled }));
+            return (React.createElement(Button_1.default, { onClick: obj.action, key: obj.type, icon: obj.icon, disabled: disabled, color: "nocolor", size: "tiny" }));
         });
     }
     render() {
@@ -15879,7 +15896,6 @@ DataTable.defaultProps = {
     addClass: "",
     labels: {
         actionsBar: "",
-        actionsHeader: "",
     },
 };
 exports.default = DataTable;
@@ -39155,7 +39171,8 @@ class DataBody extends React.Component {
         return children.map(obj => {
             return React.cloneElement(obj, {
                 actions: this.props.actions,
-                checkedAll: this.props.checkedAll,
+                handleSelectRow: this.props.handleSelectRow,
+                selectedRows: this.props.selectedRows,
             });
         });
     }
@@ -39175,7 +39192,6 @@ DataBody.defaultProps = {
     addClass: "",
     style: {},
     actions: [],
-    checkedAll: false,
 };
 exports.default = DataBody;
 
@@ -39202,7 +39218,7 @@ class DataHeader extends React.Component {
             React.createElement("tr", { className: `${this.name} ${this.name}--header ${addClass}`, style: style },
                 actions.length > 0 &&
                     React.createElement(DataCell_1.default, { type: "header", style: { width: "1%" } },
-                        React.createElement(Checkbox_1.default, { input: { onChange: this.props.checkAll, checked: this.props.checkedAll } })),
+                        React.createElement(Checkbox_1.default, { input: { onChange: this.props.handleSelectAll, checked: this.props.selectedAll } })),
                 this.props.children)));
     }
 }
@@ -39210,8 +39226,8 @@ DataHeader.defaultProps = {
     addClass: "",
     style: {},
     actions: [],
-    checkAll: () => { },
-    checkedAll: false,
+    handleSelectAll: () => { },
+    selectedAll: false,
 };
 exports.default = DataHeader;
 
@@ -39229,27 +39245,17 @@ const DataCell_1 = __webpack_require__(102);
 const Checkbox_1 = __webpack_require__(103);
 const unique_id_1 = __webpack_require__(25);
 class DataRow extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super(...arguments);
         this.name = config_1.prefix + "datagrid__row";
-        this.state = {
-            checked: props.checkedAll,
-        };
-    }
-    componentWillReceiveProps(nextProps) {
-        if (this.props.checkedAll !== nextProps.checkedAll) {
-            this.setState({
-                checked: nextProps.checkedAll,
-            });
-        }
     }
     render() {
         const { style, addClass, inactive, dataId, actions } = this.props;
         return (React.createElement("tr", { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, key: unique_id_1.default(), "data-id": dataId, style: style },
             actions.length > 0 &&
                 React.createElement(DataCell_1.default, null,
-                    React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.setState({ checked: !this.state.checked }),
-                            "checked": this.state.checked,
+                    React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.props.handleSelectRow(dataId),
+                            "checked": this.props.selectedRows.indexOf(dataId) !== -1,
                             "data-id": dataId,
                             "className": "bulk-action-item",
                         } })),
@@ -39262,6 +39268,7 @@ DataRow.defaultProps = {
     inactive: false,
     dataId: "",
     actions: [],
+    selectedRows: [],
 };
 exports.default = DataRow;
 
