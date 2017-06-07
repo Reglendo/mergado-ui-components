@@ -23,7 +23,6 @@ class Radio extends MUK.InputComponent<Props, State> {
         return (<span>
                     <input
                         {...input}
-                        {...props}
                         className={`${this.name}__item ${className}`}
                         type="radio"
                         />

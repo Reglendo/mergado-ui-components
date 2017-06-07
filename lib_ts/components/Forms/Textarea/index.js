@@ -13,7 +13,7 @@ class Textarea extends MUK.InputComponent {
     }
     renderInput(className, props) {
         const { input, labels } = this.props;
-        return (React.createElement("textarea", Object.assign({}, input, props, { className: `${this.name}__input
+        return (React.createElement("textarea", Object.assign({}, input, { className: `${this.name}__input
                             ${this.form}__input--text
                             ${this.form}__input--textarea
                             ${className}

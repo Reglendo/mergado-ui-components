@@ -5,6 +5,8 @@ import {Input, InputLabel, InputError} from "components/Forms/Input"
 export interface Props {
     group?: {
         className?: string,
+        style?: any,
+        [propName: string]: any,
     },
     input?: {
         className?: string,
@@ -19,6 +21,7 @@ export interface Props {
         onKeyDown?: (value: any) => void,
         onKeyUp?: (value: any) => void,
         onClick?: (value: any) => void,
+        [propName: string]: any,
     }
     meta?: {
         active: boolean,
@@ -51,6 +54,7 @@ export interface State {
 export const defaultProps: Props = {
         group: {
             className: "",
+            style: {},
         },
         input: {
             className: "",

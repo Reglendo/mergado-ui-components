@@ -32,7 +32,6 @@ class TextInput extends MUK.InputComponent<Props, State> {
         return (
             <input
                 {...input}
-                {...props}
                 placeholder={this.props.labels.placeholder}
                 ref="input"
                 className={`${this.name}__input \

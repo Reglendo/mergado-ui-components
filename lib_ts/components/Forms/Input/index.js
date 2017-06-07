@@ -13,13 +13,13 @@ const React = require("react");
 const config_1 = require("config");
 exports.Input = (_a) => {
     var addProps = __rest(_a.group, []), props = __rest(_a, ["group"]);
-    return (React.createElement("div", { className: `${props.name} \
+    return (React.createElement("div", Object.assign({}, addProps, { className: `${props.name} \
 ${props.disabled ? props.name + `--disabled` : ""} \
 ${props.required ? props.name + `--required` : ""} \
 ${addProps.className ? addProps.className : ""} \
 ${config_1.form}__group \
 ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}\
-`, title: props.labels.title, style: props.style }, props.children));
+`, title: props.labels.title, style: props.style }), props.children));
 };
 exports.InputLabel = ({ children, name }) => {
     if (children === "") {

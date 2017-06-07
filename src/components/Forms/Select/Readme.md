@@ -2,7 +2,7 @@ Example
 
     var Field = require('redux-form').Field;
     <div>
-        <Field component={Select} labels={{main: 'I\'m select'}} props={{ options: [{ title: 'foo', value: '1'},{ title: 'bar', value: '2'}] }}  />
+        <Field name="select1" component={Select} labels={{main: 'I\'m select'}} props={{ options: [{ title: 'foo', value: '1'},{ title: 'bar', value: '2'}] }}  />
     </div>
 
 

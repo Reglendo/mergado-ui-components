@@ -11,7 +11,7 @@ class Radio extends MUK.InputComponent {
     renderLabel(className, props) {
         const { input, meta, labels } = this.props;
         return (React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, props, { className: `${this.name}__item ${className}`, type: "radio" })),
+            React.createElement("input", Object.assign({}, input, { className: `${this.name}__item ${className}`, type: "radio" })),
             "\u00A0",
             this.props.labels.main));
     }

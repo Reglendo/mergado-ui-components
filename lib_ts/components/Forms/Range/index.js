@@ -26,7 +26,7 @@ class Range extends MUK.InputComponent {
         const outputId = `${meta.form}-${input.name}_output`;
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
         return (React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, props, { className: `${this.name}__item
+            React.createElement("input", Object.assign({}, input, { className: `${this.name}__item
                                 ${this.form}__input--text ${this.form}__input--range
                                 ${className}}`, type: "range", max: this.props.max, min: this.props.min, step: this.props.step, onChange: this.handleChange, onInput: (evt) => {
                     const target = evt.target;

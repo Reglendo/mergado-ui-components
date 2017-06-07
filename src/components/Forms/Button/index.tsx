@@ -6,10 +6,11 @@ import * as MUK from "components/Forms/input"
 export interface Props extends MUK.Props {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
-    icon?: JSX.Element
+    icon?: JSX.Element | string
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
     disabled?: boolean
+    onClick?: () => any
 }
 
 export interface State {
@@ -33,7 +34,8 @@ class Button extends MUK.InputComponent<Props, State> {
         const { link, labels, icon, input } = this.props
         return (
             <a
-                {...props}
+                {...input}
+                onClick={this.props.onClick}
                 href={link}
                 className={`${this.name}__item`}
                 title={labels.title}>
@@ -44,7 +46,8 @@ class Button extends MUK.InputComponent<Props, State> {
         const { input, labels, icon } = this.props
         return (
             <button
-                {...props}
+                {...input}
+                onClick={this.props.onClick}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}
@@ -54,7 +57,7 @@ class Button extends MUK.InputComponent<Props, State> {
         const { link, labels, icon, input } = this.props
         return (
             <Link
-                {...props}
+                onClick={this.props.onClick}
                 to={link}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
@@ -65,7 +68,8 @@ class Button extends MUK.InputComponent<Props, State> {
         const { meta, input, labels } = this.props
         return (
             <input
-                {...props}
+                {...input}
+                onClick={this.props.onClick}
                 type="submit"
                 className={`${this.name}__item ${className ? className : ""}`}
                 value={`${labels.main}`}
@@ -76,7 +80,8 @@ class Button extends MUK.InputComponent<Props, State> {
         const { input, labels, icon } = this.props
         return (
             <span
-                {...props}
+                {...input}
+                onClick={this.props.onClick}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}
