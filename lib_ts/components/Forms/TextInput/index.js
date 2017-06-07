@@ -17,7 +17,7 @@ class TextInput extends MUK.InputComponent {
         if (type === "file") {
             delete inputProps.value;
         }
-        return (React.createElement("input", Object.assign({}, input, { placeholder: this.props.labels.placeholder, ref: "input", type: type, className: `${this.name}__input \
+        return (React.createElement("input", Object.assign({}, props, inputProps, { placeholder: this.props.labels.placeholder, ref: "input", className: `${this.name}__input \
 ${this.form}__input--text \
 ${this.form}__input--${type} \
 ${className}` })));
