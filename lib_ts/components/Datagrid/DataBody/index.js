@@ -13,9 +13,8 @@ class DataBody extends React.Component {
         return children.map(obj => {
             return React.cloneElement(obj, {
                 actions: this.props.actions,
-                checkedAll: this.props.checkedAll,
-                selectRow: this.props.selectRow,
-                selected: this.props.selected,
+                handleSelectRow: this.props.handleSelectRow,
+                selectedRows: this.props.selectedRows,
             });
         });
     }
@@ -35,7 +34,6 @@ DataBody.defaultProps = {
     addClass: "",
     style: {},
     actions: [],
-    checkedAll: false,
 };
 exports.default = DataBody;
 //# sourceMappingURL=index.js.map

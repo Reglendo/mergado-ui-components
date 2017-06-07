@@ -1,15 +1,15 @@
 import * as React from "react"
 import {prefix} from "config"
-import { Action } from "../DataTable"
 import DataCell from "../DataCell"
 import Checkbox from "components/Forms/Checkbox"
+import { ID, Action } from "helpers/types"
 
 export interface Props {
     style?: any
     addClass?: string
     actions?: Action[]
-    checkAll?: () => void
-    checkedAll?: boolean
+    handleSelectAll?: () => void
+    selectedAll?: boolean
 }
 
 export interface State {
@@ -21,8 +21,8 @@ class DataHeader extends React.Component<Props, State> {
         addClass: "",
         style: {},
         actions: [],
-        checkAll: () => {},
-        checkedAll: false,
+        handleSelectAll: () => {},
+        selectedAll: false,
     }
     private readonly name = prefix + "datagrid__row";
 
@@ -34,7 +34,7 @@ class DataHeader extends React.Component<Props, State> {
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
                             <Checkbox
-                                input={{ onChange: this.props.checkAll, checked: this.props.checkedAll}}
+                                input={{ onChange: this.props.handleSelectAll, checked: this.props.selectedAll}}
                             />
                         </DataCell>
                     }

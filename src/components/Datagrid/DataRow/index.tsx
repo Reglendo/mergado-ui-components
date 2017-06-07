@@ -1,24 +1,27 @@
 import * as React from "react"
 import {prefix} from "config"
-import { Action } from "../DataTable"
 import DataCell from "../DataCell"
 import Checkbox from "components/Forms/Checkbox"
 import uniqueId from "helpers/unique_id"
+import { ID, Action } from "helpers/types"
 
 export interface Props {
     style?: any
     addClass?: string
     inactive?: boolean
-    /** optional attribute "data-id" for sortablejs */
-    dataId?: number | string
+    /** optional attribute "data-id" for various uses */
+    dataId?: ID
+    /** array of bulk actions - more info in DataTable component */
     actions?: Action[]
-    checkedAll?: boolean
-    selectRow?: any
-    selected?: any
+    /** needed for bulk actions */
+    selectedAll?: boolean
+    /** needed for bulk actions */
+    handleSelectRow?: (id: ID) => {}
+    /** needed for bulk actions */
+    selectedRows?: ID[]
 }
 
 export interface State {
-    checked?: boolean
 }
 
 class DataRow extends React.Component<Props, State> {
@@ -29,25 +32,9 @@ class DataRow extends React.Component<Props, State> {
         inactive: false,
         dataId: "",
         actions: [],
-        selected: [],
+        selectedRows: [],
     }
     private readonly name = prefix + "datagrid__row"
-
-    public constructor(props) {
-        super(props)
-        this.state = {
-            checked: props.checkedAll,
-        }
-    }
-
-    public componentWillReceiveProps(nextProps) {
-
-        if(this.props.checkedAll !== nextProps.checkedAll) {
-            this.setState({
-                checked: nextProps.checkedAll,
-            })
-        }
-    }
 
     public render() {
         const { style, addClass, inactive, dataId, actions } = this.props
@@ -58,12 +45,8 @@ class DataRow extends React.Component<Props, State> {
                     {actions.length > 0 &&
                         <DataCell>
                             <Checkbox
-                                input={{ "onChange": evt => {
-                                                this.props.selectRow(dataId)
-                                            },
-                                         "onClick": evt => {
-                                         },
-                                         "checked": this.props.selected.indexOf(dataId) !== -1,
+                                input={{ "onChange": evt => this.props.handleSelectRow(dataId),
+                                         "checked": this.props.selectedRows.indexOf(dataId) !== -1,
                                          "data-id": dataId,
                                          "className": "bulk-action-item",
                                       }} />

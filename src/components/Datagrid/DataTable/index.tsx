@@ -5,25 +5,19 @@ import DataBody from "../DataBody"
 import Button from "components/Forms/Button"
 import {InputLabel} from "components/Forms/Input"
 import uniqueId from "helpers/unique_id"
-export interface Action {
-    type: string
-    icon: JSX.Element | string
-    action: () => any
-    disabled: boolean
-}
+import { ID, Action } from "helpers/types"
 
 export interface Props {
     bulkActions: Action[]
     style?: any
     addClass?: string
-    labels: {
+    labels?: {
         actionsBar: string,
-        actionsHeader: string,
     }
 }
 export interface State {
-    checkedAll: boolean
-    selectedRows: any
+    selectedAll: boolean
+    selectedRows: ID[]
 }
 
 class DataTable extends React.Component<Props, State> {
@@ -34,7 +28,6 @@ class DataTable extends React.Component<Props, State> {
         addClass: "",
         labels: {
             actionsBar: "",
-            actionsHeader: "",
         },
     }
 
@@ -45,16 +38,16 @@ class DataTable extends React.Component<Props, State> {
         super(props)
 
         this.state = {
-            checkedAll: false,
+            selectedAll: false,
             selectedRows: [],
         }
     }
 
-    protected handleCheckAll() {
-        if(this.state.checkedAll) {
+    protected handleSelectAll() {
+        if(this.state.selectedAll) {
             this.setState({
                 selectedRows: [],
-                checkedAll: false,
+                selectedAll: false,
             })
         } else {
             const selected = []
@@ -64,7 +57,7 @@ class DataTable extends React.Component<Props, State> {
             }
             this.setState({
                 selectedRows: selected,
-                checkedAll: true,
+                selectedAll: true,
             })
         }
     }
@@ -88,11 +81,11 @@ class DataTable extends React.Component<Props, State> {
                 ...obj.props,
                 key: uniqueId(),
                 actions: this.props.bulkActions,
-                checkedAll: this.state.checkedAll,
-                checkAll: this.handleCheckAll.bind(this),
                 labels: this.props.labels,
-                selectRow: this.handleSelectRow.bind(this),
-                selected: this.state.selectedRows,
+                selectedAll: this.state.selectedAll,
+                handleSelectAll: this.handleSelectAll.bind(this),
+                handleSelectRow: this.handleSelectRow.bind(this),
+                selectedRows: this.state.selectedRows,
             })
         })
     }

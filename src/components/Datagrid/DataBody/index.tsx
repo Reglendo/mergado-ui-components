@@ -1,8 +1,8 @@
 import * as React from "react"
 import {prefix} from "config"
 import * as Sortable from "react-sortablejs"
-import { Action } from "../DataTable"
 import DataRow from "../DataRow"
+import { ID, Action } from "helpers/types"
 
 export interface Props {
     style?: any
@@ -10,9 +10,8 @@ export interface Props {
     sortable?: boolean
     sortableProps?: any
     actions?: Action[]
-    checkedAll?: boolean
-    selectRow?: any
-    selected?: any
+    handleSelectRow?: (id: ID) => {}
+    selectedRows?: ID[]
 }
 
 export interface State {
@@ -26,7 +25,6 @@ class DataBody extends React.Component<Props, State> {
         addClass: "",
         style: {},
         actions: [],
-        checkedAll: false,
     }
     private readonly name = prefix + "datagrid__body";
 
@@ -35,9 +33,8 @@ class DataBody extends React.Component<Props, State> {
         return children.map(obj => {
             return React.cloneElement(obj, {
                 actions: this.props.actions,
-                checkedAll: this.props.checkedAll,
-                selectRow: this.props.selectRow,
-                selected: this.props.selected,
+                handleSelectRow: this.props.handleSelectRow,
+                selectedRows: this.props.selectedRows,
             })
         })
     }

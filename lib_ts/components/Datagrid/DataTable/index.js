@@ -10,15 +10,15 @@ class DataTable extends React.Component {
         super(props);
         this.name = config_1.prefix + "datagrid";
         this.state = {
-            checkedAll: false,
+            selectedAll: false,
             selectedRows: [],
         };
     }
-    handleCheckAll() {
-        if (this.state.checkedAll) {
+    handleSelectAll() {
+        if (this.state.selectedAll) {
             this.setState({
                 selectedRows: [],
-                checkedAll: false,
+                selectedAll: false,
             });
         }
         else {
@@ -29,7 +29,7 @@ class DataTable extends React.Component {
             }
             this.setState({
                 selectedRows: selected,
-                checkedAll: true,
+                selectedAll: true,
             });
         }
     }
@@ -44,7 +44,7 @@ class DataTable extends React.Component {
     renderChildren() {
         const children = this.props.children;
         return children.map(obj => {
-            return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, checkedAll: this.state.checkedAll, checkAll: this.handleCheckAll.bind(this), labels: this.props.labels, selectRow: this.handleSelectRow.bind(this), selected: this.state.selectedRows }));
+            return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
         });
     }
     renderBulkActionbar() {
@@ -73,7 +73,6 @@ DataTable.defaultProps = {
     addClass: "",
     labels: {
         actionsBar: "",
-        actionsHeader: "",
     },
 };
 exports.default = DataTable;
