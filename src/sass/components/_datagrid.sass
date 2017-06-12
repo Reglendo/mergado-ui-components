@@ -68,18 +68,22 @@
 
     &__filters_bar
         vertical-align: middle
-        padding-left: 20px
-
+        padding-left: 40px
+        position: relative
+        &:before
+            display: inline-block
+            content: " "
+            border-left: 3px solid #dbcba3
+            height: 40px
+            vertical-align: bottom
+            margin-top: 23px
+            width: 10px
+            position: absolute
+            bottom: 0
+            left: 18px
 
         .muk-grid--table
-            > div:before
-                display: inline-block
-                content: " "
-                border-left: 3px solid #dbcba3
-                padding-left: 20px
-                height: 40px
-                vertical-align: bottom
-                margin-top: 20px
+
 
         .muk-form__group:first-child
         .muk-form__group
@@ -87,3 +91,6 @@
 
         .muk-input-checkbox
             padding-top: 20px
+            white-space: nowrap
+
+        .muk-input-text

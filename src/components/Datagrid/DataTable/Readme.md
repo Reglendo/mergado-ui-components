@@ -14,10 +14,7 @@ Example
                 filters={[
                     { type: "text", label: "Name:", action: (evt) => {  console.log(evt.currentTarget.value)  }},
                     { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
-                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
-                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
                 ]}
-
     >
         <DataHeader>
             <DataCell key={1} type='header'>Priorita</DataCell>
