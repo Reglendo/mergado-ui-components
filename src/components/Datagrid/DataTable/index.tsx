@@ -3,12 +3,15 @@ import {prefix} from "config"
 import DataHeader from "../DataHeader"
 import DataBody from "../DataBody"
 import Button from "components/Forms/Button"
+import TextInput from "components/Forms/TextInput"
+import Checkbox from "components/Forms/Checkbox"
 import {InputLabel} from "components/Forms/Input"
 import uniqueId from "helpers/unique_id"
-import { ID, Action } from "helpers/types"
+import { ID, Action, Filter } from "helpers/types"
 
 export interface Props {
     bulkActions: Action[]
+    filters: Filter[]
     style?: any
     addClass?: string
     labels?: {
@@ -24,6 +27,7 @@ class DataTable extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         bulkActions: [],
+        filters: [],
         style: {},
         addClass: "",
         labels: {
@@ -93,7 +97,7 @@ class DataTable extends React.Component<Props, State> {
     protected renderBulkActionbar() {
         const { labels } = this.props
         return (
-            <div className={`${this.name}__actions_bar`}>
+            <div className={`${this.name}__actions_bar muk-1-12`}>
                 <InputLabel name="actionbar">{labels.actionsBar}</InputLabel>
                 <div className={`${this.name}__actions_icons`}>
                     {this.renderBulkActions()}
@@ -114,12 +118,44 @@ class DataTable extends React.Component<Props, State> {
         })
     }
 
+    protected renderFiltersBar() {
+        return (
+            <div className={`${this.name}__filters_bar muk-11-12`}>
+                <div className="muk-grid--table">
+                    <div>
+                        {this.renderFilters()}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    protected renderFilters() {
+        return this.props.filters.map(obj => {
+            switch(obj.type) {
+                case "text":
+                    return (<TextInput
+                                input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
+                            />)
+                case "checkbox":
+                    return (<Checkbox
+                                input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
+                            />)
+            }
+        })
+    }
+
     public render() {
         const { addClass, style } = this.props
         const className = `${this.name}__table ${this.props.addClass}`
         return (
             <div className={`${this.name}`}>
-                {this.props.bulkActions.length > 0 && this.renderBulkActionbar()}
+                <div className="muk-grid--table">
+                    <div>
+                        {this.props.bulkActions.length > 0 && this.renderBulkActionbar()}
+                        {this.props.filters.length > 0 && this.renderFiltersBar()}
+                    </div>
+                </div>
                 <table className={className} style={style}>
                     {this.renderChildren()}
                 </table>

@@ -6,3 +6,10 @@ export interface Action {
     action: () => any
     disabled: boolean
 }
+
+export interface Filter {
+    type: string
+    action: (e: any) => any
+    disabled?: boolean
+    label?: string | JSX.Element
+}

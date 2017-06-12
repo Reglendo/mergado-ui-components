@@ -10,7 +10,15 @@ Example
                     {icon: <IconPlay />, type: "play", action: () => { console.log('hello play')}},
                     {icon: <IconPause />, type: "pause", action: () => { console.log('hello pause')}},
                     {icon: <IconTrash />, type: "trash", action: () => { console.log('hello world')}},
-                ]}>
+                ]}
+                filters={[
+                    { type: "text", label: "Name:", action: (evt) => {  console.log(evt.currentTarget.value)  }},
+                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
+                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
+                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
+                ]}
+
+    >
         <DataHeader>
             <DataCell key={1} type='header'>Priorita</DataCell>
             <DataCell key={2} type='header'/>
