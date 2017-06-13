@@ -53,6 +53,7 @@ class Range extends MUK.InputComponent<Props,State> {
         const { labels, meta, input } = this.props
         const outputId = `${meta.form}-${input.name}_output`
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
+
         return (
             <span>
                 <input
@@ -72,7 +73,7 @@ class Range extends MUK.InputComponent<Props,State> {
                             }}
                     value={this.state.value}
                     />
-                {this.state.value !== undefined &&
+                {this.state.value !== undefined && this.state.value !== "" &&
                     <output className={`${this.form}__input--range__output`}
                         style={{left: "calc("+((this.state.value/this.props.max) * 100)+"% - "+outputWidth/2+"px)" }}
                         id={outputId}>
