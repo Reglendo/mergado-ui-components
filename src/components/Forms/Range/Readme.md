@@ -1,6 +1,7 @@
 Example
 
-    <Range labels={{ main: 'Pick a value' }} max={5} min={0} step={0.01} input={{ onChange: (evt) => { console.log('----'); console.log(evt); return true }}} />
+    var Field = require('redux-form').Field;
+    <Field component={Range} labels={{ main: 'Pick a value' }} max={5} min={0} step={0.01} />
 
 Validation
 
