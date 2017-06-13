@@ -72,11 +72,13 @@ class Range extends MUK.InputComponent<Props,State> {
                             }}
                     value={this.state.value}
                     />
-                <output className={`${this.form}__input--range__output`}
-                    style={{left: "calc("+((this.state.value/this.props.max) * 100)+"% - "+outputWidth/2+"px)" }}
-                    id={outputId}>
-                        {this.state.value}
-                </output>
+                {this.state.value !== undefined &&
+                    <output className={`${this.form}__input--range__output`}
+                        style={{left: "calc("+((this.state.value/this.props.max) * 100)+"% - "+outputWidth/2+"px)" }}
+                        id={outputId}>
+                            {this.state.value}
+                    </output>
+                }
             </span>
         )
 
