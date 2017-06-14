@@ -10,6 +10,7 @@ export interface Props {
     text?: string
     title?: string
     style?: any
+    addClass?: string
 }
 export interface State {
 }
@@ -25,10 +26,11 @@ class Icon extends React.Component<Props, State> {
         name: "",
         text: "",
         title: "",
+        addClass: "",
     }
 
     public render() {
-        const className = `${this.name} ${this.name}--${this.props.type}`
+        const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
         let iconName: string;
         if(this.props.name) {
             iconName = this.props.name
