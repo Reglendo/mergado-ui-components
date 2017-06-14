@@ -3444,9 +3444,9 @@ meow@^3.7.0:
     redent "^1.0.0"
     trim-newlines "^1.0.0"
 
-"mergado-ui-icons@https://github.com/Reglendo/mergado-ui-icons#0.2.3.1":
+"mergado-ui-icons@https://github.com/Reglendo/mergado-ui-icons#0.2.3.2":
   version "0.2.0"
-  resolved "https://github.com/Reglendo/mergado-ui-icons#f1203e76c74d83b91866c304879459ebcdc8204a"
+  resolved "https://github.com/Reglendo/mergado-ui-icons#5824f4a3e4afce7f2d4387e5a00b910a8ad22ab9"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
