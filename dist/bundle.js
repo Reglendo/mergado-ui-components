@@ -40233,8 +40233,8 @@ class PopupHint extends React.Component {
     fadeOut(el, callback) {
         el.style.opacity = 1;
         (function fade() {
-            el.style.opacicty -= -1;
-            if (el.style.opacicty <= 0) {
+            el.style.opacity -= .1;
+            if (el.style.opacity < 0) {
                 callback();
             }
             else {
