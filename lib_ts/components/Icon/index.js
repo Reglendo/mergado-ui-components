@@ -9,7 +9,7 @@ class Icon extends React.Component {
         this.name = config_1.prefix + "icon";
     }
     render() {
-        const className = `${this.name} ${this.name}--${this.props.type}`;
+        const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`;
         let iconName;
         if (this.props.name) {
             iconName = this.props.name;
@@ -30,6 +30,7 @@ Icon.defaultProps = {
     name: "",
     text: "",
     title: "",
+    addClass: "",
 };
 exports.default = Icon;
 //# sourceMappingURL=index.js.map
