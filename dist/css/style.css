@@ -584,14 +584,35 @@ table {
 .muk-datagrid__actions_icons {
   background: white;
   display: inline-block;
-  height: 36px;
-  line-height: 35px;
+  height: 40px;
+  line-height: 40px;
   white-space: nowrap;
   background-color: #fff;
   border: 1px solid #dbcba3; }
   .muk-datagrid__actions_icons svg {
     width: 18px !important;
     height: 18px !important; }
+
+.muk-datagrid__filters_bar {
+  vertical-align: middle;
+  padding-left: 40px;
+  position: relative; }
+  .muk-datagrid__filters_bar:before {
+    display: inline-block;
+    content: " ";
+    border-left: 3px solid #dbcba3;
+    height: 40px;
+    vertical-align: bottom;
+    margin-top: 23px;
+    width: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 18px; }
+  .muk-datagrid__filters_bar .muk-form__group {
+    padding-right: 20px; }
+  .muk-datagrid__filters_bar .muk-input-checkbox {
+    padding-top: 20px;
+    white-space: nowrap; }
 
 /* COLORS */
 .muk-paginator {
