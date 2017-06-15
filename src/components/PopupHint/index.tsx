@@ -188,7 +188,8 @@ class PopupHint extends React.Component<Props, State> {
             <Bubble>
                 <div ref="hint" className={`${this.name}__bubble`}
                      style={style} tabIndex={0}
-                     onBlur={ this.collapse }>
+                     onBlur={ this.collapse }
+                 >
                     <div className={`${this.name}__innerwrapper`}>
                         <div className={`${this.name}__border`}>
                             <div className={`${this.name}__content`}>{this.props.children}</div>
@@ -202,7 +203,12 @@ class PopupHint extends React.Component<Props, State> {
         return (
             <div className={this.name} style={{display: "inline-block"}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
-                     onMouseDown={this.state.expanded ? ()=> {} : this.expand}>
+                     onMouseDown={this.state.expanded ? ()=> {} : this.expand}
+                     onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                    }}
+                 >
                     {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}
