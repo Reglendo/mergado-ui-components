@@ -11,7 +11,7 @@ export interface State {
 
 class Radio extends MUK.InputComponent<Props, State> {
 
-    protected readonly name = prefix + "input-checkbox";
+    protected readonly name = prefix + "input-radio";
     public readonly props: Props
     public state: State
     public static defaultProps: Props = {

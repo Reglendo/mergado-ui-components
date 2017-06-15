@@ -6,7 +6,7 @@ const MUK = require("components/Forms/input");
 class Radio extends MUK.InputComponent {
     constructor() {
         super(...arguments);
-        this.name = config_1.prefix + "input-checkbox";
+        this.name = config_1.prefix + "input-radio";
     }
     renderLabel(className, props) {
         const { input, meta, labels } = this.props;

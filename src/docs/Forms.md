@@ -46,8 +46,7 @@ labels?: {
 
 Example form
 
-    initialState = { invalid: false };
-
+    var InputLabel = require("components/Forms/Input").InputLabel;
     <div>
         <h2>Inquiry form</h2>
         <TextInput labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
@@ -61,6 +60,23 @@ Example form
             <TextInput labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
             <TextInput labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
         </div>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+            <h3>Your preferences</h3>
+            <InputLabel>Your favourite color:</InputLabel>
+            <Radio labels={{main: "black"}} />
+            <Radio labels={{main: "blue"}} />
+            <Radio labels={{main: "orange"}} />
+            <Radio labels={{main: "pink"}} />
+        </div>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+            <h3>Your abilities:</h3>
+            <InputLabel>Choose your superpower:</InputLabel>
+            <Checkbox labels={{main: "invisibility"}} />
+            <Checkbox labels={{main: "immortality"}} />
+            <Checkbox labels={{main: "stupidity"}} />
+            <Checkbox labels={{main: "other-ity"}} />
+        </div>
+
         <h3>Other information</h3>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
             <ColorPicker labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
