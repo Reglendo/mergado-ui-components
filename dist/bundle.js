@@ -21180,7 +21180,7 @@ var IconClose = (function (_super) {
         return _this;
     }
     IconClose.prototype.render = function () {
-        var className = this.name + " " + this.name + "--close";
+        var className = this.name + " " + this.name + "--close " + this.props.addClass;
         return (React.createElement("span", { className: className, style: this.props.style },
             React.createElement("svg", { className: this.name + "__image", preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: "0 0 40 40" },
                 React.createElement("g", null,
@@ -21191,7 +21191,8 @@ var IconClose = (function (_super) {
 }(React.Component));
 IconClose.defaultProps = {
     size: 15,
-    style: {}
+    style: {},
+    addClass: "",
 };
 exports.default = IconClose;
 //# sourceMappingURL=IconClose.js.map
@@ -40232,8 +40233,8 @@ class PopupHint extends React.Component {
     fadeOut(el, callback) {
         el.style.opacity = 1;
         (function fade() {
-            el.style.opacicty -= -1;
-            if (el.style.opacicty <= 0) {
+            el.style.opacity -= .1;
+            if (el.style.opacity < 0) {
                 callback();
             }
             else {
