@@ -5,6 +5,7 @@ import {Link} from "react-router"
 import uniqueId from "helpers/unique_id"
 import {Input, InputLabel, InputError} from "components/Forms/Input"
 import * as MUK from "components/Forms/input"
+import domOnlyProps from "helpers/dom-only-props"
 
 export interface Query {
     id: number
@@ -133,21 +134,24 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
                         onClick={handler}>
                         {this.props.singleChoice === false ?
                             <input
+                                {...domOnlyProps(this.props)}
+                                {...domOnlyProps(this.props.input)}
                                 type="checkbox"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
                                 onChange={handler}
                                 style={{pointerEvents: "none"}}
-                                {...this.props.input} />
-                            :
+                            />
+                        :
                             <input
+                                {...domOnlyProps(this.props)}
+                                {...domOnlyProps(this.props.input)}
                                 type="radio"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
                                 onChange={handler}
                                 style={{display: this.props.showRadio?"inline-block":"none", pointerEvents: "none"}}
-                                {...this.props.input} />
-
+                            />
                         }
                         {this.renderItemLabel(option)}
                     </li>

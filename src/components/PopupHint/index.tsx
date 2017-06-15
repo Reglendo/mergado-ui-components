@@ -101,7 +101,7 @@ class PopupHint extends React.Component<Props, State> {
 
         hint.style.opacity = `0`
         hint.style.display = "block"
-
+        hint.style.pointerEvents = "none"
         let newX: number
         let arrowLeft: string
         let arrowRight: string
@@ -127,6 +127,7 @@ class PopupHint extends React.Component<Props, State> {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`
             hint.style.left = `${newX}px`
         }
+        hint.style.display = "none"
     }
 
     protected fadeOut(el: any, callback: () => void) {

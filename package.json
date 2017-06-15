@@ -1,6 +1,6 @@
 {
   "name": "mergado-ui-kit",
-  "version": "1.7.10-dev",
+  "version": "1.8.0-dev",
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
@@ -32,13 +32,12 @@
     "react": "^15.4.2",
     "react-color": "^2.11.6",
     "react-dates": "^12.0.0",
+    "react-dom-props": "^1.0.2",
     "react-router": "^2.6.1",
     "react-sortablejs": "^1.0.1",
     "sortablejs": "^1.4.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-plugin-module-resolver": "^2.7.0",
     "@types/chai": "^3.4.35",
     "@types/chai-jquery": "^1.1.33",
     "@types/jquery": "^2.0.40",
@@ -50,6 +49,8 @@
     "@types/react-dom": "^0.14.21",
     "@types/react-redux": "^4.4.36",
     "@types/redux-form": "^6.3.2",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-module-resolver": "^2.7.0",
     "capitalize": "^1.0.0",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",

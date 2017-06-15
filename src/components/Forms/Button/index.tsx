@@ -98,6 +98,7 @@ class Button extends MUK.InputComponent<Props, State> {
             <div className={`${this.name}--${color} \
 ${!this.props.labels.main?this.name+`--notext`:``} \
 ${size ? this.name+`--`+size:``} \
+${this.name}--${type} \
 ${disabled ? this.name+`--disabled`:``} \
 `}>
                 {type === "button" && this.renderButton(className, props)}
