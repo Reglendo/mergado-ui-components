@@ -82,6 +82,11 @@ class PopupHint extends React.Component {
         else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`;
             hint.style.left = `${newX}px`;
+            if (this.state.expanded) {
+                this.styleArrow(arrowLeft, arrowRight);
+                this.fadeIn(this.refs.hint);
+                this.refs.hint.focus();
+            }
         }
         hint.style.display = "none";
     }
