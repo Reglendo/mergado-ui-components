@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 476);
+/******/ 	return __webpack_require__(__webpack_require__.s = 475);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -806,7 +806,7 @@ exports.__esModule = true;
 exports.default = routerWarning;
 exports._resetWarned = _resetWarned;
 
-var _warning = __webpack_require__(475);
+var _warning = __webpack_require__(474);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -39617,7 +39617,6 @@ const react_router_1 = __webpack_require__(181);
 const unique_id_1 = __webpack_require__(25);
 const Input_1 = __webpack_require__(104);
 const MUK = __webpack_require__(20);
-const dom_only_props_1 = __webpack_require__(474);
 class CheckboxContainer extends MUK.InputComponent {
     constructor(props) {
         super(props);
@@ -39679,9 +39678,9 @@ class CheckboxContainer extends MUK.InputComponent {
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
                                     ${option.disabled ? `${this.name}__item--disabled` : ""}`, key: unique_id_1.default(), onClick: handler },
                 this.props.singleChoice === false ?
-                    React.createElement("input", Object.assign({}, dom_only_props_1.default(this.props), dom_only_props_1.default(this.props.input), { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } }))
+                    React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } })
                     :
-                        React.createElement("input", Object.assign({}, dom_only_props_1.default(this.props), dom_only_props_1.default(this.props.input), { type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } })),
+                        React.createElement("input", { type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }),
                 this.renderItemLabel(option)));
         });
     }
@@ -40287,7 +40286,10 @@ class PopupHint extends React.Component {
                         React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
                     React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
         return (React.createElement("div", { className: this.name, style: { display: "inline-block" } },
-            React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand }, this.props.icon ? this.props.icon : null),
+            React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onClick: (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } }, this.props.icon ? this.props.icon : null),
             hint));
     }
 }
@@ -40565,46 +40567,6 @@ exports.default = WizardNav;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const htmlAttrs = [
-    "accept", "acceptCharset", "accessKey", "action", "allowFullScreen", "allowTransparency", "alt",
-    "async", "autoComplete", "autoFocus", "autoPlay", "capture", "cellPadding", "cellSpacing", "challenge",
-    "charSet", "checked", "cite", "classID", "className", "colSpan", "cols", "content", "contentEditable",
-    "contextMenu", "controls", "coords", "crossOrigin", "data", "dateTime", "default", "defer", "dir",
-    "disabled", "download", "draggable", "encType", "form", "formAction", "formEncType", "formMethod",
-    "formNoValidate", "formTarget", "frameBorder", "headers", "height", "hidden", "high", "href", "hrefLang",
-    "htmlFor", "httpEquiv", "icon", "id", "inputMode", "integrity", "is", "keyParams", "keyType", "kind", "label",
-    "lang", "list", "loop", "low", "manifest", "marginHeight", "marginWidth", "max", "maxLength", "media",
-    "mediaGroup", "method", "min", "minLength", "multiple", "muted", "name", "noValidate", "nonce", "open",
-    "optimum", "pattern", "placeholder", "poster", "preload", "profile", "radioGroup", "readOnly", "rel",
-    "required", "reversed", "role", "rowSpan", "rows", "sandbox", "scope", "scoped", "scrolling", "seamless",
-    "selected", "shape", "size", "sizes", "span", "spellCheck", "src", "srcDoc", "srcLang", "srcSet", "start", "step",
-    "style", "summary", "tabIndex", "target", "title", "type", "useMap", "value", "width", "wmode", "wrap",
-    "about", "datatype", "inlist", "prefix", "property", "resource", "typeof", "vocab",
-    "autoCapitalize", "autoCorrect", "color", "itemProp", "itemScope", "itemType", "itemRef", "itemID",
-    "security", "unselectable", "results", "autoSave",
-];
-const domOnlyProps = (obj) => {
-    const result = {};
-    for (const type in obj) {
-        if (htmlAttrs.indexOf(type) > -1) {
-            result[type] = obj[type];
-        }
-        else if (type.indexOf("data") === 0 || type.indexOf("aria") === 0) {
-            result[type] = obj[type];
-        }
-    }
-    return result;
-};
-exports.default = domOnlyProps;
-
-
-/***/ }),
-/* 475 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -40669,7 +40631,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 476 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(193);
