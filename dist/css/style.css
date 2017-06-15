@@ -678,6 +678,10 @@ table {
   color: #888;
   background: #eee; }
 
+.muk-input-checkbox + .muk-input-checkbox,
+.muk-input-radio + .muk-input-radio {
+  margin-top: -15px; }
+
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
 
@@ -831,6 +835,10 @@ table {
 .muk-input-text__input[disabled], .muk-input-text__input[readonly] {
   color: #888;
   background: #eee; }
+
+.muk-input-checkbox + .muk-input-checkbox,
+.muk-input-radio + .muk-input-radio {
+  margin-top: -15px; }
 
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
@@ -1743,6 +1751,10 @@ table {
   color: #888;
   background: #eee; }
 
+.muk-input-checkbox + .muk-input-checkbox,
+.muk-input-radio + .muk-input-radio {
+  margin-top: -15px; }
+
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
 
@@ -1952,6 +1964,10 @@ table {
 .muk-input-text__input[disabled], .muk-input-text__input[readonly] {
   color: #888;
   background: #eee; }
+
+.muk-input-checkbox + .muk-input-checkbox,
+.muk-input-radio + .muk-input-radio {
+  margin-top: -15px; }
 
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
