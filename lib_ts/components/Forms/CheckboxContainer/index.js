@@ -7,6 +7,7 @@ const react_router_1 = require("react-router");
 const unique_id_1 = require("helpers/unique_id");
 const Input_1 = require("components/Forms/Input");
 const MUK = require("components/Forms/input");
+const dom_only_props_1 = require("helpers/dom-only-props");
 class CheckboxContainer extends MUK.InputComponent {
     constructor(props) {
         super(props);
@@ -68,9 +69,9 @@ class CheckboxContainer extends MUK.InputComponent {
             return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
                                     ${option.disabled ? `${this.name}__item--disabled` : ""}`, key: unique_id_1.default(), onClick: handler },
                 this.props.singleChoice === false ?
-                    React.createElement("input", Object.assign({ type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } }, this.props.input))
+                    React.createElement("input", Object.assign({}, dom_only_props_1.default(this.props), dom_only_props_1.default(this.props.input), { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } }))
                     :
-                        React.createElement("input", Object.assign({ type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }, this.props.input)),
+                        React.createElement("input", Object.assign({}, dom_only_props_1.default(this.props), dom_only_props_1.default(this.props.input), { type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } })),
                 this.renderItemLabel(option)));
         });
     }

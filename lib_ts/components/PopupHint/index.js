@@ -57,6 +57,7 @@ class PopupHint extends React.Component {
         const hint = this.refs.hint;
         hint.style.opacity = `0`;
         hint.style.display = "block";
+        hint.style.pointerEvents = "none";
         let newX;
         let arrowLeft;
         let arrowRight;
@@ -82,6 +83,7 @@ class PopupHint extends React.Component {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`;
             hint.style.left = `${newX}px`;
         }
+        hint.style.display = "none";
     }
     fadeOut(el, callback) {
         el.style.opacity = 1;
