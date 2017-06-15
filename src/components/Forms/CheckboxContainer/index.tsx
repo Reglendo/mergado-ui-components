@@ -134,8 +134,6 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
                         onClick={handler}>
                         {this.props.singleChoice === false ?
                             <input
-                                {...domOnlyProps(this.props)}
-                                {...domOnlyProps(this.props.input)}
                                 type="checkbox"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
@@ -144,8 +142,6 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
                             />
                         :
                             <input
-                                {...domOnlyProps(this.props)}
-                                {...domOnlyProps(this.props.input)}
                                 type="radio"
                                 className={`${this.name}__checkbox`}
                                 checked={queries.indexOf(option.id) >= 0}
