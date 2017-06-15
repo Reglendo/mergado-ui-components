@@ -1834,7 +1834,8 @@ table {
 
 .muk-button {
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  margin-bottom: 0; }
   .muk-button .muk-form__label {
     display: none; }
   .muk-button__item, .muk-button a.muk-button__item {
