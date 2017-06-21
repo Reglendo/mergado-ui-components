@@ -11,9 +11,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
+const dom_only_props_1 = require("helpers/dom-only-props");
 exports.Input = (_a) => {
     var addProps = __rest(_a.group, []), props = __rest(_a, ["group"]);
-    return (React.createElement("div", Object.assign({}, addProps, { className: `${props.name} \
+    return (React.createElement("div", Object.assign({}, dom_only_props_1.default(addProps), { className: `${props.name} \
 ${props.disabled ? props.name + `--disabled` : ""} \
 ${props.required ? props.name + `--required` : ""} \
 ${addProps.className ? addProps.className : ""} \
