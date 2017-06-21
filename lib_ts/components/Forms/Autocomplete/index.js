@@ -269,6 +269,9 @@ class Autocomplete extends MUK.InputComponent {
     renderError() {
         return React.createElement("div", null);
     }
+    renderLabel(className, props) {
+        return null;
+    }
     renderInput(className, props) {
         const open = this.isOpen();
         const { labels, meta, input } = this.props;

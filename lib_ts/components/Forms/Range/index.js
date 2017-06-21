@@ -36,10 +36,6 @@ class Range extends MUK.InputComponent {
             this.state.value !== undefined && this.state.value !== "" &&
                 React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: "calc(" + ((this.state.value / this.props.max) * 100) + "% - " + outputWidth / 2 + "px)" }, id: outputId }, this.state.value)));
     }
-    renderLabel() {
-        const { labels } = this.props;
-        return this.props.labels.main;
-    }
 }
 Range.defaultProps = Object.assign({}, MUK.defaultProps, { max: 50, min: 0, step: 1 });
 exports.default = Range;

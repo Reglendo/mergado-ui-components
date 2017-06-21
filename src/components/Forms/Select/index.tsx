@@ -50,10 +50,6 @@ class Select extends MUK.InputComponent<Props, State> {
         )
     }
 
-    protected renderLabel(className, props) {
-        return this.props.labels.main
-    }
-
 }
 
 export default Select

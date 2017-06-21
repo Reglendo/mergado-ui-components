@@ -44,9 +44,6 @@ class ColorPicker extends MUK.InputComponent {
             React.createElement("div", { className: `${this.name}__colorbox`, style: { background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     }
-    renderLabel() {
-        return this.props.labels.main;
-    }
 }
 ColorPicker.defaultProps = Object.assign({}, MUK.defaultProps, { color: { r: 0, g: 0, b: 0, a: 1 } });
 exports.default = ColorPicker;

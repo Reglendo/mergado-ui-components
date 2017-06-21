@@ -21,6 +21,7 @@ export const InputLabel = ({children, name}) => {
     if(children === "") {
         return null
     }
+
     return (
             <label className={`${name}__label ${form}__label`}>
                 {children}

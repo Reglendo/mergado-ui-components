@@ -8,14 +8,20 @@ class Radio extends MUK.InputComponent {
         super(...arguments);
         this.name = config_1.prefix + "input-radio";
     }
-    renderLabel(className, props) {
+    renderInputs(className, props) {
         const { input, meta, labels } = this.props;
-        return (React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, { className: `${this.name}__item ${className}`, type: "radio" })),
-            "\u00A0",
-            this.props.labels.main));
+        return this.props.items.map((obj) => {
+            return (React.createElement("label", { className: `${this.name}__item`, key: obj.value },
+                React.createElement("input", { value: obj.value, checked: obj.value === this.props.input.value, onChange: input.onChange, className: `${this.name}__input ${className}`, type: "radio" }),
+                "\u00A0",
+                obj.label));
+        });
+    }
+    renderInput(className, props) {
+        const { input, meta, labels } = this.props;
+        return this.renderInputs(className, props);
     }
 }
-Radio.defaultProps = Object.assign({}, MUK.defaultProps);
+Radio.defaultProps = Object.assign({}, MUK.defaultProps, { items: [] });
 exports.default = Radio;
 //# sourceMappingURL=index.js.map

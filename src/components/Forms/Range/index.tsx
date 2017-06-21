@@ -84,12 +84,6 @@ class Range extends MUK.InputComponent<Props,State> {
         )
 
     }
-
-    public renderLabel() {
-        const { labels } = this.props
-        return this.props.labels.main
-    }
-
 }
 
 export default Range

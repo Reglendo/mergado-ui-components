@@ -49,10 +49,6 @@ class DatePicker extends MUK.InputComponent {
         }
         return (React.createElement("div", { className: `${this.name}__picker` }, picker));
     }
-    renderLabel(className, props) {
-        const { labels } = this.props;
-        return labels.main;
-    }
 }
 DatePicker.defaultProps = Object.assign({}, MUK.defaultProps, { type: "single", numberOfMonths: 1, minimumDays: 1, locale: "cs", labels: {
         main: "Pick date:",

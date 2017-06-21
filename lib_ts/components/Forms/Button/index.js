@@ -38,7 +38,7 @@ class Button extends MUK.InputComponent {
             labels.main));
     }
     renderLabel() {
-        return React.createElement("span", null);
+        return null;
     }
     renderInput(className, props) {
         const { type, color, disabled, size, meta } = this.props;

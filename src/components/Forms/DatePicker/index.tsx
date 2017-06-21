@@ -204,11 +204,6 @@ class DatePicker extends MUK.InputComponent<Props, State> {
         )
     }
 
-    public renderLabel(className, props) {
-        const { labels } = this.props
-        return labels.main
-    }
-
 }
 
 export default DatePicker
