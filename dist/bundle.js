@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 475);
+/******/ 	return __webpack_require__(__webpack_require__.s = 476);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -806,7 +806,7 @@ exports.__esModule = true;
 exports.default = routerWarning;
 exports._resetWarned = _resetWarned;
 
-var _warning = __webpack_require__(474);
+var _warning = __webpack_require__(475);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -1791,10 +1791,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(1);
 const config_1 = __webpack_require__(5);
 const Input_1 = __webpack_require__(104);
+const dom_only_props_1 = __webpack_require__(474);
 exports.defaultProps = {
     group: {
         className: "",
         style: {},
+        bigLabel: false,
     },
     input: {
         className: "",
@@ -1847,12 +1849,17 @@ class InputComponent extends React.Component {
         return;
     }
     renderLabel(className, props) {
-        return;
+        const { labels } = this.props;
+        const label = this.props.label ? this.props.label : labels.main;
+        return this.props.group.bigLabel === false ?
+            label
+            :
+                React.createElement("h3", { className: `${this.form}__header` }, label);
     }
     render() {
         const props = this.props;
         const { meta, input, labels, group } = props, others = __rest(props, ["meta", "input", "labels", "group"]);
-        const inputProps = Object.assign({ id: this.props.meta.form ? `${this.props.meta.form}-${input.name}` : "" }, others);
+        const inputProps = dom_only_props_1.default(Object.assign({ id: this.props.meta.form ? `${this.props.meta.form}-${input.name}` : "" }, others));
         return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
             this.renderError(),
             React.createElement(Input_1.InputLabel, { name: this.name }, this.renderLabel(input.className ? input.className : "", inputProps)),
@@ -6353,7 +6360,7 @@ class Checkbox extends MUK.InputComponent {
     renderLabel(className, props) {
         const { input, labels } = this.props;
         return React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, { type: "checkbox", className: `${this.name}__item ${className}`, defaultChecked: input ? !!input.value : false })),
+            React.createElement("input", Object.assign({ checked: this.props.input.value }, this.props.input, { type: "checkbox", className: `${this.name}__item ${className}` })),
             labels && " ",
             labels ? labels.main : "");
     }
@@ -9554,9 +9561,6 @@ class TextInput extends MUK.InputComponent {
     constructor() {
         super(...arguments);
         this.name = config_1.prefix + "input-text";
-    }
-    renderLabel() {
-        return this.props.labels.main;
     }
     renderInput(className, props) {
         const { type, meta, input } = this.props;
@@ -16001,7 +16005,7 @@ class Button extends MUK.InputComponent {
             labels.main));
     }
     renderLabel() {
-        return React.createElement("span", null);
+        return null;
     }
     renderInput(className, props) {
         const { type, color, disabled, size, meta } = this.props;
@@ -39572,6 +39576,9 @@ class Autocomplete extends MUK.InputComponent {
     renderError() {
         return React.createElement("div", null);
     }
+    renderLabel(className, props) {
+        return null;
+    }
     renderInput(className, props) {
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
@@ -39794,9 +39801,6 @@ class ColorPicker extends MUK.InputComponent {
             React.createElement("div", { className: `${this.name}__colorbox`, style: { background }, onClick: this.handleClick }),
             this.state.displayColorPicker && this.renderPicker()));
     }
-    renderLabel() {
-        return this.props.labels.main;
-    }
 }
 ColorPicker.defaultProps = Object.assign({}, MUK.defaultProps, { color: { r: 0, g: 0, b: 0, a: 1 } });
 exports.default = ColorPicker;
@@ -39817,15 +39821,21 @@ class Radio extends MUK.InputComponent {
         super(...arguments);
         this.name = config_1.prefix + "input-radio";
     }
-    renderLabel(className, props) {
+    renderInputs(className, props) {
         const { input, meta, labels } = this.props;
-        return (React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, { className: `${this.name}__item ${className}`, type: "radio" })),
-            "\u00A0",
-            this.props.labels.main));
+        return this.props.items.map((obj) => {
+            return (React.createElement("label", { className: `${this.name}__item`, key: obj.value },
+                React.createElement("input", { value: obj.value, checked: obj.value === this.props.input.value, onChange: input.onChange, className: `${this.name}__input ${className}`, type: "radio" }),
+                "\u00A0",
+                obj.label));
+        });
+    }
+    renderInput(className, props) {
+        const { input, meta, labels } = this.props;
+        return this.renderInputs(className, props);
     }
 }
-Radio.defaultProps = Object.assign({}, MUK.defaultProps);
+Radio.defaultProps = Object.assign({}, MUK.defaultProps, { items: [] });
 exports.default = Radio;
 
 
@@ -39872,10 +39882,6 @@ class Range extends MUK.InputComponent {
             this.state.value !== undefined && this.state.value !== "" &&
                 React.createElement("output", { className: `${this.form}__input--range__output`, style: { left: "calc(" + ((this.state.value / this.props.max) * 100) + "% - " + outputWidth / 2 + "px)" }, id: outputId }, this.state.value)));
     }
-    renderLabel() {
-        const { labels } = this.props;
-        return this.props.labels.main;
-    }
 }
 Range.defaultProps = Object.assign({}, MUK.defaultProps, { max: 50, min: 0, step: 1 });
 exports.default = Range;
@@ -39918,9 +39924,6 @@ class Select extends MUK.InputComponent {
         delete props.options;
         return (React.createElement("select", Object.assign({}, input, { className: `${this.name}__item ${className}` }), this.renderOptions()));
     }
-    renderLabel(className, props) {
-        return this.props.labels.main;
-    }
 }
 Select.defaultProps = Object.assign({}, MUK.defaultProps, { options: [], size: 0 });
 exports.default = Select;
@@ -39940,9 +39943,6 @@ class Textarea extends MUK.InputComponent {
     constructor() {
         super(...arguments);
         this.name = config_1.prefix + "textarea";
-    }
-    renderLabel() {
-        return this.props.labels.main;
     }
     renderInput(className, props) {
         const { input, labels } = this.props;
@@ -40572,6 +40572,46 @@ exports.default = WizardNav;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const htmlAttrs = [
+    "accept", "acceptCharset", "accessKey", "action", "allowFullScreen", "allowTransparency", "alt",
+    "async", "autoComplete", "autoFocus", "autoPlay", "capture", "cellPadding", "cellSpacing", "challenge",
+    "charSet", "checked", "cite", "classID", "className", "colSpan", "cols", "content", "contentEditable",
+    "contextMenu", "controls", "coords", "crossOrigin", "data", "dateTime", "default", "defer", "dir",
+    "disabled", "download", "draggable", "encType", "form", "formAction", "formEncType", "formMethod",
+    "formNoValidate", "formTarget", "frameBorder", "headers", "height", "hidden", "high", "href", "hrefLang",
+    "htmlFor", "httpEquiv", "icon", "id", "inputMode", "integrity", "is", "keyParams", "keyType", "kind", "label",
+    "lang", "list", "loop", "low", "manifest", "marginHeight", "marginWidth", "max", "maxLength", "media",
+    "mediaGroup", "method", "min", "minLength", "multiple", "muted", "name", "noValidate", "nonce", "open",
+    "optimum", "pattern", "placeholder", "poster", "preload", "profile", "radioGroup", "readOnly", "rel",
+    "required", "reversed", "role", "rowSpan", "rows", "sandbox", "scope", "scoped", "scrolling", "seamless",
+    "selected", "shape", "size", "sizes", "span", "spellCheck", "src", "srcDoc", "srcLang", "srcSet", "start", "step",
+    "style", "summary", "tabIndex", "target", "title", "type", "useMap", "value", "width", "wmode", "wrap",
+    "about", "datatype", "inlist", "prefix", "property", "resource", "typeof", "vocab",
+    "autoCapitalize", "autoCorrect", "color", "itemProp", "itemScope", "itemType", "itemRef", "itemID",
+    "security", "unselectable", "results", "autoSave",
+];
+const domOnlyProps = (obj) => {
+    const result = {};
+    for (const type in obj) {
+        if (htmlAttrs.indexOf(type) > -1) {
+            result[type] = obj[type];
+        }
+        else if (type.indexOf("data") === 0 || type.indexOf("aria") === 0) {
+            result[type] = obj[type];
+        }
+    }
+    return result;
+};
+exports.default = domOnlyProps;
+
+
+/***/ }),
+/* 475 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -40636,7 +40676,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 475 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(193);
