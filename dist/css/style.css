@@ -541,6 +541,9 @@ table {
   margin-bottom: 1.5em; }
 
 /* COLORS */
+.muk-datagrid .sortable-ghost {
+  opacity: 0.1; }
+
 .muk-datagrid__table {
   width: 100%; }
 
@@ -680,7 +683,7 @@ table {
 
 .muk-input-radio__item {
   display: block;
-  padding: 2px 10px; }
+  padding: 2px 0px; }
 
 .muk-input-checkbox + .muk-input-checkbox {
   margin-top: -20px; }
@@ -841,7 +844,7 @@ table {
 
 .muk-input-radio__item {
   display: block;
-  padding: 2px 10px; }
+  padding: 2px 0px; }
 
 .muk-input-checkbox + .muk-input-checkbox {
   margin-top: -20px; }
@@ -1765,7 +1768,7 @@ table {
 
 .muk-input-radio__item {
   display: block;
-  padding: 2px 10px; }
+  padding: 2px 0px; }
 
 .muk-input-checkbox + .muk-input-checkbox {
   margin-top: -20px; }
@@ -1982,7 +1985,7 @@ table {
 
 .muk-input-radio__item {
   display: block;
-  padding: 2px 10px; }
+  padding: 2px 0px; }
 
 .muk-input-checkbox + .muk-input-checkbox {
   margin-top: -20px; }
