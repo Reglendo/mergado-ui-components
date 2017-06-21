@@ -32,7 +32,7 @@ class Radio extends MUK.InputComponent<Props, State> {
                 <label className={`${this.name}__item`} key={obj.value}>
                         <input
                             value={obj.value}
-                            checked={obj.value === this.props.input.value}
+                            checked={obj.value == this.props.input.value}
                             onChange={input.onChange}
                             className={`${this.name}__input ${className}`}
                             type="radio"

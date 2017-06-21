@@ -1,10 +1,11 @@
 import * as React from "react"
 import { form } from "config"
+import domOnlyProps from "helpers/dom-only-props"
 
 export const Input = ({group: {...addProps}, ...props}) => {
     return (
     <div
-        {...addProps}
+        {...domOnlyProps(addProps)}
         className={`${props.name} \
 ${props.disabled ? props.name+`--disabled` : ""} \
 ${props.required ? props.name+`--required` : ""} \

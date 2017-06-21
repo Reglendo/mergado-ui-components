@@ -12,7 +12,7 @@ class Radio extends MUK.InputComponent {
         const { input, meta, labels } = this.props;
         return this.props.items.map((obj) => {
             return (React.createElement("label", { className: `${this.name}__item`, key: obj.value },
-                React.createElement("input", { value: obj.value, checked: obj.value === this.props.input.value, onChange: input.onChange, className: `${this.name}__input ${className}`, type: "radio" }),
+                React.createElement("input", { value: obj.value, checked: obj.value == this.props.input.value, onChange: input.onChange, className: `${this.name}__input ${className}`, type: "radio" }),
                 "\u00A0",
                 obj.label));
         });
