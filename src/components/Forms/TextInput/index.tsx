@@ -19,9 +19,6 @@ class TextInput extends MUK.InputComponent<Props, State> {
         type: "text",
     }
 
-    protected renderLabel() {
-        return this.props.labels.main
-    }
     protected renderInput(className, props) {
         const { type, meta, input } = this.props
         const inputProps: any = this.props.input

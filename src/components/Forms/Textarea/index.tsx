@@ -17,11 +17,7 @@ class Textarea extends MUK.InputComponent<Props, State> {
         ...MUK.defaultProps,
     }
 
-    public renderLabel() {
-        return this.props.labels.main
-    }
-
-    public renderInput(className, props) {
+    protected renderInput(className, props) {
         const { input, labels } = this.props
         return (
             <textarea

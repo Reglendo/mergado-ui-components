@@ -89,7 +89,7 @@ class Button extends MUK.InputComponent<Props, State> {
     }
 
     protected renderLabel() {
-        return <span/>
+        return null
     }
 
     protected renderInput(className, props) {

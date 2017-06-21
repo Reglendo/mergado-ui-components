@@ -21,13 +21,12 @@ class Checkbox extends MUK.InputComponent<Props, State> {
 
     protected renderLabel(className, props) {
         const { input, labels } = this.props
-
         return  <span>
                     <input
-                        {...input}
+                        checked={this.props.input.value}
+                        {...this.props.input}
                         type="checkbox"
                         className={`${this.name}__item ${className}`}
-                        defaultChecked={input ? !!input.value : false}
                         />
                     {labels && " "}
                     {labels ? labels.main : ""}

@@ -5,7 +5,6 @@ import {Link} from "react-router"
 import uniqueId from "helpers/unique_id"
 import {Input, InputLabel, InputError} from "components/Forms/Input"
 import * as MUK from "components/Forms/input"
-import domOnlyProps from "helpers/dom-only-props"
 
 export interface Query {
     id: number

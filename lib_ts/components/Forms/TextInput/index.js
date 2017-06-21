@@ -8,9 +8,6 @@ class TextInput extends MUK.InputComponent {
         super(...arguments);
         this.name = config_1.prefix + "input-text";
     }
-    renderLabel() {
-        return this.props.labels.main;
-    }
     renderInput(className, props) {
         const { type, meta, input } = this.props;
         const inputProps = this.props.input;

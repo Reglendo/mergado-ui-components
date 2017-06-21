@@ -345,6 +345,10 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
         return <div/>
     }
 
+    protected renderLabel(className, props) {
+        return null
+    }
+
     protected renderInput(className, props) {
         const open = this.isOpen()
         const {labels, meta, input} = this.props
@@ -370,6 +374,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
             </div>
         )
     }
+
 
 }
 

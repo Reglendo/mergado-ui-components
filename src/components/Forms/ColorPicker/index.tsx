@@ -94,9 +94,6 @@ class ColorPicker extends MUK.InputComponent<Props, State> {
         )
     }
 
-    protected renderLabel() {
-        return this.props.labels.main
-    }
 }
 
 export default ColorPicker

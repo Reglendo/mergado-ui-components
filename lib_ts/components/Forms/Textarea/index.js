@@ -8,9 +8,6 @@ class Textarea extends MUK.InputComponent {
         super(...arguments);
         this.name = config_1.prefix + "textarea";
     }
-    renderLabel() {
-        return this.props.labels.main;
-    }
     renderInput(className, props) {
         const { input, labels } = this.props;
         return (React.createElement("textarea", Object.assign({}, input, { className: `${this.name}__input

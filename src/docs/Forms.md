@@ -47,6 +47,8 @@ labels?: {
 Example form
 
     var InputLabel = require("components/Forms/Input").InputLabel;
+    var Field = require('redux-form').Field;
+
     <div>
         <h2>Inquiry form</h2>
         <TextInput labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
@@ -61,20 +63,25 @@ Example form
             <TextInput labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
         </div>
         <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
-            <h3>Your preferences</h3>
-            <InputLabel>Your favourite color:</InputLabel>
-            <Radio labels={{main: "black"}} />
-            <Radio labels={{main: "blue"}} />
-            <Radio labels={{main: "orange"}} />
-            <Radio labels={{main: "pink"}} />
+            <Field name="favcolor" component={Radio}
+                    props={{
+                        group: { bigLabel: true },
+                        items: [
+                                {value: "black", label: "black"},
+                                {value: "blue", label: "blue"},
+                                {value: "orange", label: "orange"},
+                                {value: "pink", label: "pink"}
+                        ]
+                    }}
+                    label="Your favourite color:" />
         </div>
         <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Your abilities:</h3>
             <InputLabel>Choose your superpower:</InputLabel>
-            <Checkbox labels={{main: "invisibility"}} />
-            <Checkbox labels={{main: "immortality"}} />
-            <Checkbox labels={{main: "stupidity"}} />
-            <Checkbox labels={{main: "other-ity"}} />
+            <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
+            <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
+            <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
+            <Field name="superpower4" component={Checkbox} labels={{main: "other-ity"}} />
         </div>
 
         <h3>Other information</h3>

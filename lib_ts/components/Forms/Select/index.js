@@ -30,9 +30,6 @@ class Select extends MUK.InputComponent {
         delete props.options;
         return (React.createElement("select", Object.assign({}, input, { className: `${this.name}__item ${className}` }), this.renderOptions()));
     }
-    renderLabel(className, props) {
-        return this.props.labels.main;
-    }
 }
 Select.defaultProps = Object.assign({}, MUK.defaultProps, { options: [], size: 0 });
 exports.default = Select;
