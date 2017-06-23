@@ -15933,9 +15933,9 @@ class DataTable extends React.Component {
         return this.props.filters.map(obj => {
             switch (obj.type) {
                 case "text":
-                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label } }));
+                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
                 case "checkbox":
-                    return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label } }));
+                    return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "checkbox" }));
             }
         });
     }
@@ -15979,8 +15979,9 @@ class Button extends MUK.InputComponent {
         this.name = config_1.prefix + "button";
     }
     renderHref(className, props) {
-        const { link, labels, icon, input } = this.props;
-        return (React.createElement("a", Object.assign({}, input, { onClick: this.props.onClick, href: link, className: `${this.name}__item`, title: labels.title }),
+        const { link, labels, icon, input, to } = this.props;
+        const l = to ? to : link;
+        return (React.createElement("a", Object.assign({}, input, { onClick: this.props.onClick, href: l, className: `${this.name}__item`, title: labels.title }),
             icon,
             labels.main));
     }
@@ -15991,8 +15992,9 @@ class Button extends MUK.InputComponent {
             labels.main));
     }
     renderLink(className, props) {
-        const { link, labels, icon, input } = this.props;
-        return (React.createElement(react_router_1.Link, { onClick: this.props.onClick, to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title },
+        const { link, labels, icon, input, to } = this.props;
+        const l = to ? to : link;
+        return (React.createElement(react_router_1.Link, { onClick: this.props.onClick, to: l, className: `${this.name}__item ${className ? className : ""}`, title: labels.title },
             icon,
             labels.main));
     }
