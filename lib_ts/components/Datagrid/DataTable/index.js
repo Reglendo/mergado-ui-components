@@ -70,9 +70,9 @@ class DataTable extends React.Component {
         return this.props.filters.map(obj => {
             switch (obj.type) {
                 case "text":
-                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label } }));
+                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
                 case "checkbox":
-                    return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label } }));
+                    return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "checkbox" }));
             }
         });
     }
