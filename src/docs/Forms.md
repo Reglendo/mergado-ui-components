@@ -62,10 +62,9 @@ Example form
             <TextInput labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
             <TextInput labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
         </div>
-        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
             <Field name="favcolor" component={Radio}
                     props={{
-                        group: { bigLabel: true },
                         items: [
                                 {value: "black", label: "black"},
                                 {value: "blue", label: "blue"},
@@ -75,13 +74,13 @@ Example form
                     }}
                     label="Your favourite color:" />
         </div>
-        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
-            <h3>Your abilities:</h3>
-            <InputLabel>Choose your superpower:</InputLabel>
-            <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
-            <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
-            <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
-            <Field name="superpower4" component={Checkbox} labels={{main: "other-ity"}} />
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+            <FormGroup label="Choose your superpower:">
+                <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
+                <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
+                <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
+                <Field name="superpower4" component={Checkbox} labels={{main: "other-ity"}} />
+            </FormGroup>
         </div>
 
         <h3>Other information</h3>
@@ -95,5 +94,3 @@ Example form
         <Button labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
         <Button color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
     </div>
-
-

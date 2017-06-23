@@ -6,6 +6,7 @@ import * as MUK from "components/Forms/input"
 export interface Props extends MUK.Props {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
+    to?: string
     icon?: JSX.Element | string
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
@@ -31,12 +32,13 @@ class Button extends MUK.InputComponent<Props, State> {
     }
 
     protected renderHref(className, props) {
-        const { link, labels, icon, input } = this.props
+        const { link, labels, icon, input, to } = this.props
+        const l = to ? to : link
         return (
             <a
                 {...input}
                 onClick={this.props.onClick}
-                href={link}
+                href={l}
                 className={`${this.name}__item`}
                 title={labels.title}>
                     {icon}{labels.main}
@@ -54,11 +56,12 @@ class Button extends MUK.InputComponent<Props, State> {
             </button>)
     }
     protected renderLink(className, props) {
-        const { link, labels, icon, input } = this.props
+        const { link, labels, icon, input, to } = this.props
+        const l = to ? to : link
         return (
             <Link
                 onClick={this.props.onClick}
-                to={link}
+                to={l}
                 className={`${this.name}__item ${className ? className : ""}`}
                 title={labels.title}>
                     {icon}{labels.main}

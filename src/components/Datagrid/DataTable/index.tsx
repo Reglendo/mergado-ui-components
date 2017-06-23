@@ -136,10 +136,12 @@ class DataTable extends React.Component<Props, State> {
                 case "text":
                     return (<TextInput
                                 input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
+                                key="text"
                             />)
                 case "checkbox":
                     return (<Checkbox
                                 input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
+                                key="checkbox"
                             />)
             }
         })
