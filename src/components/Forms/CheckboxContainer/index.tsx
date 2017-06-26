@@ -65,10 +65,30 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
 
     constructor(props: Props) {
         super(props)
-
         this.state = {
             filter: "",
         }
+
+    }
+
+    protected sortOptions(props) {
+      if(!props.meta.initial) {
+        return
+      }
+      const queries = props.meta.initial
+
+      return (a,b) => {
+        const activeA = queries.indexOf(a.id) >= 0
+        const activeB = queries.indexOf(b.id) >= 0
+
+        if (activeA < activeB) {
+          return 1
+        }
+        if (activeA > activeB) {
+          return -1
+        }
+        return 0
+      }
     }
 
     protected renderOptions(options) {
@@ -100,6 +120,7 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
                 const regex = new RegExp(this.state.filter, "i");
                 return regex.test(option.name);
             })
+
             .map(option => {
                 const index = queries.indexOf(option.id);
                 const handler = () => {
@@ -180,7 +201,7 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
         const render = (items) => this.renderOptions(items)
         const className = this.name+`__group`
         if(options.constructor === Array) {
-            return render(options)
+            return render(options.sort(this.sortOptions(this.props)))
         } else {
             return Object.keys(options).map(key => {
                 if(key === "") {

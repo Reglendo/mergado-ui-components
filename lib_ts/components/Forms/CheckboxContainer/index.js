@@ -15,6 +15,23 @@ class CheckboxContainer extends MUK.InputComponent {
             filter: "",
         };
     }
+    sortOptions(props) {
+        if (!props.meta.initial) {
+            return;
+        }
+        const queries = props.meta.initial;
+        return (a, b) => {
+            const activeA = queries.indexOf(a.id) >= 0;
+            const activeB = queries.indexOf(b.id) >= 0;
+            if (activeA < activeB) {
+                return 1;
+            }
+            if (activeA > activeB) {
+                return -1;
+            }
+            return 0;
+        };
+    }
     renderOptions(options) {
         const { input } = this.props;
         if (typeof options === "object") {
@@ -92,7 +109,7 @@ class CheckboxContainer extends MUK.InputComponent {
         const render = (items) => this.renderOptions(items);
         const className = this.name + `__group`;
         if (options.constructor === Array) {
-            return render(options);
+            return render(options.sort(this.sortOptions(this.props)));
         }
         else {
             return Object.keys(options).map(key => {
