@@ -175,7 +175,8 @@ export default class Preview extends Component {
                     firstname: '!!!Hello world!!!!',
                     favcolor: "blue",
                     superpower1: 1,
-                    video: "Video"
+                    video: "Video",
+										queries: [1001,1000],
                 }
             })(PreviewComponent)
 
