@@ -3,6 +3,7 @@ import {prefix} from "config"
 import Icon from "components/Icon"
 import TextInput from "components/Forms/TextInput"
 import * as Icons from "mergado-ui-icons/lib"
+import styled from "styled-components"
 
 export interface Props {
 }
@@ -33,6 +34,80 @@ class IconFinder extends React.Component<Props, State> {
         });
     }
 
+    /* <style> */
+    protected Wrapper = styled.div`
+    `
+
+    protected Icon = styled.span`
+        cursor: pointer;
+        position: relative;
+        text-align: left;
+        &:focus {
+            outline: none;
+
+            &:before {
+                content: attr(title);
+                position: absolute;
+                left: 50%;
+                top: -63px;
+                transform: translateX(-50%);
+                white-space: nowrap;
+                background: #888;
+                color: white;
+                z-index: 1000;
+                border-radius: 2px;
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            .${prefix}icon {
+                z-index: 1000;
+            }
+            .${prefix}icon__text {
+                display: inline-block;
+            }
+
+            svg {
+                outline: 1px solid #888;
+                transform: scale3d(3,3,1);
+                background: #fff;
+            }
+
+        }
+        .${prefix}icon {
+            padding: 4px;
+            position: relative;
+            border: 1px solid transparent;
+
+            &:hover {
+                background: white;
+                border: 1px solid #ccc;
+            }
+        }
+
+        svg {
+            transition: transform 0.2s;
+            will-change: transform;
+        }
+        .${prefix}icon__text {
+            border-radius: 2px;
+            position: absolute;
+            top: -50px;
+            left: -29px;
+            display: none;
+            background: white;
+            color: #333;
+            border: 2px solid #888;
+            font-size: 10px;
+            padding: 5px;
+            white-space: nowrap;
+            left: 50%;
+            top: 68px;
+            transform: translateX(-50%);
+        }
+    `
+    /* </style> */
+
     protected renderIcons() {
         const find = this.state.value.toLowerCase().trim()
 
@@ -49,11 +124,11 @@ class IconFinder extends React.Component<Props, State> {
             return <p style={{padding: "10px"}}>no icon found :(</p>
         }
         return found.map( obj => {
-            return (<span key={obj} className={`${this.name}__icon`} title={obj} tabIndex={1}>
+            return (<this.Icon key={obj} className={`${this.name}__icon`} title={obj} tabIndex={1}>
                         <Icon name={`${obj}`} size={30}
                             text={`import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`}
                             style={{display: "inline-block", margin: "5px" }} />
-                    </span>)
+                    </this.Icon>)
         })
     }
 
@@ -61,7 +136,7 @@ class IconFinder extends React.Component<Props, State> {
         const className = `${this.name}`
 
         return (
-            <div className={`${className}`}>
+            <this.Wrapper className={`${className}`}>
                 <TextInput
                     labels={{ main: "",
                              placeholder: "Type icon name here...",
@@ -69,7 +144,7 @@ class IconFinder extends React.Component<Props, State> {
                              title: "" }}
                     input={{onChange: this.handleChange.bind(this), value: this.state.value }} />
                 {this.renderIcons()}
-            </div>
+            </this.Wrapper>
         )
     }
 }
