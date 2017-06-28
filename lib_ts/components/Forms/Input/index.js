@@ -15,9 +15,9 @@ const dom_only_props_1 = require("helpers/dom-only-props");
 exports.Input = (_a) => {
     var addProps = __rest(_a.group, []), props = __rest(_a, ["group"]);
     return (React.createElement("div", Object.assign({}, dom_only_props_1.default(addProps), { className: `${props.name} \
+        ${props.className} \
 ${props.disabled ? props.name + `--disabled` : ""} \
 ${props.required ? props.name + `--required` : ""} \
-${addProps.className ? addProps.className : ""} \
 ${config_1.form}__group \
 ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${config_1.form}__group--invalid` : ""}\
 `, title: props.labels.title, style: props.style }), props.children));

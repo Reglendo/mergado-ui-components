@@ -17,6 +17,21 @@ export interface Props {
 export interface State {
 }
 
+/* <style> */
+const Wrapper = styled.span`
+`
+
+const Text = styled.span`
+    vertical-align: middle;
+    margin-left: 2px;
+    margin-right: 5px;
+`
+
+const Image = styled.svg`
+    vertical-align: middle;
+`
+/* </style> */
+
 class Icon extends React.Component<Props, State> {
 
     private readonly name = prefix + "icon";
@@ -31,22 +46,6 @@ class Icon extends React.Component<Props, State> {
         addClass: "",
     }
 
-
-    /* <style> */
-    protected Wrapper = styled.span`
-    `
-
-    protected Text = styled.span`
-        vertical-align: middle;
-        margin-left: 2px;
-        margin-right: 5px;
-    `
-
-    protected Image = styled.svg`
-        vertical-align: middle;
-    `
-    /* </style> */
-
     public render() {
 
         const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
@@ -60,21 +59,21 @@ class Icon extends React.Component<Props, State> {
         const icon = Icons[iconName] ? Icons[iconName] : null
 
         return (
-            <this.Wrapper className={className} style={this.props.style} title={this.props.title}>
-                <this.Image className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
+            <Wrapper className={className} style={this.props.style} title={this.props.title}>
+                <Image className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
                     fill="currentColor"
                     height={this.props.size}
                     width={this.props.size}
                     viewBox={`0 0 40 40`}
                 >
                     {icon}
-                </this.Image>
+                </Image>
                 {this.props.text ? (
-                    <this.Text className={`${this.name}__text`}>
+                    <Text className={`${this.name}__text`}>
                         {this.props.text}
-                    </this.Text>
+                    </Text>
                 ) : null}
-            </this.Wrapper>
+            </Wrapper>
         )
     }
 }

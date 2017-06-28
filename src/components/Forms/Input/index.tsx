@@ -7,9 +7,9 @@ export const Input = ({group: {...addProps}, ...props}) => {
     <div
         {...domOnlyProps(addProps)}
         className={`${props.name} \
+        ${props.className} \
 ${props.disabled ? props.name+`--disabled` : ""} \
 ${props.required ? props.name+`--required` : ""} \
-${addProps.className ? addProps.className : ""} \
 ${form}__group \
 ${props.meta.invalid && (props.meta.dirty || props.meta.touched) ? `${form}__group--invalid` : ""}\
 `}

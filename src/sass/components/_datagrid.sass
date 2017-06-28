@@ -4,15 +4,8 @@
 .#{$prefix}datagrid
     .sortable-ghost
       opacity: 0.1
-    &__table
-        width: 100%
 
     &__row
-        background: #fff
-
-        &:not(.no-hover):hover
-          .#{$prefix}datagrid__cell
-            background: #fdf7d2
 
         &--header
           font-size: 13px
@@ -21,12 +14,6 @@
           line-height: 30px
           color: #fff
           text-align: left
-
-        &--inactive
-          color: #ccc
-          .muk-icon--pause,.muk-icon--play
-            color: #333
-
 
 
     &__cell
@@ -44,54 +31,3 @@
             border-color: transparent
             font-weight: bold
             white-space: nowrap
-
-    .muk-form__label
-        padding: 0
-
-    .muk-form__group
-        margin: 0
-        border: 0
-
-
-
-    &__actions_icons
-        background: white
-        display: inline-block
-        height: 40px
-        line-height: 40px
-        white-space: nowrap
-        background-color: #fff
-        border: 1px solid #dbcba3
-
-        svg
-            width: 18px !important
-            height: 18px !important
-
-    &__filters_bar
-        vertical-align: middle
-        padding-left: 40px
-        position: relative
-        &:before
-            display: inline-block
-            content: " "
-            border-left: 3px solid #dbcba3
-            height: 40px
-            vertical-align: bottom
-            margin-top: 23px
-            width: 10px
-            position: absolute
-            bottom: 0
-            left: 18px
-
-        .muk-grid--table
-
-
-        .muk-form__group:first-child
-        .muk-form__group
-            padding-right: 20px
-
-        .muk-input-checkbox
-            padding-top: 20px
-            white-space: nowrap
-
-        .muk-input-text

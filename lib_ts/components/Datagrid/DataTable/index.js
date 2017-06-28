@@ -7,6 +7,58 @@ const TextInput_1 = require("components/Forms/TextInput");
 const Checkbox_1 = require("components/Forms/Checkbox");
 const Input_1 = require("components/Forms/Input");
 const unique_id_1 = require("helpers/unique_id");
+const styled_components_1 = require("styled-components");
+const dom_only_props_1 = require("helpers/dom-only-props");
+/* <style> */
+const Wrapper = styled_components_1.default.div `
+`;
+const Table = styled_components_1.default.table `
+    width: 100%;
+`;
+const Filters = styled_components_1.default.div `
+    vertical-align: middle;
+    padding-left: 40px;
+    position: relative;
+    &:before {
+        display: inline-block;
+        content: " ";
+        border-left: 3px solid #dbcba3;
+        height: 40px;
+        vertical-align: bottom;
+        margin-top: 23px;
+        width: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 18px;
+    }
+`;
+const TextFilter = styled_components_1.default(TextInput_1.default) `
+    padding-right: 20px;
+`;
+const CheckboxFilter = styled_components_1.default(Checkbox_1.default) `
+    padding-top: 20px !important;
+    padding-right: 20px;
+    white-space: nowrap;
+`;
+const Actions = styled_components_1.default.div `
+`;
+const ActionsIcons = styled_components_1.default.div `
+    background: white;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    white-space: nowrap;
+    background-color: #fff;
+    border: 1px solid #dbcba3;
+    .muk-button__item {
+        height: 42px !important;
+    }
+    svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+`;
+/* </style> */
 class DataTable extends React.Component {
     constructor(props) {
         super(props);
@@ -51,9 +103,9 @@ class DataTable extends React.Component {
     }
     renderBulkActionbar() {
         const { labels } = this.props;
-        return (React.createElement("div", { className: `${this.name}__actions_bar muk-1-12` },
+        return (React.createElement(Actions, { className: `${this.name}__actions_bar muk-1-12` },
             React.createElement(Input_1.InputLabel, { name: "actionbar" }, labels.actionsBar),
-            React.createElement("div", { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
+            React.createElement(ActionsIcons, { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {
         const disabled = this.state.selectedRows.length === 0;
@@ -62,7 +114,7 @@ class DataTable extends React.Component {
         });
     }
     renderFiltersBar() {
-        return (React.createElement("div", { className: `${this.name}__filters_bar muk-11-12` },
+        return (React.createElement(Filters, { className: `${this.name}__filters_bar muk-11-12` },
             React.createElement("div", { className: "muk-grid--table" },
                 React.createElement("div", null, this.renderFilters()))));
     }
@@ -70,21 +122,21 @@ class DataTable extends React.Component {
         return this.props.filters.map(obj => {
             switch (obj.type) {
                 case "text":
-                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
+                    return (React.createElement(TextFilter, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
                 case "checkbox":
-                    return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "checkbox" }));
+                    return (React.createElement(CheckboxFilter, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "checkbox" }));
             }
         });
     }
     render() {
         const { addClass, style } = this.props;
         const className = `${this.name}__table ${this.props.addClass}`;
-        return (React.createElement("div", { className: `${this.name}` },
+        return (React.createElement(Wrapper, { className: `${this.name}` },
             React.createElement("div", { className: "muk-grid--table" },
                 React.createElement("div", null,
                     this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
                     this.props.filters.length > 0 && this.renderFiltersBar())),
-            React.createElement("table", { className: className, style: style }, this.renderChildren())));
+            React.createElement(Table, Object.assign({ className: className, style: style }, dom_only_props_1.default(this.props)), this.renderChildren())));
     }
 }
 DataTable.defaultProps = {

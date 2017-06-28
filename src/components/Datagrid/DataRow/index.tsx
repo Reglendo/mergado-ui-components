@@ -4,6 +4,7 @@ import DataCell from "../DataCell"
 import Checkbox from "components/Forms/Checkbox"
 import uniqueId from "helpers/unique_id"
 import { ID, Action } from "helpers/types"
+import styled from "styled-components"
 
 export interface Props {
     style?: any
@@ -24,6 +25,22 @@ export interface Props {
 export interface State {
 }
 
+const Row = styled.tr`
+    background: #fff;
+
+    color: ${props => props.disabled ? "#ccc" : "#000"};
+
+    .muk-icon--pause,.muk-icon--play {
+        color: #333;
+    }
+
+    &:not(.no-hover):hover {
+        .${prefix}datagrid__cell {
+            background: #fdf7d2
+        }
+    }
+`
+
 class DataRow extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
@@ -38,9 +55,11 @@ class DataRow extends React.Component<Props, State> {
 
     public render() {
         const { style, addClass, inactive, dataId, actions } = this.props
+
         return (
-            <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
+            <Row className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
                 key={uniqueId()}
+                disabled={inactive}
                 data-id={dataId} style={style}>
                     {actions.length > 0 &&
                         <DataCell>
@@ -53,7 +72,7 @@ class DataRow extends React.Component<Props, State> {
                         </DataCell>
                     }
                     {this.props.children}
-            </tr>
+            </Row>
         )
     }
 }
