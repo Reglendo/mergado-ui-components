@@ -44,14 +44,14 @@ class DataBody extends React.Component<Props, State> {
         if(sortable) {
             return (
                 <Sortable tag="tbody" {...sortableProps}>
-                    {this.renderChildren()}
+                    {this.props.children && this.renderChildren()}
                 </Sortable>
             )
 
         } else {
             return (
                 <tbody>
-                    {this.renderChildren()}
+                    {this.props.children && this.renderChildren()}
                 </tbody>
             )
         }
