@@ -21,10 +21,10 @@ class DataBody extends React.Component {
     render() {
         const { sortable, sortableProps, style, addClass } = this.props;
         if (sortable) {
-            return (React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), this.renderChildren()));
+            return (React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), this.props.children && this.renderChildren()));
         }
         else {
-            return (React.createElement("tbody", null, this.renderChildren()));
+            return (React.createElement("tbody", null, this.props.children && this.renderChildren()));
         }
     }
 }
