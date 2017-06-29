@@ -77,8 +77,7 @@ class DataTable extends React.Component<Props, State> {
         })
     }
 
-    protected renderChildren() {
-        const children: any = this.props.children
+    protected renderChildren(children) {
         return children.map(obj => {
 
             return React.cloneElement(obj, {
@@ -107,7 +106,7 @@ class DataTable extends React.Component<Props, State> {
     }
 
     protected renderBulkActions() {
-        const disabled = this.state.selectedRows.length === 0
+        const disabled = !this.state.selectedRows || this.state.selectedRows.length === 0
         return this.props.bulkActions.map(obj => {
             return (<Button onClick={obj.action}
                             key={obj.type}
@@ -135,6 +134,7 @@ class DataTable extends React.Component<Props, State> {
             switch(obj.type) {
                 case "text":
                     return (<TextInput
+                                type="search"
                                 input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
                                 key="text"
                             />)
@@ -159,7 +159,7 @@ class DataTable extends React.Component<Props, State> {
                     </div>
                 </div>
                 <table className={className} style={style}>
-                    {this.renderChildren()}
+                    {this.props.children && this.renderChildren(this.props.children)}
                 </table>
             </div>
         )
