@@ -15906,8 +15906,7 @@ class DataTable extends React.Component {
             selectedRows: selected,
         });
     }
-    renderChildren() {
-        const children = this.props.children;
+    renderChildren(children) {
         return children.map(obj => {
             return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
         });
@@ -15919,7 +15918,7 @@ class DataTable extends React.Component {
             React.createElement("div", { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {
-        const disabled = this.state.selectedRows.length === 0;
+        const disabled = !this.state.selectedRows || this.state.selectedRows.length === 0;
         return this.props.bulkActions.map(obj => {
             return (React.createElement(Button_1.default, { onClick: obj.action, key: obj.type, icon: obj.icon, disabled: disabled, color: "nocolor", size: "tiny" }));
         });
@@ -15933,7 +15932,7 @@ class DataTable extends React.Component {
         return this.props.filters.map(obj => {
             switch (obj.type) {
                 case "text":
-                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
+                    return (React.createElement(TextInput_1.default, { type: "search", input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
                 case "checkbox":
                     return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "checkbox" }));
             }
@@ -15947,7 +15946,7 @@ class DataTable extends React.Component {
                 React.createElement("div", null,
                     this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
                     this.props.filters.length > 0 && this.renderFiltersBar())),
-            React.createElement("table", { className: className, style: style }, this.renderChildren())));
+            React.createElement("table", { className: className, style: style }, this.props.children && this.renderChildren(this.props.children))));
     }
 }
 DataTable.defaultProps = {
@@ -39252,10 +39251,10 @@ class DataBody extends React.Component {
     render() {
         const { sortable, sortableProps, style, addClass } = this.props;
         if (sortable) {
-            return (React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), this.renderChildren()));
+            return (React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), this.props.children && this.renderChildren()));
         }
         else {
-            return (React.createElement("tbody", null, this.renderChildren()));
+            return (React.createElement("tbody", null, this.props.children && this.renderChildren()));
         }
     }
 }
