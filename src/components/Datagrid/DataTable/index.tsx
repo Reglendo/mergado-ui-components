@@ -32,6 +32,9 @@ const Wrapper = styled.div`
 
 const Table = styled.table`
     width: 100%;
+    .sortable-ghost {
+      opacity: 0.1;
+    }
 `
 
 const Filters = styled.div`

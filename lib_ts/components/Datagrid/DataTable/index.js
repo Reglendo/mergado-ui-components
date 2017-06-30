@@ -14,6 +14,9 @@ const Wrapper = styled_components_1.default.div `
 `;
 const Table = styled_components_1.default.table `
     width: 100%;
+    .sortable-ghost {
+      opacity: 0.1;
+    }
 `;
 const Filters = styled_components_1.default.div `
     vertical-align: middle;
