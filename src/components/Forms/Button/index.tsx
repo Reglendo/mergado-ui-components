@@ -11,7 +11,7 @@ export interface Props extends MUK.Props {
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
     disabled?: boolean
-    onClick?: () => any
+    onClick?: (evt: any) => any
 }
 
 export interface State {

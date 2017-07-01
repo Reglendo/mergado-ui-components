@@ -2,7 +2,8 @@ import * as React from "react"
 import {prefix} from "config"
 import IconClose from "mergado-ui-icons/lib/icons/IconClose"
 import uniqueId from "helpers/unique_id"
-
+import styled from "styled-components"
+import Button from "components/Forms/Button"
 export interface Props {
     id?: string,
     text?: string,
@@ -21,6 +22,90 @@ export interface State {
     secondsLeft: number
 }
 
+/* <style> */
+const Wrapper = styled.div`
+    width: 100%;
+    overflow: hidden;
+    will-change: opacity, max-height;
+    display: table;
+    margin: 10px 0;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
+    animation: ${props => props.hidden ? "fadeaway 0.2s" : ""};
+    animation-fill-mode: forwards;
+    @keyframes fadeaway {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+            max-height: 100px;
+        }
+        100% {
+            opacity: 0;
+            max-height: 0;
+        }
+    }
+
+`
+
+const Component = styled.div`
+    background: ${props => {
+                    switch(props.type) {
+                        case "success":
+                            return "#16c084"
+                        case "error":
+                            return "#e7434c"
+                        case "warning":
+                            return "#ff7f2a"
+                        case "inactive":
+                            return "#ccc"
+                        case "info":
+                        default:
+                            return "#fff"
+                    }
+                }};
+    border: 1px solid #dbcba3;
+    box-sizing: border-box;
+    display: table-row;
+    color: ${props => props.type === "info" || props.type === "inactive" ? "#333" : "white"};
+`
+const Icon = styled.div`
+    width: 20px;
+    padding: 0 10px;
+    display: table-cell;
+    vertical-align: middle;
+`
+const Content = styled.div`
+    padding: 20px 0px;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-align: left;
+    display: table-cell;
+    vertical-align: middle;
+`
+
+const Close = styled.div`
+    width: 20px;
+    text-align: right;
+    cursor: pointer;
+    vertical-align: middle;
+    display: table-cell;
+`
+
+const CloseButton = styled(Button)`
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 20px 0 10px;
+    svg, path {
+        fill:  ${props => props.toastType === "info" || props.toastType === "inactive" ? "#333" : "white"} !important;
+    }
+    button:focus {
+        outline: none;
+    }
+`
+
+/* </style> */
+
 class Toast extends React.Component<Props, State> {
     private readonly name = prefix + "toast";
     private countdown;
@@ -35,6 +120,8 @@ class Toast extends React.Component<Props, State> {
         closeable: true,
         style: {},
     }
+
+    public refWrapper: any;
 
     constructor(props: Props) {
         super(props)
@@ -54,13 +141,11 @@ class Toast extends React.Component<Props, State> {
 
     protected timer() {
         const { secondsLeft } = this.state
-        if(secondsLeft < 1) {
-            this.hideToast()
+        if(secondsLeft <= 1) {
+            this.removeToast()
             clearInterval(this.countdown)
         } else {
             this.setState({
-                visible: true,
-                paused: false,
                 secondsLeft: secondsLeft > 0 ? secondsLeft - 1 : secondsLeft,
             })
         }
@@ -70,40 +155,46 @@ class Toast extends React.Component<Props, State> {
         clearInterval(this.countdown)
     }
 
-    protected hideToast() {
-        this.setState({
-            visible: false,
-            paused: true,
-            secondsLeft: 0,
-        })
+    protected removeToast() {
+        this.refWrapper.style.display = "none"
     }
 
-    protected removeToast(evt) {
+    protected onClose(evt) {
         evt.preventDefault()
 
         if(this.props.onClose(this.props.id) === true) {
-            this.hideToast()
+            this.setState({
+                visible: false,
+                paused: true,
+                secondsLeft: 1,
+            })
+            this.countdown = setInterval(this.timer.bind(this),500)
         }
     }
 
     public render() {
-
         return (
-            <div style={this.props.style} className={`${this.name}__wrapper ${this.state.visible ? "" : "hidden"}`}>
-                <div className={`${this.name} ${this.name}--${this.props.type}`}>
-                    <div className={`${this.name}__icon`}>{this.props.icon}</div>
-                    <div className={`${this.name}__content`}>
+            <Wrapper innerRef={(o) => { this.refWrapper = o } }
+                    style={this.props.style} hidden={!this.state.visible}
+                    className={`${this.name}__wrapper ${this.state.visible ? "" : this.name+"--hidden"}`}>
+                <Component type={this.props.type} className={`${this.name} ${this.name}--${this.props.type}`}>
+                    <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
+                    <Content className={`${this.name}__content`}>
                         {this.props.text.replace("%seconds%",this.state.secondsLeft + "s")}
-                    </div>
+                    </Content>
                     {this.props.closeable &&
-                        <div className={`${this.name}__close`}>
-                            <a className={`${this.name}__button`} onClick={(evt) => {
-                                this.removeToast(evt)
-                            }}><IconClose /></a>
-                        </div>
+                        <Close className={`${this.name}__close`}>
+                            <CloseButton className={`${this.name}__button`}
+                                icon={<IconClose style={{ lineHeight: "40px" }}/>}
+                                color="nocolor"
+                                size="tiny"
+                                toastType={this.props.type}
+                                onClick={evt => this.onClose(evt) }
+                            />
+                        </Close>
                     }
-                </div>
-            </div>
+                </Component>
+            </Wrapper>
         )
     }
 }
