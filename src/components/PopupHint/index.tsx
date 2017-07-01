@@ -2,6 +2,7 @@ import * as React from "react"
 
 import Bubble from "./Bubble"
 import {prefix} from "config"
+import styled from "styled-components"
 
 export interface Props {
     icon?: JSX.Element
@@ -16,6 +17,57 @@ export interface Position {
     top: number
     left: number
 }
+
+const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
+
+/* <style> */
+const Component = styled.div`
+    cursor: pointer;
+    display: inline-block;
+`
+const HintWrapper = styled.div`
+    outline: none;
+    font-family: ${fontFamily};
+    position: absolute;
+    max-width: 600px;
+    z-index: 10000;
+`
+const HintInnerWrapper = styled.div`
+    position: relative;
+    padding: 0 0 10px 0;
+`
+
+const HintBorder = styled.div`
+    padding: 3px;
+    background: #FFEC88;
+    box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.25);
+    margin-bottom: -5px;
+`
+
+const HintArrow = styled.span`
+    display: block;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 15px;
+    height: 15px;
+    background: #FFEC88;
+    transform: rotate(45deg);
+    box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.25);
+`
+
+const HintContent = styled.div`
+    max-height: 200px;
+    padding: 10px;
+    text-align: left;
+    color: #333;
+    border: 1px solid #F0DD79;
+    overflow: auto;
+    position: relative;
+    z-index: 10;
+`
+
+/* </style> */
 
 class PopupHint extends React.Component<Props, State> {
 
@@ -191,22 +243,24 @@ class PopupHint extends React.Component<Props, State> {
 
         const hint: JSX.Element = (
             <Bubble>
-                <div ref="hint" className={`${this.name}__bubble`}
+                <HintWrapper innerRef={(o) => { this.refs.hint = o }} className={`${this.name}__bubble`}
                      style={style} tabIndex={0}
                      onBlur={ this.collapse }
                  >
-                    <div className={`${this.name}__innerwrapper`}>
-                        <div className={`${this.name}__border`}>
-                            <div className={`${this.name}__content`}>{this.props.children}</div>
-                        </div>
-                        <span ref="arrow" className={`${this.name}__arrow`}></span>
-                    </div>
-                </div>
+                    <HintInnerWrapper className={`${this.name}__innerwrapper`}>
+                        <HintBorder className={`${this.name}__border`}>
+                            <HintContent className={`${this.name}__content`}>{this.props.children}</HintContent>
+                        </HintBorder>
+                        <HintArrow
+                            innerRef={(o) => { this.refs.arrow = o }}
+                            className={`${this.name}__arrow`} />
+                    </HintInnerWrapper>
+                </HintWrapper>
             </Bubble>
         )
 
         return (
-            <div className={this.name} style={{display: "inline-block"}}>
+            <Component className={this.name}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
                      onClick={(e) => {
@@ -217,7 +271,7 @@ class PopupHint extends React.Component<Props, State> {
                     {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}
-            </div>
+            </Component>
         );
     }
 }
