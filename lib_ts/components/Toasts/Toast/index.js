@@ -53,16 +53,15 @@ const Content = styled_components_1.default.div `
     vertical-align: middle;
 `;
 const Close = styled_components_1.default.div `
-    width: 20px;
-    text-align: right;
-    cursor: pointer;
-    vertical-align: middle;
-    display: table-cell;
 `;
 const CloseButton = styled_components_1.default(Button_1.default) `
     text-decoration: none;
-    display: inline-block;
     padding: 0 20px 0 10px;
+    width: 20px;
+    text-align: right;
+    vertical-align: middle;
+    display: table-cell;
+
     svg, path {
         fill:  ${props => props.toastType === "info" || props.toastType === "inactive" ? "#333" : "white"} !important;
     }
@@ -127,8 +126,7 @@ class Toast extends React.Component {
                 React.createElement(Icon, { className: `${this.name}__icon` }, this.props.icon),
                 React.createElement(Content, { className: `${this.name}__content` }, this.props.text.replace("%seconds%", this.state.secondsLeft + "s")),
                 this.props.closeable &&
-                    React.createElement(Close, { className: `${this.name}__close` },
-                        React.createElement(CloseButton, { className: `${this.name}__button`, icon: React.createElement(IconClose_1.default, { style: { lineHeight: "40px" } }), color: "nocolor", size: "tiny", toastType: this.props.type, onClick: evt => this.onClose(evt) })))));
+                    React.createElement(CloseButton, { className: `${this.name}__button`, icon: React.createElement(IconClose_1.default, { style: { lineHeight: "40px" } }), color: "nocolor", size: "tiny", toastType: this.props.type, onClick: evt => this.onClose(evt) }))));
     }
 }
 Toast.defaultProps = {

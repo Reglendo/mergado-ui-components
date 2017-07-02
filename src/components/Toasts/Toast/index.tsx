@@ -71,17 +71,16 @@ const Content = styled.div`
 `
 
 const Close = styled.div`
-    width: 20px;
-    text-align: right;
-    cursor: pointer;
-    vertical-align: middle;
-    display: table-cell;
 `
 
 const CloseButton = styled(Button)`
     text-decoration: none;
-    display: inline-block;
     padding: 0 20px 0 10px;
+    width: 20px;
+    text-align: right;
+    vertical-align: middle;
+    display: table-cell;
+
     svg, path {
         fill:  ${props => props.toastType === "info" || props.toastType === "inactive" ? "#333" : "white"} !important;
     }
@@ -175,7 +174,6 @@ class Toast extends React.Component<Props, State> {
                         {this.props.text.replace("%seconds%",this.state.secondsLeft + "s")}
                     </Content>
                     {this.props.closeable &&
-                        <Close className={`${this.name}__close`}>
                             <CloseButton className={`${this.name}__button`}
                                 icon={<IconClose style={{ lineHeight: "40px" }}/>}
                                 color="nocolor"
@@ -183,7 +181,6 @@ class Toast extends React.Component<Props, State> {
                                 toastType={this.props.type}
                                 onClick={evt => this.onClose(evt) }
                             />
-                        </Close>
                     }
                 </Component>
             </Wrapper>
