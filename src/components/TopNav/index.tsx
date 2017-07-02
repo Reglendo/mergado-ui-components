@@ -1,6 +1,7 @@
 import * as React from "react"
 import NavLink from "components/TopNav/NavLink"
 import {prefix} from "config"
+import styled from "styled-components"
 
 export interface Props {
     links: JSX.Element[]
@@ -10,6 +11,20 @@ export interface Props {
 
 export interface State {
 }
+
+/* <style> */
+const Component = styled.nav`
+    background: #e5d7b6;
+    color: #333;
+    font-size: 11pt;
+    font-weight: bold;
+    padding: 10px 20px;
+`
+const Wrapper = styled.div`
+    position: relative;
+    margin: auto;
+`
+/* </style> */
 
 class TopNav extends React.Component<Props, State> {
 
@@ -23,9 +38,8 @@ class TopNav extends React.Component<Props, State> {
 
     protected renderLinks() {
         const {links} = this.props
-        const classList = `${this.name}__list`
         return (
-            <ul className={classList}>
+            <ul className={`${this.name}__list muk-helper-clearfix`}>
                 {links}
             </ul>
         )
@@ -37,11 +51,11 @@ class TopNav extends React.Component<Props, State> {
         const classWrapper = `${this.name}__wrapper"`
 
         return (
-            <nav className={className} style={this.props.style}>
-                <div className={classWrapper}>
+            <Component className={className} style={this.props.style}>
+                <Wrapper className={classWrapper}>
                     {this.renderLinks() }
-                </div>
-            </nav>
+                </Wrapper>
+            </Component>
         )
     }
 }

@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import Bubble from "./Bubble"
 import {prefix} from "config"
 import styled from "styled-components"
