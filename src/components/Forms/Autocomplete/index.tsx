@@ -1,5 +1,4 @@
 import * as React from "react"
-import {findDOMNode} from "react-dom"
 import {prefix} from "config"
 import TextInput from "components/Forms/TextInput"
 import uniqueId from "helpers/unique_id"
