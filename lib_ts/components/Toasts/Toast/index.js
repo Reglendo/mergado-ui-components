@@ -9,27 +9,13 @@ const Button_1 = require("components/Forms/Button");
 /* <style> */
 const Wrapper = styled_components_1.default.div `
     width: 100%;
-    overflow: hidden;
-    will-change: opacity, max-height;
     display: table;
     margin: 10px 0;
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
-    animation: ${props => props.hidden ? "fadeaway 0.2s" : ""};
-    animation-fill-mode: forwards;
-    @keyframes fadeaway {
-        0% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0;
-            max-height: 100px;
-        }
-        100% {
-            opacity: 0;
-            max-height: 0;
-        }
-    }
-
+    transition: opacity 0.5s;
+    transform: translate3d(0,0,0);
+    will-change: opacity;
+    opacity: ${props => props.hidden ? 0 : 1}
 `;
 const Component = styled_components_1.default.div `
     background: ${props => {
@@ -107,10 +93,20 @@ class Toast extends React.Component {
             clearInterval(this.countdown);
         }
         else {
+            if (secondsLeft <= 2) {
+                this.hideToast();
+            }
             this.setState({
                 secondsLeft: secondsLeft > 0 ? secondsLeft - 1 : secondsLeft,
             });
         }
+    }
+    hideToast() {
+        this.setState({
+            visible: false,
+            paused: true,
+            secondsLeft: 1,
+        });
     }
     componentWillUnmount() {
         clearInterval(this.countdown);
@@ -121,11 +117,7 @@ class Toast extends React.Component {
     onClose(evt) {
         evt.preventDefault();
         if (this.props.onClose(this.props.id) === true) {
-            this.setState({
-                visible: false,
-                paused: true,
-                secondsLeft: 1,
-            });
+            this.hideToast();
             this.countdown = setInterval(this.timer.bind(this), 500);
         }
     }
