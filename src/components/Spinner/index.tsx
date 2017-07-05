@@ -134,11 +134,11 @@ class Spinner extends React.Component<Props, State> {
         })
     }
 
-    protected componentDidMount() {
+    public componentDidMount() {
         this.updateState(this.props);
     }
 
-    protected componentWillReceiveProps(nextProps) {
+    public componentWillReceiveProps(nextProps) {
         this.updateState(nextProps);
     }
 

@@ -15,7 +15,7 @@ class Bubble extends React.Component<Props, State> {
     private readonly name = prefix + "popup_hint__bubble";
     public popup;
 
-    protected componentDidMount() {
+    public componentDidMount() {
         this.popup = document.createElement("span")
         this.popup.className = `${this.name}__wrapper`
         this.popup.ref = "bubble"
@@ -23,11 +23,11 @@ class Bubble extends React.Component<Props, State> {
         this._renderLayer()
     }
 
-    protected componentDidUpdate() {
+    public componentDidUpdate() {
         this._renderLayer();
     }
 
-    protected componentWillUnmount() {
+    public componentWillUnmount() {
         if(this.popup) {
             ReactDOM.unmountComponentAtNode(this.popup);
             document.getElementById("app").removeChild(this.popup);

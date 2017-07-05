@@ -1,38 +1,11 @@
 @import "../../core/all"
 
 .#{$prefix}form
-  &__label
-    display: block
-    padding: 6px 10px 4px 2px
-
-  &__validation
-    background: red
-    color: white
-    font-size: 10px
-    z-index: 1
-    padding: 1px 5px
-    margin-bottom: 0
-    position: absolute
-    top: 100%
-    left: -2px
-  &__group
-    position: relative
-    margin-bottom: 10px
-    border: 2px solid transparent
-
-    &--invalid
-      border: 2px solid red
-
   &-group
     .#{$prefix}form__group
       margin: 0
       margin-top: -8px
 
-  &__header
-    padding-left: 10px
-    border-left: 5px rgba(219,203,163,0.5) solid
-    font-size: 1.2em
-    margin: 10px 0
 
   &__input--text
     font-size: 14px

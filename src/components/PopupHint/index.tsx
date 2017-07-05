@@ -105,11 +105,11 @@ class PopupHint extends React.Component<Props, State> {
         })
     }
 
-    protected componentDidMount() {
+    public componentDidMount() {
         this.styleElements()
     }
 
-    protected componentDidUpdate(prevProps: Props, prevState: State) {
+    public componentDidUpdate(prevProps: Props, prevState: State) {
         this.styleElements()
     }
 

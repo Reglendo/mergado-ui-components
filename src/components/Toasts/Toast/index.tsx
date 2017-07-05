@@ -118,7 +118,7 @@ class Toast extends React.Component<Props, State> {
         }
     }
 
-    protected componentDidMount() {
+    public componentDidMount() {
         if(this.props.isPaused() !== true && this.props.timeout > 0) {
             this.countdown = setInterval(this.timer.bind(this),1000)
         }
@@ -147,7 +147,7 @@ class Toast extends React.Component<Props, State> {
         })
     }
 
-    protected componentWillUnmount() {
+    public componentWillUnmount() {
         clearInterval(this.countdown)
     }
 

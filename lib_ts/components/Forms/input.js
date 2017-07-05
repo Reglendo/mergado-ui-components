@@ -13,6 +13,7 @@ const React = require("react");
 const config_1 = require("config");
 const Input_1 = require("components/Forms/Input");
 const dom_only_props_1 = require("helpers/dom-only-props");
+const styled_components_1 = require("styled-components");
 exports.defaultProps = {
     group: {
         className: "",
@@ -57,6 +58,12 @@ exports.defaultProps = {
         placeholder: "",
     },
 };
+const Header = styled_components_1.default.h3 `
+    padding-left: 10px;
+    border-left: 5px rgba(219,203,163,0.5) solid;
+    font-size: 1.2em;
+    margin: 10px 0;
+`;
 class InputComponent extends React.Component {
     constructor() {
         super(...arguments);
@@ -75,7 +82,7 @@ class InputComponent extends React.Component {
         return this.props.group.bigLabel === false ?
             label
             :
-                React.createElement("h3", { className: `${this.form}__header` }, label);
+                React.createElement(Header, { className: `${this.form}__header` }, label);
     }
     render() {
         const props = this.props;
