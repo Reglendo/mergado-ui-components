@@ -1,16 +1,16 @@
 import * as React from "react"
-import {prefix} from "config"
+import {prefix,form} from "config"
 import TextInput from "components/Forms/TextInput"
 import uniqueId from "helpers/unique_id"
-import * as MUK from "components/Forms/input"
 import styled from "styled-components"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 
 export interface Item {
     value: string
     text: string
 }
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
     items: Item[]
     shouldItemRender?: (item: any, value: any) => any
     sortItems?: (a: any, b: any, value: any) => any
@@ -44,9 +44,7 @@ const Menu = styled.div`
     max-height: 50vh;
     z-index: 1000;
     margin-top: -12px;
-
     border-color: transparent !important;
-
 `
 
 const MenuItem = styled.div`
@@ -63,7 +61,7 @@ const MenuItem = styled.div`
 `
 /* </style> */
 
-class Autocomplete extends  MUK.InputComponent<Props, State> {
+class Autocomplete extends  React.Component<Props, State> {
     public readonly props: Props;
     public state: State;
 
@@ -73,7 +71,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
     protected ignoreBlur = false
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         items: [],
         renderMenu: (items, value, style) => {
             return <Menu className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
@@ -376,15 +374,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
         })
     }
 
-    protected renderError() {
-        return <div/>
-    }
-
-    protected renderLabel(className, props) {
-        return null
-    }
-
-    protected renderInput(className, props) {
+    public render() {
         const open = this.isOpen()
         const {labels, meta, input} = this.props
         const inputProps = Object.assign({}, this.props.input, {
@@ -397,7 +387,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
         })
 
         return (
-            <div>
+            <Field label="">
                 <TextInput
                     ref="input"
                     type="search"
@@ -406,10 +396,9 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
                     input={inputProps}
                 />
                 {open && this.renderMenu()}
-            </div>
+            </Field>
         )
     }
-
 }
 
 export default Autocomplete
