@@ -1,17 +1,17 @@
 import * as React from "react"
-import {prefix} from "config"
+import {prefix,form} from "config"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
 
 export interface Color {
-    r: number,
-    g: number,
-    b: number,
-    a: number,
+    r: number
+    g: number
+    b: number
+    a: number
 }
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
     color?: Color
     hex?: string
 }
@@ -21,14 +21,40 @@ export interface State {
     color: Color
 }
 
-class ColorPicker extends MUK.InputComponent<Props, State> {
+const StyledField = styled(Field)`
+    padding: 5px;
+    border-radius: 1px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    display: inline-block;
+    width: 100%;
+    background: white;
+`
 
-    public readonly props: Props
-    public state: State
+const ColorBox = styled.div`
+    border: 2px solid black;
+    height: 34px;
+    border-radius: 2px;
+    cursor: pointer;
+`
+
+const Popover = styled.div`
+    position: absolute;
+    z-index: 200;
+`
+const Cover = styled.div`
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+`
+
+class ColorPicker extends React.Component<Props, State> {
+
     protected readonly name = prefix + "colorpicker"
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         color: { r: 0, g: 0, b: 0, a: 1 },
     }
 
@@ -65,32 +91,30 @@ class ColorPicker extends MUK.InputComponent<Props, State> {
     protected renderPicker() {
 
         return (
-            <div className={`${this.name}__popover`}>
-                <div className={`${this.name}__cover`} onClick={ this.handleClose }/>
+            <Popover className={`${this.name}__popover`}>
+                <Cover className={`${this.name}__cover`} onClick={ this.handleClose }/>
                 <ChromePicker
                     color={this.state.color}
                     onChange={this.handleChange.bind(this)}
                     onChangeComplete={this.handleChanged.bind(this)}
                 />
-            </div>
+            </Popover>
         )
     }
 
-    protected renderInput(className, props) {
+    public render() {
         const { color } = this.state
-        const { input, meta } = this.props
+        const { input, meta, children, ...props } = this.props
 
         const background = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
         return(
-            <div className={`${this.name}__picker ${this.form}__input ${className}`}>
-                <input  {...input}
-                        type="hidden"
-                        value={background} />
-                <div className={`${this.name}__colorbox`}
+            <StyledField {...props} name={this.name}>
+                <input {...input} type="hidden" value={background} />
+                <ColorBox className={`${this.name}__colorbox ${this.props.className}`}
                      style={{ background }} onClick={ this.handleClick } />
                 {this.state.displayColorPicker && this.renderPicker()}
-            </div>
+            </StyledField>
         )
     }
 
