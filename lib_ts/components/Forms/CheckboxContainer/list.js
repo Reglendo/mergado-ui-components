@@ -28,7 +28,7 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
             }
             input.onChange(selected);
         };
-        return React.createElement(item_1.QueryItem, { name: name, option: option, index: index, onClick: handler, checked: value.indexOf(option.id) > -1, singleChoice: singleChoice, showInput: showInput, labels: labels });
+        return React.createElement(item_1.QueryItem, { name: name, option: option, index: index, onClick: handler, checked: value.indexOf(option.id) > -1, singleChoice: singleChoice, showInput: showInput, labels: labels, key: option.id + option.name });
     });
 };
 const QueryListComponent = ({ name, className, options, value, input, singleChoice, showInput, labels }) => {

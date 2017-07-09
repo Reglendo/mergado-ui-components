@@ -48,6 +48,7 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
                             singleChoice={singleChoice}
                             showInput={showInput}
                             labels={labels}
+                            key={option.id + option.name}
                         />
         })
 }

@@ -13,7 +13,7 @@ const React = require("react");
 const react_router_1 = require("react-router");
 const LittleStatus_1 = require("components/LittleStatus");
 const styled_components_1 = require("styled-components");
-const Input = styled_components_1.default.input `
+const StyledInput = styled_components_1.default.input `
     margin: 0;
     margin-right: 10px;
     vertical-align: text-bottom;
@@ -23,8 +23,8 @@ const QueryItemComponent = (_a) => {
     return (React.createElement("li", { className: `${name}__item ${index >= 0 ? `${name}__item--active` : ""}
                         ${option.disabled ? `${name}__item--disabled` : ""}
                         ${className}
-            `, key: index, onClick: !option.subheader && onClick },
-        React.createElement(Input, { type: singleChoice ? "radio" : "checkbox", className: `${name}__checkbox`, checked: checked, onChange: onClick, style: { display: showInput ? "inline-block" : "none", pointerEvents: "none" } }),
+            `, key: option.id, onClick: !option.subheader && onClick },
+        React.createElement(StyledInput, { type: singleChoice ? "radio" : "checkbox", className: `${name}__checkbox`, checked: checked, onChange: onClick, key: "input", style: { display: showInput ? "inline-block" : "none", pointerEvents: "none" } }),
         React.createElement(QueryItemLabel, { name: name, option: option, allProducts: labels.allProducts })));
 };
 exports.QueryItem = styled_components_1.default(QueryItemComponent) `
@@ -70,7 +70,7 @@ const QueryItemLabelComponent = (_a) => {
     if (option.active !== undefined) {
         label = React.createElement(LittleStatus_1.default, { type: option.active ? "success" : "inactive" }, label);
     }
-    return (React.createElement("label", { className: `${name}__label ${className}` },
+    return (React.createElement("label", { className: `${name}__label ${className}`, key: "label" },
         label,
         " ",
         React.createElement(Count, { className: `${name}__count` }, typeof option.product_count !== "undefined" ? `(${option.product_count})` : "")));

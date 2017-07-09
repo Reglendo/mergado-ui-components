@@ -15,7 +15,7 @@ interface IQueryItemProps {
     className?: string
 }
 
-const Input = styled.input`
+const StyledInput = styled.input`
     margin: 0;
     margin-right: 10px;
     vertical-align: text-bottom;
@@ -30,13 +30,14 @@ const QueryItemComponent: React.SFC<IQueryItemProps> = ({ name, option, index, o
                         ${option.disabled ? `${name}__item--disabled` : ""}
                         ${className}
             `}
-            key={index}
+            key={option.id}
             onClick={!option.subheader && onClick}>
-                <Input
+                <StyledInput
                     type={singleChoice ? "radio" : "checkbox"}
                     className={`${name}__checkbox`}
                     checked={checked}
                     onChange={onClick}
+                    key="input"
                     style={{display: showInput ? "inline-block":"none", pointerEvents: "none"}}
                 />
                 <QueryItemLabel name={name} option={option} allProducts={labels.allProducts}/>
@@ -99,7 +100,7 @@ const QueryItemLabelComponent: React.SFC<IQueryItemLabelProps> = ({ name, option
         label = <LittleStatus type={option.active ? "success" : "inactive"}>{label}</LittleStatus>
     }
     return (
-        <label className={`${name}__label ${className}`}>
+        <label className={`${name}__label ${className}`} key="label">
             {label}
             {" "}
             <Count className={`${name}__count`}>
