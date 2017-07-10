@@ -119,7 +119,7 @@ const FieldErrorComponent = ({...props}) => {
         if((props.meta.error || props.labels.invalid) &&
             props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
             return (
-                <div className={`${form}__validation`}>
+                <div className={`${props.className}`}>
                     {props.meta.error || props.labels.invalid}
                 </div>
             )
@@ -145,7 +145,6 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
     return (
         <div
             {...domOnlyProps(props)}
-            data-invalid={isInvalid}
             className={`${props.name ? props.name : ""}
                         ${props.className ? props.className : ""}
                         ${props.disabled ? props.name + `--disabled` : ""}
@@ -155,7 +154,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                         `}
             title={props.labels.title}
             style={props.style}>
-                <FieldError {...props} />
+                <FieldError {...props} className={`${form}__validation}`} />
                 <FieldLabel name={props.name}>
                     {props.label ? props.label : (others.label ? others.label : labels.main)}
                 </FieldLabel>
@@ -170,5 +169,6 @@ export const Field = styled(FieldComponent)`
     position: relative;
     margin-bottom: 10px;
     border: 2px solid;
-    border-color: ${(props: any) => props["data-invalid"] ? style.RED : "transparent" }
+    border-color: ${(props) => props.meta && props.meta.invalid &&
+                    (props.meta.dirty || props.meta.touched) ? style.RED : "transparent" }
 `

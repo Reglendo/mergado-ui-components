@@ -72,7 +72,7 @@ const FieldErrorComponent = (_a) => {
     var props = __rest(_a, []);
     if ((props.meta.error || props.labels.invalid) &&
         props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
-        return (React.createElement("div", { className: `${config_1.form}__validation` }, props.meta.error || props.labels.invalid));
+        return (React.createElement("div", { className: `${props.className}` }, props.meta.error || props.labels.invalid));
     }
     else {
         return null;
@@ -91,14 +91,14 @@ exports.FieldError = styled_components_1.default(FieldErrorComponent) `
 const FieldComponent = (props) => {
     const { meta, input, labels, group } = props, others = __rest(props, ["meta", "input", "labels", "group"]);
     const isInvalid = props.meta.invalid && (props.meta.dirty || props.meta.touched);
-    return (React.createElement("div", Object.assign({}, dom_only_props_1.default(props), { "data-invalid": isInvalid, className: `${props.name ? props.name : ""}
+    return (React.createElement("div", Object.assign({}, dom_only_props_1.default(props), { className: `${props.name ? props.name : ""}
                         ${props.className ? props.className : ""}
                         ${props.disabled ? props.name + `--disabled` : ""}
                         ${props.required ? props.name + `--required` : ""}
                         ${config_1.form}__group
                         ${isInvalid ? `${config_1.form}__group--invalid` : ""}
                         `, title: props.labels.title, style: props.style }),
-        React.createElement(exports.FieldError, Object.assign({}, props)),
+        React.createElement(exports.FieldError, Object.assign({}, props, { className: `${config_1.form}__validation}` })),
         React.createElement(exports.FieldLabel, { name: props.name }, props.label ? props.label : (others.label ? others.label : labels.main)),
         props.children));
 };
@@ -107,6 +107,7 @@ exports.Field = styled_components_1.default(FieldComponent) `
     position: relative;
     margin-bottom: 10px;
     border: 2px solid;
-    border-color: ${(props) => props["data-invalid"] ? style.RED : "transparent"}
+    border-color: ${(props) => props.meta && props.meta.invalid &&
+    (props.meta.dirty || props.meta.touched) ? style.RED : "transparent"}
 `;
 //# sourceMappingURL=index.js.map

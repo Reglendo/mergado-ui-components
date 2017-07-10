@@ -1,23 +1,34 @@
 import * as React from "react"
 import {prefix} from "config"
 import uniqueId from "helpers/unique_id"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
     options?: any
 }
 
-export interface State {
-}
+const StyledSelect = styled.select`
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    display: inline-block;
+    margin: 0;
+    background: white;
+    color: #333333;
+    vertical-align: middle;
+    padding: 0 10px;
+    border: 1px solid #dbcba3;
+`
 
-class Select extends MUK.InputComponent<Props, State> {
-    public readonly props: Props;
-    public state: State;
+class Select extends React.Component<Props, {}> {
+
     protected readonly name = prefix + "select";
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         options: [],
         size: 0,
     }
@@ -37,16 +48,15 @@ class Select extends MUK.InputComponent<Props, State> {
         })
     }
 
-    protected renderInput(className, props) {
+    public render() {
         const { meta, input, labels } = this.props
-        delete props.options
+        const { children, ...props } = this.props
         return (
-            <select
-                {...input}
-                className={`${this.name}__item ${className}`}
-            >
-                {this.renderOptions()}
-            </select>
+            <Field {...props} name={this.name}>
+                <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`}>
+                    {this.renderOptions()}
+                </StyledSelect>
+            </Field>
         )
     }
 

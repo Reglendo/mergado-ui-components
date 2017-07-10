@@ -1,34 +1,40 @@
 import * as React from "react"
-import {prefix} from "config"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {prefix,form} from "config"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
+    height: number
 }
 
-export interface State {
-}
+const StyledTextarea = styled.textarea`
+    height: ${props => props.height + "px"}
+`
 
-class Textarea extends MUK.InputComponent<Props, State> {
+class Textarea extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "textarea";
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
+        height: 100,
     }
 
-    protected renderInput(className, props) {
+    public render() {
         const { input, labels } = this.props
+        const { children, ...props } = this.props
         return (
-            <textarea
-                {...input}
-                className={`${this.name}__input
-                            ${this.form}__input--text
-                            ${this.form}__input--textarea
-                            ${className}
-                `}
-                placeholder={labels.placeholder}
-            >{input.value}</textarea>
+            <Field {...props} name={this.name}>
+                <StyledTextarea
+                    {...input}
+                    height={this.props.height}
+                    className={`${this.name}__input
+                                ${form}__input--text
+                                ${form}__input--textarea
+                    `}
+                    placeholder={labels.placeholder}
+                >{input.value}</StyledTextarea>
+            </Field>
         )
     }
 }
