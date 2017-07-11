@@ -8,7 +8,7 @@ import s from './Props.css';
 
 function renderRows(props) {
 	const rows = [];
-	
+
 	for (const name in props) {
 		const prop = props[name];
 		rows.push(
@@ -55,7 +55,7 @@ function renderDefault(prop) {
 	else if (prop.defaultValue) {
 
 		var value = prop.defaultValue.value;
-		
+
 		if(value.trim()[0] === '{') {
 			return <pre className={s.pre}>{value.replace(/ {3}/g,' ').replace(/ +}/,'}')}</pre>
 		}
