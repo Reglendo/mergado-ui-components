@@ -15906,8 +15906,7 @@ class DataTable extends React.Component {
             selectedRows: selected,
         });
     }
-    renderChildren() {
-        const children = this.props.children;
+    renderChildren(children) {
         return children.map(obj => {
             return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
         });
@@ -15919,7 +15918,7 @@ class DataTable extends React.Component {
             React.createElement("div", { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {
-        const disabled = this.state.selectedRows.length === 0;
+        const disabled = !this.state.selectedRows || this.state.selectedRows.length === 0;
         return this.props.bulkActions.map(obj => {
             return (React.createElement(Button_1.default, { onClick: obj.action, key: obj.type, icon: obj.icon, disabled: disabled, color: "nocolor", size: "tiny" }));
         });
@@ -15933,7 +15932,7 @@ class DataTable extends React.Component {
         return this.props.filters.map(obj => {
             switch (obj.type) {
                 case "text":
-                    return (React.createElement(TextInput_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
+                    return (React.createElement(TextInput_1.default, { type: "search", input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "text" }));
                 case "checkbox":
                     return (React.createElement(Checkbox_1.default, { input: { onChange: (evt) => { obj.action(evt); } }, labels: { main: obj.label }, key: "checkbox" }));
             }
@@ -15947,7 +15946,7 @@ class DataTable extends React.Component {
                 React.createElement("div", null,
                     this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
                     this.props.filters.length > 0 && this.renderFiltersBar())),
-            React.createElement("table", { className: className, style: style }, this.renderChildren())));
+            React.createElement("table", { className: className, style: style }, this.props.children && this.renderChildren(this.props.children))));
     }
 }
 DataTable.defaultProps = {
@@ -21232,7 +21231,7 @@ var IconClose = (function (_super) {
     }
     IconClose.prototype.render = function () {
         var className = this.name + " " + this.name + "--close " + this.props.addClass;
-        return (React.createElement("span", { className: className, style: this.props.style },
+        return (React.createElement("span", { className: className, style: this.props.style, title: this.props.title },
             React.createElement("svg", { className: this.name + "__image", preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: "0 0 40 40" },
                 React.createElement("g", null,
                     React.createElement("path", { d: "m33.5 29.5q0 0.9-0.7 1.5l-3 3.1q-0.6 0.6-1.5 0.6t-1.5-0.6l-6.6-6.6-6.5 6.6q-0.7 0.6-1.6 0.6t-1.5-0.6l-3-3.1q-0.6-0.6-0.6-1.5t0.6-1.5l6.5-6.6-6.5-6.5q-0.6-0.7-0.6-1.6t0.6-1.5l3-3q0.6-0.6 1.5-0.6t1.6 0.6l6.5 6.6 6.6-6.6q0.6-0.6 1.5-0.6t1.5 0.6l3.1 3q0.6 0.7 0.6 1.5t-0.6 1.6l-6.6 6.5 6.6 6.6q0.6 0.6 0.6 1.5z" }))),
@@ -21244,6 +21243,7 @@ IconClose.defaultProps = {
     size: 15,
     style: {},
     addClass: "",
+    title: "",
 };
 exports.default = IconClose;
 //# sourceMappingURL=IconClose.js.map
@@ -39252,10 +39252,10 @@ class DataBody extends React.Component {
     render() {
         const { sortable, sortableProps, style, addClass } = this.props;
         if (sortable) {
-            return (React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), this.renderChildren()));
+            return (React.createElement(Sortable, Object.assign({ tag: "tbody" }, sortableProps), this.props.children && this.renderChildren()));
         }
         else {
-            return (React.createElement("tbody", null, this.renderChildren()));
+            return (React.createElement("tbody", null, this.props.children && this.renderChildren()));
         }
     }
 }
