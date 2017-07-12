@@ -98,10 +98,9 @@ class DataTable extends React.Component {
             selectedRows: selected,
         });
     }
-    renderChildren() {
-        const children = this.props.children;
+    renderChildren(children) {
         return children.map(obj => {
-            return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
+            return React.cloneElement(obj, Object.assign({}, obj.props, { actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
         });
     }
     renderBulkActionbar() {
@@ -111,7 +110,7 @@ class DataTable extends React.Component {
             React.createElement(ActionsIcons, { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {
-        const disabled = this.state.selectedRows.length === 0;
+        const disabled = !this.state.selectedRows || this.state.selectedRows.length === 0;
         return this.props.bulkActions.map(obj => {
             return (React.createElement(Button_1.default, { onClick: obj.action, key: obj.type, icon: obj.icon, disabled: disabled, color: "nocolor", size: "tiny" }));
         });

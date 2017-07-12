@@ -231,6 +231,7 @@ input[type="radio"] {
     transform: translateZ(0);
     will-change: background-position;
     background-size: 25px 100%;
+    z-index: 1000000;
     outline: 3px solid #dbcba3; }
 
 @keyframes sliding {
@@ -685,9 +686,6 @@ table {
   display: block;
   padding: 2px 0px; }
 
-.muk-input-checkbox + .muk-input-checkbox {
-  margin-top: -20px; }
-
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
 
@@ -846,9 +844,6 @@ table {
   display: block;
   padding: 2px 0px; }
 
-.muk-input-checkbox + .muk-input-checkbox {
-  margin-top: -20px; }
-
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
 
@@ -944,9 +939,9 @@ table {
   padding: 6px 10px 4px 2px; }
 
 .muk-form__validation {
-  background: red;
+  background: #ba4c4c;
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   z-index: 1;
   padding: 1px 5px;
   margin-bottom: 0;
@@ -960,7 +955,11 @@ table {
   margin-bottom: 10px;
   border: 2px solid transparent; }
   .muk-form__group--invalid {
-    border: 2px solid red; }
+    border: 2px solid #ba4c4c; }
+
+.muk-form-group .muk-form__group {
+  margin: 0;
+  margin-top: -8px; }
 
 .muk-form__header {
   padding-left: 10px;
@@ -1770,9 +1769,6 @@ table {
   display: block;
   padding: 2px 0px; }
 
-.muk-input-checkbox + .muk-input-checkbox {
-  margin-top: -20px; }
-
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
 
@@ -1986,9 +1982,6 @@ table {
 .muk-input-radio__item {
   display: block;
   padding: 2px 0px; }
-
-.muk-input-checkbox + .muk-input-checkbox {
-  margin-top: -20px; }
 
 .muk-input-range:hover input[type=range]::-webkit-slider-thumb {
   border-color: #009ba9; }
@@ -2362,10 +2355,10 @@ table {
     margin-top: 0.95em;
     list-style-type: none;
     cursor: pointer; }
-    .muk-top_nav__item a {
+    .muk-top_nav__item a, .muk-top_nav__item a:visited {
       color: #333;
       text-decoration: none; }
-      .muk-top_nav__item a:active, .muk-top_nav__item a:focus, .muk-top_nav__item a:active:hover, .muk-top_nav__item a:focus:hover {
+      .muk-top_nav__item a:active, .muk-top_nav__item a:focus, .muk-top_nav__item a:active:hover, .muk-top_nav__item a:focus:hover, .muk-top_nav__item a:visited:active, .muk-top_nav__item a:visited:focus, .muk-top_nav__item a:visited:active:hover, .muk-top_nav__item a:visited:focus:hover {
         outline-width: 2px; }
     .muk-top_nav__item--active a, .muk-top_nav__item a:hover, .muk-top_nav__item a:active, .muk-top_nav__item a:focus, .muk-top_nav__item a:hover {
       text-decoration: none;

@@ -67,10 +67,10 @@ class CheckboxContainer extends React.Component<Props,State> {
 
     constructor(props: Props) {
         super(props)
-
         this.state = {
             filter: "",
         }
+
     }
 
     protected renderFilter() {

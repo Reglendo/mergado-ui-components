@@ -8,7 +8,7 @@ Multiple choices
                         availableQueries: [{
                             id: 999,
                             name: "First query",
-                            product_count: 50
+                            product_count: 50,
                         },{
                             id: 1000,
                             name: "♥ALLPRODUCTS♥",
@@ -29,7 +29,7 @@ Flexible height single choice box without filter
 
     var Field = require('redux-form').Field;
 
-    <Field component={CheckboxContainer} name="queries"
+    <Field component={CheckboxContainer} name="queries2"
                 props={{
                         availableQueries: [{
                             id: 1,
