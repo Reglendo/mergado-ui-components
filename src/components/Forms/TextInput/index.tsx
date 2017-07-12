@@ -1,5 +1,5 @@
 import * as React from "react"
-import {prefix} from "config"
+import {prefix,form} from "config"
 import uniqueId from "helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import styled, {css} from "styled-components"
@@ -61,8 +61,8 @@ class TextInput extends React.Component<Props, {}> {
                     placeholder={this.props.labels.placeholder}
                     ref="input"
                     className={`${this.name}__input \
-                                ${this.form}__input--text \
-                                ${this.form}__input--${type}
+                                ${form}__input--text \
+                                ${form}__input--${type}
                                 `}
                 />
             </Field>

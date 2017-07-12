@@ -58,7 +58,6 @@ class DataRow extends React.Component<Props, State> {
 
         return (
             <Row className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
-                key={uniqueId()}
                 disabled={inactive}
                 data-id={dataId} style={style}>
                     {actions.length > 0 &&

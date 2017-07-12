@@ -16,7 +16,7 @@ Example
                     { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
                 ]}
     >
-        <DataHeader>
+        <DataHeader key="header">
             <DataCell key={1} type='header'>Priorita</DataCell>
             <DataCell key={2} type='header'/>
             <DataCell key={3} type='header'>Názov šablóny</DataCell>
@@ -25,6 +25,7 @@ Example
             <DataCell key={6} type='header'>Akcia</DataCell>
         </DataHeader>
         <DataBody
+         key="body"
          sortable={true}
          sortableProps={{ options: { handle: '.muk-icon--arrows-v' } }}>
             <DataRow dataId={1} key={1}>

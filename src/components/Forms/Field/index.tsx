@@ -25,6 +25,7 @@ export interface IFieldProps {
         onKeyDown?: (value: any) => void,
         onKeyUp?: (value: any) => void,
         onClick?: (value: any) => void,
+        [propName: string]: any,
     }
     meta?: {
         active: boolean,
