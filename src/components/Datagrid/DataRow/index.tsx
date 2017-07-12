@@ -40,7 +40,6 @@ class DataRow extends React.Component<Props, State> {
         const { style, addClass, inactive, dataId, actions } = this.props
         return (
             <tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
-                key={uniqueId()}
                 data-id={dataId} style={style}>
                     {actions.length > 0 &&
                         <DataCell>
