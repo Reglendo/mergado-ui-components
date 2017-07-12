@@ -13,6 +13,26 @@ interface IQueryListProps {
     singleChoice?: boolean
     showInput: boolean
     labels: any
+    meta: any
+}
+
+function sortOptions(queries) {
+  if(!queries) {
+    return
+  }
+
+  return (a,b) => {
+    const activeA = queries.indexOf(a.id) >= 0
+    const activeB = queries.indexOf(b.id) >= 0
+
+    if (activeA < activeB) {
+      return 1
+    }
+    if (activeA > activeB) {
+      return -1
+    }
+    return 0
+  }
 }
 
 const renderOptions = (name, options, value, input, singleChoice, showInput, labels) => {
@@ -54,10 +74,11 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
 }
 
 const QueryListComponent: React.SFC<IQueryListProps> = ({ name, className, options, value, input,
-                                                            singleChoice, showInput, labels}) => {
+                                                            singleChoice, showInput, labels, meta }) => {
     return (
         <ul className={`${name}__list ${className}`}>
-            {renderOptions(name, options, value, input, singleChoice, showInput, labels)}
+            {renderOptions( name, options.sort(sortOptions(meta.initial)),
+                            value, input, singleChoice, showInput, labels)}
         </ul>
     )
 }

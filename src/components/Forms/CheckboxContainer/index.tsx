@@ -98,6 +98,7 @@ class CheckboxContainer extends React.Component<Props,State> {
                     options={options} value={this.props.input.value ? this.props.input.value : []}
                     input={this.props.input} singleChoice={this.props.singleChoice}
                     showInput={this.props.showInput} labels={labels}
+                    meta={meta}
                 />
             </Field>
         )
