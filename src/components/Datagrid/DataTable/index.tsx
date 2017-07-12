@@ -82,7 +82,6 @@ class DataTable extends React.Component<Props, State> {
 
             return React.cloneElement(obj, {
                 ...obj.props,
-                key: uniqueId(),
                 actions: this.props.bulkActions,
                 labels: this.props.labels,
                 selectedAll: this.state.selectedAll,

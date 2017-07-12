@@ -6,7 +6,6 @@ const Button_1 = require("components/Forms/Button");
 const TextInput_1 = require("components/Forms/TextInput");
 const Checkbox_1 = require("components/Forms/Checkbox");
 const Input_1 = require("components/Forms/Input");
-const unique_id_1 = require("helpers/unique_id");
 class DataTable extends React.Component {
     constructor(props) {
         super(props);
@@ -45,7 +44,7 @@ class DataTable extends React.Component {
     }
     renderChildren(children) {
         return children.map(obj => {
-            return React.cloneElement(obj, Object.assign({}, obj.props, { key: unique_id_1.default(), actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
+            return React.cloneElement(obj, Object.assign({}, obj.props, { actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
         });
     }
     renderBulkActionbar() {
