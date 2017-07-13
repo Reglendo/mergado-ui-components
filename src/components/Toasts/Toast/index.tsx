@@ -93,7 +93,10 @@ class Toast extends React.Component<Props, State> {
                 <div className={`${this.name} ${this.name}--${this.props.type}`}>
                     <div className={`${this.name}__icon`}>{this.props.icon}</div>
                     <div className={`${this.name}__content`}>
-                        {this.props.text.replace("%seconds%",this.state.secondsLeft + "s")}
+                        {this.props.text ?
+                                this.props.text.replace("%seconds%",this.state.secondsLeft + "s")
+                            :
+                                this.props.children }
                     </div>
                     {this.props.closeable &&
                         <div className={`${this.name}__close`}>
