@@ -834,6 +834,8 @@ table {
   .muk-checkbox_container__count {
     color: #888;
     font-size: 0.8em; }
+  .muk-checkbox_container a, .muk-checkbox_container a:hover, .muk-checkbox_container a:active, .muk-checkbox_container a:focus {
+    text-decoration: none; }
 
 /* COLORS */
 .muk-input-text__input[disabled], .muk-input-text__input[readonly] {
