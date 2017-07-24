@@ -35,16 +35,19 @@ Flexible height single choice box without filter
                             name: "First query",
                             product_count: 50,
                             active: 0,
+                            link: 'https://google.com',
                         },{
                             id: 2,
                             name: "♥ALLPRODUCTS♥",
                             product_count: 100,
-                            active: 1
+                            active: 1,
+                            link: 'https://google.com',
                         },{
                             id: 3,
                             name: "Third query",
                             product_count: 100,
-                            active: 0
+                            active: 0,
+                            link: 'https://google.com',
                         }],
                         singleChoice: true,
                         showRadio: true,

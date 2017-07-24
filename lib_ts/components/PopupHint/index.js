@@ -142,7 +142,7 @@ class PopupHint extends React.Component {
                     React.createElement("div", { className: `${this.name}__border` },
                         React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
                     React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
-        return (React.createElement("div", { className: this.name, style: { display: "inline-block" } },
+        return (React.createElement("div", { className: this.name, style: Object.assign({}, this.props.style, { display: "inline-block" }) },
             React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onClick: (e) => {
                     e.preventDefault();
                     e.stopPropagation();
