@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
-const LittleStatus_1 = require("components/LittleStatus");
 const react_router_1 = require("react-router");
 const unique_id_1 = require("helpers/unique_id");
 const Input_1 = require("components/Forms/Input");
 const MUK = require("components/Forms/input");
+const item_1 = require("./item");
 class CheckboxContainer extends MUK.InputComponent {
     constructor(props) {
         super(props);
@@ -82,27 +82,14 @@ class CheckboxContainer extends MUK.InputComponent {
                     }
                 }
             };
-            return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
-                                    ${option.disabled ? `${this.name}__item--disabled` : ""}`, key: unique_id_1.default(), onClick: handler },
-                this.props.singleChoice === false ?
-                    React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } })
-                    :
-                        React.createElement("input", { type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }),
-                this.renderItemLabel(option)));
+            const item = React.createElement(item_1.default, { name: this.name, active: index >= 0, disabled: option.disabled, onClick: handler, singleChoice: this.props.singleChoice, checked: queries.indexOf(option.id) > 0, showRadio: this.props.showRadio, option: option, labels: this.props.labels, key: option.id });
+            if (option.link) {
+                return React.createElement(react_router_1.Link, { to: option.link, key: option.id }, item);
+            }
+            else {
+                return item;
+            }
         });
-    }
-    renderItemLabel(option) {
-        let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name);
-        if (option.link !== undefined) {
-            label = React.createElement(react_router_1.Link, { to: option.link }, label);
-        }
-        if (option.active !== undefined) {
-            label = React.createElement(LittleStatus_1.default, { type: option.active ? "success" : "inactive" }, label);
-        }
-        return (React.createElement("label", { className: `${this.name}__label` },
-            label,
-            " ",
-            React.createElement("span", { className: `${this.name}__count` }, typeof option.product_count !== "undefined" ? `(${option.product_count})` : "")));
     }
     renderBoxes() {
         const options = this.props.availableQueries;

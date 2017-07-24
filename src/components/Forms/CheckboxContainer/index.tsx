@@ -5,6 +5,7 @@ import {Link} from "react-router"
 import uniqueId from "helpers/unique_id"
 import {Input, InputLabel, InputError} from "components/Forms/Input"
 import * as MUK from "components/Forms/input"
+import Item from "./item"
 
 export interface Query {
     id: number
@@ -146,54 +147,21 @@ class CheckboxContainer extends MUK.InputComponent<Props,State> {
                         }
                     }
                 }
-
-                return (
-                    <li className={`${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
-                                    ${option.disabled ? `${this.name}__item--disabled` : ""}` }
-                        key={uniqueId()}
-                        onClick={handler}>
-                        {this.props.singleChoice === false ?
-                            <input
-                                type="checkbox"
-                                className={`${this.name}__checkbox`}
-                                checked={queries.indexOf(option.id) >= 0}
-                                onChange={handler}
-                                style={{pointerEvents: "none"}}
-                            />
-                        :
-                            <input
-                                type="radio"
-                                className={`${this.name}__checkbox`}
-                                checked={queries.indexOf(option.id) >= 0}
-                                onChange={handler}
-                                style={{display: this.props.showRadio?"inline-block":"none", pointerEvents: "none"}}
-                            />
-                        }
-                        {this.renderItemLabel(option)}
-                    </li>
-                )
+                const item = <Item name={this.name} active={index >= 0}
+                                  disabled={option.disabled} onClick={handler}
+                                  singleChoice={this.props.singleChoice}
+                                  checked={queries.indexOf(option.id) > 0}
+                                  showRadio={this.props.showRadio}
+                                  option={option}
+                                  labels={this.props.labels}
+                                  key={option.id}
+                                  />
+                if(option.link) {
+                    return <Link to={option.link} key={option.id}>{item}</Link>
+                } else {
+                    return item
+                }
             })
-    }
-
-    protected renderItemLabel(option) {
-        let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name)
-
-        if(option.link !== undefined) {
-            label = <Link to={option.link}>{label}</Link>
-        }
-
-        if(option.active !== undefined) {
-            label = <LittleStatus type={option.active ? "success" : "inactive"}>{label}</LittleStatus>
-        }
-        return (
-            <label className={`${this.name}__label`}>
-                {label}
-                {" "}
-                <span className={`${this.name}__count`}>
-                    {typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }
-                </span>
-            </label>
-        )
     }
 
     protected renderBoxes() {
