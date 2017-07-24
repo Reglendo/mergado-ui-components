@@ -16123,7 +16123,10 @@ class Toast extends React.Component {
         return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? "" : "hidden"}` },
             React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}` },
                 React.createElement("div", { className: `${this.name}__icon` }, this.props.icon),
-                React.createElement("div", { className: `${this.name}__content` }, this.props.text.replace("%seconds%", this.state.secondsLeft + "s")),
+                React.createElement("div", { className: `${this.name}__content` }, this.props.text ?
+                    this.props.text.replace("%seconds%", this.state.secondsLeft + "s")
+                    :
+                        this.props.children),
                 this.props.closeable &&
                     React.createElement("div", { className: `${this.name}__close` },
                         React.createElement("a", { className: `${this.name}__button`, onClick: (evt) => {
