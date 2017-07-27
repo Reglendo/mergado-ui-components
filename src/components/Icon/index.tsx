@@ -11,6 +11,7 @@ export interface Props {
     title?: string
     style?: any
     addClass?: string
+    viewBox?: string
 }
 export interface State {
 }
@@ -27,6 +28,7 @@ class Icon extends React.Component<Props, State> {
         text: "",
         title: "",
         addClass: "",
+        viewBox: "0 0 40 40",
     }
 
     public render() {
@@ -46,7 +48,7 @@ class Icon extends React.Component<Props, State> {
                      fill="currentColor"
                      height={this.props.size}
                      width={this.props.size}
-                     viewBox={`0 0 40 40`}
+                     viewBox={this.props.viewBox}
                 >
                     {icon}
                 </svg>
