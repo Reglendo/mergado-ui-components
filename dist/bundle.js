@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 477);
+/******/ 	return __webpack_require__(__webpack_require__.s = 478);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -806,7 +806,7 @@ exports.__esModule = true;
 exports.default = routerWarning;
 exports._resetWarned = _resetWarned;
 
-var _warning = __webpack_require__(476);
+var _warning = __webpack_require__(477);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -16229,43 +16229,43 @@ var Checkbox_1 = __webpack_require__(65);
 exports.Checkbox = Checkbox_1.default;
 var CheckboxContainer_1 = __webpack_require__(459);
 exports.CheckboxContainer = CheckboxContainer_1.default;
-var ColorPicker_1 = __webpack_require__(460);
+var ColorPicker_1 = __webpack_require__(461);
 exports.ColorPicker = ColorPicker_1.default;
 var Autocomplete_1 = __webpack_require__(458);
 exports.Autocomplete = Autocomplete_1.default;
-var Radio_1 = __webpack_require__(462);
+var Radio_1 = __webpack_require__(463);
 exports.Radio = Radio_1.default;
-var Range_1 = __webpack_require__(463);
+var Range_1 = __webpack_require__(464);
 exports.Range = Range_1.default;
-var Select_1 = __webpack_require__(464);
+var Select_1 = __webpack_require__(465);
 exports.Select = Select_1.default;
 var TextInput_1 = __webpack_require__(105);
 exports.TextInput = TextInput_1.default;
-var Textarea_1 = __webpack_require__(465);
+var Textarea_1 = __webpack_require__(466);
 exports.Textarea = Textarea_1.default;
-var FormGroup_1 = __webpack_require__(461);
+var FormGroup_1 = __webpack_require__(462);
 exports.FormGroup = FormGroup_1.default;
 var LittleStatus_1 = __webpack_require__(190);
 exports.LittleStatus = LittleStatus_1.default;
-var Paginator_1 = __webpack_require__(466);
+var Paginator_1 = __webpack_require__(467);
 exports.Paginator = Paginator_1.default;
-var Placeholder_1 = __webpack_require__(467);
+var Placeholder_1 = __webpack_require__(468);
 exports.Placeholder = Placeholder_1.default;
-var PopupHint_1 = __webpack_require__(469);
+var PopupHint_1 = __webpack_require__(470);
 exports.PopupHint = PopupHint_1.default;
-var Spinner_1 = __webpack_require__(470);
+var Spinner_1 = __webpack_require__(471);
 exports.Spinner = Spinner_1.default;
-var Toasts_1 = __webpack_require__(471);
+var Toasts_1 = __webpack_require__(472);
 exports.Toasts = Toasts_1.default;
 var Toast_1 = __webpack_require__(191);
 exports.Toast = Toast_1.default;
-var TopNav_1 = __webpack_require__(473);
+var TopNav_1 = __webpack_require__(474);
 exports.TopNav = TopNav_1.default;
-var NavLink_1 = __webpack_require__(472);
+var NavLink_1 = __webpack_require__(473);
 exports.NavLink = NavLink_1.default;
-var WizardNav_1 = __webpack_require__(475);
+var WizardNav_1 = __webpack_require__(476);
 exports.WizardNav = WizardNav_1.default;
-var WizardStep_1 = __webpack_require__(474);
+var WizardStep_1 = __webpack_require__(475);
 exports.WizardStep = WizardStep_1.default;
 var DataTable_1 = __webpack_require__(188);
 exports.DataTable = DataTable_1.default;
@@ -39666,11 +39666,11 @@ exports.default = Autocomplete;
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(1);
 const config_1 = __webpack_require__(5);
-const LittleStatus_1 = __webpack_require__(190);
 const react_router_1 = __webpack_require__(181);
 const unique_id_1 = __webpack_require__(38);
 const Input_1 = __webpack_require__(104);
 const MUK = __webpack_require__(16);
+const item_1 = __webpack_require__(460);
 class CheckboxContainer extends MUK.InputComponent {
     constructor(props) {
         super(props);
@@ -39746,27 +39746,14 @@ class CheckboxContainer extends MUK.InputComponent {
                     }
                 }
             };
-            return (React.createElement("li", { className: `${this.name}__item ${index >= 0 ? `${this.name}__item--active` : ""}
-                                    ${option.disabled ? `${this.name}__item--disabled` : ""}`, key: unique_id_1.default(), onClick: handler },
-                this.props.singleChoice === false ?
-                    React.createElement("input", { type: "checkbox", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { pointerEvents: "none" } })
-                    :
-                        React.createElement("input", { type: "radio", className: `${this.name}__checkbox`, checked: queries.indexOf(option.id) >= 0, onChange: handler, style: { display: this.props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }),
-                this.renderItemLabel(option)));
+            const item = React.createElement(item_1.default, { name: this.name, active: index >= 0, disabled: option.disabled, onClick: handler, singleChoice: this.props.singleChoice, checked: queries.indexOf(option.id) > 0, showRadio: this.props.showRadio, option: option, labels: this.props.labels, key: option.id });
+            if (option.link) {
+                return React.createElement(react_router_1.Link, { to: option.link, key: option.id }, item);
+            }
+            else {
+                return item;
+            }
         });
-    }
-    renderItemLabel(option) {
-        let label = (option.name === "♥ALLPRODUCTS♥" ? this.props.labels.allProducts : option.name);
-        if (option.link !== undefined) {
-            label = React.createElement(react_router_1.Link, { to: option.link }, label);
-        }
-        if (option.active !== undefined) {
-            label = React.createElement(LittleStatus_1.default, { type: option.active ? "success" : "inactive" }, label);
-        }
-        return (React.createElement("label", { className: `${this.name}__label` },
-            label,
-            " ",
-            React.createElement("span", { className: `${this.name}__count` }, typeof option.product_count !== "undefined" ? `(${option.product_count})` : "")));
     }
     renderBoxes() {
         const options = this.props.availableQueries;
@@ -39822,6 +39809,34 @@ exports.default = CheckboxContainer;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(1);
+const LittleStatus_1 = __webpack_require__(190);
+const Item = props => {
+    let label = (props.option.name === "♥ALLPRODUCTS♥" ? props.labels.allProducts : props.option.name);
+    if (props.option.active !== undefined) {
+        label = React.createElement(LittleStatus_1.default, { type: props.option.active ? "success" : "inactive" }, label);
+    }
+    return (React.createElement("li", { className: `${props.name}__item ${props.active ? `${props.name}__item--active` : ""}
+                        ${props.disabled ? `${props.name}__item--disabled` : ""}`, key: props.option.id, onClick: props.onClick },
+        props.singleChoice === false ?
+            React.createElement("input", { type: "checkbox", className: `${props.name}__checkbox`, checked: props.active, onChange: props.onClick, style: { pointerEvents: "none" } })
+            :
+                React.createElement("input", { type: "radio", className: `${props.name}__checkbox`, checked: props.active, onChange: props.onClick, style: { display: props.showRadio ? "inline-block" : "none", pointerEvents: "none" } }),
+        React.createElement("label", { className: `${props.name}__label` },
+            label,
+            " ",
+            React.createElement("span", { className: `${props.name}__count` }, typeof props.option.product_count !== "undefined" ? `(${props.option.product_count})` : ""))));
+};
+exports.default = Item;
+
+
+/***/ }),
+/* 461 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(1);
 const config_1 = __webpack_require__(5);
 const Chrome_1 = __webpack_require__(326);
 const MUK = __webpack_require__(16);
@@ -39871,7 +39886,7 @@ exports.default = ColorPicker;
 
 
 /***/ }),
-/* 461 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39893,7 +39908,7 @@ exports.default = FormGroup;
 
 
 /***/ }),
-/* 462 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39926,7 +39941,7 @@ exports.default = Radio;
 
 
 /***/ }),
-/* 463 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39974,7 +39989,7 @@ exports.default = Range;
 
 
 /***/ }),
-/* 464 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40016,7 +40031,7 @@ exports.default = Select;
 
 
 /***/ }),
-/* 465 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40044,7 +40059,7 @@ exports.default = Textarea;
 
 
 /***/ }),
-/* 466 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40150,7 +40165,7 @@ exports.default = Paginator;
 
 
 /***/ }),
-/* 467 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40184,7 +40199,7 @@ exports.default = Placeholder;
 
 
 /***/ }),
-/* 468 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40228,14 +40243,14 @@ exports.default = Bubble;
 
 
 /***/ }),
-/* 469 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(1);
-const Bubble_1 = __webpack_require__(468);
+const Bubble_1 = __webpack_require__(469);
 const config_1 = __webpack_require__(5);
 class PopupHint extends React.Component {
     constructor(props) {
@@ -40376,7 +40391,7 @@ class PopupHint extends React.Component {
                     React.createElement("div", { className: `${this.name}__border` },
                         React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
                     React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
-        return (React.createElement("div", { className: this.name, style: { display: "inline-block" } },
+        return (React.createElement("div", { className: this.name, style: Object.assign({}, this.props.style, { display: "inline-block" }) },
             React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onClick: (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -40392,7 +40407,7 @@ exports.default = PopupHint;
 
 
 /***/ }),
-/* 470 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40476,7 +40491,7 @@ exports.default = Spinner;
 
 
 /***/ }),
-/* 471 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40517,7 +40532,7 @@ exports.default = Toasts;
 
 
 /***/ }),
-/* 472 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40551,7 +40566,7 @@ exports.default = NavLink;
 
 
 /***/ }),
-/* 473 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40585,7 +40600,7 @@ exports.default = TopNav;
 
 
 /***/ }),
-/* 474 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40621,7 +40636,7 @@ exports.default = WizardStep;
 
 
 /***/ }),
-/* 475 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40654,7 +40669,7 @@ exports.default = WizardNav;
 
 
 /***/ }),
-/* 476 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40722,7 +40737,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 477 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(194);
