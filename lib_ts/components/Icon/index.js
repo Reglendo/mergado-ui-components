@@ -19,7 +19,7 @@ class Icon extends React.Component {
         }
         const icon = Icons[iconName] ? Icons[iconName] : null;
         return (React.createElement("span", { className: className, style: this.props.style, title: this.props.title },
-            React.createElement("svg", { className: `${this.name}__image`, preserveAspectRatio: "xMidYMid meet", fill: "currentColor", height: this.props.size, width: this.props.size, viewBox: `0 0 40 40` }, icon),
+            React.createElement("svg", { className: `${this.name}__image`, preserveAspectRatio: "xMidYMid meet", fill: "currentColor", height: this.props.size, width: this.props.size, viewBox: this.props.viewBox }, icon),
             this.props.text ? (React.createElement("span", { className: `${this.name}__text` }, this.props.text)) : null));
     }
 }
@@ -31,6 +31,7 @@ Icon.defaultProps = {
     text: "",
     title: "",
     addClass: "",
+    viewBox: "0 0 40 40",
 };
 exports.default = Icon;
 //# sourceMappingURL=index.js.map

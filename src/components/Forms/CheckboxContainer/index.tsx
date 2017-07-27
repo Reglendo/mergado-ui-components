@@ -12,7 +12,7 @@ export interface Query {
     name: string
     product_count?: number
     active?: boolean
-    link?: Link | JSX.Element
+    link?: string
 }
 
 export interface Props extends MUK.Props {

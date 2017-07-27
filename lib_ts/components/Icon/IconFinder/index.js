@@ -34,8 +34,9 @@ class IconFinder extends React.Component {
             return React.createElement("p", { style: { padding: "10px" } }, "no icon found :(");
         }
         return found.map(obj => {
+            const viewBox = obj === "IconHeureka" ? "0 0 200 40" : "0 0 40 40";
             return (React.createElement("span", { key: obj, className: `${this.name}__icon`, title: obj, tabIndex: 1 },
-                React.createElement(Icon_1.default, { name: `${obj}`, size: 30, text: `import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`, style: { display: "inline-block", margin: "5px" } })));
+                React.createElement(Icon_1.default, { name: `${obj}`, size: 30, text: `import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`, style: { display: "inline-block", margin: "5px" }, viewBox: viewBox })));
         });
     }
     render() {
