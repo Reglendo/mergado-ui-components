@@ -1,6 +1,6 @@
 import * as React from "react"
 import {prefix} from "config"
-import * as Icons from "mergado-ui-icons/lib"
+import * as Icons from "@reglendo/mergado-ui-icons/lib"
 
 export interface Props {
     type?: string

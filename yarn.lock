@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@reglendo/mergado-ui-icons@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@reglendo/mergado-ui-icons/-/mergado-ui-icons-1.0.1.tgz#a33ee0b40e90d080f43cfbaa771ab177a83f8fff"
+
 "@types/chai-jquery@^1.1.33":
   version "1.1.33"
   resolved "https://registry.yarnpkg.com/@types/chai-jquery/-/chai-jquery-1.1.33.tgz#520a724689bc84d52cec1b87ced79dd0249d8ff2"
@@ -3447,10 +3451,6 @@ meow@^3.7.0:
     read-pkg-up "^1.0.1"
     redent "^1.0.0"
     trim-newlines "^1.0.0"
-
-"mergado-ui-icons@https://github.com/Reglendo/mergado-ui-icons#0.2.5.1":
-  version "0.2.0"
-  resolved "https://github.com/Reglendo/mergado-ui-icons#9530a880bb50dd826800e529ef4fd5a0f65a8573"
 
 merge-descriptors@1.0.1:
   version "1.0.1"

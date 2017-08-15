@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
-const Icons = require("mergado-ui-icons/lib");
+const Icons = require("@reglendo/mergado-ui-icons/lib");
 class Icon extends React.Component {
     constructor() {
         super(...arguments);

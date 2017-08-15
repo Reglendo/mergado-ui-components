@@ -4,7 +4,7 @@ const React = require("react");
 const config_1 = require("config");
 const Icon_1 = require("components/Icon");
 const TextInput_1 = require("components/Forms/TextInput");
-const Icons = require("mergado-ui-icons/lib");
+const Icons = require("@reglendo/mergado-ui-icons/lib");
 /**
  * disable-styleguide
  */
