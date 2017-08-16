@@ -1,4 +1,4 @@
-Example
+Example test
 
     var IconPlay = require('@reglendo/mergado-ui-icons/lib/icons/IconPlay').default;
     var IconPause = require('@reglendo/mergado-ui-icons/lib/icons/IconPause').default;
