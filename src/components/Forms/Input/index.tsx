@@ -9,6 +9,9 @@ const StyledInput = styled.div`
     margin-bottom: 10px;
     border: 2px solid;
     border-color: ${(props: any) => props["data-invalid"] ? style.RED : "transparent" }
+    & > * {
+        border-color: ${(props: any) => props["data-invalid"] ? style.RED : "transparent" }
+    }
 `
 const StyledLabel = styled.label`
     display: block;

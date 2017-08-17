@@ -104,8 +104,8 @@ class ColorPicker extends React.Component<Props, State> {
 
     public render() {
         const { color } = this.state
-        const { input, meta, children, ...props } = this.props
-
+        const { input, meta } = this.props
+        const { children, ...props} = this.props
         const background = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
         return(

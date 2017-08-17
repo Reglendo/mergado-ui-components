@@ -137,7 +137,7 @@ export const FieldError = styled(FieldErrorComponent)`
     padding: 1px 5px;
     position: absolute;
     top: 100%;
-    left: -2px;
+    left: 0px;
 `
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
@@ -151,7 +151,6 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                         ${props.disabled ? props.name + `--disabled` : ""}
                         ${props.required ? props.name + `--required` : ""}
                         ${form}__group
-                        ${isInvalid ? `${form}__group--invalid` : ""}
                         `}
             title={props.labels.title}
             style={props.style}>
@@ -159,7 +158,11 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                 <FieldLabel name={props.name}>
                     {props.label ? props.label : (others.label ? others.label : labels.main)}
                 </FieldLabel>
-                {props.children}
+                <div className={`\
+                    ${isInvalid ? `${form}__group--invalid` : ""}\
+                `}>
+                    {props.children}
+                </div>
         </div>
     )
 }
@@ -168,8 +171,12 @@ FieldComponent.defaultProps = defaultFieldProps
 
 export const Field = styled(FieldComponent)`
     position: relative;
+    padding: 2px;
     margin-bottom: 10px;
-    border: 2px solid;
-    border-color: ${(props) => props.meta && props.meta.invalid &&
-                    (props.meta.dirty || props.meta.touched) ? style.RED : "transparent" }
+    .${form}__group--invalid {
+        margin: -2px;
+        border: 2px solid transparent;
+        border-color: ${(props) => props.meta && props.meta.invalid &&
+                        (props.meta.dirty || props.meta.touched) ? style.RED : "transparent" }
+    }
 `

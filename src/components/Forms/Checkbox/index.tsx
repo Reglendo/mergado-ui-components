@@ -1,5 +1,5 @@
 import * as React from "react"
-import {prefix} from "config"
+import {prefix,form} from "config"
 import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import styled from "styled-components"
 
@@ -20,7 +20,9 @@ class Checkbox extends React.Component<Props, {}> {
     protected renderLabel() {
         const { input, labels } = this.props
         const label = this.props.label ? this.props.label : labels.main
-        return  <span>
+        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
+
+        return <div className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <input
                         checked={input.value}
                         {...input}
@@ -28,7 +30,7 @@ class Checkbox extends React.Component<Props, {}> {
                         className={`${this.name}__item`}
                         />
                     {label && " " }{label}
-                </span>
+                </div>
     }
 
     public render() {

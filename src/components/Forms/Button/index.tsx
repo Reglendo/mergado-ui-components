@@ -35,14 +35,17 @@ class Button extends React.Component<Props, {}> {
     }
 
     public render() {
-        const { meta, input, labels, group, ...props } = this.props
+        const { meta, input, labels, group } = this.props
+        const { children, ...props } = this.props
+        
         return (
-            <StyledField label="" className={`${this.name}--${props.color}
+            <StyledField className={`${this.name}--${props.color}
                                         ${!labels.main ? this.name+`--notext`:``}
                                         ${props.size ? this.name+`--`+props.size:``}
                                         ${this.name}--${props.type}
                                         ${props.disabled ? this.name+`--disabled`:``}
-                `}>
+                `}
+                {...this.props} name={this.name} label="" labels={{...labels,main: ""}}>
                     <UniversalButton {...this.props} name={this.name} />
             </StyledField>
         )

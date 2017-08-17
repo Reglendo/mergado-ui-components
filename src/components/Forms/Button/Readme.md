@@ -33,7 +33,7 @@ Button state
     <div>
     <Button labels={{main: 'I\'m disabled'}} disabled={true}  style={{verticalAlign: 'bottom'}} />
 
-    <Button type="submit" labels={{main: 'Button', invalid: 'I\'m invalid'}} meta={{invalid: true, touched: true}} />
+    <Button type="submit" hello="world" labels={{main: 'Invalid', invalid: 'I\'m invalid'}} meta={{invalid: true, touched: true}} />
     </div>
 
 Button sizes

@@ -6,6 +6,7 @@ import {Link} from "react-router"
 import uniqueId from "helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import {QueryList} from "./list"
+import styled from "styled-components"
 
 export interface Query {
     id: number
@@ -42,6 +43,12 @@ export interface Props extends IFieldProps {
 export interface State {
     filter: string
 }
+
+const StyledField = styled(Field)`
+    & > .muk-form__group--invalid {
+        border: none !important;
+    }
+`
 
 class CheckboxContainer extends React.Component<Props,State> {
 
@@ -86,21 +93,25 @@ class CheckboxContainer extends React.Component<Props,State> {
 
     public render() {
         const { withoutFilter, height, showLabel, labels, meta} = this.props
+        const { children, ...props} = this.props
         const options =  this.props.availableQueries
                             .filter((option) => {
                                 const regex = new RegExp(this.state.filter, "i");
                                 return option.subheader || regex.test(option.name);
                             })
+        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         return (
-            <Field label="" className={`${this.name}__queries`}>
+            <StyledField {...props} label=""
+                labels={{invalid: labels.invalid, main: ""}} className={`${this.name}__queries`}>
                 {withoutFilter === false && this.renderFilter()}
-                <QueryList className={`${this.name}__list`} name={this.name} height={height}
+                <QueryList className={`${this.name}__list ${isInvalid ? `${form}__group--invalid` : ""}`}
+                    name={this.name} height={height}
                     options={options} value={this.props.input.value ? this.props.input.value : []}
                     input={this.props.input} singleChoice={this.props.singleChoice}
                     showInput={this.props.showInput} labels={labels}
                     meta={meta}
                 />
-            </Field>
+            </StyledField>
         )
     }
 
