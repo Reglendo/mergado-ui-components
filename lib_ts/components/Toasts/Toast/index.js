@@ -121,10 +121,20 @@ class Toast extends React.Component {
         }
     }
     render() {
+<<<<<<< HEAD
         return (React.createElement(Wrapper, { innerRef: (o) => { this.refWrapper = o; }, style: this.props.style, hidden: !this.state.visible, className: `${this.name}__wrapper ${this.state.visible ? "" : this.name + "--hidden"}` },
             React.createElement(Component, { type: this.props.type, className: `${this.name} ${this.name}--${this.props.type}` },
                 React.createElement(Icon, { className: `${this.name}__icon` }, this.props.icon),
                 React.createElement(Content, { className: `${this.name}__content` }, this.props.text.replace("%seconds%", this.state.secondsLeft + "s")),
+=======
+        return (React.createElement("div", { style: this.props.style, className: `${this.name}__wrapper ${this.state.visible ? "" : "hidden"}` },
+            React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}` },
+                React.createElement("div", { className: `${this.name}__icon` }, this.props.icon),
+                React.createElement("div", { className: `${this.name}__content` }, this.props.text ?
+                    this.props.text.replace("%seconds%", this.state.secondsLeft + "s")
+                    :
+                        this.props.children),
+>>>>>>> master
                 this.props.closeable &&
                     React.createElement(CloseButton, { className: `${this.name}__button`, icon: React.createElement(IconClose_1.default, { style: { lineHeight: "40px" } }), color: "nocolor", size: "tiny", toastType: this.props.type, onClick: evt => this.onClose(evt) }))));
     }

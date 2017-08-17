@@ -1,6 +1,6 @@
 import * as React from "react"
 import {prefix} from "config"
-import IconClose from "mergado-ui-icons/lib/icons/IconClose"
+import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import uniqueId from "helpers/unique_id"
 import styled from "styled-components"
 import Button from "components/Forms/Button"
@@ -171,7 +171,10 @@ class Toast extends React.Component<Props, State> {
                 <Component type={this.props.type} className={`${this.name} ${this.name}--${this.props.type}`}>
                     <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
                     <Content className={`${this.name}__content`}>
-                        {this.props.text.replace("%seconds%",this.state.secondsLeft + "s")}
+                            {this.props.text ?
+                                this.props.text.replace("%seconds%",this.state.secondsLeft + "s")
+                            :
+                                this.props.children }
                     </Content>
                     {this.props.closeable &&
                             <CloseButton className={`${this.name}__button`}

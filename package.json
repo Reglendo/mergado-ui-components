@@ -1,7 +1,7 @@
 {
-  "name": "mergado-ui-kit",
-  "version": "1.8.9-dev",
-  "description": "",
+  "name": "@reglendo/mergado-ui-kit",
+  "version": "1.9.0",
+  "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
     "start": "npm run styleguide-server",
@@ -27,7 +27,7 @@
   ],
   "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
-    "mergado-ui-icons": "https://github.com/Reglendo/mergado-ui-icons#0.2.4",
+    "@reglendo/mergado-ui-icons": "1.0.1",
     "moment": "^2.18.1",
     "polished": "^1.2.1",
     "react": "^15.4.2",

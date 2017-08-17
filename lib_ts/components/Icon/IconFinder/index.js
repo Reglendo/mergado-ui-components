@@ -4,6 +4,7 @@ const React = require("react");
 const config_1 = require("config");
 const Icon_1 = require("components/Icon");
 const TextInput_1 = require("components/Forms/TextInput");
+<<<<<<< HEAD
 const Icons = require("mergado-ui-icons/lib");
 const styled_components_1 = require("styled-components");
 /* <style> */
@@ -77,6 +78,9 @@ const Image = styled_components_1.default.span `
         transform: translateX(-50%);
     }
 `;
+=======
+const Icons = require("@reglendo/mergado-ui-icons/lib");
+>>>>>>> master
 /**
  * disable-styleguide
  */
@@ -106,8 +110,14 @@ class IconFinder extends React.Component {
             return React.createElement("p", { style: { padding: "10px" } }, "no icon found :(");
         }
         return found.map(obj => {
+<<<<<<< HEAD
             return (React.createElement(Image, { key: obj, className: `${this.name}__icon`, title: obj, tabIndex: 1 },
                 React.createElement(Icon_1.default, { name: `${obj}`, size: 30, text: `import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`, style: { display: "inline-block", margin: "5px" } })));
+=======
+            const viewBox = obj === "IconHeureka" ? "0 0 200 40" : "0 0 40 40";
+            return (React.createElement("span", { key: obj, className: `${this.name}__icon`, title: obj, tabIndex: 1 },
+                React.createElement(Icon_1.default, { name: `${obj}`, size: 30, text: `import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`, style: { display: "inline-block", margin: "5px" }, viewBox: viewBox })));
+>>>>>>> master
         });
     }
     render() {

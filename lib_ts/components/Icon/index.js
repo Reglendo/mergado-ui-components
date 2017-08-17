@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
+<<<<<<< HEAD
 const Icons = require("mergado-ui-icons/lib");
 const styled_components_1 = require("styled-components");
 /* <style> */
@@ -16,6 +17,9 @@ const Image = styled_components_1.default.svg `
     vertical-align: middle;
 `;
 /* </style> */
+=======
+const Icons = require("@reglendo/mergado-ui-icons/lib");
+>>>>>>> master
 class Icon extends React.Component {
     constructor() {
         super(...arguments);
@@ -31,9 +35,15 @@ class Icon extends React.Component {
             iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace("-", "");
         }
         const icon = Icons[iconName] ? Icons[iconName] : null;
+<<<<<<< HEAD
         return (React.createElement(Wrapper, { className: className, style: this.props.style, title: this.props.title },
             React.createElement(Image, { className: `${this.name}__image`, preserveAspectRatio: "xMidYMid meet", fill: "currentColor", height: this.props.size, width: this.props.size, viewBox: `0 0 40 40` }, icon),
             this.props.text ? (React.createElement(Text, { className: `${this.name}__text` }, this.props.text)) : null));
+=======
+        return (React.createElement("span", { className: className, style: this.props.style, title: this.props.title },
+            React.createElement("svg", { className: `${this.name}__image`, preserveAspectRatio: "xMidYMid meet", fill: "currentColor", height: this.props.size, width: this.props.size, viewBox: this.props.viewBox }, icon),
+            this.props.text ? (React.createElement("span", { className: `${this.name}__text` }, this.props.text)) : null));
+>>>>>>> master
     }
 }
 Icon.defaultProps = {
@@ -44,6 +54,7 @@ Icon.defaultProps = {
     text: "",
     title: "",
     addClass: "",
+    viewBox: "0 0 40 40",
 };
 exports.default = Icon;
 //# sourceMappingURL=index.js.map

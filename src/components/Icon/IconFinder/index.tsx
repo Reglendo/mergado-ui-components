@@ -2,7 +2,7 @@ import * as React from "react"
 import {prefix} from "config"
 import Icon from "components/Icon"
 import TextInput from "components/Forms/TextInput"
-import * as Icons from "mergado-ui-icons/lib"
+import * as Icons from "@reglendo/mergado-ui-icons/lib"
 import styled from "styled-components"
 
 export interface Props {
@@ -123,9 +123,11 @@ class IconFinder extends React.Component<Props, State> {
             return <p style={{padding: "10px"}}>no icon found :(</p>
         }
         return found.map( obj => {
+            const viewBox = obj === "IconHeureka" ? "0 0 200 40" : "0 0 40 40"
             return (<Image key={obj} className={`${this.name}__icon`} title={obj} tabIndex={1}>
                         <Icon name={`${obj}`} size={30}
-                            text={`import ${obj} from "mergado-ui-icons/lib/icons/${obj}"`}
+                            text={`import ${obj} from "@reglendo/mergado-ui-icons/lib/icons/${obj}"`}
+                            viewBox={viewBox}
                             style={{display: "inline-block", margin: "5px" }} />
                     </Image>)
         })

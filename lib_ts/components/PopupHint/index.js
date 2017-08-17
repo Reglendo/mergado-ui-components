@@ -183,12 +183,21 @@ class PopupHint extends React.Component {
         const object = Object;
         const style = object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.style);
         const hint = (React.createElement(Bubble_1.default, null,
+<<<<<<< HEAD
             React.createElement(HintWrapper, { innerRef: (o) => { this.refs.hint = o; }, className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
                 React.createElement(HintInnerWrapper, { className: `${this.name}__innerwrapper` },
                     React.createElement(HintBorder, { className: `${this.name}__border` },
                         React.createElement(HintContent, { className: `${this.name}__content` }, this.props.children)),
                     React.createElement(HintArrow, { innerRef: (o) => { this.refs.arrow = o; }, className: `${this.name}__arrow` })))));
         return (React.createElement(Component, { className: this.name },
+=======
+            React.createElement("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
+                React.createElement("div", { className: `${this.name}__innerwrapper` },
+                    React.createElement("div", { className: `${this.name}__border` },
+                        React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
+                    React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
+        return (React.createElement("div", { className: this.name, style: Object.assign({}, this.props.style, { display: "inline-block" }) },
+>>>>>>> master
             React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onClick: (e) => {
                     e.preventDefault();
                     e.stopPropagation();

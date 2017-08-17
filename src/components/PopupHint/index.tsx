@@ -259,7 +259,7 @@ class PopupHint extends React.Component<Props, State> {
         )
 
         return (
-            <Component className={this.name}>
+            <Component className={this.name} style={{...this.props.style, display: "inline-block"}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
                      onClick={(e) => {
