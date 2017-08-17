@@ -2,14 +2,17 @@ import * as React from "react"
 import {prefix,form} from "config"
 import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import styled from "styled-components"
+import {StyledInput} from "../TextInput"
 
 export interface Props extends IFieldProps {
     height: number
 }
 
-const StyledTextarea = styled.textarea`
+const Styled = StyledInput.extend`
     height: ${props => props.height + "px"}
 `
+
+const StyledTextarea = Styled.withComponent("textarea")
 
 class Textarea extends React.Component<Props, {}> {
 

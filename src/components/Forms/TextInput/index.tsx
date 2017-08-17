@@ -8,7 +8,7 @@ export interface Props extends IFieldProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
 }
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
     font-size: 14px;
     box-sizing: border-box;
     background-color: #fff;
@@ -62,7 +62,8 @@ class TextInput extends React.Component<Props, {}> {
                     ref="input"
                     className={`${this.name}__input \
                                 ${form}__input--text \
-                                ${form}__input--${type}
+                                ${form}__input--${type} \
+                                ${inputProps.className} \
                                 `}
                 />
             </Field>

@@ -50,19 +50,20 @@ const colorize = () => (props) =>  {
             color = style.BLUE; break
     }
     const dark = darken(0.05, color)
+    const darker = darken(0.1, color)
     return `
         background-color: ${color};
-        background: linear-gradient(to bottom, ${color} 5%, ${dark} 100%);
-        border-color: ${dark};
-
-        &:active {
-          background: ${dark};
-        }
+        border-color: ${color};
 
         &:hover {
-          background-color: ${dark};
-          background: linear-gradient(to bottom, ${dark} 5%, ${color} 100%);
+            background-color: ${dark};
         }
+
+        &:active,&:focus {
+          background: ${darker};
+          text-decoration: none;
+        }
+
     `
 }
 

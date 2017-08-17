@@ -1,14 +1,14 @@
 **.muk-helper-loading**
 
     <DataTable setRef="datagrid" addClass="muk-helper-loading">
-        <DataHeader>
+        <DataHeader key="dataheader">
             <DataCell key={2} type='header'/>
             <DataCell key={3} type='header'>Názov šablóny</DataCell>
             <DataCell key={4} type='header'>Formát</DataCell>
             <DataCell key={5} type='header'>Dátum</DataCell>
             <DataCell key={6} type='header'>Akcia</DataCell>
         </DataHeader >
-        <DataBody>
+        <DataBody key="databody">
             <DataRow dataId={1} key={1}>
                 <DataCell key={2} style={{textAlign: 'center'}}>1</DataCell>
                 <DataCell key={3}>[Ukázková šablona] Akce</DataCell>

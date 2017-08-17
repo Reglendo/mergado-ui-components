@@ -73,16 +73,18 @@ const Content = styled.div`
 const Close = styled.div`
 `
 
-const CloseButton = styled(Button)`
+const CloseButton = styled.div`
     text-decoration: none;
     padding: 0 20px 0 10px;
     width: 20px;
     text-align: right;
     vertical-align: middle;
-    display: table-cell;
-
+    display: table-cell !important;
+    .muk-button--nocolor {
+        margin-bottom: 0;
+    }
     svg, path {
-        fill:  ${props => props.toastType === "info" || props.toastType === "inactive" ? "#333" : "white"} !important;
+        fill:  ${props => props.type === "info" || props.type === "inactive" ? "#333" : "white"} !important;
     }
     button:focus {
         outline: none;
@@ -177,13 +179,15 @@ class Toast extends React.Component<Props, State> {
                                 this.props.children }
                     </Content>
                     {this.props.closeable &&
-                            <CloseButton className={`${this.name}__button`}
-                                icon={<IconClose style={{ lineHeight: "40px" }}/>}
-                                color="nocolor"
-                                size="tiny"
-                                toastType={this.props.type}
-                                onClick={evt => this.onClose(evt) }
-                            />
+                            <CloseButton type={this.props.type}>
+                                <Button className={`${this.name}__button`}
+                                    icon={<IconClose style={{ lineHeight: "40px" }}/>}
+                                    color="nocolor"
+                                    size="tiny"
+                                    toastType={this.props.type}
+                                    onClick={evt => this.onClose(evt) }
+                                />
+                            </CloseButton>
                     }
                 </Component>
             </Wrapper>

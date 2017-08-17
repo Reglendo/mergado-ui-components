@@ -7,6 +7,7 @@ export interface Props extends IFieldProps {
     max: number
     min: number
     step: number
+    default?: number
 }
 
 export interface State {
@@ -132,7 +133,7 @@ const Output = styled.output`
     color: white;
     display: inline-block;
     padding: 2px 5px;
-    margin-top: -50px;
+    margin-top: -10px;
     border-radius: 2px;
     font-size: 10px;
     opacity: 1;
@@ -152,7 +153,9 @@ class Range extends React.Component<Props,State> {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.input.value ? props.input.value : (props.max - props.min) / 2 + props.min,
+            value: props.input.value ?
+                     props.input.value : props.default ? 
+                     props.default : (props.max - props.min) / 2 + props.min,
         }
         this.handleChange = this.handleChange.bind(this)
     }
@@ -167,7 +170,8 @@ class Range extends React.Component<Props,State> {
         const { children, ...props } = this.props
         const outputId = `${meta.form}-${input.name}_output`
         const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
-        const percent = (this.state.value - this.props.min) /(this.props.max- this.props.min) * 100
+        const value = this.state.value
+        const percent = (value - this.props.min) /(this.props.max- this.props.min) * 100
         return (
             <StyledField {...props} name={this.name}>
                 <Input
@@ -184,13 +188,13 @@ class Range extends React.Component<Props,State> {
                                 const output: any = document.getElementById(outputId);
                                 output.value = target.value;
                             }}
-                    value={this.state.value}
+                    value={value}
                     />
-                {this.state.value !== undefined && this.state.value !== "" &&
+                {value !== undefined && value !== "" &&
                     <Output className={`${form}__input--range__output`}
                         style={{left: "calc(" + percent + "% - 10px)" }}
                         id={outputId}>
-                            {this.state.value}
+                            {value}
                     </Output>
                 }
             </StyledField>

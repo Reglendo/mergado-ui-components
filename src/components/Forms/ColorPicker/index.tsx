@@ -22,19 +22,19 @@ export interface State {
 }
 
 const StyledField = styled(Field)`
-    padding: 5px;
-    border-radius: 1px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
     display: inline-block;
     width: 100%;
-    background: white;
 `
 
 const ColorBox = styled.div`
-    border: 2px solid black;
+    border: 5px solid white;
     height: 34px;
     border-radius: 2px;
     cursor: pointer;
+    background: white;
+    padding: 5px;
+    border-radius: 1px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
 `
 
 const Popover = styled.div`
