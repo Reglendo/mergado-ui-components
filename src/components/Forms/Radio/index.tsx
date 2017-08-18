@@ -1,51 +1,48 @@
 import * as React from "react"
 import {prefix} from "config"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
+import RadioInput from "./input"
 
-interface Item {
+interface IItem {
     value: string
     label: string | JSX.Element
 }
 
-export interface Props extends MUK.Props {
-    items: Item[]
+export interface Props extends IFieldProps {
+    items: IItem[]
 }
 
-export interface State {
-}
-
-class Radio extends MUK.InputComponent<Props, State> {
+class Radio extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "input-radio";
-    public readonly props: Props
-    public state: State
+
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         items: [],
     }
 
-    public renderInputs(className, props) {
+    public renderInputs() {
         const { input, meta, labels } = this.props
-        return this.props.items.map((obj) => {
+        return this.props.items.map((obj: IItem) => {
             return (
-                <label className={`${this.name}__item`} key={obj.value}>
-                        <input
+                <RadioInput name={this.name} label={obj.label}
                             value={obj.value}
-                            checked={obj.value == this.props.input.value}
+                            key={obj.value}
+                            checked={obj.value == input.value}
                             onChange={input.onChange}
-                            className={`${this.name}__input ${className}`}
-                            type="radio"
-                            />
-                        &nbsp;{obj.label}
-                </label>
+                />
             )
         })
     }
 
-    public renderInput(className, props) {
-        const { input, meta, labels } = this.props
-        return this.renderInputs(className, props)
+    public render() {
+        const {children, ...props} = this.props
+        return (
+            <Field {...props} name={this.name}>
+                {this.renderInputs()}
+            </Field>
+        )
     }
 
 }

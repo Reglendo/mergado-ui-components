@@ -43,7 +43,7 @@ Example test
                     </div>
                 </DataCell>
             </DataRow>
-            <DataRow dataId={2} key={2}>
+            <DataRow dataId={2} key={2} inactive={true}>
                 <DataCell key={1} style={{textAlign: 'center'}}><Icon style={{cursor: 'move'}} type="arrows-v" /></DataCell>
                 <DataCell key={2} style={{textAlign: 'center'}}>2</DataCell>
                 <DataCell key={3}>[Ukázková šablona] Skladem</DataCell>

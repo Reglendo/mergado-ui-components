@@ -1,11 +1,12 @@
 import * as React from "react"
-import { SingleDatePicker, DateRangePicker } from "react-dates";
+import { SingleDatePicker, DateRangePicker } from "react-dates"
 import * as Moment from "moment"
 import {prefix} from "config"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
+import style from "./style"
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
     type?: "single" | "range"
     numberOfMonths?: number
     minimumDays?: number
@@ -30,14 +31,14 @@ export interface State {
     focused: boolean | "startDate" | "endDate"
 }
 
-class DatePicker extends MUK.InputComponent<Props, State> {
+class DatePicker extends React.Component<Props, State> {
 
     protected readonly name = prefix + "datepicker";
     public readonly props: Props
     public state: State
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         type: "single",
         numberOfMonths: 1,
         minimumDays: 1,
@@ -168,7 +169,7 @@ class DatePicker extends MUK.InputComponent<Props, State> {
         }
     }
 
-    public renderInput() {
+    public render() {
         let picker: SingleDatePicker | DateRangePicker;
         const { focused, startDate, endDate } = this.state
         const { type,labels, defaults_single, defaults_range, numberOfMonths,minimumDays, meta } = this.props
@@ -198,12 +199,17 @@ class DatePicker extends MUK.InputComponent<Props, State> {
         }
 
         return (
-            <div className={`${this.name}__picker`}>
+            <StyledField {...this.props} name={this.name}>
                 {picker}
-            </div>
+            </StyledField>
         )
     }
 
 }
+
+const StyledField = styled(Field)`
+    position: relative;
+    ${style}
+`
 
 export default DatePicker

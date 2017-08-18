@@ -2,6 +2,7 @@ import * as React from "react"
 import {prefix} from "config"
 import {Input, InputLabel, InputError} from "components/Forms/Input"
 import domOnlyProps from "helpers/dom-only-props"
+import styled from "styled-components"
 
 export interface Props {
     group?: {
@@ -23,6 +24,7 @@ export interface Props {
         onKeyDown?: (value: any) => void,
         onKeyUp?: (value: any) => void,
         onClick?: (value: any) => void,
+        [propName: string]: any,
     }
     meta?: {
         active: boolean,
@@ -99,6 +101,13 @@ export const defaultProps: Props = {
         },
 }
 
+const Header = styled.h3`
+    padding-left: 10px;
+    border-left: 5px rgba(219,203,163,0.5) solid;
+    font-size: 1.2em;
+    margin: 10px 0;
+`
+
 export class InputComponent<P,S> extends React.Component<Props, State> {
 
     protected readonly form = prefix + "form";
@@ -120,9 +129,9 @@ export class InputComponent<P,S> extends React.Component<Props, State> {
         return this.props.group.bigLabel === false ?
                     label
                 :
-                    <h3 className={`${this.form}__header`}>
+                    <Header className={`${this.form}__header`}>
                         {label}
-                    </h3>
+                    </Header>
     }
 
     public render() {

@@ -1,5 +1,6 @@
 import * as React from "react"
 import {prefix} from "config"
+import styled from "styled-components"
 
 export interface Props {
     title?: string
@@ -9,6 +10,36 @@ export interface Props {
 }
 export interface State {
 }
+
+/* <style> */
+const colors = {
+                    success: "#85bd3c",
+                    warning: "#FF9900",
+                    error: "#d00",
+                    inactive: "#888",
+                }
+
+const Wrapper = styled.span`
+    vertical-align: middle;
+`
+const Indikator = styled.span`
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border-bottom: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    background-color: ${props => colors[props.type]}
+`
+const Text = styled.span`
+    vertical-align: middle;
+
+    a:hover {
+        text-decoration: none
+    }
+`
+/* </style> */
 
 class LittleStatus extends React.Component<Props, State> {
 
@@ -27,11 +58,18 @@ class LittleStatus extends React.Component<Props, State> {
         const classIndikator = `${this.name}__indikator tooltip`
         const classText = `${this.name}__text`
 
-        const text = this.props.text ? (<span className={classText}> {this.props.text}</span>) : this.props.children
+        const text = this.props.text ?
+                        (<Text className={classText}> {this.props.text}</Text>)
+                    :
+                        this.props.children
+
         return (
-            <span className={className}  style={this.props.style}>
-                <span className={classIndikator} title={this.props.title}></span>{text}
-            </span>
+            <Wrapper className={className}  style={this.props.style}>
+                <Indikator type={this.props.type}
+                                className={classIndikator}
+                                title={this.props.title} />
+                {text}
+            </Wrapper>
         )
     }
 }

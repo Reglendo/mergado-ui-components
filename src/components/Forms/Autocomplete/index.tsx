@@ -1,16 +1,16 @@
 import * as React from "react"
-import {findDOMNode} from "react-dom"
-import {prefix} from "config"
+import {prefix,form} from "config"
 import TextInput from "components/Forms/TextInput"
 import uniqueId from "helpers/unique_id"
-import * as MUK from "components/Forms/input"
+import styled from "styled-components"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 
 export interface Item {
     value: string
     text: string
 }
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
     items: Item[]
     shouldItemRender?: (item: any, value: any) => any
     sortItems?: (a: any, b: any, value: any) => any
@@ -30,7 +30,38 @@ export interface State {
     menuWidth: number
 }
 
-class Autocomplete extends  MUK.InputComponent<Props, State> {
+/* <style> */
+const Menu = styled.div`
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0;
+    font-size: 90%;
+    position: absolute;
+    top: 100% !important;
+    left: 2px !important;
+    margin: 1px 0;
+    overflow: auto;
+    max-height: 50vh;
+    z-index: 1000;
+    margin-top: -12px;
+    border-color: transparent !important;
+`
+
+const MenuItem = styled.div`
+    padding: 9px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    border-left: 5px solid rgba(0,0,0,0);
+    transition: border-color 0.2s;
+    border-radius: 0;
+    background: ${props => props.selected ? "rgba(0,0,0,0.1)" : "transparent"};
+    font-weight: ${props => props.selected ? "bold" : "normal"};
+    border-left-color: ${props => props.selected ? "rgba(0,0,0,0.3)" : "transparent"};
+`
+/* </style> */
+
+class Autocomplete extends  React.Component<Props, State> {
     public readonly props: Props;
     public state: State;
 
@@ -40,16 +71,17 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
     protected ignoreBlur = false
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         items: [],
         renderMenu: (items, value, style) => {
-            return <div className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
+            return <Menu className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
         },
         onMenuVisibilityChange: () => {},
         renderItem: (item: Item, highlighted, style) => {
             let className = `${prefix + "autocomplete"}__item `
             className += highlighted ? className + `${prefix + "autocomplete"}__item--selected` : ""
-            return (<div key={`${item.value}-${uniqueId()}`} className={`${className}`}>{item.text}</div>)
+            return <MenuItem key={`${item.value}-${uniqueId()}`} selected={highlighted}
+                            className={`${className}`}>{item.text}</MenuItem>
         },
         getItemValue: (item: Item) => {
             return item.text
@@ -61,6 +93,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
 
     constructor(props) {
         super(props)
+
         this.state = {
             value: props.value ? props.value : "",
             isOpen: false,
@@ -72,7 +105,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
 
     }
 
-    protected componentWillReceiveProps(nextProps) {
+    public componentWillReceiveProps(nextProps) {
         const props: any = this.props
         const state: any = this.state
         if (props.items !== nextProps.items ||
@@ -85,13 +118,13 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
         return "open" in this.props ? this.props.open : this.state.isOpen
     }
 
-    protected componentDidMount() {
+    public componentDidMount() {
         if (this.isOpen()) {
             this.setMenuPositions()
         }
     }
 
-    protected componentDidUpdate(prevProps, prevState) {
+    public componentDidUpdate(prevProps, prevState) {
         if ((this.state.isOpen && !prevState.isOpen) || ("open" in this.props && this.props.open && !prevProps.open)) {
             this.setMenuPositions()
         }
@@ -341,15 +374,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
         })
     }
 
-    protected renderError() {
-        return <div/>
-    }
-
-    protected renderLabel(className, props) {
-        return null
-    }
-
-    protected renderInput(className, props) {
+    public render() {
         const open = this.isOpen()
         const {labels, meta, input} = this.props
         const inputProps = Object.assign({}, this.props.input, {
@@ -362,7 +387,7 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
         })
 
         return (
-            <div>
+            <Field label="">
                 <TextInput
                     ref="input"
                     type="search"
@@ -371,11 +396,9 @@ class Autocomplete extends  MUK.InputComponent<Props, State> {
                     input={inputProps}
                 />
                 {open && this.renderMenu()}
-            </div>
+            </Field>
         )
     }
-
-
 }
 
 export default Autocomplete

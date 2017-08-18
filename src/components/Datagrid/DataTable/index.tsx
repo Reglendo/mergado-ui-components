@@ -8,6 +8,8 @@ import Checkbox from "components/Forms/Checkbox"
 import {InputLabel} from "components/Forms/Input"
 import uniqueId from "helpers/unique_id"
 import { ID, Action, Filter } from "helpers/types"
+import styled from "styled-components"
+import domOnlyProps from "helpers/dom-only-props"
 
 export interface Props {
     bulkActions: Action[]
@@ -22,6 +24,67 @@ export interface State {
     selectedAll: boolean
     selectedRows: ID[]
 }
+
+/* <style> */
+
+const Wrapper = styled.div`
+`
+
+const Table = styled.table`
+    width: 100%;
+    .sortable-ghost {
+      opacity: 0.1;
+    }
+`
+
+const Filters = styled.div`
+    vertical-align: middle;
+    padding-left: 40px;
+    position: relative;
+    &:before {
+        display: inline-block;
+        content: " ";
+        border-left: 3px solid #dbcba3;
+        height: 40px;
+        vertical-align: bottom;
+        margin-top: 23px;
+        width: 10px;
+        position: absolute;
+        bottom: 0;
+        left: 18px;
+    }
+`
+
+const TextFilter = styled(TextInput)`
+    padding-right: 20px;
+`
+
+const CheckboxFilter = styled(Checkbox)`
+    padding-top: 20px !important;
+    padding-right: 20px;
+    white-space: nowrap;
+`
+
+const Actions = styled.div`
+`
+const ActionsIcons = styled.div`
+    background: white;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    white-space: nowrap;
+    background-color: #fff;
+    border: 1px solid #dbcba3;
+    .muk-button__item {
+        height: 42px !important;
+    }
+    svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+`
+
+/* </style> */
 
 class DataTable extends React.Component<Props, State> {
 
@@ -95,12 +158,12 @@ class DataTable extends React.Component<Props, State> {
     protected renderBulkActionbar() {
         const { labels } = this.props
         return (
-            <div className={`${this.name}__actions_bar muk-1-12`}>
+            <Actions className={`${this.name}__actions_bar muk-1-12`}>
                 <InputLabel name="actionbar">{labels.actionsBar}</InputLabel>
-                <div className={`${this.name}__actions_icons`}>
+                <ActionsIcons className={`${this.name}__actions_icons`}>
                     {this.renderBulkActions()}
-                </div>
-            </div>
+                </ActionsIcons>
+            </Actions>
         )
     }
 
@@ -118,13 +181,13 @@ class DataTable extends React.Component<Props, State> {
 
     protected renderFiltersBar() {
         return (
-            <div className={`${this.name}__filters_bar muk-11-12`}>
+            <Filters className={`${this.name}__filters_bar muk-11-12`}>
                 <div className="muk-grid--table">
                     <div>
                         {this.renderFilters()}
                     </div>
                 </div>
-            </div>
+            </Filters>
         )
     }
 
@@ -132,13 +195,13 @@ class DataTable extends React.Component<Props, State> {
         return this.props.filters.map(obj => {
             switch(obj.type) {
                 case "text":
-                    return (<TextInput
+                    return (<TextFilter
                                 type="search"
                                 input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
                                 key="text"
                             />)
                 case "checkbox":
-                    return (<Checkbox
+                    return (<CheckboxFilter
                                 input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
                                 key="checkbox"
                             />)
@@ -150,17 +213,17 @@ class DataTable extends React.Component<Props, State> {
         const { addClass, style } = this.props
         const className = `${this.name}__table ${this.props.addClass}`
         return (
-            <div className={`${this.name}`}>
+            <Wrapper className={`${this.name}`}>
                 <div className="muk-grid--table">
                     <div>
                         {this.props.bulkActions.length > 0 && this.renderBulkActionbar()}
                         {this.props.filters.length > 0 && this.renderFiltersBar()}
                     </div>
                 </div>
-                <table className={className} style={style}>
+                <Table className={className} style={style} {...domOnlyProps(this.props)}>
                     {this.props.children && this.renderChildren(this.props.children)}
-                </table>
-            </div>
+                </Table>
+            </Wrapper>
         )
     }
 }

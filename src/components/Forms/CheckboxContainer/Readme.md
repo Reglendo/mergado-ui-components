@@ -4,6 +4,7 @@ Multiple choices
 
     <Field component={CheckboxContainer} name="queries"
                 props={{
+                        showInput: true,
                         availableQueries: [{
                             id: 999,
                             name: "First query",
@@ -50,7 +51,7 @@ Flexible height single choice box without filter
                             link: 'https://google.com',
                         }],
                         singleChoice: true,
-                        showRadio: true,
+                        showInput: true,
                         withoutFilter: true,
                         showLabel: true,
                         height: 'auto',
@@ -58,7 +59,6 @@ Flexible height single choice box without filter
                          main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
                         }
                     }}
-
         />
 
 Invalid container
@@ -88,33 +88,38 @@ Invalid container
 
 Multilevel options
 
-    <CheckboxContainer availableQueries={{
-                        '': [
+    <CheckboxContainer availableQueries={[
                             {
                                 id: 999,
                                 name: "Empty query",
                                 disabled: 1
-                            }
-                        ],
-                        'First group': [
+                            },
+                            {
+                                id: null,
+                                name: 'First group',
+                                subheader: true,
+                            },
                             {
                                 id: 1,
                                 name: "First query",
                                 product_count: 50
-                            },{
+                            },
+                            {
                                 id: 2,
                                 name: "♥ALLPRODUCTS♥",
                                 product_count: 100
-                            }
-                         ],
-                         'Second group': [
+                            },
+                            {
+                                id: null,
+                                name: 'Second group',
+                                subheader: true,
+                            },
                             {
                                 id: 3,
                                 name: "Third query",
                                 product_count: 100
                             }
-                         ]
-                        }}
+                        ]}
                         singleChoice={true}
                         height='auto'
                         labels={{

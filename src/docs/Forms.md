@@ -75,12 +75,10 @@ Example form
                     label="Your favourite color:" />
         </div>
         <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-            <FormGroup label="Choose your superpower:">
                 <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
                 <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
                 <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
                 <Field name="superpower4" component={Checkbox} labels={{main: "other-ity"}} />
-            </FormGroup>
         </div>
 
         <h3>Other information</h3>

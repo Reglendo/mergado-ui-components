@@ -2,8 +2,9 @@ Simple button
 
     var Field = require('redux-form').Field;
     <div>
-        <Button labels={{main: 'I\'m button!'}} onClick={() => alert('Hello') } />
+        <Button labels={{main: 'I\'m button!'}} onClick={() => alert('Hello')} />
         <Button labels={{main: 'I\'m link!'}} type="link" />
+        <Button labels={{main: 'I\'m <a href>!'}} type="href" />
         <Field component={Button} name="first-name" props={{ type: 'submit', labels: { main: "I\'m submit!" }}} />
         <Button labels={{main: 'I\'m void!'}} type="void" />
     </div>
@@ -30,9 +31,9 @@ Button colors
 Button state
 
     <div>
-    <Button labels={{main: 'I\'m disabled'}} disabled={true}  style={{verticalAlign: 'bottom'}} />   
+    <Button labels={{main: 'I\'m disabled'}} disabled={true}  style={{verticalAlign: 'bottom'}} />
 
-    <Button type="submit" labels={{main: 'Button', invalid: 'I\'m invalid'}} meta={{invalid: true, touched: true}} />
+    <Button type="submit" hello="world" labels={{main: 'Invalid', invalid: 'I\'m invalid'}} meta={{invalid: true, touched: true}} />
     </div>
 
 Button sizes
