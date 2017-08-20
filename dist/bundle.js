@@ -8614,7 +8614,7 @@ const htmlAttrs = [
     "style", "summary", "tabIndex", "target", "title", "type", "useMap", "value", "width", "wmode", "wrap",
     "about", "datatype", "inlist", "prefix", "property", "resource", "typeof", "vocab",
     "autoCapitalize", "autoCorrect", "color", "itemProp", "itemScope", "itemType", "itemRef", "itemID",
-    "security", "unselectable", "results", "autoSave",
+    "security", "unselectable", "results", "autoSave", "onClick",
 ];
 const domOnlyProps = (obj) => {
     const result = {};
@@ -11754,7 +11754,7 @@ class Button extends React.Component {
             React.createElement(types_1.UniversalButton, Object.assign({}, this.props, { name: this.name }))));
     }
 }
-Button.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { type: "href", icon: null, color: "blue", disabled: false, size: "" });
+Button.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { type: "button", icon: null, color: "blue", disabled: false, size: "" });
 exports.default = Button;
 
 
@@ -18703,7 +18703,7 @@ const CloseButton = styled_components_1.default.div `
     text-align: right;
     vertical-align: middle;
     display: table-cell !important;
-    .muk-button--nocolor {
+    .muk-button {
         margin-bottom: 0;
     }
     svg, path {
@@ -47228,9 +47228,9 @@ const Href = (_a) => {
 };
 const Button = (_a) => {
     var { name, icon, label, title, className, input, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "input", "children"]);
-    return React.createElement("button", Object.assign({}, dom_only_props_1.default(props), input, { className: `${name}__item ${className ? className : ""}`, title: title }),
+    return (React.createElement("button", Object.assign({}, input, dom_only_props_1.default(props), { className: `${name}__item ${className ? className : ""}`, title: title }),
         icon,
-        label);
+        label));
 };
 const Link = (_a) => {
     var { name, icon, label, title, className, link, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "link", "children"]);
@@ -47240,7 +47240,7 @@ const Link = (_a) => {
 };
 const Submit = (_a) => {
     var { name, label, title, className, input, children } = _a, props = __rest(_a, ["name", "label", "title", "className", "input", "children"]);
-    return React.createElement("input", Object.assign({ type: "submit" }, dom_only_props_1.default(props), input, { className: `${name}__item ${className ? className : ""}`, value: label, title: title }));
+    return React.createElement("input", Object.assign({ type: "submit" }, input, dom_only_props_1.default(props), { className: `${name}__item ${className ? className : ""}`, value: label, title: title }));
 };
 const Void = (_a) => {
     var { name, icon, label, title, className, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "children"]);

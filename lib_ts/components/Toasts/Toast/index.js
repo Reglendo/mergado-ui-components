@@ -61,7 +61,7 @@ const CloseButton = styled_components_1.default.div `
     text-align: right;
     vertical-align: middle;
     display: table-cell !important;
-    .muk-button--nocolor {
+    .muk-button {
         margin-bottom: 0;
     }
     svg, path {

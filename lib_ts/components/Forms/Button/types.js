@@ -125,9 +125,9 @@ const Href = (_a) => {
 };
 const Button = (_a) => {
     var { name, icon, label, title, className, input, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "input", "children"]);
-    return React.createElement("button", Object.assign({}, dom_only_props_1.default(props), input, { className: `${name}__item ${className ? className : ""}`, title: title }),
+    return (React.createElement("button", Object.assign({}, input, dom_only_props_1.default(props), { className: `${name}__item ${className ? className : ""}`, title: title }),
         icon,
-        label);
+        label));
 };
 const Link = (_a) => {
     var { name, icon, label, title, className, link, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "link", "children"]);
@@ -137,7 +137,7 @@ const Link = (_a) => {
 };
 const Submit = (_a) => {
     var { name, label, title, className, input, children } = _a, props = __rest(_a, ["name", "label", "title", "className", "input", "children"]);
-    return React.createElement("input", Object.assign({ type: "submit" }, dom_only_props_1.default(props), input, { className: `${name}__item ${className ? className : ""}`, value: label, title: title }));
+    return React.createElement("input", Object.assign({ type: "submit" }, input, dom_only_props_1.default(props), { className: `${name}__item ${className ? className : ""}`, value: label, title: title }));
 };
 const Void = (_a) => {
     var { name, icon, label, title, className, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "children"]);

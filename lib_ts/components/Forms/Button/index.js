@@ -35,6 +35,6 @@ class Button extends React.Component {
             React.createElement(types_1.UniversalButton, Object.assign({}, this.props, { name: this.name }))));
     }
 }
-Button.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { type: "href", icon: null, color: "blue", disabled: false, size: "" });
+Button.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { type: "button", icon: null, color: "blue", disabled: false, size: "" });
 exports.default = Button;
 //# sourceMappingURL=index.js.map
