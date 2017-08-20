@@ -133,14 +133,17 @@ interface IButtonProps {
     [propName: string]: any
 }
 
-const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, input, children, ...props}) =>
+const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, input, children, ...props}) => {
+    return (
         <button
-            {...domOnlyProps(props)}
             {...input}
+            {...domOnlyProps(props)}
             className={`${name}__item ${className ? className : ""}`}
             title={title}>
                 {icon}{label}
         </button>
+    )
+}
 
 interface ILinkProps {
     name: string
@@ -172,8 +175,8 @@ interface ISubmitProps {
 
 const Submit: React.SFC<ISubmitProps> = ({name, label, title, className, input, children, ...props}) =>
         <input type="submit"
-                    {...domOnlyProps(props)}
                     {...input}
+                    {...domOnlyProps(props)}
                     className={`${name}__item ${className ? className : ""}`}
                     value={label}
                     title={title}

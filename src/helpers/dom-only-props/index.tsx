@@ -14,7 +14,7 @@ const htmlAttrs = [
             "style","summary","tabIndex","target","title","type","useMap","value","width","wmode","wrap",
             "about","datatype","inlist","prefix","property","resource","typeof","vocab",
             "autoCapitalize","autoCorrect","color","itemProp","itemScope","itemType","itemRef","itemID",
-            "security","unselectable","results","autoSave",
+            "security","unselectable","results","autoSave","onClick",
 ]
 
 const domOnlyProps = (obj) => {
