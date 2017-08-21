@@ -1,6 +1,5 @@
 import * as React from "react"
 import {prefix} from "config"
-import * as Icons from "@reglendo/mergado-ui-icons/lib"
 
 import styled from "styled-components"
 
@@ -16,6 +15,7 @@ export interface Props {
     viewBox?: string
 }
 export interface State {
+    icon: any
 }
 
 /* <style> */
@@ -33,6 +33,8 @@ const Image = styled.svg`
 `
 /* </style> */
 
+const getIcon = (name) => import("@reglendo/mergado-ui-icons/lib/icons/const/" + name + ".js")
+
 class Icon extends React.Component<Props, State> {
 
     private readonly name = prefix + "icon";
@@ -48,9 +50,14 @@ class Icon extends React.Component<Props, State> {
         viewBox: "0 0 40 40",
     }
 
-    public render() {
+    constructor(props) {
+        super(props)
+        this.state = {
+            icon: <span/>,
+        }
+    }
 
-        const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
+    public componentDidMount() {
         let iconName: string;
         if(this.props.name) {
             iconName = this.props.name
@@ -58,7 +65,16 @@ class Icon extends React.Component<Props, State> {
             iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace("-","")
         }
 
-        const icon = Icons[iconName] ? Icons[iconName] : null
+        getIcon(iconName).then((module) => {
+            this.setState({
+                icon: module[iconName],
+            })
+        })
+    }
+
+    public render() {
+
+        const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
 
         return (
             <Wrapper className={className} style={this.props.style} title={this.props.title}>
@@ -66,9 +82,9 @@ class Icon extends React.Component<Props, State> {
                     fill="currentColor"
                     height={this.props.size}
                     width={this.props.size}
-                     viewBox={this.props.viewBox}
+                        viewBox={this.props.viewBox}
                 >
-                    {icon}
+                    {this.state.icon}
                 </Image>
                 {this.props.text ? (
                     <Text className={`${this.name}__text`}>
@@ -77,6 +93,7 @@ class Icon extends React.Component<Props, State> {
                 ) : null}
             </Wrapper>
         )
+
     }
 }
 
