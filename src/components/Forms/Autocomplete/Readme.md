@@ -25,7 +25,7 @@ Example
       />
 
       <Field component={Autocomplete} labels={{placeholder: 'Find me...', main: ''}}
-              name="value2"
+              name="value3"
               props={{ items: [ {value: 'You', text: 'You'},
                                    {value: 'Me', text: 'Me'},
                                    {value: 'You & me', text: 'You & me'},

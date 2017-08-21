@@ -172,7 +172,11 @@ export default class Preview extends Component {
                 validate,
                 initialValues: {
                     checkbox1: 1,
-                    firstname: '!!!Hello world!!!!'
+                    firstname: '!!!Hello world!!!!',
+                    favcolor: "blue",
+                    superpower1: 1,
+                    video: "Video",
+										queries: [1001,1000],
                 }
             })(PreviewComponent)
 

@@ -1,27 +1,32 @@
 import * as React from "react"
-import {prefix} from "config"
+import {prefix,form} from "config"
 import {Link} from "react-router"
-import * as MUK from "components/Forms/input"
+import domOnlyProps from "helpers/dom-only-props"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import {UniversalButton} from "./types"
+import styled from "styled-components"
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
-    icon?: JSX.Element
+    to?: string
+    icon?: JSX.Element | string
     color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
     size?: "small" | "tiny" | ""
     disabled?: boolean
+    onClick?: (evt: any) => any
 }
 
-export interface State {
-}
+const StyledField = styled(Field)`
+    display: inline-block;
+    vertical-align: top;
+`
 
-class Button extends MUK.InputComponent<Props, State> {
-    public readonly props: Props;
-    public state: State;
+class Button extends React.Component<Props, {}> {
     protected readonly name = prefix + "button";
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
         type: "button",
         icon: null,
         color: "blue",
@@ -29,78 +34,20 @@ class Button extends MUK.InputComponent<Props, State> {
         size: "",
     }
 
-    protected renderHref(className, props) {
-        const { link, labels, icon, input } = this.props
-        return (
-            <a
-                {...props}
-                href={link}
-                className={`${this.name}__item`}
-                title={labels.title}>
-                    {icon}{labels.main}
-            </a>)
-    }
-    protected renderButton(className, props) {
-        const { input, labels, icon } = this.props
-        return (
-            <button
-                {...props}
-                className={`${this.name}__item ${className ? className : ""}`}
-                title={labels.title}>
-                    {icon}{labels.main}
-            </button>)
-    }
-    protected renderLink(className, props) {
-        const { link, labels, icon, input } = this.props
-        return (
-            <Link
-                {...props}
-                to={link}
-                className={`${this.name}__item ${className ? className : ""}`}
-                title={labels.title}>
-                    {icon}{labels.main}
-            </Link>)
-    }
-    protected renderSubmit(className, props) {
-        const { meta, input, labels } = this.props
-        return (
-            <input
-                {...props}
-                type="submit"
-                className={`${this.name}__item ${className ? className : ""}`}
-                value={`${labels.main}`}
-                title={labels.title}
-            />)
-    }
-    protected renderVoid(className, props) {
-        const { input, labels, icon } = this.props
-        return (
-            <span
-                {...props}
-                className={`${this.name}__item ${className ? className : ""}`}
-                title={labels.title}>
-                    {icon}{labels.main}
-            </span>)
-    }
+    public render() {
+        const { meta, input, labels, group } = this.props
+        const { children, ...props } = this.props
 
-    protected renderLabel() {
-        return <span/>
-    }
-
-    protected renderInput(className, props) {
-        const { type,color,disabled, size, meta } = this.props
         return (
-            <div className={`${this.name}--${color} \
-${!this.props.labels.main?this.name+`--notext`:``} \
-${size ? this.name+`--`+size:``} \
-${disabled ? this.name+`--disabled`:``} \
-`}>
-                {type === "button" && this.renderButton(className, props)}
-                {type === "link" && this.renderLink(className, props)}
-                {type === "submit" && this.renderSubmit(className, props)}
-                {type === "void" && this.renderVoid(className, props)}
-                {type === "href" && this.renderHref(className, props)}
-            </div>
+            <StyledField className={`${this.name}--${props.color}
+                                        ${!labels.main ? this.name+`--notext`:``}
+                                        ${props.size ? this.name+`--`+props.size:``}
+                                        ${this.name}--${props.type}
+                                        ${props.disabled ? this.name+`--disabled`:``}
+                `}
+                {...this.props} name={this.name} label="" labels={{...labels,main: ""}}>
+                    <UniversalButton {...this.props} name={this.name} />
+            </StyledField>
         )
     }
 }

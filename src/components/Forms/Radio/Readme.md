@@ -2,11 +2,27 @@ Example
 
     var Field = require('redux-form').Field;
     <div>
-        <Field component={Radio} name='video' labels={{main: 'Radio' }} />
-        <Field component={Radio} name='video' labels={{main: 'Video' }} />
-        <Field component={Radio} name='video' labels={{main: 'Kills the star' }} />
+        <Field component={Radio} name='video' labels={{main: 'Choose one:' }}
+                props={{group: {bigLabel: true}}}
+                items={[
+                        { value: "Radio", label: "Radio"  },
+                        { value: "Video", label: "Video"  },
+                        { value: "Kills the star", label: "Kills the star"  }
+                ]}
+        />
     </div>
 
-Validation
+Invalid
 
-    <Radio labels={{main: 'Choose me', invalid: 'I am invalid' }} meta={{invalid: true, dirty: true}} />
+    var Field = require('redux-form').Field;
+    <div>
+        <Field component={Radio} name='video' labels={{main: 'Choose one:', invalid: "Not OK" }} 
+                meta={{touched: true, invalid: true}}
+                props={{group: {bigLabel: true}}}
+                items={[
+                        { value: "Radio", label: "Radio"  },
+                        { value: "Video", label: "Video"  },
+                        { value: "Kills the star", label: "Kills the star"  }
+                ]}
+        />
+    </div>

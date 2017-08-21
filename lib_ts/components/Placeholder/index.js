@@ -2,6 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
+const styled_components_1 = require("styled-components");
+/* <style> */
+const Component = styled_components_1.default.div `
+    position: relative;
+`;
+const Shadow = styled_components_1.default.div `
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(219, 203, 163, 0.25);
+    margin: auto;
+`;
+const Wrapper = styled_components_1.default.div `
+    display: table;
+    width: 100%;
+    height: 100%;
+`;
+const Container = styled_components_1.default.div `
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+`;
+/* </style> */
 class Placeholder extends React.Component {
     constructor() {
         super(...arguments);
@@ -12,10 +37,10 @@ class Placeholder extends React.Component {
         const className = `${this.name} ${addClass ? addClass : ""}`;
         const object = Object;
         const styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` });
-        return (React.createElement("div", { className: className, style: styles },
-            React.createElement("div", { className: `${this.name}__shadow` },
-                React.createElement("div", { className: `${this.name}__wrapper` },
-                    React.createElement("div", { className: `${this.name}__container` }, this.props.children)))));
+        return (React.createElement(Component, { className: className, style: styles },
+            React.createElement(Shadow, { className: `${this.name}__shadow` },
+                React.createElement(Wrapper, { className: `${this.name}__wrapper` },
+                    React.createElement(Container, { className: `${this.name}__container` }, this.props.children)))));
     }
 }
 Placeholder.defaultProps = {

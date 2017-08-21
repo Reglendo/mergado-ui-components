@@ -1,59 +1,40 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
-const react_router_1 = require("react-router");
-const MUK = require("components/Forms/input");
-class Button extends MUK.InputComponent {
+const Field_1 = require("components/Forms/Field");
+const types_1 = require("./types");
+const styled_components_1 = require("styled-components");
+const StyledField = styled_components_1.default(Field_1.Field) `
+    display: inline-block;
+    vertical-align: top;
+`;
+class Button extends React.Component {
     constructor() {
         super(...arguments);
         this.name = config_1.prefix + "button";
     }
-    renderHref(className, props) {
-        const { link, labels, icon, input } = this.props;
-        return (React.createElement("a", Object.assign({}, props, { href: link, className: `${this.name}__item`, title: labels.title }),
-            icon,
-            labels.main));
-    }
-    renderButton(className, props) {
-        const { input, labels, icon } = this.props;
-        return (React.createElement("button", Object.assign({}, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
-            icon,
-            labels.main));
-    }
-    renderLink(className, props) {
-        const { link, labels, icon, input } = this.props;
-        return (React.createElement(react_router_1.Link, Object.assign({}, props, { to: link, className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
-            icon,
-            labels.main));
-    }
-    renderSubmit(className, props) {
-        const { meta, input, labels } = this.props;
-        return (React.createElement("input", Object.assign({}, props, { type: "submit", className: `${this.name}__item ${className ? className : ""}`, value: `${labels.main}`, title: labels.title })));
-    }
-    renderVoid(className, props) {
-        const { input, labels, icon } = this.props;
-        return (React.createElement("span", Object.assign({}, props, { className: `${this.name}__item ${className ? className : ""}`, title: labels.title }),
-            icon,
-            labels.main));
-    }
-    renderLabel() {
-        return React.createElement("span", null);
-    }
-    renderInput(className, props) {
-        const { type, color, disabled, size, meta } = this.props;
-        return (React.createElement("div", { className: `${this.name}--${color} \
-${!this.props.labels.main ? this.name + `--notext` : ``} \
-${size ? this.name + `--` + size : ``} \
-${disabled ? this.name + `--disabled` : ``} \
-` },
-            type === "button" && this.renderButton(className, props),
-            type === "link" && this.renderLink(className, props),
-            type === "submit" && this.renderSubmit(className, props),
-            type === "void" && this.renderVoid(className, props),
-            type === "href" && this.renderHref(className, props)));
+    render() {
+        const { meta, input, labels, group } = this.props;
+        const _a = this.props, { children } = _a, props = __rest(_a, ["children"]);
+        return (React.createElement(StyledField, Object.assign({ className: `${this.name}--${props.color}
+                                        ${!labels.main ? this.name + `--notext` : ``}
+                                        ${props.size ? this.name + `--` + props.size : ``}
+                                        ${this.name}--${props.type}
+                                        ${props.disabled ? this.name + `--disabled` : ``}
+                ` }, this.props, { name: this.name, label: "", labels: Object.assign({}, labels, { main: "" }) }),
+            React.createElement(types_1.UniversalButton, Object.assign({}, this.props, { name: this.name }))));
     }
 }
-Button.defaultProps = Object.assign({}, MUK.defaultProps, { type: "button", icon: null, color: "blue", disabled: false, size: "" });
+Button.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { type: "button", icon: null, color: "blue", disabled: false, size: "" });
 exports.default = Button;
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 Import icon this way:
 
-    <code>import IconClose from "mergado-ui-icons/lib/icons/close"</code>
+    <code>import IconClose from "@reglendo/mergado-ui-icons/lib/icons/close"</code>
 
 And then use it like this:  `<IconClose size="20" />`
 

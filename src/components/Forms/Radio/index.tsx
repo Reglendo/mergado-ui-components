@@ -1,35 +1,48 @@
 import * as React from "react"
 import {prefix} from "config"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
+import RadioInput from "./input"
 
-export interface Props extends MUK.Props {
+interface IItem {
+    value: string
+    label: string | JSX.Element
 }
 
-export interface State {
+export interface Props extends IFieldProps {
+    items: IItem[]
 }
 
-class Radio extends MUK.InputComponent<Props, State> {
+class Radio extends React.Component<Props, {}> {
 
-    protected readonly name = prefix + "input-checkbox";
-    public readonly props: Props
-    public state: State
+    protected readonly name = prefix + "input-radio";
+
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
+        items: [],
     }
 
-    public renderLabel(className, props) {
+    public renderInputs() {
         const { input, meta, labels } = this.props
-        return (<span>
-                    <input
-                        {...input}
-                        {...props}
-                        className={`${this.name}__item ${className}`}
-                        type="radio"
-                        />
-                    &nbsp;{this.props.labels.main }
-                </span>
+        return this.props.items.map((obj: IItem) => {
+            return (
+                <RadioInput name={this.name} label={obj.label}
+                            value={obj.value}
+                            key={obj.value}
+                            checked={obj.value == input.value}
+                            onChange={input.onChange}
+                />
             )
+        })
+    }
+
+    public render() {
+        const {children, ...props} = this.props
+        return (
+            <Field {...props} name={this.name}>
+                {this.renderInputs()}
+            </Field>
+        )
     }
 
 }

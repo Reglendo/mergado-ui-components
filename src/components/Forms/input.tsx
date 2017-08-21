@@ -1,10 +1,15 @@
 import * as React from "react"
 import {prefix} from "config"
 import {Input, InputLabel, InputError} from "components/Forms/Input"
+import domOnlyProps from "helpers/dom-only-props"
+import styled from "styled-components"
 
 export interface Props {
     group?: {
         className?: string,
+        style?: any,
+        bigLabel?: boolean
+        [propName: string]: any,
     },
     input?: {
         className?: string,
@@ -19,6 +24,7 @@ export interface Props {
         onKeyDown?: (value: any) => void,
         onKeyUp?: (value: any) => void,
         onClick?: (value: any) => void,
+        [propName: string]: any,
     }
     meta?: {
         active: boolean,
@@ -28,6 +34,7 @@ export interface Props {
         dispatch: () => void,
         error: string,
         form: string,
+        initial?: string,
         invalid: boolean,
         pristine: boolean,
         submitting: boolean,
@@ -43,6 +50,7 @@ export interface Props {
         title?: string,
         placeholder?: string,
     }
+    [propName: string]: any,
 }
 
 export interface State {
@@ -51,6 +59,8 @@ export interface State {
 export const defaultProps: Props = {
         group: {
             className: "",
+            style: {},
+            bigLabel: false,
         },
         input: {
             className: "",
@@ -91,6 +101,13 @@ export const defaultProps: Props = {
         },
 }
 
+const Header = styled.h3`
+    padding-left: 10px;
+    border-left: 5px rgba(219,203,163,0.5) solid;
+    font-size: 1.2em;
+    margin: 10px 0;
+`
+
 export class InputComponent<P,S> extends React.Component<Props, State> {
 
     protected readonly form = prefix + "form";
@@ -105,14 +122,24 @@ export class InputComponent<P,S> extends React.Component<Props, State> {
     protected renderInput(className: string, props: any) {
         return
     }
+
     protected renderLabel(className: string, props: any) {
-        return
+        const { labels } = this.props
+        const label = this.props.label ? this.props.label : labels.main
+        return this.props.group.bigLabel === false ?
+                    label
+                :
+                    <Header className={`${this.form}__header`}>
+                        {label}
+                    </Header>
     }
 
     public render() {
         const props: any = this.props
         const { meta, input, labels, group, ...others } = props
-        const inputProps: Props = {id: this.props.meta.form?`${this.props.meta.form}-${input.name}` : "", ...others }
+        const inputProps: Props = domOnlyProps({
+                                    id: this.props.meta.form ? `${this.props.meta.form}-${input.name}` : "",
+                                    ...others })
         return (
             <Input name={this.name} {...props}>
                 {this.renderError()}

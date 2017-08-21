@@ -4,8 +4,10 @@ const React = require("react");
 const react_dates_1 = require("react-dates");
 const Moment = require("moment");
 const config_1 = require("config");
-const MUK = require("components/Forms/input");
-class DatePicker extends MUK.InputComponent {
+const Field_1 = require("components/Forms/Field");
+const styled_components_1 = require("styled-components");
+const style_1 = require("./style");
+class DatePicker extends React.Component {
     constructor(props) {
         super(props);
         this.name = config_1.prefix + "datepicker";
@@ -37,7 +39,7 @@ class DatePicker extends MUK.InputComponent {
             this.setState({ focused: null });
         }
     }
-    renderInput() {
+    render() {
         let picker;
         const { focused, startDate, endDate } = this.state;
         const { type, labels, defaults_single, defaults_range, numberOfMonths, minimumDays, meta } = this.props;
@@ -47,14 +49,10 @@ class DatePicker extends MUK.InputComponent {
         else {
             picker = React.createElement(react_dates_1.DateRangePicker, Object.assign({}, defaults_range, { numberOfMonths: numberOfMonths, minimumNights: minimumDays - 1, onDatesChange: this.onDatesChange.bind(this), onFocusChange: this.onFocusChange.bind(this), startDatePlaceholderText: labels.placeholderFrom, endDatePlaceholderText: labels.placeholderTo, focusedInput: this.state.focused, startDate: startDate, endDate: endDate }));
         }
-        return (React.createElement("div", { className: `${this.name}__picker` }, picker));
-    }
-    renderLabel(className, props) {
-        const { labels } = this.props;
-        return labels.main;
+        return (React.createElement(StyledField, Object.assign({}, this.props, { name: this.name }), picker));
     }
 }
-DatePicker.defaultProps = Object.assign({}, MUK.defaultProps, { type: "single", numberOfMonths: 1, minimumDays: 1, locale: "cs", labels: {
+DatePicker.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { type: "single", numberOfMonths: 1, minimumDays: 1, locale: "cs", labels: {
         main: "Pick date:",
         placeholder: "Click here...",
         invalid: "Invalid input",
@@ -132,5 +130,9 @@ DatePicker.defaultProps = Object.assign({}, MUK.defaultProps, { type: "single", 
         displayFormat: () => Moment.localeData().longDateFormat("L"),
         monthFormat: "MMMM YYYY",
     } });
+const StyledField = styled_components_1.default(Field_1.Field) `
+    position: relative;
+    ${style_1.default}
+`;
 exports.default = DatePicker;
 //# sourceMappingURL=index.js.map

@@ -19,6 +19,7 @@
     transform: translateZ(0)
     will-change: background-position
     background-size: 25px 100%
+    z-index: 1000000
 
     outline: 3px solid $color-line
 
@@ -35,6 +36,7 @@
     animation: sliding 0.5s linear infinite
     transform: translateZ(0)
     will-change: background-position
+    pointer-events: none
 
 .#{$prefix}helper-clearfix
   @include clearfix()

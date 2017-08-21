@@ -2,20 +2,28 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
-const MUK = require("components/Forms/input");
-class Checkbox extends MUK.InputComponent {
+const Field_1 = require("components/Forms/Field");
+const styled_components_1 = require("styled-components");
+const StyledField = styled_components_1.default(Field_1.Field) `
+`;
+class Checkbox extends React.Component {
     constructor() {
         super(...arguments);
         this.name = config_1.prefix + "input-checkbox";
     }
-    renderLabel(className, props) {
+    renderLabel() {
         const { input, labels } = this.props;
-        return React.createElement("span", null,
-            React.createElement("input", Object.assign({}, input, props, { type: "checkbox", className: `${this.name}__item ${className}`, defaultChecked: input ? !!input.value : false })),
-            "\u00A0",
-            labels ? labels.main : "");
+        const label = this.props.label ? this.props.label : labels.main;
+        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
+        return React.createElement("div", { className: `${isInvalid ? `${config_1.form}__group--invalid` : ""}` },
+            React.createElement("input", Object.assign({ checked: input.value }, input, { type: "checkbox", className: `${this.name}__item` })),
+            label && " ",
+            label);
+    }
+    render() {
+        return React.createElement(StyledField, Object.assign({}, this.props, { name: this.name, label: this.renderLabel() }));
     }
 }
-Checkbox.defaultProps = Object.assign({}, MUK.defaultProps);
+Checkbox.defaultProps = Object.assign({}, Field_1.defaultFieldProps);
 exports.default = Checkbox;
 //# sourceMappingURL=index.js.map

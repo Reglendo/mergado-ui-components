@@ -3,6 +3,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const unique_id_1 = require("helpers/unique_id");
 const config_1 = require("config");
+const styled_components_1 = require("styled-components");
+const Wrapper = styled_components_1.default.div `
+    margin: 10px 0;
+    text-align: center;
+    font-size: 13px;
+`;
+const Button = styled_components_1.default.a `
+    box-sizing: border-box;
+    display: inline-block;
+    height: 30px;
+    min-width: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid #dbcba3;
+    line-height: 28px;
+    padding: 0px 5px 0 5px;
+    text-decoration: none;
+    color: #009ba9;
+    margin: 0 2px;
+    &:hover {
+        background: white;
+        text-decoration: none;
+    }
+    &:active,&:focus,&:visited {
+        text-decoration: none;
+    }
+`;
+const Disabled = Button.extend `
+    display: inline-block;
+    opacity: 0.3;
+    color: black;
+    &:hover {
+        background: initial;
+    }
+
+`;
+const Active = Button.extend `
+    font-weight: bold;
+    opacity: 1;
+    border: 1px solid #b79748;
+    background: #fff;
+    color: black;
+`;
 class Paginator extends React.Component {
     constructor(props) {
         super(props);
@@ -20,10 +62,13 @@ class Paginator extends React.Component {
             classDisabled = `${this.name}__item ${this.name}__item--active`;
         }
         if (clickable) {
-            return React.createElement("a", { className: classLink, href: "#", onClick: (evt) => { this.pageClicked(evt, page); }, key: key }, label);
+            return React.createElement(Button, { className: classLink, href: "#", onClick: (evt) => { this.pageClicked(evt, page); }, key: key }, label);
+        }
+        else if (active) {
+            return React.createElement(Active, { className: classDisabled, key: key }, label);
         }
         else {
-            return React.createElement("span", { className: classDisabled, key: key }, label);
+            return React.createElement(Disabled, { className: classDisabled, key: key }, label);
         }
     }
     renderMainButtons() {
@@ -73,7 +118,7 @@ class Paginator extends React.Component {
         this.props.onPageChange(pageNumber);
     }
     render() {
-        return (React.createElement("div", { className: this.name, "data-active": this.props.currentPage, style: this.props.style },
+        return (React.createElement(Wrapper, { className: this.name, "data-active": this.props.currentPage, style: this.props.style },
             this.props.showFirstAndLast && this.renderFirstButton(),
             this.props.showPrevAndNext && this.renderPreviousButton(),
             this.renderMainButtons(),

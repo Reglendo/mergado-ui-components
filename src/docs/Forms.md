@@ -46,7 +46,8 @@ labels?: {
 
 Example form
 
-    initialState = { invalid: false };
+    var InputLabel = require("components/Forms/Input").InputLabel;
+    var Field = require('redux-form').Field;
 
     <div>
         <h2>Inquiry form</h2>
@@ -61,6 +62,25 @@ Example form
             <TextInput labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
             <TextInput labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
         </div>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+            <Field name="favcolor" component={Radio}
+                    props={{
+                        items: [
+                                {value: "black", label: "black"},
+                                {value: "blue", label: "blue"},
+                                {value: "orange", label: "orange"},
+                                {value: "pink", label: "pink"}
+                        ]
+                    }}
+                    label="Your favourite color:" />
+        </div>
+        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+                <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
+                <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
+                <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
+                <Field name="superpower4" component={Checkbox} labels={{main: "other-ity"}} />
+        </div>
+
         <h3>Other information</h3>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
             <ColorPicker labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
@@ -72,5 +92,3 @@ Example form
         <Button labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
         <Button color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
     </div>
-
-

@@ -3,6 +3,52 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const Bubble_1 = require("./Bubble");
 const config_1 = require("config");
+const styled_components_1 = require("styled-components");
+const fontFamily = "Arial, Helvetica, Verdana, Sans-serif";
+/* <style> */
+const Component = styled_components_1.default.div `
+    cursor: pointer;
+    display: inline-block;
+`;
+const HintWrapper = styled_components_1.default.div `
+    outline: none;
+    font-family: ${fontFamily};
+    position: absolute;
+    max-width: 600px;
+    z-index: 10000;
+`;
+const HintInnerWrapper = styled_components_1.default.div `
+    position: relative;
+    padding: 0 0 10px 0;
+`;
+const HintBorder = styled_components_1.default.div `
+    padding: 3px;
+    background: #FFEC88;
+    box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.25);
+    margin-bottom: -5px;
+`;
+const HintArrow = styled_components_1.default.span `
+    display: block;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 15px;
+    height: 15px;
+    background: #FFEC88;
+    transform: rotate(45deg);
+    box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.25);
+`;
+const HintContent = styled_components_1.default.div `
+    max-height: 200px;
+    padding: 10px;
+    text-align: left;
+    color: #333;
+    border: 1px solid #F0DD79;
+    overflow: auto;
+    position: relative;
+    z-index: 10;
+`;
+/* </style> */
 class PopupHint extends React.Component {
     constructor(props) {
         super(props);
@@ -57,6 +103,7 @@ class PopupHint extends React.Component {
         const hint = this.refs.hint;
         hint.style.opacity = `0`;
         hint.style.display = "block";
+        hint.style.pointerEvents = "none";
         let newX;
         let arrowLeft;
         let arrowRight;
@@ -81,13 +128,19 @@ class PopupHint extends React.Component {
         else {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`;
             hint.style.left = `${newX}px`;
+            if (this.state.expanded) {
+                this.styleArrow(arrowLeft, arrowRight);
+                this.fadeIn(this.refs.hint);
+                this.refs.hint.focus();
+            }
         }
+        hint.style.display = "none";
     }
     fadeOut(el, callback) {
         el.style.opacity = 1;
         (function fade() {
-            el.style.opacicty -= -1;
-            if (el.style.opacicty <= 0) {
+            el.style.opacity -= .1;
+            if (el.style.opacity < 0) {
                 callback();
             }
             else {
@@ -130,13 +183,16 @@ class PopupHint extends React.Component {
         const object = Object;
         const style = object.assign({ display: this.state.expanded ? "" : "none", position: "absolute" }, this.props.style);
         const hint = (React.createElement(Bubble_1.default, null,
-            React.createElement("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
-                React.createElement("div", { className: `${this.name}__innerwrapper` },
-                    React.createElement("div", { className: `${this.name}__border` },
-                        React.createElement("div", { className: `${this.name}__content` }, this.props.children)),
-                    React.createElement("span", { ref: "arrow", className: `${this.name}__arrow` })))));
-        return (React.createElement("div", { className: this.name, style: { display: "inline-block" } },
-            React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand }, this.props.icon ? this.props.icon : null),
+            React.createElement(HintWrapper, { innerRef: (o) => { this.refs.hint = o; }, className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.collapse },
+                React.createElement(HintInnerWrapper, { className: `${this.name}__innerwrapper` },
+                    React.createElement(HintBorder, { className: `${this.name}__border` },
+                        React.createElement(HintContent, { className: `${this.name}__content` }, this.props.children)),
+                    React.createElement(HintArrow, { innerRef: (o) => { this.refs.arrow = o; }, className: `${this.name}__arrow` })))));
+        return (React.createElement(Component, { className: this.name, style: Object.assign({}, this.props.style, { display: "inline-block" }) },
+            React.createElement("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onClick: (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } }, this.props.icon ? this.props.icon : null),
             hint));
     }
 }

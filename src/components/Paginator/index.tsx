@@ -1,7 +1,7 @@
 import * as React from "react"
-import * as ReactDOM from "react-dom"
 import uniqueId from "helpers/unique_id"
 import {prefix} from "config"
+import styled from "styled-components"
 
 export interface Props {
     /** Active page number */
@@ -33,6 +33,49 @@ export interface State {
     id: string,
     current: number
 }
+
+const Wrapper = styled.div`
+    margin: 10px 0;
+    text-align: center;
+    font-size: 13px;
+`
+
+const Button = styled.a`
+    box-sizing: border-box;
+    display: inline-block;
+    height: 30px;
+    min-width: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid #dbcba3;
+    line-height: 28px;
+    padding: 0px 5px 0 5px;
+    text-decoration: none;
+    color: #009ba9;
+    margin: 0 2px;
+    &:hover {
+        background: white;
+        text-decoration: none;
+    }
+    &:active,&:focus,&:visited {
+        text-decoration: none;
+    }
+`
+const Disabled = Button.extend`
+    display: inline-block;
+    opacity: 0.3;
+    color: black;
+    &:hover {
+        background: initial;
+    }
+
+`
+const Active = Button.extend`
+    font-weight: bold;
+    opacity: 1;
+    border: 1px solid #b79748;
+    background: #fff;
+    color: black;
+`
 
 class Paginator extends React.Component<Props, State> {
 
@@ -71,10 +114,12 @@ class Paginator extends React.Component<Props, State> {
             classDisabled = `${this.name}__item ${this.name}__item--active`
         }
         if (clickable) {
-            return <a className={classLink} href="#" onClick={(evt) => {this.pageClicked(evt, page)} }
-                      key={key}>{label}</a>
+            return <Button className={classLink} href="#" onClick={(evt) => {this.pageClicked(evt, page)} }
+                      key={key}>{label}</Button>
+        } else if(active) {
+            return <Active className={classDisabled} key={key}>{label}</Active>
         } else {
-            return <span className={classDisabled} key={key}>{label}</span>
+            return <Disabled className={classDisabled} key={key}>{label}</Disabled>
         }
     }
 
@@ -142,13 +187,13 @@ class Paginator extends React.Component<Props, State> {
 
     public render() {
         return (
-            <div className={this.name} data-active={this.props.currentPage} style={this.props.style}>
+            <Wrapper className={this.name} data-active={this.props.currentPage} style={this.props.style}>
                 {this.props.showFirstAndLast && this.renderFirstButton()}
                 {this.props.showPrevAndNext && this.renderPreviousButton()}
                 {this.renderMainButtons()}
                 {this.props.showPrevAndNext && this.renderNextButton()}
                 {this.props.showFirstAndLast && this.renderLastButton()}
-            </div>
+            </Wrapper>
         )
     }
 }

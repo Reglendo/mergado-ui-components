@@ -2,6 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
+const styled_components_1 = require("styled-components");
+/* <style> */
+const Component = styled_components_1.default.nav `
+    background: #e5d7b6;
+    color: #333;
+    font-size: 11pt;
+    font-weight: bold;
+    padding: 10px 20px;
+`;
+const Wrapper = styled_components_1.default.div `
+    position: relative;
+    margin: auto;
+`;
+/* </style> */
 class TopNav extends React.Component {
     constructor() {
         super(...arguments);
@@ -9,14 +23,13 @@ class TopNav extends React.Component {
     }
     renderLinks() {
         const { links } = this.props;
-        const classList = `${this.name}__list`;
-        return (React.createElement("ul", { className: classList }, links));
+        return (React.createElement("ul", { className: `${this.name}__list muk-helper-clearfix` }, links));
     }
     render() {
         const className = `${this.name} ${this.props.addClass}`;
         const classWrapper = `${this.name}__wrapper"`;
-        return (React.createElement("nav", { className: className, style: this.props.style },
-            React.createElement("div", { className: classWrapper }, this.renderLinks())));
+        return (React.createElement(Component, { className: className, style: this.props.style },
+            React.createElement(Wrapper, { className: classWrapper }, this.renderLinks())));
     }
 }
 TopNav.defaultProps = {

@@ -1,37 +1,40 @@
 import * as React from "react"
-import {prefix} from "config"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
-import * as MUK from "components/Forms/input"
+import {prefix,form} from "config"
+import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import styled from "styled-components"
 
-export interface Props extends MUK.Props {
+export interface Props extends IFieldProps {
 }
 
-export interface State {
-}
+const StyledField = styled(Field)`
+`
 
-class Checkbox extends MUK.InputComponent<Props, State> {
+class Checkbox extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "input-checkbox"
-    public readonly props: Props
-    public state: State
 
     public static defaultProps: Props = {
-        ...MUK.defaultProps,
+        ...defaultFieldProps,
     }
 
-    protected renderLabel(className, props) {
+    protected renderLabel() {
         const { input, labels } = this.props
+        const label = this.props.label ? this.props.label : labels.main
+        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
 
-        return  <span>
+        return <div className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <input
+                        checked={input.value}
                         {...input}
-                        {...props}
                         type="checkbox"
-                        className={`${this.name}__item ${className}`}
-                        defaultChecked={input ? !!input.value : false}
-                        />&nbsp;
-                    {labels ? labels.main : ""}
-                </span>
+                        className={`${this.name}__item`}
+                        />
+                    {label && " " }{label}
+                </div>
+    }
+
+    public render() {
+        return <StyledField {...this.props} name={this.name} label={this.renderLabel()} />
     }
 
 }

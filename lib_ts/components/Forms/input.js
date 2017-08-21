@@ -12,9 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
 const Input_1 = require("components/Forms/Input");
+const dom_only_props_1 = require("helpers/dom-only-props");
+const styled_components_1 = require("styled-components");
 exports.defaultProps = {
     group: {
         className: "",
+        style: {},
+        bigLabel: false,
     },
     input: {
         className: "",
@@ -54,6 +58,12 @@ exports.defaultProps = {
         placeholder: "",
     },
 };
+const Header = styled_components_1.default.h3 `
+    padding-left: 10px;
+    border-left: 5px rgba(219,203,163,0.5) solid;
+    font-size: 1.2em;
+    margin: 10px 0;
+`;
 class InputComponent extends React.Component {
     constructor() {
         super(...arguments);
@@ -67,12 +77,17 @@ class InputComponent extends React.Component {
         return;
     }
     renderLabel(className, props) {
-        return;
+        const { labels } = this.props;
+        const label = this.props.label ? this.props.label : labels.main;
+        return this.props.group.bigLabel === false ?
+            label
+            :
+                React.createElement(Header, { className: `${this.form}__header` }, label);
     }
     render() {
         const props = this.props;
         const { meta, input, labels, group } = props, others = __rest(props, ["meta", "input", "labels", "group"]);
-        const inputProps = Object.assign({ id: this.props.meta.form ? `${this.props.meta.form}-${input.name}` : "" }, others);
+        const inputProps = dom_only_props_1.default(Object.assign({ id: this.props.meta.form ? `${this.props.meta.form}-${input.name}` : "" }, others));
         return (React.createElement(Input_1.Input, Object.assign({ name: this.name }, props),
             this.renderError(),
             React.createElement(Input_1.InputLabel, { name: this.name }, this.renderLabel(input.className ? input.className : "", inputProps)),

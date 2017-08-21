@@ -2,6 +2,90 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const config_1 = require("config");
+const styled_components_1 = require("styled-components");
+/* <style> */
+const Component = styled_components_1.default.div `
+    display: inline-block;
+    overflow: hidden;
+`;
+const Wrapper = styled_components_1.default.div `
+    display: inline-block;
+    margin: 0px;
+    border-radius: 80%;
+    box-sizing: border-box;
+    position: relative;
+    border-style: solid;
+    border-width: ${props => { return (props.type === "dashed" || props.type === "dotted") ? "0.1em" : "0.2em"; }};
+    border-color: rgba(255,255,255,1)  rgba(255,255,255,.4) rgba(255,255,255,.6) rgba(255,255,255,.8);
+    transform: translateZ(0);
+    animation: spin 1.2s infinite linear;
+    vertical-align: top;
+    @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+    }
+`;
+const colors = {
+    left: "#7fba2c",
+    bottom: "#007b20",
+    right: "#00a9b8",
+    top: "transparent",
+};
+const Mergado = Wrapper.extend `
+    border-width: 12px;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: ${colors.top} ${colors.left} ${colors.right} ${colors.bottom};
+
+    animation: pulse 10s linear infinite;
+    position: relative;
+
+    .${config_1.prefix}spinner__content {
+        max-width: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    @keyframes pulse {
+        0% {
+            border-left-color: ${colors.left};
+            border-bottom-color: ${colors.bottom};
+            border-right-color: ${colors.right};
+            border-top-color: ${colors.top};
+        }
+        25% {
+            border-left-color: ${colors.right};
+            border-bottom-color: ${colors.top};
+            border-right-color: ${colors.left};
+            border-top-color: ${colors.bottom};
+        }
+        50% {
+            border-left-color: ${colors.bottom};
+            border-bottom-color: ${colors.left};
+            border-right-color: ${colors.top};
+            border-top-color: ${colors.right};
+        }
+        75% {
+            border-left-color: ${colors.top};
+            border-bottom-color: ${colors.right};
+            border-right-color: ${colors.bottom};
+            border-top-color: ${colors.left};
+        }
+        100% {
+            border-left-color: ${colors.left};
+            border-bottom-color: ${colors.bottom};
+            border-right-color: ${colors.right};
+            border-top-color: ${colors.top};
+        }
+    }
+`;
+const Content = styled_components_1.default.div `
+`;
+/* </style> */
 class Spinner extends React.Component {
     constructor(props) {
         super(props);
@@ -30,6 +114,7 @@ class Spinner extends React.Component {
             return (React.createElement("span", { style: { opacity: 1 } }, this.props.children));
         }
         const { size, type, color, speed } = this.props;
+        // TODO: refactor with styled-components
         let defaultStyle = {
             width: size,
             height: size,
@@ -61,9 +146,10 @@ class Spinner extends React.Component {
         }
         const object = Object;
         const style = object.assign(defaultStyle, this.props.style);
-        return (React.createElement("div", { className: `${this.name} ${this.name}--${this.props.type}`, style: containerStyle },
-            React.createElement("div", { className: `${this.name}__wrapper`, style: style },
-                React.createElement("div", { className: `${this.name}__content`, style: { opacity: 0 } }, this.props.children))));
+        const WrapperType = this.props.type === "mergado" ? Mergado : Wrapper;
+        return (React.createElement(Component, { className: `${this.name} ${this.name}--${this.props.type}`, style: containerStyle },
+            React.createElement(WrapperType, { type: this.props.type, className: `${this.name}__wrapper`, style: style },
+                React.createElement(Content, { className: `${this.name}__content`, style: { opacity: 0 } }, this.props.children))));
     }
 }
 Spinner.defaultProps = {

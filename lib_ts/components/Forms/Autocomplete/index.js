@@ -4,8 +4,38 @@ const React = require("react");
 const config_1 = require("config");
 const TextInput_1 = require("components/Forms/TextInput");
 const unique_id_1 = require("helpers/unique_id");
-const MUK = require("components/Forms/input");
-class Autocomplete extends MUK.InputComponent {
+const styled_components_1 = require("styled-components");
+const Field_1 = require("components/Forms/Field");
+/* <style> */
+const Menu = styled_components_1.default.div `
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0;
+    font-size: 90%;
+    position: absolute;
+    top: 100% !important;
+    left: 2px !important;
+    margin: 1px 0;
+    overflow: auto;
+    max-height: 50vh;
+    z-index: 1000;
+    margin-top: -12px;
+    border-color: transparent !important;
+`;
+const MenuItem = styled_components_1.default.div `
+    padding: 9px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    border-left: 5px solid rgba(0,0,0,0);
+    transition: border-color 0.2s;
+    border-radius: 0;
+    background: ${props => props.selected ? "rgba(0,0,0,0.1)" : "transparent"};
+    font-weight: ${props => props.selected ? "bold" : "normal"};
+    border-left-color: ${props => props.selected ? "rgba(0,0,0,0.3)" : "transparent"};
+`;
+/* </style> */
+class Autocomplete extends React.Component {
     constructor(props) {
         super(props);
         this.name = config_1.prefix + "autocomplete";
@@ -266,10 +296,7 @@ class Autocomplete extends MUK.InputComponent {
             ref: e => this.refs.menu = e,
         });
     }
-    renderError() {
-        return React.createElement("div", null);
-    }
-    renderInput(className, props) {
+    render() {
         const open = this.isOpen();
         const { labels, meta, input } = this.props;
         const inputProps = Object.assign({}, this.props.input, {
@@ -280,17 +307,17 @@ class Autocomplete extends MUK.InputComponent {
             onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
             onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         });
-        return (React.createElement("div", null,
+        return (React.createElement(Field_1.Field, { label: "" },
             React.createElement(TextInput_1.default, { ref: "input", type: "search", labels: labels, meta: meta, input: inputProps }),
             open && this.renderMenu()));
     }
 }
-Autocomplete.defaultProps = Object.assign({}, MUK.defaultProps, { items: [], renderMenu: (items, value, style) => {
-        return React.createElement("div", { className: `${config_1.prefix + "autocomplete"}__menu`, style: Object.assign({}, style), children: items });
+Autocomplete.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { items: [], renderMenu: (items, value, style) => {
+        return React.createElement(Menu, { className: `${config_1.prefix + "autocomplete"}__menu`, style: Object.assign({}, style), children: items });
     }, onMenuVisibilityChange: () => { }, renderItem: (item, highlighted, style) => {
         let className = `${config_1.prefix + "autocomplete"}__item `;
         className += highlighted ? className + `${config_1.prefix + "autocomplete"}__item--selected` : "";
-        return (React.createElement("div", { key: `${item.value}-${unique_id_1.default()}`, className: `${className}` }, item.text));
+        return React.createElement(MenuItem, { key: `${item.value}-${unique_id_1.default()}`, selected: highlighted, className: `${className}` }, item.text);
     }, getItemValue: (item) => {
         return item.text;
     }, shouldItemRender: (item, value) => {

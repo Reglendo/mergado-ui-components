@@ -1,6 +1,7 @@
 import * as React from "react"
 import WizardStep from "components/WizardNav/WizardStep"
 import {prefix} from "config"
+import styled from "styled-components"
 
 export interface Props {
     links: JSX.Element[]
@@ -9,6 +10,22 @@ export interface Props {
 
 export interface State {
 }
+
+/* <style> */
+const Component = styled.nav`
+    padding: 0;
+    margin: 20px 0;
+    list-style: none;
+    background-color: #777777;
+`
+const List = styled.ul`
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+`
+/* </style> */
 
 class WizardNav extends React.Component<Props, State> {
 
@@ -23,23 +40,19 @@ class WizardNav extends React.Component<Props, State> {
         const {links} = this.props
         const classList = `${this.name}__list`
         return (
-            <ul className={classList}>
+            <List className={classList}>
                 {links}
-            </ul>
+            </List>
         )
     }
 
     public render() {
-
         const className = `${this.name}`
-        const classWrapper = `${this.name}__wrapper"`
 
         return (
-            <nav className={className} style={this.props.style}>
-                <div className={classWrapper}>
-                    {this.renderLinks() }
-                </div>
-            </nav>
+            <Component className={className} style={this.props.style}>
+                {this.renderLinks() }
+            </Component>
         )
     }
 }
