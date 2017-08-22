@@ -31,7 +31,8 @@ export interface Props extends IFieldProps {
     height?: number | string
     /** Show small label instead of bigger header  */
     showLabel?: boolean
-
+    /** Show active options first */
+    activeFirst?: boolean
     labels?: {
         allProducts?: string,
         main?: string,
@@ -64,6 +65,7 @@ class CheckboxContainer extends React.Component<Props,State> {
         height: 300,
         showInput: false,
         showLabel: false,
+        activeFirst: true,
         labels: {
             main: "",
             allProducts: "All products",
@@ -106,6 +108,7 @@ class CheckboxContainer extends React.Component<Props,State> {
                 {withoutFilter === false && this.renderFilter()}
                 <QueryList className={`${this.name}__list ${isInvalid ? `${form}__group--invalid` : ""}`}
                     name={this.name} height={height}
+                    activeFirst={props.activeFirst}
                     options={options} value={this.props.input.value ? this.props.input.value : []}
                     input={this.props.input} singleChoice={this.props.singleChoice}
                     showInput={this.props.showInput} labels={labels}

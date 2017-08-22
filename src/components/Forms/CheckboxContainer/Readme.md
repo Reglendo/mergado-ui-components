@@ -90,9 +90,8 @@ Multilevel options
 
     <CheckboxContainer availableQueries={[
                             {
-                                id: 999,
+                                id: "ALL",
                                 name: "Empty query",
-                                disabled: 1
                             },
                             {
                                 id: null,
@@ -102,7 +101,8 @@ Multilevel options
                             {
                                 id: 1,
                                 name: "First query",
-                                product_count: 50
+                                product_count: 50,
+                                disabled: 1
                             },
                             {
                                 id: 2,

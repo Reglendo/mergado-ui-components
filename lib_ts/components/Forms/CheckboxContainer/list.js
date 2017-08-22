@@ -47,8 +47,8 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
         return React.createElement(item_1.QueryItem, { name: name, option: option, index: index, onClick: handler, checked: value.indexOf(option.id) > -1, singleChoice: singleChoice, showInput: showInput, labels: labels, key: option.id + option.name });
     });
 };
-const QueryListComponent = ({ name, className, options, value, input, singleChoice, showInput, labels, meta }) => {
-    return (React.createElement("ul", { className: `${name}__list ${className}` }, renderOptions(name, options.sort(sortOptions(meta.initial)), value, input, singleChoice, showInput, labels)));
+const QueryListComponent = ({ name, className, options, value, input, singleChoice, showInput, activeFirst, labels, meta }) => {
+    return (React.createElement("ul", { className: `${name}__list ${className}` }, renderOptions(name, meta.initial && activeFirst ? options.sort(sortOptions(meta.initial)) : options, value, input, singleChoice, showInput, labels)));
 };
 exports.QueryList = styled_components_1.default(QueryListComponent) `
     list-style: none;

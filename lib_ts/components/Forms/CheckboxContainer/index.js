@@ -43,10 +43,10 @@ class CheckboxContainer extends React.Component {
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
         return (React.createElement(StyledField, Object.assign({}, props, { label: "", labels: { invalid: labels.invalid, main: "" }, className: `${this.name}__queries` }),
             withoutFilter === false && this.renderFilter(),
-            React.createElement(list_1.QueryList, { className: `${this.name}__list ${isInvalid ? `${config_1.form}__group--invalid` : ""}`, name: this.name, height: height, options: options, value: this.props.input.value ? this.props.input.value : [], input: this.props.input, singleChoice: this.props.singleChoice, showInput: this.props.showInput, labels: labels, meta: meta })));
+            React.createElement(list_1.QueryList, { className: `${this.name}__list ${isInvalid ? `${config_1.form}__group--invalid` : ""}`, name: this.name, height: height, activeFirst: props.activeFirst, options: options, value: this.props.input.value ? this.props.input.value : [], input: this.props.input, singleChoice: this.props.singleChoice, showInput: this.props.showInput, labels: labels, meta: meta })));
     }
 }
-CheckboxContainer.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showInput: false, showLabel: false, labels: {
+CheckboxContainer.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showInput: false, showLabel: false, activeFirst: true, labels: {
         main: "",
         allProducts: "All products",
         placeholder: "",

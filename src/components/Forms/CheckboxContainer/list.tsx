@@ -12,6 +12,7 @@ interface IQueryListProps {
     className?: string
     singleChoice?: boolean
     showInput: boolean
+    activeFirst: boolean
     labels: any
     meta: any
 }
@@ -74,10 +75,10 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
 }
 
 const QueryListComponent: React.SFC<IQueryListProps> = ({ name, className, options, value, input,
-                                                            singleChoice, showInput, labels, meta }) => {
+                                                            singleChoice, showInput, activeFirst, labels, meta }) => {
     return (
         <ul className={`${name}__list ${className}`}>
-            {renderOptions( name, options.sort(sortOptions(meta.initial)),
+            {renderOptions( name, meta.initial && activeFirst ? options.sort(sortOptions(meta.initial)) : options ,
                             value, input, singleChoice, showInput, labels)}
         </ul>
     )
