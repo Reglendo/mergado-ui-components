@@ -18,42 +18,57 @@ const Table = styled_components_1.default.table `
     }
 `;
 const Filters = styled_components_1.default.div `
-    vertical-align: middle;
+    display: inline-block;
+    vertical-align: bottom;
     padding-left: 40px;
     position: relative;
+    .muk-form__group {
+        padding: 0;
+    }
     &:before {
         display: inline-block;
         content: " ";
-        border-left: 3px solid #dbcba3;
+        border-left: 2px solid #dbcba3;
         height: 40px;
         vertical-align: bottom;
-        margin-top: 23px;
+        margin-top: 20px;
         width: 10px;
         position: absolute;
         bottom: 0;
-        left: 18px;
+        left: 19px;
     }
 `;
 const TextFilter = styled_components_1.default(TextInput_1.default) `
-    padding-right: 20px;
+    &.muk-form__group {
+        padding-right: 20px;
+    }
 `;
 const CheckboxFilter = styled_components_1.default(Checkbox_1.default) `
-    padding-top: 20px !important;
-    padding-right: 20px;
+    &.muk-form__group {
+        padding-top: 20px;
+        padding-left: 20px;
+    }
     white-space: nowrap;
 `;
 const Actions = styled_components_1.default.div `
+    display: inline-block;
+    vertical-align: bottom;
 `;
 const ActionsIcons = styled_components_1.default.div `
     background: white;
     display: inline-block;
+    vertical-align: bottom;
     height: 40px;
-    line-height: 40px;
+    line-height: 34px;
     white-space: nowrap;
+    position: relative;
     background-color: #fff;
     border: 1px solid #dbcba3;
     .muk-button__item {
-        height: 42px !important;
+        height: 34px !important;
+    }
+    .muk-icon {
+        line-height: 42px;
     }
     svg {
         width: 18px !important;
@@ -104,7 +119,7 @@ class DataTable extends React.Component {
     }
     renderBulkActionbar() {
         const { labels } = this.props;
-        return (React.createElement(Actions, { className: `${this.name}__actions_bar muk-1-12` },
+        return (React.createElement(Actions, { className: `${this.name}__actions_bar` },
             React.createElement(Input_1.InputLabel, { name: "actionbar" }, labels.actionsBar),
             React.createElement(ActionsIcons, { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
@@ -133,10 +148,9 @@ class DataTable extends React.Component {
         const { addClass, style } = this.props;
         const className = `${this.name}__table ${this.props.addClass}`;
         return (React.createElement(Wrapper, { className: `${this.name}` },
-            React.createElement("div", { className: "muk-grid--table" },
-                React.createElement("div", null,
-                    this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
-                    this.props.filters.length > 0 && this.renderFiltersBar())),
+            React.createElement("div", { style: { whiteSpace: "nowrap" } },
+                this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
+                this.props.filters.length > 0 && this.renderFiltersBar()),
             React.createElement(Table, Object.assign({ className: className, style: style }, dom_only_props_1.default(this.props)), this.props.children && this.renderChildren(this.props.children))));
     }
 }

@@ -54,7 +54,7 @@ const colorize = () => (props) =>  {
     return `
         background-color: ${color};
         border-color: ${color};
-
+        color: white;
         &:hover {
             background-color: ${dark};
         }
@@ -82,7 +82,7 @@ const styling = css`
     color: white;
     padding: 0px 20px;
     height: 42px;
-    line-height: 41px;
+    line-height: 42px;
     border-width: 1px;
     border-style: solid;
     ${(props: any) => props.size === "tiny" && Tiny }
@@ -102,6 +102,9 @@ const styling = css`
       margin: 0 5px;
       position: relative;
       top: -1px;
+    }
+    a {
+        color: white;
     }
 `
 

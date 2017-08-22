@@ -29,8 +29,6 @@ export interface Props extends IFieldProps {
     withoutFilter?: boolean
     /** Height of box with queries (in px) */
     height?: number | string
-    /** Show small label instead of bigger header  */
-    showLabel?: boolean
     /** Show active options first */
     activeFirst?: boolean
     labels?: {
@@ -64,7 +62,6 @@ class CheckboxContainer extends React.Component<Props,State> {
         withoutFilter: false,
         height: 300,
         showInput: false,
-        showLabel: false,
         activeFirst: true,
         labels: {
             main: "",
@@ -88,13 +85,13 @@ class CheckboxContainer extends React.Component<Props,State> {
                         type="search"
                         input={{ value: this.state.filter,
                                  onChange: evt => this.setState({ filter: evt.target.value }) }}
-                        labels={this.props.labels}
+                        labels={{}}
             />
         )
     }
 
     public render() {
-        const { withoutFilter, height, showLabel, labels, meta} = this.props
+        const { withoutFilter, height, labels, meta} = this.props
         const { children, ...props} = this.props
         const options =  this.props.availableQueries
                             .filter((option) => {
@@ -103,8 +100,8 @@ class CheckboxContainer extends React.Component<Props,State> {
                             })
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         return (
-            <StyledField {...props} label=""
-                labels={{invalid: labels.invalid, main: ""}} className={`${this.name}__queries`}>
+            <StyledField {...props}
+                labels={labels} className={`${this.name}__queries`}>
                 {withoutFilter === false && this.renderFilter()}
                 <QueryList className={`${this.name}__list ${isInvalid ? `${form}__group--invalid` : ""}`}
                     name={this.name} height={height}

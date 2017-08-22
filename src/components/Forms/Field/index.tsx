@@ -99,14 +99,21 @@ export const defaultFieldProps: IFieldProps = {
         },
 }
 
-const LabelComponent = ({children, name}) => {
+const BigLabel = styled.h3`
+    padding-left: 10px;
+    border-left: 5px solid hsla(43,44%,75%,.5);
+    font-size: 1.2em;
+    margin: 10px 0;
+`
+
+const LabelComponent = ({children, name, bigLabel}) => {
     if(children === "" || children === null) {
         return null
     }
 
     return (
             <label className={`${name}__label ${form}__label`}>
-                {children}
+                {bigLabel ? <BigLabel>{children}</BigLabel> : children }
             </label>
         )
 }
@@ -155,7 +162,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
             title={props.labels.title}
             style={props.style}>
                 <FieldError {...props} className={`${form}__validation}`} />
-                <FieldLabel name={props.name}>
+                <FieldLabel name={props.name} bigLabel={group.bigLabel}>
                     {props.label ? props.label : (others.label ? others.label : labels.main)}
                 </FieldLabel>
                 <div className={`\

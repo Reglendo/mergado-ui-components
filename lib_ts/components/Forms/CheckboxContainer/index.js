@@ -30,10 +30,10 @@ class CheckboxContainer extends React.Component {
     }
     renderFilter() {
         return (React.createElement(TextInput_1.default, { className: `${this.name}__filter_input`, type: "search", input: { value: this.state.filter,
-                onChange: evt => this.setState({ filter: evt.target.value }) }, labels: this.props.labels }));
+                onChange: evt => this.setState({ filter: evt.target.value }) }, labels: {} }));
     }
     render() {
-        const { withoutFilter, height, showLabel, labels, meta } = this.props;
+        const { withoutFilter, height, labels, meta } = this.props;
         const _a = this.props, { children } = _a, props = __rest(_a, ["children"]);
         const options = this.props.availableQueries
             .filter((option) => {
@@ -41,12 +41,12 @@ class CheckboxContainer extends React.Component {
             return option.subheader || regex.test(option.name);
         });
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
-        return (React.createElement(StyledField, Object.assign({}, props, { label: "", labels: { invalid: labels.invalid, main: "" }, className: `${this.name}__queries` }),
+        return (React.createElement(StyledField, Object.assign({}, props, { labels: labels, className: `${this.name}__queries` }),
             withoutFilter === false && this.renderFilter(),
             React.createElement(list_1.QueryList, { className: `${this.name}__list ${isInvalid ? `${config_1.form}__group--invalid` : ""}`, name: this.name, height: height, activeFirst: props.activeFirst, options: options, value: this.props.input.value ? this.props.input.value : [], input: this.props.input, singleChoice: this.props.singleChoice, showInput: this.props.showInput, labels: labels, meta: meta })));
     }
 }
-CheckboxContainer.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showInput: false, showLabel: false, activeFirst: true, labels: {
+CheckboxContainer.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showInput: false, activeFirst: true, labels: {
         main: "",
         allProducts: "All products",
         placeholder: "",

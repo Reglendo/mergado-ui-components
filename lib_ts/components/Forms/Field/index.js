@@ -58,11 +58,17 @@ exports.defaultFieldProps = {
         placeholder: "",
     },
 };
-const LabelComponent = ({ children, name }) => {
+const BigLabel = styled_components_1.default.h3 `
+    padding-left: 10px;
+    border-left: 5px solid hsla(43,44%,75%,.5);
+    font-size: 1.2em;
+    margin: 10px 0;
+`;
+const LabelComponent = ({ children, name, bigLabel }) => {
     if (children === "" || children === null) {
         return null;
     }
-    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label` }, children));
+    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label` }, bigLabel ? React.createElement(BigLabel, null, children) : children));
 };
 exports.FieldLabel = styled_components_1.default(LabelComponent) `
     display: block;
@@ -98,7 +104,7 @@ const FieldComponent = (props) => {
                         ${config_1.form}__group
                         `, title: props.labels.title, style: props.style }),
         React.createElement(exports.FieldError, Object.assign({}, props, { className: `${config_1.form}__validation}` })),
-        React.createElement(exports.FieldLabel, { name: props.name }, props.label ? props.label : (others.label ? others.label : labels.main)),
+        React.createElement(exports.FieldLabel, { name: props.name, bigLabel: group.bigLabel }, props.label ? props.label : (others.label ? others.label : labels.main)),
         React.createElement("div", { className: `\
                     ${isInvalid ? `${config_1.form}__group--invalid` : ""}\
                 ` }, props.children)));
