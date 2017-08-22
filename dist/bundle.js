@@ -11756,7 +11756,7 @@ class Button extends React.Component {
                                         ${props.size ? this.name + `--` + props.size : ``}
                                         ${this.name}--${props.type}
                                         ${props.disabled ? this.name + `--disabled` : ``}
-                ` }, this.props, { name: this.name, label: "", labels: Object.assign({}, labels, { main: "" }) }),
+                ` }, this.props, { name: this.name, label: "", labels: Object.assign({}, labels, { main: "" }), style: Object.assign({}, group.style) }),
             React.createElement(types_1.UniversalButton, Object.assign({}, this.props, { name: this.name }))));
     }
 }
