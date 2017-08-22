@@ -45,7 +45,9 @@ class Button extends React.Component<Props, {}> {
                                         ${this.name}--${props.type}
                                         ${props.disabled ? this.name+`--disabled`:``}
                 `}
-                {...this.props} name={this.name} label="" labels={{...labels,main: ""}}>
+                {...this.props} name={this.name} label="" labels={{...labels,main: ""}}
+                style={{...group.style}}
+                >
                     <UniversalButton {...this.props} name={this.name} />
             </StyledField>
         )
