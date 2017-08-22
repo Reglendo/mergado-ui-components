@@ -3940,11 +3940,17 @@ exports.defaultFieldProps = {
         placeholder: "",
     },
 };
-const LabelComponent = ({ children, name }) => {
+const BigLabel = styled_components_1.default.h3 `
+    padding-left: 10px;
+    border-left: 5px solid hsla(43,44%,75%,.5);
+    font-size: 1.2em;
+    margin: 10px 0;
+`;
+const LabelComponent = ({ children, name, bigLabel }) => {
     if (children === "" || children === null) {
         return null;
     }
-    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label` }, children));
+    return (React.createElement("label", { className: `${name}__label ${config_1.form}__label` }, bigLabel ? React.createElement(BigLabel, null, children) : children));
 };
 exports.FieldLabel = styled_components_1.default(LabelComponent) `
     display: block;
@@ -3980,7 +3986,7 @@ const FieldComponent = (props) => {
                         ${config_1.form}__group
                         `, title: props.labels.title, style: props.style }),
         React.createElement(exports.FieldError, Object.assign({}, props, { className: `${config_1.form}__validation}` })),
-        React.createElement(exports.FieldLabel, { name: props.name }, props.label ? props.label : (others.label ? others.label : labels.main)),
+        React.createElement(exports.FieldLabel, { name: props.name, bigLabel: group.bigLabel }, props.label ? props.label : (others.label ? others.label : labels.main)),
         React.createElement("div", { className: `\
                     ${isInvalid ? `${config_1.form}__group--invalid` : ""}\
                 ` }, props.children)));
@@ -18434,42 +18440,57 @@ const Table = styled_components_1.default.table `
     }
 `;
 const Filters = styled_components_1.default.div `
-    vertical-align: middle;
+    display: inline-block;
+    vertical-align: bottom;
     padding-left: 40px;
     position: relative;
+    .muk-form__group {
+        padding: 0;
+    }
     &:before {
         display: inline-block;
         content: " ";
-        border-left: 3px solid #dbcba3;
+        border-left: 2px solid #dbcba3;
         height: 40px;
         vertical-align: bottom;
-        margin-top: 23px;
+        margin-top: 20px;
         width: 10px;
         position: absolute;
         bottom: 0;
-        left: 18px;
+        left: 19px;
     }
 `;
 const TextFilter = styled_components_1.default(TextInput_1.default) `
-    padding-right: 20px;
+    &.muk-form__group {
+        padding-right: 20px;
+    }
 `;
 const CheckboxFilter = styled_components_1.default(Checkbox_1.default) `
-    padding-top: 20px !important;
-    padding-right: 20px;
+    &.muk-form__group {
+        padding-top: 20px;
+        padding-left: 20px;
+    }
     white-space: nowrap;
 `;
 const Actions = styled_components_1.default.div `
+    display: inline-block;
+    vertical-align: bottom;
 `;
 const ActionsIcons = styled_components_1.default.div `
     background: white;
     display: inline-block;
+    vertical-align: bottom;
     height: 40px;
-    line-height: 40px;
+    line-height: 34px;
     white-space: nowrap;
+    position: relative;
     background-color: #fff;
     border: 1px solid #dbcba3;
     .muk-button__item {
-        height: 42px !important;
+        height: 34px !important;
+    }
+    .muk-icon {
+        line-height: 42px;
     }
     svg {
         width: 18px !important;
@@ -18520,7 +18541,7 @@ class DataTable extends React.Component {
     }
     renderBulkActionbar() {
         const { labels } = this.props;
-        return (React.createElement(Actions, { className: `${this.name}__actions_bar muk-1-12` },
+        return (React.createElement(Actions, { className: `${this.name}__actions_bar` },
             React.createElement(Input_1.InputLabel, { name: "actionbar" }, labels.actionsBar),
             React.createElement(ActionsIcons, { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
@@ -18549,10 +18570,9 @@ class DataTable extends React.Component {
         const { addClass, style } = this.props;
         const className = `${this.name}__table ${this.props.addClass}`;
         return (React.createElement(Wrapper, { className: `${this.name}` },
-            React.createElement("div", { className: "muk-grid--table" },
-                React.createElement("div", null,
-                    this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
-                    this.props.filters.length > 0 && this.renderFiltersBar())),
+            React.createElement("div", { style: { whiteSpace: "nowrap" } },
+                this.props.bulkActions.length > 0 && this.renderBulkActionbar(),
+                this.props.filters.length > 0 && this.renderFiltersBar()),
             React.createElement(Table, Object.assign({ className: className, style: style }, dom_only_props_1.default(this.props)), this.props.children && this.renderChildren(this.props.children))));
     }
 }
@@ -47171,7 +47191,7 @@ const colorize = () => (props) => {
     return `
         background-color: ${color};
         border-color: ${color};
-
+        color: white;
         &:hover {
             background-color: ${dark};
         }
@@ -47198,7 +47218,7 @@ const styling = styled_components_1.css `
     color: white;
     padding: 0px 20px;
     height: 42px;
-    line-height: 41px;
+    line-height: 42px;
     border-width: 1px;
     border-style: solid;
     ${(props) => props.size === "tiny" && Tiny}
@@ -47218,6 +47238,9 @@ const styling = styled_components_1.css `
       margin: 0 5px;
       position: relative;
       top: -1px;
+    }
+    a {
+        color: white;
     }
 `;
 const Href = (_a) => {
@@ -47312,10 +47335,10 @@ class CheckboxContainer extends React.Component {
     }
     renderFilter() {
         return (React.createElement(TextInput_1.default, { className: `${this.name}__filter_input`, type: "search", input: { value: this.state.filter,
-                onChange: evt => this.setState({ filter: evt.target.value }) }, labels: this.props.labels }));
+                onChange: evt => this.setState({ filter: evt.target.value }) }, labels: {} }));
     }
     render() {
-        const { withoutFilter, height, showLabel, labels, meta } = this.props;
+        const { withoutFilter, height, labels, meta } = this.props;
         const _a = this.props, { children } = _a, props = __rest(_a, ["children"]);
         const options = this.props.availableQueries
             .filter((option) => {
@@ -47323,12 +47346,12 @@ class CheckboxContainer extends React.Component {
             return option.subheader || regex.test(option.name);
         });
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
-        return (React.createElement(StyledField, Object.assign({}, props, { label: "", labels: { invalid: labels.invalid, main: "" }, className: `${this.name}__queries` }),
+        return (React.createElement(StyledField, Object.assign({}, props, { labels: labels, className: `${this.name}__queries` }),
             withoutFilter === false && this.renderFilter(),
             React.createElement(list_1.QueryList, { className: `${this.name}__list ${isInvalid ? `${config_1.form}__group--invalid` : ""}`, name: this.name, height: height, activeFirst: props.activeFirst, options: options, value: this.props.input.value ? this.props.input.value : [], input: this.props.input, singleChoice: this.props.singleChoice, showInput: this.props.showInput, labels: labels, meta: meta })));
     }
 }
-CheckboxContainer.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showInput: false, showLabel: false, activeFirst: true, labels: {
+CheckboxContainer.defaultProps = Object.assign({}, Field_1.defaultFieldProps, { availableQueries: [], singleChoice: false, withoutFilter: false, height: 300, showInput: false, activeFirst: true, labels: {
         main: "",
         allProducts: "All products",
         placeholder: "",
