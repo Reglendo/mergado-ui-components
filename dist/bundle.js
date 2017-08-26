@@ -56151,7 +56151,7 @@ class CheckboxContainer extends React.Component {
     }
     renderFilter() {
         return (React.createElement(TextInput_1.default, { className: `${this.name}__filter_input`, type: "search", input: { value: this.state.filter,
-                onChange: evt => this.setState({ filter: evt.target.value }) }, labels: {} }));
+                onChange: evt => this.setState({ filter: evt.target.value }) }, labels: { placeholder: this.props.labels.placeholder } }));
     }
     render() {
         const { withoutFilter, height, labels, meta } = this.props;
