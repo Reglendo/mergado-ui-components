@@ -85,7 +85,7 @@ class CheckboxContainer extends React.Component<Props,State> {
                         type="search"
                         input={{ value: this.state.filter,
                                  onChange: evt => this.setState({ filter: evt.target.value }) }}
-                        labels={{}}
+                        labels={{ placeholder: this.props.labels.placeholder }}
             />
         )
     }
