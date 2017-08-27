@@ -1,7 +1,6 @@
 import * as React from "react"
 import styled, {css} from "styled-components"
 import * as style from "styled"
-import { darken } from "polished"
 import domOnlyProps from "helpers/dom-only-props"
 import {prefix,form} from "config"
 import {Link as RouterLink} from "react-router"
@@ -26,6 +25,8 @@ const Disabled = css`
 /* colors */
 const colorize = () => (props) =>  {
     let color
+    let dark
+    let darker
     if(props.color === "nocolor") {
         return `
             background: transparent;
@@ -39,18 +40,28 @@ const colorize = () => (props) =>  {
     }
     switch(props.color) {
         case "green":
-            color = style.GREEN; break
+            color = style.GREEN
+            dark = style.GREEN_DARK
+            darker = style.GREEN_DARKER
+            break
         case "grey":
         case "gray":
-            color = style.GREY; break
+            color = style.GREY
+            dark = style.GREY_DARK
+            darker = style.GREY_DARKER
+            break
         case "red":
-            color = style.RED; break
+            color = style.RED
+            dark = style.RED_DARK
+            darker = style.RED_DARKER
+            break
         case "blue":
         default:
-            color = style.BLUE; break
+            color = style.BLUE
+            dark = style.BLUE_DARK
+            darker = style.BLUE_DARKER
+            break
     }
-    const dark = darken(0.05, color)
-    const darker = darken(0.1, color)
     return `
         background-color: ${color};
         border-color: ${color};

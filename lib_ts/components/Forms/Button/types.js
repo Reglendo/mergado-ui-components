@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styled_components_1 = require("styled-components");
 const style = require("styled");
-const polished_1 = require("polished");
 const dom_only_props_1 = require("helpers/dom-only-props");
 const config_1 = require("config");
 const react_router_1 = require("react-router");
@@ -36,6 +35,8 @@ const Disabled = styled_components_1.css `
 /* colors */
 const colorize = () => (props) => {
     let color;
+    let dark;
+    let darker;
     if (props.color === "nocolor") {
         return `
             background: transparent;
@@ -50,21 +51,27 @@ const colorize = () => (props) => {
     switch (props.color) {
         case "green":
             color = style.GREEN;
+            dark = style.GREEN_DARK;
+            darker = style.GREEN_DARKER;
             break;
         case "grey":
         case "gray":
             color = style.GREY;
+            dark = style.GREY_DARK;
+            darker = style.GREY_DARKER;
             break;
         case "red":
             color = style.RED;
+            dark = style.RED_DARK;
+            darker = style.RED_DARKER;
             break;
         case "blue":
         default:
             color = style.BLUE;
+            dark = style.BLUE_DARK;
+            darker = style.BLUE_DARKER;
             break;
     }
-    const dark = polished_1.darken(0.05, color);
-    const darker = polished_1.darken(0.1, color);
     return `
         background-color: ${color};
         border-color: ${color};
