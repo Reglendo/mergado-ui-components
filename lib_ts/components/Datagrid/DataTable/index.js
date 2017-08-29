@@ -5,7 +5,6 @@ const config_1 = require("config");
 const Button_1 = require("components/Forms/Button");
 const TextInput_1 = require("components/Forms/TextInput");
 const Checkbox_1 = require("components/Forms/Checkbox");
-const Input_1 = require("components/Forms/Input");
 const styled_components_1 = require("styled-components");
 const dom_only_props_1 = require("helpers/dom-only-props");
 /* <style> */
@@ -120,7 +119,6 @@ class DataTable extends React.Component {
     renderBulkActionbar() {
         const { labels } = this.props;
         return (React.createElement(Actions, { className: `${this.name}__actions_bar` },
-            React.createElement(Input_1.InputLabel, { name: "actionbar" }, labels.actionsBar),
             React.createElement(ActionsIcons, { className: `${this.name}__actions_icons` }, this.renderBulkActions())));
     }
     renderBulkActions() {

@@ -97,7 +97,7 @@ exports.FieldError = styled_components_1.default(FieldErrorComponent) `
 const FieldComponent = (props) => {
     const { meta, input, labels, group } = props, others = __rest(props, ["meta", "input", "labels", "group"]);
     const isInvalid = props.meta.invalid && (props.meta.dirty || props.meta.touched);
-    return (React.createElement("div", Object.assign({}, dom_only_props_1.default(props), { className: `${props.name ? props.name : ""}
+    return (React.createElement("div", Object.assign({}, dom_only_props_1.default(group), { className: `${props.name ? props.name : ""}
                         ${props.className ? props.className : ""}
                         ${props.disabled ? props.name + `--disabled` : ""}
                         ${props.required ? props.name + `--required` : ""}

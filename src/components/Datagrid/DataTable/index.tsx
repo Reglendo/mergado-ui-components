@@ -5,7 +5,6 @@ import DataBody from "../DataBody"
 import Button from "components/Forms/Button"
 import TextInput from "components/Forms/TextInput"
 import Checkbox from "components/Forms/Checkbox"
-import {InputLabel} from "components/Forms/Input"
 import uniqueId from "helpers/unique_id"
 import { ID, Action, Filter } from "helpers/types"
 import styled from "styled-components"
@@ -174,7 +173,6 @@ class DataTable extends React.Component<Props, State> {
         const { labels } = this.props
         return (
             <Actions className={`${this.name}__actions_bar`}>
-                <InputLabel name="actionbar">{labels.actionsBar}</InputLabel>
                 <ActionsIcons className={`${this.name}__actions_icons`}>
                     {this.renderBulkActions()}
                 </ActionsIcons>

@@ -1,6 +1,5 @@
 import * as React from "react"
 import {prefix, form} from "config"
-import {Input, InputLabel, InputError} from "components/Forms/Input"
 import domOnlyProps from "helpers/dom-only-props"
 import styled from "styled-components"
 import * as style from "styled"
@@ -152,7 +151,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
     const isInvalid = props.meta.invalid && (props.meta.dirty || props.meta.touched)
     return (
         <div
-            {...domOnlyProps(props)}
+            {...domOnlyProps(group)}
             className={`${props.name ? props.name : ""}
                         ${props.className ? props.className : ""}
                         ${props.disabled ? props.name + `--disabled` : ""}
