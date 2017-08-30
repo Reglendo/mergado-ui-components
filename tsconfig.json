@@ -9,6 +9,9 @@
         "sourceMap": true,
         "declaration": false
     },
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true
+    },
     "include": [
         "src/"
     ]

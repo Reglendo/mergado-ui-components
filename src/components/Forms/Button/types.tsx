@@ -134,7 +134,7 @@ const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title, className,
             href={link}
             className={`${name}__item ${className ? className : ""}`}
             title={title}>
-                {icon}{label}
+                {icon}{label}{children}
         </a>
 
 interface IButtonProps {
@@ -154,7 +154,7 @@ const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, i
             {...domOnlyProps(props)}
             className={`${name}__item ${className ? className : ""}`}
             title={title}>
-                {icon}{label}
+                {icon}{label}{children}
         </button>
     )
 }
@@ -175,7 +175,7 @@ const Link: React.SFC<ILinkProps> = ({name, icon, label, title, className, link,
             to={link}
             className={`${name}__item ${className ? className : ""}`}
             title={title}>
-                {icon}{label}
+                {icon}{label}{children}
         </RouterLink>
 
 interface ISubmitProps {
@@ -209,7 +209,7 @@ const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className, child
             {...domOnlyProps(props)}
             className={`${name}__item ${className ? className : ""}`}
             title={title}>
-                {icon}{label}
+                {icon}{label}{children}
         </span>
 
 const UniversalButtonComponent = ({...props}) => {
@@ -221,6 +221,7 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     link={to ? to : link}
                     icon={icon}
+                    children={children}
                     label={others.label ? others.label : labels.main}
                 />
     } else if(type === "button") {
@@ -230,6 +231,7 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     icon={icon}
                     input={input}
+                    children={children}
                     label={others.label ? others.label : labels.main}
                 />
     } else if(type === "link") {
@@ -238,6 +240,7 @@ const UniversalButtonComponent = ({...props}) => {
                     name={name}
                     title={labels.title}
                     icon={icon}
+                    children={children}
                     link={to ? to : link}
                     label={others.label ? others.label : labels.main}
                 />
@@ -255,6 +258,7 @@ const UniversalButtonComponent = ({...props}) => {
                     name={name}
                     icon={icon}
                     title={labels.title}
+                    children={children}
                     label={others.label ? others.label : labels.main}
                 />
     } else {

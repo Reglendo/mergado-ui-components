@@ -37,7 +37,6 @@ class Button extends React.Component<Props, {}> {
     public render() {
         const { meta, input, labels, group } = this.props
         const { children, ...props } = this.props
-
         return (
             <StyledField className={`${this.name}--${props.color}
                                         ${!labels.main ? this.name+`--notext`:``}

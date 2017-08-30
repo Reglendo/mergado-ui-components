@@ -46,7 +46,6 @@ labels?: {
 
 Example form
 
-    var InputLabel = require("components/Forms/Input").InputLabel;
     var Field = require('redux-form').Field;
 
     <div>

@@ -91,7 +91,7 @@ module.exports = {
             },
             {
                 include: /.*/,
-                loader: 'ts-loader',
+                loader: 'awesome-typescript-loader',
                 test: /\.(ts|tsx)$/,
                 options: {
                     configFileName: "./tsconfig.json"

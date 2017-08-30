@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
@@ -79,7 +79,6 @@
     "redux-form": "^6.5.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.14.0",
-    "ts-loader": "^2.0.0",
     "ts-node": "^2.1.0",
     "typescript": "^2.1.5",
     "webpack": "^2.2.1",

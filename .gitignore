@@ -2,5 +2,6 @@
 /.vscode
 build
 \.idea/
+/.awcache
 
 npm-debug\.log
