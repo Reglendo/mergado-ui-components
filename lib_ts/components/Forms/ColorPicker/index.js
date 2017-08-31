@@ -27,6 +27,7 @@ const ColorBox = styled_components_1.default.div `
     padding: 5px;
     border-radius: 1px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    outline: 1px solid #dbcba3;
 `;
 const Popover = styled_components_1.default.div `
     position: absolute;

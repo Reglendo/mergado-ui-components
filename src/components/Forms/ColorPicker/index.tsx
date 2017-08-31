@@ -35,6 +35,7 @@ const ColorBox = styled.div`
     padding: 5px;
     border-radius: 1px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    outline: 1px solid #dbcba3;
 `
 
 const Popover = styled.div`
