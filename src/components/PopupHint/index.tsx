@@ -149,7 +149,6 @@ class PopupHint extends React.Component<Props, State> {
 
     protected styleHint(buttonPosition: Position, renderLeft: boolean) {
         const hint: any = this.refs.hint
-
         hint.style.opacity = `0`
         hint.style.display = "block"
         hint.style.pointerEvents = "none"
@@ -183,11 +182,14 @@ class PopupHint extends React.Component<Props, State> {
                 this.refs.hint.focus()
             }
         }
-        hint.style.display = "none"
+
     }
 
     protected fadeOut(el: any, callback: () => void) {
+        const hint: any = this.refs.hint
+
         el.style.opacity = 1;
+        hint.style.display = "none";
 
         (function fade() {
             el.style.opacity -= .1
@@ -200,8 +202,9 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     protected fadeIn(el: any, display: any = null) {
+
         el.style.opacity = 0
-        el.style.display = display || "block";
+        el.style.display = "block";
 
         (function fade() {
             let val = parseFloat(el.style.opacity)

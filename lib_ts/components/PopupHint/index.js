@@ -134,10 +134,11 @@ class PopupHint extends React.Component {
                 this.refs.hint.focus();
             }
         }
-        hint.style.display = "none";
     }
     fadeOut(el, callback) {
+        const hint = this.refs.hint;
         el.style.opacity = 1;
+        hint.style.display = "none";
         (function fade() {
             el.style.opacity -= .1;
             if (el.style.opacity < 0) {
@@ -150,7 +151,7 @@ class PopupHint extends React.Component {
     }
     fadeIn(el, display = null) {
         el.style.opacity = 0;
-        el.style.display = display || "block";
+        el.style.display = "block";
         (function fade() {
             let val = parseFloat(el.style.opacity);
             val += 1;

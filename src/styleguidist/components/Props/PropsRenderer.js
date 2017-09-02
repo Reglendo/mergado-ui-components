@@ -19,7 +19,7 @@ function renderRows(props) {
 			</tr>
 		);
 		const description = renderDescription(prop)
-		if(description.props.children[0] !== '') {
+		if(description.props.children && description.props.children[0] !== '') {
 			rows.push(
 				<tr key={`${name}--description`}>
 					<td colSpan="3" className={s.cell + ' ' + s.cellDesc}>{renderDescription(prop)}</td>
