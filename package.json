@@ -28,7 +28,8 @@
   "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
     "@reglendo/mergado-ui-icons": "1.0.2",
-    "react": "^15.4.2",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0",
     "react-color": "^2.11.6",
     "react-dates": "^12.0.0",
     "react-dom-props": "^1.0.2",
@@ -71,7 +72,6 @@
     "react-addons-update": "^15.4.2",
     "react-cookie": "^1.0.5",
     "react-docgen-typescript": "https://github.com/Reglendo/react-docgen-typescript#0.1.7",
-    "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
     "react-styleguidist": "4.6.3",
     "react-test-renderer": "^15.5.4",
@@ -82,6 +82,7 @@
     "ts-node": "^2.1.0",
     "typescript": "^2.1.5",
     "webpack": "^2.2.1",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.4.2"
   }
 }

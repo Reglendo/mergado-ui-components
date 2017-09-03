@@ -3,7 +3,7 @@ const path = require("path");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config = {
   devtool: "cheap-module-source-map",
   entry: [
@@ -36,7 +36,11 @@ const config = {
   },
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
-    modules: [ path.resolve(__dirname, "src"), path.resolve(__dirname, "src/components"), 'node_modules']
+        modules: [ path.resolve(__dirname, "src"), path.resolve(__dirname, "src/components"), 'node_modules'],
+        alias: {
+            "react": "preact-compat",
+            "react-dom": "preact-compat",
+        }
 	}
 };
 
@@ -57,7 +61,8 @@ if (process.env.NODE_ENV === 'production') {
 	config.plugins = [
 	    new ExtractTextPlugin({ filename: 'css/style.css',
 	        					allChunks: true
-	    					})
+	    					}),
+        new BundleAnalyzerPlugin(),
 	]
 }
 

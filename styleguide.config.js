@@ -49,6 +49,10 @@ module.exports = {
         webpackConfig.resolve.modules.push(path.resolve(__dirname, "src/components"));
         webpackConfig.resolve.modules.push(path.resolve(__dirname, "src"));
 
+
+        webpackConfig.resolve.alias['react'] = "preact-compat"
+        webpackConfig.resolve.alias['react-dom'] = "preact-compat"
+
         webpackConfig.resolve.alias['rsg-components/Props'] =
             path.join(dir, 'components/Props');
 
@@ -76,6 +80,9 @@ module.exports = {
 
         webpackConfig.resolve.alias['rsg-components/Editor'] =
             path.join(dir, 'components/Editor');
+
+
+        webpackConfig.resolve.alias['rsg-components/Markdown'] = path.join(dir, 'components/Markdown');
 
 
         webpackConfig.module.loaders.push(
