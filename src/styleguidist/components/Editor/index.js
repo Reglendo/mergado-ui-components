@@ -5,7 +5,7 @@ import 'rsg-codemirror-theme.css';
 import s from './Editor.css';
 
 import React, { Component, PropTypes } from 'react';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import Codemirror from 'react-codemirror';
 import EditorRenderer from './EditorRenderer';
 

@@ -1,8 +1,9 @@
 import * as React from "react"
-import {prefix} from "config"
-import uniqueId from "helpers/unique_id"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import styled from "styled-components"
+
+import {prefix} from "../../../config"
+import uniqueId from "../../../helpers/unique_id"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
 export interface Props extends IFieldProps {
     options?: any

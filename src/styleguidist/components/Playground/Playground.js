@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash.debounce';
 import PlaygroundRenderer from './PlaygroundRenderer';
 import cookie from 'react-cookie';
 

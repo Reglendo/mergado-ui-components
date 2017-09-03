@@ -1,6 +1,7 @@
 import * as React from "react"
-import {prefix} from "config"
 import styled from "styled-components"
+
+import {prefix} from "../../config"
 
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado"

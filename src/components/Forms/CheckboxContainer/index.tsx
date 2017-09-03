@@ -1,12 +1,13 @@
 import * as React from "react"
-import {prefix, form} from "config"
-import LittleStatus from "components/LittleStatus"
-import TextInput from "components/Forms/TextInput"
 import {Link} from "react-router"
-import uniqueId from "helpers/unique_id"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
-import {QueryList} from "./list"
 import styled from "styled-components"
+
+import {prefix, form} from "../../../config"
+import LittleStatus from "../../../components/LittleStatus"
+import TextInput from "../../../components/Forms/TextInput"
+import uniqueId from "../../../helpers/unique_id"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {QueryList} from "./list"
 
 export interface Query {
     id: number

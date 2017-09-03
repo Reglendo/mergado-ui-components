@@ -1,8 +1,9 @@
 import * as React from "react"
-import {prefix, form} from "config"
-import domOnlyProps from "helpers/dom-only-props"
 import styled from "styled-components"
-import * as style from "styled"
+
+import {prefix, form} from "../../../config"
+import domOnlyProps from "../../../helpers/dom-only-props"
+import * as style from "../../../styled"
 
 export interface IFieldProps {
     group?: {

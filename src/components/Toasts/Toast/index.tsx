@@ -1,9 +1,11 @@
 import * as React from "react"
-import {prefix} from "config"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
-import uniqueId from "helpers/unique_id"
 import styled from "styled-components"
-import Button from "components/Forms/Button"
+
+import {prefix} from "../../../config"
+import uniqueId from "../../../helpers/unique_id"
+import Button from "../../../components/Forms/Button"
+
 export interface Props {
     id?: string,
     text?: string,

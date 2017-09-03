@@ -1,10 +1,10 @@
 import * as React from "react"
-import {prefix,form} from "config"
 import {Link} from "react-router"
-import domOnlyProps from "helpers/dom-only-props"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
-import {UniversalButton} from "./types"
 import styled from "styled-components"
+import {prefix,form} from "../../../config"
+import domOnlyProps from "../../../helpers/dom-only-props"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {UniversalButton} from "./types"
 
 export interface Props extends IFieldProps {
     type?: "button" | "link" | "submit" | "void" | "href"

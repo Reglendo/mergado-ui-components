@@ -1,7 +1,8 @@
 import * as React from "react"
-import NavLink from "components/TopNav/NavLink"
-import {prefix} from "config"
 import styled from "styled-components"
+
+import NavLink from "../../components/TopNav/NavLink"
+import {prefix} from "../../config"
 
 export interface Props {
     links: JSX.Element[]

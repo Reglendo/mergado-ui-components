@@ -1,10 +1,10 @@
 import * as React from "react"
-import {prefix} from "config"
-import DataCell from "../DataCell"
-import Checkbox from "components/Forms/Checkbox"
-import uniqueId from "helpers/unique_id"
-import { ID, Action } from "helpers/types"
 import styled from "styled-components"
+import {prefix} from "../../../config"
+import DataCell from "../DataCell"
+import Checkbox from "../../../components/Forms/Checkbox"
+import uniqueId from "../../../helpers/unique_id"
+import { ID, Action } from "../../../helpers/types"
 
 export interface Props {
     style?: any

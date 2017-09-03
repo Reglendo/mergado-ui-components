@@ -1,9 +1,9 @@
 import * as React from "react"
-import {prefix,form} from "config"
-import TextInput from "components/Forms/TextInput"
-import uniqueId from "helpers/unique_id"
 import styled from "styled-components"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+import {prefix,form} from "../../../config"
+import TextInput from "../../../components/Forms/TextInput"
+import uniqueId from "../../../helpers/unique_id"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
 export interface Item {
     value: string

@@ -1,7 +1,8 @@
 import * as React from "react"
-import Bubble from "./Bubble"
-import {prefix} from "config"
 import styled from "styled-components"
+
+import {prefix} from "../../config"
+import Bubble from "./Bubble"
 
 export interface Props {
     icon?: JSX.Element

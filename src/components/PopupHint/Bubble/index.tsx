@@ -1,6 +1,7 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import {prefix} from "config"
+
+import {prefix} from "../../../config"
 
 export interface Props {
 }

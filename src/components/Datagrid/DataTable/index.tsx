@@ -1,14 +1,14 @@
 import * as React from "react"
-import {prefix} from "config"
+import styled from "styled-components"
+import {prefix} from "../../../config"
 import DataHeader from "../DataHeader"
 import DataBody from "../DataBody"
-import Button from "components/Forms/Button"
-import TextInput from "components/Forms/TextInput"
-import Checkbox from "components/Forms/Checkbox"
-import uniqueId from "helpers/unique_id"
-import { ID, Action, Filter } from "helpers/types"
-import styled from "styled-components"
-import domOnlyProps from "helpers/dom-only-props"
+import Button from "../../../components/Forms/Button"
+import TextInput from "../../../components/Forms/TextInput"
+import Checkbox from "../../../components/Forms/Checkbox"
+import uniqueId from "../../../helpers/unique_id"
+import { ID, Action, Filter } from "../../../helpers/types"
+import domOnlyProps from "../../../helpers/dom-only-props"
 
 export interface Props {
     bulkActions: Action[]

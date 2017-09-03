@@ -1,11 +1,10 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-		"baseUrl": "src/",
         "module": "commonjs",
         "target": "es2015",
         "jsx": "react",
-        "outDir": "./lib_ts",
+        "outDir": "./lib",
         "sourceMap": true,
         "declaration": false
     },

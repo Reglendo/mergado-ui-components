@@ -1,9 +1,10 @@
 import * as React from "react"
 import styled, {css} from "styled-components"
-import * as style from "styled"
-import domOnlyProps from "helpers/dom-only-props"
-import {prefix,form} from "config"
 import {Link as RouterLink} from "react-router"
+
+import * as style from "../../../styled"
+import domOnlyProps from "../../../helpers/dom-only-props"
+import {prefix,form} from "../../../config"
 /* <style> */
 /* sizes */
 const Small = css`

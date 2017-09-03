@@ -1,8 +1,9 @@
 import * as React from "react"
-import {prefix,form} from "config"
-import uniqueId from "helpers/unique_id"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import styled, {css} from "styled-components"
+
+import {prefix,form} from "../../../config"
+import uniqueId from "../../../helpers/unique_id"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
 export interface Props extends IFieldProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"

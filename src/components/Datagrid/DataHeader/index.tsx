@@ -1,8 +1,8 @@
 import * as React from "react"
-import {prefix} from "config"
+import {prefix} from "../../../config"
 import DataCell from "../DataCell"
-import Checkbox from "components/Forms/Checkbox"
-import { ID, Action } from "helpers/types"
+import Checkbox from "../../../components/Forms/Checkbox"
+import { ID, Action } from "../../../helpers/types"
 
 export interface Props {
     style?: any

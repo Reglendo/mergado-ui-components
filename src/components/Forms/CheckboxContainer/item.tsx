@@ -1,7 +1,7 @@
 import * as React from "react"
 import {Link} from "react-router"
-import LittleStatus from "components/LittleStatus"
 import styled, {css} from "styled-components"
+import LittleStatus from "../../../components/LittleStatus"
 
 interface IQueryItemProps {
     name: string

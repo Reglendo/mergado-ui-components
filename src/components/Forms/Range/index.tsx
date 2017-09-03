@@ -1,8 +1,10 @@
 import * as React from "react"
-import {prefix,form} from "config"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
+
+import {prefix,form} from "../../../config"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import styled from "styled-components"
-import * as style from "styled"
+import * as style from "../../../styled"
+
 export interface Props extends IFieldProps {
     max: number
     min: number
@@ -154,7 +156,7 @@ class Range extends React.Component<Props,State> {
         super(props)
         this.state = {
             value: props.input.value ?
-                     props.input.value : props.default ? 
+                     props.input.value : props.default ?
                      props.default : (props.max - props.min) / 2 + props.min,
         }
         this.handleChange = this.handleChange.bind(this)

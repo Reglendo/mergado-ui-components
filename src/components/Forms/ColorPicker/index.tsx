@@ -1,8 +1,8 @@
 import * as React from "react"
-import {prefix,form} from "config"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
-import {Field, IFieldProps, defaultFieldProps} from "components/Forms/Field"
 import styled from "styled-components"
+import {prefix,form} from "../../../config"
+import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
 export interface Color {
     r: number
