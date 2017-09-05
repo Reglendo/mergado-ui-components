@@ -6,6 +6,8 @@ import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
+import { ThemeProvider } from 'styled-components';
+import defaultTheme from '/src/styled/themes/default.ts';
 
 import Editor from 'rsg-components/Editor';
 const s = require('../Playground/Playground.css');
@@ -182,9 +184,11 @@ export default class Preview extends Component {
 
 			const wrappedComponent = (
                     <Provider store={store}>
+                        <ThemeProvider theme={defaultTheme}>
                         <Wrapper>
-                            <Form />
+                                <Form />
                         </Wrapper>
+                        </ThemeProvider>
                     </Provider>
 			);
 

@@ -39,7 +39,8 @@
     "react-router": "^2.6.1",
     "react-sortablejs": "^1.0.1",
     "sortablejs": "^1.4.2",
-    "styled-components": "^2.1.0"
+    "styled-components": "^2.1.0",
+    "styled-components-theme": "^1.0.5"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
