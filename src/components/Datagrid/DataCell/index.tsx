@@ -1,6 +1,7 @@
 import * as React from "react"
 import {prefix} from "../../../config"
 import styled from "styled-components"
+import theme from "../../../styled/theme"
 
 export interface Props {
     style?: any
@@ -12,29 +13,33 @@ export interface State {
 }
 
 const Cell = styled.td`
-    padding: 8px 10px;
+    padding: ${theme.table_cell_padding};
     text-align: left;
-    border-bottom: 1px solid #dbcba3;
+    border-bottom: ${theme.table_border_horizontal};
+    border-right: ${theme.table_border_vertical};
     font-weight: normal;
-    border-right: #dbcba3 1px dotted;
-    font-size: 13px;
+    font-size: ${theme.table_cell_text_size};
     .muk-form__group {
         margin: 0;
     }
     .muk-form__label {
         padding: 0;
     }
+    .muk-button__item {
+        padding: 0 5px;
+        vertical-align: middle;
+        height: auto;
+        line-height: initial;
+    }
 `
 
 const Header = Cell.withComponent("th").extend`
-    background: #333;
-    padding: 0 10px;
     border-color: transparent;
-    font-weight: bold;
     white-space: nowrap;
-    height: 30px;
-    line-height: 30px;
     color: #fff;
+    font-weight: bold;
+    font-size: ${theme.table_header_text_size};
+    text-transform: ${theme.table_header_text_transform};
 `
 
 class DataCell extends React.Component<Props, State> {

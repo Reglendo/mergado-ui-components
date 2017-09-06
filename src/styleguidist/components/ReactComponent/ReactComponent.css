@@ -3,7 +3,6 @@
 	composes: component-bg from "../../styles/colors.css";
 	margin-bottom: 20px;
 	background: #fff;
-    font-family: Arial,Helvetica,Verdana,Sans-serif;
 	box-shadow: 0 0 9px 0px rgba(0,0,0,0.25);
 }
 

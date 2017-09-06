@@ -3,7 +3,7 @@ import styled, {css} from "styled-components"
 import {Link as RouterLink} from "react-router"
 
 import * as style from "../../../styled"
-import theme from "../../../styled/styled-theme"
+import theme from "../../../styled/theme"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix,form} from "../../../config"
 

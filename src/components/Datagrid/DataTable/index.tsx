@@ -9,6 +9,7 @@ import Checkbox from "../../../components/Forms/Checkbox"
 import uniqueId from "../../../helpers/unique_id"
 import { ID, Action, Filter } from "../../../helpers/types"
 import domOnlyProps from "../../../helpers/dom-only-props"
+import theme from "../../../styled/theme"
 
 export interface Props {
     bulkActions: Action[]
@@ -34,27 +35,15 @@ const Table = styled.table`
     .sortable-ghost {
       opacity: 0.1;
     }
+    border-left: ${theme.table_border_vertical};
 `
 
 const Filters = styled.div`
     display: inline-block;
     vertical-align: bottom;
-    padding-left: 40px;
     position: relative;
     .muk-form__group {
         padding: 0;
-    }
-    &:before {
-        display: inline-block;
-        content: " ";
-        border-left: 2px solid #dbcba3;
-        height: 40px;
-        vertical-align: bottom;
-        margin-top: 20px;
-        width: 10px;
-        position: absolute;
-        bottom: 0;
-        left: 19px;
     }
 `
 
@@ -72,29 +61,27 @@ const CheckboxFilter = styled(Checkbox)`
     white-space: nowrap;
 `
 
-const Actions = styled.div`
+export const Actions = styled.div`
     display: inline-block;
     vertical-align: bottom;
 `
-const ActionsIcons = styled.div`
-    background: white;
+export const ActionsIcons = styled.div`
     display: inline-block;
     vertical-align: bottom;
-    height: 40px;
-    line-height: 34px;
+
     white-space: nowrap;
     position: relative;
-    background-color: #fff;
-    border: 1px solid #dbcba3;
+    .muk-button {
+        padding: 0px
+    }
     .muk-button__item {
-        height: 34px !important;
+        padding: 0 5px;
+        vertical-align: middle;
+        height: auto;
+        line-height: initial;
     }
-    .muk-icon {
-        line-height: 42px;
-    }
-    svg {
-        width: 18px !important;
-        height: 18px !important;
+    path {
+        fill: white !important;
     }
 `
 
@@ -169,29 +156,6 @@ class DataTable extends React.Component<Props, State> {
         })
     }
 
-    protected renderBulkActionbar() {
-        const { labels } = this.props
-        return (
-            <Actions className={`${this.name}__actions_bar`}>
-                <ActionsIcons className={`${this.name}__actions_icons`}>
-                    {this.renderBulkActions()}
-                </ActionsIcons>
-            </Actions>
-        )
-    }
-
-    protected renderBulkActions() {
-        const disabled = !this.state.selectedRows || this.state.selectedRows.length === 0
-        return this.props.bulkActions.map(obj => {
-            return (<Button onClick={obj.action}
-                            key={obj.type}
-                            icon={obj.icon}
-                            disabled={disabled}
-                            color="nocolor"
-                            size="tiny" />)
-        })
-    }
-
     protected renderFiltersBar() {
         return (
             <Filters className={`${this.name}__filters_bar muk-11-12`}>
@@ -228,7 +192,6 @@ class DataTable extends React.Component<Props, State> {
         return (
             <Wrapper className={`${this.name}`}>
                 <div style={{whiteSpace: "nowrap"}}>
-                    {this.props.bulkActions.length > 0 && this.renderBulkActionbar()}
                     {this.props.filters.length > 0 && this.renderFiltersBar()}
                 </div>
                 <Table className={className} style={style} {...domOnlyProps(this.props)}>

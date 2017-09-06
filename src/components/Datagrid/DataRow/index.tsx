@@ -36,7 +36,7 @@ const Row = styled.tr`
 
     &:not(.no-hover):hover {
         .${prefix}datagrid__cell {
-            background: #fdf7d2
+            background: #fcfaf4
         }
     }
 `
