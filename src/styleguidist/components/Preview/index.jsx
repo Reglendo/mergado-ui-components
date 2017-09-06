@@ -8,6 +8,8 @@ import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 import { ThemeProvider } from 'styled-components';
 import defaultTheme from '/src/styled/themes/default.ts';
+import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
+import cookie from 'react-cookie';
 
 import Editor from 'rsg-components/Editor';
 const s = require('../Playground/Playground.css');
@@ -53,6 +55,7 @@ export default class Preview extends Component {
             innerHtml: '',
             code: null,
             preserved: null,
+			theme: cookie.load('theme') || "default",
 		};
 		this.componentState = {};
 	}
@@ -182,9 +185,10 @@ export default class Preview extends Component {
                 }
             })(PreviewComponent)
 
+			const theme = this.state.theme === "ryzlink" ? ryzlinkTheme : defaultTheme
 			const wrappedComponent = (
                     <Provider store={store}>
-                        <ThemeProvider theme={defaultTheme}>
+                        <ThemeProvider theme={theme}>
                         <Wrapper>
                                 <Form />
                         </Wrapper>

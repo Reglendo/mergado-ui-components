@@ -21,11 +21,22 @@ Buttons with icons
 Button colors
 
     <div>
+    primary:<br/>
         <Button labels={{main: 'I\'m blue'}} color="blue" />
         <Button labels={{main: 'I\'m grey'}} color="grey" />
         <Button labels={{main: 'I\'m green'}} color="green" />
         <Button labels={{main: 'I\'m red'}} color="red" />
-        <Button labels={{main: 'I have no background'}} color="nocolor" />
+        <Button labels={{main: 'I\'m orange'}} color="orange" />
+        <Button labels={{main: 'I\'m yellow'}} color="yellow" />
+        <Button labels={{main: 'I have no background'}} color="nocolor" /><br/>
+    secondary:<br/>
+        <Button labels={{main: 'I\'m blue'}} color="blue" secondary={true} />
+        <Button labels={{main: 'I\'m grey'}} color="grey" secondary={true} />
+        <Button labels={{main: 'I\'m green'}} color="green" secondary={true} />
+        <Button labels={{main: 'I\'m red'}} color="red" secondary={true} />
+        <Button labels={{main: 'I\'m orange'}} color="orange" secondary={true} />
+        <Button labels={{main: 'I\'m yellow'}} color="yellow" secondary={true} />
+        <Button labels={{main: 'I have no background'}} color="nocolor" secondary={true} />
     </div>
 
 Button state

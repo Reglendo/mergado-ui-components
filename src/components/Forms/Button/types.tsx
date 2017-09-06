@@ -3,8 +3,10 @@ import styled, {css} from "styled-components"
 import {Link as RouterLink} from "react-router"
 
 import * as style from "../../../styled"
+import theme from "../../../styled/styled-theme"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix,form} from "../../../config"
+
 /* <style> */
 /* sizes */
 const Small = css`
@@ -25,77 +27,71 @@ const Disabled = css`
 
 /* colors */
 const colorize = () => (props) =>  {
-    let color
-    let dark
-    let darker
     if(props.color === "nocolor") {
-        return `
+        return css`
             background: transparent;
             padding: 0;
             border: none;
-            color: #333;
+            color: ${theme.blue};
+            &:active,&:focus {
+              border: none;
+              outline: none;
+              background: rgba(200,200,200,0.2);
+            }
             path {
-                fill: #333;
+                fill: ${theme.blue};
             }
         `
     }
-    switch(props.color) {
-        case "green":
-            color = style.GREEN
-            dark = style.GREEN_DARK
-            darker = style.GREEN_DARKER
-            break
-        case "grey":
-        case "gray":
-            color = style.GREY
-            dark = style.GREY_DARK
-            darker = style.GREY_DARKER
-            break
-        case "red":
-            color = style.RED
-            dark = style.RED_DARK
-            darker = style.RED_DARKER
-            break
-        case "blue":
-        default:
-            color = style.BLUE
-            dark = style.BLUE_DARK
-            darker = style.BLUE_DARKER
-            break
+    const color = theme[props.color === "gray" ? "grey" : props.color]
+
+    if(props.secondary === true) {
+        return css`
+            background: transparent;
+            border: 2px solid ${color};
+            color: ${color};
+            path {
+                ${color};
+            }
+            &:hover {
+                background-color: ${color.fade(0.9)};
+                text-decoration: none;
+            }
+            &:active,&:focus {
+              background: ${color.fade(0.6)};
+              text-decoration: none;
+            }
+        `
     }
-    return `
+    return css`
         background-color: ${color};
         border-color: ${color};
         color: white;
         &:hover {
-            background-color: ${dark};
+            background-color: ${color.darken(0.1)};
         }
-
         &:active,&:focus {
-          background: ${darker};
+          background: ${color.darken(0.2)};
           text-decoration: none;
         }
-
     `
 }
 
 const styling = css`
     box-sizing: border-box;
-    border-radius: 0px;
+    border-radius: ${theme.button_radius};
     display: inline-block;
-    font-family: Trebuchet MS,Geneva CE,lucida,sans-serif;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
+    text-transform: ${theme.button_text_transform};
+    font-size: ${theme.button_text_size};
+    font-weight: ${theme.button_text_weight};
     user-select: none;
-    color: white;
     padding: 0px 20px;
     height: 42px;
-    line-height: 42px;
-    border-width: 1px;
+    line-height: 39px;
+    border-width: 2px;
     border-style: solid;
     ${(props: any) => props.size === "tiny" && Tiny }
     ${(props: any) => props.size === "small" && Small }
@@ -111,7 +107,7 @@ const styling = css`
     }
 
     .${prefix}icon {
-      margin: 0 5px;
+      margin: 0 5;
       position: relative;
       top: -1px;
     }

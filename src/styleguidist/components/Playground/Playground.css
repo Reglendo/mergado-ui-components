@@ -1,9 +1,6 @@
 .root {
 	position: relative;
-	composes: border from "../../styles/colors.css";
 	margin-bottom: 30px;
-	border-radius: 3px 3px 0 3px;
-    background: #f5ecd5;
     margin-right: -1px;
 }
 

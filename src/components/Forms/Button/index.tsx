@@ -5,18 +5,19 @@ import {prefix,form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {UniversalButton} from "./types"
-import theme from "../../../styled/theme"
-
+import theme from "../../../styled/themes/default"
+import { ThemeProvider } from "styled-components"
 
 export interface Props extends IFieldProps {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
     to?: string
     icon?: JSX.Element | string
-    color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
+    color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor" | "yellow" | "orange" | "transparent"
     size?: "small" | "tiny" | ""
     disabled?: boolean
     onClick?: (evt: any) => any
+    secondary?: boolean
 }
 
 const StyledField = styled(Field)`
@@ -34,6 +35,7 @@ class Button extends React.Component<Props, {}> {
         color: "blue",
         disabled: false,
         size: "",
+        secondary: false,
     }
 
     public render() {
@@ -47,7 +49,7 @@ class Button extends React.Component<Props, {}> {
                                         ${props.disabled ? this.name+`--disabled`:``}
                 `}
                 {...this.props} name={this.name} label="" labels={{...labels,main: ""}}
-                style={{...group.style}}
+                style={{...group.style, marginBottom: 0}}
                 >
                     <UniversalButton {...this.props} name={this.name} />
             </StyledField>

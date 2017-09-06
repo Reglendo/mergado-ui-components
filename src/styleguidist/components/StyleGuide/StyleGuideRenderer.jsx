@@ -7,54 +7,8 @@ import c from '../ReactComponent/ReactComponent.css';
 
 import p from '../Playground/Playground.css';
 
-const style = `
-            .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link {
-                color: white !important;
-                font-size: 1.2em;
-                line-height: 1.5em;
-                transition: color 0.2s;
-            }
+import rc from '../ReactComponent/ReactComponent.css';
 
-            .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link:hover {
-                color: rgba(255,255,255,0.6) !important;
-            }
-
-            .ReactStyleguidist-Playground__preview {
-                background: #f5ecd5;
-            }
-
-            .ReactStyleguidist-TableOfContents__search {
-                width: 210px;
-                border: none;
-                outline: none;
-                border-radius: 0;
-            }
-
-            .ReactStyleguidist-PlaygroundError__root {
-                position: absolute;
-                top: 0;
-                opacity: 0.8;
-                width: 100%;
-                bottom: 0;
-                text-align: left;
-                height: 100%;
-                z-index: 100000;
-                margin: 0;
-            }
-
-            .ReactStyleguidist-PlaygroundError__root + div {
-                opacity: 0.7
-            }
-
-            .rsg--example-preview > div {
-                position: relative;
-            }
-
-            body {
-                overflow: hidden;
-                position: relative;
-            }
-`
 
 
 try {
@@ -62,7 +16,7 @@ try {
 } catch(e) { }
 var json = require("../../../../package.json")
 
-const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, switchCompact, switchSidebar }) => {
+const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, switchCompact, switchSidebar, switchTheme }) => {
     var exported = [];
     var components = update(components, { props: { sections: { $set: components.props.sections.map((obj) => {
 
@@ -125,13 +79,75 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, switchCo
         }
 
     `
+    const style = `
+                .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link {
+                    color: white !important;
+                    font-size: 1.2em;
+                    line-height: 1.5em;
+                    transition: color 0.2s;
+                }
 
+                .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link:hover {
+                    color: rgba(255,255,255,0.6) !important;
+                }
+
+                .ReactStyleguidist-Playground__preview {
+                    background: #f5ecd5;
+                }
+
+                .ReactStyleguidist-TableOfContents__search {
+                    width: 210px;
+                    border: none;
+                    outline: none;
+                    border-radius: 0;
+                }
+
+                .ReactStyleguidist-PlaygroundError__root {
+                    position: absolute;
+                    top: 0;
+                    opacity: 0.8;
+                    width: 100%;
+                    bottom: 0;
+                    text-align: left;
+                    height: 100%;
+                    z-index: 100000;
+                    margin: 0;
+                }
+
+                .ReactStyleguidist-PlaygroundError__root + div {
+                    opacity: 0.7
+                }
+
+                .rsg--example-preview > div {
+                    position: relative;
+                }
+
+                body {
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .${p.root.replace(/ /g,'.')} {
+                    background: ${theme === "ryzlink" ? "white" : "#f5ecd5"};
+                    border: ${theme === "ryzlink" ? "2px solid #dcd8ca" : "1px solid #888"};
+                    border-radius: ${theme === "ryzlink" ? "5px 5px 0 5px" : "3px 3px 0 3px"};
+
+                }
+                .${rc.examples.replace(/ /g,'.')} {
+                    background: ${theme === "ryzlink" ? "#f5ecd5" : "white"};
+                }
+    `
     return (
     <div className={`${s.root}`}>
     		<main className={s.content}>
     			<div className={s.wrapper}>
     				<div className={`${s.components} ${!sidebar && s.withsidebar}`}>
+
                         <div className={s.buttons}>
+                            <select style={{marginLeft: sidebar?"260px":"0px"}} value={theme} onChange={switchTheme}>
+                                <option selected={theme === "default"} value="default">default</option>
+                                <option selected={theme === "ryzlink"} value="ryzlink">ryzlink</option>
+                            </select>
                             <button onClick={switchCompact} className={s.toggleCompact}
                                     style={{float: 'right',
                                             background: compact?'rgba(127, 186, 44, 0.5)':'rgba(0, 0, 0, 0.27)'}}>Compact</button>
@@ -168,6 +184,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, switchCo
     		</main>
             <style>
                 {style}
+
             </style>
     	</div>
     );
