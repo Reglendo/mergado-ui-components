@@ -71,10 +71,10 @@ export default class StyleGuide extends Component {
 	}
 
     switchCompact() {
+		cookie.save('compact', !this.state.compact ? '1' : '0', { path: '/' });
         this.setState({
             compact: !this.state.compact
         })
-        cookie.save('compact', !this.state.compact ? '1' : '0', { path: '/' });
 
     }
 
@@ -87,10 +87,10 @@ export default class StyleGuide extends Component {
 	}
 
     switchSidebar() {
+		cookie.save('sidebar', !this.state.showSidebar ? '1' : '0', { path: '/' });
         this.setState({
             showSidebar: !this.state.showSidebar
         })
-        cookie.save('sidebar', !this.state.showSidebar ? '1' : '0', { path: '/' });
     }
 
     componentDidUpdate() {

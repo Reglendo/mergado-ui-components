@@ -78,7 +78,7 @@ export const ActionsIcons = styled.div`
         padding: 0 5px;
         vertical-align: middle;
         height: auto;
-        line-height: initial;
+        line-height: 12px;
     }
     path {
         fill: white !important;
