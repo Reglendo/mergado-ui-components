@@ -78,12 +78,12 @@ export default class Playground extends Component {
 	}
 
 	handleCodeToggle() {
+		if(this.props.name) {
+			cookie.save('show_code_' + this.props.name + '_' + this.props.index, !this.state.showCode ? '1' : '0', { path: '/' });
+		}
 		this.setState({
 			showCode: !this.state.showCode,
 		});
-        if(this.props.name) {
-            cookie.save('show_code_' + this.props.name + '_' + this.props.index, !this.state.showCode ? '1' : '0', { path: '/' });
-        }
 	}
 
     handleChangeHtml(html) {
@@ -94,12 +94,12 @@ export default class Playground extends Component {
 
 
 	handleHtmlToggle() {
+		if(this.props.name) {
+			cookie.save('show_html_' + this.props.name + '_' + this.props.index, !this.state.showHtml ? '1' : '0', { path: '/' });
+		}
 		this.setState({
 			showHtml: !this.state.showHtml,
 		});
-        if(this.props.name) {
-            cookie.save('show_html_' + this.props.name + '_' + this.props.index, !this.state.showHtml ? '1' : '0', { path: '/' });
-        }
 	}
 
 	render() {
