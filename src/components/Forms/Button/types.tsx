@@ -15,10 +15,11 @@ interface IHrefProps {
     [propName: string]: any
 }
 
-export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title, className, children, ...props}) =>
-        <a  {...domOnlyProps(props)}
+export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title,
+                                             styleClass, className, children, ...props}) =>
+        <a {...domOnlyProps(props)}
             href={link}
-            className={`${name}__item ${className ? className : ""}`}
+            className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
                 {icon}{label}{children}
         </a>
@@ -33,12 +34,13 @@ interface IButtonProps {
     [propName: string]: any
 }
 
-export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, input, children, ...props}) => {
+export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className,
+                                                 styleClass, input, children, ...props}) => {
     return (
         <button
             {...input}
             {...domOnlyProps(props)}
-            className={`${name}__item ${className ? className : ""}`}
+            className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
                 {icon}{label}{children}
         </button>
@@ -55,11 +57,12 @@ interface ILinkProps {
     [propName: string]: any
 }
 
-export const Link: React.SFC<ILinkProps> = ({name, icon, label, title, className, link, children, ...props}) =>
+export const Link: React.SFC<ILinkProps> = ({name, icon, label, title, className,
+                                             styleClass, link, children, ...props}) =>
         <RouterLink
             {...domOnlyProps(props)}
             to={link}
-            className={`${name}__item ${className ? className : ""}`}
+            className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
                 {icon}{label}{children}
         </RouterLink>
@@ -73,11 +76,12 @@ interface ISubmitProps {
     [propName: string]: any
 }
 
-export const Submit: React.SFC<ISubmitProps> = ({name, label, title, className, input, children, ...props}) =>
+export const Submit: React.SFC<ISubmitProps> = ({name, label, title, className,
+                                                 styleClass, input, children, ...props}) =>
         <input type="submit"
                     {...input}
                     {...domOnlyProps(props)}
-                    className={`${name}__item ${className ? className : ""}`}
+                    className={`${name}__item ${className ? className : ""} ${styleClass}`}
                     value={label}
                     title={title}
                 />
@@ -90,10 +94,11 @@ interface IVoidProps {
     className?: string
     [propName: string]: any
 }
-export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className, children, ...props}) =>
+export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className,
+                                             styleClass, children, ...props}) =>
         <span
             {...domOnlyProps(props)}
-            className={`${name}__item ${className ? className : ""}`}
+            className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
                 {icon}{label}{children}
         </span>

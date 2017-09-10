@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"
@@ -7,7 +7,6 @@ import Checkbox from "../../../components/Forms/Checkbox"
 import { ID, Action } from "../../../helpers/types"
 import Button from "../../../components/Forms/Button"
 import {Actions, ActionsIcons} from "../DataTable"
-import theme from "../../../styled/theme"
 
 export interface Props {
     style?: any
@@ -20,10 +19,6 @@ export interface Props {
 
 export interface State {
 }
-
-const Header = styled.tr`
-    background: ${props => props.selected ? theme.blue : "#333"};
-`
 
 class DataHeader extends React.Component<Props, State> {
 
@@ -77,5 +72,9 @@ class DataHeader extends React.Component<Props, State> {
         )
     }
 }
+
+const Header = glamorous.tr({}, (props: any) => { return {
+    background: props.selected ? props.theme.blue : "#333",
+}})
 
 export default DataHeader

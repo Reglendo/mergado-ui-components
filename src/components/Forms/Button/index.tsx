@@ -17,11 +17,6 @@ export interface Props extends IFieldProps {
     secondary?: boolean
 }
 
-const StyledField = glamorous(Field)({
-    display: "inline-block",
-    verticalAlign: "top",
-})
-
 class Button extends React.Component<Props, {}> {
     protected readonly name = prefix + "button";
 
@@ -53,5 +48,10 @@ class Button extends React.Component<Props, {}> {
         )
     }
 }
+
+const StyledField = glamorous(Field)({
+    display: "inline-block",
+    verticalAlign: "top",
+})
 
 export default Button

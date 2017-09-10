@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import {css} from "glamor"
 import * as Color from "color"
 
 import {Href, Button, Link, Submit, Void} from "./types"
@@ -15,6 +16,7 @@ const UniversalButtonComponent = ({...props}) => {
                     icon={icon}
                     children={children}
                     label={others.label ? others.label : labels.main}
+                    styleClass={UniversalStyle}
                 />
     } else if(type === "button") {
         return <Button
@@ -25,6 +27,7 @@ const UniversalButtonComponent = ({...props}) => {
                     input={input}
                     children={children}
                     label={others.label ? others.label : labels.main}
+                    styleClass={UniversalStyle}
                 />
     } else if(type === "link") {
         return <Link
@@ -35,6 +38,7 @@ const UniversalButtonComponent = ({...props}) => {
                     children={children}
                     link={to ? to : link}
                     label={others.label ? others.label : labels.main}
+                    styleClass={UniversalStyle}
                 />
     } else if(type === "submit") {
         return <Submit
@@ -43,6 +47,7 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     input={input}
                     label={others.label ? others.label : labels.main}
+                    styleClass={UniversalStyle}
                 />
     } else if(type === "void") {
         return <Void
@@ -52,13 +57,14 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     children={children}
                     label={others.label ? others.label : labels.main}
+                    styleClass={UniversalStyle}
                 />
     } else {
         return <div/>
     }
 }
 
-export const UniversalButton = glamorous(UniversalButtonComponent)({
+const UniversalStyle = css({
     boxSizing: "border-box",
     display: "inline-block",
     cursor: "pointer",
@@ -84,6 +90,9 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
     "& a": {
         color: "white",
     },
+})
+
+export const UniversalButton = glamorous(UniversalButtonComponent)({
 }, props => {
     const style = []
     if(props.size === "tiny") {
@@ -109,7 +118,7 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
     if(props.color === "nocolor") {
         style.push({
             background: "transparent",
-            padding: 0,
+            padding: "0 2px",
             border: "none",
             color: props.theme.blue,
             ":active,:focus": {
@@ -129,9 +138,11 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
             color: "white",
             ":hover": {
                 backgroundColor: Color(color).darken(0.1),
+                borderColor: Color(color).darken(0.1),
             },
             ":active,:focus": {
               background: Color(color).darken(0.2),
+              borderColor: Color(color).darken(0.2),
               textDecoration: "none",
             },
         })

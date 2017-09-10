@@ -8,6 +8,39 @@ import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/F
 export interface Props extends IFieldProps {
 }
 
+class Checkbox extends React.Component<Props, {}> {
+
+    protected readonly name = prefix + "input-checkbox"
+
+    public static defaultProps: Props = {
+        ...defaultFieldProps,
+    }
+
+    protected renderLabel() {
+        const { input, labels } = this.props
+        const label = this.props.label ? this.props.label : labels.main
+        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
+
+        return <glamorous.Div padding="2px 2px 0px 2px" className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
+                    <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
+                        <StyledInput
+                            checked={input.value}
+                            {...input}
+                            type="checkbox"
+                            className={`${this.name}__item ${input.className}`}
+                            />
+                        <IconCheck size={14} style={{position: "absolute"}} />
+                    </div>
+                    {label && " " }{label}
+                </glamorous.Div>
+    }
+
+    public render() {
+        return <StyledField {...this.props} name={this.name} label={this.renderLabel()} />
+    }
+
+}
+
 const StyledField = glamorous(Field)({
     "> .muk-form__group--invalid": {
         border: "none !important",
@@ -45,40 +78,6 @@ const StyledInput = glamorous.input({
     ":hover": {
         borderColor: `${props.theme.blue}`,
     },
-
 }})
-
-class Checkbox extends React.Component<Props, {}> {
-
-    protected readonly name = prefix + "input-checkbox"
-
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
-    }
-
-    protected renderLabel() {
-        const { input, labels } = this.props
-        const label = this.props.label ? this.props.label : labels.main
-        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
-
-        return <glamorous.Div padding="2px 2px 0px 2px" className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
-                    <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
-                        <StyledInput
-                            checked={input.value}
-                            {...input}
-                            type="checkbox"
-                            className={`${this.name}__item ${input.className}`}
-                            />
-                        <IconCheck size={14} style={{position: "absolute"}} />
-                    </div>
-                    {label && " " }{label}
-                </glamorous.Div>
-    }
-
-    public render() {
-        return <StyledField {...this.props} name={this.name} label={this.renderLabel()} />
-    }
-
-}
 
 export default Checkbox

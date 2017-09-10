@@ -1,7 +1,7 @@
 import * as React from "react"
+import glamorous from "glamorous"
+
 import {prefix} from "../../../config"
-import styled from "styled-components"
-import theme from "../../../styled/theme"
 
 export interface Props {
     style?: any
@@ -11,36 +11,6 @@ export interface Props {
 }
 export interface State {
 }
-
-const Cell = styled.td`
-    padding: ${theme.table_cell_padding};
-    text-align: left;
-    border-bottom: ${theme.table_border_horizontal};
-    border-right: ${theme.table_border_vertical};
-    font-weight: normal;
-    font-size: ${theme.table_cell_text_size};
-    .muk-form__group {
-        margin: 0;
-    }
-    .muk-form__label {
-        padding: 0;
-    }
-    .muk-button__item {
-        padding: 0 5px;
-        vertical-align: middle;
-        height: auto;
-        line-height: initial;
-    }
-`
-
-const Header = Cell.withComponent("th").extend`
-    border-color: transparent;
-    white-space: nowrap;
-    color: #fff;
-    font-weight: bold;
-    font-size: ${theme.table_header_text_size};
-    text-transform: ${theme.table_header_text_transform};
-`
 
 class DataCell extends React.Component<Props, State> {
 
@@ -62,5 +32,37 @@ class DataCell extends React.Component<Props, State> {
                     onClick={onClick}>{this.props.children}</Cell>
     }
 }
+
+const Cell = glamorous.td({
+    textAlign: "left",
+    fontWeight: "normal",
+    "& .muk-form__group": {
+        margin: 0,
+    },
+    "& .muk-form__label": {
+        padding: 0,
+    },
+    "& .muk-button__item": {
+        padding: "0 5px",
+        verticalAlign: "middle",
+        height: "auto",
+        lineHeight: "initial",
+    },
+}, (props: any) => { return {
+    padding: props.theme.table_cell_padding,
+    borderBottom: props.theme.table_border_horizontal,
+    borderRight: props.theme.table_border_vertical,
+    fontSize: props.theme.table_cell_text_size,
+}})
+
+const Header = glamorous(Cell)({
+    borderColor: "transparent",
+    whiteSpace: "nowrap",
+    color: "#fff",
+    fontWeight: "bold",
+}, (props: any) => { return {
+    fontSize: props.theme.table_header_text_size,
+    textTransform: props.theme.table_header_text_transform,
+}}).withComponent("th")
 
 export default DataCell
