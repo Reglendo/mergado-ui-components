@@ -13,6 +13,7 @@
         "no-empty-interface": false,
         "no-empty": false,
         "object-literal-sort-keys": false,
+        "object-literal-key-quotes": false,
         "whitespace": false,
         "arrow-parens": false,
         "member-ordering": false,

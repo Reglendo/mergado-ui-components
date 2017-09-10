@@ -1,12 +1,9 @@
 import * as React from "react"
-import {Link} from "react-router"
-import styled from "styled-components"
+import glamorous from "glamorous"
+
 import {prefix,form} from "../../../config"
-import domOnlyProps from "../../../helpers/dom-only-props"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import {UniversalButton} from "./types"
-import theme from "../../../styled/themes/default"
-import { ThemeProvider } from "styled-components"
+import {UniversalButton} from "./button"
 
 export interface Props extends IFieldProps {
     type?: "button" | "link" | "submit" | "void" | "href"
@@ -20,10 +17,10 @@ export interface Props extends IFieldProps {
     secondary?: boolean
 }
 
-const StyledField = styled(Field)`
-    display: inline-block;
-    vertical-align: top;
-`
+const StyledField = glamorous(Field)({
+    display: "inline-block",
+    verticalAlign: "top",
+})
 
 class Button extends React.Component<Props, {}> {
     protected readonly name = prefix + "button";
