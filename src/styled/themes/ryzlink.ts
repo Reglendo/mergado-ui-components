@@ -1,7 +1,7 @@
-import defaultTheme from "./default"
+import defaultTheme, {colors as defaultColors} from "./default"
 
-const theme = {
-    ...defaultTheme,
+const colors = {
+    ...defaultColors,
     /*colors*/
     blue: "#009ba9",
     green: "#69A120",
@@ -9,8 +9,25 @@ const theme = {
     grey: "#888",
     yellow: "#DBCBA3",
     orange: "#FF9500",
+}
+
+const theme = {
+    ...defaultTheme,
+    ...colors,
+
+    /* general */
+    radius: "4px",
+
+    /* form */
+    form_label_text_size: "13px",
+    form_label_text_weight: "600",
+
+    /* input */
+    input_border: "1px solid " + colors.decoration,
+    input_border_active: "1px solid " + colors.blue,
+    input_border_error: "1px solid " + colors.red,
+
     /* button */
-    button_radius: "4px",
     button_text_transform: "none",
 
     /* datagrid */

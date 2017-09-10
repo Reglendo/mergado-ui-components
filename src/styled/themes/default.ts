@@ -1,5 +1,4 @@
-const theme = {
-    /*colors*/
+export const colors = {
     blue: "#009ba9",
     green: "#69A120",
     red: "#EA4E4B",
@@ -7,16 +6,33 @@ const theme = {
     yellow: "#DBCBA3",
     orange: "#FF9500",
 
+    decoration: "#dbcba3",
+}
+
+const theme = {
+    ...colors,
+
+    /* general */
+    radius: "0px",
+
+    /* form */
+    form_label_text_size: "14px",
+    form_label_text_weight: "normal",
+
+    /* input */
+    input_border: "1px solid " + colors.decoration,
+    input_border_active: "1px solid " + colors.decoration,
+    input_border_error: "1px solid " + colors.decoration,
+
     /* button */
-    button_radius: "0px",
     button_text_transform: "uppercase",
     button_text_size: "14px",
     button_text_weight: "bold",
 
     /* datagrid */
 
-    table_border_vertical: "1px dotted #dbcba3",
-    table_border_horizontal: "1px solid #dbcba3",
+    table_border_vertical: "1px dotted " + colors.decoration,
+    table_border_horizontal: "1px solid " + colors.decoration,
 
     table_header_text_size: "13px",
     table_header_text_transform: "none",

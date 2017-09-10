@@ -9,7 +9,7 @@ export interface IFieldProps {
     group?: {
         className?: string,
         style?: any,
-        bigLabel?: boolean
+        bigLabel?: boolean,
         [propName: string]: any,
     },
     input?: {
@@ -106,21 +106,23 @@ const BigLabel = styled.h3`
     margin: 10px 0;
 `
 
-const LabelComponent = ({children, name, bigLabel}) => {
+const LabelComponent = ({children, name, bigLabel, className = ""}) => {
     if(children === "" || children === null) {
         return null
     }
 
     return (
-            <label className={`${name}__label ${form}__label`}>
+            <label className={`${name}__label ${form}__label ${className}`}>
                 {bigLabel ? <BigLabel>{children}</BigLabel> : children }
             </label>
         )
 }
 
 export const FieldLabel = styled(LabelComponent)`
-    display: block;
-    padding: 6px 10px 4px 2px;
+    display: inline-block;
+    padding: 6px 10px 2px 2px;
+    font-size: ${props => props.theme.form_label_text_size};
+    font-weight: ${props => props.theme.form_label_text_weight};
 `
 
 const FieldErrorComponent = ({...props}) => {
@@ -137,14 +139,14 @@ const FieldErrorComponent = ({...props}) => {
 }
 
 export const FieldError = styled(FieldErrorComponent)`
-    background: ${style.RED};
+    background: ${props => props.theme.red};
     color: white;
     font-size: 12px;
     z-index: 1;
     padding: 1px 5px;
     position: absolute;
     top: 100%;
-    left: 0px;
+    left: ${props => props.theme.radius};
 `
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
@@ -161,7 +163,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                         `}
             title={props.labels.title}
             style={props.style}>
-                <FieldError {...props} className={`${form}__validation}`} />
+                <FieldError {...props} className={`${form}__validation`} />
                 <FieldLabel name={props.name} bigLabel={group.bigLabel}>
                     {props.label ? props.label : (others.label ? others.label : labels.main)}
                 </FieldLabel>
@@ -179,11 +181,10 @@ FieldComponent.defaultProps = defaultFieldProps
 export const Field = styled(FieldComponent)`
     position: relative;
     padding: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     .${form}__group--invalid {
         margin: -2px;
-        border: 2px solid transparent;
-        border-color: ${(props) => props.meta && props.meta.invalid &&
-                        (props.meta.dirty || props.meta.touched) ? style.RED : "transparent" }
+        border-radius: ${(props) => { return (parseInt(props.theme.radius,10) + 2) + "px" }};
+        border: 1px solid ${(props) => props.theme.red};
     }
 `

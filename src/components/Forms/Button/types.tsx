@@ -79,7 +79,7 @@ const colorize = () => (props) =>  {
 
 const styling = css`
     box-sizing: border-box;
-    border-radius: ${theme.button_radius};
+    border-radius: ${theme.radius};
     display: inline-block;
     cursor: pointer;
     text-align: center;
