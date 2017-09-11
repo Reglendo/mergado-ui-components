@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 interface IInputProps {
     name: string
@@ -10,10 +10,10 @@ interface IInputProps {
     className?: string
 }
 
-const RadioInputComponent: React.SFC<IInputProps> = ({name, value, checked, label, onChange, ...props}) => {
+const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChange, ...props}) => {
 
-    return <label className={`${name}__item ${props.className}`} key={value}>
-                    <input
+    return <glamorous.Label display="block" className={`${name}__item ${props.className}`} key={value}>
+                    <Input
                         value={value}
                         checked={checked}
                         onChange={onChange}
@@ -21,12 +21,30 @@ const RadioInputComponent: React.SFC<IInputProps> = ({name, value, checked, labe
                         type="radio"
                         />
                     &nbsp;{label}
-            </label>
+            </glamorous.Label>
 }
 
-const RadioInput = styled(RadioInputComponent)`
-    display: block;
-    padding: 2px 0px;
-`
+const Input = glamorous.input({
+    marginRight: "5px",
+    appearance: "none",
+    background: "transparent",
+    width: "18px",
+    height: "18px",
+    position: "relative",
+    verticalAlign: "middle !important",
+    transition: "border-color 0.2s",
+    borderRadius: "100%",
+    ":focus,:active": {
+        outline: "none",
+    }
+}, (props: any) => { return {
+    border: `1px solid ${props.theme.decoration}`,
+    ":checked": {
+        border: `6px solid ${props.theme.blue}`,
+    },
+    ":hover": {
+        borderColor: `${props.theme.blue}`,
+    },
+}})
 
 export default RadioInput
