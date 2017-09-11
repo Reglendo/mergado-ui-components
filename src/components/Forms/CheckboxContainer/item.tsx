@@ -113,6 +113,9 @@ export const Li = glamorous.li({
     if(props.checked) {
         styles.push({
             background: props.theme.selected_background,
+            ":hover": {
+                background: Color(props.theme.selected_background).fade(0.2),
+            },
         })
     }
 
@@ -127,7 +130,7 @@ export const Li = glamorous.li({
 
     if(props["data-subheader"]) {
         styles.push({
-            background: Color(props.theme.decoration),
+            background: props.theme.decoration,
             color: "white",
             padding: "5px",
             fontWeight: "bold",

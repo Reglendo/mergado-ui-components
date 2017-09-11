@@ -1,6 +1,7 @@
 import * as React from "react"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
-import styled from "styled-components"
+import glamorous from "glamorous"
+
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
@@ -20,35 +21,6 @@ export interface State {
     displayColorPicker: boolean
     color: Color
 }
-
-const StyledField = styled(Field)`
-    display: inline-block;
-    width: 100%;
-`
-
-const ColorBox = styled.div`
-    border: 5px solid white;
-    height: 34px;
-    border-radius: 2px;
-    cursor: pointer;
-    background: white;
-    padding: 5px;
-    border-radius: 1px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
-    outline: 1px solid #dbcba3;
-`
-
-const Popover = styled.div`
-    position: absolute;
-    z-index: 200;
-`
-const Cover = styled.div`
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-`
 
 class ColorPicker extends React.Component<Props, State> {
 
@@ -113,12 +85,54 @@ class ColorPicker extends React.Component<Props, State> {
             <StyledField {...props} name={this.name}>
                 <input {...input} type="hidden" value={background} />
                 <ColorBox className={`${this.name}__colorbox ${this.props.className}`}
-                     style={{ background }} onClick={ this.handleClick } />
+                     onClick={ this.handleClick }>
+                     <glamorous.Div height="24px" style={{ background }}></glamorous.Div>
+                </ColorBox>
                 {this.state.displayColorPicker && this.renderPicker()}
             </StyledField>
         )
     }
 
 }
+
+
+const StyledField = glamorous(Field)({
+    display: "inline-block",
+    width: "100%",
+
+}, props => {
+    const theme: any = props.theme
+    return {
+        "& .muk-form__group--invalid .muk-colorpicker__colorbox": {
+            borderColor: `${theme.red} !important`,
+        }
+    }
+})
+
+
+const ColorBox = glamorous.div({
+    cursor: "pointer",
+    background: "white",
+    padding: "5px",
+}, props => {
+    const theme: any = props.theme
+    return {
+        border: `1px solid ${theme.decoration}`,
+        borderRadius: theme.radius,
+    }
+})
+
+const Popover = glamorous.div({
+    position: "absolute",
+    zIndex: 200,
+})
+
+const Cover = glamorous.div({
+    position: "fixed",
+    top: "0px",
+    right: "0px",
+    bottom: "0px",
+    left: "0px",
+})
 
 export default ColorPicker
