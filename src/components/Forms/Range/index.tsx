@@ -1,8 +1,8 @@
 import * as React from "react"
+import glamorous from "glamorous"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import styled from "styled-components"
 import * as style from "../../../styled"
 
 export interface Props extends IFieldProps {
@@ -15,131 +15,6 @@ export interface Props extends IFieldProps {
 export interface State {
     value: any
 }
-
-const StyledField = styled(Field)`
-input[type=range]::-webkit-slider-thumb {
-    border-color: $color-blue-light;
-}
-
-input[type=range] {
-    -webkit-appearance: none;
-    width: 100%;
-    margin: 5.5px 0;
-}
-
-input[type=range]:focus {
-    outline: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
-    background: ${style.BLUE};
-    border-radius: 0px;
-    border: 0px solid #010101;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    box-shadow: 0px 0px 0px rgba(48, 113, 169, 0), 0px 0px 0px rgba(54, 126, 189, 0);
-    border: 3px solid ${style.BLUE};
-    height: 15px;
-    width: 15px;
-    border-radius: 50px;
-    background: #ffffff;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -5.5px;
-    transition: border-color 0.1s;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: ${style.BLUE};
-}
-
-input[type=range]::-moz-range-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    box-shadow: none;
-    background: ${style.BLUE};
-    border-radius: 0px;
-    border: 0px solid #010101;
-}
-
-input[type=range]::-moz-range-thumb {
-    box-shadow: none;
-    border: 3px solid ${style.BLUE};
-    height: 15px;
-    width: 15px;
-    border-radius: 50px;
-    background: white;
-    cursor: pointer;
-}
-
-input[type=range]::-ms-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    background: transparent;
-    border-color: transparent;
-    color: transparent;
-}
-
-input[type=range]::-ms-fill-lower {
-    background: ${style.BLUE};
-    border: 0px solid #010101;
-    border-radius: 0px;
-    box-shadow: none;
-}
-
-input[type=range]::-ms-fill-upper {
-    background: ${style.BLUE};
-    border: 0px solid #010101;
-    border-radius: 0px;
-    box-shadow: none;
-}
-
-input[type=range]::-ms-thumb {
-    box-shadow: none;
-    border: 3px solid ${style.BLUE};
-    height: 15px;
-    width: 15px;
-    border-radius: 50px;
-    background: #ffffff;
-    cursor: pointer;
-    height: 4px;
-}
-
-input[type=range]:focus::-ms-fill-lower {
-    background: ${style.BLUE};
-}
-
-input[type=range]:focus::-ms-fill-upper {
-    background: ${style.BLUE};
-}
-`
-
-const Input = styled.input`
-    padding: 0 0 0 0;
-    border: none;
-    background: transparent;
-`
-
-const Output = styled.output`
-    background: ${style.BLUE};
-    position: absolute;
-    pointer-events: none;
-    margin: auto;
-    color: white;
-    display: inline-block;
-    padding: 2px 5px;
-    margin-top: -10px;
-    border-radius: 2px;
-    font-size: 10px;
-    opacity: 1;
-`
 
 class Range extends React.Component<Props,State> {
 
@@ -203,5 +78,127 @@ class Range extends React.Component<Props,State> {
         )
     }
 }
+
+
+const StyledField = glamorous(Field)({
+    "& input[type=range]": {
+        appearance: "none",
+        width: "100%",
+        margin: "5.5px 0",
+    },
+    "& input[type=range]:focus": {
+        outline: "none",
+    },
+
+    "& input[type=range]::-webkit-slider-runnable-track": {
+        width: "100%",
+        height: "4px",
+        cursor: "pointer",
+        boxShadow: "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0)",
+        background: "blue",
+        borderRadius: "0px",
+        border: "0px solid #010101",
+    },
+
+    "& input[type=range]::-webkit-slider-thumb": {
+        borderColor: "blue",
+        boxShadow: "0px 0px 0px rgba(48, 113, 169, 0), 0px 0px 0px rgba(54, 126, 189, 0)",
+        border: "3px solid blue;",
+        height: "15px",
+        width: "15px",
+        borderRadius: "50px",
+        background: "#ffffff",
+        cursor: "pointer",
+        appearance: "none",
+        marginTop: "-5.5px",
+        transition: "border-color 0.1s",
+    },
+
+    "& input[type=range]:focus::-webkit-slider-runnable-track": {
+        background: "blue",
+    },
+
+    "& input[type=range]::-moz-range-track": {
+        width: "100%",
+        height: "4px",
+        cursor: "pointer",
+        boxShadow: "none",
+        background: "blue",
+        borderRadius: "0px",
+        border: "0px solid #010101",
+    },
+
+    "& input[type=range]::-moz-range-thumb": {
+        boxShadow: "none",
+        border: "3px solid blue",
+        height: "15px",
+        width: "15px",
+        borderRadius: "50px",
+        background: "white",
+        cursor: "pointer",
+    },
+
+    "& input[type=range]::-ms-track": {
+        width: "100%",
+        height: "4px",
+        cursor: "pointer",
+        background: "transparent",
+        borderColor: "transparent",
+        color: "transparent",
+    },
+
+    "& input[type=range]::-ms-fill-lower": {
+        background: "blue",
+        border: "0px solid #010101",
+        borderRadius: "0px",
+        boxShadow: "none",
+    },
+
+    "& input[type=range]::-ms-fill-upper": {
+        background: "blue",
+        border: "0px solid #010101",
+        borderRadius: "0px",
+        boxShadow: "none",
+    },
+
+    "& input[type=range]::-ms-thumb": {
+        boxShadow: "none",
+        border: "3px solid blue",
+        width: "15px",
+        borderRadius: "50px",
+        background: "#ffffff",
+        cursor: "pointer",
+        height: "4px",
+    },
+
+    "& input[type=range]:focus::-ms-fill-lower": {
+        background: "blue",
+    },
+
+    "& input[type=range]:focus::-ms-fill-upper": {
+        background: "blue",
+    },
+})
+
+const Input = glamorous.input({
+    padding: 0,
+    border: "none",
+    background: "transparent",
+})
+
+const Output = glamorous.output({
+    background: "blue",
+    position: "absolute",
+    pointerEvents: "none",
+    margin: "auto",
+    color: "white",
+    display: "inline-block",
+    padding: "2px 5px",
+    marginTop: "-10px",
+    borderRadius: "2px",
+    fontSize: "10px",
+    opacity: 1,
+})
+
 
 export default Range
