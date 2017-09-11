@@ -10,7 +10,7 @@ export interface Props extends IFieldProps {
     link?: string
     to?: string
     icon?: JSX.Element | string
-    color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor" | "yellow" | "orange" | "transparent"
+    color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor" | "yellow" | "orange" | "transparent" | "decoration"
     size?: "small" | "tiny" | ""
     disabled?: boolean
     onClick?: (evt: any) => any

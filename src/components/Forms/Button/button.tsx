@@ -132,20 +132,36 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
         })
     } else {
         const color = props.theme[props.color === "gray" ? "grey" : props.color]
-        style.push({
-            backgroundColor: color,
-            borderColor: color,
-            color: "white",
-            ":hover": {
-                backgroundColor: Color(color).darken(0.1),
-                borderColor: Color(color).darken(0.1),
-            },
-            ":active,:focus": {
-              background: Color(color).darken(0.2),
-              borderColor: Color(color).darken(0.2),
-              textDecoration: "none",
-            },
-        })
+        if(props.secondary) {
+            style.push({
+                backgroundColor: "white",
+                borderColor: color,
+                color: color,
+                ":hover": {
+                    backgroundColor: Color(color).fade(0.8),
+                    borderColor: Color(color),
+                },
+                ":active,:focus": {
+                  background: Color(color).fade(0.2),
+                  borderColor: Color(color).fade(0.2),
+                  color: "white",
+                },
+            })
+        } else {
+            style.push({
+                backgroundColor: color,
+                borderColor: color,
+                color: "white",
+                ":hover": {
+                    backgroundColor: Color(color).darken(0.1),
+                    borderColor: Color(color).darken(0.1),
+                },
+                ":active,:focus": {
+                  background: Color(color).darken(0.2),
+                  borderColor: Color(color).darken(0.2),
+                },
+            })
+        }
     }
     style.push({
         borderRadius: props.theme.radius,
