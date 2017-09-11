@@ -405,7 +405,7 @@ const MenuItem = glamorous.div({
     const theme: any = props.theme
     if(p.selected) {
         return {
-            background: Color(theme.blue).fade(0.8),
+            background: theme.selected_background,
         }
     } else {
         return {

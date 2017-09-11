@@ -21,7 +21,7 @@ class Checkbox extends React.Component<Props, {}> {
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
 
-        return <glamorous.Div padding="2px 2px 0px 2px" className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
+        return <glamorous.Div className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
                         <StyledInput
                             checked={input.value}

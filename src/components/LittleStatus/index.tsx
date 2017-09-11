@@ -24,12 +24,12 @@ const Wrapper = styled.span`
     vertical-align: middle;
 `
 const Indikator = styled.span`
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 100%;
     border-bottom: none;
+    vertical-align: baseline;
     display: inline-block;
-    vertical-align: middle;
     margin: 0 5px;
     background-color: ${props => colors[props.type]}
 `

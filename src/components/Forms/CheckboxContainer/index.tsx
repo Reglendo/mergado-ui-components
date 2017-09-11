@@ -1,6 +1,7 @@
 import * as React from "react"
 import {Link} from "react-router"
 import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix, form} from "../../../config"
 import LittleStatus from "../../../components/LittleStatus"
@@ -44,12 +45,6 @@ export interface State {
     filter: string
 }
 
-const StyledField = styled(Field)`
-    & > .muk-form__group--invalid {
-        border: none !important;
-    }
-`
-
 class CheckboxContainer extends React.Component<Props,State> {
 
     protected readonly name = prefix + "checkbox_container";
@@ -84,9 +79,10 @@ class CheckboxContainer extends React.Component<Props,State> {
         return (
             <TextInput className={`${this.name}__filter_input`}
                         type="search"
+                        style={{marginBottom: "5px"}}
                         input={{ value: this.state.filter,
                                  onChange: evt => this.setState({ filter: evt.target.value }) }}
-                        labels={{ placeholder: this.props.labels.placeholder }}
+                        labels={{ placeholder: this.props.labels.placeholder, main: "", }}
             />
         )
     }
@@ -117,5 +113,12 @@ class CheckboxContainer extends React.Component<Props,State> {
     }
 
 }
+
+
+const StyledField = glamorous(Field)({
+    "& > .muk-form__group--invalid": {
+        border: "none !important",
+    }
+})
 
 export default CheckboxContainer

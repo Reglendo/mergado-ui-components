@@ -1,9 +1,10 @@
+import * as Color from "color"
 export const colors = {
     blue: "#009ba9",
     green: "#69A120",
     red: "#EA4E4B",
     grey: "#666",
-    yellow: "#DBCBA3",
+    yellow: "#fbeea5",
     orange: "#FF9500",
 
     decoration: "#dbcba3",
@@ -14,6 +15,8 @@ const theme = {
 
     /* general */
     radius: "0px",
+    selected_background: Color(colors.yellow),
+    hover_background: Color(colors.yellow).fade(0.5),
 
     /* form */
     form_label_text_size: "14px",

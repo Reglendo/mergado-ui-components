@@ -1,3 +1,5 @@
+import * as Color from "color"
+
 import defaultTheme, {colors as defaultColors} from "./default"
 
 const colors = {
@@ -17,6 +19,8 @@ const theme = {
 
     /* general */
     radius: "4px",
+    selected_background: Color(colors.blue).fade(0.8),
+    hover_background: Color(colors.blue).fade(0.95),
 
     /* form */
     form_label_text_size: "13px",

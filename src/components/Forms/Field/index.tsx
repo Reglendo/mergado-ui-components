@@ -120,7 +120,6 @@ const LabelComponent = ({children, name, bigLabel, className = ""}) => {
 
 export const FieldLabel = styled(LabelComponent)`
     display: inline-block;
-    padding: 6px 10px 2px 2px;
     font-size: ${props => props.theme.form_label_text_size};
     font-weight: ${props => props.theme.form_label_text_weight};
 `
@@ -164,9 +163,11 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
             title={props.labels.title}
             style={props.style}>
                 <FieldError {...props} className={`${form}__validation`} />
-                <FieldLabel name={props.name} bigLabel={group.bigLabel}>
-                    {props.label ? props.label : (others.label ? others.label : labels.main)}
-                </FieldLabel>
+                {(props.label || others.label || labels.main) &&
+                    <FieldLabel name={props.name} bigLabel={group.bigLabel}>
+                        {props.label ? props.label : (others.label ? others.label : labels.main)}
+                    </FieldLabel>
+                }
                 <div className={`\
                     ${isInvalid ? `${form}__group--invalid` : ""}\
                 `}>
@@ -180,10 +181,7 @@ FieldComponent.defaultProps = defaultFieldProps
 
 export const Field = styled(FieldComponent)`
     position: relative;
-    padding: 2px;
-    margin-bottom: 15px;
     .${form}__group--invalid {
-        margin: -2px;
         border-radius: ${(props) => { return (parseInt(props.theme.radius,10) + 2) + "px" }};
         border: 1px solid ${(props) => props.theme.red};
     }
