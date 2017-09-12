@@ -1,9 +1,12 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import * as Color from "color"
+import * as debounce from "lodash.debounce"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import * as style from "../../../styled"
+import TextInput from "../../../components/Forms/TextInput"
 
 export interface Props extends IFieldProps {
     max: number
@@ -34,7 +37,7 @@ class Range extends React.Component<Props,State> {
                      props.input.value : props.default ?
                      props.default : (props.max - props.min) / 2 + props.min,
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = debounce(this.handleChange.bind(this), 200);
     }
 
     protected handleChange(evt) {
@@ -45,39 +48,40 @@ class Range extends React.Component<Props,State> {
     public render() {
         const { labels, meta, input } = this.props
         const { children, ...props } = this.props
-        const outputId = `${meta.form}-${input.name}_output`
-        const outputWidth = document.getElementById(outputId) ? document.getElementById(outputId).offsetWidth : 10;
         const value = this.state.value
-        const percent = (value - this.props.min) /(this.props.max- this.props.min) * 100
         return (
             <StyledField {...props} name={this.name}>
-                <Input
-                    {...input}
-                    className={`${this.name}__item
-                                ${form}__input--text ${form}__input--range`}
-                    type="range"
-                    max={this.props.max}
-                    min={this.props.min}
-                    step={this.props.step}
-                    onChange={this.handleChange}
-                    onInput={(evt) => {
-                                const target: any = evt.target;
-                                const output: any = document.getElementById(outputId);
-                                output.value = target.value;
-                            }}
-                    value={value}
+                <glamorous.Div padding="5px 0px" className="muk-grid">
+                    <TextInput
+                        type="number"
+                        max={this.props.max}
+                        min={this.props.min}
+                        step={this.props.step}
+                        className="muk-2-12"
+                        input={{
+                            value,
+                            onChange: this.handleChange,
+                        }}
                     />
-                {value !== undefined && value !== "" &&
-                    <Output className={`${form}__input--range__output`}
-                        style={{left: "calc(" + percent + "% - 10px)" }}
-                        id={outputId}>
-                            {value}
-                    </Output>
-                }
+                    <div className="muk-10-12" style={{padding: "5px 10px"}}>
+                        <Input
+                            {...input}
+                            className={`${this.name}__item
+                                        ${form}__input--text ${form}__input--range muk-6-12`}
+                            type="range"
+                            max={this.props.max}
+                            min={this.props.min}
+                            step={this.props.step}
+                            onChange={this.handleChange}
+                            value={value}
+                            />
+                    </div>
+                </glamorous.Div>
             </StyledField>
         )
     }
 }
+
 
 
 const StyledField = glamorous(Field)({
@@ -89,95 +93,57 @@ const StyledField = glamorous(Field)({
     "& input[type=range]:focus": {
         outline: "none",
     },
+},(props) => {
 
-    "& input[type=range]::-webkit-slider-runnable-track": {
+    const thumbColor = props.theme.blue
+    const sliderColor = Color(props.theme.decoration).fade(0.5)
+
+    const slider = {
         width: "100%",
-        height: "4px",
+        height: "6px",
         cursor: "pointer",
-        boxShadow: "0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0)",
-        background: "blue",
-        borderRadius: "0px",
-        border: "0px solid #010101",
-    },
+        background: "white",
+        borderRadius: "10px",
+        border: `1px solid ${sliderColor}`,
+    }
 
-    "& input[type=range]::-webkit-slider-thumb": {
-        borderColor: "blue",
-        boxShadow: "0px 0px 0px rgba(48, 113, 169, 0), 0px 0px 0px rgba(54, 126, 189, 0)",
-        border: "3px solid blue;",
-        height: "15px",
-        width: "15px",
-        borderRadius: "50px",
+    const thumb = {
+        border: `8px solid ${Color(thumbColor).fade(0.2)}`,
+        height: "25px",
+        width: "25px",
+        borderRadius: "100%",
         background: "#ffffff",
         cursor: "pointer",
         appearance: "none",
-        marginTop: "-5.5px",
-        transition: "border-color 0.1s",
-    },
+        marginTop: "-11px",
+        transition: "border-color 0.3s",
+        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+    }
+    return {
+        // track
+        "& input[type=range]::-webkit-slider-runnable-track": slider,
 
-    "& input[type=range]:focus::-webkit-slider-runnable-track": {
-        background: "blue",
-    },
+        "& input[type=range]::-moz-range-track": {
+            ...slider,
+        },
 
-    "& input[type=range]::-moz-range-track": {
-        width: "100%",
-        height: "4px",
-        cursor: "pointer",
-        boxShadow: "none",
-        background: "blue",
-        borderRadius: "0px",
-        border: "0px solid #010101",
-    },
+        // thumb
 
-    "& input[type=range]::-moz-range-thumb": {
-        boxShadow: "none",
-        border: "3px solid blue",
-        height: "15px",
-        width: "15px",
-        borderRadius: "50px",
-        background: "white",
-        cursor: "pointer",
-    },
+        "& input[type=range]::-webkit-slider-thumb": thumb,
+        "& input[type=range]:hover::-webkit-slider-thumb": {
+            borderColor: thumbColor,
+        },
 
-    "& input[type=range]::-ms-track": {
-        width: "100%",
-        height: "4px",
-        cursor: "pointer",
-        background: "transparent",
-        borderColor: "transparent",
-        color: "transparent",
-    },
-
-    "& input[type=range]::-ms-fill-lower": {
-        background: "blue",
-        border: "0px solid #010101",
-        borderRadius: "0px",
-        boxShadow: "none",
-    },
-
-    "& input[type=range]::-ms-fill-upper": {
-        background: "blue",
-        border: "0px solid #010101",
-        borderRadius: "0px",
-        boxShadow: "none",
-    },
-
-    "& input[type=range]::-ms-thumb": {
-        boxShadow: "none",
-        border: "3px solid blue",
-        width: "15px",
-        borderRadius: "50px",
-        background: "#ffffff",
-        cursor: "pointer",
-        height: "4px",
-    },
-
-    "& input[type=range]:focus::-ms-fill-lower": {
-        background: "blue",
-    },
-
-    "& input[type=range]:focus::-ms-fill-upper": {
-        background: "blue",
-    },
+        // Mozilla
+        "& input[type=range]::-moz-range-thumb": {
+            ...thumb,
+            height: "10px",
+            width: "10px",
+        },
+        "& input[type=range]:hover::-moz-range-thumb": {
+            borderColor: thumbColor,
+        },
+    }
 })
 
 const Input = glamorous.input({
@@ -185,20 +151,5 @@ const Input = glamorous.input({
     border: "none",
     background: "transparent",
 })
-
-const Output = glamorous.output({
-    background: "blue",
-    position: "absolute",
-    pointerEvents: "none",
-    margin: "auto",
-    color: "white",
-    display: "inline-block",
-    padding: "2px 5px",
-    marginTop: "-10px",
-    borderRadius: "2px",
-    fontSize: "10px",
-    opacity: 1,
-})
-
 
 export default Range
