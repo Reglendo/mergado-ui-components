@@ -23,11 +23,14 @@ class Checkbox extends React.Component<Props, {}> {
 
         return <glamorous.Div className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
-                        <StyledInput
+                        <Input
                             checked={input.value}
                             {...input}
                             type="checkbox"
                             className={`${this.name}__item ${input.className}`}
+                            style={{display: "none"}}
+                            />
+                        <StyledInput
                             />
                         <IconCheck size={14} style={{position: "absolute"}} />
                     </div>
@@ -47,9 +50,20 @@ const StyledField = glamorous(Field)({
     },
 })
 
-const StyledInput = glamorous.input({
+const Input = glamorous.input({
+    ":checked + span + span.muk-icon--check": {
+        display: "inline-block",
+    },
+}, (props: any) => { return {
+    ":checked + span": {
+        borderColor: `${props.theme.blue}`,
+        background: `${props.theme.blue}`,
+    },
+}})
+
+const StyledInput = glamorous.span({
     marginRight: "5px",
-    appearance: "none",
+    display: "inline-block",
     background: "transparent",
     width: "18px",
     height: "18px",
@@ -65,16 +79,10 @@ const StyledInput = glamorous.input({
     "& + span.muk-icon--check path": {
         fill: "white !important",
     },
-    ":checked + span.muk-icon--check": {
-        display: "inline-block",
-    },
+
 }, (props: any) => { return {
     borderRadius: `${props.theme.radius}`,
     border: `1px solid ${props.theme.decoration}`,
-    ":checked": {
-        borderColor: `${props.theme.blue}`,
-        background: `${props.theme.blue}`,
-    },
     ":hover": {
         borderColor: `${props.theme.blue}`,
     },

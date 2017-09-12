@@ -21,7 +21,9 @@ Big buttons
                 items={[
                         { value: "Radio", label: "Radio"  },
                         { value: "Video", label: "Video"  },
-                        { value: "Kills the star", label: "Kills the star"  }
+                        { value: "kills", label: "kills"  },
+                        { value: "the", label: "the"  },
+                        { value: "star", label: "star"  },
                 ]}
         />
     </div>

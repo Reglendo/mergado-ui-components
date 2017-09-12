@@ -63,7 +63,7 @@ class Range extends React.Component<Props,State> {
                             onChange: this.handleChange,
                         }}
                     />
-                    <div className="muk-10-12" style={{padding: "5px 10px"}}>
+                    <div className="muk-10-12" style={{padding: "5px 0 5px 10px"}}>
                         <Input
                             {...input}
                             className={`${this.name}__item
