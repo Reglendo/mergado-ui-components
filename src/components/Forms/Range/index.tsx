@@ -5,7 +5,6 @@ import * as debounce from "lodash.debounce"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import * as style from "../../../styled"
 import TextInput from "../../../components/Forms/TextInput"
 
 export interface Props extends IFieldProps {

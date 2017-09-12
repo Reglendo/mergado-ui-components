@@ -43,10 +43,12 @@ class Select extends React.Component<Props, {}> {
 
         return (
             <Field {...props} name={this.name}>
-                <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`} aria-invalid={isInvalid ? 1 : 0}>
-                    {this.renderOptions()}
-                </StyledSelect>
-                <IconChevronDown size={10} style={{ opacity: 0.6, position: "absolute", bottom: "9px", right: "10px", pointerEvents: "none"}}/>
+                <glamorous.Div position="relative">
+                    <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`} aria-invalid={isInvalid ? 1 : 0}>
+                        {this.renderOptions()}
+                    </StyledSelect>
+                    <IconChevronDown size={10} style={{ opacity: 0.6, position: "absolute", bottom: "9px", right: "10px", pointerEvents: "none"}}/>
+                </glamorous.Div>
             </Field>
         )
     }

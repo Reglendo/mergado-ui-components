@@ -1,9 +1,8 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix, form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
-import * as style from "../../../styled"
 
 export interface IFieldProps {
     group?: {
@@ -99,12 +98,12 @@ export const defaultFieldProps: IFieldProps = {
         },
 }
 
-const BigLabel = styled.h3`
-    padding-left: 10px;
-    border-left: 5px solid hsla(43,44%,75%,.5);
-    font-size: 1.2em;
-    margin: 10px 0;
-`
+const BigLabel = glamorous.h3({
+    paddingLeft: "10px",
+    borderLeft: "5px solid hsla(43,44%,75%,.5)",
+    fontSize: "1.2em",
+    margin: "10px 0",
+})
 
 const LabelComponent = ({children, name, bigLabel, className = ""}) => {
     if(children === "" || children === null) {
@@ -118,11 +117,15 @@ const LabelComponent = ({children, name, bigLabel, className = ""}) => {
         )
 }
 
-export const FieldLabel = styled(LabelComponent)`
-    display: inline-block;
-    font-size: ${props => props.theme.form_label_text_size};
-    font-weight: ${props => props.theme.form_label_text_weight};
-`
+export const FieldLabel = glamorous(LabelComponent)({
+    display: "inline-block",
+}, (props: any) => {
+    const theme: any = props.theme
+    return {
+        fontSize: theme.form_label_text_size,
+        fontWeight: theme.form_label_text_weight,
+    }
+})
 
 const FieldErrorComponent = ({...props}) => {
         if((props.meta.error || props.labels.invalid) &&
@@ -137,16 +140,21 @@ const FieldErrorComponent = ({...props}) => {
         }
 }
 
-export const FieldError = styled(FieldErrorComponent)`
-    background: ${props => props.theme.red};
-    color: white;
-    font-size: 12px;
-    z-index: 1;
-    padding: 1px 5px;
-    position: absolute;
-    top: 100%;
-    left: ${props => props.theme.radius};
-`
+export const FieldError = glamorous(FieldErrorComponent)({
+    color: "white",
+    fontSize: "12px",
+    zIndex: 1,
+    padding: "1px 5px",
+    position: "absolute",
+    top: "100%",
+},(props: any) => {
+    const theme: any = props.theme
+    return {
+        left: theme.radius,
+        background: theme.red,
+    }
+})
+
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
     const { meta, input, labels, group, ...others } = props
@@ -179,10 +187,21 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
 FieldComponent.defaultProps = defaultFieldProps
 
-export const Field = styled(FieldComponent)`
-    position: relative;
-    .${form}__group--invalid {
-        border-radius: ${(props) => { return (parseInt(props.theme.radius,10) + 2) + "px" }};
-        border: 1px solid ${(props) => props.theme.red};
+export const Field = glamorous(FieldComponent)({
+},(props:any) => {
+    const theme: any = props.theme
+    const styles = []
+    if(props.name || (props.input && props.input.name)) {
+        styles.push({
+            marginBottom: "20px",
+            paddingRight: "10px",
+        })
     }
-`
+
+    return [...styles,{
+        "& .muk-form__group--invalid": {
+            borderRadius: `${parseInt(theme.radius,10) + 2}px`,
+            border: `1px solid ${theme.red}`,
+        }
+    }]
+})

@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix} from "../../../config"
 import Icon from "../../../components/Icon"
@@ -11,78 +11,6 @@ export interface Props {
 export interface State {
     value: string
 }
-
-/* <style> */
-const Wrapper = styled.div`
-`
-const Image = styled.span`
-    cursor: pointer;
-    position: relative;
-    text-align: left;
-    &:focus {
-        outline: none;
-
-        &:before {
-            content: attr(title);
-            position: absolute;
-            left: 50%;
-            top: -63px;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            background: #888;
-            color: white;
-            z-index: 1000;
-            border-radius: 2px;
-            font-size: 12px;
-            padding: 5px;
-        }
-
-        .${prefix}icon {
-            z-index: 1000;
-        }
-        .${prefix}icon__text {
-            display: inline-block;
-        }
-
-        svg {
-            outline: 1px solid #888;
-            transform: scale3d(3,3,1);
-            background: #fff;
-        }
-
-    }
-    .${prefix}icon {
-        padding: 4px;
-        position: relative;
-        border: 1px solid transparent;
-
-        &:hover {
-            background: white;
-            border: 1px solid #ccc;
-        }
-    }
-
-    svg {
-        transition: transform 0.2s;
-        will-change: transform;
-    }
-    .${prefix}icon__text {
-        border-radius: 2px;
-        position: absolute;
-        top: -50px;
-        left: -29px;
-        display: none;
-        background: white;
-        color: #333;
-        border: 2px solid #888;
-        font-size: 10px;
-        padding: 5px;
-        white-space: nowrap;
-        left: 50%;
-        top: 68px;
-        transform: translateX(-50%);
-    }
-`
 
 /**
  * disable-styleguide
@@ -138,7 +66,7 @@ class IconFinder extends React.Component<Props, State> {
         const className = `${this.name}`
 
         return (
-            <Wrapper className={`${className}`}>
+            <div className={`${className}`}>
                 <TextInput
                     labels={{ main: "",
                              placeholder: "Type icon name here...",
@@ -146,9 +74,72 @@ class IconFinder extends React.Component<Props, State> {
                              title: "" }}
                     input={{onChange: this.handleChange.bind(this), value: this.state.value }} />
                 {this.renderIcons()}
-            </Wrapper>
+            </div>
         )
     }
 }
+
+const Image = glamorous.span({
+    cursor: "pointer",
+    position: "relative",
+    textAlign: "left",
+    ":focus": {
+        outline: "none",
+    },
+    ":focus:before": {
+        content: "attr(title)",
+        position: "absolute",
+        left: "50%",
+        top: "-63px",
+        transform: "translateX(-50%)",
+        whiteSpace: "nowrap",
+        background: "#888",
+        color: "white",
+        zIndex: 1000,
+        borderRadius: "2px",
+        fontSize: "12px",
+        padding: "5px",
+    },
+
+    ":focus .muk-icon": {
+        zIndex: 1000,
+    },
+    ":focus .muk-icon__text": {
+        display: "inline-block",
+    },
+    ":focus svg": {
+        outline: "1px solid #888",
+        transform: "scale3d(3,3,1)",
+        background: "#fff",
+    },
+
+    "& .muk-icon": {
+        padding: "4px",
+        position: "relative",
+        border: "1px solid transparent",
+    },
+    "& .muk-icon:hover": {
+        background: "white",
+        border: "1px solid #ccc",
+    },
+    "& svg": {
+        transition: "transform 0.2s",
+        willChange: "transform",
+    },
+    "& .muk-icon__text": {
+        borderRadius: "2px",
+        position: "absolute",
+        display: "none",
+        background: "white",
+        color: "#333",
+        border: "2px solid #888",
+        fontSize: "10px",
+        padding: "5px",
+        whiteSpace: "nowrap",
+        left: "50%",
+        top: "68px",
+        transform: "translateX(-50%)",
+    }
+})
 
 export default IconFinder
