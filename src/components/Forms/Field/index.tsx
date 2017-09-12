@@ -188,7 +188,8 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
 FieldComponent.defaultProps = defaultFieldProps
 
 export const Field = glamorous(FieldComponent)({
-},(props:any) => {
+    position: "relative",
+},(props: any) => {
     const theme: any = props.theme
     const styles = []
     if(props.name || (props.input && props.input.name)) {
@@ -202,6 +203,6 @@ export const Field = glamorous(FieldComponent)({
         "& .muk-form__group--invalid": {
             borderRadius: `${parseInt(theme.radius,10) + 2}px`,
             border: `1px solid ${theme.red}`,
-        }
+        },
     }]
 })

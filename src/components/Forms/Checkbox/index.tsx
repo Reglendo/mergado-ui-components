@@ -30,7 +30,7 @@ class Checkbox extends React.Component<Props, {}> {
                             className={`${this.name}__item ${input.className}`}
                             style={{display: "none"}}
                             />
-                        <StyledInput
+                        <StyledInput label={label}
                             />
                         <IconCheck size={14} style={{position: "absolute"}} />
                     </div>
@@ -39,7 +39,7 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
     public render() {
-        return <StyledField {...this.props} name={this.name} label={this.renderLabel()} />
+        return <StyledField {...this.props} style={{margin: 0, padding: 0}} label={this.renderLabel()} />
     }
 
 }
@@ -62,7 +62,6 @@ const Input = glamorous.input({
 }})
 
 const StyledInput = glamorous.span({
-    marginRight: "5px",
     display: "inline-block",
     background: "transparent",
     width: "18px",
@@ -81,6 +80,7 @@ const StyledInput = glamorous.span({
     },
 
 }, (props: any) => { return {
+    marginRight: props.label ? "5px" : "0px",
     borderRadius: `${props.theme.radius}`,
     border: `1px solid ${props.theme.decoration}`,
     ":hover": {

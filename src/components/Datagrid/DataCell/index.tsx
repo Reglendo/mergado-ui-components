@@ -25,15 +25,15 @@ class DataCell extends React.Component<Props, State> {
         const { style, type, addClass, onClick } = this.props;
         return (type === "header")
             ?
-                <Header className={`${this.name} ${this.name}--header ${addClass}`}
-                    style={style} onClick={onClick}>{this.props.children}</Header>
+                <Th className={`${this.name} ${this.name}--header ${addClass}`}
+                    style={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Cell className={`${this.name} ${addClass}`} style={style}
-                    onClick={onClick}>{this.props.children}</Cell>
+                <Td className={`${this.name} ${addClass}`} style={style}
+                    onClick={onClick}>{this.props.children}</Td>
     }
 }
 
-const Cell = glamorous.td({
+const Td = glamorous.td({
     textAlign: "left",
     fontWeight: "normal",
     "& .muk-form__group": {
@@ -55,7 +55,7 @@ const Cell = glamorous.td({
     fontSize: props.theme.table_cell_text_size,
 }})
 
-const Header = glamorous(Cell)({
+const Th = glamorous(Td)({
     borderColor: "transparent",
     whiteSpace: "nowrap",
     color: "#fff",

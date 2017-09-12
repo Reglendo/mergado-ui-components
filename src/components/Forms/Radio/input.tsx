@@ -16,7 +16,9 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChan
     if(bigButtons) {
 
         return <Label className={`${name}__item ${props.className}`} key={value}>
-                <Button secondary={checked ? false : true} color={checked ? "blue" : "decoration"} type="void" input={{onClick: () => false }}>
+                <Button secondary={checked ? false : true}
+                        color={checked ? "blue" : "decoration"}
+                        type="void" input={{onClick: () => false }}>
                     <Input
                         value={value}
                         checked={checked}
@@ -54,7 +56,7 @@ const Label = glamorous.label({
     marginRight: "5px",
     "& .muk-button__item": {
         borderRadius: 0,
-        margin: "0 0 0 -6px"
+        margin: "0 0 0 -7px"
     },
 }, (props) => {
     const theme: any = props.theme
