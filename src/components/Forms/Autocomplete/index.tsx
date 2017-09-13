@@ -125,7 +125,7 @@ class Autocomplete extends  React.Component<Props, State> {
         this.setState({
             menuTop: rect.bottom + marginBottom,
             menuLeft: rect.left + marginLeft,
-            menuWidth: rect.width + marginLeft + marginRight,
+            menuWidth: rect.width + marginLeft + marginRight - 10,
         })
     }
 
@@ -385,7 +385,7 @@ const Menu = glamorous.div({
     overflow: "auto",
     maxHeight: "50vh",
     zIndex: 1000,
-    marginTop: "-15px",
+    marginTop: "5px",
 }, props => {
     const theme: any = props.theme
     return {

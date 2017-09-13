@@ -136,7 +136,7 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
             style.push({
                 backgroundColor: "white",
                 borderColor: color,
-                color: color,
+                color: props.color === "decoration" ? props.theme.grey : color,
                 ":hover": {
                     backgroundColor: Color(color).fade(0.8),
                     borderColor: Color(color),
@@ -151,7 +151,7 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
             style.push({
                 backgroundColor: color,
                 borderColor: color,
-                color: "white",
+                color: props.color === "decoration" ? props.theme.grey : "white",
                 ":hover": {
                     backgroundColor: Color(color).darken(0.1),
                     borderColor: Color(color).darken(0.1),
