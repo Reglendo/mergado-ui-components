@@ -1,6 +1,6 @@
 import * as React from "react"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix} from "../../../config"
 import uniqueId from "../../../helpers/unique_id"
@@ -23,77 +23,6 @@ export interface State {
     paused: boolean,
     secondsLeft: number
 }
-
-/* <style> */
-const Wrapper = styled.div`
-    width: 100%;
-    display: table;
-    margin: 10px 0;
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
-    transition: opacity 0.5s;
-    transform: translate3d(0,0,0);
-    will-change: opacity;
-    opacity: ${props => props.hidden ? 0 : 1 }
-`
-
-const Component = styled.div`
-    background: ${props => {
-                    switch(props.type) {
-                        case "success":
-                            return "#16c084"
-                        case "error":
-                            return "#e7434c"
-                        case "warning":
-                            return "#ff7f2a"
-                        case "inactive":
-                            return "#ccc"
-                        case "info":
-                        default:
-                            return "#fff"
-                    }
-                }};
-    border: 1px solid #dbcba3;
-    box-sizing: border-box;
-    display: table-row;
-    color: ${props => props.type === "info" || props.type === "inactive" ? "#333" : "white"};
-`
-const Icon = styled.div`
-    width: 20px;
-    padding: 0 10px;
-    display: table-cell;
-    vertical-align: middle;
-`
-const Content = styled.div`
-    padding: 20px 0px;
-    box-sizing: border-box;
-    font-size: 16px;
-    text-align: left;
-    display: table-cell;
-    vertical-align: middle;
-`
-
-const Close = styled.div`
-`
-
-const CloseButton = styled.div`
-    text-decoration: none;
-    padding: 0 20px 0 10px;
-    width: 20px;
-    text-align: right;
-    vertical-align: middle;
-    display: table-cell !important;
-    .muk-button {
-        margin-bottom: 0;
-    }
-    svg, path {
-        fill:  ${props => props.type === "info" || props.type === "inactive" ? "#333" : "white"} !important;
-    }
-    button:focus {
-        outline: none;
-    }
-`
-
-/* </style> */
 
 class Toast extends React.Component<Props, State> {
     private readonly name = prefix + "toast";
@@ -169,10 +98,9 @@ class Toast extends React.Component<Props, State> {
 
     public render() {
         return (
-            <Wrapper innerRef={(o) => { this.refWrapper = o } }
+            <Wrapper type={this.props.type} innerRef={(o) => { this.refWrapper = o } }
                     style={this.props.style} hidden={!this.state.visible}
                     className={`${this.name}__wrapper ${this.state.visible ? "" : this.name+"--hidden"}`}>
-                <Component type={this.props.type} className={`${this.name} ${this.name}--${this.props.type}`}>
                     <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
                     <Content className={`${this.name}__content`}>
                             {this.props.text ?
@@ -183,18 +111,75 @@ class Toast extends React.Component<Props, State> {
                     {this.props.closeable &&
                             <CloseButton type={this.props.type}>
                                 <Button className={`${this.name}__button`}
-                                    icon={<IconClose style={{ lineHeight: "40px" }}/>}
                                     color="nocolor"
                                     size="tiny"
+                                    type="void"
                                     toastType={this.props.type}
                                     onClick={evt => this.onClose(evt) }
-                                />
+                                >×</Button>
                             </CloseButton>
                     }
-                </Component>
             </Wrapper>
         )
     }
 }
+
+/* <style> */
+const Wrapper = glamorous.div({
+    width: "100%",
+    display: "table",
+    margin: "10px 0",
+    boxShadow: "0px 2px 5px 0px rgba(0,0,0,0.5)",
+    transition: "opacity 0.5s",
+    transform: "translate3d(0,0,0)",
+    willChange: "opacity",
+    border: "0px solid transparent",
+},(props: any) => {
+    return {
+        borderRadius: props.theme.radius,
+        opacity: props.hidden ? 0 : 1,
+        background: props.theme[props.type],
+        color: (props.type === "info" || props.type === "inactive" || props.type === "message")
+            ? "#333" : "white",
+    }
+})
+
+const Component = glamorous.div({
+    boxSizing: "border-box",
+    display: "table-row",
+})
+
+const Icon = glamorous.div({
+    width: "20px",
+    padding: "0 10px",
+    display: "table-cell",
+    verticalAlign: "middle",
+})
+
+const Content = glamorous.div({
+    padding: "20px 0px",
+    boxSizing: "border-box",
+    fontSize: "16px",
+    textAlign: "left",
+    display: "table-cell",
+    verticalAlign: "middle",
+})
+
+const CloseButton = glamorous.div({
+    padding: "5px 6px 0 10px",
+    width: "20px",
+    textAlign: "right",
+    verticalAlign: "top",
+    display: "table-cell",
+    opacity: 0.8,
+},(props: any) => {
+    return {
+        "& .muk-button__item": {
+            fontSize: "18px",
+            color:  (props.type === "info" || props.type === "inactive" || props.type === "message")
+                    ? "#333 !important" : "white !important",
+        },
+    }
+})
 
 export default Toast

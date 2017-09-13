@@ -8,9 +8,11 @@ Some of our best toasts
             <Toast text="Hello success!" type="success" icon={<Icon type="check" />} />,
             <Toast text="Hello warning, i'm not closable!" type="warning" closeable={false} icon={<Icon type="exclamation-triangle" />}/>,
             <Toast text="Hello error!" type="error" icon={<Icon type="exclamation-circle" />}/>,
+            <Toast text="Hello message!" type="message" icon={<Icon type="reglendo" />} />,
+
             <Toast text="Hello inactive, try to close me." type="inactive" icon={<Icon type="bell-slash" />}
                      onClose={() => { alert('You can\'t escape me!'); return false; }} />,
-            <Toast text="I'll vanish in %seconds% seconds" icon={<Icon type="hourglass-2" />} timeout={5000} />
+            <Toast text="I'll vanish in %seconds% seconds" icon={<Icon type="hourglass-2" />} timeout={50000000} />
         ]
         } />
         <button onClick={e => setState({ paused: false })} >Start countdown</button>

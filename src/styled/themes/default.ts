@@ -13,6 +13,13 @@ export const colors = {
 
 const theme = {
     ...colors,
+    /* colors type */
+    warning: colors.orange,
+    error: colors.red,
+    success: colors.green,
+    info: "white",
+    inactive: colors.grey,
+    message: colors.yellow,
 
     /* general */
     radius: "0px",
