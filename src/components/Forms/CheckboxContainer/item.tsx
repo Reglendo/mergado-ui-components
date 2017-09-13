@@ -34,6 +34,8 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
             checked={checked}
             key={option.id}
             onClick={!option.subheader && onClick}>
+            {showInput &&
+                <span>
                 {singleChoice ?
                     <Radio
                         items={[
@@ -44,7 +46,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                             onChange: onClick,
                         }}
                         key="input"
-                        style={{display: showInput ? "inline-block" : "none", pointerEvents: "none"}}
+                        style={{display: showInput ? "inline-block" : "none", pointerEvents: "none" }}
                     />
                 :
                     <Checkbox
@@ -53,9 +55,10 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                             onChange: onClick,
                         }}
                         key="input"
-                        style={{display: showInput ? "inline-block" : "none", pointerEvents: "none"}}
+                        style={{display: showInput ? "inline-block" : "none", pointerEvents: "none", paddingRight: "5px" }}
                     />
-
+                }
+                </span>
             }
             <QueryItemLabel name={name} option={option} allProducts={labels.allProducts} showInput={showInput}/>
         </Li>

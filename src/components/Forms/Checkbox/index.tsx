@@ -39,7 +39,7 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
     public render() {
-        return <StyledField {...this.props} style={{margin: 0, padding: 0}} label={this.renderLabel()} />
+        return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }} label={this.renderLabel()} />
     }
 
 }

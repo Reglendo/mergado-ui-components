@@ -182,7 +182,7 @@ export default class Preview extends Component {
                     favcolor: "blue",
                     superpower1: 1,
                     video: "Video",
-										queries: [1001,1000],
+					queries: [1001,1000],
                 }
             })(PreviewComponent)
 
@@ -192,7 +192,7 @@ export default class Preview extends Component {
                         <ThemeProv theme={theme}>
                             <ThemeProvider theme={theme}>
                                 <Wrapper>
-                                    <Form />
+                                    	<Form />
                                 </Wrapper>
                             </ThemeProvider>
                         </ThemeProv>

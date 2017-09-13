@@ -192,12 +192,12 @@ export const Field = glamorous(FieldComponent)({
 },(props: any) => {
     const theme: any = props.theme
     const styles = []
-    if(props.name || (props.input && props.input.name)) {
+    if((props.input && props.input.name)) {
         styles.push({
             marginBottom: "20px",
             paddingRight: "10px",
         })
-    }
+    } 
 
     return [...styles,{
         "& .muk-form__group--invalid": {
