@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix} from "../../config"
 
@@ -12,34 +12,35 @@ export interface Props {
 export interface State {
 }
 
-/* <style> */
-const colors = {
-                    success: "#85bd3c",
-                    warning: "#FF9900",
-                    error: "#d00",
-                    inactive: "#888",
-                }
-
-const Wrapper = styled.span`
-    vertical-align: middle;
-`
-const Indikator = styled.span`
-    width: 8px;
-    height: 8px;
-    border-radius: 100%;
-    border-bottom: none;
-    vertical-align: baseline;
-    display: inline-block;
-    margin: 0 5px;
-    background-color: ${props => colors[props.type]}
-`
-const Text = styled.span`
-    vertical-align: middle;
-
-    a:hover {
-        text-decoration: none
+const Wrapper = glamorous.span({
+    verticalAlign: "middle",
+})
+const Indikator = glamorous.span({
+    width: "8px",
+    height: "8px",
+    borderRadius: "100%",
+    borderBottom: "none",
+    verticalAlign: "baseline",
+    display: "inline-block",
+    margin: "0 5px",
+}, (props: any) => {
+    const colors = {
+        success: props.theme.green,
+        warning: props.theme.orange,
+        error: props.theme.red,
+        inactive: props.theme.grey,
     }
-`
+    return {
+        backgroundColor: colors[props.type]
+    }
+});
+
+const Text = glamorous.span({
+    verticalAlign: "middle",
+    "a:hover": {
+        textDecoration: "none",
+    },
+})
 /* </style> */
 
 class LittleStatus extends React.Component<Props, State> {

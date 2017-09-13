@@ -9,8 +9,11 @@ const colors = {
     green: "#69A120",
     red: "#EA4E4B",
     grey: "#888",
-    yellow: "#DBCBA3",
+    yellow: "#ffec88",
     orange: "#FF9500",
+
+    decoration: "#dbcba3",
+    decoration_background: "white",
 }
 
 const theme = {

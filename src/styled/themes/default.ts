@@ -4,10 +4,11 @@ export const colors = {
     green: "#69A120",
     red: "#EA4E4B",
     grey: "#666",
-    yellow: "#fbeea5",
+    yellow: "#FFEC88",
     orange: "#FF9500",
 
     decoration: "#dbcba3",
+    decoration_background: "white",
 }
 
 const theme = {

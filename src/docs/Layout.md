@@ -78,29 +78,29 @@ Headers
 
     <div className="muk-grid" style={{fontSize: '11px'}}>
 
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-12`}>.muk-1-12</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-12`}>.muk-1-12</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-12`}>.muk-1-12</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-12`}>.muk-1-12</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-12`}>.muk-1-12</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-12`}>.muk-1-12</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-6`}>.muk-1-6 (.muk-2-12)</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-6`}>.muk-1-6 (.muk-2-12)</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-6`}>.muk-1-6 (.muk-2-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-12`}>.muk-1-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-12`}>.muk-1-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-12`}>.muk-1-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-12`}>.muk-1-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-12`}>.muk-1-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-12`}>.muk-1-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-6`}>.muk-1-6 (.muk-2-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-6`}>.muk-1-6 (.muk-2-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-6`}>.muk-1-6 (.muk-2-12)</Placeholder>
 
 
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-2-3`}>.muk-2-3 (.muk-8-12)</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-3`}>.muk-1-3 (.muk-4-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-2-3`}>.muk-2-3 (.muk-8-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-3`}>.muk-1-3 (.muk-4-12)</Placeholder>
 
 
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-2`}>.muk-1-2 (.muk-6-12)</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-4`}>.muk-1-4</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-4`}>.muk-3-12</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-2`}>.muk-1-2 (.muk-6-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-4`}>.muk-1-4</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-4`}>.muk-3-12</Placeholder>
 
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-1`}>.muk-1-1 (.muk-12-12)</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-1`}>.muk-1-1 (.muk-12-12)</Placeholder>
 
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-2`}>.muk-1-2</Placeholder>
-        <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}} addClass={`muk-1-4 muk-col-right`}>.muk-1-4.muk-col-right</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-2`}>.muk-1-2</Placeholder>
+        <Placeholder width={100} height={5}  addClass={`muk-1-4 muk-col-right`}>.muk-1-4.muk-col-right</Placeholder>
 
 
     </div>
@@ -111,24 +111,24 @@ Headers
     <div className="muk-grid--table" style={{fontSize: '11px'}}>
         <div>
             <div className={`muk-1-2`}>
-                <Placeholder width={100} height={5} style={{border: "1px solid #aaa"}}>.muk-1-2</Placeholder>
+                <Placeholder width={100} height={5} >.muk-1-2</Placeholder>
             </div>
             <div className={`muk-1-4`}>
-                <Placeholder width={100} height={20} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+                <Placeholder width={100} height={20} >.muk-1-4</Placeholder>
             </div>
             <div className={`muk-1-4`}>
-                <Placeholder width={100} height={30} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+                <Placeholder width={100} height={30} >.muk-1-4</Placeholder>
             </div>
         </div>
         <div>
             <div className={`muk-1-2`}>
-                <Placeholder width={100} height={15} style={{border: "1px solid #aaa"}}>.muk-1-2</Placeholder>
+                <Placeholder width={100} height={15} >.muk-1-2</Placeholder>
             </div>
             <div className={`muk-1-4`}>
-                <Placeholder width={100} height={20} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+                <Placeholder width={100} height={20} >.muk-1-4</Placeholder>
             </div>
             <div className={`muk-1-4`}>
-                <Placeholder width={100} height={10} style={{border: "1px solid #aaa"}}>.muk-1-4</Placeholder>
+                <Placeholder width={100} height={10} >.muk-1-4</Placeholder>
             </div>
         </div>
 
