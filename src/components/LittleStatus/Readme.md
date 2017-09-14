@@ -1,27 +1,22 @@
-Success status with text and label:
+Types:
 
-    <LittleStatus type="success" text="Success!" title="Success title" />
+    <div>
+        <LittleStatus type="success" text="Success!" title="Success title" />
+        <LittleStatus type="warning" text="Warning!" title="Warning title" />
+        <LittleStatus type="error" text="Error!" title="Error title" />
+        <LittleStatus type="inactive" text="Inactive" title="Inactive title" />
+        <LittleStatus type="info" text="Info" title="Inactive title" />
+        <LittleStatus type="message" text="Message" title="Inactive title" />
+    </div>
 
-Warning status with text and label:
-
-    <LittleStatus type="warning" text="Warning!" title="Warning title" />
-
-Error status with text and label:
-
-    <LittleStatus type="error" text="Error!" title="Error title" />
-
-Inactive status with text and label:
-
-    <LittleStatus type="inactive" text="Inactive" title="Inactive title" />
 
 Status icons without text
 
     <div>
-        <LittleStatus type="success" /> | 
-
-        <LittleStatus type="error" /> |
-
-        <LittleStatus type="warning" /> |
-
+        <LittleStatus type="success" /> 
+        <LittleStatus type="error" /> 
+        <LittleStatus type="warning" /> 
         <LittleStatus type="inactive" />
+        <LittleStatus type="info" /> 
+        <LittleStatus type="message" />
     </div>

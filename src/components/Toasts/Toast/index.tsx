@@ -1,15 +1,16 @@
 import * as React from "react"
-import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import glamorous from "glamorous"
 
 import {prefix} from "../../../config"
 import uniqueId from "../../../helpers/unique_id"
 import Button from "../../../components/Forms/Button"
+import {Type} from "../../../helpers/types"
+
 
 export interface Props {
     id?: string,
     text?: string,
-    type?: "warning" | "success" | "error" | "inactive" | "info",
+    type?: Type,
     icon?: JSX.Element
     isPaused?: () => boolean
     onClose?: (id: string) => boolean
@@ -129,7 +130,7 @@ const Wrapper = glamorous.div({
     width: "100%",
     display: "table",
     margin: "10px 0",
-    boxShadow: "0px 2px 5px 0px rgba(0,0,0,0.5)",
+    boxShadow: "2px 2px 6px 0px rgba(0,0,0,0.5)",
     transition: "opacity 0.5s",
     transform: "translate3d(0,0,0)",
     willChange: "opacity",

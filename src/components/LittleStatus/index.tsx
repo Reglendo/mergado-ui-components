@@ -2,10 +2,11 @@ import * as React from "react"
 import glamorous from "glamorous"
 
 import {prefix} from "../../config"
+import {Type} from "../../helpers/types"
 
 export interface Props {
     title?: string
-    type: "warning" | "success" | "error" | "inactive"
+    type: Type,
     text?: string
     style?: any
 }
@@ -24,14 +25,9 @@ const Indikator = glamorous.span({
     display: "inline-block",
     margin: "0 5px",
 }, (props: any) => {
-    const colors = {
-        success: props.theme.green,
-        warning: props.theme.orange,
-        error: props.theme.red,
-        inactive: props.theme.grey,
-    }
     return {
-        backgroundColor: colors[props.type]
+        boxShadow: props.type === "info" ? "0px 0px 1px 0px rgba(0,0,0,0.5)" : "none",
+        backgroundColor: props.theme[props.type]
     }
 });
 

@@ -8,7 +8,7 @@ const colors = {
     blue: "#009ba9",
     green: "#69A120",
     red: "#EA4E4B",
-    grey: "#888",
+    grey: "#ccc",
     yellow: "#ffec88",
     orange: "#FF9500",
 
@@ -23,7 +23,7 @@ const theme = {
     warning: colors.orange,
     error: colors.red,
     success: colors.green,
-    info: "white",
+    info: colors.decoration_background,
     inactive: colors.grey,
     message: colors.yellow,
 

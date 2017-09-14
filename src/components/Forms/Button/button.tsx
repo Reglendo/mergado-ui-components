@@ -131,12 +131,15 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
             },
         })
     } else {
-        const color = props.theme[props.color === "gray" ? "grey" : props.color]
+        let color = props.theme[props.color === "gray" ? "grey" : props.color]
+        if(color === props.theme.grey) {
+            color = Color(color).darken(0.2)
+        }
         if(props.secondary) {
             style.push({
                 backgroundColor: "white",
                 borderColor: color,
-                color: props.color === "decoration" ? props.theme.grey : color,
+                color: props.color === "decoration" ? props.theme.blue : color,
                 ":hover": {
                     backgroundColor: Color(color).fade(0.8),
                     borderColor: Color(color),
@@ -151,7 +154,7 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
             style.push({
                 backgroundColor: color,
                 borderColor: color,
-                color: props.color === "decoration" ? props.theme.grey : "white",
+                color: props.color === "decoration" ? props.theme.blue : "white",
                 ":hover": {
                     backgroundColor: Color(color).darken(0.1),
                     borderColor: Color(color).darken(0.1),
