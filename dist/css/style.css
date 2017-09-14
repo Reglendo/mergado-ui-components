@@ -1,4 +1,4 @@
-/* COLORS */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin-ext);/* COLORS */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, nav, section {
   display: block; }
@@ -174,7 +174,7 @@ a:hover, a:focus, a:active {
 body {
   text-align: left;
   font-size: 14px;
-  font-family: Arial, Helvetica, Verdana, Sans-serif;
+  font-family: "Roboto", Arial, Helvetica, Verdana, Sans-serif;
   background: #f5ecd5;
   color: #333; }
 

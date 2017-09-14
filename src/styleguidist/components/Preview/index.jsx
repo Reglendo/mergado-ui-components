@@ -6,8 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
-import { ThemeProvider } from 'styled-components';
-import { ThemeProvider as ThemeProv } from 'glamorous';
+import { ThemeProvider } from 'glamorous';
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
 import cookie from 'react-cookie';
@@ -189,13 +188,11 @@ export default class Preview extends Component {
 			const theme = this.state.theme === "ryzlink" ? ryzlinkTheme : defaultTheme
 			const wrappedComponent = (
                     <Provider store={store}>
-                        <ThemeProv theme={theme}>
-                            <ThemeProvider theme={theme}>
-                                <Wrapper>
-                                    	<Form />
-                                </Wrapper>
-                            </ThemeProvider>
-                        </ThemeProv>
+                        <ThemeProvider theme={theme}>
+                            <Wrapper>
+                                <Form />
+                            </Wrapper>
+                        </ThemeProvider>
                     </Provider>
 			);
 

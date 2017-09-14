@@ -6,7 +6,6 @@ import TextInput from "../../../components/Forms/TextInput"
 import Checkbox from "../../../components/Forms/Checkbox"
 import { ID, Action, Filter } from "../../../helpers/types"
 import domOnlyProps from "../../../helpers/dom-only-props"
-import theme from "../../../styled/theme"
 
 export interface Props {
     bulkActions?: Action[]

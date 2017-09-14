@@ -230,7 +230,6 @@ class PopupHint extends React.Component<Props, State> {
     }
 }
 
-
 const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
 
 /* <style> */
