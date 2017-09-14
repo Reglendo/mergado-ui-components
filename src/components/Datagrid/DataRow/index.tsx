@@ -1,9 +1,9 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
+
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../../../components/Forms/Checkbox"
-import uniqueId from "../../../helpers/unique_id"
 import { ID, Action } from "../../../helpers/types"
 
 export interface Props {
@@ -25,21 +25,6 @@ export interface Props {
 export interface State {
 }
 
-const Row = styled.tr`
-    background: #fff;
-
-    color: ${props => props.disabled ? "#ccc" : "#000"};
-
-    .muk-icon--pause,.muk-icon--play {
-        color: #333;
-    }
-
-    &:not(.no-hover):hover {
-        .${prefix}datagrid__cell {
-            background: #fcfaf4
-        }
-    }
-`
 
 class DataRow extends React.Component<Props, State> {
 
@@ -54,11 +39,12 @@ class DataRow extends React.Component<Props, State> {
     private readonly name = prefix + "datagrid__row"
 
     public render() {
-        const { style, addClass, inactive, dataId, actions } = this.props
-
+        const { style, addClass, inactive, dataId, actions, selectedRows } = this.props
+        const isSelected = selectedRows ? selectedRows.indexOf(dataId) > -1 : false
         return (
-            <Row className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
+            <Tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
                 disabled={inactive}
+                selected={isSelected}
                 data-id={dataId} style={style}>
                     {actions.length > 0 &&
                         <DataCell>
@@ -71,9 +57,21 @@ class DataRow extends React.Component<Props, State> {
                         </DataCell>
                     }
                     {this.props.children}
-            </Row>
+            </Tr>
         )
     }
 }
+
+const Tr = glamorous.tr({
+},(props: any) => {
+    console.log(props)
+    return {
+        background: props.selected ? props.theme.selected_background : "#fff",
+        ":hover td": {
+            background: props.theme.hover_background,
+        },
+        color: props.disabled ? "#ccc" : "#000"
+    }
+})
 
 export default DataRow

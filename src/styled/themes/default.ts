@@ -7,6 +7,8 @@ export const colors = {
     yellow: "#FFEC88",
     orange: "#FF9500",
 
+    text: "#333",
+    background: "transparent",
     decoration: "#dbcba3",
     decoration_background: "white",
 }
@@ -25,6 +27,11 @@ const theme = {
     radius: "0px",
     selected_background: Color(colors.yellow),
     hover_background: Color(colors.yellow).fade(0.5),
+
+    /* section */
+    section_border: "none",
+    section_padding: "0",
+
 
     /* form */
     form_label_text_size: "14px",
@@ -50,6 +57,14 @@ const theme = {
 
     table_cell_padding: "6px 10px",
     table_cell_text_size: "14px",
+
+    /* nav */
+    nav_background: colors.decoration,
+    nav_link_color: colors.text,
+    nav_link_background: colors.decoration,
+    nav_link_background_active: Color(colors.decoration).darken(0.2),
+
+
 }
 
 export default theme

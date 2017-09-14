@@ -1,12 +1,11 @@
 import * as React from "react"
-import glamorous from "glamorous"
+import glamorous,{Div} from "glamorous"
 
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../../../components/Forms/Checkbox"
 import { ID, Action } from "../../../helpers/types"
 import Button from "../../../components/Forms/Button"
-import {Actions, ActionsIcons} from "../DataTable"
 
 export interface Props {
     style?: any
@@ -59,11 +58,11 @@ class DataHeader extends React.Component<Props, State> {
                     {kids}
                     {selectedRows.length > 0 ?
                         <DataCell type="header">
-                            <Actions className={`${this.name}__actions_bar`}>
+                            <Div display={"inline-block"} verticalAlign={"bottom"} className={`${this.name}__actions_bar`}>
                                 <ActionsIcons className={`${this.name}__actions_icons`}>
                                     {this.renderBulkActions()}
                                 </ActionsIcons>
-                            </Actions>
+                            </Div>
                         </DataCell>
                         :
                         lastKid}
@@ -72,6 +71,14 @@ class DataHeader extends React.Component<Props, State> {
         )
     }
 }
+
+export const ActionsIcons = glamorous.div({
+    whiteSpace: "nowrap",
+    "& path": {
+        fill: "white !important",
+    },
+})
+
 
 const Header = glamorous.tr({}, (props: any) => { return {
     background: props.selected ? props.theme.blue : "#333",

@@ -1,23 +1,21 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous,{Div} from "glamorous"
+
 import {prefix} from "../../../config"
-import DataHeader from "../DataHeader"
-import DataBody from "../DataBody"
-import Button from "../../../components/Forms/Button"
 import TextInput from "../../../components/Forms/TextInput"
 import Checkbox from "../../../components/Forms/Checkbox"
-import uniqueId from "../../../helpers/unique_id"
 import { ID, Action, Filter } from "../../../helpers/types"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import theme from "../../../styled/theme"
 
 export interface Props {
-    bulkActions: Action[]
-    filters: Filter[]
+    bulkActions?: Action[]
+    filters?: Filter[]
+    buttons?: JSX.Element[]
     style?: any
     addClass?: string
     labels?: {
-        actionsBar: string,
+        actionsBar: string
     }
 }
 export interface State {
@@ -25,73 +23,12 @@ export interface State {
     selectedRows: ID[]
 }
 
-/* <style> */
-
-const Wrapper = styled.div`
-`
-
-const Table = styled.table`
-    width: 100%;
-    .sortable-ghost {
-      opacity: 0.1;
-    }
-    border-left: ${theme.table_border_vertical};
-`
-
-const Filters = styled.div`
-    display: inline-block;
-    vertical-align: bottom;
-    position: relative;
-    .muk-form__group {
-        padding: 0;
-    }
-`
-
-const TextFilter = styled(TextInput)`
-    &.muk-form__group {
-        padding-right: 20px;
-    }
-`
-
-const CheckboxFilter = styled(Checkbox)`
-    &.muk-form__group {
-        padding-top: 20px;
-        padding-left: 20px;
-    }
-    white-space: nowrap;
-`
-
-export const Actions = styled.div`
-    display: inline-block;
-    vertical-align: bottom;
-`
-export const ActionsIcons = styled.div`
-    display: inline-block;
-    vertical-align: bottom;
-
-    white-space: nowrap;
-    position: relative;
-    .muk-button {
-        padding: 0px
-    }
-    .muk-button__item {
-        padding: 0 5px;
-        vertical-align: middle;
-        height: auto;
-        line-height: 12px;
-    }
-    path {
-        fill: white !important;
-    }
-`
-
-/* </style> */
-
 class DataTable extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         bulkActions: [],
         filters: [],
+        buttons: [],
         style: {},
         addClass: "",
         labels: {
@@ -100,7 +37,6 @@ class DataTable extends React.Component<Props, State> {
     }
 
     private readonly name = prefix + "datagrid"
-    private inputElement: any
 
     constructor(props) {
         super(props)
@@ -158,14 +94,21 @@ class DataTable extends React.Component<Props, State> {
 
     protected renderFiltersBar() {
         return (
-            <Filters className={`${this.name}__filters_bar muk-11-12`}>
-                <div className="muk-grid--table">
+            <Div verticalAlign={"middle"} className={`${this.name}__filters_bar`}>
+                <div className="muk-grid--table" style={{width: "100%" }}>
                     <div>
                         {this.renderFilters()}
+                        {this.renderButtons()}
                     </div>
                 </div>
-            </Filters>
+            </Div>
         )
+    }
+
+    protected renderButtons() {
+        return this.props.buttons.map(obj => {
+            return <div style={{ textAlign: "right", verticalAlign: "bottom" }}>{obj}</div>
+        })
     }
 
     protected renderFilters() {
@@ -174,7 +117,7 @@ class DataTable extends React.Component<Props, State> {
                 case "text":
                     return (<TextFilter
                                 type="search"
-                                input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
+                                input={{ onChange: (evt) => { obj.action(evt) } }} labels={{placeholder: obj.label }}
                                 key="text"
                             />)
                 case "checkbox":
@@ -190,16 +133,35 @@ class DataTable extends React.Component<Props, State> {
         const { addClass, style } = this.props
         const className = `${this.name}__table ${this.props.addClass}`
         return (
-            <Wrapper className={`${this.name}`}>
+            <div className={`${this.name}`}>
                 <div style={{whiteSpace: "nowrap"}}>
                     {this.props.filters.length > 0 && this.renderFiltersBar()}
                 </div>
                 <Table className={className} style={style} {...domOnlyProps(this.props)}>
                     {this.props.children && this.renderChildren(this.props.children)}
                 </Table>
-            </Wrapper>
+            </div>
         )
     }
 }
+
+const Table = glamorous.table({
+    width: "100%",
+    "& .sortable-ghost": {
+      opacity: 0.1,
+    },
+},(props:any) => {
+    return {
+        borderLeft: props.theme.table_border_vertical,
+    }
+})
+
+const TextFilter = glamorous(TextInput)({
+    paddingRight: "20px",
+})
+
+const CheckboxFilter = glamorous(Checkbox)({
+    whiteSpace: "nowrap",
+})
 
 export default DataTable

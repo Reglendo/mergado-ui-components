@@ -1,11 +1,13 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
+import IconMinus from "@reglendo/mergado-ui-icons/lib/icons/IconMinus"
 import glamorous from "glamorous"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
 export interface Props extends IFieldProps {
+    halfway?: boolean
 }
 
 class Checkbox extends React.Component<Props, {}> {
@@ -14,6 +16,7 @@ class Checkbox extends React.Component<Props, {}> {
 
     public static defaultProps: Props = {
         ...defaultFieldProps,
+        halfway: false,
     }
 
     protected renderLabel() {
@@ -33,6 +36,7 @@ class Checkbox extends React.Component<Props, {}> {
                         <StyledInput label={label}
                             />
                         <IconCheck size={14} style={{position: "absolute"}} />
+                        <IconMinus size={14} style={{position: "absolute"}} />
                     </div>
                     {label && " " }{label}
                 </glamorous.Div>

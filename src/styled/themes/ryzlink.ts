@@ -12,8 +12,9 @@ const colors = {
     yellow: "#ffec88",
     orange: "#FF9500",
 
+    background: "white",
     decoration: "#dbcba3",
-    decoration_background: "white",
+    decoration_background: "#FAF7F1",
 }
 
 const theme = {
@@ -28,9 +29,13 @@ const theme = {
     message: colors.yellow,
 
     /* general */
-    radius: "4px",
+    radius: "5px",
     selected_background: Color(colors.blue).fade(0.8),
     hover_background: Color(colors.blue).fade(0.95),
+
+    /* section */
+    section_border: "1px solid #dcd8ca",
+    section_padding: "20px",
 
     /* form */
     form_label_text_size: "13px",
@@ -52,6 +57,11 @@ const theme = {
     table_cell_padding: "12px 8px 8px 8px",
     table_cell_text_size: "15px",
 
+    /* nav */
+    nav_background: "transparent",
+    nav_link_color: colors.blue,
+    nav_link_background: "transparent",
+    nav_link_background_active: Color(colors.decoration).darken(0.2),
 }
 
 export default theme
