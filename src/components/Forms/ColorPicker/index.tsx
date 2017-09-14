@@ -1,5 +1,6 @@
 import * as React from "react"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
+import * as InputColor from "react-input-color"
 import glamorous from "glamorous"
 
 import {prefix,form} from "../../../config"
@@ -66,11 +67,6 @@ class ColorPicker extends React.Component<Props, State> {
         return (
             <Popover className={`${this.name}__popover`}>
                 <Cover className={`${this.name}__cover`} onClick={ this.handleClose }/>
-                <ChromePicker
-                    color={this.state.color}
-                    onChange={this.handleChange.bind(this)}
-                    onChangeComplete={this.handleChanged.bind(this)}
-                />
             </Popover>
         )
     }
@@ -82,19 +78,15 @@ class ColorPicker extends React.Component<Props, State> {
         const background = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
         return(
-            <StyledField {...props} name={this.name}>
-                <input {...input} type="hidden" value={background} />
-                <ColorBox className={`${this.name}__colorbox ${this.props.className}`}
-                     onClick={ this.handleClick }>
-                     <glamorous.Div height="24px" style={{ background }}></glamorous.Div>
-                </ColorBox>
-                {this.state.displayColorPicker && this.renderPicker()}
-            </StyledField>
+            <InputColor
+              value={"#000000"}
+              defaultValue="#345678"
+              onChange={this.handleChange.bind(this)} // change state.color in handleChange
+            />
         )
     }
 
 }
-
 
 const StyledField = glamorous(Field)({
     display: "inline-block",
