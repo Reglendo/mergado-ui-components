@@ -1,26 +1,21 @@
 import * as React from "react"
-import {Link} from "react-router"
-import styled from "styled-components"
+import glamorous from "glamorous"
+
 import {prefix,form} from "../../../config"
-import domOnlyProps from "../../../helpers/dom-only-props"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import {UniversalButton} from "./types"
+import {UniversalButton} from "./button"
 
 export interface Props extends IFieldProps {
     type?: "button" | "link" | "submit" | "void" | "href"
     link?: string
     to?: string
     icon?: JSX.Element | string
-    color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor"
+    color?: "blue" | "gray" | "grey" | "green" | "red" | "nocolor" | "yellow" | "orange" | "transparent" | "decoration"
     size?: "small" | "tiny" | ""
     disabled?: boolean
     onClick?: (evt: any) => any
+    secondary?: boolean
 }
-
-const StyledField = styled(Field)`
-    display: inline-block;
-    vertical-align: top;
-`
 
 class Button extends React.Component<Props, {}> {
     protected readonly name = prefix + "button";
@@ -32,11 +27,15 @@ class Button extends React.Component<Props, {}> {
         color: "blue",
         disabled: false,
         size: "",
+        secondary: false,
     }
 
     public render() {
         const { meta, input, labels, group } = this.props
         const { children, ...props } = this.props
+        if(props.type !== "submit") {
+            return <UniversalButton {...this.props} name={this.name} />
+        }
         return (
             <StyledField className={`${this.name}--${props.color}
                                         ${!labels.main ? this.name+`--notext`:``}
@@ -45,12 +44,17 @@ class Button extends React.Component<Props, {}> {
                                         ${props.disabled ? this.name+`--disabled`:``}
                 `}
                 {...this.props} name={this.name} label="" labels={{...labels,main: ""}}
-                style={{...group.style}}
+                style={{ marginBottom: 0, ...group.style }}
                 >
                     <UniversalButton {...this.props} name={this.name} />
             </StyledField>
         )
     }
 }
+
+const StyledField = glamorous(Field)({
+    display: "inline-block",
+    verticalAlign: "top",
+})
 
 export default Button

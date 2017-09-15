@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous,{Ul} from "glamorous"
 
 import WizardStep from "../../components/WizardNav/WizardStep"
 import {prefix} from "../../config"
@@ -12,20 +12,6 @@ export interface Props {
 export interface State {
 }
 
-/* <style> */
-const Component = styled.nav`
-    padding: 0;
-    margin: 20px 0;
-    list-style: none;
-    background-color: #777777;
-`
-const List = styled.ul`
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-`
 /* </style> */
 
 class WizardNav extends React.Component<Props, State> {
@@ -41,9 +27,14 @@ class WizardNav extends React.Component<Props, State> {
         const {links} = this.props
         const classList = `${this.name}__list`
         return (
-            <List className={classList}>
-                {links}
-            </List>
+            <Ul listStyle="none"
+                padding="0"
+                margin="0"
+                position="relative"
+                overflow="hidden"
+                className={classList}>
+                    {links}
+            </Ul>
         )
     }
 
@@ -51,11 +42,23 @@ class WizardNav extends React.Component<Props, State> {
         const className = `${this.name}`
 
         return (
-            <Component className={className} style={this.props.style}>
-                {this.renderLinks() }
-            </Component>
+                <Nav className={className} style={this.props.style}
+                    >
+                        {this.renderLinks() }
+                </Nav>
         )
     }
 }
+
+const Nav = glamorous.nav({
+    padding: "0",
+    margin: "20px 0",
+    listStyle: "none",
+},(props: any) => {
+    return {
+        borderRadius: props.theme.radius,
+        backgroundColor: props.theme.grey,
+    }
+})
 
 export default WizardNav

@@ -1,5 +1,7 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
+import * as Color from "color"
+
 import {prefix,form} from "../../../config"
 import TextInput from "../../../components/Forms/TextInput"
 import uniqueId from "../../../helpers/unique_id"
@@ -30,37 +32,6 @@ export interface State {
     menuWidth: number
 }
 
-/* <style> */
-const Menu = styled.div`
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0;
-    font-size: 90%;
-    position: absolute;
-    top: 100% !important;
-    left: 2px !important;
-    margin: 1px 0;
-    overflow: auto;
-    max-height: 50vh;
-    z-index: 1000;
-    margin-top: -12px;
-    border-color: transparent !important;
-`
-
-const MenuItem = styled.div`
-    padding: 9px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    border-bottom: 1px solid #ccc;
-    border-left: 5px solid rgba(0,0,0,0);
-    transition: border-color 0.2s;
-    border-radius: 0;
-    background: ${props => props.selected ? "rgba(0,0,0,0.1)" : "transparent"};
-    font-weight: ${props => props.selected ? "bold" : "normal"};
-    border-left-color: ${props => props.selected ? "rgba(0,0,0,0.3)" : "transparent"};
-`
-/* </style> */
-
 class Autocomplete extends  React.Component<Props, State> {
     public readonly props: Props;
     public state: State;
@@ -69,6 +40,7 @@ class Autocomplete extends  React.Component<Props, State> {
     protected performAutoCompleteOnUpdate = true
     protected performAutoCompleteOnKeyUp = true
     protected ignoreBlur = false
+    protected _inputRef = null
 
     public static defaultProps: Props = {
         ...defaultFieldProps,
@@ -142,18 +114,18 @@ class Autocomplete extends  React.Component<Props, State> {
     }
 
     protected setMenuPositions() {
-        const node: any = this.refs.input
-        const rect = node.refs.input.getBoundingClientRect()
+        const node: any = this._inputRef
+        const rect = node.base.getBoundingClientRect()
         const glob: any = global
         const computedStyle = glob
-            .getComputedStyle(node.refs.input)
+            .getComputedStyle(node.base)
         const marginBottom = parseInt(computedStyle.marginBottom, 10) || 0
         const marginLeft = parseInt(computedStyle.marginLeft, 10) || 0
         const marginRight = parseInt(computedStyle.marginRight, 10) || 0
         this.setState({
             menuTop: rect.bottom + marginBottom,
             menuLeft: rect.left + marginLeft,
-            menuWidth: rect.width + marginLeft + marginRight,
+            menuWidth: rect.width + marginLeft + marginRight - 10,
         })
     }
 
@@ -309,7 +281,7 @@ class Autocomplete extends  React.Component<Props, State> {
     }
 
     protected isInputFocused() {
-        const el: any = this.refs.input
+        const el: any = this._inputRef.base
         return el.ownerDocument && (el === el.ownerDocument.activeElement)
     }
 
@@ -355,9 +327,9 @@ class Autocomplete extends  React.Component<Props, State> {
                     .props
                     .renderItem(item, this.state.highlightedIndex === index, {cursor: "default"})
                 return React.cloneElement(element, {
-                    onMouseDown: () => this.setIgnoreBlur(true),
+                    onMouseDown: () => this.selectItemFromMouse(item),
                     onMouseEnter: () => this.highlightItemFromMouse(index),
-                    onClick: () => this.selectItemFromMouse(item),
+                    onClick: () => { this.selectItemFromMouse(item) },
                     ref: e => this.refs[`item-${index}`] = e,
                 })
             })
@@ -389,7 +361,7 @@ class Autocomplete extends  React.Component<Props, State> {
         return (
             <Field label="">
                 <TextInput
-                    ref="input"
+                    innerRef={r => (this._inputRef = r)}
                     type="search"
                     labels={labels}
                     meta={meta}
@@ -400,5 +372,46 @@ class Autocomplete extends  React.Component<Props, State> {
         )
     }
 }
+
+const Menu = glamorous.div({
+    boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
+    background: "rgba(255, 255, 255, 0.95)",
+    padding: 0,
+    fontSize: "90%",
+    position: "absolute",
+    top: "100% !important",
+    left: "2px !important",
+    margin: "1px 0",
+    overflow: "auto",
+    maxHeight: "50vh",
+    zIndex: 1000,
+    marginTop: "5px",
+}, props => {
+    const theme: any = props.theme
+    return {
+        border: `1px solid ${theme.decoration}`,
+        borderRadius: theme.radius,
+    }
+})
+
+const MenuItem = glamorous.div({
+    padding: "9px 10px",
+    fontSize: "12px",
+    cursor: "pointer",
+    transition: "border-color 0.2s",
+    borderRadius: 0,
+}, props => {
+    const p: any = props
+    const theme: any = props.theme
+    if(p.selected) {
+        return {
+            background: theme.selected_background,
+        }
+    } else {
+        return {
+            background: "transparent",
+        }
+    }
+})
 
 export default Autocomplete

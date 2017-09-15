@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import {Span,Svg} from "glamorous"
 
 import {prefix} from "../../config"
 
@@ -18,19 +18,6 @@ export interface State {
     icon: any
 }
 
-/* <style> */
-const Wrapper = styled.span`
-`
-
-const Text = styled.span`
-    vertical-align: middle;
-    margin-left: 2px;
-    margin-right: 5px;
-`
-
-const Image = styled.svg`
-    vertical-align: middle;
-`
 /* </style> */
 
 const getIcon = (name) => import("@reglendo/mergado-ui-icons/lib/icons/const/" + name + ".js")
@@ -77,21 +64,21 @@ class Icon extends React.Component<Props, State> {
         const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
 
         return (
-            <Wrapper className={className} style={this.props.style} title={this.props.title}>
-                <Image className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
+            <Span className={className} style={this.props.style} title={this.props.title}>
+                <Svg verticalAlign="middle" className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
                     fill="currentColor"
                     height={this.props.size}
                     width={this.props.size}
                         viewBox={this.props.viewBox}
                 >
                     {this.state.icon}
-                </Image>
+                </Svg>
                 {this.props.text ? (
-                    <Text className={`${this.name}__text`}>
+                    <Span verticalAlign="middle" marginLeft="2px" marginRight="5px" className={`${this.name}__text`}>
                         {this.props.text}
-                    </Text>
+                    </Span>
                 ) : null}
-            </Wrapper>
+            </Span>
         )
 
     }

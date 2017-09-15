@@ -31,7 +31,12 @@ export default class StyleGuide extends Component {
       this.state = {
         compact: cookie.load('compact') == "1" ? true : false,
         showSidebar: cookie.load('sidebar') == "0" ? false : true,
+		theme: cookie.load('theme') || "default",
       };
+
+	  this.switchTheme = this.switchTheme.bind(this)
+	  this.switchCompact = this.switchCompact.bind(this)
+	  this.switchSidebar = this.switchSidebar.bind(this)
     }
 
 	getChildContext() {
@@ -66,18 +71,26 @@ export default class StyleGuide extends Component {
 	}
 
     switchCompact() {
+		cookie.save('compact', !this.state.compact ? '1' : '0', { path: '/' });
         this.setState({
             compact: !this.state.compact
         })
-        cookie.save('compact', !this.state.compact ? '1' : '0', { path: '/' });
 
     }
 
+	switchTheme(e) {
+		this.setState({
+			theme: e.target.value
+		})
+		cookie.save('theme', e.target.value, { path: '/' });
+		location.reload();
+	}
+
     switchSidebar() {
+		cookie.save('sidebar', !this.state.showSidebar ? '1' : '0', { path: '/' });
         this.setState({
             showSidebar: !this.state.showSidebar
         })
-        cookie.save('sidebar', !this.state.showSidebar ? '1' : '0', { path: '/' });
     }
 
     componentDidUpdate() {
@@ -100,8 +113,10 @@ export default class StyleGuide extends Component {
 				toc={this.renderTableOfContents(components, sections)}
 				sidebar={showSidebar}
                 compact={this.state.compact}
-                switchCompact={this.switchCompact.bind(this)}
-                switchSidebar={this.switchSidebar.bind(this)}
+				theme={this.state.theme}
+                switchCompact={this.switchCompact}
+                switchSidebar={this.switchSidebar}
+				switchTheme={this.switchTheme}
 			/>
 		);
 	}

@@ -1,45 +1,42 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix} from "../../config"
+import {Type} from "../../helpers/types"
 
 export interface Props {
     title?: string
-    type: "warning" | "success" | "error" | "inactive"
+    type: Type,
     text?: string
     style?: any
 }
 export interface State {
 }
 
-/* <style> */
-const colors = {
-                    success: "#85bd3c",
-                    warning: "#FF9900",
-                    error: "#d00",
-                    inactive: "#888",
-                }
-
-const Wrapper = styled.span`
-    vertical-align: middle;
-`
-const Indikator = styled.span`
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    border-bottom: none;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0 5px;
-    background-color: ${props => colors[props.type]}
-`
-const Text = styled.span`
-    vertical-align: middle;
-
-    a:hover {
-        text-decoration: none
+const Wrapper = glamorous.span({
+    verticalAlign: "middle",
+})
+const Indikator = glamorous.span({
+    width: "8px",
+    height: "8px",
+    borderRadius: "100%",
+    borderBottom: "none",
+    verticalAlign: "baseline",
+    display: "inline-block",
+    margin: "0 5px",
+}, (props: any) => {
+    return {
+        boxShadow: props.type === "info" ? "0px 0px 1px 0px rgba(0,0,0,0.5)" : "none",
+        backgroundColor: props.theme[props.type]
     }
-`
+});
+
+const Text = glamorous.span({
+    verticalAlign: "middle",
+    "a:hover": {
+        textDecoration: "none",
+    },
+})
 /* </style> */
 
 class LittleStatus extends React.Component<Props, State> {

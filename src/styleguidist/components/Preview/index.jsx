@@ -6,6 +6,10 @@ import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
+import { ThemeProvider } from 'glamorous';
+import defaultTheme from '/src/styled/themes/default.ts';
+import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
+import cookie from 'react-cookie';
 
 import Editor from 'rsg-components/Editor';
 const s = require('../Playground/Playground.css');
@@ -51,6 +55,7 @@ export default class Preview extends Component {
             innerHtml: '',
             code: null,
             preserved: null,
+			theme: cookie.load('theme') || "default",
 		};
 		this.componentState = {};
 	}
@@ -176,15 +181,18 @@ export default class Preview extends Component {
                     favcolor: "blue",
                     superpower1: 1,
                     video: "Video",
-										queries: [1001,1000],
+					queries: [1001,1000],
                 }
             })(PreviewComponent)
 
+			const theme = this.state.theme === "ryzlink" ? ryzlinkTheme : defaultTheme
 			const wrappedComponent = (
                     <Provider store={store}>
-                        <Wrapper>
-                            <Form />
-                        </Wrapper>
+                        <ThemeProvider theme={theme}>
+                            <Wrapper>
+                                <Form />
+                            </Wrapper>
+                        </ThemeProvider>
                     </Provider>
 			);
 

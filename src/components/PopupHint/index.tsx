@@ -1,6 +1,8 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous, {Div} from "glamorous"
+import * as Color from "color"
 
+import colors from "../../styled/themes/default"
 import {prefix} from "../../config"
 import Bubble from "./Bubble"
 
@@ -17,55 +19,6 @@ export interface Position {
     top: number
     left: number
 }
-
-const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
-
-/* <style> */
-const Component = styled.div`
-    cursor: pointer;
-    display: inline-block;
-`
-const HintWrapper = styled.div`
-    outline: none;
-    font-family: ${fontFamily};
-    position: absolute;
-    max-width: 600px;
-    z-index: 10000;
-`
-const HintInnerWrapper = styled.div`
-    position: relative;
-    padding: 0 0 10px 0;
-`
-
-const HintBorder = styled.div`
-    padding: 3px;
-    background: #FFEC88;
-    box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.25);
-    margin-bottom: -5px;
-`
-
-const HintArrow = styled.span`
-    display: block;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 15px;
-    height: 15px;
-    background: #FFEC88;
-    transform: rotate(45deg);
-    box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.25);
-`
-
-const HintContent = styled.div`
-    max-height: 200px;
-    padding: 10px;
-    text-align: left;
-    color: #333;
-    border: 1px solid #F0DD79;
-    overflow: auto;
-    position: relative;
-    z-index: 10;
-`
 
 /* </style> */
 
@@ -250,20 +203,18 @@ class PopupHint extends React.Component<Props, State> {
                      style={style} tabIndex={0}
                      onBlur={ this.collapse }
                  >
-                    <HintInnerWrapper className={`${this.name}__innerwrapper`}>
-                        <HintBorder className={`${this.name}__border`}>
-                            <HintContent className={`${this.name}__content`}>{this.props.children}</HintContent>
-                        </HintBorder>
+                    <Div position={"relative"} padding={"0 0 10px 0"} className={`${this.name}__innerwrapper`}>
+                        <HintContent className={`${this.name}__content`}>{this.props.children}</HintContent>
                         <HintArrow
                             innerRef={(o) => { this.refs.arrow = o }}
                             className={`${this.name}__arrow`} />
-                    </HintInnerWrapper>
+                    </Div>
                 </HintWrapper>
             </Bubble>
         )
 
         return (
-            <Component className={this.name} style={{...this.props.style, display: "inline-block"}}>
+            <Div cursor="pointer" display="inline-block" className={this.name} style={{...this.props.style}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
                      onClick={(e) => {
@@ -274,9 +225,49 @@ class PopupHint extends React.Component<Props, State> {
                     {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}
-            </Component>
+            </Div>
         );
     }
 }
+
+const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
+
+/* <style> */
+const HintWrapper = glamorous.div({
+    outline: "none",
+    fontFamily: fontFamily,
+    position: "absolute",
+    maxWidth: "600px",
+    zIndex: 10000,
+})
+
+const HintArrow = glamorous.div({
+    display: "block",
+    position: "absolute",
+    right: "0px",
+    bottom: "3px",
+    width: "14px",
+    height: "14px",
+    background: colors.yellow,
+    transform: "rotate(45deg)",
+    zIndex: 11,
+    borderRight: "1px solid black",
+    borderBottom: "1px solid black",
+    borderColor: Color(colors.yellow).darken(0.3)
+})
+
+const HintContent = glamorous.div({
+    maxHeight: "200px",
+    padding: "10px",
+    textAlign: "left",
+    overflow: "auto",
+    position: "relative",
+    zIndex: 10,
+    background: colors.yellow,
+    border: "1px solid black",
+    boxShadow: "3px 3px 12px -3px rgba(0,0,0,0.25)",
+    borderColor: Color(colors.yellow).darken(0.3),
+    borderRadius: "2px"
+})
 
 export default PopupHint

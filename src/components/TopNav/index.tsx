@@ -1,31 +1,17 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous, {Div} from "glamorous"
 
-import NavLink from "../../components/TopNav/NavLink"
 import {prefix} from "../../config"
 
 export interface Props {
     links: JSX.Element[]
     style?: any
     addClass?: string
+    logo?: JSX.Element
 }
 
 export interface State {
 }
-
-/* <style> */
-const Component = styled.nav`
-    background: #e5d7b6;
-    color: #333;
-    font-size: 11pt;
-    font-weight: bold;
-    padding: 10px 20px;
-`
-const Wrapper = styled.div`
-    position: relative;
-    margin: auto;
-`
-/* </style> */
 
 class TopNav extends React.Component<Props, State> {
 
@@ -41,7 +27,7 @@ class TopNav extends React.Component<Props, State> {
         const {links} = this.props
         return (
             <ul className={`${this.name}__list muk-helper-clearfix`}>
-                {links}
+                {links.length > 0 ? links : this.props.children}
             </ul>
         )
     }
@@ -53,12 +39,39 @@ class TopNav extends React.Component<Props, State> {
 
         return (
             <Component className={className} style={this.props.style}>
-                <Wrapper className={classWrapper}>
-                    {this.renderLinks() }
-                </Wrapper>
+                {this.props.logo &&
+                    <Logo>{this.props.logo}</Logo>
+                }
+                {this.renderLinks()}
             </Component>
         )
     }
 }
+
+// /* <style> */
+const Logo = glamorous.div({
+    display: "inline-block",
+    float: "left",
+    maxHeight: "40px",
+    padding: "0 20px 0 0",
+    "& img": {
+        maxHeight: "30px",
+        width: "auto",
+    }
+})
+
+const Component = glamorous.nav({
+    color: "#333",
+    fontSize: "16px",
+    fontWeight: "bold",
+    padding: "10px 20px 0 20px",
+},(props: any) =>
+{
+    return {
+        // borderBottom: `1px solid #ccc`,
+        // background: props.theme.nav_background,
+    }
+})
+
 
 export default TopNav

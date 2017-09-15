@@ -10,7 +10,8 @@ module.exports = {
     sections: [
         {
             name: 'Layout',
-            content: './src/docs/Layout.md'
+            content: './src/docs/Layout.md',
+            components: './src/components/Layout/**/*.tsx',
         },
         {
             name: 'Helpers',

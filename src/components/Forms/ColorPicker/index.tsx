@@ -1,6 +1,8 @@
 import * as React from "react"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
-import styled from "styled-components"
+import * as InputColor from "react-input-color"
+import glamorous from "glamorous"
+import * as debounce from "lodash.debounce"
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
@@ -12,43 +14,13 @@ export interface Color {
 }
 
 export interface Props extends IFieldProps {
-    color?: Color
-    hex?: string
+    color?: string | Color
 }
 
 export interface State {
     displayColorPicker: boolean
-    color: Color
+    color: string
 }
-
-const StyledField = styled(Field)`
-    display: inline-block;
-    width: 100%;
-`
-
-const ColorBox = styled.div`
-    border: 5px solid white;
-    height: 34px;
-    border-radius: 2px;
-    cursor: pointer;
-    background: white;
-    padding: 5px;
-    border-radius: 1px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.1);
-    outline: 1px solid #dbcba3;
-`
-
-const Popover = styled.div`
-    position: absolute;
-    z-index: 200;
-`
-const Cover = styled.div`
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-`
 
 class ColorPicker extends React.Component<Props, State> {
 
@@ -56,69 +28,106 @@ class ColorPicker extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         ...defaultFieldProps,
-        color: { r: 0, g: 0, b: 0, a: 1 },
+        color: "#000000",
     }
 
     constructor(props) {
         super(props)
+        const color = (typeof props.color == 'string' || props.color instanceof String)
+                            ? props.color
+                            : `rgba(${props.color.r},${props.color.g},${props.color.b},${props.color.a})`
         this.state = {
             displayColorPicker: false,
-            color: props.color,
+            color,
         }
 
-        this.handleClick = this.handleClick.bind(this)
-        this.handleClose = this.handleClose.bind(this)
+        this.handleChanged = debounce(this.handleChanged.bind(this),200)
     }
 
-    protected handleClick(evt) {
-        evt.preventDefault()
-        this.setState({displayColorPicker: !this.state.displayColorPicker})
-    }
-
-    protected handleClose(evt) {
-        evt.preventDefault()
-        this.setState({displayColorPicker: false})
-    }
-
-    protected handleChange(evt) {
-        return false
-    }
 
     protected handleChanged(evt) {
-        this.setState({color: evt.rgb})
-        return this.props.input.onChange(evt.rgb)
-    }
-
-    protected renderPicker() {
-
-        return (
-            <Popover className={`${this.name}__popover`}>
-                <Cover className={`${this.name}__cover`} onClick={ this.handleClose }/>
-                <ChromePicker
-                    color={this.state.color}
-                    onChange={this.handleChange.bind(this)}
-                    onChangeComplete={this.handleChanged.bind(this)}
-                />
-            </Popover>
-        )
+        this.setState({color: evt})
+        return this.props.input.onChange(evt)
     }
 
     public render() {
         const { color } = this.state
         const { input, meta } = this.props
         const { children, ...props} = this.props
-        const background = `rgba(${color.r},${color.g},${color.b},${color.a})`
-
+        const background = `${color}`
+        const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         return(
-            <StyledField {...props} name={this.name}>
+            <StyledField {...props} name={this.name} aria-invalid={isInvalid ? 1 : 0}>
                 <input {...input} type="hidden" value={background} />
-                <ColorBox className={`${this.name}__colorbox ${this.props.className}`}
-                     style={{ background }} onClick={ this.handleClick } />
-                {this.state.displayColorPicker && this.renderPicker()}
+                <InputColor
+                    value={color}
+                    defaultValue="#345678"
+                    onChange={this.handleChanged}
+                />
             </StyledField>
         )
     }
-
 }
+
+const StyledField = glamorous(Field)({
+    display: "inline-block",
+    width: "100%",
+    "& .muk-form__group--invalid": {
+        fontSize: "0",
+    },
+    "& .m-input-color": {
+        position: "relative",
+        display: "inline-block",
+        width: "100%",
+        height: "40px",
+        padding: "5px",
+        backgroundColor: "#ffffff",
+        userSelect: "none",
+        transition: "border-color 0.2s",
+        willChange: "border-color",
+    }
+
+
+}, props => {
+    const theme: any = props.theme
+    return {
+        "& .m-input-color": {
+            borderRadius: theme.radius,
+            borderColor: theme.decoration,
+            border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
+            ":active,:focus": {
+                border: `${theme.input_border_active} !important`,
+            }
+        },
+        "& .muk-form__group--invalid .muk-colorpicker__colorbox": {
+            borderColor: `${theme.red} !important`,
+        }
+    }
+})
+
+const ColorBox = glamorous.div({
+    cursor: "pointer",
+    background: "white",
+    padding: "5px",
+}, props => {
+    const theme: any = props.theme
+    return {
+        border: `1px solid ${theme.decoration}`,
+        borderRadius: theme.radius,
+    }
+})
+
+const Popover = glamorous.div({
+    position: "absolute",
+    zIndex: 200,
+})
+
+const Cover = glamorous.div({
+    position: "fixed",
+    top: "0px",
+    right: "0px",
+    bottom: "0px",
+    left: "0px",
+})
 
 export default ColorPicker

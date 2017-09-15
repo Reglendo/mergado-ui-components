@@ -1,7 +1,6 @@
 import * as React from "react"
 import {prefix} from "../../../config"
 import * as Sortable from "react-sortablejs"
-import DataRow from "../DataRow"
 import { ID, Action } from "../../../helpers/types"
 
 export interface Props {

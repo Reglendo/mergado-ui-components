@@ -1,5 +1,5 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
 
 import {prefix} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -12,6 +12,7 @@ interface IItem {
 
 export interface Props extends IFieldProps {
     items: IItem[]
+    bigButtons?: boolean
 }
 
 class Radio extends React.Component<Props, {}> {
@@ -20,11 +21,12 @@ class Radio extends React.Component<Props, {}> {
 
     public static defaultProps: Props = {
         ...defaultFieldProps,
+        bigButtons: false,
         items: [],
     }
 
     public renderInputs() {
-        const { input, meta, labels } = this.props
+        const { input, meta, labels, bigButtons } = this.props
         return this.props.items.map((obj: IItem) => {
             return (
                 <RadioInput name={this.name} label={obj.label}
@@ -32,6 +34,7 @@ class Radio extends React.Component<Props, {}> {
                             key={obj.value}
                             checked={obj.value == input.value}
                             onChange={input.onChange}
+                            bigButtons={bigButtons}
                 />
             )
         })

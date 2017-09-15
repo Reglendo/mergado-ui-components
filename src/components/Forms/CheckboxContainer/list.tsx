@@ -1,5 +1,7 @@
 import * as React from "react"
-import styled, {css} from "styled-components"
+import glamorous from "glamorous"
+import * as Color from "color"
+
 import { Query } from "./index"
 import { QueryItem } from "./item"
 
@@ -74,22 +76,27 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
         })
 }
 
-const QueryListComponent: React.SFC<IQueryListProps> = ({ name, className, options, value, input,
+export const QueryList: React.SFC<IQueryListProps> = ({ name, className, options, value, input,
                                                             singleChoice, showInput, activeFirst, labels, meta }) => {
     return (
-        <ul className={`${name}__list ${className}`}>
+        <List className={`${name}__list ${className}`}>
             {renderOptions( name, meta.initial && activeFirst ? options.sort(sortOptions(meta.initial)) : options ,
                             value, input, singleChoice, showInput, labels)}
-        </ul>
+        </List>
     )
 }
 
-export const QueryList = styled(QueryListComponent)`
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #dbcba3;
-    height: ${props => props.height === "auto" ? props.height : props.height + "px"};
-    overflow: auto;
-    background: rgba(255,255,255,0.2);
-`
+const List = glamorous.ul({
+    listStyle: "none",
+    margin: 0,
+    padding: 0,
+    border: "1px solid #dbcba3",
+    overflow: "auto",
+    background: "rgb(255,255,255)",
+}, (props: any) => { return {
+    height: props.height === "auto" ? props.height : props.height + "px",
+    borderRadius: props.theme.radius,
+    "& li + li": {
+        borderTop: `1px solid ${Color(props.theme.decoration).fade(0.8)}`,
+    }
+}})

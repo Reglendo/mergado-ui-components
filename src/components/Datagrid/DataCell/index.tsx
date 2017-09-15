@@ -1,6 +1,7 @@
 import * as React from "react"
+import glamorous from "glamorous"
+
 import {prefix} from "../../../config"
-import styled from "styled-components"
 
 export interface Props {
     style?: any
@@ -10,32 +11,6 @@ export interface Props {
 }
 export interface State {
 }
-
-const Cell = styled.td`
-    padding: 8px 10px;
-    text-align: left;
-    border-bottom: 1px solid #dbcba3;
-    font-weight: normal;
-    border-right: #dbcba3 1px dotted;
-    font-size: 13px;
-    .muk-form__group {
-        margin: 0;
-    }
-    .muk-form__label {
-        padding: 0;
-    }
-`
-
-const Header = Cell.withComponent("th").extend`
-    background: #333;
-    padding: 0 10px;
-    border-color: transparent;
-    font-weight: bold;
-    white-space: nowrap;
-    height: 30px;
-    line-height: 30px;
-    color: #fff;
-`
 
 class DataCell extends React.Component<Props, State> {
 
@@ -50,12 +25,44 @@ class DataCell extends React.Component<Props, State> {
         const { style, type, addClass, onClick } = this.props;
         return (type === "header")
             ?
-                <Header className={`${this.name} ${this.name}--header ${addClass}`}
-                    style={style} onClick={onClick}>{this.props.children}</Header>
+                <Th className={`${this.name} ${this.name}--header ${addClass}`}
+                    style={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Cell className={`${this.name} ${addClass}`} style={style}
-                    onClick={onClick}>{this.props.children}</Cell>
+                <Td className={`${this.name} ${addClass}`} style={style}
+                    onClick={onClick}>{this.props.children}</Td>
     }
 }
+
+const Td = glamorous.td({
+    textAlign: "left",
+    fontWeight: "normal",
+    "& .muk-form__group": {
+        margin: 0,
+    },
+    "& .muk-form__label": {
+        padding: 0,
+    },
+    "& .muk-button__item": {
+        padding: "0 5px",
+        verticalAlign: "middle",
+        height: "auto",
+        lineHeight: "initial",
+    },
+}, (props: any) => { return {
+    padding: props.theme.table_cell_padding,
+    borderBottom: props.theme.table_border_horizontal,
+    borderRight: props.theme.table_border_vertical,
+    fontSize: props.theme.table_cell_text_size,
+}})
+
+const Th = glamorous(Td)({
+    borderColor: "transparent",
+    whiteSpace: "nowrap",
+    color: "#fff",
+    fontWeight: "bold",
+}, (props: any) => { return {
+    fontSize: props.theme.table_header_text_size,
+    textTransform: props.theme.table_header_text_transform,
+}}).withComponent("th")
 
 export default DataCell

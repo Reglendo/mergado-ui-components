@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
@@ -28,6 +28,9 @@
   "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
     "@reglendo/mergado-ui-icons": "1.0.2",
+    "color": "^2.0.0",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.8.0",
     "lodash.debounce": "^4.0.8",
     "lodash.isempty": "^4.4.0",
     "lodash.noop": "^3.0.1",
@@ -36,10 +39,10 @@
     "react-color": "^2.11.6",
     "react-dates": "^12.0.0",
     "react-group": "^1.0.5",
+    "react-input-color": "^1.7.2",
     "react-router": "^2.6.1",
     "react-sortablejs": "^1.0.1",
-    "sortablejs": "^1.4.2",
-    "styled-components": "^2.1.0"
+    "sortablejs": "^1.4.2"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
@@ -68,6 +71,7 @@
     "react-addons-update": "^15.4.2",
     "react-cookie": "^1.0.5",
     "react-docgen-typescript": "https://github.com/Reglendo/react-docgen-typescript#0.1.7",
+    "react-lazyload": "^2.2.7",
     "react-redux": "^5.0.2",
     "react-styleguidist": "4.6.3",
     "redux": "^3.6.0",

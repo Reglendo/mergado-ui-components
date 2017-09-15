@@ -1,5 +1,7 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous from "glamorous"
+import * as Color from "color"
+import IconChevronDown from "@reglendo/mergado-ui-icons/lib/icons/IconChevronDown"
 
 import {prefix} from "../../../config"
 import uniqueId from "../../../helpers/unique_id"
@@ -8,21 +10,6 @@ import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/F
 export interface Props extends IFieldProps {
     options?: any
 }
-
-const StyledSelect = styled.select`
-    box-sizing: border-box;
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    outline: none;
-    display: inline-block;
-    margin: 0;
-    background: white;
-    color: #333333;
-    vertical-align: middle;
-    padding: 0 10px;
-    border: 1px solid #dbcba3;
-`
 
 class Select extends React.Component<Props, {}> {
 
@@ -52,15 +39,68 @@ class Select extends React.Component<Props, {}> {
     public render() {
         const { meta, input, labels } = this.props
         const { children, ...props } = this.props
+        const isInvalid = meta.invalid && (meta.dirty || meta.touched)
+
         return (
             <Field {...props} name={this.name}>
-                <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`}>
-                    {this.renderOptions()}
-                </StyledSelect>
+                <glamorous.Div position="relative">
+                    <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`} aria-invalid={isInvalid ? 1 : 0}>
+                        {this.renderOptions()}
+                    </StyledSelect>
+                    <IconChevronDown size={10} style={{ opacity: 0.6, position: "absolute", bottom: "9px", right: "10px", pointerEvents: "none"}}/>
+                </glamorous.Div>
             </Field>
         )
     }
-
 }
+
+const StyledSelect = glamorous.select({
+    boxSizing: "border-box",
+    width: "100%",
+    height: "40px",
+    lineHeight: "40px",
+    outline: "none",
+    display: "inline-block",
+    margin: "0",
+    background: "white",
+    color: "#333333",
+    verticalAlign: "middle",
+    padding: "0 10px",
+    border: "1px solid",
+    appearance: "none",
+    transition: "border-color 0.2s",
+    willChange: "border-color",
+    ":focus, :active": {
+        outline: "none",
+        border: "none",
+    },
+    "::-ms-expand": {
+        display: "none"
+    },
+    ":-moz-focusring": {
+        color: "transparent",
+        textShadow: "0 0 0 #000",
+    }
+},(props: any) => {
+    const theme = props.theme
+    const styles = []
+    styles.push({
+        borderRadius: theme.radius,
+        border: props["aria-invalid"] ?  theme.input_border_error : theme.input_border,
+        ":active,:focus": {
+            border: theme.input_border_active,
+        },
+    })
+
+    if(props.disabled) {
+        styles.push({
+            color: "#999",
+            background: "#eee",
+            borderColor: Color(theme.grey).fade(0.5),
+        })
+    }
+
+    return styles
+})
 
 export default Select

@@ -25,22 +25,26 @@ class Bubble extends React.Component<Props, State> {
     }
 
     public componentDidUpdate() {
-        this._renderLayer();
+        this._renderLayer()
     }
 
     public componentWillUnmount() {
         if(this.popup) {
-            ReactDOM.unmountComponentAtNode(this.popup);
-            document.getElementById("app").removeChild(this.popup);
+            try {
+                ReactDOM.unmountComponentAtNode(this.popup)
+                document.getElementById("app").removeChild(this.popup)
+            } catch(e) {
+                // fail gracefully
+            }
         }
     }
 
     protected _renderLayer() {
-        ReactDOM.render((<span >{this.props.children}</span>), this.popup);
+        ReactDOM.render((<span >{this.props.children}</span>), this.popup)
     }
 
     public render() {
-        return (<div/>);
+        return (<div/>)
     }
 }
 

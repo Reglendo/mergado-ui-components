@@ -1,5 +1,6 @@
 import * as React from "react"
-import styled from "styled-components"
+import glamorous, {Div} from "glamorous"
+import * as Color from "color"
 
 import {prefix} from "../../config"
 
@@ -11,32 +12,6 @@ export interface Props {
 }
 export interface State {
 }
-
-/* <style> */
-const Component = styled.div`
-    position: relative;
-`
-const Shadow = styled.div`
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background: rgba(219, 203, 163, 0.25);
-    margin: auto;
-`
-
-const Wrapper = styled.div`
-    display: table;
-    width: 100%;
-    height: 100%;
-`
-const Container = styled.div`
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-`
-/* </style> */
 
 class Placeholder extends React.Component<Props, State> {
 
@@ -58,17 +33,38 @@ class Placeholder extends React.Component<Props, State> {
         const styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` })
 
         return (
-            <Component className={className} style={styles}>
+            <Div position="relative" className={className} style={styles}>
                 <Shadow className={`${this.name}__shadow`}>
-                    <Wrapper className={`${this.name}__wrapper`}>
+                    <Div display="table" width="100%" height="100%" className={`${this.name}__wrapper`}>
                         <Container className={`${this.name}__container`}>
                             {this.props.children}
                         </Container>
-                    </Wrapper>
+                    </Div>
                 </Shadow>
-            </Component>
+            </Div>
         )
     }
 }
+
+const Shadow = glamorous.div({
+    position: "absolute",
+    top: "0px",
+    bottom: "0px",
+    left: "0px",
+    right: "0px",
+    margin: "auto",
+    border: "1px solid white",
+},(props: any) => {
+    return {
+        background: Color(props.theme.decoration).fade(0.8),
+        borderColor: Color(props.theme.decoration).fade(0.2),
+    }
+})
+
+const Container = glamorous.div({
+    display: "table-cell",
+    textAlign: "center",
+    verticalAlign: "middle",
+})
 
 export default Placeholder
