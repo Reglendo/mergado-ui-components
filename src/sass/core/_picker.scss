@@ -1,20 +1,5 @@
 .f-no-select {
   user-select: none;
-  -webkit-user-select: none;
-}
-.m-input-color {
-  position: relative;
-  display: inline-block;
-  width: 49px;
-  height: 24px;
-  padding: 4px;
-  padding-right: 15px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #ffffff;
-  border: 1px solid #bebebe;
-  border-radius: 3px;
-  user-select: none;
-  -webkit-user-select: none;
 }
 .m-input-color.color-picker-open:after {
   position: absolute;
@@ -30,11 +15,7 @@
   content: " ";
 }
 .m-input-color .remove {
-  position: absolute;
-  display: block;
-  top: 0;
-  right: 3px;
-  cursor: pointer;
+  display: none;
 }
 .m-input-color .css-color {
   display: block;

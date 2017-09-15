@@ -78,11 +78,14 @@ class ColorPicker extends React.Component<Props, State> {
         const background = `rgba(${color.r},${color.g},${color.b},${color.a})`
 
         return(
-            <InputColor
-              value={"#000000"}
-              defaultValue="#345678"
-              onChange={this.handleChange.bind(this)} // change state.color in handleChange
-            />
+            <StyledField {...props} name={this.name}>
+                <input {...input} type="hidden" value={background} />
+                <InputColor
+                  value={"#000000"}
+                  defaultValue="#345678"
+                  onChange={this.handleChange.bind(this)} // change state.color in handleChange
+                />
+            </StyledField>
         )
     }
 
@@ -91,6 +94,19 @@ class ColorPicker extends React.Component<Props, State> {
 const StyledField = glamorous(Field)({
     display: "inline-block",
     width: "100%",
+    "& .m-input-color": {
+      position: "relative",
+      display: "inline-block",
+      width: "49px",
+      height: "24px",
+      padding: "4px",
+      paddingRight: "15px",
+      backgroundColor: "#ffffff",
+      border: "1px solid #bebebe",
+      borderRadius: "3px",
+      userSelect: "none",
+    }
+
 
 }, props => {
     const theme: any = props.theme
@@ -100,7 +116,6 @@ const StyledField = glamorous(Field)({
         }
     }
 })
-
 
 const ColorBox = glamorous.div({
     cursor: "pointer",
