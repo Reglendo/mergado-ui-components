@@ -51,7 +51,6 @@ const Link = glamorous.li({
         display: "inline-block",
         cursor: "pointer",
         transition: "border-color 0.3s",
-        borderBottom: "5px solid transparent",
     },
     "& a:active,& a:focus,& a:hover, & a,& a:visited": {
         textDecoration: "none",
@@ -60,8 +59,10 @@ const Link = glamorous.li({
 },(props: any) => {
     return {
         "& a": {
-            // background: props.selected ? props.theme.nav_link_background_active : props.theme.nav_link_background,
+            background: props.selected ? props.theme.nav_link_background_active : props.theme.nav_link_background,
+            borderBottom: props.theme.nav_link_border,
             borderBottomColor:  props.selected ? props.theme.nav_link_color  : "transparent",
+
         },
         "& a,& a:visited": {
             color: props.selected ? props.theme.text : Color(props.theme.text).fade(0.3),

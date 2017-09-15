@@ -36,7 +36,6 @@ class Checkbox extends React.Component<Props, {}> {
                         <StyledInput label={label}
                             />
                         <IconCheck size={14} style={{position: "absolute"}} />
-                        <IconMinus size={14} style={{position: "absolute"}} />
                     </div>
                     {label && " " }{label}
                 </glamorous.Div>

@@ -64,7 +64,6 @@ class DataRow extends React.Component<Props, State> {
 
 const Tr = glamorous.tr({
 },(props: any) => {
-    console.log(props)
     return {
         background: props.selected ? props.theme.selected_background : "#fff",
         ":hover td": {

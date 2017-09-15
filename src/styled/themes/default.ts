@@ -61,10 +61,9 @@ const theme = {
     /* nav */
     nav_background: colors.decoration,
     nav_link_color: colors.text,
-    nav_link_background: colors.decoration,
-    nav_link_background_active: Color(colors.decoration).darken(0.2),
-
-
+    nav_link_background: "transparent",
+    nav_link_background_active: colors.decoration,
+    nav_link_border: "none",
 }
 
 export default theme
