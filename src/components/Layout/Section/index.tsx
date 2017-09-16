@@ -1,27 +1,25 @@
 import * as React from "react"
 import glamorous from "glamorous"
 
-import {prefix, form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
 
 interface Props {
     header?: JSX.Element
+    children?: any
 }
 
-class Section extends React.Component<Props, {}> {
-    render() {
-        const { children, header } = this.props
-        if(children === "" || children === null) {
-            return null
-        }
-
-        return (
-            <Styled  {...domOnlyProps(this.props)}>
-                {header && <Header>{header}</Header>}
-                {children}
-            </Styled>
-        )
+const Section = (props: Props) => {
+    const { children, header } = props
+    if(children === "" || children === null) {
+        return null
     }
+
+    return (
+        <Styled  {...domOnlyProps(props)}>
+            {header && <Header>{header}</Header>}
+            {children}
+        </Styled>
+    )
 }
 
 const Header = glamorous.h3({
