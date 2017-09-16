@@ -2012,7 +2012,7 @@ function handleStyles(styles, props, context) {
 
 /*
  * This is a relatively small abstraction that's ripe for open sourcing.
- * Documentation is in the README.md
+ * Documentation is in the Readme.md
  */
 function createGlamorous$1(splitProps) {
   return glamorous;
