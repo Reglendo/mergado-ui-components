@@ -1,7 +1,8 @@
 import * as React from "react"
-import {Span,Svg} from "glamorous"
-
 import {prefix} from "../../config"
+import * as Icons from "@reglendo/mergado-ui-icons/lib"
+
+import {Span, Svg} from "glamorous"
 
 export interface Props {
     type?: string
@@ -15,12 +16,7 @@ export interface Props {
     viewBox?: string
 }
 export interface State {
-    icon: any
 }
-
-/* </style> */
-
-const getIcon = (name) => import("@reglendo/mergado-ui-icons/lib/icons/const/" + name + ".js")
 
 class Icon extends React.Component<Props, State> {
 
@@ -37,14 +33,9 @@ class Icon extends React.Component<Props, State> {
         viewBox: "0 0 40 40",
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            icon: <span/>,
-        }
-    }
+    public render() {
 
-    public componentDidMount() {
+        const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
         let iconName: string;
         if(this.props.name) {
             iconName = this.props.name
@@ -52,35 +43,29 @@ class Icon extends React.Component<Props, State> {
             iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace("-","")
         }
 
-        getIcon(iconName).then((module) => {
-            this.setState({
-                icon: module[iconName],
-            })
-        })
-    }
-
-    public render() {
-
-        const className = `${this.name} ${this.name}--${this.props.type} ${this.props.addClass}`
+        const icon = Icons[iconName] ? Icons[iconName] : null
 
         return (
-            <Span className={className} style={this.props.style} title={this.props.title}>
-                <Svg verticalAlign="middle" className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
-                    fill="currentColor"
-                    height={this.props.size}
-                    width={this.props.size}
-                        viewBox={this.props.viewBox}
+            <span className={className} style={this.props.style} title={this.props.title}>
+                <Svg verticalAlign={"middle"} className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
+                       fill="currentColor"
+                       height={this.props.size}
+                       width={this.props.size}
+                       viewBox={this.props.viewBox}
                 >
-                    {this.state.icon}
+                    {icon}
                 </Svg>
                 {this.props.text ? (
-                    <Span verticalAlign="middle" marginLeft="2px" marginRight="5px" className={`${this.name}__text`}>
+                    <Span className={`${this.name}__text`}
+                          verticalAlign={"middle"}
+                            marginLeft={"2px"}
+                            marginRight={"5px"}
+                    >
                         {this.props.text}
                     </Span>
                 ) : null}
-            </Span>
+            </span>
         )
-
     }
 }
 

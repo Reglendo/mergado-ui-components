@@ -1,4 +1,5 @@
 import * as Color from "color"
+
 export const colors = {
     blue: "#009ba9",
     green: "#69A120",

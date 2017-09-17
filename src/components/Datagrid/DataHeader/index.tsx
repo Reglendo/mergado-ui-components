@@ -14,12 +14,13 @@ export interface Props {
     handleSelectAll?: () => void
     selectedAll?: boolean
     selectedRows?: any[]
+    children?: any
 }
 
 export interface State {
 }
 
-class DataHeader extends React.Component<Props, State> {
+class DataHeader extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
@@ -42,7 +43,7 @@ class DataHeader extends React.Component<Props, State> {
 
     public render() {
         const { actions, addClass, selectedRows, style } = this.props
-        const kids: any = this.props.children
+        const kids: any = [...this.props.children]
         const lastKid = kids.pop()
         return (
             <thead>
