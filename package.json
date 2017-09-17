@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
