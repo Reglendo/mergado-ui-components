@@ -2,7 +2,7 @@ import * as React from "react"
 import ChromePicker from "react-color/lib/components/chrome/Chrome"
 import * as InputColor from "react-input-color"
 import glamorous from "glamorous"
-import * as debounce from "lodash.debounce"
+import debounce from "lodash/debounce"
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 

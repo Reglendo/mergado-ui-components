@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
@@ -16,13 +16,12 @@
   "repository": "git@github.com:Reglendo/mergado-ui-kit.git",
   "contributors": [
     {
-      "name": "Samuel Hudec",
-      "email": "hudecsamuel@gmail.com",
-      "companyEmail": "samuel.hudec.reglendo.com"
-    },
-    {
       "name": "Martin Hrncir",
       "companyEmail": "martin.hrncir@reglendo.com"
+    },
+    {
+      "name": "Samuel Hudec",
+      "email": "hudecsamuel@gmail.com"
     }
   ],
   "authors": "Reglendo technologies, s.r.o.",
@@ -31,9 +30,6 @@
     "color": "^2.0.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.8.0",
-    "lodash.debounce": "^4.0.8",
-    "lodash.isempty": "^4.4.0",
-    "lodash.noop": "^3.0.1",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
     "react-color": "^2.11.6",

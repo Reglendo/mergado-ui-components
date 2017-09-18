@@ -22,7 +22,7 @@ export interface State {
     selectedRows: ID[]
 }
 
-class DataTable extends React.PureComponent<Props, State> {
+class DataTable extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         bulkActions: [],
