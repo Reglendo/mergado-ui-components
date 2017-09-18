@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import isEmpty from 'lodash.isempty';
+import isEmpty from 'lodash/isEmpty';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
 import Message from 'rsg-components/Message';
 import StyleGuideRenderer from './StyleGuideRenderer';
 import cookie from 'react-cookie';
 import { browserHistory } from "react-router";
-import _debounce from "lodash.debounce";
+import _debounce from "lodash/debounce";
 
 
 export default class StyleGuide extends Component {

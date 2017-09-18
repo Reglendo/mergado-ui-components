@@ -30,3 +30,7 @@ export {default as DataCell} from "./components/Datagrid/DataCell"
 export {default as DataHeader} from "./components/Datagrid/DataHeader"
 export {default as DataBody} from "./components/Datagrid/DataBody"
 
+
+export {default as Fieldset} from "./components/Layout/Fieldset"
+export {default as Header} from "./components/Layout/Header"
+export {default as Section} from "./components/Layout/Section"

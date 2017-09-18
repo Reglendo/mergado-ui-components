@@ -1,6 +1,6 @@
 import test from 'ava';
 import React from 'react';
-import noop from 'lodash.noop';
+import noop from 'lodash/noop';
 import Preview from '../Preview';
 import Playground from './Playground';
 import PlaygroundRenderer from './PlaygroundRenderer';

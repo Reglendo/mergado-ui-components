@@ -1,7 +1,7 @@
 import * as React from "react"
 import glamorous from "glamorous"
 import * as Color from "color"
-import * as debounce from "lodash.debounce"
+import debounce from "lodash/debounce"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
