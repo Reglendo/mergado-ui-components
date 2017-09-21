@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@reglendo/mergado-ui-icons@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@reglendo/mergado-ui-icons/-/mergado-ui-icons-1.0.2.tgz#3ac8ba8d3218185e85d104f21759fb15d6335f32"
+"@reglendo/mergado-ui-icons@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@reglendo/mergado-ui-icons/-/mergado-ui-icons-1.0.3.tgz#eecd289344099ad200e7e3a1cb9e8c94d7bada79"
 
 "@types/chai-jquery@^1.1.33":
   version "1.1.34"

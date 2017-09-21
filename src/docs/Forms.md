@@ -47,21 +47,22 @@ labels?: {
 Example form
 
     var Field = require('redux-form').Field;
+    var FieldLabel = require('../components/Forms/Field').FieldLabel;
 
     <div>
         <h2>Inquiry form</h2>
-        <TextInput labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
-        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+        <Field component={TextInput} name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
+        <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Identification</h3>
-            <TextInput labels={{ main: 'First name*:', invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
-            <TextInput labels={{main: 'Last name:' }} />
+            <Field component={TextInput} name="firstname" labels={{ main: 'First name*:', invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
+            <Field component={TextInput} name="lastname" labels={{main: 'Last name:' }} />
         </div>
-        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+        <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Contact</h3>
-            <TextInput labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
-            <TextInput labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
+            <Field component={TextInput} name="tel" labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
+            <Field component={TextInput} name="email" labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
         </div>
-        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+        <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
             <Field name="favcolor" component={Radio}
                     props={{
                         items: [
@@ -73,7 +74,8 @@ Example form
                     }}
                     label="Your favourite color:" />
         </div>
-        <div style={{marginTop: '10px', width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+        <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+                <FieldLabel>Your favourite superpower</FieldLabel>
                 <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
                 <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
                 <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
@@ -82,12 +84,15 @@ Example form
 
         <h3>Other information</h3>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-            <ColorPicker labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
+            <Field component={ColorPicker} name="colorpicker"  labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
         </div>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-            <Textarea labels={{main: 'Leave us message:'}} />
+            <Field component={Textarea} name="textarea" labels={{main: 'Leave us message:'}} />
         </div>
 
-        <Button labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
-        <Button color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
+        <div style={{textAlign: "center"}}>
+            <Field name="submit" props={{icon: <Icon type="check" />}} component={Button} type="button" labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
+            <code>&nbsp;</code>
+            <Field name="reset" props={{icon: <Icon type="close" />}}  component={Button} type="button" color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
+        </div>
     </div>

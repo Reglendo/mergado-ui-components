@@ -10,9 +10,10 @@ interface IInputProps {
     onChange: (evt: any) => void
     bigButtons: boolean
     className?: string
+    hideInput?: boolean
 }
 
-const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChange, bigButtons, ...props}) => {
+const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChange, bigButtons, hideInput, ...props}) => {
     if(bigButtons) {
 
         return <Label className={`${name}__item ${props.className}`} key={value}>
@@ -28,14 +29,20 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChan
                         style={{display: "none"}}
                         data-big={bigButtons}
                         />
-                    <StyledInput
-                        />
-                    &nbsp;{label}
+                    {!hideInput &&
+                        <span>
+                            <StyledInput
+                                />&nbsp;
+                        </span>
+                    }
+                    <span style={{verticalAlign: "middle"}}>
+                        {label}
+                    </span>
                </Button>
                </Label>
     }
 
-    return <glamorous.Label display="block" className={`${name}__item ${props.className}`} key={value}>
+    return <glamorous.Label display="block" padding={"5px 0"} className={`${name}__item ${props.className}`} key={value}>
                     <Input
                         value={value}
                         checked={checked}
@@ -75,13 +82,13 @@ const Input = glamorous.input({
 }, (props: any) => {
     if(props["data-big"]) {
         return {
-            ":checked + span": {
+            ":checked + span span": {
                 border: `6px solid white`,
             },
         }
     } else {
         return {
-            ":checked + span": {
+            ":checked + span span": {
                 border: `6px solid ${props.theme.blue}`,
             },
         }

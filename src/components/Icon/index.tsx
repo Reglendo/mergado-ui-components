@@ -43,28 +43,10 @@ class Icon extends React.Component<Props, State> {
             iconName = `Icon` + `${this.props.type}`.replace(/\b(\w)/g, s => s.toUpperCase()).replace("-","")
         }
 
-        const icon = Icons[iconName] ? Icons[iconName] : null
+        const Icon = Icons[iconName] ? Icons[iconName] : null
 
         return (
-            <span className={className} style={this.props.style} title={this.props.title}>
-                <Svg verticalAlign={"middle"} className={`${this.name}__image`} preserveAspectRatio="xMidYMid meet"
-                       fill="currentColor"
-                       height={this.props.size}
-                       width={this.props.size}
-                       viewBox={this.props.viewBox}
-                >
-                    {icon}
-                </Svg>
-                {this.props.text ? (
-                    <Span className={`${this.name}__text`}
-                          verticalAlign={"middle"}
-                            marginLeft={"2px"}
-                            marginRight={"5px"}
-                    >
-                        {this.props.text}
-                    </Span>
-                ) : null}
-            </span>
+            <Icon {...this.props} />
         )
     }
 }

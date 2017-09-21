@@ -71,10 +71,10 @@ const UniversalStyle = css({
     textAlign: "center",
     textDecoration: "none",
     userSelect: "none",
-    padding: "0px 20px",
+    padding: "0px 25px",
     height: "42px",
     lineHeight: "39px",
-    borderWidth: "2px",
+    borderWidth: "1px",
     borderStyle: "solid",
     ":hover": {
       textDecoration: "none",
@@ -83,9 +83,13 @@ const UniversalStyle = css({
         marginRight: 0,
     },
     "& .muk-icon": {
-      margin: "0 5",
-      position: "relative",
-      top: "-1px",
+        margin: "0 5px 0 0",
+        position: "relative",
+        top: "-3px",
+        verticalAlign: "middle",
+    },
+    "& .muk-icon svg": {
+        verticalAlign: "middle",
     },
     "& a": {
         color: "white",
@@ -119,10 +123,10 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
         style.push({
             background: "transparent",
             padding: "0 2px",
-            border: "none",
+            borderColor: "transparent",
             color: props.theme.blue,
             ":active,:focus": {
-              border: "none",
+              borderColor: "transparent",
               outline: "none",
               background: "rgba(200,200,200,0.2)",
             },
@@ -149,6 +153,9 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
                   borderColor: Color(color).fade(0.2),
                   color: "white",
                 },
+                "& path": {
+                    fill: (props.color === "decoration" ? props.theme.blue : color) + "!important",
+                },
             })
         } else {
             style.push({
@@ -162,6 +169,9 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
                 ":active,:focus": {
                   background: Color(color).darken(0.2),
                   borderColor: Color(color).darken(0.2),
+                },
+                "& path": {
+                    fill: (props.color === "decoration" ? props.theme.blue : "white") + "!important",
                 },
             })
         }
