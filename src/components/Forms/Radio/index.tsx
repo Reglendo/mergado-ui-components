@@ -26,7 +26,7 @@ class Radio extends React.Component<Props, {}> {
     }
 
     public renderInputs() {
-        const { input, meta, labels, bigButtons } = this.props
+        const { input, meta, labels, bigButtons, hideInput } = this.props
         return this.props.items.map((obj: IItem) => {
             return (
                 <RadioInput name={this.name} label={obj.label}
@@ -35,6 +35,7 @@ class Radio extends React.Component<Props, {}> {
                             checked={obj.value == input.value}
                             onChange={input.onChange}
                             bigButtons={bigButtons}
+                            hideInput={hideInput}
                 />
             )
         })

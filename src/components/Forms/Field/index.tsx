@@ -119,6 +119,7 @@ const LabelComponent = ({children, name, bigLabel, className = ""}) => {
 
 export const FieldLabel = glamorous(LabelComponent)({
     display: "inline-block",
+    padding: "5px 0",
 }, (props: any) => {
     const theme: any = props.theme
     return {

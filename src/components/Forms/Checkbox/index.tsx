@@ -1,7 +1,7 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import IconMinus from "@reglendo/mergado-ui-icons/lib/icons/IconMinus"
-import glamorous from "glamorous"
+import glamorous,{Span} from "glamorous"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -37,7 +37,9 @@ class Checkbox extends React.Component<Props, {}> {
                             />
                         <IconCheck size={14} style={{position: "absolute"}} />
                     </div>
+                    <Span fontSize={"16px"} fontWeight={"normal"}>
                     {label && " " }{label}
+                    </Span>
                 </glamorous.Div>
     }
 
@@ -70,7 +72,7 @@ const StyledInput = glamorous.span({
     width: "18px",
     height: "18px",
     position: "relative",
-    verticalAlign: "top !important",
+    verticalAlign: "baseline",
     transition: "border-color 0.2s",
     "& + span.muk-icon--check": {
         display: "none",

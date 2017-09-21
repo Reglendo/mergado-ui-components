@@ -130,17 +130,18 @@ const Wrapper = glamorous.div({
     width: "100%",
     display: "table",
     margin: "10px 0",
-    boxShadow: "rgba(0, 0, 0, 0.1) 1px 1px 4px 0px",
+    boxShadow: "rgba(0, 0, 0, 0.5) 1px 1px 4px 0px",
     transition: "opacity 0.5s",
     transform: "translate3d(0,0,0)",
     willChange: "opacity",
     border: "0px solid transparent",
 },(props: any) => {
+    const type = props.type ? props.type : "info"
     return {
         borderRadius: props.theme.radius,
         opacity: props.hidden ? 0 : 1,
-        background: props.theme[props.type],
-        color: (props.type === "info" || props.type === "inactive" || props.type === "message")
+        background: props.theme[type],
+        color: (type === "info" || type === "inactive" || type === "message")
             ? "#333" : "white",
     }
 })
@@ -174,10 +175,11 @@ const CloseButton = glamorous.div({
     display: "table-cell",
     opacity: 0.8,
 },(props: any) => {
+    const type = props.type ? props.type : "info"
     return {
         "& .muk-button__item": {
             fontSize: "18px",
-            color:  (props.type === "info" || props.type === "inactive" || props.type === "message")
+            color:  (type === "info" || type === "inactive" || type === "message")
                     ? "#333 !important" : "white !important",
         },
     }
