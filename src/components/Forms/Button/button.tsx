@@ -72,8 +72,8 @@ const UniversalStyle = css({
     textDecoration: "none",
     userSelect: "none",
     padding: "0px 25px",
-    height: "42px",
-    lineHeight: "39px",
+    height: "52px",
+    lineHeight: "49px",
     borderWidth: "1px",
     borderStyle: "solid",
     ":hover": {
@@ -104,12 +104,13 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
             padding: "0 5px",
             height: "20px",
             lineHeight: "18px",
+            fontSize: "13px",
         })
     }else if(props.size === "small") {
         style.push({
             padding: "0 10px",
-            height: "32px",
-            lineHeight: "30px",
+            height: "44px",
+            lineHeight: "42px",
         })
     }
     if(props.disabled) {
@@ -179,8 +180,8 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
     style.push({
         borderRadius: props.theme.radius,
         textTransform: props.theme.button_text_transform,
-        fontSize: props.theme.button_text_size,
         fontWeight: props.theme.button_text_weight,
+        fontSize: props.size === "tiny" ? "13px" : props.theme.button_text_size,
     })
 
     return style

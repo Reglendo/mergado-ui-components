@@ -48,6 +48,8 @@ const theme = {
 
     /* button */
     button_text_transform: "none",
+    button_text_size: "16px",
+    button_text_weight: "bold",
 
     /* datagrid */
     table_border_vertical: "1px solid #dbcba3",
