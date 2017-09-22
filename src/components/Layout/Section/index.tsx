@@ -15,10 +15,10 @@ const Section = (props: Props) => {
     }
 
     return (
-        <Styled  {...domOnlyProps(props)}>
+        <SSection  {...domOnlyProps(props)}>
             {header && <Header>{header}</Header>}
             {children}
-        </Styled>
+        </SSection>
     )
 }
 
@@ -29,14 +29,14 @@ const Header = glamorous.h3({
 },(props: any) => {
     return {
         margin: `-${props.theme.section_padding}!important`,
-        marginBottom: "0 !important",
+        marginBottom: "20px !important",
         background: props.theme.decoration_background,
         borderBottom: props.theme.section_border,
         borderRadius: `${props.theme.radius} ${props.theme.radius} 0 0`,
     }
 })
 
-const Styled = glamorous.section({
+const SSection = glamorous.section({
     marginBottom: "20px",
 },(props:any) => {
     return {

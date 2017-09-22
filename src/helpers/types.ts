@@ -12,6 +12,7 @@ export interface Filter {
     action: (e: any) => any
     disabled?: boolean
     label?: string | JSX.Element
+    value: any
 }
 
 export type Type = "warning" | "success" | "error" | "inactive" | "info" | "message"

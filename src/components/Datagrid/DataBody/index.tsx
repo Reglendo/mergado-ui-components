@@ -28,7 +28,8 @@ class DataBody extends React.Component<Props, State> {
     private readonly name = prefix + "datagrid__body";
 
     protected renderChildren() {
-        const children: any = this.props.children
+        const children: any = !Array.isArray(this.props.children) ? [this.props.children] : this.props.children
+
         return children.map(obj => {
             return React.cloneElement(obj, {
                 actions: this.props.actions,

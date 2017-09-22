@@ -116,12 +116,12 @@ class DataTable extends React.Component<Props, State> {
                 case "text":
                     return (<TextFilter
                                 type="search"
-                                input={{ onChange: (evt) => { obj.action(evt) } }} labels={{placeholder: obj.label }}
+                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }} labels={{placeholder: obj.label }}
                                 key="text"
                             />)
                 case "checkbox":
                     return (<CheckboxFilter
-                                input={{ onChange: (evt) => { obj.action(evt) } }} labels={{main: obj.label }}
+                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }} labels={{main: obj.label }}
                                 key="checkbox"
                             />)
             }
