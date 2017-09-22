@@ -21,7 +21,7 @@ export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title,
             href={link}
             className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
-                {icon}{label}{children}
+                {icon}{icon && " "}{label}{children}
         </a>
 
 interface IButtonProps {
@@ -42,7 +42,7 @@ export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, class
             {...domOnlyProps(props)}
             className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
-                {icon}{label}{children}
+                {icon}{icon && " "}{label}{children}
         </button>
     )
 }
@@ -64,7 +64,7 @@ export const Link: React.SFC<ILinkProps> = ({name, icon, label, title, className
             to={link}
             className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
-                {icon}{label}{children}
+                {icon}{icon && " "}{label}{children}
         </RouterLink>
 
 interface ISubmitProps {
@@ -100,5 +100,5 @@ export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className
             {...domOnlyProps(props)}
             className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
-                {icon}{label}{children}
+                {icon}{icon && " "}{label}{children}
         </span>

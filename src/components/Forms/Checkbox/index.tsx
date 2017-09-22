@@ -24,7 +24,7 @@ class Checkbox extends React.Component<Props, {}> {
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
 
-        return <glamorous.Div className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
+        return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
                         <Input
                             checked={input.value}
@@ -33,14 +33,14 @@ class Checkbox extends React.Component<Props, {}> {
                             className={`${this.name}__item ${input.className}`}
                             style={{display: "none"}}
                             />
-                        <StyledInput label={label}
+                        <StyledInput label={label} className={"muk-checkbox-input"}
                             />
                         <IconCheck size={14} style={{position: "absolute"}} />
                     </div>
                     <Span fontSize={"16px"} fontWeight={"normal"}>
                     {label && " " }{label}
                     </Span>
-                </glamorous.Div>
+                </Label>
     }
 
     public render() {
@@ -48,6 +48,17 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
 }
+
+const Label = glamorous.div({
+    cursor: "pointer",
+}, (props: any) => {
+    const theme: any = props.theme
+    return {
+        ":hover .muk-checkbox-input": {
+            borderColor: theme.blue,
+        }
+    }
+})
 
 const StyledField = glamorous(Field)({
     "> .muk-form__group--invalid": {

@@ -120,6 +120,9 @@ const LabelComponent = ({children, name, bigLabel, className = ""}) => {
 export const FieldLabel = glamorous(LabelComponent)({
     display: "inline-block",
     padding: "5px 0",
+    "& .muk-popup-hint": {
+        verticalAlign: "middle",
+    }
 }, (props: any) => {
     const theme: any = props.theme
     return {

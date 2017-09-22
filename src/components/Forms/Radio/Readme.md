@@ -24,7 +24,7 @@ Big buttons
                         { value: "Video", label: <span><Icon type="cab" />Video</span>  },
                         { value: "kills", label: <span><Icon type="medkit" />kills</span>  },
                         { value: "the", label: <span><Icon name="IconHandORight" />the</span>   },
-                        { value: "star", label: <span><Icon name="IconReglendo" size={20} />star</span> },
+                        { value: "star", label: <span>star star star star</span> },
                 ]}
         />
         <Field component={Radio} name='video' labels={{main: 'Choose one:' }}

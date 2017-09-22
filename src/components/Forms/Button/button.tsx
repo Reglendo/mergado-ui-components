@@ -71,9 +71,8 @@ const UniversalStyle = css({
     textAlign: "center",
     textDecoration: "none",
     userSelect: "none",
-    padding: "0px 25px",
-    height: "52px",
-    lineHeight: "49px",
+    padding: "12px 25px",
+    lineHeight: "1.5em",
     borderWidth: "1px",
     borderStyle: "solid",
     ":hover": {
@@ -83,7 +82,7 @@ const UniversalStyle = css({
         marginRight: 0,
     },
     "& .muk-icon": {
-        margin: "0 5px 0 0",
+        margin: "0 0 0 0",
         position: "relative",
         top: "-3px",
         verticalAlign: "middle",
@@ -101,16 +100,12 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
     const style = []
     if(props.size === "tiny") {
         style.push({
-            padding: "0 5px",
-            height: "20px",
-            lineHeight: "18px",
+            padding: "2px 2px",
             fontSize: "13px",
         })
     }else if(props.size === "small") {
         style.push({
-            padding: "0 10px",
-            height: "44px",
-            lineHeight: "42px",
+            padding: "8px 10px",
         })
     }
     if(props.disabled) {

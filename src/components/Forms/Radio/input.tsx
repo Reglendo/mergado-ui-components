@@ -15,9 +15,9 @@ interface IInputProps {
 
 const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChange, bigButtons, hideInput, ...props}) => {
     if(bigButtons) {
-
-        return <Label className={`${name}__item ${props.className}`} key={value}>
+        return <BigLabel className={`${name}__item ${props.className}`} key={value}>
                 <Button secondary={checked ? false : true}
+                        style={{display: "block"}}
                         color={checked ? "blue" : "decoration"}
                         type="void" input={{onClick: () => false }}>
                     <Input
@@ -41,10 +41,10 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChan
                         {label}
                     </span>
                </Button>
-               </Label>
+               </BigLabel>
     }
 
-    return <glamorous.Label display="block" padding={"5px 0"} className={`${name}__item ${props.className}`} key={value}>
+    return <Label className={`${name}__item ${props.className}`} key={value}>
                     <Input
                         value={value}
                         checked={checked}
@@ -54,22 +54,42 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChan
                         style={{display: "none"}}
                         data-big={bigButtons}
                         />
-                    <StyledInput
-                        />
-                    &nbsp;{label}
-        </glamorous.Label>
+                    <span>
+                        <StyledInput
+                            />
+                        &nbsp;{label}
+                    </span>
+        </Label>
 }
 
 const Label = glamorous.label({
-    display: "inline-block",
-    marginRight: "5px",
-    "& .muk-button__item": {
-        borderRadius: 0,
-        margin: "0 0 0 -7px"
-    },
+    cursor: "pointer",
+    display: "block",
+    padding: "5px 0",
 }, (props) => {
     const theme: any = props.theme
     return {
+        ":hover span span": {
+            borderColor: theme.blue
+        }
+    }
+
+})
+
+const BigLabel = glamorous.label({
+    display: "table-cell",
+    marginRight: "5px",
+    "& .muk-button__item": {
+        borderRadius: 0,
+        margin: "0 0 0 -1px"
+    },
+
+}, (props) => {
+    const theme: any = props.theme
+    return {
+        ":hover span span": {
+            borderColor: `${theme.blue}`,
+        },
         ":first-of-type .muk-button__item": {
             borderRadius: `${theme.radius} 0 0 ${theme.radius}`,
             margin: 0,
@@ -107,7 +127,6 @@ const StyledInput = glamorous.span({
     verticalAlign: "text-top !important",
     transition: "border-color 0.2s",
     borderRadius: "100%",
-    cursor: "pointer",
     ":focus,:active": {
         outline: "none",
     }
@@ -120,9 +139,7 @@ const StyledInput = glamorous.span({
     } else {
         return {
             border: `1px solid ${props.theme.decoration}`,
-            ":hover": {
-                borderColor: `${props.theme.blue}`,
-            },
+
         }
     }
 })
