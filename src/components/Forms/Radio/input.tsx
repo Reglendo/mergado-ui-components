@@ -29,11 +29,13 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChan
                         style={{display: "none"}}
                         data-big={bigButtons}
                         />
-                    {!hideInput &&
+                    {!hideInput ?
                         <span>
                             <StyledInput
                                 />&nbsp;
                         </span>
+                    :
+                        <span />
                     }
                     <span style={{verticalAlign: "middle"}}>
                         {label}
