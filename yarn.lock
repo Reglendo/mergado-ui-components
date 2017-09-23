@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@reglendo/mergado-ui-icons@^1.0.6":
+"@reglendo/mergado-ui-icons@^1.0.5":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@reglendo/mergado-ui-icons/-/mergado-ui-icons-1.0.6.tgz#efda7b6bb7ba5663a4f99c0a686bff700f844347"
 
