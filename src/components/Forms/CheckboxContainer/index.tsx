@@ -78,6 +78,7 @@ class CheckboxContainer extends React.Component<Props,State> {
         return (
             <TextInput className={`${this.name}__filter_input`}
                         type="search"
+                        onClear={() => this.setState({ filter: "" }) }
                         style={{marginBottom: "5px"}}
                         input={{ value: this.state.filter,
                                  onChange: evt => this.setState({ filter: evt.target.value }) }}

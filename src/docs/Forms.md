@@ -54,8 +54,15 @@ Example form
         <Field component={TextInput} name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Identification</h3>
-            <Field component={TextInput} name="firstname" labels={{ main: 'First name*:', invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
-            <Field component={TextInput} name="lastname" labels={{main: 'Last name:' }} />
+            <Field component={TextInput} name="firstname" labels={{ main: 
+                                                                        <span>
+                                                                            First name*:&nbsp;
+                                                                            <PopupHint hint={true}>Help me!</PopupHint>
+                                                                        </span>, invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
+            <Field component={TextInput} name="lastname" labels={{main:  <span>
+                                                                            Last name:&nbsp;
+                                                                            <PopupHint icon={<Icon type="info-circle" />} >Help me!</PopupHint>
+                                                                          </span> }} />
         </div>
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Contact</h3>

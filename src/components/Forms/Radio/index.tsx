@@ -45,7 +45,7 @@ class Radio extends React.Component<Props, {}> {
         const {children, ...props} = this.props
         return (
             <Field {...props} name={this.name}>
-                <div style={{display: "table", width: "100%", tableLayout: "fixed"}}>
+                <div style={{display: "table", width: this.props.bigButtons ? "100%": "auto", tableLayout: "fixed"}}>
                     <div style={{display: "table-row"}}>
                     {this.renderInputs()}
                     </div>

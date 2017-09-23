@@ -14,6 +14,7 @@ import Button from "../../../components/Forms/Button"
 
 export interface Props extends IFieldProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
+    onClear?: Function
 }
 
 interface State {
@@ -63,15 +64,16 @@ class TextInput extends React.Component<Props, State> {
                                 `}
                 />
                 {type === "password" && this.state.passwordVisible === false &&
-                    <ButtonEye icon={<IconEye />} color="nocolor" size="tiny"
+                    <ButtonEye icon={<IconEye />} type={"void"}  color="nocolor" size="tiny"
                             onClick={() => this.setState({ passwordVisible: true })} />
                 }
                 {type === "password" && this.state.passwordVisible === true &&
-                    <ButtonEye icon={<IconEyeSlash />} color="nocolor" size="tiny"
+                    <ButtonEye icon={<IconEyeSlash />}  type={"void"}  color="nocolor" size="tiny"
                                onClick={() => this.setState({ passwordVisible: false })} />
                 }{type === "search" &&
-                    <ButtonClose icon={<IconClose />} color={"nocolor"} size="tiny"
+                    <ButtonClose icon={<IconClose />} type={"void"} color={"nocolor"} size="tiny"
                                  onClick={() => {
+                                            this.props.onClear();
                                             this._inputRef.value = "";
                                             inputProps.value = '';
                                             this.props.change ? this.props.change(inputProps.name, "") : true;

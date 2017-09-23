@@ -64,6 +64,11 @@ const StyledField = glamorous(Field)({
     "> .muk-form__group--invalid": {
         border: "none !important",
     },
+
+    "& svg": {
+        verticalAlign: "initial",
+    }
+
 })
 
 const Input = glamorous.input({

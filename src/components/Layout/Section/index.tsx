@@ -34,25 +34,22 @@ const Section = (props: Props) => {
     )
 }
 
-const Prefix = glamorous(Button)({
-    height: "64px",
-    borderRadius: "5px 0 0 0",
-},(props: any) => {
-    return {
-        margin: `-${(parseInt(props.theme.section_padding) + 1) + "px"}!important`,
-        marginRight: `${props.theme.section_padding} !important`,
-    }
+const Prefix = glamorous.div({
+    float: "left",
+    margin: "-10px",
+    padding: "10px",
+    marginRight: "15px",
+    paddingRight: "15px",
+    borderRight: "1px solid #ccc",
 })
 
-const Suffix = glamorous(Button)({
-    height: "64px",
-    borderRadius: "0 5px 0 0",
+const Suffix = glamorous.div({
     float: "right",
-},(props: any) => {
-    return {
-        margin: `-${(parseInt(props.theme.section_padding) + 1) + "px"}!important`,
-        marginLeft: `${props.theme.section_padding} !important`,
-    }
+    margin: "-10px",
+    padding: "10px",
+    marginLeft: "15px",
+    paddingLeft: "15px",
+    borderLeft: "1px solid #ccc",
 })
 
 const Header = glamorous.h3({

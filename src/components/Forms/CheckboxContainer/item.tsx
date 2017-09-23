@@ -33,6 +33,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
             disabled={option.disabled}
             checked={checked}
             key={option.id}
+            data-link={option.link !== undefined}
             onClick={!option.subheader && onClick}>
             {showInput &&
                 <span>
@@ -102,16 +103,16 @@ export const Li = glamorous.li({
     fontWeight: "normal",
     width: "100%",
     padding: "10px",
-    fontSize: "0.9em",
-    cursor: "pointer",
 }, (props: any) => {
     const styles = []
 
     styles.push({
+        cursor: props["data-link"] ? "default" : "pointer",
         ":hover": {
             background: props.theme.hover_background,
         },
     })
+
 
     if(props.checked) {
         styles.push({
