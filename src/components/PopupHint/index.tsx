@@ -1,14 +1,19 @@
 import * as React from "react"
 import glamorous, {Div} from "glamorous"
 import * as Color from "color"
-
+import IconHintInfo from "@reglendo/mergado-ui-icons/lib/icons/IconHintInfo"
+import IconHintHelp from "@reglendo/mergado-ui-icons/lib/icons/IconHintHelp"
 import colors from "../../styled/themes/default"
 import {prefix} from "../../config"
 import Bubble from "./Bubble"
+import _debounce from "lodash/debounce"
 
 export interface Props {
     icon?: JSX.Element
     style?: any
+    hint?: boolean
+    help?: boolean
+    hover?: boolean
 }
 
 export interface State {
@@ -29,6 +34,9 @@ class PopupHint extends React.Component<Props, State> {
     public static defaultProps: Props = {
         icon: null,
         style: {},
+        hint: false,
+        help: false,
+        hover: false,
     }
 
     public refs: {
@@ -44,8 +52,8 @@ class PopupHint extends React.Component<Props, State> {
             expanded: false,
         }
 
-        this.collapse = this.collapse.bind(this)
-        this.expand = this.expand.bind(this)
+        this.collapse = _debounce(this.collapse.bind(this),200)
+        this.expand = _debounce(this.expand.bind(this),100)
     }
 
     protected expand(event: any) {
@@ -54,8 +62,10 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     protected collapse(): void {
+        const hint: any = this.refs.hint
         this.fadeOut(this.refs.hint, () => {
             this.setState({expanded: false})
+            hint.style.display = "none";
         })
     }
 
@@ -141,9 +151,10 @@ class PopupHint extends React.Component<Props, State> {
 
     protected fadeOut(el: any, callback: () => void) {
         const hint: any = this.refs.hint
-
+        if(!el) {
+            return
+        }
         el.style.opacity = 1;
-        hint.style.display = "none";
 
         (function fade() {
             el.style.opacity -= .1
@@ -201,7 +212,7 @@ class PopupHint extends React.Component<Props, State> {
             <Bubble>
                 <HintWrapper innerRef={(o) => { this.refs.hint = o }} className={`${this.name}__bubble`}
                      style={style} tabIndex={0}
-                     onBlur={ this.collapse }
+                     onBlur={ this.state.expanded ? this.collapse : () => {} }
                  >
                     <Div position={"relative"} padding={"0 0 10px 0"} className={`${this.name}__innerwrapper`}>
                         <HintContent className={`${this.name}__content`}>{this.props.children}</HintContent>
@@ -214,14 +225,18 @@ class PopupHint extends React.Component<Props, State> {
         )
 
         return (
-            <Div cursor="pointer" display="inline-block" className={this.name} style={{...this.props.style}}>
+            <Div cursor={this.props.hover ? "normal" : "pointer"} verticalAlign={"text-bottom"} display="inline-block" className={this.name} style={{...this.props.style}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
+                     onMouseEnter={!this.props.hover || this.state.expanded ? () => {} : this.expand}
+                     onMouseLeave={this.props.hover && this.state.expanded ? this.collapse : () => {} }
                      onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
                     }}
                  >
+                    {this.props.hint ? <IconHintInfo size={16} /> : null}
+                    {this.props.help ? <IconHintHelp size={16} /> : null}
                     {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}

@@ -105,7 +105,7 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
         })
     }else if(props.size === "small") {
         style.push({
-            padding: "8px 10px",
+            padding: "8px 15px",
         })
     }
     if(props.disabled) {
@@ -127,7 +127,7 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
               background: "rgba(200,200,200,0.2)",
             },
             "& path": {
-                fill: props.theme.blue,
+                fill: props.theme.blue + "!important",
             },
         })
     } else {

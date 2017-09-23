@@ -1,6 +1,9 @@
 import * as React from "react"
+import * as ReactDOM from "react-dom"
 import glamorous from "glamorous"
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
+import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
+
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
 import * as Color from "color"
 
@@ -19,7 +22,7 @@ interface State {
 
 
 class TextInput extends React.Component<Props, State> {
-
+    protected _inputRef = null
     protected readonly name = prefix + "input-text"
     public static defaultProps: Props = {
         ...defaultFieldProps,
@@ -42,7 +45,6 @@ class TextInput extends React.Component<Props, State> {
             delete inputProps.value
         }
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
-
         return (
             <Field {...props} name={this.name}>
                 <glamorous.Div position="relative">
@@ -50,8 +52,9 @@ class TextInput extends React.Component<Props, State> {
                     {...props}
                     {...inputProps}
                     placeholder={this.props.labels.placeholder}
-                    ref="input"
-                    type={type === "password" && this.state.passwordVisible ? "text" : props.type}
+                    ref={"input"}
+                    innerRef={r => (this._inputRef = r)}
+                    type={type === "search" || (type === "password" && this.state.passwordVisible) ? "text" : props.type}
                     aria-invalid={isInvalid ? 1 : 0}
                     className={`${this.name}__input \
                                 ${form}__input--text \
@@ -65,7 +68,15 @@ class TextInput extends React.Component<Props, State> {
                 }
                 {type === "password" && this.state.passwordVisible === true &&
                     <ButtonEye icon={<IconEyeSlash />} color="nocolor" size="tiny"
-                            onClick={() => this.setState({ passwordVisible: false })} />
+                               onClick={() => this.setState({ passwordVisible: false })} />
+                }{type === "search" &&
+                    <ButtonClose icon={<IconClose />} color={"nocolor"} size="tiny"
+                                 onClick={() => {
+                                            this._inputRef.value = "";
+                                            inputProps.value = '';
+                                            this.props.change ? this.props.change(inputProps.name, "") : true;
+                                 }}
+                    />
                 }
                 </glamorous.Div>
             </Field>
@@ -111,7 +122,7 @@ export const StyledInput = glamorous.input({
 
         border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
         borderRadius: theme.radius,
-        width: props.type === "search" ? "calc(100% - 22px)" : "100%",
+        width: props.type === "search" ? "calc(100%)" : "100%",
         ":active,:focus": {
             border: `${theme.input_border_active} !important`,
         }
@@ -124,5 +135,12 @@ const ButtonEye = glamorous(Button)({
     bottom: "8px",
     position: "absolute",
 })
+
+const ButtonClose = glamorous(Button)({
+    right: "5px",
+    bottom: "8px",
+    position: "absolute",
+})
+
 
 export default TextInput

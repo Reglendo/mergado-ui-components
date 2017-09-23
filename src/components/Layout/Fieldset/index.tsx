@@ -24,6 +24,7 @@ const Fieldset = (props: Props) => {
 }
 
 const FFieldset = glamorous.fieldset({
+    padding: 0,
 })
 
 export default Fieldset
