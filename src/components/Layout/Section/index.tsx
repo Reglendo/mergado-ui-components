@@ -55,6 +55,7 @@ const Suffix = glamorous.div({
 const Header = glamorous.h3({
     fontWeight: "normal",
     fontSize: "15px",
+    height: "63px",
 },(props: any) => {
     return {
         padding: `${props.theme.section_padding}`,

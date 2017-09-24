@@ -73,7 +73,7 @@ class TextInput extends React.Component<Props, State> {
                 }{type === "search" &&
                     <ButtonClose icon={<IconClose />} type={"void"} color={"nocolor"} size="tiny"
                                  onClick={() => {
-                                            this.props.onClear();
+                                            this.props.onClear ? this.props.onClear() : true;
                                             this._inputRef.value = "";
                                             inputProps.value = '';
                                             this.props.change ? this.props.change(inputProps.name, "") : true;

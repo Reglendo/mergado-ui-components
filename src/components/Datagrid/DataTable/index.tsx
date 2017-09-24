@@ -117,7 +117,7 @@ class DataTable extends React.Component<Props, State> {
                     return (<TextFilter
                                 type="search"
                                 onClear={() => obj.action({currentTarget: {value: "" }})}
-                                input={{ onChange: (evt) => { console.log(evt); obj.action(evt) }, value: obj.value }} labels={{placeholder: obj.label }}
+                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }} labels={{placeholder: obj.label }}
                                 key="text"
                             />)
                 case "checkbox":

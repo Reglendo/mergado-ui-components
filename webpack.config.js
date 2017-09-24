@@ -44,26 +44,17 @@ const config = {
 	}
 };
 
-if (process.env.NODE_ENV === 'production') {
-	config.plugins = [
-	    new ExtractTextPlugin({ filename: 'css/style.min.css',
-                  allChunks: true
-      }),
-      new ExtractTextPlugin({ filename: 'css/style.css',
-                allChunks: true
-      }),
-		new OptimizeCssAssetsPlugin({
-				assetNameRegExp: /\.min\.css$/,
-				cssProcessorOptions: { discardComments: { removeAll: true } }
-		})
-	]
-} else {
-	config.plugins = [
-	    new ExtractTextPlugin({ filename: 'css/style.css',
-	        					allChunks: true
-	    					}),
-        new BundleAnalyzerPlugin(),
-	]
-}
+config.plugins = [
+    new ExtractTextPlugin({ filename: 'css/style.min.css',
+              allChunks: true
+  }),
+  new ExtractTextPlugin({ filename: 'css/style.css',
+            allChunks: true
+  }),
+    new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.min\.css$/,
+            cssProcessorOptions: { discardComments: { removeAll: true } }
+    })
+]
 
 module.exports = config;
