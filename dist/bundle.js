@@ -11764,6 +11764,9 @@ const UniversalStyle = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_glamor_
     "& .muk-icon svg": {
         verticalAlign: "middle",
     },
+    "& .muk-popup_hint": {
+        verticalAlign: "middle !important",
+    },
     "& a": {
         color: "white",
     },
