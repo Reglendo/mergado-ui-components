@@ -83,7 +83,9 @@ const BigLabel = glamorous.label({
         borderRadius: 0,
         margin: "0 0 0 -1px"
     },
-
+    "& span span": {
+        fontWeight: "normal",
+    },
 }, (props) => {
     const theme: any = props.theme
     return {
