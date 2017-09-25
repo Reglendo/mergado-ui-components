@@ -90,6 +90,9 @@ const UniversalStyle = css({
     "& .muk-icon svg": {
         verticalAlign: "middle",
     },
+    "& .muk-popup_hint": {
+        verticalAlign: "middle !important",
+    },
     "& a": {
         color: "white",
     },
