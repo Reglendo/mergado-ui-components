@@ -225,7 +225,7 @@ class PopupHint extends React.Component<Props, State> {
         )
 
         return (
-            <Div cursor={this.props.hover ? "normal" : "pointer"} verticalAlign={"middle"} display="inline-block" className={this.name} style={{...this.props.style}}>
+            <Div cursor={this.props.hover ? "normal" : "pointer"} verticalAlign={"text-bottom"} display="inline-block" className={this.name} style={{...this.props.style}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
                      onMouseEnter={!this.props.hover || this.state.expanded ? () => {} : this.expand}

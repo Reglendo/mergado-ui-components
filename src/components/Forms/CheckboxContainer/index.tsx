@@ -8,6 +8,7 @@ import TextInput from "../../../components/Forms/TextInput"
 import uniqueId from "../../../helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {QueryList} from "./list"
+import _debounce from "lodash/debounce"
 
 export interface Query {
     id: number
@@ -72,6 +73,8 @@ class CheckboxContainer extends React.Component<Props,State> {
             filter: "",
         }
 
+        this.handleFilter = _debounce(this.handleFilter.bind(this),150)
+
     }
 
     protected renderFilter() {
@@ -81,10 +84,14 @@ class CheckboxContainer extends React.Component<Props,State> {
                         onClear={() => this.setState({ filter: "" }) }
                         style={{marginBottom: "5px"}}
                         input={{ value: this.state.filter,
-                                 onChange: evt => this.setState({ filter: evt.target.value }) }}
+                                 onKeyUp: this.handleFilter }}
                         labels={{ placeholder: this.props.labels.placeholder, main: "", }}
             />
         )
+    }
+
+    handleFilter(evt) {
+        this.setState({ filter: evt.target.value })
     }
 
     public render() {

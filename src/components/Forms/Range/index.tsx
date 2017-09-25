@@ -27,13 +27,14 @@ class Range extends React.Component<Props,State> {
         max: 50,
         min: 0,
         step: 1,
+        default: null,
     }
 
     constructor(props) {
         super(props)
         this.state = {
             value: props.input.value ?
-                     props.input.value : props.default ?
+                     props.input.value : props.default !== null ?
                      props.default : (props.max - props.min) / 2 + props.min,
         }
         this.handleChange = debounce(this.handleChange.bind(this), 200);

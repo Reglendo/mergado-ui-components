@@ -1,7 +1,10 @@
 Example
 
     var Field = require('redux-form').Field;
+    <div>
     <Field component={Range}  name="ranger" labels={{ main: 'Pick a value' }} default={4.5} max={5} min={2} step={0.01} />
+    <Field component={Range}  name="ranger" labels={{ main: 'Pick a value' }} default={0} max={5} min={2} step={0.01} />
+    </div>
 
 Validation
 

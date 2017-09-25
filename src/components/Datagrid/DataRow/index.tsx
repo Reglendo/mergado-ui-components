@@ -69,7 +69,15 @@ const Tr = glamorous.tr({
         ":hover td": {
             background: props.theme.hover_background,
         },
-        color: props.disabled ? "#ccc" : "#000"
+        color: props.disabled ? "#ccc" : "initial",
+        "& path,& text,& a": {
+            color: props.disabled ? "#ccc !important" : "initial",
+            fill: props.disabled ? "#ccc !important" : "initial",
+        },
+        "& .muk-icon--pause *, & .muk-icon--play *": {
+            color: props.theme.blue + "!important",
+            fill: props.theme.blue + "!important",
+        },
     }
 })
 

@@ -7,19 +7,35 @@ Multiple choices, hidden inputs
                         showInput: false,
                         availableQueries: [{
                             id: 999,
-                            name: "First query",
+                            name: "Bez Heureka kategorie",
                             product_count: 50,
                             active: false,
                         },{
                             id: 1000,
-                            name: "♥ALLPRODUCTS♥",
+                            name: "Všechny produkty",
                             product_count: 100,
                             active: true,
                         },{
                             id: 1001,
-                            name: "Third query",
+                            name: "damske parfemy",
                             product_count: 100,
                             active: true,
+                        },{
+                            id: 1002,
+                            name: "Panske parfemy",
+                            product_count: 100,
+                        },{
+                            id: 1003,
+                            name: "PRICE_VAT < 500",
+                            product_count: 100,
+                        },{
+                            id: 1004,
+                            name: "PRICE_VAT > 1000",
+                            product_count: 100,
+                         },{
+                            id: 1005,
+                            name: "TEST-BF-maly-vyber",
+                            product_count: 100,
                         }],
                         labels: {
                          main: 'Select queries', placeholder: 'Filter:', allProducts: 'All products'
