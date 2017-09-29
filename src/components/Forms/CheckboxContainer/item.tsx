@@ -1,8 +1,6 @@
 import * as React from "react"
 import {Link} from "react-router"
-import glamorous from "glamorous"
 import css from "cxs/component"
-import * as Color from "color"
 
 import Radio from "../../../components/Forms/Radio"
 import Checkbox from "../../../components/Forms/Checkbox"

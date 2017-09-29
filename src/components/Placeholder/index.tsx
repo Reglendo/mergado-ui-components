@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous, {Div} from "glamorous"
 import css from "cxs/component"
+import {Div} from "../../html"
 import * as Color from "color"
 
 import {prefix} from "../../config"

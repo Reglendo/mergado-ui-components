@@ -1,8 +1,7 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import IconMinus from "@reglendo/mergado-ui-icons/lib/icons/IconMinus"
-import {Span} from "glamorous"
 import css from "cxs/component"
+import {Span} from "../../../html"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"

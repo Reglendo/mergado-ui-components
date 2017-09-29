@@ -1,7 +1,5 @@
 import * as React from "react"
-import ChromePicker from "react-color/lib/components/chrome/Chrome"
 import * as InputColor from "react-input-color"
-import glamorous from "glamorous"
 import css from "cxs/component"
 import debounce from "lodash/debounce"
 

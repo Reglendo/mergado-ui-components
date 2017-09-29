@@ -1,5 +1,4 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import css from "cxs/component"
 
 import {prefix, form} from "../../../config"
@@ -192,22 +191,23 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
 FieldComponent.defaultProps = defaultFieldProps
 
-export const Field = glamorous(FieldComponent)({
+export const Field = css(FieldComponent)({
     position: "relative",
 },(props: any) => {
     const theme: any = props.theme
-    const styles = []
+    let styles = {}
     if((props.input && props.input.name)) {
-        styles.push({
+        styles = {
             marginBottom: "30px",
             paddingRight: "10px",
-        })
+        }
     }
 
-    return [...styles,{
+    return {
+        ...styles,
         "& .muk-form__group--invalid": {
             borderRadius: `${parseInt(theme.radius,10) + 2}px`,
             border: `1px solid ${theme.red}`,
         },
-    }]
+    }
 })

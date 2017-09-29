@@ -1,7 +1,6 @@
 import * as React from "react"
-import * as ReactDOM from "react-dom"
-import glamorous from "glamorous"
 import css from "cxs/component"
+import {Div} from "../../../html"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
@@ -9,7 +8,6 @@ import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
 
 import {prefix,form} from "../../../config"
-import uniqueId from "../../../helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import Button from "../../../components/Forms/Button"
 
@@ -48,7 +46,7 @@ class TextInput extends React.Component<Props, State> {
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         return (
             <Field {...props} name={this.name}>
-                <glamorous.Div position="relative">
+                <Div position="relative">
                 <StyledInput
                     {...props}
                     {...inputProps}
@@ -81,7 +79,7 @@ class TextInput extends React.Component<Props, State> {
                                  }}
                     />
                 }
-                </glamorous.Div>
+                </Div>
             </Field>
         )
     }

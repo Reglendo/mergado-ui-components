@@ -1,7 +1,6 @@
 import * as React from "react"
-import glamorous,{Ul} from "glamorous"
 import css from "cxs/component"
-import WizardStep from "../../components/WizardNav/WizardStep"
+import {Ul} from "../../html"
 import {prefix} from "../../config"
 
 export interface Props {

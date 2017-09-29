@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import css from "cxs/component"
+import {Div} from "../../../html"
 import * as Color from "color"
 import IconChevronDown from "@reglendo/mergado-ui-icons/lib/icons/IconChevronDown"
 
@@ -44,7 +44,7 @@ class Select extends React.Component<Props, {}> {
 
         return (
             <Field {...props} name={this.name}>
-                <glamorous.Div position="relative">
+                <Div position="relative">
                     <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`}
                         aria-invalid={isInvalid ? 1 : 0}>
                         {this.renderOptions()}
@@ -52,7 +52,7 @@ class Select extends React.Component<Props, {}> {
                     <IconChevronDown size={10}
                         style={{ opacity: 0.6, position: "absolute", bottom: "9px",
                                  right: "10px", pointerEvents: "none"}}/>
-                </glamorous.Div>
+                </Div>
             </Field>
         )
     }
@@ -91,8 +91,17 @@ const StyledSelect = css("select")({
     // },
 },(props: any) => {
     const theme = props.theme
-    const styles = []
-    styles.push({
+
+    let disabled = {}
+    if(props.disabled) {
+        disabled = {
+            color: "#999",
+            background: "#eee",
+            borderColor: Color(theme.grey).fade(0.5).string(),
+        }
+    }
+
+    return {
         borderRadius: theme.radius,
         border: props["aria-invalid"] ?  theme.input_border_error : theme.input_border,
         ":active": {
@@ -101,17 +110,8 @@ const StyledSelect = css("select")({
         ":focus": {
             border: theme.input_border_active,
         },
-    })
-
-    if(props.disabled) {
-        styles.push({
-            color: "#999",
-            background: "#eee",
-            borderColor: Color(theme.grey).fade(0.5),
-        })
+        ...disabled,
     }
-
-    return styles
 })
 
 export default Select

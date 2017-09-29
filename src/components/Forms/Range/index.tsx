@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import css from "cxs/component"
+import {Div} from "../../../html"
 import * as Color from "color"
 import debounce from "lodash/debounce"
 
@@ -52,7 +52,7 @@ class Range extends React.Component<Props,State> {
         const value = this.state.value
         return (
             <StyledField {...props} name={this.name}>
-                <glamorous.Div padding="5px 0px" className="muk-grid">
+                <Div padding="5px 0px" className="muk-grid">
                     <TextInput
                         type="number"
                         max={this.props.max}
@@ -77,7 +77,7 @@ class Range extends React.Component<Props,State> {
                             value={value}
                             />
                     </div>
-                </glamorous.Div>
+                </Div>
             </StyledField>
         )
     }

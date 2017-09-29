@@ -2,8 +2,6 @@ import * as React from "react"
 import {prefix} from "../../config"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
 
-import {Span, Svg} from "glamorous"
-
 export interface Props {
     type?: string
     name?: string
@@ -17,7 +15,6 @@ export interface Props {
 }
 export interface State {
 }
-
 class Icon extends React.Component<Props, State> {
 
     private readonly name = prefix + "icon";

@@ -1,7 +1,8 @@
 import * as React from "react"
-import glamorous, {Div} from "glamorous"
-import * as glamor from "glamor"
+import {css as glamor} from "glamor"
+
 import css from "cxs/component"
+import {Div} from "../../html"
 import * as Color from "color"
 import {prefix} from "../../config"
 
@@ -145,7 +146,7 @@ const Wrapper = css("div")({
 
 
 const animations = props => {
-    const css: any = glamor.css
+    const css: any = glamor
     if(props.type === "mergado") {
         const pulse = css.keyframes({
             "0%:": {

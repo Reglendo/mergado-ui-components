@@ -1,5 +1,4 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import cxs from "cxs/component"
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"

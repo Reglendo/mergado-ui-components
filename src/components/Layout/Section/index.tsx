@@ -1,7 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import css from "cxs/component"
-import Button from "../../Forms/Button"
 
 import domOnlyProps from "../../../helpers/dom-only-props"
 

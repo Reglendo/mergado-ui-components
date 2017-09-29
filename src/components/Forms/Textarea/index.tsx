@@ -1,5 +1,4 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import css from "cxs/component"
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
