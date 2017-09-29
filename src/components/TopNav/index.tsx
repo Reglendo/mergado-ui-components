@@ -1,6 +1,5 @@
 import * as React from "react"
-import glamorous, {Div} from "glamorous"
-
+import css from "cxs/component"
 import {prefix} from "../../config"
 
 export interface Props {
@@ -35,7 +34,6 @@ class TopNav extends React.Component<Props, State> {
     public render() {
 
         const className = `${this.name} ${this.props.addClass}`
-        const classWrapper = `${this.name}__wrapper"`
 
         return (
             <Component className={className} style={this.props.style}>
@@ -49,7 +47,7 @@ class TopNav extends React.Component<Props, State> {
 }
 
 // /* <style> */
-const Logo = glamorous.div({
+const Logo = css("div")({
     display: "inline-block",
     float: "left",
     maxHeight: "40px",
@@ -60,17 +58,11 @@ const Logo = glamorous.div({
     }
 })
 
-const Component = glamorous.nav({
+const Component = css("nav")({
     color: "#333",
     fontSize: "16px",
     fontWeight: "bold",
     padding: "10px 20px 0 20px",
-},(props: any) =>
-{
-    return {
-        // borderBottom: `1px solid #ccc`,
-        // background: props.theme.nav_background,
-    }
 })
 
 

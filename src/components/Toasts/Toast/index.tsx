@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 
 import {prefix} from "../../../config"
 import uniqueId from "../../../helpers/unique_id"
@@ -40,8 +41,10 @@ class Toast extends React.Component<Props, State> {
         style: {},
     }
 
-    public refWrapper: any;
-
+    public refs: {
+        [key: string]: Element,
+        wrapper: HTMLElement,
+    }
     constructor(props: Props) {
         super(props)
 
@@ -86,7 +89,7 @@ class Toast extends React.Component<Props, State> {
     }
 
     protected removeToast() {
-        this.refWrapper.style.display = "none"
+        this.refs.wrapper.style.display = "none"
     }
 
     protected onClose(evt) {
@@ -99,7 +102,8 @@ class Toast extends React.Component<Props, State> {
 
     public render() {
         return (
-            <Wrapper type={this.props.type} innerRef={(o) => { this.refWrapper = o } }
+            <div ref={"wrapper"}>
+            <Wrapper type={this.props.type}
                     style={this.props.style} hidden={!this.state.visible}
                     className={`${this.name}__wrapper ${this.state.visible ? "" : this.name+"--hidden"}`}>
                     <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
@@ -121,12 +125,13 @@ class Toast extends React.Component<Props, State> {
                             </CloseButton>
                     }
             </Wrapper>
+            </div>
         )
     }
 }
 
 /* <style> */
-const Wrapper = glamorous.div({
+const Wrapper = css("div")({
     width: "100%",
     display: "table",
     margin: "10px 0",
@@ -146,19 +151,14 @@ const Wrapper = glamorous.div({
     }
 })
 
-const Component = glamorous.div({
-    boxSizing: "border-box",
-    display: "table-row",
-})
-
-const Icon = glamorous.div({
+const Icon = css("div")({
     width: "20px",
     padding: "0 10px",
     display: "table-cell",
     verticalAlign: "middle",
 })
 
-const Content = glamorous.div({
+const Content = css("div")({
     padding: "20px 0px",
     boxSizing: "border-box",
     fontSize: "16px",
@@ -167,7 +167,7 @@ const Content = glamorous.div({
     verticalAlign: "middle",
 })
 
-const CloseButton = glamorous.div({
+const CloseButton = css("div")({
     padding: "5px 6px 0 10px",
     width: "20px",
     textAlign: "right",

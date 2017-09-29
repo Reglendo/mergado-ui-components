@@ -1,5 +1,7 @@
 import * as React from "react"
 import glamorous, {Div} from "glamorous"
+import css from "cxs/component"
+
 import * as Color from "color"
 import IconHintInfo from "@reglendo/mergado-ui-icons/lib/icons/IconHintInfo"
 import IconHintHelp from "@reglendo/mergado-ui-icons/lib/icons/IconHintHelp"
@@ -182,7 +184,7 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     protected getPosition(element: any): Position {
-        let top = 0
+        let top = 8
         let left = 0
         do {
             top += element.offsetTop || 0
@@ -205,22 +207,36 @@ class PopupHint extends React.Component<Props, State> {
 
     public render() {
         const object: any = Object
-        const style = object.assign({display: this.state.expanded ? "" : "none", position: "absolute"},
+        const style = object.assign({
+                                        display: this.state.expanded ? "" : "none",
+                                        position: "absolute",
+                                        zIndex: 10000,
+                                        outline: "none",
+                                        maxWidth: "600px",
+                                    },
                                     this.props.style)
 
         const hint: JSX.Element = (
             <Bubble>
-                <HintWrapper innerRef={(o) => { this.refs.hint = o }} className={`${this.name}__bubble`}
+                <div ref={"hint"} className={`${this.name}__bubble`}
                      style={style} tabIndex={0}
                      onBlur={ this.state.expanded ? this.collapse : () => {} }
                  >
                     <Div position={"relative"} padding={"0 0 10px 0"} className={`${this.name}__innerwrapper`}>
                         <HintContent className={`${this.name}__content`}>{this.props.children}</HintContent>
-                        <HintArrow
-                            innerRef={(o) => { this.refs.arrow = o }}
-                            className={`${this.name}__arrow`} />
+                        <div ref={"arrow"} style={{
+                            width: "12px",
+                            height: "12px",
+                            position: "absolute",
+                            display: "inline-block",
+                            zIndex: 1000,
+                            bottom: "9px"
+                        }}>
+                            <HintArrow
+                                className={`${this.name}__arrow`} />
+                        </div>
                     </Div>
-                </HintWrapper>
+                </div>
             </Bubble>
         )
 
@@ -248,30 +264,19 @@ class PopupHint extends React.Component<Props, State> {
 const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
 
 /* <style> */
-const HintWrapper = glamorous.div({
-    outline: "none",
-    fontFamily: fontFamily,
-    position: "absolute",
-    maxWidth: "600px",
-    zIndex: 10000,
-})
-
-const HintArrow = glamorous.div({
-    display: "block",
-    position: "absolute",
-    right: "0px",
-    bottom: "3px",
-    width: "14px",
-    height: "14px",
+const HintArrow = css("div")({
+    display: "inline-block",
+    width: "12px",
+    height: "12px",
     background: colors.yellow,
     transform: "rotate(45deg)",
     zIndex: 11,
-    borderRight: "1px solid black",
-    borderBottom: "1px solid black",
-    borderColor: Color(colors.yellow).darken(0.3)
+    borderRight: "1px solid " + Color(colors.yellow).darken(0.3).string(),
+    borderBottom: "1px solid " + Color(colors.yellow).darken(0.3).string(),
 })
 
-const HintContent = glamorous.div({
+const HintContent = css("div")({
+    fontFamily: fontFamily,
     maxHeight: "200px",
     padding: "10px",
     textAlign: "left",
@@ -281,7 +286,7 @@ const HintContent = glamorous.div({
     background: colors.yellow,
     border: "1px solid black",
     boxShadow: "3px 3px 12px -3px rgba(0,0,0,0.25)",
-    borderColor: Color(colors.yellow).darken(0.3),
+    borderColor: Color(colors.yellow).darken(0.3).string(),
     borderRadius: "2px"
 })
 

@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 import * as Color from "color"
 import {prefix} from "../../../config"
 
@@ -40,7 +41,7 @@ class NavLink extends React.Component<Props, State> {
 }
 
 
-const Link = glamorous.li({
+const Link = css("li")({
 
     float: "left",
     marginRight: "1em",
@@ -52,22 +53,21 @@ const Link = glamorous.li({
         cursor: "pointer",
         transition: "border-color 0.3s",
     },
-    "& a:active,& a:focus,& a:hover, & a,& a:visited": {
+    "& a:active, & a:focus, & a:visited, & a:hover": {
         textDecoration: "none",
     },
-
 },(props: any) => {
     return {
         "& a": {
             background: props.selected ? props.theme.nav_link_background_active : props.theme.nav_link_background,
             borderBottom: props.theme.nav_link_border,
             borderBottomColor:  props.selected ? props.theme.nav_link_color  : "transparent",
-
+            color: props.selected ? props.theme.text : Color(props.theme.text).fade(0.3).string(),
         },
-        "& a,& a:visited": {
-            color: props.selected ? props.theme.text : Color(props.theme.text).fade(0.3),
+        "& a:visited": {
+            color: props.selected ? props.theme.text : Color(props.theme.text).fade(0.3).string(),
         },
-        "& a:active,& a:focus,& a:hover": {
+        "& a:hover, & a:focus, & a:active": {
             color: props.theme.text,
         },
     }

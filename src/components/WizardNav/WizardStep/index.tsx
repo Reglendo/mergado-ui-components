@@ -1,6 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
-
+import css from "cxs/component"
 import {prefix} from "../../../config"
 
 export interface Props {
@@ -14,7 +14,7 @@ export interface State {
 }
 
 /* <style> */
-const Item = glamorous.li({
+const Item = css("li")({
     display: "inline-block",
     margin: 0,
     padding: 0,
@@ -22,7 +22,7 @@ const Item = glamorous.li({
         marginLeft: "20px",
     },
     "&:after": {
-        content: " ",
+        content: "attr(title)",
         display: "inline-block",
         width: "32px",
         height: "32px",
@@ -86,7 +86,7 @@ class WizardStep extends React.Component<Props, State> {
             className += ` ${this.name}--active`
         }
         return (
-            <Item className={`${className}`} style={style} selected={active}>
+            <Item className={`${className}`} style={style} title={" "} selected={active}>
                 <Link className={`${this.name}__step`} onClick={onClick}>
                     {link}
                 </Link>

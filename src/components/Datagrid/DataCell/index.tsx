@@ -1,7 +1,7 @@
 import * as React from "react"
 import glamorous from "glamorous"
 import cxs from "cxs/component"
-
+import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix} from "../../../config"
 
 export interface Props {
@@ -26,10 +26,10 @@ class DataCell extends React.Component<Props, State> {
         const { style, type, addClass, onClick } = this.props;
         return (type === "header")
             ?
-                <Th className={`${this.name} ${this.name}--header ${addClass}`}
+                <Th {...domOnlyProps(this.props)} className={`${this.name} ${this.name}--header ${addClass}`}
                     style={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Td className={`${this.name} ${addClass}`} style={style}
+                <Td {...domOnlyProps(this.props)} className={`${this.name} ${addClass}`} style={style}
                     onClick={onClick}>{this.props.children}</Td>
     }
 }
