@@ -1,21 +1,15 @@
 import * as React from "react"
 import glamorous from "glamorous"
-
+import css from "cxs/component"
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import {StyledInput} from "../TextInput"
+import {styles,stylesProps} from "../TextInput"
 
 export interface Props extends IFieldProps {
     height: number
 }
 
-const Styled = glamorous(StyledInput)({
-}, (props) => ({
-    height: props.height + "px"
-}))
-
-
-const StyledTextarea = Styled.withComponent("textarea")
+const StyledTextarea = css("textarea")(styles, stylesProps)
 
 class Textarea extends React.Component<Props, {}> {
 
@@ -30,7 +24,6 @@ class Textarea extends React.Component<Props, {}> {
         const { input, labels, meta } = this.props
         const { children, ...props } = this.props
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
-
         return (
             <Field {...props} name={this.name}>
                 <StyledTextarea

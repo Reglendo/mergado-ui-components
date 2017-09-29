@@ -26,8 +26,8 @@ const theme = {
 
     /* general */
     radius: "0px",
-    selected_background: Color(colors.yellow),
-    hover_background: Color(colors.yellow).fade(0.5),
+    selected_background: Color(colors.yellow).string(),
+    hover_background: Color(colors.yellow).fade(0.5).string(),
 
     /* section */
     section_border: "none",

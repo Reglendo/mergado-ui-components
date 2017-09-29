@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 
 import domOnlyProps from "../../../helpers/dom-only-props"
 
@@ -51,54 +52,39 @@ const Header = (props: Props) => {
     }
 }
 
-const H1 = glamorous.h1({
+const H1 = css("h1")({
     fontSize:  "28px",
     lineHeight:  "40px",
     margin:  "40px 0 0 0",
     fontWeight: 700,
-},(props: any) => {
-    return {
-    }
 })
 
-const H2 = glamorous.h2({
+const H2 = css("h2")({
     fontSize:  "24px",
     lineHeight:  "32px",
     margin:  "32px 0 0 0",
     fontWeight: 700,
-},(props: any) => {
-    return {
-    }
 })
 
-const H3 = glamorous.h3({
+const H3 =  css("h3")({
     fontSize:  "20px",
     lineHeight:  "24px",
     margin:  "24px 0 0 0",
     fontWeight: 700,
-},(props: any) => {
-    return {
-    }
 })
 
-const H4 = glamorous.h4({
+const H4 =  css("h4")({
     fontSize:  "17px",
     lineHeight:  "24px",
     margin:  "24px 0 0 0",
     fontWeight: 700,
-},(props: any) => {
-    return {
-    }
 })
 
-const H5 = glamorous.h5({
+const H5 =  css("h5")({
     fontSize:  "14px",
     lineHeight:  "20px",
     margin:  "20px 0 0 0",
     fontWeight: 700,
-},(props: any) => {
-    return {
-    }
 })
 
 

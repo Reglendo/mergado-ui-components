@@ -1,22 +1,22 @@
 Types:
 
     <div>
-        <LittleStatus type="success" text="Success!" title="Success title" />
-        <LittleStatus type="warning" text="Warning!" title="Warning title" />
-        <LittleStatus type="error" text="Error!" title="Error title" />
-        <LittleStatus type="inactive" text="Inactive" title="Inactive title" />
-        <LittleStatus type="info" text="Info" title="Inactive title" />
-        <LittleStatus type="message" text="Message" title="Inactive title" />
+        <LittleStatus type="success" text="Success!" title="Success title" /><code>&nbsp;</code>
+        <LittleStatus type="warning" text="Warning!" title="Warning title" /><code>&nbsp;</code>
+        <LittleStatus type="error" text="Error!" title="Error title" /><code>&nbsp;</code>
+        <LittleStatus type="inactive" text="Inactive" title="Inactive title" /><code>&nbsp;</code>
+        <LittleStatus type="info" text="Info" title="Inactive title" /><code>&nbsp;</code>
+        <LittleStatus type="message" text="Message" title="Inactive title" /><code>&nbsp;</code>
     </div>
 
 
 Status icons without text
 
     <div>
-        <LittleStatus type="success" /> 
-        <LittleStatus type="error" /> 
-        <LittleStatus type="warning" /> 
+        <LittleStatus type="success" />
+        <LittleStatus type="error" />
+        <LittleStatus type="warning" />
         <LittleStatus type="inactive" />
-        <LittleStatus type="info" /> 
+        <LittleStatus type="info" />
         <LittleStatus type="message" />
     </div>

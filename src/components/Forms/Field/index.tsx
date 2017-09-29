@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 
 import {prefix, form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
@@ -98,7 +99,7 @@ export const defaultFieldProps: IFieldProps = {
         },
 }
 
-const BigLabel = glamorous.h3({
+const BigLabel = css("h3")({
     paddingLeft: "10px",
     borderLeft: "5px solid hsla(43,44%,75%,.5)",
     fontSize: "1.2em",
@@ -117,12 +118,12 @@ const LabelComponent = ({children, name, bigLabel, className = ""}) => {
         )
 }
 
-export const FieldLabel = glamorous(LabelComponent)({
+export const FieldLabel = css(LabelComponent)({
     display: "inline-block",
     height: "25px",
-    "& .muk-popup-hint": {
+    " .muk-popup-hint": {
         verticalAlign: "middle",
-    }
+    },
 }, (props: any) => {
     const theme: any = props.theme
     return {
@@ -144,7 +145,7 @@ const FieldErrorComponent = ({...props}) => {
         }
 }
 
-export const FieldError = glamorous(FieldErrorComponent)({
+export const FieldError = css(FieldErrorComponent)({
     color: "white",
     fontSize: "12px",
     zIndex: 1,
@@ -201,7 +202,7 @@ export const Field = glamorous(FieldComponent)({
             marginBottom: "30px",
             paddingRight: "10px",
         })
-    } 
+    }
 
     return [...styles,{
         "& .muk-form__group--invalid": {

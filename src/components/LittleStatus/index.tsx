@@ -1,6 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
-
+import css from "cxs/component"
 import {prefix} from "../../config"
 import {Type} from "../../helpers/types"
 
@@ -12,32 +11,6 @@ export interface Props {
 }
 export interface State {
 }
-
-const Wrapper = glamorous.span({
-    verticalAlign: "middle",
-})
-const Indikator = glamorous.span({
-    width: "8px",
-    height: "8px",
-    borderRadius: "100%",
-    borderBottom: "none",
-    verticalAlign: "baseline",
-    display: "inline-block",
-    margin: "0 5px",
-}, (props: any) => {
-    return {
-        boxShadow: props.type === "info" ? "0px 0px 1px 0px rgba(0,0,0,0.5)" : "none",
-        backgroundColor: props.theme[props.type]
-    }
-});
-
-const Text = glamorous.span({
-    verticalAlign: "middle",
-    "a:hover": {
-        textDecoration: "none",
-    },
-})
-/* </style> */
 
 class LittleStatus extends React.Component<Props, State> {
 
@@ -71,5 +44,30 @@ class LittleStatus extends React.Component<Props, State> {
         )
     }
 }
+
+const Wrapper = css("span")({
+    verticalAlign: "middle",
+})
+const Indikator = css("span")({
+    width: "8px",
+    height: "8px",
+    borderRadius: "100%",
+    borderBottom: "none",
+    verticalAlign: "middle",
+    display: "inline-block",
+    margin: "0 2px",
+}, (props: any) => {
+    return {
+        boxShadow: props.type === "info" ? "0px 0px 1px 0px rgba(0,0,0,0.5)" : "none",
+        backgroundColor: props.theme[props.type],
+    }
+});
+
+const Text = css("span")({
+    verticalAlign: "middle",
+    "a:hover": {
+        textDecoration: "none",
+    },
+})
 
 export default LittleStatus

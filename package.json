@@ -28,6 +28,7 @@
   "dependencies": {
     "@reglendo/mergado-ui-icons": "^1.0.5",
     "color": "^2.0.0",
+    "cxs": "^6.1.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.8.0",
     "preact": "^8.2.5",

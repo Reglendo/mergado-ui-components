@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import cxs from "cxs/component"
 
 import {prefix} from "../../../config"
 
@@ -33,7 +34,7 @@ class DataCell extends React.Component<Props, State> {
     }
 }
 
-const Td = glamorous.td({
+const Cell = {
     textAlign: "left",
     fontWeight: "normal",
     "& .muk-form__group": {
@@ -48,21 +49,27 @@ const Td = glamorous.td({
         height: "auto",
         lineHeight: "initial",
     },
-}, (props: any) => { return {
+}
+
+const Td = cxs("td")(Cell, (props: any) => {
+return {
     padding: props.theme.table_cell_padding,
     borderBottom: props.theme.table_border_horizontal,
     borderRight: props.theme.table_border_vertical,
     fontSize: props.theme.table_cell_text_size,
 }})
 
-const Th = glamorous(Td)({
+const Th = cxs("th")({
+    ...Cell,
     borderColor: "transparent",
     whiteSpace: "nowrap",
     color: "#fff",
     fontWeight: "bold",
 }, (props: any) => { return {
+    padding: props.theme.table_cell_padding,
+    borderBottom: props.theme.table_border_horizontal,
     fontSize: props.theme.table_header_text_size,
     textTransform: props.theme.table_header_text_transform,
-}}).withComponent("th")
+}})
 
 export default DataCell

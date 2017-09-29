@@ -1,7 +1,6 @@
 import * as React from "react"
 import {Link} from "react-router"
-import glamorous from "glamorous"
-
+import css from "cxs/component"
 import {prefix, form} from "../../../config"
 import LittleStatus from "../../../components/LittleStatus"
 import TextInput from "../../../components/Forms/TextInput"
@@ -85,12 +84,12 @@ class CheckboxContainer extends React.Component<Props,State> {
                         style={{marginBottom: "5px"}}
                         input={{ value: this.state.filter,
                                  onKeyUp: this.handleFilter }}
-                        labels={{ placeholder: this.props.labels.placeholder, main: "", }}
+                        labels={{ placeholder: this.props.labels.placeholder, main: "" }}
             />
         )
     }
 
-    handleFilter(evt) {
+    protected handleFilter(evt) {
         this.setState({ filter: evt.target.value })
     }
 
@@ -121,11 +120,10 @@ class CheckboxContainer extends React.Component<Props,State> {
 
 }
 
-
-const StyledField = glamorous(Field)({
-    "& > .muk-form__group--invalid": {
+const StyledField = css(Field)({
+    " > .muk-form__group--invalid": {
         border: "none !important",
-    }
+    },
 })
 
 export default CheckboxContainer

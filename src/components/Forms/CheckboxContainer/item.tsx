@@ -1,6 +1,7 @@
 import * as React from "react"
 import {Link} from "react-router"
 import glamorous from "glamorous"
+import css from "cxs/component"
 import * as Color from "color"
 
 import Radio from "../../../components/Forms/Radio"
@@ -90,66 +91,67 @@ export const QueryItemLabel: React.SFC<IQueryItemLabelProps> = ({ name, option, 
                 {typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }
             </Count>
             {option.active !== undefined &&
-                <LittleStatus style={{float: showInput ? "right" : "left"}} type={option.active ? "success" : "inactive"} />
+                <LittleStatus style={{float: showInput ? "right" : "left"}}
+                              type={option.active ? "success" : "inactive"} />
             }
         </Label>
     )
 }
 
-
-export const Li = glamorous.li({
+export const Li = css("li")({
     display: "table",
     background: "white",
     fontWeight: "normal",
     width: "100%",
     padding: "10px",
 }, (props: any) => {
-    const styles = []
-
-    styles.push({
-        cursor: props["data-link"] ? "default" : "pointer",
-        ":hover": {
-            background: props.theme.hover_background,
-        },
-    })
-
-
+    let checked = {}
     if(props.checked) {
-        styles.push({
+        checked = {
             background: props.theme.selected_background,
             ":hover": {
-                background: Color(props.theme.selected_background).fade(0.2),
+                // background: Color(props.theme.selected_background).fade(0.2).string(),
             },
-        })
+        }
     }
 
+    let disabled = {}
     if(props.disabled) {
-        styles.push({
+        disabled = {
             cursor: "default",
-            ":hover": {
-                background: "white",
-            }
-        })
+            // ":hover": {
+            //     background: "white",
+            // },
+        }
     }
 
+    let subheader = {}
     if(props["data-subheader"]) {
-        styles.push({
+        subheader = {
             background: props.theme.decoration,
             color: "white",
             padding: "5px",
             fontWeight: "bold",
             pointerEvents: "none",
-        })
+        }
     }
-    return styles
+    return {
+        ...checked,
+        ...disabled,
+        ...subheader,
+        cursor: props["data-link"] ? "default" : "pointer",
+        ":hover": {
+            background: props.theme.hover_background,
+        },
+    }
 })
 
-const Label = glamorous.label({
+const Label = css("label")({
     cursor: "pointer",
     margin: "0 5px",
-    "& a": {
+    " a": {
         verticalAlign: "middle",
-    }
+    },
 }, (props: any) => {
     return props.disabled ?
     {
@@ -160,12 +162,12 @@ const Label = glamorous.label({
     : {}
 })
 
-const Count = glamorous.span({
+const Count = css("span")({
     color: "#888",
     fontSize: "0.8em",
 })
 
-const StyledInput = glamorous.input({
+const StyledInput = css("input")({
     margin: 0,
     marginRight: "10px",
     verticalAlign: "text-bottom",

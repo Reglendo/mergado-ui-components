@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 import * as Color from "color"
 import IconChevronDown from "@reglendo/mergado-ui-icons/lib/icons/IconChevronDown"
 
@@ -44,17 +45,20 @@ class Select extends React.Component<Props, {}> {
         return (
             <Field {...props} name={this.name}>
                 <glamorous.Div position="relative">
-                    <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`} aria-invalid={isInvalid ? 1 : 0}>
+                    <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`}
+                        aria-invalid={isInvalid ? 1 : 0}>
                         {this.renderOptions()}
                     </StyledSelect>
-                    <IconChevronDown size={10} style={{ opacity: 0.6, position: "absolute", bottom: "9px", right: "10px", pointerEvents: "none"}}/>
+                    <IconChevronDown size={10}
+                        style={{ opacity: 0.6, position: "absolute", bottom: "9px",
+                                 right: "10px", pointerEvents: "none"}}/>
                 </glamorous.Div>
             </Field>
         )
     }
 }
 
-const StyledSelect = glamorous.select({
+const StyledSelect = css("select")({
     boxSizing: "border-box",
     width: "100%",
     height: "40px",
@@ -70,24 +74,31 @@ const StyledSelect = glamorous.select({
     appearance: "none",
     transition: "border-color 0.2s",
     willChange: "border-color",
-    ":focus, :active": {
+    ":focus": {
         outline: "none",
         border: "none",
     },
-    "::-ms-expand": {
-        display: "none"
+    ":active": {
+        outline: "none",
+        border: "none",
     },
-    ":-moz-focusring": {
-        color: "transparent",
-        textShadow: "0 0 0 #000",
-    }
+    // "::-ms-expand": {
+    //     display: "none",
+    // },
+    // "::-moz-focusring": {
+    //     color: "transparent",
+    //     textShadow: "0 0 0 #000",
+    // },
 },(props: any) => {
     const theme = props.theme
     const styles = []
     styles.push({
         borderRadius: theme.radius,
         border: props["aria-invalid"] ?  theme.input_border_error : theme.input_border,
-        ":active,:focus": {
+        ":active": {
+            border: theme.input_border_active,
+        },
+        ":focus": {
             border: theme.input_border_active,
         },
     })

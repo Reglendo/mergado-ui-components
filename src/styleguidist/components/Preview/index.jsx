@@ -6,7 +6,9 @@ import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
-import { ThemeProvider } from 'glamorous';
+import { ThemeProvider as Theme } from 'glamorous';
+import ThemeProvider from 'cxs/ThemeProvider';
+
 import { plugins } from "glamor";
 
 import defaultTheme from '/src/styled/themes/default.ts';
@@ -213,10 +215,12 @@ export default class Preview extends Component {
 			const wrappedComponent = (
                     <Provider store={store}>
                         <ThemeProvider theme={theme}>
-                            <Wrapper>
-                                <Form />
-                            </Wrapper>
-                        </ThemeProvider>
+                            <Theme theme={theme}>
+                                <Wrapper>
+                                    <Form />
+                                </Wrapper>
+                            </Theme>
+                            </ThemeProvider>
                     </Provider>
 			);
 

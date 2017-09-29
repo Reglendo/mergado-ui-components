@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 import * as Color from "color"
 import debounce from "lodash/debounce"
 
@@ -82,21 +83,19 @@ class Range extends React.Component<Props,State> {
     }
 }
 
-
-
-const StyledField = glamorous(Field)({
-    "& input[type=range]": {
+const StyledField = css(Field)({
+    " input[type=range]": {
         appearance: "none",
         width: "100%",
         margin: "5.5px 0",
     },
-    "& input[type=range]:focus": {
+    " input[type=range]:focus": {
         outline: "none",
     },
 },(props) => {
 
     const thumbColor = props.theme.blue
-    const sliderColor = Color(props.theme.decoration).fade(0.5)
+    const sliderColor = Color(props.theme.decoration).fade(0.5).string()
 
     const slider = {
         width: "100%",
@@ -108,48 +107,49 @@ const StyledField = glamorous(Field)({
     }
 
     const thumb = {
-        border: `8px solid ${Color(thumbColor).fade(0.2)}`,
+        border: `8px solid ${Color(thumbColor).fade(0.2).string()}`,
         height: "25px",
         width: "25px",
         borderRadius: "100%",
         background: "#ffffff",
         cursor: "pointer",
+        "-webkit-appearance": "none",
         appearance: "none",
         marginTop: "-11px",
         transition: "border-color 0.3s",
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
     }
     return {
-        // track
-        "& input[type=range]::-webkit-slider-runnable-track": slider,
+        // // track
+        // " input[type=range]::-webkit-slider-runnable-track": slider,
 
-        "& input[type=range]::-moz-range-track": {
-            ...slider,
-        },
-
-        // thumb
-
-        "& input[type=range]::-webkit-slider-thumb": thumb,
-        "& input[type=range]:hover::-webkit-slider-thumb": {
-            borderColor: thumbColor,
-        },
+        // // thumb
+        // " input[type=range]::-webkit-slider-thumb": thumb,
+        // " input[type=range]:hover::-webkit-slider-thumb": {
+        //     borderColor: thumbColor,
+        // },
 
         // Mozilla
-        "& input[type=range]::-moz-range-thumb": {
-            ...thumb,
-            height: "10px",
-            width: "10px",
-        },
-        "& input[type=range]:hover::-moz-range-thumb": {
-            borderColor: thumbColor,
-        },
+        // " input[type=range]::-moz-range-track": {
+        //     ...slider,
+        // },
+        // " input[type=range]::-moz-range-thumb": {
+        //     // ...thumb,
+        //     height: "10px",
+        //     width: "10px",
+        // },
+        // " input[type=range]:hover::-moz-range-thumb": {
+        //     borderColor: thumbColor,
+        // },
     }
 })
 
-const Input = glamorous.input({
+const Input = css("input")({
     padding: 0,
     border: "none",
     background: "transparent",
+    appearance: "none",
+    "-webkit-appearance": "none",
 })
 
 export default Range

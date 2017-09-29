@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous from "glamorous"
+import css from "cxs/component"
 import Button from "../../Forms/Button"
 
 import domOnlyProps from "../../../helpers/dom-only-props"
@@ -34,7 +35,7 @@ const Section = (props: Props) => {
     )
 }
 
-const Prefix = glamorous.div({
+const Prefix = css("div")({
     float: "left",
     margin: "-10px",
     padding: "10px",
@@ -43,7 +44,7 @@ const Prefix = glamorous.div({
     borderRight: "1px solid #ccc",
 })
 
-const Suffix = glamorous.div({
+const Suffix = css("div")({
     float: "right",
     margin: "-10px",
     padding: "10px",
@@ -52,7 +53,7 @@ const Suffix = glamorous.div({
     borderLeft: "1px solid #ccc",
 })
 
-const Header = glamorous.h3({
+const Header = css("h3")({
     fontWeight: "normal",
     fontSize: "15px",
     height: "63px",
@@ -67,9 +68,9 @@ const Header = glamorous.h3({
     }
 })
 
-const SSection = glamorous.section({
+const SSection = css("section")({
     marginBottom: "20px",
-},(props:any) => {
+},(props: any) => {
     return {
         background: props.theme.background,
         color: props.theme.text,

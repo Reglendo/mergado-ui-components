@@ -1,5 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
+import cxs from "cxs/component"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -52,7 +52,7 @@ class Button extends React.Component<Props, {}> {
     }
 }
 
-const StyledField = glamorous(Field)({
+const StyledField = cxs(Field)({
     display: "inline-block",
     verticalAlign: "top",
 })

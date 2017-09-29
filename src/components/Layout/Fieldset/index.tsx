@@ -1,5 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
+import css from "cxs/component"
 
 import Header from "../Header"
 import domOnlyProps from "../../../helpers/dom-only-props"
@@ -23,7 +23,7 @@ const Fieldset = (props: Props) => {
         )
 }
 
-const FFieldset = glamorous.fieldset({
+const FFieldset = css("fieldset")({
     padding: 0,
     margin: 0,
 })

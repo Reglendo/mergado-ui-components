@@ -1,5 +1,6 @@
 import * as React from "react"
 import glamorous, { Div } from "glamorous"
+import css from "cxs/component"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
@@ -66,7 +67,7 @@ class Paginator extends React.Component<Props, State> {
 
     protected renderButton(label: any, page: number, clickable: boolean, active: boolean = false): JSX.Element {
         const key = `${this.state.id}-${label}-${page}`
-        const classLink = `${this.name}__item`
+        const classLink = `${this.name}__item link-class`
         let classDisabled = `${this.name}__item ${this.name}__item--disabled`
         if (active) {
             classDisabled = `${this.name}__item ${this.name}__item--active`
@@ -145,7 +146,8 @@ class Paginator extends React.Component<Props, State> {
 
     public render() {
         return (
-            <Div margin="10px 0" textAlign="center" className={this.name} data-active={this.props.currentPage} style={this.props.style}>
+            <Div margin="10px 0" textAlign="center" className={this.name}
+                    data-active={this.props.currentPage} style={this.props.style}>
                 {this.props.showFirstAndLast && this.renderFirstButton()}
                 {this.props.showPrevAndNext && this.renderPreviousButton()}
                 {this.renderMainButtons()}
@@ -156,7 +158,7 @@ class Paginator extends React.Component<Props, State> {
     }
 }
 
-const Button = glamorous.a({
+const Button = css("a")({
     boxSizing: "border-box",
     display: "inline-block",
     height: "42px",
@@ -167,14 +169,21 @@ const Button = glamorous.a({
     margin: "0 2px",
     border: `1px solid transparent`,
     fontWeight: "bold",
-
-    ":active,:focus,:visited": {
+    ":active": {
         textDecoration: "none",
-    }
+    },
+    ":visited": {
+        textDecoration: "none",
+    },
+    ":focus": {
+        textDecoration: "none",
+    },
 },(props: any) => {
     return {
-        borderRadius: props.theme.radius,
-        color: props.theme.blue,
+        "&": {
+            borderRadius: props.theme.radius,
+            color: props.theme.blue,
+        },
         ":hover": {
             background: props.theme.blue,
             color: "white",
@@ -183,7 +192,7 @@ const Button = glamorous.a({
     }
 })
 
-const Disabled = glamorous(Button)({
+const Disabled = css(Button)({
     display: "inline-block",
     opacity: 0.2,
     color: "black",
@@ -193,18 +202,17 @@ const Disabled = glamorous(Button)({
     },
 })
 
-const Active = glamorous(Button)({
+const Active = css(Button)({
     opacity: 1,
-    color: "black",
-
+    color: "black !important",
 }, (props: any) => {
     return {
         background: props.theme.decoration_background,
-        border: `1px solid ${props.theme.decoration}`,
+        border: `1px solid ${props.theme.decoration} !important`,
         ":hover": {
             background: props.theme.decoration_background,
             border: `1px solid ${props.theme.decoration}`,
-            color: "black",
+            color: "black !important",
             textDecoration: "none",
         },
     }

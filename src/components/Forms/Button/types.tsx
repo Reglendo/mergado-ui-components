@@ -1,5 +1,4 @@
 import * as React from "react"
-import glamorous from "glamorous"
 import {Link as RouterLink} from "react-router"
 
 import domOnlyProps from "../../../helpers/dom-only-props"

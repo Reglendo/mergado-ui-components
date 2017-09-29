@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
-import glamorous from "glamorous"
+import css from "cxs/component"
 
 import {prefix} from "../../../config"
 import Icon from "../../../components/Icon"
@@ -79,7 +79,7 @@ class IconFinder extends React.Component<Props, State> {
     }
 }
 
-const Image = glamorous.span({
+const Image = css("span")({
     cursor: "pointer",
     position: "relative",
     textAlign: "left",
@@ -113,20 +113,20 @@ const Image = glamorous.span({
         background: "#fff",
     },
 
-    "& .muk-icon": {
+    " .muk-icon": {
         padding: "4px",
         position: "relative",
         border: "1px solid transparent",
     },
-    "& .muk-icon:hover": {
+    " .muk-icon:hover": {
         background: "white",
         border: "1px solid #ccc",
     },
-    "& svg": {
+    " svg": {
         transition: "transform 0.2s",
         willChange: "transform",
     },
-    "& .muk-icon__text": {
+    " .muk-icon__text": {
         borderRadius: "2px",
         position: "absolute",
         display: "none",
@@ -139,7 +139,7 @@ const Image = glamorous.span({
         left: "50%",
         top: "68px",
         transform: "translateX(-50%)",
-    }
+    },
 })
 
 export default IconFinder
