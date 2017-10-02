@@ -4481,7 +4481,7 @@ const Text = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("span")({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_unique_id__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Forms_Button__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Forms_Button__ = __webpack_require__(17);
 
 
 
@@ -4547,7 +4547,7 @@ class Toast extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                         this.props.children),
                 this.props.closeable &&
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CloseButton, { type: this.props.type },
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__components_Forms_Button__["a" /* default */], { className: `${this.name}__button`, color: "nocolor", size: "tiny", type: "void", toastType: this.props.type, onClick: evt => this.onClose(evt) }, "\u00D7")))));
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__Forms_Button__["a" /* default */], { className: `${this.name}__button`, color: "nocolor", size: "tiny", type: "void", toastType: this.props.type, onClick: evt => this.onClose(evt) }, "\u00D7")))));
     }
 }
 Toast.defaultProps = {
@@ -7550,26 +7550,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Textarea", function() { return __WEBPACK_IMPORTED_MODULE_9__components_Forms_Textarea__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_LittleStatus__ = __webpack_require__(42);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "LittleStatus", function() { return __WEBPACK_IMPORTED_MODULE_10__components_LittleStatus__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Paginator__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Paginator__ = __webpack_require__(97);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Paginator", function() { return __WEBPACK_IMPORTED_MODULE_11__components_Paginator__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Placeholder__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Placeholder__ = __webpack_require__(98);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Placeholder", function() { return __WEBPACK_IMPORTED_MODULE_12__components_Placeholder__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_PopupHint__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_PopupHint__ = __webpack_require__(100);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "PopupHint", function() { return __WEBPACK_IMPORTED_MODULE_13__components_PopupHint__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Spinner__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Spinner__ = __webpack_require__(101);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Spinner", function() { return __WEBPACK_IMPORTED_MODULE_14__components_Spinner__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Toasts__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Toasts__ = __webpack_require__(102);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Toasts", function() { return __WEBPACK_IMPORTED_MODULE_15__components_Toasts__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_Toasts_Toast__ = __webpack_require__(43);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Toast", function() { return __WEBPACK_IMPORTED_MODULE_16__components_Toasts_Toast__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_TopNav__ = __webpack_require__(102);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "TopNav", function() { return __WEBPACK_IMPORTED_MODULE_17__components_TopNav__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_TopNav_NavLink__ = __webpack_require__(101);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_18__components_TopNav_NavLink__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_WizardNav__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_Toast__ = __webpack_require__(43);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Toast", function() { return __WEBPACK_IMPORTED_MODULE_16__components_Toast__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_Nav__ = __webpack_require__(95);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "TopNav", function() { return __WEBPACK_IMPORTED_MODULE_17__components_Nav__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_NavLink__ = __webpack_require__(96);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_18__components_NavLink__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_WizardNav__ = __webpack_require__(103);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "WizardNav", function() { return __WEBPACK_IMPORTED_MODULE_19__components_WizardNav__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_WizardNav_WizardStep__ = __webpack_require__(103);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "WizardStep", function() { return __WEBPACK_IMPORTED_MODULE_20__components_WizardNav_WizardStep__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_WizardStep__ = __webpack_require__(104);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "WizardStep", function() { return __WEBPACK_IMPORTED_MODULE_20__components_WizardStep__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_Datagrid_DataTable__ = __webpack_require__(39);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DataTable", function() { return __WEBPACK_IMPORTED_MODULE_21__components_Datagrid_DataTable__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Datagrid", function() { return __WEBPACK_IMPORTED_MODULE_21__components_Datagrid_DataTable__["a"]; });
@@ -9584,6 +9584,127 @@ const SSection = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("section"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(3);
+
+
+
+class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+    constructor() {
+        super(...arguments);
+        this.name = __WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "top_nav";
+    }
+    renderLinks() {
+        const { links } = this.props;
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("ul", { className: `${this.name}__list muk-helper-clearfix` }, links.length > 0 ? links : this.props.children));
+    }
+    render() {
+        const className = `${this.name} ${this.props.addClass}`;
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Component, { className: className, style: this.props.style },
+            this.props.logo &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Logo, null, this.props.logo),
+            this.renderLinks()));
+    }
+}
+Nav.defaultProps = {
+    links: [],
+    style: {},
+    addClass: "",
+};
+const Logo = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
+    display: "inline-block",
+    float: "left",
+    maxHeight: "40px",
+    padding: "0 20px 0 0",
+    "& img": {
+        maxHeight: "30px",
+        width: "auto",
+    }
+});
+const Component = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("nav")({
+    color: "#333",
+    fontSize: "16px",
+    fontWeight: "bold",
+    padding: "10px 20px 0 20px",
+});
+/* harmony default export */ __webpack_exports__["a"] = (Nav);
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_color__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_color___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_color__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(3);
+
+
+
+
+class NavLink extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+    constructor() {
+        super(...arguments);
+        this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "top_nav__item";
+    }
+    render() {
+        const { link, active } = this.props;
+        let className = `${this.name}`;
+        if (active) {
+            className += ` ${this.name}--active`;
+        }
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Link, { className: `${className}`, selected: this.props.active, style: this.props.style }, link));
+    }
+}
+NavLink.defaultProps = {
+    active: false,
+    link: (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("a", { href: "#" })),
+    style: {},
+};
+const Link = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("li")({
+    float: "left",
+    marginRight: "1em",
+    listStyleType: "none",
+    marginBottom: "-1px",
+    "& a": {
+        padding: "5px 10px 7px 10px",
+        display: "inline-block",
+        cursor: "pointer",
+        transition: "border-color 0.3s",
+    },
+    "& a:active, & a:focus, & a:visited, & a:hover": {
+        textDecoration: "none",
+        outline: "none",
+    },
+}, (props) => {
+    return {
+        "& a": {
+            background: props.selected ? props.theme.nav_link_background_active : props.theme.nav_link_background,
+            borderBottom: props.theme.nav_link_border,
+            borderBottomColor: props.selected ? props.theme.nav_link_color : "transparent",
+            color: props.selected ? props.theme.text : __WEBPACK_IMPORTED_MODULE_2_color__(props.theme.text).fade(0.3).string(),
+        },
+        "& a:visited": {
+            color: props.selected ? props.theme.text : __WEBPACK_IMPORTED_MODULE_2_color__(props.theme.text).fade(0.3).string(),
+        },
+        "& a:hover, & a:focus, & a:active": {
+            color: props.theme.text,
+        },
+    };
+});
+/* harmony default export */ __webpack_exports__["a"] = (NavLink);
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__html__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_unique_id__ = __webpack_require__(19);
@@ -9749,7 +9870,7 @@ const Active = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(Button)({
 
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9810,7 +9931,7 @@ const Container = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
 
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9856,7 +9977,7 @@ class Bubble extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9870,7 +9991,7 @@ class Bubble extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reglendo_mergado_ui_icons_lib_icons_IconHintHelp__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Bubble__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Bubble__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_lodash_debounce__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_lodash_debounce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_lodash_debounce__);
 
@@ -10087,7 +10208,7 @@ const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")
 
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10242,13 +10363,13 @@ const AnimatedWrapper = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(Wr
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Toasts_Toast__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Toast__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_unique_id__ = __webpack_require__(19);
 
 
@@ -10268,7 +10389,7 @@ class Toasts extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     renderToasts() {
         return this.props.toasts.map((toast) => {
             return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { key: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__helpers_unique_id__["a" /* default */])(), className: `${this.name}__item` },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Toasts_Toast__["a" /* default */], Object.assign({ isPaused: this.isPaused.bind(this) }, toast.props))));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__Toast__["a" /* default */], Object.assign({ isPaused: this.isPaused.bind(this) }, toast.props))));
         });
     }
     render() {
@@ -10285,128 +10406,53 @@ Toasts.defaultProps = {
 
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_color__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_color___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_color__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__html__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(3);
 
 
 
 
-class NavLink extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class WizardNav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor() {
         super(...arguments);
-        this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "top_nav__item";
-    }
-    render() {
-        const { link, active } = this.props;
-        let className = `${this.name}`;
-        if (active) {
-            className += ` ${this.name}--active`;
-        }
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Link, { className: `${className}`, selected: this.props.active, style: this.props.style }, link));
-    }
-}
-NavLink.defaultProps = {
-    active: false,
-    link: (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("a", { href: "#" })),
-    style: {},
-};
-const Link = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("li")({
-    float: "left",
-    marginRight: "1em",
-    listStyleType: "none",
-    marginBottom: "-1px",
-    "& a": {
-        padding: "5px 10px 7px 10px",
-        display: "inline-block",
-        cursor: "pointer",
-        transition: "border-color 0.3s",
-    },
-    "& a:active, & a:focus, & a:visited, & a:hover": {
-        textDecoration: "none",
-        outline: "none",
-    },
-}, (props) => {
-    return {
-        "& a": {
-            background: props.selected ? props.theme.nav_link_background_active : props.theme.nav_link_background,
-            borderBottom: props.theme.nav_link_border,
-            borderBottomColor: props.selected ? props.theme.nav_link_color : "transparent",
-            color: props.selected ? props.theme.text : __WEBPACK_IMPORTED_MODULE_2_color__(props.theme.text).fade(0.3).string(),
-        },
-        "& a:visited": {
-            color: props.selected ? props.theme.text : __WEBPACK_IMPORTED_MODULE_2_color__(props.theme.text).fade(0.3).string(),
-        },
-        "& a:hover, & a:focus, & a:active": {
-            color: props.theme.text,
-        },
-    };
-});
-/* harmony default export */ __webpack_exports__["a"] = (NavLink);
-
-
-/***/ }),
-/* 102 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config__ = __webpack_require__(3);
-
-
-
-class TopNav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    constructor() {
-        super(...arguments);
-        this.name = __WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "top_nav";
+        this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "wizard_nav";
     }
     renderLinks() {
         const { links } = this.props;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("ul", { className: `${this.name}__list muk-helper-clearfix` }, links.length > 0 ? links : this.props.children));
+        const classList = `${this.name}__list`;
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__html__["b" /* Ul */], { listStyle: "none", padding: "0", margin: "0", position: "relative", overflow: "hidden", className: classList }, links));
     }
     render() {
-        const className = `${this.name} ${this.props.addClass}`;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Component, { className: className, style: this.props.style },
-            this.props.logo &&
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Logo, null, this.props.logo),
-            this.renderLinks()));
+        const className = `${this.name}`;
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Nav, { className: className, style: this.props.style }, this.renderLinks()));
     }
 }
-TopNav.defaultProps = {
+WizardNav.defaultProps = {
     links: [],
     style: {},
-    addClass: "",
 };
-const Logo = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
-    display: "inline-block",
-    float: "left",
-    maxHeight: "40px",
-    padding: "0 20px 0 0",
-    "& img": {
-        maxHeight: "30px",
-        width: "auto",
-    }
+const Nav = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("nav")({
+    padding: "0",
+    margin: "20px 0",
+    listStyle: "none",
+}, (props) => {
+    return {
+        borderRadius: props.theme.radius,
+        backgroundColor: props.theme.grey,
+    };
 });
-const Component = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("nav")({
-    color: "#333",
-    fontSize: "16px",
-    fontWeight: "bold",
-    padding: "10px 20px 0 20px",
-});
-/* harmony default export */ __webpack_exports__["a"] = (TopNav);
+/* harmony default export */ __webpack_exports__["a"] = (WizardNav);
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10495,52 +10541,6 @@ const Link = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("a")({
     }
 });
 /* harmony default export */ __webpack_exports__["a"] = (WizardStep);
-
-
-/***/ }),
-/* 104 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cxs_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__html__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(3);
-
-
-
-
-class WizardNav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
-    constructor() {
-        super(...arguments);
-        this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "wizard_nav";
-    }
-    renderLinks() {
-        const { links } = this.props;
-        const classList = `${this.name}__list`;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__html__["b" /* Ul */], { listStyle: "none", padding: "0", margin: "0", position: "relative", overflow: "hidden", className: classList }, links));
-    }
-    render() {
-        const className = `${this.name}`;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Nav, { className: className, style: this.props.style }, this.renderLinks()));
-    }
-}
-WizardNav.defaultProps = {
-    links: [],
-    style: {},
-};
-const Nav = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("nav")({
-    padding: "0",
-    margin: "20px 0",
-    listStyle: "none",
-}, (props) => {
-    return {
-        borderRadius: props.theme.radius,
-        backgroundColor: props.theme.grey,
-    };
-});
-/* harmony default export */ __webpack_exports__["a"] = (WizardNav);
 
 
 /***/ }),
