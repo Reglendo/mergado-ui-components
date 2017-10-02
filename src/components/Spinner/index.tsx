@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous, {Div} from "glamorous"
-import * as glamor from "glamor"
+import css from "cxs/component"
+import {Div} from "../../html"
 import * as Color from "color"
 import {prefix} from "../../config"
 
@@ -85,48 +85,41 @@ const mergadoColors = {
     top: "transparent",
 }
 
-const Wrapper = glamorous.div({
+const Wrapper = css("div")({
 
 }, (props: any) => {
-    const styles = []
-    styles.push({
-        width: props.size,
-        height: props.size,
-        fontSize: props.size,
-        borderRadius: "100%",
-    })
 
+    let type = {}
+    let color = {}
     if(props.type === "mergado") {
-        styles.push({
-            borderWidth: props.size / 2,
+        type = {
+            borderWidth: (props.size / 2) + "px",
             boxSizing: "border-box",
             borderStyle: "solid",
             borderColor: `${mergadoColors.top} ${mergadoColors.left} ${mergadoColors.right} ${mergadoColors.bottom}`,
             position: "relative",
-
             ".muk-spinner__content": {
                 maxWidth: 0,
                 maxHeight: 0,
                 overflow: "hidden",
             },
-        })
-    } else {
-
-        if(props.color === "black") {
-            styles.push({ borderColor: `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)` })
-        } else if(props.color === "green") {
-            styles.push({ borderColor: `rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)` })
-        } else if(props.color === "blue") {
-            styles.push({ borderColor: `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)` })
-        } else {
-            styles.push({ borderColor: `
-                                        ${Color(props.theme.decoration).fade(1)} 
-                                        ${Color(props.theme.decoration).fade(0.8)} 
-                                        ${Color(props.theme.decoration).fade(0.6)} 
-                                        ${Color(props.theme.decoration).fade(0.4)}
-                                        `})
         }
-        styles.push({
+    } else {
+        if(props.color === "black") {
+            color = { borderColor: `rgba(0,0,0,1)  rgba(0,0,0,.4) rgba(0,0,0,.6) rgba(0,0,0,.8)` }
+        } else if(props.color === "green") {
+            color = { borderColor: `rgba(127,186,44,1)  rgba(127,186,44,.4) rgba(127,186,44,.6) rgba(127,186,44,.8)` }
+        } else if(props.color === "blue") {
+            color = { borderColor: `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)` }
+        } else {
+            color = { borderColor: `
+                                        ${Color(props.theme.decoration).fade(1).string()} 
+                                        ${Color(props.theme.decoration).fade(0.8).string()} 
+                                        ${Color(props.theme.decoration).fade(0.6).string()} 
+                                        ${Color(props.theme.decoration).fade(0.4).string()}
+                                        `}
+        }
+        type =  {
             borderStyle: props.type === "default" ? "solid" : props.type,
             borderWidth: (props.type === "dashed" || props.type === "dotted") ? "0.1em" : "0.2em",
             display: "inline-block",
@@ -136,48 +129,63 @@ const Wrapper = glamorous.div({
             transform: "translate3d(0,0,0)",
             willChange: "transform",
             verticalAlign: "top",
-        })
+        }
     }
 
-    return styles
+    return {
+        width: props.size + "px",
+        height: props.size + "px",
+        fontSize: props.size + "px",
+        borderRadius: "100%",
+        ...type,
+        ...color,
+    }
 })
 
 
 const animations = props => {
-    const css: any = glamor.css
     if(props.type === "mergado") {
-        const pulse = css.keyframes({
-            "0%:": {
-                borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
-            },
-            "25%": {
-                borderColor: `${mergadoColors.bottom} ${mergadoColors.left} ${mergadoColors.top} ${mergadoColors.right}`
-            },
-            "50%": {
-                borderColor: `${mergadoColors.right} ${mergadoColors.top} ${mergadoColors.left} ${mergadoColors.bottom}`
-            },
-            "75%": {
-                borderColor: `${mergadoColors.left} ${mergadoColors.bottom} ${mergadoColors.right} ${mergadoColors.top}`
-            },
-            "100%": {
-                borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
+        const animation = {
+            "@keyframes pulse": {
+                "0%:": {
+                    borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
+                },
+                "25%": {
+                    borderColor: `${mergadoColors.bottom} ${mergadoColors.left} ${mergadoColors.top} ${mergadoColors.right}`
+                },
+                "50%": {
+                    borderColor: `${mergadoColors.right} ${mergadoColors.top} ${mergadoColors.left} ${mergadoColors.bottom}`
+                },
+                "75%": {
+                    borderColor: `${mergadoColors.left} ${mergadoColors.bottom} ${mergadoColors.right} ${mergadoColors.top}`
+                },
+                "100%": {
+                    borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
+                }
             }
-        })
-        return { animation: `${pulse} 10s infinite linear` }
+        }
+        return {
+            ...animation,
+            animation: `pulse 10s infinite linear`
+        }
     } else {
-        const spin = css.keyframes({
-            "0%": {
-                transform: "rotate(0deg)",
-            },
-            "100%": {
-                transform: "rotate(360deg)",
+        const animation = {
+            "@keyframes spin": {
+                "0%": {
+                    transform: "rotate(0deg)",
+                },
+                "100%": {
+                    transform: "rotate(360deg)",
+                }
             }
-        })
-        return { animation: `${spin} 1.2s infinite linear` }
+        }
+        return {
+            ...animation,
+            animation: `spin 1.2s infinite linear`
+        }
     }
 }
 
-const AnimatedWrapper = glamorous(Wrapper)(animations)
-
+const AnimatedWrapper = css(Wrapper)(animations)
 
 export default Spinner

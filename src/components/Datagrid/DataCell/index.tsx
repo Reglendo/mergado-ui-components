@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous from "glamorous"
-
+import cxs from "cxs/component"
+import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix} from "../../../config"
 
 export interface Props {
@@ -25,15 +25,15 @@ class DataCell extends React.Component<Props, State> {
         const { style, type, addClass, onClick } = this.props;
         return (type === "header")
             ?
-                <Th className={`${this.name} ${this.name}--header ${addClass}`}
+                <Th {...domOnlyProps(this.props)} className={`${this.name} ${this.name}--header ${addClass}`}
                     style={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Td className={`${this.name} ${addClass}`} style={style}
+                <Td {...domOnlyProps(this.props)} className={`${this.name} ${addClass}`} style={style}
                     onClick={onClick}>{this.props.children}</Td>
     }
 }
 
-const Td = glamorous.td({
+const Cell = {
     textAlign: "left",
     fontWeight: "normal",
     "& .muk-form__group": {
@@ -48,21 +48,27 @@ const Td = glamorous.td({
         height: "auto",
         lineHeight: "initial",
     },
-}, (props: any) => { return {
+}
+
+const Td = cxs("td")(Cell, (props: any) => {
+return {
     padding: props.theme.table_cell_padding,
     borderBottom: props.theme.table_border_horizontal,
     borderRight: props.theme.table_border_vertical,
     fontSize: props.theme.table_cell_text_size,
 }})
 
-const Th = glamorous(Td)({
+const Th = cxs("th")({
+    ...Cell,
     borderColor: "transparent",
     whiteSpace: "nowrap",
     color: "#fff",
     fontWeight: "bold",
 }, (props: any) => { return {
+    padding: props.theme.table_cell_padding,
+    borderBottom: props.theme.table_border_horizontal,
     fontSize: props.theme.table_header_text_size,
     textTransform: props.theme.table_header_text_transform,
-}}).withComponent("th")
+}})
 
 export default DataCell

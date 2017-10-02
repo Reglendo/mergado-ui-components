@@ -1,6 +1,7 @@
 import update from 'react-addons-update';
 import { PropTypes } from 'react';
 import Icon from 'components/Icon';
+import cxs from 'cxs';
 
 import s from './StyleGuide.css';
 import c from '../ReactComponent/ReactComponent.css';
@@ -137,6 +138,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
                     background: ${theme === "ryzlink" ? "#f5ecd5" : "white"};
                 }
     `
+    const css = cxs.css()
     return (
     <div className={`${s.root}`}>
     		<main className={s.content}>
@@ -169,6 +171,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
                                 <Icon type="mergado" size="32" text={title}/>
                                 <br/>
                                 <span style={{fontSize: '10px', float: 'right', paddingRight: '5px'}}>{json.version}</span>
+                                <small style={{fontSize: '10px', clear: "right",float: "right", paddingRight: '5px'}}>CSS: {Number(css.length/1024).toFixed(2)} kB</small>
                             </span>
                         </h1>
 

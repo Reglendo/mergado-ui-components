@@ -1,7 +1,6 @@
 import * as React from "react"
-import glamorous,{Ul} from "glamorous"
-
-import WizardStep from "../../components/WizardNav/WizardStep"
+import css from "cxs/component"
+import {Ul} from "../../html"
 import {prefix} from "../../config"
 
 export interface Props {
@@ -40,17 +39,15 @@ class WizardNav extends React.Component<Props, State> {
 
     public render() {
         const className = `${this.name}`
-
         return (
-                <Nav className={className} style={this.props.style}
-                    >
+                <Nav className={className} style={this.props.style} >
                         {this.renderLinks() }
                 </Nav>
         )
     }
 }
 
-const Nav = glamorous.nav({
+const Nav = css("nav")({
     padding: "0",
     margin: "20px 0",
     listStyle: "none",

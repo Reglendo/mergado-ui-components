@@ -1,7 +1,7 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import IconMinus from "@reglendo/mergado-ui-icons/lib/icons/IconMinus"
-import glamorous,{Span} from "glamorous"
+import css from "cxs/component"
+import {Span} from "../../../html"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -44,34 +44,34 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
     public render() {
-        return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }} label={this.renderLabel()} />
+        return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }}
+                label={this.renderLabel()} />
     }
-
 }
 
-const Label = glamorous.div({
+const Label = css("div")({
     cursor: "pointer",
 }, (props: any) => {
     const theme: any = props.theme
     return {
         ":hover .muk-checkbox-input": {
             borderColor: theme.blue,
-        }
+        },
     }
 })
 
-const StyledField = glamorous(Field)({
+const StyledField = css(Field)({
     "> .muk-form__group--invalid": {
         border: "none !important",
     },
 
-    "& svg": {
+    " svg": {
         verticalAlign: "initial",
-    }
+    },
 
 })
 
-const Input = glamorous.input({
+const Input = css("input")({
     ":checked + span + span.muk-icon--check": {
         display: "inline-block",
     },
@@ -82,7 +82,7 @@ const Input = glamorous.input({
     },
 }})
 
-const StyledInput = glamorous.span({
+const StyledInput = css("span")({
     display: "inline-block",
     background: "transparent",
     width: "18px",
@@ -90,13 +90,13 @@ const StyledInput = glamorous.span({
     position: "relative",
     verticalAlign: "baseline",
     transition: "border-color 0.2s",
-    "& + span.muk-icon--check": {
+    " + span.muk-icon--check": {
         display: "none",
         position: "absolute",
         left: "2px",
         top: "2px",
     },
-    "& + span.muk-icon--check path": {
+    " + span.muk-icon--check path": {
         fill: "white !important",
     },
 

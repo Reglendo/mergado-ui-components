@@ -1,5 +1,6 @@
 import * as React from "react"
-import glamorous, {Div} from "glamorous"
+import css from "cxs/component"
+import {Div} from "../../html"
 import * as Color from "color"
 
 import {prefix} from "../../config"
@@ -46,7 +47,7 @@ class Placeholder extends React.Component<Props, State> {
     }
 }
 
-const Shadow = glamorous.div({
+const Shadow = css("div")({
     position: "absolute",
     top: "0px",
     bottom: "0px",
@@ -56,12 +57,12 @@ const Shadow = glamorous.div({
     border: "1px solid white",
 },(props: any) => {
     return {
-        background: Color(props.theme.decoration).fade(0.8),
-        borderColor: Color(props.theme.decoration).fade(0.2),
+        background: Color(props.theme.decoration).fade(0.8).string(),
+        borderColor: Color(props.theme.decoration).fade(0.2).string(),
     }
 })
 
-const Container = glamorous.div({
+const Container = css("div")({
     display: "table-cell",
     textAlign: "center",
     verticalAlign: "middle",

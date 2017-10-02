@@ -1,5 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
+import cxs from "cxs/component"
 import * as Color from "color"
 
 import {prefix,form} from "../../../config"
@@ -373,7 +373,7 @@ class Autocomplete extends  React.Component<Props, State> {
     }
 }
 
-const Menu = glamorous.div({
+const Menu = cxs("div")({
     boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
     background: "rgba(255, 255, 255, 0.95)",
     padding: 0,
@@ -394,7 +394,7 @@ const Menu = glamorous.div({
     }
 })
 
-const MenuItem = glamorous.div({
+const MenuItem = cxs("div")({
     padding: "9px 10px",
     fontSize: "12px",
     cursor: "pointer",

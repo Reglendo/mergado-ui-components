@@ -30,8 +30,8 @@ const theme = {
 
     /* general */
     radius: "5px",
-    selected_background: Color(colors.blue).fade(0.8),
-    hover_background: Color(colors.blue).fade(0.95),
+    selected_background: Color(colors.blue).fade(0.8).string(),
+    hover_background: Color(colors.blue).fade(0.95).string(),
 
     /* section */
     section_border: "1px solid #dcd8ca",

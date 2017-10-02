@@ -1,5 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
+import css from "cxs/component"
 import Button from "../../../components/Forms/Button"
 
 interface IInputProps {
@@ -13,7 +13,8 @@ interface IInputProps {
     hideInput?: boolean
 }
 
-const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChange, bigButtons, hideInput, ...props}) => {
+const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
+                                             onChange, bigButtons, hideInput, ...props}) => {
     if(bigButtons) {
         return <BigLabel className={`${name}__item ${props.className}`} key={value}>
                 <Button secondary={checked ? false : true}
@@ -62,7 +63,7 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, onChan
         </Label>
 }
 
-const Label = glamorous.label({
+const Label = css("label")({
     cursor: "pointer",
     display: "block",
     padding: "5px 0",
@@ -70,20 +71,20 @@ const Label = glamorous.label({
     const theme: any = props.theme
     return {
         ":hover span span": {
-            borderColor: theme.blue
-        }
+            borderColor: theme.blue,
+        },
     }
 
 })
 
-const BigLabel = glamorous.label({
+const BigLabel = css("label")({
     display: "table-cell",
     marginRight: "5px",
-    "& .muk-button__item": {
+    " .muk-button__item": {
         borderRadius: 0,
-        margin: "0 0 0 -1px"
+        margin: "0 0 0 -1px",
     },
-    "& span span": {
+    " span span": {
         fontWeight: "normal",
     },
 }, (props) => {
@@ -98,11 +99,11 @@ const BigLabel = glamorous.label({
         },
         ":last-of-type .muk-button__item": {
             borderRadius: `0 ${theme.radius} ${theme.radius} 0`,
-        }
+        },
     }
 })
 
-const Input = glamorous.input({
+const Input = css("input")({
 }, (props: any) => {
     if(props["data-big"]) {
         return {
@@ -119,7 +120,7 @@ const Input = glamorous.input({
     }
 })
 
-const StyledInput = glamorous.span({
+const StyledInput = css("span")({
     marginRight: "5px",
     display: "inline-block",
     background: "transparent",
@@ -129,9 +130,12 @@ const StyledInput = glamorous.span({
     verticalAlign: "text-top !important",
     transition: "border-color 0.2s",
     borderRadius: "100%",
-    ":focus,:active": {
+    ":focus": {
         outline: "none",
-    }
+    },
+    ":active": {
+        outline: "none",
+    },
 }, (props: any) => {
 
     if(props["data-big"]) {

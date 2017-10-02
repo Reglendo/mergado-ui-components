@@ -1,6 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
-import {css} from "glamor"
+import cxs from "cxs/component"
 import * as Color from "color"
 
 import {Href, Button, Link, Submit, Void} from "./types"
@@ -16,7 +15,7 @@ const UniversalButtonComponent = ({...props}) => {
                     icon={icon}
                     children={children}
                     label={others.label ? others.label : labels.main}
-                    styleClass={UniversalStyle}
+                    // styleClass={UniversalStyle}
                 />
     } else if(type === "button") {
         return <Button
@@ -27,7 +26,7 @@ const UniversalButtonComponent = ({...props}) => {
                     input={input}
                     children={children}
                     label={others.label ? others.label : labels.main}
-                    styleClass={UniversalStyle}
+                    // styleClass={UniversalStyle}
                 />
     } else if(type === "link") {
         return <Link
@@ -38,7 +37,7 @@ const UniversalButtonComponent = ({...props}) => {
                     children={children}
                     link={to ? to : link}
                     label={others.label ? others.label : labels.main}
-                    styleClass={UniversalStyle}
+                    // styleClass={UniversalStyle}
                 />
     } else if(type === "submit") {
         return <Submit
@@ -47,7 +46,7 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     input={input}
                     label={others.label ? others.label : labels.main}
-                    styleClass={UniversalStyle}
+                    // styleClass={UniversalStyle}
                 />
     } else if(type === "void") {
         return <Void
@@ -57,14 +56,14 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     children={children}
                     label={others.label ? others.label : labels.main}
-                    styleClass={UniversalStyle}
+                    // styleClass={UniversalStyle}
                 />
     } else {
         return <div/>
     }
 }
 
-const UniversalStyle = css({
+export const UniversalButton = cxs(UniversalButtonComponent)({
     boxSizing: "border-box",
     display: "inline-block",
     cursor: "pointer",
@@ -81,45 +80,44 @@ const UniversalStyle = css({
     ":last-child": {
         marginRight: 0,
     },
-    "& .muk-icon": {
+    " .muk-icon": {
         margin: "0 0 0 0",
         position: "relative",
         top: "-3px",
         verticalAlign: "middle",
     },
-    "& .muk-icon svg": {
+    " .muk-icon svg": {
         verticalAlign: "middle",
     },
-    "& .muk-popup_hint": {
+    " .muk-popup_hint": {
         verticalAlign: "middle !important",
     },
-    "& a": {
+    " a": {
         color: "white",
     },
-})
-
-export const UniversalButton = glamorous(UniversalButtonComponent)({
 }, props => {
-    const style = []
+    let size = {}
     if(props.size === "tiny") {
-        style.push({
+        size = {
             padding: "2px 2px",
             fontSize: "13px",
-        })
+        }
     }else if(props.size === "small") {
-        style.push({
+        size = {
             padding: "8px 15px",
-        })
+        }
     }
+    let disabled = {}
     if(props.disabled) {
-        style.push({
+        disabled = {
             opacity: 0.5,
             cursor: "default",
             pointerEvents: "none",
-        })
+        }
     }
+    let color = {}
     if(props.color === "nocolor") {
-        style.push({
+        color = {
             background: "transparent",
             padding: "0 2px",
             borderColor: "transparent",
@@ -129,58 +127,60 @@ export const UniversalButton = glamorous(UniversalButtonComponent)({
               outline: "none",
               background: "rgba(200,200,200,0.2)",
             },
-            "& path": {
+            " path": {
                 fill: props.theme.blue + "!important",
             },
-        })
+        }
     } else {
-        let color = props.theme[props.color === "gray" ? "grey" : props.color]
-        if(color === props.theme.grey) {
-            color = Color(color).darken(0.2)
+        let c = props.theme[props.color === "gray" ? "grey" : props.color]
+        if(c === props.theme.grey) {
+            c = Color(c).darken(0.2).string()
         }
         if(props.secondary) {
-            style.push({
+            color = {
                 backgroundColor: "white",
-                borderColor: color,
-                color: props.color === "decoration" ? props.theme.blue : color,
+                borderColor: c,
+                color: props.color === "decoration" ? props.theme.blue : c,
                 ":hover": {
-                    backgroundColor: Color(color).fade(0.8),
-                    borderColor: Color(color),
+                    backgroundColor: Color(c).fade(0.8).string(),
+                    borderColor: Color(c).string(),
                 },
                 ":active,:focus": {
-                  background: Color(color).fade(0.2),
-                  borderColor: Color(color).fade(0.2),
+                  background: Color(c).fade(0.2).string(),
+                  borderColor: Color(c).fade(0.2).string(),
                   color: "white",
                 },
-                "& path": {
-                    fill: (props.color === "decoration" ? props.theme.blue : color) + "!important",
+                " path": {
+                    fill: (props.color === "decoration" ? props.theme.blue : c) + "!important",
                 },
-            })
+            }
         } else {
-            style.push({
-                backgroundColor: color,
-                borderColor: color,
+            color = {
+                backgroundColor: c,
+                borderColor: c,
                 color: props.color === "decoration" ? props.theme.blue : "white",
                 ":hover": {
-                    backgroundColor: Color(color).darken(0.1),
-                    borderColor: Color(color).darken(0.1),
+                    backgroundColor: Color(c).darken(0.1).string(),
+                    borderColor: Color(c).darken(0.1).string(),
                 },
                 ":active,:focus": {
-                  background: Color(color).darken(0.2),
-                  borderColor: Color(color).darken(0.2),
+                      background: Color(c).darken(0.2).string(),
+                      borderColor: Color(c).darken(0.2).string(),
                 },
-                "& path": {
+                " path": {
                     fill: (props.color === "decoration" ? props.theme.blue : "white") + "!important",
                 },
-            })
+            }
         }
     }
-    style.push({
+
+    return {
+        ...size,
+        ...disabled,
+        ...color,
         borderRadius: props.theme.radius,
         textTransform: props.theme.button_text_transform,
         fontWeight: props.theme.button_text_weight,
         fontSize: props.size === "tiny" ? "13px" : props.theme.button_text_size,
-    })
-
-    return style
+    }
 })

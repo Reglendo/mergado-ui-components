@@ -1,6 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
-
+import cxs from "cxs/component"
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../../../components/Forms/Checkbox"
@@ -24,7 +23,6 @@ export interface Props {
 
 export interface State {
 }
-
 
 class DataRow extends React.Component<Props, State> {
 
@@ -62,7 +60,7 @@ class DataRow extends React.Component<Props, State> {
     }
 }
 
-const Tr = glamorous.tr({
+const Tr = cxs("tr")({
 },(props: any) => {
     return {
         background: props.selected ? props.theme.selected_background : "#fff",
@@ -70,11 +68,15 @@ const Tr = glamorous.tr({
             background: props.theme.hover_background,
         },
         color: props.disabled ? "#ccc" : "initial",
-        "& path,& text,& a": {
-            color: props.disabled ? "#ccc !important" : "initial",
-            fill: props.disabled ? "#ccc !important" : "initial",
+        " *": {
+            color: props.disabled ? "#ccc!important" : "initial",
+            fill: props.disabled ? "#ccc!important" : "initial",
         },
-        "& .muk-icon--pause *, & .muk-icon--play *": {
+        " .muk-icon--pause *": {
+            color: props.theme.blue + "!important",
+            fill: props.theme.blue + "!important",
+        },
+        "& .muk-icon--play *": {
             color: props.theme.blue + "!important",
             fill: props.theme.blue + "!important",
         },

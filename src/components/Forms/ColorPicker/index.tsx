@@ -1,8 +1,8 @@
 import * as React from "react"
-import ChromePicker from "react-color/lib/components/chrome/Chrome"
 import * as InputColor from "react-input-color"
-import glamorous from "glamorous"
+import css from "cxs/component"
 import debounce from "lodash/debounce"
+
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
@@ -44,7 +44,6 @@ class ColorPicker extends React.Component<Props, State> {
         this.handleChanged = debounce(this.handleChanged.bind(this),200)
     }
 
-
     protected handleChanged(evt) {
         this.setState({color: evt})
         return this.props.input.onChange(evt)
@@ -69,13 +68,13 @@ class ColorPicker extends React.Component<Props, State> {
     }
 }
 
-const StyledField = glamorous(Field)({
+const StyledField = css(Field)({
     display: "inline-block",
     width: "100%",
-    "& .muk-form__group--invalid": {
+    " .muk-form__group--invalid": {
         fontSize: "0",
     },
-    "& .m-input-color": {
+    " .m-input-color": {
         position: "relative",
         display: "inline-block",
         width: "100%",
@@ -85,27 +84,28 @@ const StyledField = glamorous(Field)({
         userSelect: "none",
         transition: "border-color 0.2s",
         willChange: "border-color",
-    }
-
-
+    },
 }, props => {
     const theme: any = props.theme
     return {
-        "& .m-input-color": {
+        " .m-input-color": {
             borderRadius: theme.radius,
             borderColor: theme.decoration,
             border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
-            ":active,:focus": {
-                border: `${theme.input_border_active} !important`,
-            }
         },
-        "& .muk-form__group--invalid .muk-colorpicker__colorbox": {
+        " .m-input-color:focus": {
+            border: `${theme.input_border_active} !important`,
+        },
+        " .m-input-color:active": {
+            border: `${theme.input_border_active} !important`,
+        },
+        " .muk-form__group--invalid .muk-colorpicker__colorbox": {
             borderColor: `${theme.red} !important`,
-        }
+        },
     }
 })
 
-const ColorBox = glamorous.div({
+const ColorBox = css("div")({
     cursor: "pointer",
     background: "white",
     padding: "5px",
@@ -117,12 +117,12 @@ const ColorBox = glamorous.div({
     }
 })
 
-const Popover = glamorous.div({
+const Popover = css("div")({
     position: "absolute",
     zIndex: 200,
 })
 
-const Cover = glamorous.div({
+const Cover = css("div")({
     position: "fixed",
     top: "0px",
     right: "0px",

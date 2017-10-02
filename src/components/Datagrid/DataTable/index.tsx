@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous,{Div} from "glamorous"
-
+import cxs from "cxs/component"
+import {Div} from "../../../html"
 import {prefix} from "../../../config"
 import TextInput from "../../../components/Forms/TextInput"
 import Checkbox from "../../../components/Forms/Checkbox"
@@ -117,12 +117,14 @@ class DataTable extends React.Component<Props, State> {
                     return (<TextFilter
                                 type="search"
                                 onClear={() => obj.action({currentTarget: {value: "" }})}
-                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }} labels={{placeholder: obj.label }}
+                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }}
+                                labels={{placeholder: obj.label }}
                                 key="text"
                             />)
                 case "checkbox":
                     return (<CheckboxFilter
-                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }} labels={{main: obj.label }}
+                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }}
+                                labels={{main: obj.label }}
                                 key="checkbox"
                             />)
             }
@@ -145,22 +147,22 @@ class DataTable extends React.Component<Props, State> {
     }
 }
 
-const Table = glamorous.table({
+const Table = cxs("table")({
     width: "100%",
-    "& .sortable-ghost": {
+    " .sortable-ghost": {
       opacity: 0.1,
     },
-},(props:any) => {
+},(props: any) => {
     return {
         borderLeft: props.theme.table_border_vertical,
     }
 })
 
-const TextFilter = glamorous(TextInput)({
+const TextFilter = cxs(TextInput)({
     paddingRight: "20px",
 })
 
-const CheckboxFilter = glamorous(Checkbox)({
+const CheckboxFilter = cxs(Checkbox)({
     whiteSpace: "nowrap",
 })
 

@@ -1,6 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
-
+import css from "cxs/component"
 import {prefix} from "../../../config"
 
 export interface Props {
@@ -13,8 +12,36 @@ export interface Props {
 export interface State {
 }
 
-/* <style> */
-const Item = glamorous.li({
+/**
+ * disable-styleguide
+ */
+class WizardStep extends React.Component<Props, State> {
+
+    private readonly name = prefix + "wizard_nav__item";
+
+    public static defaultProps: Props = {
+        active: false,
+        link: "",
+        style: {},
+        onClick: () => {},
+    }
+
+    public render() {
+        const {link, active, style, onClick} = this.props
+        let className = `${this.name}`
+        if (active) {
+            className += ` ${this.name}--active`
+        }
+        return (
+            <Item className={`${className}`} style={style} title={" "} selected={active}>
+                <Link className={`${this.name}__step`} onClick={onClick}>
+                    {link}
+                </Link>
+            </Item>
+        )
+    }
+}
+const Item = css("li")({
     display: "inline-block",
     margin: 0,
     padding: 0,
@@ -22,7 +49,7 @@ const Item = glamorous.li({
         marginLeft: "20px",
     },
     "&:after": {
-        content: " ",
+        content: "attr(title)",
         display: "inline-block",
         width: "32px",
         height: "32px",
@@ -48,7 +75,7 @@ const Item = glamorous.li({
     }
 })
 
-const Link = glamorous.a({
+const Link = css("a")({
     fontSize: "13px",
     display: "inline-block",
     height: "36px",
@@ -58,41 +85,17 @@ const Link = glamorous.a({
     minWidth: "60px",
     position: "relative",
     zIndex: 2,
-    ":hover,:focus,:active": {
+    ":hover": {
         textDecoration: "none",
         color: "#fff",
     },
+    ":focus" : {
+        textDecoration: "none",
+        color: "#fff",
+    },
+    ":active": {
+        textDecoration: "none",
+        color: "#fff",
+    }
 })
-/* </style> */
-
-/**
- * disable-styleguide
- */
-class WizardStep extends React.Component<Props, State> {
-
-    private readonly name = prefix + "wizard_nav__item";
-
-    public static defaultProps: Props = {
-        active: false,
-        link: "",
-        style: {},
-        onClick: () => {},
-    }
-
-    public render() {
-        const {link, active, style, onClick} = this.props
-        let className = `${this.name}`
-        if (active) {
-            className += ` ${this.name}--active`
-        }
-        return (
-            <Item className={`${className}`} style={style} selected={active}>
-                <Link className={`${this.name}__step`} onClick={onClick}>
-                    {link}
-                </Link>
-            </Item>
-        )
-    }
-}
-
 export default WizardStep

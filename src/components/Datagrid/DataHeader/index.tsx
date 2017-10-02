@@ -1,6 +1,6 @@
 import * as React from "react"
-import glamorous,{Div} from "glamorous"
-
+import {Div} from "../../../html"
+import cxs from "cxs/component"
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../../../components/Forms/Checkbox"
@@ -73,15 +73,15 @@ class DataHeader extends React.Component<Props, State> {
     }
 }
 
-export const ActionsIcons = glamorous.div({
+export const ActionsIcons = cxs("div")({
     whiteSpace: "nowrap",
-    "& path": {
-        fill: "white !important",
+    " path": {
+        fill: "white!important",
     },
 })
 
-
-const Header = glamorous.tr({}, (props: any) => { return {
+const Header = cxs("tr")(
+(props: any) => { return {
     background: props.selected ? props.theme.blue : "#333",
 }})
 

@@ -1,5 +1,5 @@
 import * as React from "react"
-import glamorous from "glamorous"
+import css from "cxs/component"
 import * as Color from "color"
 
 import { Query } from "./index"
@@ -86,7 +86,7 @@ export const QueryList: React.SFC<IQueryListProps> = ({ name, className, options
     )
 }
 
-const List = glamorous.ul({
+const List = css("ul")({
     listStyle: "none",
     margin: 0,
     padding: 0,
@@ -96,7 +96,7 @@ const List = glamorous.ul({
 }, (props: any) => { return {
     height: props.height === "auto" ? props.height : props.height + "px",
     borderRadius: props.theme.radius,
-    "& li + li": {
+    " li + li": {
         borderTop: `1px solid ${Color(props.theme.decoration).fade(0.8)}`,
-    }
+    },
 }})
