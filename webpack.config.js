@@ -51,7 +51,6 @@ config.plugins = [
   new ExtractTextPlugin({ filename: 'css/style.css',
             allChunks: true
   }),
-    new BundleAnalyzerPlugin(),
     new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.min\.css$/,
             cssProcessorOptions: { discardComments: { removeAll: true } }
