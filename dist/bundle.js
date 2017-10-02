@@ -12498,6 +12498,11 @@ class Range extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         };
         this.handleChange = __WEBPACK_IMPORTED_MODULE_3_lodash_debounce___default()(this.handleChange.bind(this), 200);
     }
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.input.value !== this.props.input.value) {
+            this.handleChange({ target: { value: nextProps.input.value } });
+        }
+    }
     handleChange(evt) {
         this.setState({ value: evt.target.value });
         return this.props.input.onChange(evt.target.value);
@@ -13563,6 +13568,7 @@ const Link = __WEBPACK_IMPORTED_MODULE_1_glamorous__["a" /* default */].li({
     },
     "& a:active,& a:focus,& a:hover, & a,& a:visited": {
         textDecoration: "none",
+        outline: "none",
     },
 }, (props) => {
     return {
