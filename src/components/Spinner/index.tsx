@@ -1,6 +1,4 @@
 import * as React from "react"
-import {css as glamor} from "glamor"
-
 import css from "cxs/component"
 import {Div} from "../../html"
 import * as Color from "color"
@@ -146,40 +144,48 @@ const Wrapper = css("div")({
 
 
 const animations = props => {
-    const css: any = glamor
     if(props.type === "mergado") {
-        const pulse = css.keyframes({
-            "0%:": {
-                borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
-            },
-            "25%": {
-                borderColor: `${mergadoColors.bottom} ${mergadoColors.left} ${mergadoColors.top} ${mergadoColors.right}`
-            },
-            "50%": {
-                borderColor: `${mergadoColors.right} ${mergadoColors.top} ${mergadoColors.left} ${mergadoColors.bottom}`
-            },
-            "75%": {
-                borderColor: `${mergadoColors.left} ${mergadoColors.bottom} ${mergadoColors.right} ${mergadoColors.top}`
-            },
-            "100%": {
-                borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
+        const animation = {
+            "@keyframes pulse": {
+                "0%:": {
+                    borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
+                },
+                "25%": {
+                    borderColor: `${mergadoColors.bottom} ${mergadoColors.left} ${mergadoColors.top} ${mergadoColors.right}`
+                },
+                "50%": {
+                    borderColor: `${mergadoColors.right} ${mergadoColors.top} ${mergadoColors.left} ${mergadoColors.bottom}`
+                },
+                "75%": {
+                    borderColor: `${mergadoColors.left} ${mergadoColors.bottom} ${mergadoColors.right} ${mergadoColors.top}`
+                },
+                "100%": {
+                    borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
+                }
             }
-        })
-        return { animation: `${pulse} 10s infinite linear` }
+        }
+        return {
+            ...animation,
+            animation: `pulse 10s infinite linear`
+        }
     } else {
-        const spin = css.keyframes({
-            "0%": {
-                transform: "rotate(0deg)",
-            },
-            "100%": {
-                transform: "rotate(360deg)",
+        const animation = {
+            "@keyframes spin": {
+                "0%": {
+                    transform: "rotate(0deg)",
+                },
+                "100%": {
+                    transform: "rotate(360deg)",
+                }
             }
-        })
-        return { animation: `${spin} 1.2s infinite linear` }
+        }
+        return {
+            ...animation,
+            animation: `spin 1.2s infinite linear`
+        }
     }
 }
 
 const AnimatedWrapper = css(Wrapper)(animations)
-
 
 export default Spinner

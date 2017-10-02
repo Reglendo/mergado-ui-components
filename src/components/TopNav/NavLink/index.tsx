@@ -54,6 +54,7 @@ const Link = css("li")({
     },
     "& a:active, & a:focus, & a:visited, & a:hover": {
         textDecoration: "none",
+        outline: "none",
     },
 },(props: any) => {
     return {

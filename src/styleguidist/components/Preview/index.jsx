@@ -6,36 +6,12 @@ import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
-import { ThemeProvider as Theme } from 'glamorous';
 import ThemeProvider from 'cxs/ThemeProvider';
 
-import { plugins } from "glamor";
 
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
 import cookie from 'react-cookie';
-
-
-document.body.id =
-    document.body.id || `random-glamor-id-${Math.random().toString().slice(2)}`;
-plugins.add(getSpecificityPlugin(document.body.id));
-
-function getSpecificityPlugin(id) {
-    /**
-     * This prefixes glamor-generated CSS selectors with an id
-     * to prevent global styles from overriding glamor styles.
-     *
-     * Learn more about glamor plugins:
-     * https://github.com/threepointone/glamor/blob/master/docs/plugins.md
-     */
-    return function specificityPlugin({ selector, style }) {
-        const prefixedSelector = selector
-            .split(",")
-            .map(sel => `#${id} ${sel.trim()}`)
-            .join(", ");
-        return { selector: prefixedSelector, style };
-    };
-}
 
 import Editor from 'rsg-components/Editor';
 const s = require('../Playground/Playground.css');
@@ -215,11 +191,9 @@ export default class Preview extends Component {
 			const wrappedComponent = (
                     <Provider store={store}>
                         <ThemeProvider theme={theme}>
-                            <Theme theme={theme}>
                                 <Wrapper>
                                     <Form />
                                 </Wrapper>
-                            </Theme>
                             </ThemeProvider>
                     </Provider>
 			);

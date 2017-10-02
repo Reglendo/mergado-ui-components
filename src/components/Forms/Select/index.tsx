@@ -70,7 +70,8 @@ const StyledSelect = css("select")({
     color: "#333333",
     verticalAlign: "middle",
     padding: "0 10px",
-    border: "1px solid",
+    borderWidth: "1px",
+    borderStyle: "solid",
     appearance: "none",
     transition: "border-color 0.2s",
     willChange: "border-color",
@@ -82,13 +83,13 @@ const StyledSelect = css("select")({
         outline: "none",
         border: "none",
     },
-    // "::-ms-expand": {
-    //     display: "none",
-    // },
-    // "::-moz-focusring": {
-    //     color: "transparent",
-    //     textShadow: "0 0 0 #000",
-    // },
+    "::-ms-expand": {
+        display: "none",
+    },
+    "::-moz-focusring": {
+        color: "transparent",
+        textShadow: "0 0 0 #000",
+    },
 },(props: any) => {
     const theme = props.theme
 
