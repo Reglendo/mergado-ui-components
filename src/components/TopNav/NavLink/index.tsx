@@ -54,6 +54,7 @@ const Link = glamorous.li({
     },
     "& a:active,& a:focus,& a:hover, & a,& a:visited": {
         textDecoration: "none",
+        outline: "none",
     },
 
 },(props: any) => {

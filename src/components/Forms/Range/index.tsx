@@ -40,6 +40,12 @@ class Range extends React.Component<Props,State> {
         this.handleChange = debounce(this.handleChange.bind(this), 200);
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        if(nextProps.input.value !== this.props.input.value) {
+            this.handleChange({target: { value: nextProps.input.value } })
+        }
+    }
+
     protected handleChange(evt) {
         this.setState({value: evt.target.value});
         return this.props.input.onChange(evt.target.value);
