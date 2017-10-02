@@ -12,7 +12,7 @@ export interface Props {
 export interface State {
 }
 
-class TopNav extends React.Component<Props, State> {
+class Nav extends React.Component<Props, State> {
 
     private readonly name = prefix + "top_nav";
 
@@ -66,4 +66,4 @@ const Component = css("nav")({
 })
 
 
-export default TopNav
+export default Nav

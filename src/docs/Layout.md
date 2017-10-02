@@ -31,7 +31,7 @@ Application
     <div className="document-style" style={{ maxWidth: '1146px', minWidth: '500px', height: '1000px', padding: '10px'}}>
         <section id="container">
             <Section>
-                <TopNav logo={<img src="https://www.bidding-fox.cz/sites/all/themes/fox/logo.svg" alt="Hlavní strana" class="img-responsive" />}>
+                <Nav logo={<img src="https://www.bidding-fox.cz/sites/all/themes/fox/logo.svg" alt="Hlavní strana" class="img-responsive" />}>
                             <NavLink active={(state.activePage == 1) ? true : false } key={1} 
                                      link={(<a onMouseDown={(o) => setState({ activePage: 1 })}>Hlavní strana</a>)} />
                             <NavLink active={(state.activePage == 2) ? true : false } key={2} 
@@ -43,7 +43,7 @@ Application
                             <NavLink active={(state.activePage == 5) ? true : false } key={5} 
                                      link={(<a onMouseDown={(o) => setState({ activePage: 5 })} >Ke stažení</a>)} /> 
                             <span style="float: right">Heureka CZ (test)</span>
-                </TopNav>
+                </Nav>
             </Section>
             <Section header="Analytika">
             <div className="muk-grid--table">

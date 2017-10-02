@@ -1,10 +1,10 @@
 import * as React from "react"
 import css from "cxs/component"
 
-import {prefix} from "../../../config"
-import uniqueId from "../../../helpers/unique_id"
-import Button from "../../../components/Forms/Button"
-import {Type} from "../../../helpers/types"
+import {prefix} from "../../config"
+import uniqueId from "../../helpers/unique_id"
+import Button from "../Forms/Button"
+import {Type} from "../../helpers/types"
 
 
 export interface Props {

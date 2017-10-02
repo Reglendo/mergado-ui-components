@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "cxs/component"
-import {prefix} from "../../../config"
+import {prefix} from "../../config"
 
 export interface Props {
     active?: boolean
@@ -12,9 +12,6 @@ export interface Props {
 export interface State {
 }
 
-/**
- * disable-styleguide
- */
 class WizardStep extends React.Component<Props, State> {
 
     private readonly name = prefix + "wizard_nav__item";

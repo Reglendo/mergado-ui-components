@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "cxs/component"
 import * as Color from "color"
-import {prefix} from "../../../config"
+import {prefix} from "../../config"
 
 export interface Props {
     active?: boolean
@@ -12,9 +12,6 @@ export interface Props {
 export interface State {
 }
 
-/**
- * disable-styleguide
- */
 class NavLink extends React.Component<Props, State> {
 
     private readonly name = prefix + "top_nav__item";

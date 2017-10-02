@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import {prefix} from "../../config"
-import Toast from "../../components/Toasts/Toast"
+import Toast from "../Toast"
 import uniqueId from "../../helpers/unique_id"
 
 export interface Props {
