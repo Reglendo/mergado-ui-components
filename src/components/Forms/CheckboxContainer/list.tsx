@@ -76,10 +76,10 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
         })
 }
 
-export const QueryList: React.SFC<IQueryListProps> = ({ name, className, options, value, input,
+export const QueryList: React.SFC<IQueryListProps> = ({ name, className, options, value, input, height,
                                                             singleChoice, showInput, activeFirst, labels, meta }) => {
     return (
-        <List className={`${name}__list ${className}`}>
+        <List className={`${name}__list ${className}`} height={height}>
             {renderOptions( name, meta.initial && activeFirst ? options.sort(sortOptions(meta.initial)) : options ,
                             value, input, singleChoice, showInput, labels)}
         </List>

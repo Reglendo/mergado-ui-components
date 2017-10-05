@@ -139,6 +139,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
                 }
     `
     const css = cxs.css()
+    console.debug(css)
     return (
     <div className={`${s.root}`}>
     		<main className={s.content}>

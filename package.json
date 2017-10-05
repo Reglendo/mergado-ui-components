@@ -28,7 +28,7 @@
   "dependencies": {
     "@reglendo/mergado-ui-icons": "^1.0.5",
     "color": "^2.0.0",
-    "cxs": "https://github.com/Reglendo/cxs#v6.1.0-4-mod",
+    "cxs": "https://github.com/Reglendo/cxs#v6.1.0-8-mod",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
     "react-color": "^2.11.6",

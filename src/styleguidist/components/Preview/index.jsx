@@ -7,7 +7,7 @@ import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
 import ThemeProvider from 'cxs/ThemeProvider';
-
+import Root from "/src/html/root.tsx";
 
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
@@ -191,10 +191,12 @@ export default class Preview extends Component {
 			const wrappedComponent = (
                     <Provider store={store}>
                         <ThemeProvider theme={theme}>
+                            <Root>
                                 <Wrapper>
                                     <Form />
                                 </Wrapper>
-                            </ThemeProvider>
+                            </Root>
+                        </ThemeProvider>
                     </Provider>
 			);
 

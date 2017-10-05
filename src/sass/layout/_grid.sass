@@ -6,7 +6,10 @@
     min-width: 300px
     margin: 0 auto
 
-    @extend .muk-helper-clearfix
+    &:after
+        content: ''
+        display: table
+        clear: both
 
 
     & > div

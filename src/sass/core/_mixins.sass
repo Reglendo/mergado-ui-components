@@ -1,46 +1,46 @@
-@mixin clearfix()
-  zoom: 1
-  &:after
-    content: ''
-    display: table
-    clear: both
-
-@mixin ellipsis($no-wrap: true)
-  @if $no-wrap
-    white-space: nowrap
-  overflow: hidden
-  text-overflow: ellipsis
-
-
-// completely hidden element
-@mixin hidden()
-  display: none !important
-  visibility: hidden
-
-// only visually hidden element (accessible to screen readers etc.)
-@mixin visually-hidden()
-  border: 0
-  clip: rect(0 0 0 0)
-  height: 1px
-  margin: -1px
-  overflow: hidden
-  padding: 0
-  position: absolute
-  width: 1px
-
-
-// hidden but accessible element (accessible by tab key or so)
-@mixin visually-hidden-focusable()
-  @include visually-hidden()
-
-  &:active, &:focus
-    clip: auto
-    height: auto
-    margin: 0
-    overflow: visible
-    position: static
-    width: auto
-
-// only invisible element
-@mixin invisible()
-  visibility: hidden
+//@mixin clearfix()
+//  zoom: 1
+//  &:after
+//    content: ''
+//    display: table
+//    clear: both
+//
+//@mixin ellipsis($no-wrap: true)
+//  @if $no-wrap
+//    white-space: nowrap
+//  overflow: hidden
+//  text-overflow: ellipsis
+//
+//
+//// completely hidden element
+//@mixin hidden()
+//  display: none !important
+//  visibility: hidden
+//
+//// only visually hidden element (accessible to screen readers etc.)
+//@mixin visually-hidden()
+//  border: 0
+//  clip: rect(0 0 0 0)
+//  height: 1px
+//  margin: -1px
+//  overflow: hidden
+//  padding: 0
+//  position: absolute
+//  width: 1px
+//
+//
+//// hidden but accessible element (accessible by tab key or so)
+//@mixin visually-hidden-focusable()
+//  @include visually-hidden()
+//
+//  &:active, &:focus
+//    clip: auto
+//    height: auto
+//    margin: 0
+//    overflow: visible
+//    position: static
+//    width: auto
+//
+//// only invisible element
+//@mixin invisible()
+//  visibility: hidden
