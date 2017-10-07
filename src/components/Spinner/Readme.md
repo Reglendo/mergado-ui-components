@@ -1,7 +1,7 @@
 Spinner
 
     initialState = { loaded: false };
-    <div style={{display: 'table', textAlign: 'center', width: '100%', tableLayout: 'fixed', verticalAlign: 'top'}}>
+    <Section style={{display: 'table', textAlign: 'center', width: '100%', tableLayout: 'fixed', verticalAlign: 'top'}}>
         <div style={{display: 'table-cell', verticalAlign: 'top' }}>
             <Spinner loaded={state.loaded}><Icon type="reglendo" text="I'm Icon!" /></Spinner>
         </div>
@@ -19,4 +19,4 @@ Spinner
          ) : (
             <button onClick={(e) => { return false; }}>Loaded</button>
          ) }
-    </div>
+    </Section>

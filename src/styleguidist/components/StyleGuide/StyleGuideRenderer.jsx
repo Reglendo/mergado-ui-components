@@ -81,6 +81,10 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
 
     `
     const style = `
+                .ReactStyleguidist-Section__root {
+                    padding-top: 20px;
+                	border-bottom: 10px solid rgba(135, 102, 42, 0.31);
+                }
                 .ReactStyleguidist-TableOfContents__root .ReactStyleguidist-colors__link {
                     color: white !important;
                     font-size: 1.2em;
@@ -129,17 +133,14 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
                 }
 
                 .${p.root.replace(/ /g,'.')} {
-                    background: ${theme === "ryzlink" ? "white" : "#f5ecd5"};
-                    border: ${theme === "ryzlink" ? "2px solid #dcd8ca" : "1px solid #888"};
-                    border-radius: ${theme === "ryzlink" ? "5px 5px 0 5px" : "3px 3px 0 3px"};
 
+                    font-weight: normal;
                 }
                 .${rc.examples.replace(/ /g,'.')} {
-                    background: ${theme === "ryzlink" ? "#f5ecd5" : "white"};
+                    font-weight: bold;
                 }
     `
     const css = cxs.css()
-    console.debug(css)
     return (
     <div className={`${s.root}`}>
     		<main className={s.content}>
@@ -148,8 +149,8 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
 
                         <div className={s.buttons}>
                             <select style={{marginLeft: sidebar?"260px":"0px"}} value={theme} onChange={switchTheme}>
-                                <option selected={theme === "default"} value="default">default</option>
                                 <option selected={theme === "ryzlink"} value="ryzlink">ryzlink</option>
+                                <option selected={theme === "default"} value="default">default</option>
                             </select>
                             <button onClick={switchCompact} className={s.toggleCompact}
                                     style={{float: 'right',

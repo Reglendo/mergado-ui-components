@@ -1,6 +1,6 @@
 .root {
 	position: relative;
-	margin-bottom: 30px;
+	margin-bottom: 45px;
     margin-right: -1px;
 }
 
@@ -10,8 +10,6 @@
 }
 
 .codeToggle {
-	composes: font from "../../styles/common.css";
-	composes: border link from "../../styles/colors.css";
 	position: absolute;
 	right: -1px;
 	cursor: pointer;
@@ -70,7 +68,8 @@
 }
 
 .liveExample {
-    padding: 15px;
+    padding: 0;
+	margin-bottom: -20px;
 }
 
 .htmlCode {

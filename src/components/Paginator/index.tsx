@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "cxs/component"
-import {Div} from "../../html"
+import {Div} from "../../components/Layout"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"

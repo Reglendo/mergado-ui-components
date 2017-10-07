@@ -1,7 +1,7 @@
 Example
 
     var Field = require('redux-form').Field;
-    <div>
+    <Section>
     <Field component={Autocomplete} labels={{placeholder: 'Find me...', main: ''}}
             name="value"
             props={{ items: [ {value: 'You', text: 'You'},
@@ -35,4 +35,4 @@ Example
                       meta: { dirty: true, invalid: true, error: 'I am error'}
                       }}
        />
-      </div>
+      </Section>

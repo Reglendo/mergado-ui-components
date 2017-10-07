@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "cxs/component"
-import {Div} from "../../html"
+import {Div} from "../../components/Layout"
 import * as Color from "color"
 
 import {prefix} from "../../config"
@@ -31,7 +31,7 @@ class Placeholder extends React.Component<Props, State> {
         const className = `${this.name} ${addClass ? addClass : ""}`
 
         const object: any = Object
-        const styles = object.assign({}, style, { paddingBottom: `${(height * 100 / width)}%` })
+        const styles = object.assign({}, { paddingBottom: `${(height * 100 / width)}%` }, style)
 
         return (
             <Div position="relative" className={className} style={styles}>

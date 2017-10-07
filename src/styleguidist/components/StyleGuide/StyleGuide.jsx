@@ -7,7 +7,10 @@ import StyleGuideRenderer from './StyleGuideRenderer';
 import cookie from 'react-cookie';
 import { browserHistory } from "react-router";
 import _debounce from "lodash/debounce";
-
+import defaultTheme from '/src/styled/themes/default.ts';
+import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
+import ThemeProvider from 'cxs/ThemeProvider';
+import Root from "/src/components/Layout/App/index.tsx";
 
 export default class StyleGuide extends Component {
 	static propTypes = {
@@ -31,7 +34,7 @@ export default class StyleGuide extends Component {
       this.state = {
         compact: cookie.load('compact') == "1" ? true : false,
         showSidebar: cookie.load('sidebar') == "0" ? false : true,
-		theme: cookie.load('theme') || "default",
+		theme: cookie.load('theme') || "ryzlink",
       };
 
 	  this.switchTheme = this.switchTheme.bind(this)
@@ -105,20 +108,22 @@ export default class StyleGuide extends Component {
 
         let showSidebar = this.state.showSidebar && sidebar
 		return (
-			<StyleGuideRenderer
-				title={config.title}
-				homepageUrl={`homepage`}
-				components={this.renderComponents(components, sections, sidebar, singleExample)}
-				sections={sections}
-				toc={this.renderTableOfContents(components, sections)}
-				sidebar={showSidebar}
-                compact={this.state.compact}
-				theme={this.state.theme}
-                switchCompact={this.switchCompact}
-                switchSidebar={this.switchSidebar}
-				switchTheme={this.switchTheme}
-			/>
-		);
+				<Root>
+					<StyleGuideRenderer
+                        title={config.title}
+                        homepageUrl={`homepage`}
+                        components={this.renderComponents(components, sections, sidebar, singleExample)}
+                        sections={sections}
+                        toc={this.renderTableOfContents(components, sections)}
+                        sidebar={showSidebar}
+                        compact={this.state.compact}
+                        theme={this.state.theme}
+                        switchCompact={this.switchCompact}
+                        switchSidebar={this.switchSidebar}
+                        switchTheme={this.switchTheme}
+    				/>
+				</Root>
+        );
 	}
 }
 

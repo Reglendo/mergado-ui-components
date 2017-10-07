@@ -1,7 +1,7 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import css from "cxs/component"
-import {Span} from "../../../html"
+import {Span} from "../../../components/Layout"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -66,7 +66,7 @@ const StyledField = css(Field)({
     },
 
     " svg": {
-        verticalAlign: "initial",
+        // verticalAlign: "initial",
     },
 
 })
@@ -88,13 +88,12 @@ const StyledInput = css("span")({
     width: "18px",
     height: "18px",
     position: "relative",
-    verticalAlign: "baseline",
     transition: "border-color 0.2s",
     " + span.muk-icon--check": {
         display: "none",
         position: "absolute",
         left: "2px",
-        top: "2px",
+        top: "-5px",
     },
     " + span.muk-icon--check path": {
         fill: "white !important",

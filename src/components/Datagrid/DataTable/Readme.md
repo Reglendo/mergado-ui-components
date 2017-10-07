@@ -3,7 +3,8 @@ Example test
     var IconPlay = require('@reglendo/mergado-ui-icons/lib/icons/IconPlay').default;
     var IconPause = require('@reglendo/mergado-ui-icons/lib/icons/IconPause').default;
     var IconTrash = require('@reglendo/mergado-ui-icons/lib/icons/IconTrashO').default;
-
+    
+    <Section>
     <DataTable
                 labels={{actionsBar: "Actions:"}}
                 bulkActions={[
@@ -71,3 +72,4 @@ Example test
             </DataRow>
         </DataBody>
     </DataTable>
+    </Section>

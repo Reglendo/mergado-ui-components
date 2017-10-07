@@ -1,7 +1,7 @@
 Example
 
     var Field = require('redux-form').Field;
-    <div>
+    <Section>
         <Checkbox labels={{main: <span>I'm checked</span>}} name="checkbox1" input={{value: true, onChange: () => alert('Hello') }} />
 
         <Field component={Checkbox} labels={{main: <span>Check me!</span>}} name="checkbox1" onChange={() => alert('Hello')} />
@@ -10,4 +10,4 @@ Example
         <Field component={Checkbox} labels={{main: "I'm missing something",invalid: "Error!"}} name="checkbox4" />
         <Field component={Checkbox} labels={{main: "I'm missing something",invalid: "Error!"}} name="checkbox5" />
         <Field component={Checkbox} labels={{main: "I'm missing something",invalid: "Error!"}} meta={{touched: true, invalid: true}} name="checkbox6" />
-    </div>
+    </Section>

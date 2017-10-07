@@ -1,7 +1,7 @@
 Example
 
     var Field = require('redux-form').Field;
-    <div>
+    <Section>
         <Field component={Radio} name='video' labels={{main: 'Choose one:' }}
                 props={{group: {bigLabel: true}}}
                 items={[
@@ -10,13 +10,13 @@ Example
                         { value: "Kills the star", label: "Kills the star"  }
                 ]}
         />
-    </div>
+    </Section>
 
 Big buttons
 
     var Field = require('redux-form').Field;
 
-    <div>
+    <Section>
         <Field component={Radio} name='video' labels={{main: 'Choose one:' }}
                 props={{group: {bigLabel: true}, bigButtons: true }}
                 items={[
@@ -37,12 +37,12 @@ Big buttons
                         { value: "star", label: <span><Icon name="IconReglendo" size={20} />star <PopupHint hint={true}>Hello world</PopupHint></span> },
                 ]}
         />
-    </div>
+    </Section>
 
 Invalid
 
     var Field = require('redux-form').Field;
-    <div>
+    <Section>
         <Field component={Radio} name='video' labels={{main: 'Choose one:', invalid: "Not OK" }}
                 meta={{touched: true, invalid: true}}
                 props={{group: {bigLabel: true}}}
@@ -52,4 +52,4 @@ Invalid
                         { value: "Kills the star", label: "Kills the star"  }
                 ]}
         />
-    </div>
+    </Section>

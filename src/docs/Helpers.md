@@ -1,5 +1,6 @@
 **.muk-helper-loading**
 
+    <Section>
     <DataTable setRef="datagrid" addClass="muk-helper-loading">
         <DataHeader key="dataheader">
             <DataCell key={2} type='header'/>
@@ -29,15 +30,17 @@
             </DataRow>
         </DataBody>
     </DataTable>
+    </Section>
 
 **.muk-helper-loading--in**
 
-    <TextInput input={{className: 'muk-helper-loading--in'}} />
-
+    <Section>
+        <TextInput input={{className: 'muk-helper-loading--in'}} />
+    </Section>
 
 **.muk-helper-clearfix**
 
-    <div>
+    <Section>
         <em>I have clearfix:</em>
         <div className="muk-helper-clearfix" style={{border: '1px dashed black' }}>
             <div style={{ width: '30%', float: 'left', padding: '10px' }}>
@@ -50,4 +53,4 @@
               <Placeholder width={100} height={30}>Float right</Placeholder>
             </div>
         </div>
-    </div>
+    </Section>

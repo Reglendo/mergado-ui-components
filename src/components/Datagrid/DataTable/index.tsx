@@ -1,11 +1,13 @@
 import * as React from "react"
 import cxs from "cxs/component"
-import {Div} from "../../../html"
+import {Div} from "../../../components/Layout"
 import {prefix} from "../../../config"
 import TextInput from "../../../components/Forms/TextInput"
 import Checkbox from "../../../components/Forms/Checkbox"
 import { ID, Action, Filter } from "../../../helpers/types"
 import domOnlyProps from "../../../helpers/dom-only-props"
+import Grid from "../../../components/Layout/Grid"
+import GridCell from "../../../components/Layout/GridCell"
 
 export interface Props {
     bulkActions?: Action[]
@@ -94,12 +96,14 @@ class DataTable extends React.Component<Props, State> {
     protected renderFiltersBar() {
         return (
             <Div verticalAlign={"middle"} className={`${this.name}__filters_bar`}>
-                <div className="muk-grid--table" style={{width: "100%" }}>
-                    <div>
+                <Grid cols="auto auto">
+                    <GridCell>
                         {this.renderFilters()}
+                    </GridCell>
+                    <GridCell>
                         {this.renderButtons()}
-                    </div>
-                </div>
+                    </GridCell>
+                </Grid>
             </Div>
         )
     }
@@ -160,10 +164,13 @@ const Table = cxs("table")({
 
 const TextFilter = cxs(TextInput)({
     paddingRight: "20px",
+    display: "inline-block",
+    width: "70%",
 })
 
 const CheckboxFilter = cxs(Checkbox)({
     whiteSpace: "nowrap",
+    display: "inline-block",
 })
 
 export default DataTable

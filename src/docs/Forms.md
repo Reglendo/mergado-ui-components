@@ -49,7 +49,7 @@ Example form
     var Field = require('redux-form').Field;
     var FieldLabel = require('../components/Forms/Field').FieldLabel;
 
-    <div>
+    <Section>
         <h2>Inquiry form</h2>
         <Field component={TextInput} name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
@@ -102,4 +102,4 @@ Example form
             <code>&nbsp;</code>
             <Field name="reset" props={{icon: <Icon type="close" />}}  component={Button} type="button" color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
         </div>
-    </div>
+    </Section>

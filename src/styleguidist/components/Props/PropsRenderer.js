@@ -12,7 +12,7 @@ function renderRows(props) {
 	for (const name in props) {
 		const prop = props[name];
 		rows.push(
-			<tr key={name}>
+			<tr className={s.proprow} key={name}>
 				<td className={s.cell}><Code className={s.name}>{name}</Code></td>
 				<td className={s.cell}><Code className={s.type}>{renderType(getType(prop))}</Code></td>
 				<td className={s.cell}>{renderDefault(prop)}</td>
@@ -57,7 +57,7 @@ function renderDefault(prop) {
 		var value = prop.defaultValue.value;
 
 		if(value.trim()[0] === '{') {
-			return <pre className={s.pre}>{value.replace(/ {3}/g,' ').replace(/ +}/,'}')}</pre>
+			return <pre style={{margin: 0, padding: 0, whiteSpace: 'pre', overflow: 'auto'}} className={s.pre}>{value.replace(/ {3}/g,' ').replace(/ +}/,'}')}</pre>
 		}
 
 		if(value.indexOf('“') > -1) {
@@ -66,7 +66,7 @@ function renderDefault(prop) {
 			);
 		} else {
 			return (
-				<Code className={s.code}><pre style={{whiteSpace: 'pre', overflow: 'auto'}}>{value}</pre></Code>
+				<Code className={s.code}><pre style={{margin: 0, padding: 0, whiteSpace: 'pre', overflow: 'auto'}}>{value}</pre></Code>
 			);
 
 		}
@@ -162,7 +162,7 @@ export default function PropsRenderer({ props }) {
 		return (
 			<table className={s.table}>
 				<thead className={s.tableHead}>
-					<tr>
+					<tr >
 						<th style={{ width: '20%'}} className={s.cellHeading}>Name</th>
 						<th style={{ width: '40%'}} className={s.cellHeading}>Type</th>
 						<th style={{ width: '40%'}} className={s.cellHeading}>Default</th>

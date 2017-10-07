@@ -93,8 +93,9 @@ const List = css("ul")({
     border: "1px solid #dbcba3",
     overflow: "auto",
     background: "rgb(255,255,255)",
+    height: "auto",
 }, (props: any) => { return {
-    height: props.height === "auto" ? props.height : props.height + "px",
+    maxHeight: props.height === "auto" ? props.height : props.height + "px",
     borderRadius: props.theme.radius,
     " li + li": {
         borderTop: `1px solid ${Color(props.theme.decoration).fade(0.8)}`,

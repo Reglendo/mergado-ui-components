@@ -1,12 +1,13 @@
 import * as React from "react"
 import css from "cxs/component"
-import {Div} from "../../../html"
 import * as Color from "color"
 import debounce from "lodash/debounce"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import TextInput from "../../../components/Forms/TextInput"
+import Grid from "../../../components/Layout/Grid"
+import GridCell from "../../../components/Layout/GridCell"
 
 export interface Props extends IFieldProps {
     max: number
@@ -58,23 +59,24 @@ class Range extends React.Component<Props,State> {
         const value = this.state.value
         return (
             <StyledField {...props} name={this.name}>
-                <Div padding="5px 0px" className="muk-grid">
+                <Grid cols={"100px auto"}>
+                    <GridCell>
                     <TextInput
                         type="number"
                         max={this.props.max}
                         min={this.props.min}
                         step={this.props.step}
-                        className="muk-2-12"
                         input={{
                             value,
                             onChange: this.handleChange,
                         }}
                     />
-                    <div className="muk-10-12" style={{padding: "5px 0 5px 10px"}}>
+                    </GridCell>
+                    <GridCell style={{padding: "5px 0 5px 10px"}}>
                         <Input
                             {...input}
                             className={`${this.name}__item
-                                        ${form}__input--text ${form}__input--range muk-6-12`}
+                                        ${form}__input--text ${form}__input--range`}
                             type="range"
                             max={this.props.max}
                             min={this.props.min}
@@ -82,8 +84,8 @@ class Range extends React.Component<Props,State> {
                             onChange={this.handleChange}
                             value={value}
                             />
-                    </div>
-                </Div>
+                    </GridCell>
+                </Grid>
             </StyledField>
         )
     }

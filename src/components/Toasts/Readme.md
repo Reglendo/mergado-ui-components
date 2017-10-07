@@ -1,6 +1,6 @@
 Types
 
-    <div>
+    <Section>
         <Toasts paused={state.paused} toasts={[
             <Toast text="Info" type="info" icon={<Icon type="mergado" />} />,
             <Toast text="Success" type="success" icon={<Icon type="check" />} />,
@@ -10,12 +10,12 @@ Types
             <Toast text="Inactive" type="inactive" icon={<Icon type="heureka-small" />} />,
 
          ] } />   
-    </div>
+    </Section>
          
 Some of our best toasts 
 
        initialState = { paused: true };
-        <div>
+        <Section>
         <Toasts paused={state.paused} toasts={[
                 <Toast icon={<Icon type="mergado" />}>
                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPbpweYyc1mQOwkCQYsUmWUeRAo00tmYNzx7RfCynUzJhBEZb-' style='float: right; max-height: 90px; margin: 0 10px; width: auto'/>
@@ -26,4 +26,4 @@ Some of our best toasts
                          onClose={() => { alert('You can\'t escape me!'); return false; }} />,
         ]} />   
         <button onClick={e => setState({ paused: false })} >Start countdown</button>
-        </div>
+        </Section>

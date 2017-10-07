@@ -1,7 +1,7 @@
 Multiple choices, hidden inputs
 
     var Field = require('redux-form').Field;
-
+    <Section>
     <Field component={CheckboxContainer} name="queries"
                 props={{
                         showInput: false,
@@ -43,11 +43,13 @@ Multiple choices, hidden inputs
                     }}
 
         />
+    </Section>
 
 Multiple choices, visible inputs
 
     var Field = require('redux-form').Field;
 
+    <Section>
     <Field component={CheckboxContainer} name="queries"
                 props={{
                         showInput: true,
@@ -69,11 +71,12 @@ Multiple choices, visible inputs
                     }}
 
         />
+    </Section>
 
 Single choice, visible inputs
 
     var Field = require('redux-form').Field;
-
+    <Section>
     <Field component={CheckboxContainer} name="queries"
                 props={{
                         singleChoice: true,
@@ -96,12 +99,13 @@ Single choice, visible inputs
                     }}
 
         />
+    </Section>
 
 
 Single choice, flexible height box, without filter, hidden inputs
 
     var Field = require('redux-form').Field;
-
+    <Section>
     <Field component={CheckboxContainer} name="queries2"
                 props={{
                         singleChoice: true,
@@ -132,9 +136,11 @@ Single choice, flexible height box, without filter, hidden inputs
                         }
                     }}
         />
+    </Section>
 
 Invalid container
 
+    <Section>
     <CheckboxContainer availableQueries={[
                         {
                             id: 1,
@@ -157,10 +163,12 @@ Invalid container
                         }}
                         meta={{invalid: true, dirty: true}}
                     />
+    </Section>
 
 Multilevel options
 
-    <CheckboxContainer availableQueries={[
+    <Section>
+        <CheckboxContainer availableQueries={[
                             {
                                 id: "ALL",
                                 name: "Empty query",
@@ -198,3 +206,4 @@ Multilevel options
                          main: 'Select exactly one query', placeholder: 'Filter:', allProducts: 'All products'
                         }}
                     />
+    </Section>
