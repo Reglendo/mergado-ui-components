@@ -2083,7 +2083,7 @@ class TextInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const isInvalid = meta.invalid && (meta.dirty || meta.touched);
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { name: this.name }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledInput, Object.assign({}, props, inputProps, { placeholder: this.props.labels.placeholder, ref: "input", innerRef: r => (this._inputRef = r), type: type === "search" || (type === "password" && this.state.passwordVisible)
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledInput, Object.assign({}, props, inputProps, { placeholder: this.props.labels.placeholder, ref: "input", type: type === "search" || (type === "password" && this.state.passwordVisible)
                         ? "text" : props.type, "aria-invalid": isInvalid ? 1 : 0, className: `${this.name}__input \
                                 ${__WEBPACK_IMPORTED_MODULE_7__config__["b" /* form */]}__input--text \
                                 ${__WEBPACK_IMPORTED_MODULE_7__config__["b" /* form */]}__input--${type} \
@@ -2095,8 +2095,11 @@ class TextInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](ButtonEye, { icon: __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6__reglendo_mergado_ui_icons_lib_icons_IconEyeSlash__["a" /* default */], null), type: "void", color: "nocolor", size: "tiny", onClick: () => this.setState({ passwordVisible: false }) }),
                 type === "search" &&
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](ButtonClose, { icon: __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__reglendo_mergado_ui_icons_lib_icons_IconClose__["a" /* default */], null), type: "void", color: "nocolor", size: "tiny", onClick: () => {
-                            this.props.onClear ? this.props.onClear() : true;
-                            this._inputRef.value = "";
+                            const input = this.refs.input;
+                            this.props.onClear && this.props.onClear();
+                            if (input) {
+                                input.getDOMNode().value = "";
+                            }
                             inputProps.value = "";
                             this.props.change ? this.props.change(inputProps.name, "") : true;
                         } }))));
