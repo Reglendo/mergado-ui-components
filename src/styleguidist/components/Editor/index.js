@@ -4,7 +4,7 @@ import 'codemirror/lib/codemirror.css';
 import 'rsg-codemirror-theme.css';
 import s from './Editor.css';
 
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
 import Codemirror from 'react-codemirror';
 import EditorRenderer from './EditorRenderer';
@@ -20,7 +20,7 @@ const codemirrorOptions = {
 
 const UPDATE_DELAY = 10;
 
-export default class Editor extends Component {
+export default class Editor extends PureComponent {
     static propTypes = {
         code: PropTypes.string,
         htmlcode: PropTypes.string,

@@ -196,6 +196,7 @@ const Disabled = css(Button)({
     display: "inline-block",
     opacity: 0.2,
     color: "black",
+    pointerEvents: "none",
     ":hover": {
         background: "initial",
         color: "black",

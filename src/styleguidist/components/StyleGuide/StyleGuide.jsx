@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import isEmpty from 'lodash/isEmpty';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
@@ -10,9 +10,8 @@ import _debounce from "lodash/debounce";
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
 import ThemeProvider from 'cxs/ThemeProvider';
-import Root from "/src/components/Layout/App/index.tsx";
 
-export default class StyleGuide extends Component {
+export default class StyleGuide extends PureComponent {
 	static propTypes = {
 		config: PropTypes.object.isRequired,
 		components: PropTypes.array.isRequired,
@@ -48,6 +47,18 @@ export default class StyleGuide extends Component {
 			config: this.props.config,
 			singleExample: this.props.singleExample,
 		};
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+    	if(
+    		(this.props.components.length !== nextProps.components.length) ||
+			(this.props.components.length > 0 && nextProps.components.length > 0 &&
+             this.props.components[0].filepath !== nextProps.components[0].filepath)
+		) {
+    		return true
+		}
+
+		return false
 	}
 
 	renderComponents(components, sections, sidebar, singleExample) {
@@ -105,11 +116,9 @@ export default class StyleGuide extends Component {
 
 	render() {
 		let { config, components, sections, sidebar, singleExample } = this.props;
-
         let showSidebar = this.state.showSidebar && sidebar
 		return (
-				<Root>
-					<StyleGuideRenderer
+			<StyleGuideRenderer
                         title={config.title}
                         homepageUrl={`homepage`}
                         components={this.renderComponents(components, sections, sidebar, singleExample)}
@@ -122,7 +131,6 @@ export default class StyleGuide extends Component {
                         switchSidebar={this.switchSidebar}
                         switchTheme={this.switchTheme}
     				/>
-				</Root>
         );
 	}
 }

@@ -109,27 +109,6 @@ module.exports = {
 
         );
 
-        if (process.env.NODE_ENV === 'production') {
-            webpackConfig.module.loaders.push(
-                {
-                    test: /\.sass$/,
-                    exclude: /node_modules/,
-                    loader: ExtractTextPlugin.extract({
-                        loader: 'css-loader?-autoprefixer!postcss-loader!sass-loader'
-                    })
-
-                }
-            );
-        } else {
-            webpackConfig.module.loaders.push(
-                {
-                    test: /\.sass$/,
-                    exclude: /node_modules/,
-                    loader: 'style-loader!css-loader!sass-loader'
-                }
-            );
-        }
-
 
         webpackConfig.plugins.push(
             new ExtractTextPlugin({ filename: 'dist/css/styleguide.css',

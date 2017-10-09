@@ -95,7 +95,7 @@ class DataTable extends React.Component<Props, State> {
 
     protected renderFiltersBar() {
         return (
-            <Div verticalAlign={"middle"} className={`${this.name}__filters_bar`}>
+            <Div marginBottom={"10px"} verticalAlign={"middle"} className={`${this.name}__filters_bar`}>
                 <Grid cols="auto auto">
                     <GridCell>
                         {this.renderFilters()}
@@ -121,7 +121,7 @@ class DataTable extends React.Component<Props, State> {
                     return (<TextFilter
                                 type="search"
                                 onClear={() => obj.action({currentTarget: {value: "" }})}
-                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }}
+                                input={{ onKeyUp: (evt) => { obj.action(evt) }, value: obj.value }}
                                 labels={{placeholder: obj.label }}
                                 key="text"
                             />)

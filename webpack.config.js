@@ -8,7 +8,6 @@ const config = {
   devtool: "cheap-module-source-map",
   entry: [
     './src/index.ts',
-    './src/load_styles.ts'
   ],
   output: {
     path: path.join(__dirname,'dist'),
@@ -25,13 +24,6 @@ const config = {
         silent: true
       },
     },
-	{
-		test: /\.sass$/,
- 		exclude: /node_modules/,
-		loader: ExtractTextPlugin.extract({
-			loader: 'css-loader?-autoprefixer!postcss-loader!sass-loader'
-		})
- 	}
 	]
   },
 	resolve: {
@@ -45,16 +37,7 @@ const config = {
 };
 
 config.plugins = [
-    new ExtractTextPlugin({ filename: 'css/style.min.css',
-              allChunks: true
-  }),
-  new ExtractTextPlugin({ filename: 'css/style.css',
-            allChunks: true
-  }),
-    new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.min\.css$/,
-            cssProcessorOptions: { discardComments: { removeAll: true } }
-    })
+
 ]
 
 module.exports = config;

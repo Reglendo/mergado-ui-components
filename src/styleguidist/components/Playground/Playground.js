@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import debounce from 'lodash/debounce';
 import PlaygroundRenderer from './PlaygroundRenderer';
 import cookie from 'react-cookie';
 
-export default class Playground extends Component {
+export default class Playground extends PureComponent {
 	static propTypes = {
 		code: PropTypes.string.isRequired,
 		evalInContext: PropTypes.func.isRequired,

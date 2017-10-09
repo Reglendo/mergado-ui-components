@@ -10,11 +10,8 @@ import p from '../Playground/Playground.css';
 
 import rc from '../ReactComponent/ReactComponent.css';
 
+import Root from "/src/components/Layout/App/index.tsx";
 
-
-try {
-    require("../../../sass/main.sass")
-} catch(e) { }
 var json = require("../../../../package.json")
 
 const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, switchCompact, switchSidebar, switchTheme }) => {
@@ -142,6 +139,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
     `
     const css = cxs.css()
     return (
+    <Root>
     <div className={`${s.root}`}>
     		<main className={s.content}>
     			<div className={s.wrapper}>
@@ -192,6 +190,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
 
             </style>
     	</div>
+    </Root>
     );
 }
 
