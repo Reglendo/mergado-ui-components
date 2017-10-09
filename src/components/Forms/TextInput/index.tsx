@@ -14,6 +14,7 @@ import Button from "../../../components/Forms/Button"
 export interface Props extends IFieldProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
     onClear?: Function
+    change?: Function
 }
 
 interface State {
@@ -52,7 +53,6 @@ class TextInput extends React.Component<Props, State> {
                     {...inputProps}
                     placeholder={this.props.labels.placeholder}
                     ref={"input"}
-                    innerRef={r => (this._inputRef = r)}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)
                                                 ? "text" : props.type}
                     aria-invalid={isInvalid ? 1 : 0}
@@ -72,10 +72,13 @@ class TextInput extends React.Component<Props, State> {
                 }{type === "search" &&
                     <ButtonClose icon={<IconClose />} type={"void"} color={"nocolor"} size="tiny"
                                  onClick={() => {
-                                            this.props.onClear ? this.props.onClear() : true;
-                                            this._inputRef.value = "";
-                                            inputProps.value = "";
-                                            this.props.change ? this.props.change(inputProps.name, "") : true;
+                                            const input: any = this.refs.input
+                                            this.props.onClear && this.props.onClear()
+                                            if(input) {
+                                                input.getDOMNode().value = ""
+                                            }
+                                            inputProps.value = ""
+                                            this.props.change ? this.props.change(inputProps.name, "") : true
                                  }}
                     />
                 }
