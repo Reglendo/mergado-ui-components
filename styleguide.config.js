@@ -7,6 +7,7 @@ module.exports = {
     title: ' MUK / Mergado UI Kit',
     highlightTheme: 'rubyblue',
     serverPort: '3001',
+    template: path.join(__dirname, './src/styleguidist/templates/index.html'),
     sections: [
         {
             name: 'Layout',

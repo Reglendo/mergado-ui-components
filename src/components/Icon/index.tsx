@@ -5,13 +5,14 @@ import * as Icons from "@reglendo/mergado-ui-icons/lib"
 export interface Props {
     type?: string
     name?: string
-
+    color?: string
     size?: number
     text?: string
     title?: string
     style?: any
     addClass?: string
     viewBox?: string
+    textFirst?: boolean
 }
 export interface State {
 }
@@ -27,7 +28,9 @@ class Icon extends React.Component<Props, State> {
         text: "",
         title: "",
         addClass: "",
+        color: null,
         viewBox: "0 0 40 40",
+        textFirst: false,
     }
 
     public render() {

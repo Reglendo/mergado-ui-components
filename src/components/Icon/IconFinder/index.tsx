@@ -57,6 +57,7 @@ class IconFinder extends React.Component<Props, State> {
                         <Icon name={`${obj}`} size={30}
                             text={`import ${obj} from "@reglendo/mergado-ui-icons/lib/icons/${obj}"`}
                             viewBox={viewBox}
+                            color={"#555"}
                             style={{display: "inline-block", margin: "5px" }} />
                     </Image>)
         })
