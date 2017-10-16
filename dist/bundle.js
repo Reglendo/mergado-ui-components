@@ -3291,18 +3291,19 @@ class DataCell extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "datagrid__cell";
     }
     render() {
-        const { style, type, addClass, onClick } = this.props;
+        const { style, type, addClass, onClick, className } = this.props;
         return (type === "header")
             ?
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Th, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(this.props), { className: `${this.name} ${this.name}--header ${addClass}`, style: style, onClick: onClick }), this.props.children)
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Th, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(this.props), { className: `${this.name} ${className} ${this.name}--header ${addClass}`, style: style, onClick: onClick }), this.props.children)
             :
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Td, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(this.props), { className: `${this.name} ${addClass}`, style: style, onClick: onClick }), this.props.children);
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Td, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(this.props), { className: `${this.name} ${addClass} ${className} `, style: style, onClick: onClick }), this.props.children);
     }
 }
 DataCell.defaultProps = {
     addClass: "",
     style: null,
     type: "cell",
+    className: "",
 };
 const Cell = {
     textAlign: "left",
@@ -4287,11 +4288,10 @@ class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
     render() {
-        const { addClass, style } = this.props;
-        const className = `${this.name}__table ${this.props.addClass}`;
+        const { addClass, className, style } = this.props;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: `${this.name}` },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { style: { whiteSpace: "nowrap" } }, this.props.filters.length > 0 && this.renderFiltersBar()),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Table, Object.assign({ className: className, style: style }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__["a" /* default */])(this.props)), this.props.children && this.renderChildren(this.props.children))));
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Table, Object.assign({ className: `${this.name}__table ${addClass} ${className}`, style: style }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__["a" /* default */])(this.props)), this.props.children && this.renderChildren(this.props.children))));
     }
 }
 DataTable.defaultProps = {
@@ -4300,6 +4300,7 @@ DataTable.defaultProps = {
     buttons: [],
     style: {},
     addClass: "",
+    className: "",
     labels: {
         actionsBar: "",
     },
@@ -8058,12 +8059,12 @@ class DataBody extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
     render() {
-        const { sortable, sortableProps, style, addClass } = this.props;
+        const { sortable, sortableProps, style, addClass, className } = this.props;
         if (sortable) {
             return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2_react_sortablejs__, Object.assign({ tag: "tbody" }, sortableProps), this.props.children && this.renderChildren()));
         }
         else {
-            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tbody", null, this.props.children && this.renderChildren()));
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("tbody", { className: className }, this.props.children && this.renderChildren()));
         }
     }
 }
@@ -8071,6 +8072,7 @@ DataBody.defaultProps = {
     sortable: false,
     sortableProps: {},
     addClass: "",
+    className: "",
     style: {},
     actions: [],
 };
@@ -8108,11 +8110,11 @@ class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
     render() {
-        const { actions, addClass, selectedRows, style } = this.props;
+        const { actions, addClass, className, selectedRows, style } = this.props;
         const kids = [...this.props.children];
         const lastKid = kids.pop();
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Header, { className: `${this.name} ${this.name}--header ${addClass}`, selected: selectedRows.length > 0, style: style },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Header, { className: `${this.name} ${this.name}--header ${addClass} ${className}`, selected: selectedRows.length > 0, style: style },
                 actions.length > 0 &&
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__DataCell__["a" /* default */], { type: "header", style: { width: "1%" } },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__components_Forms_Checkbox__["a" /* default */], { input: { onChange: this.props.handleSelectAll, checked: this.props.selectedAll } })),
@@ -8127,6 +8129,7 @@ class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 }
 DataHeader.defaultProps = {
     addClass: "",
+    className: "",
     style: {},
     actions: [],
     handleSelectAll: () => { },
@@ -8170,9 +8173,9 @@ class DataRow extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = __WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "datagrid__row";
     }
     render() {
-        const { style, addClass, inactive, dataId, actions, selectedRows } = this.props;
+        const { style, addClass, inactive, dataId, actions, selectedRows, className } = this.props;
         const isSelected = selectedRows ? selectedRows.indexOf(dataId) > -1 : false;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Tr, { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, disabled: inactive, selected: isSelected, "data-id": dataId, style: style },
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Tr, { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass} ${className}`, disabled: inactive, selected: isSelected, "data-id": dataId, style: style },
             actions.length > 0 &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__DataCell__["a" /* default */], null,
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__components_Forms_Checkbox__["a" /* default */], { input: { "onChange": evt => this.props.handleSelectRow(dataId),
@@ -8185,6 +8188,7 @@ class DataRow extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 }
 DataRow.defaultProps = {
     addClass: "",
+    className: "",
     style: {},
     inactive: false,
     dataId: "",
@@ -9930,7 +9934,7 @@ class Nav extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("ul", { className: `${this.name}__list muk-helper-clearfix` }, links.length > 0 ? links : this.props.children));
     }
     render() {
-        const className = `${this.name} ${this.props.addClass}`;
+        const className = `${this.name} ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Component, { className: className, style: this.props.style },
             this.props.logo &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Logo, null, this.props.logo),
@@ -9941,6 +9945,7 @@ Nav.defaultProps = {
     links: [],
     style: {},
     addClass: "",
+    className: "",
 };
 const Logo = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     display: "inline-block",
