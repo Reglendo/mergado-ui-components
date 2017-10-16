@@ -7784,12 +7784,15 @@ class IconCheck extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--check ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--check ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "m37.3 12.6q0 0.9-0.6 1.6l-19.2 19.1q-0.6 0.7-1.5 0.7t-1.6-0.7l-11.1-11.1q-0.6-0.6-0.6-1.5t0.6-1.5l3.1-3q0.6-0.7 1.5-0.7t1.5 0.7l6.6 6.5 14.6-14.6q0.6-0.6 1.5-0.6t1.5 0.6l3.1 3q0.6 0.6 0.6 1.5z" }))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M37.3 12.6q0 .9-.6 1.6L17.5 33.3q-.6.7-1.5.7t-1.6-.7L3.3 22.2q-.6-.6-.6-1.5t.6-1.5l3.1-3q.6-.7 1.5-.7t1.5.7l6.6 6.5L30.6 8.1q.6-.6 1.5-.6t1.5.6l3.1 3q.6.6.6 1.5z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconCheck.defaultProps = {
@@ -7798,6 +7801,8 @@ IconCheck.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconCheck);
 //# sourceMappingURL=IconCheck.js.map
@@ -7815,12 +7820,15 @@ class IconChevronDown extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--chevron-down ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--chevron-down ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "m37.6 18l-16.6 16.6q-0.4 0.4-1 0.4t-1-0.4l-16.6-16.6q-0.4-0.4-0.4-1t0.4-1l3.7-3.7q0.5-0.4 1-0.4t1 0.4l11.9 11.9 11.9-11.9q0.4-0.4 1-0.4t1 0.4l3.7 3.7q0.4 0.4 0.4 1t-0.4 1z" }))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M37.6 18L21 34.6q-.4.4-1 .4t-1-.4L2.4 18q-.4-.4-.4-1t.4-1l3.7-3.7q.5-.4 1-.4t1 .4L20 24.2l11.9-11.9q.4-.4 1-.4t1 .4l3.7 3.7q.4.4.4 1t-.4 1z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconChevronDown.defaultProps = {
@@ -7829,6 +7837,8 @@ IconChevronDown.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconChevronDown);
 //# sourceMappingURL=IconChevronDown.js.map
@@ -7846,12 +7856,15 @@ class IconClose extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--close ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--close ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "m33.5 29.5q0 0.9-0.7 1.5l-3 3.1q-0.6 0.6-1.5 0.6t-1.5-0.6l-6.6-6.6-6.5 6.6q-0.7 0.6-1.6 0.6t-1.5-0.6l-3-3.1q-0.6-0.6-0.6-1.5t0.6-1.5l6.5-6.6-6.5-6.5q-0.6-0.7-0.6-1.6t0.6-1.5l3-3q0.6-0.6 1.5-0.6t1.6 0.6l6.5 6.6 6.6-6.6q0.6-0.6 1.5-0.6t1.5 0.6l3.1 3q0.6 0.7 0.6 1.5t-0.6 1.6l-6.6 6.5 6.6 6.6q0.6 0.6 0.6 1.5z" }))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M33.5 29.5q0 .9-.7 1.5l-3 3.1q-.6.6-1.5.6t-1.5-.6l-6.6-6.6-6.5 6.6q-.7.6-1.6.6t-1.5-.6l-3-3.1q-.6-.6-.6-1.5t.6-1.5l6.5-6.6-6.5-6.5q-.6-.7-.6-1.6t.6-1.5l3-3q.6-.6 1.5-.6t1.6.6l6.5 6.6 6.6-6.6q.6-.6 1.5-.6t1.5.6l3.1 3q.6.7.6 1.5t-.6 1.6l-6.6 6.5 6.6 6.6q.6.6.6 1.5z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconClose.defaultProps = {
@@ -7860,6 +7873,8 @@ IconClose.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconClose);
 //# sourceMappingURL=IconClose.js.map
@@ -7877,12 +7892,15 @@ class IconEye extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--eye ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--eye ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "m37.1 21.4q-3.3-5.2-8.5-7.8 1.4 2.3 1.4 5 0 4.1-2.9 7t-7.1 3-7.1-3-2.9-7q0-2.7 1.4-5.1-5.1 2.7-8.5 7.9 2.9 4.6 7.4 7.3t9.7 2.7 9.7-2.7 7.4-7.3z m-16-8.5q0-0.5-0.3-0.8t-0.8-0.3q-2.8 0-4.8 2t-2 4.8q0 0.4 0.3 0.7t0.8 0.3 0.7-0.3 0.4-0.7q0-2 1.3-3.3t3.3-1.4q0.4 0 0.8-0.3t0.3-0.7z m18.9 8.5q0 0.8-0.4 1.6-3.2 5.1-8.4 8.2t-11.2 3.1-11.2-3.1-8.4-8.2q-0.4-0.8-0.4-1.6t0.4-1.5q3.2-5.1 8.4-8.2t11.2-3.1 11.1 3.1 8.5 8.2q0.4 0.8 0.4 1.5z" }))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M37.1 21.4q-3.3-5.2-8.5-7.8 1.4 2.3 1.4 5 0 4.1-2.9 7t-7.1 3-7.1-3-2.9-7q0-2.7 1.4-5.1-5.1 2.7-8.5 7.9 2.9 4.6 7.4 7.3t9.7 2.7 9.7-2.7 7.4-7.3zm-16-8.5q0-.5-.3-.8t-.8-.3q-2.8 0-4.8 2t-2 4.8q0 .4.3.7t.8.3.7-.3.4-.7q0-2 1.3-3.3t3.3-1.4q.4 0 .8-.3t.3-.7zM40 21.4q0 .8-.4 1.6-3.2 5.1-8.4 8.2T20 34.3 8.8 31.2.4 23q-.4-.8-.4-1.6t.4-1.5q3.2-5.1 8.4-8.2T20 8.6t11.1 3.1 8.5 8.2q.4.8.4 1.5z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconEye.defaultProps = {
@@ -7891,6 +7909,8 @@ IconEye.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconEye);
 //# sourceMappingURL=IconEye.js.map
@@ -7908,12 +7928,15 @@ class IconEyeSlash extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--eye-slash ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--eye-slash ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "m12.4 29.8l1.7-3.1q-1.9-1.5-3-3.6t-1.1-4.5q0-2.7 1.4-5-5.2 2.6-8.5 7.8 3.7 5.8 9.5 8.4z m8.7-16.9q0-0.5-0.3-0.8t-0.8-0.3q-2.8 0-4.8 2t-2 4.8q0 0.4 0.3 0.7t0.8 0.3 0.7-0.3 0.4-0.7q0-1.9 1.3-3.3t3.3-1.4q0.4 0 0.8-0.3t0.3-0.7z m8.1-4.3q0 0.2 0 0.2-2.4 4.2-7.1 12.6t-7 12.7l-1.1 2q-0.2 0.3-0.7 0.3-0.2 0-2.9-1.5-0.4-0.3-0.4-0.7 0-0.2 1-1.9-3.2-1.5-5.9-3.9t-4.7-5.4q-0.4-0.7-0.4-1.6t0.4-1.5q3.5-5.3 8.5-8.3t11.1-3q2 0 4 0.4l1.2-2.2q0.2-0.4 0.6-0.4 0.2 0 0.4 0.2t0.7 0.3 0.8 0.4 0.7 0.4 0.4 0.3q0.4 0.2 0.4 0.6z m0.8 10q0 3.1-1.8 5.6t-4.6 3.7l6.2-11.2q0.2 1 0.2 1.9z m10 2.8q0 0.8-0.4 1.6-0.9 1.4-2.5 3.2-3.3 3.8-7.7 6t-9.4 2.1l1.7-3q4.7-0.4 8.7-3t6.7-6.9q-2.5-4-6.3-6.5l1.5-2.5q2.1 1.4 4 3.4t3.3 4.1q0.4 0.7 0.4 1.5z" }))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M12.4 29.8l1.7-3.1q-1.9-1.5-3-3.6T10 18.6q0-2.7 1.4-5-5.2 2.6-8.5 7.8 3.7 5.8 9.5 8.4zm8.7-16.9q0-.5-.3-.8t-.8-.3q-2.8 0-4.8 2t-2 4.8q0 .4.3.7t.8.3.7-.3.4-.7q0-1.9 1.3-3.3t3.3-1.4q.4 0 .8-.3t.3-.7zm8.1-4.3v.2q-2.4 4.2-7.1 12.6t-7 12.7l-1.1 2q-.2.3-.7.3-.2 0-2.9-1.5-.4-.3-.4-.7 0-.2 1-1.9-3.2-1.5-5.9-3.9T.4 23q-.4-.7-.4-1.6t.4-1.5q3.5-5.3 8.5-8.3t11.1-3q2 0 4 .4l1.2-2.2q.2-.4.6-.4.2 0 .4.2t.7.3.8.4.7.4.4.3q.4.2.4.6zm.8 10q0 3.1-1.8 5.6t-4.6 3.7l6.2-11.2q.2 1 .2 1.9zm10 2.8q0 .8-.4 1.6-.9 1.4-2.5 3.2-3.3 3.8-7.7 6T20 34.3l1.7-3q4.7-.4 8.7-3t6.7-6.9q-2.5-4-6.3-6.5l1.5-2.5q2.1 1.4 4 3.4t3.3 4.1q.4.7.4 1.5z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconEyeSlash.defaultProps = {
@@ -7922,6 +7945,8 @@ IconEyeSlash.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconEyeSlash);
 //# sourceMappingURL=IconEyeSlash.js.map
@@ -7939,56 +7964,15 @@ class IconHintHelp extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--hint-help ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--hint-help ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "layer1", transform: "matrix(3.7795275,0,0,3.7795275,0,-1082.5197)", style: { "fill": "#444444", "fillOpacity": 1 } },
-                        "    ",
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g151", transform: "matrix(0.02081203,0,0,0.02081203,0,286.41667)", style: { "fill": "#444444", "fillOpacity": 1 } },
-                            "      ",
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g93", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                "        ",
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g91", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                    "          ",
-                                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g89", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                        "            ",
-                                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { id: "path87", d: "M 254.26,0 C 113.845,0 0,113.845 0,254.26 0,394.675 113.845,508.52 254.26,508.52 394.675,508.52 508.52,394.675 508.52,254.26 508.52,113.845 394.675,0 254.26,0 Z m 0,446.353 c -18.084,0 -32.736,-14.652 -32.736,-32.736 0,-18.052 14.652,-32.704 32.736,-32.704 18.052,0 32.704,14.652 32.704,32.704 0,18.084 -14.652,32.736 -32.704,32.736 z m 57.717,-156.306 c -13.349,7.342 -25.935,21.866 -25.935,27.778 0,17.544 -14.239,31.783 -31.782,31.783 -17.543,0 -31.782,-14.239 -31.782,-31.783 0,-40.364 36.995,-71.447 58.861,-83.461 32.164,-17.735 36.486,-37.058 36.486,-53.585 0,-46.688 -39.823,-53.649 -63.565,-53.649 -30.607,0 -63.565,20.087 -63.565,64.232 0,17.544 -14.239,31.782 -31.782,31.782 -17.543,0 -31.782,-14.239 -31.782,-31.782 0,-83.016 65.504,-127.797 127.13,-127.797 63.279,0 127.13,36.232 127.13,117.214 -0.001,47.133 -23.33,83.937 -69.414,109.268 z", style: { "fill": "#444444", "fillOpacity": 1 } }),
-                                        "          "),
-                                    "        "),
-                                "      "),
-                            "      ",
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g95", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                "      ",
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g97", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                    "      ",
-                                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g99", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                        "      ",
-                                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g101", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                            "      ",
-                                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g103", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                "      ",
-                                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g105", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                    "      ",
-                                                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g107", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                        "      ",
-                                                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g109", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                            "      ",
-                                                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g111", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                                "      ",
-                                                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g113", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                                    "      ",
-                                                                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g115", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                                        "      ",
-                                                                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g117", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                                            "      ",
-                                                                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g119", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                                                "      ",
-                                                                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g121", style: { "fill": "#444444", "fillOpacity": 1 } },
-                                                                                    "      ",
-                                                                                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g123", style: { "fill": "#444444", "fillOpacity": 1 } }, "    "),
-                                                                                    "  ")))))))))))))))))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M20 0C8.955 0 0 8.955 0 20s8.955 20 20 20 20-8.955 20-20S31.045 0 20 0zm0 35.11a2.575 2.575 0 1 1 0-5.15 2.575 2.575 0 0 1 0 5.15zm4.54-12.295c-1.05.577-2.04 1.72-2.04 2.185a2.501 2.501 0 0 1-5 0c0-3.175 2.91-5.62 4.63-6.565C24.66 17.04 25 15.52 25 14.22c0-3.672-3.132-4.22-5-4.22-2.408 0-5 1.58-5 5.052a2.5 2.5 0 0 1-5 0C10 8.522 15.153 5 20 5c4.978 0 10 2.85 10 9.22 0 3.707-1.835 6.602-5.46 8.595z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconHintHelp.defaultProps = {
@@ -7997,6 +7981,8 @@ IconHintHelp.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconHintHelp);
 //# sourceMappingURL=IconHintHelp.js.map
@@ -8014,25 +8000,16 @@ class IconHintInfo extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `${this.name} ${this.name}--hint-info ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--hint-info ${this.props.addClass}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `${this.name}__image`, preserveAspectRatio: 'xMidYMid meet', fill: 'currentColor', height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
+            this.props.text && this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("svg", { className: `muk-icon__image`, preserveAspectRatio: 'xMidYMid meet', fill: this.props.color, stroke: this.props.color, strokeWidth: 0, height: this.props.size, width: this.props.size, viewBox: this.props.viewBox },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", null,
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g170", transform: "matrix(0.80326386,0,0,0.80327357,5.2542373,-28.646477)" },
-                        "    ",
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g853", transform: "translate(-6.54111,35.659169)" },
-                            "      ",
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { id: "path21", d: "M 49.796837,24.901721 C 49.796837,11.149523 38.649411,0.003 24.89882,0.003 11.147527,0.003 0,11.149523 0,24.901721 c 0,13.750088 11.147527,24.897514 24.89882,24.897514 13.750591,0 24.898017,-11.147426 24.898017,-24.897514 z", style: { "fill": "#444444", "fillOpacity": 1, "strokeWidth": 0.10036489 } }),
-                            "      ",
-                            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("g", { id: "g27", transform: "matrix(0.10036489,0,0,0.10036489,0,0.00269892)" },
-                                "        ",
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { id: "path23", d: "m 315.249,359.555 c -1.387,-2.032 -4.048,-2.755 -6.27,-1.702 -24.582,11.637 -52.482,23.94 -57.958,25.015 -0.138,-0.123 -0.357,-0.348 -0.644,-0.737 -0.742,-1.005 -1.103,-2.318 -1.103,-4.015 0,-13.905 10.495,-56.205 31.192,-125.719 17.451,-58.406 19.469,-70.499 19.469,-74.514 0,-6.198 -2.373,-11.435 -6.865,-15.146 -4.267,-3.519 -10.229,-5.302 -17.719,-5.302 -12.459,0 -26.899,4.73 -44.146,14.461 -16.713,9.433 -35.352,25.41 -55.396,47.487 -1.569,1.729 -1.733,4.314 -0.395,6.228 1.34,1.915 3.825,2.644 5.986,1.764 7.037,-2.872 42.402,-17.359 47.557,-20.597 4.221,-2.646 7.875,-3.989 10.861,-3.989 0.107,0 0.199,0.004 0.276,0.01 0.036,0.198 0.07,0.5 0.07,0.933 0,3.047 -0.627,6.654 -1.856,10.703 -30.136,97.641 -44.785,157.498 -44.785,182.994 0,8.998 2.501,16.242 7.432,21.528 5.025,5.393 11.803,8.127 20.146,8.127 8.891,0 19.712,-3.714 33.08,-11.354 12.936,-7.392 32.68,-23.653 60.363,-49.717 1.793,-1.687 2.092,-4.426 0.705,-6.458 z", style: { "fill": "#ffffff" } }),
-                                "        ",
-                                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { id: "path25", d: "m 314.282,76.672 c -4.925,-5.041 -11.227,-7.597 -18.729,-7.597 -9.34,0 -17.475,3.691 -24.176,10.971 -6.594,7.16 -9.938,15.946 -9.938,26.113 0,8.033 2.463,14.69 7.32,19.785 4.922,5.172 11.139,7.794 18.476,7.794 8.958,0 17.049,-3.898 24.047,-11.586 6.876,-7.553 10.363,-16.433 10.363,-26.393 0.001,-7.654 -2.476,-14.075 -7.363,-19.087 z", style: { "fill": "#ffffff" } }),
-                                "      "),
-                            "    "),
-                        "  "))),
-            this.props.text ? (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `${this.name}__text` }, this.props.text)) : null));
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M40 20C40 8.954 31.046 0 20 0S0 8.954 0 20s8.954 20 20 20 20-8.954 20-20z" }),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("path", { d: "M25.415 28.987a.403.403 0 0 0-.505-.137c-1.982.938-4.231 1.93-4.673 2.017a.39.39 0 0 1-.052-.06.528.528 0 0 1-.089-.323c0-1.121.846-4.532 2.515-10.136 1.407-4.709 1.57-5.684 1.57-6.007 0-.5-.192-.922-.554-1.221-.344-.284-.825-.428-1.428-.428-1.005 0-2.169.382-3.56 1.166-1.347.76-2.85 2.049-4.465 3.829a.403.403 0 0 0 .45.644c.568-.232 3.419-1.4 3.834-1.66.34-.214.635-.322.876-.322h.022a.41.41 0 0 1 .006.076c0 .245-.05.536-.15.863-2.43 7.871-3.61 12.697-3.61 14.753 0 .725.201 1.31.599 1.735.405.435.951.655 1.624.655.717 0 1.59-.299 2.667-.915 1.043-.596 2.635-1.907 4.866-4.008a.403.403 0 0 0 .057-.52zm-.078-22.806c-.397-.406-.905-.612-1.51-.612-.753 0-1.408.297-1.949.884-.531.577-.8 1.286-.8 2.105 0 .648.198 1.185.59 1.595a1.98 1.98 0 0 0 1.489.629c.722 0 1.374-.314 1.938-.934a3.078 3.078 0 0 0 .836-2.128c0-.617-.2-1.135-.594-1.539z" }))),
+            this.props.text && !this.props.textFirst &&
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text)));
     }
 }
 IconHintInfo.defaultProps = {
@@ -8041,6 +8018,8 @@ IconHintInfo.defaultProps = {
     addClass: "",
     title: "",
     viewBox: "0 0 40 40",
+    color: 'currentColor',
+    textFirst: false,
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconHintInfo);
 //# sourceMappingURL=IconHintInfo.js.map
@@ -12106,7 +12085,7 @@ var mx = function mx(rule, media) {
   return media ? media + '{' + rule + '}' : rule;
 };
 var qts = function qts(prop, val) {
-  return prop === 'content' ? '"' + val + '"' : val;
+  return prop === "content" && (val === " " || !val) ? '"' + val + '"' : val;
 };
 var rx = function rx(cn, prop, val) {
   return cn.replace("!", "") + '{' + hyph(prop) + ':' + qts(prop, val) + '}';
