@@ -10,6 +10,8 @@ import Button from "../../../components/Forms/Button"
 export interface Props {
     style?: any
     addClass?: string
+    className?: string
+
     actions?: Action[]
     handleSelectAll?: () => void
     selectedAll?: boolean
@@ -24,6 +26,7 @@ class DataHeader extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
+        className: "",
         style: {},
         actions: [],
         handleSelectAll: () => {},
@@ -42,12 +45,12 @@ class DataHeader extends React.Component<Props, State> {
     }
 
     public render() {
-        const { actions, addClass, selectedRows, style } = this.props
+        const { actions, addClass, className, selectedRows, style } = this.props
         const kids: any = [...this.props.children]
         const lastKid = kids.pop()
         return (
             <thead>
-                <Header className={`${this.name} ${this.name}--header ${addClass}`} selected={selectedRows.length > 0}
+                <Header className={`${this.name} ${this.name}--header ${addClass} ${className}`} selected={selectedRows.length > 0}
                         style={style}>
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>

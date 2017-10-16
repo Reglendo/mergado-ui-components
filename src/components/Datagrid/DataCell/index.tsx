@@ -6,6 +6,7 @@ import {prefix} from "../../../config"
 export interface Props {
     style?: any
     addClass?: string
+    className?: string
     type?: "cell" | "header"
     onClick?: (event: any) => any
 }
@@ -18,17 +19,18 @@ class DataCell extends React.Component<Props, State> {
         addClass: "",
         style: null,
         type: "cell",
+        className: "",
     }
     private readonly name = prefix + "datagrid__cell";
 
     public render() {
-        const { style, type, addClass, onClick } = this.props;
+        const { style, type, addClass, onClick, className } = this.props;
         return (type === "header")
             ?
-                <Th {...domOnlyProps(this.props)} className={`${this.name} ${this.name}--header ${addClass}`}
+                <Th {...domOnlyProps(this.props)} className={`${this.name} ${className} ${this.name}--header ${addClass}`}
                     style={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Td {...domOnlyProps(this.props)} className={`${this.name} ${addClass}`} style={style}
+                <Td {...domOnlyProps(this.props)} className={`${this.name} ${addClass} ${className} `} style={style}
                     onClick={onClick}>{this.props.children}</Td>
     }
 }

@@ -15,6 +15,7 @@ export interface Props {
     buttons?: JSX.Element[]
     style?: any
     addClass?: string
+    className?: string
     labels?: {
         actionsBar: string
     }
@@ -32,6 +33,7 @@ class DataTable extends React.Component<Props, State> {
         buttons: [],
         style: {},
         addClass: "",
+        className: "",
         labels: {
             actionsBar: "",
         },
@@ -136,14 +138,13 @@ class DataTable extends React.Component<Props, State> {
     }
 
     public render() {
-        const { addClass, style } = this.props
-        const className = `${this.name}__table ${this.props.addClass}`
+        const { addClass, className, style } = this.props
         return (
             <div className={`${this.name}`}>
                 <div style={{whiteSpace: "nowrap"}}>
                     {this.props.filters.length > 0 && this.renderFiltersBar()}
                 </div>
-                <Table className={className} style={style} {...domOnlyProps(this.props)}>
+                <Table className={`${this.name}__table ${addClass} ${className}`} style={style} {...domOnlyProps(this.props)}>
                     {this.props.children && this.renderChildren(this.props.children)}
                 </Table>
             </div>

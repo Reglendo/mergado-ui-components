@@ -6,6 +6,7 @@ import { ID, Action } from "../../../helpers/types"
 export interface Props {
     style?: any
     addClass?: string
+    className?: string
     sortable?: boolean
     sortableProps?: any
     actions?: Action[]
@@ -22,6 +23,7 @@ class DataBody extends React.Component<Props, State> {
         sortable: false,
         sortableProps: {},
         addClass: "",
+        className: "",
         style: {},
         actions: [],
     }
@@ -40,7 +42,7 @@ class DataBody extends React.Component<Props, State> {
     }
 
     public render() {
-        const { sortable, sortableProps, style, addClass } = this.props;
+        const { sortable, sortableProps, style, addClass, className } = this.props;
         if(sortable) {
             return (
                 <Sortable tag="tbody" {...sortableProps}>
@@ -50,7 +52,7 @@ class DataBody extends React.Component<Props, State> {
 
         } else {
             return (
-                <tbody>
+                <tbody className={className}>
                     {this.props.children && this.renderChildren()}
                 </tbody>
             )

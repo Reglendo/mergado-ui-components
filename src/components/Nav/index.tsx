@@ -6,6 +6,7 @@ export interface Props {
     links: JSX.Element[]
     style?: any
     addClass?: string
+    className?: string
     logo?: JSX.Element
 }
 
@@ -20,6 +21,7 @@ class Nav extends React.Component<Props, State> {
         links: [],
         style: {},
         addClass: "",
+        className: "",
     }
 
     protected renderLinks() {
@@ -33,7 +35,7 @@ class Nav extends React.Component<Props, State> {
 
     public render() {
 
-        const className = `${this.name} ${this.props.addClass}`
+        const className = `${this.name} ${this.props.addClass} ${this.props.className}`
 
         return (
             <Component className={className} style={this.props.style}>

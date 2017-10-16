@@ -8,6 +8,7 @@ import { ID, Action } from "../../../helpers/types"
 export interface Props {
     style?: any
     addClass?: string
+    className?: string
     inactive?: boolean
     /** optional attribute "data-id" for various uses */
     dataId?: ID
@@ -28,6 +29,7 @@ class DataRow extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
+        className: "",
         style: {},
         inactive: false,
         dataId: "",
@@ -37,10 +39,10 @@ class DataRow extends React.Component<Props, State> {
     private readonly name = prefix + "datagrid__row"
 
     public render() {
-        const { style, addClass, inactive, dataId, actions, selectedRows } = this.props
+        const { style, addClass, inactive, dataId, actions, selectedRows, className } = this.props
         const isSelected = selectedRows ? selectedRows.indexOf(dataId) > -1 : false
         return (
-            <Tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass}`}
+            <Tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass} ${className}`}
                 disabled={inactive}
                 selected={isSelected}
                 data-id={dataId} style={style}>
