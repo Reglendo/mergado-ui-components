@@ -10,6 +10,7 @@ Main icons
 
         <Icon type="500px" text="500px" size={20} color="blue" textFirst={false} /> <code>&nbsp;</code>
         <Icon type="500px" text="500px" size={20} color="blue" textFirst={true} /> <code>&nbsp;</code>
+        <Icon type="trophy" text="Trophy" size={20} color="gold" /> <code>&nbsp;</code>
 
     </Section>
 

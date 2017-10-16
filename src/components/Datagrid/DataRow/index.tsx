@@ -68,9 +68,9 @@ const Tr = cxs("tr")({
             background: props.theme.hover_background,
         },
         color: props.disabled ? "#ccc" : "initial",
-        " *": {
-            color: props.disabled ? "#ccc!important" : "initial",
-            fill: props.disabled ? "#ccc!important" : "initial",
+        " *, path": {
+            color: props.disabled && "#ccc !important",
+            fill: props.disabled && "#ccc !important",
         },
         " .muk-icon--pause *": {
             color: props.theme.blue + "!important",
