@@ -7784,7 +7784,7 @@ class IconCheck extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--check ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--check ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -7803,6 +7803,7 @@ IconCheck.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconCheck);
 //# sourceMappingURL=IconCheck.js.map
@@ -7820,7 +7821,7 @@ class IconChevronDown extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--chevron-down ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--chevron-down ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -7839,6 +7840,7 @@ IconChevronDown.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconChevronDown);
 //# sourceMappingURL=IconChevronDown.js.map
@@ -7856,7 +7858,7 @@ class IconClose extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--close ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--close ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -7875,6 +7877,7 @@ IconClose.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconClose);
 //# sourceMappingURL=IconClose.js.map
@@ -7892,7 +7895,7 @@ class IconEye extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--eye ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--eye ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -7911,6 +7914,7 @@ IconEye.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconEye);
 //# sourceMappingURL=IconEye.js.map
@@ -7928,7 +7932,7 @@ class IconEyeSlash extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--eye-slash ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--eye-slash ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -7947,6 +7951,7 @@ IconEyeSlash.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconEyeSlash);
 //# sourceMappingURL=IconEyeSlash.js.map
@@ -7964,7 +7969,7 @@ class IconHintHelp extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--hint-help ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--hint-help ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -7983,6 +7988,7 @@ IconHintHelp.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconHintHelp);
 //# sourceMappingURL=IconHintHelp.js.map
@@ -8000,7 +8006,7 @@ class IconHintInfo extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = "muk-icon";
     }
     render() {
-        let className = `muk-icon ${this.name}--hint-info ${this.props.addClass}`;
+        let className = `muk-icon ${this.name}--hint-info ${this.props.addClass} ${this.props.className}`;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: className, style: this.props.style, title: this.props.title },
             this.props.text && this.props.textFirst &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: `muk-icon__text` }, this.props.text),
@@ -8019,6 +8025,7 @@ IconHintInfo.defaultProps = {
     viewBox: "0 0 40 40",
     color: 'currentColor',
     textFirst: false,
+    className: "",
 };
 /* harmony default export */ __webpack_exports__["a"] = (IconHintInfo);
 //# sourceMappingURL=IconHintInfo.js.map
@@ -8929,18 +8936,23 @@ const Li = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("li")({
     fontWeight: "normal",
     width: "100%",
     padding: "10px",
+    "& span.muk-icon--check": {
+        top: "-2px !important",
+    }
 }, (props) => {
     let checked = {};
     if (props.checked) {
         checked = {
             background: props.theme.selected_background,
-            ":hover": {},
         };
     }
     let disabled = {};
     if (props.disabled) {
         disabled = {
             cursor: "default",
+            ":hover": {
+                background: "white",
+            },
         };
     }
     let subheader = {};
@@ -8953,9 +8965,9 @@ const Li = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("li")({
             pointerEvents: "none",
         };
     }
-    return Object.assign({}, checked, disabled, subheader, { cursor: props["data-link"] ? "default" : "pointer", ":hover": {
+    return Object.assign({ cursor: props["data-link"] ? "default" : "pointer", ":hover": {
             background: props.theme.hover_background,
-        } });
+        } }, checked, disabled, subheader);
 });
 /* unused harmony export Li */
 
@@ -8977,11 +8989,6 @@ const Label = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("label")({
 const Count = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("span")({
     color: "#888",
     fontSize: "0.8em",
-});
-const StyledInput = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("input")({
-    margin: 0,
-    marginRight: "10px",
-    verticalAlign: "text-bottom",
 });
 
 
@@ -10521,7 +10528,8 @@ const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")
     maxHeight: "200px",
     padding: "10px",
     textAlign: "left",
-    overflow: "auto",
+    overflowY: "auto",
+    overflowX: "hidden",
     position: "relative",
     zIndex: 10,
     background: __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
