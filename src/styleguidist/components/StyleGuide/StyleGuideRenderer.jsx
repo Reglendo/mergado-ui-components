@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 import { PropTypes } from 'react';
-import Icon from 'components/Icon';
+import IconMuk from "@reglendo/mergado-ui-icons/lib/icons/IconMuk"
 import cxs from 'cxs';
 
 import s from './StyleGuide.css';
@@ -168,7 +168,7 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
     					<div className={s.sidebar}>
     			        <h1 className={s.heading}>
                             <span style={{display: 'inline-block'}}>
-                                <Icon type="mergado" size="32" text={title}/>
+                                <IconMuk size="32" text={title}/>
                                 <br/>
                                 <span style={{fontSize: '10px', float: 'right', paddingRight: '5px'}}>{json.version}</span>
                                 <small style={{fontSize: '10px', clear: "right",float: "right", paddingRight: '5px'}}>CSS: {Number(css.length/1024).toFixed(2)} kB</small>
