@@ -102,14 +102,14 @@ export const Li = css("li")({
     fontWeight: "normal",
     width: "100%",
     padding: "10px",
+    "& span.muk-icon--check": {
+        top: "-2px !important",
+    }
 }, (props: any) => {
     let checked = {}
     if(props.checked) {
         checked = {
             background: props.theme.selected_background,
-            ":hover": {
-                // background: Color(props.theme.selected_background).fade(0.2).string(),
-            },
         }
     }
 
@@ -117,9 +117,9 @@ export const Li = css("li")({
     if(props.disabled) {
         disabled = {
             cursor: "default",
-            // ":hover": {
-            //     background: "white",
-            // },
+            ":hover": {
+                background: "white",
+            },
         }
     }
 
@@ -134,13 +134,13 @@ export const Li = css("li")({
         }
     }
     return {
-        ...checked,
-        ...disabled,
-        ...subheader,
         cursor: props["data-link"] ? "default" : "pointer",
         ":hover": {
             background: props.theme.hover_background,
         },
+        ...checked,
+        ...disabled,
+        ...subheader,
     }
 })
 
@@ -163,10 +163,4 @@ const Label = css("label")({
 const Count = css("span")({
     color: "#888",
     fontSize: "0.8em",
-})
-
-const StyledInput = css("input")({
-    margin: 0,
-    marginRight: "10px",
-    verticalAlign: "text-bottom",
 })
