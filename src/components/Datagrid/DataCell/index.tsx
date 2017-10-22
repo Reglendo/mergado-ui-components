@@ -58,6 +58,9 @@ return {
     borderBottom: props.theme.table_border_horizontal,
     borderRight: props.theme.table_border_vertical,
     fontSize: props.theme.table_cell_text_size,
+    " a, a:visited, a:hover, a:active": {
+        color: props.theme.text,
+    }
 }})
 
 const Th = cxs("th")({

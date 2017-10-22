@@ -1956,9 +1956,9 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-"cxs@https://github.com/Reglendo/cxs#v6.1.0-11-mod":
+"cxs@https://github.com/Reglendo/cxs#v6.1.0-12-mod":
   version "6.1.0"
-  resolved "https://github.com/Reglendo/cxs#1482ec3e62f7814a0df9b44d60f5ab443e021185"
+  resolved "https://github.com/Reglendo/cxs#25070dca16046b3cbab31c036d2b24f1c4cebd3f"
   dependencies:
     css-in-js-utils "^2.0.0"
     inline-style-prefixer "^3.0.8"

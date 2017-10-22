@@ -1,5 +1,6 @@
 import * as React from "react"
 import css from "cxs/component"
+import ryzlinkTheme from "../../../styled/themes/ryzlink"
 
 interface Props {
     style?: any
@@ -241,6 +242,9 @@ const typo = {
     },
     "!table": {
         marginBottom: "1.5em",
+    },
+    "!a, a:visited, a:hover, a:active": {
+        color: ryzlinkTheme.blue,
     }
 }
 
