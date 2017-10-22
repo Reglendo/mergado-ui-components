@@ -3327,6 +3327,9 @@ const Td = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("td")(Cell, (pr
         borderBottom: props.theme.table_border_horizontal,
         borderRight: props.theme.table_border_vertical,
         fontSize: props.theme.table_cell_text_size,
+        " a, a:visited, a:hover, a:active": {
+            color: props.theme.text,
+        }
     };
 });
 const Th = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("th")(Object.assign({}, Cell, { borderColor: "transparent", whiteSpace: "nowrap", color: "#fff", fontWeight: "bold" }), (props) => {
@@ -12097,7 +12100,7 @@ var mx = function mx(rule, media) {
   return media ? media + '{' + rule + '}' : rule;
 };
 var qts = function qts(prop, val) {
-  return prop === "content" && (val === " " || !val) ? '"' + val + '"' : val;
+  return prop === "content" && val.substring(0, 4) !== "attr" ? '"' + val + '"' : val;
 };
 var rx = function rx(cn, prop, val) {
   return cn.replace("!", "") + '{' + hyph(prop) + ':' + qts(prop, val) + '}';
