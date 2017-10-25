@@ -37,7 +37,7 @@ const config = {
 };
 
 config.plugins = [
-
+//    new BundleAnalyzerPlugin(),
 ]
 
 module.exports = config;

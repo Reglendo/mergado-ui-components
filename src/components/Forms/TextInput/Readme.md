@@ -1,3 +1,10 @@
+Light form input
+
+    <Section>
+        <TextInput name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+    </Section>
+
+
 Text input with placeholder and label
 
     var Field = require('redux-form').Field;

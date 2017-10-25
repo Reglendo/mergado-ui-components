@@ -3,10 +3,10 @@ import css from "cxs/component"
 import {Div} from "../../../components/Layout"
 import * as Color from "color"
 import IconChevronDown from "@reglendo/mergado-ui-icons/lib/icons/IconChevronDown"
-
 import {prefix} from "../../../config"
 import uniqueId from "../../../helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {Select as LightSelect} from "light-form/dist/es"
 
 export interface Props extends IFieldProps {
     options?: any
@@ -41,14 +41,15 @@ class Select extends React.Component<Props, {}> {
         const { meta, input, labels } = this.props
         const { children, ...props } = this.props
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
+        const Element = props.name ? StyledLightSelect : StyledSelect
 
         return (
             <Field {...props} name={this.name}>
                 <Div position="relative">
-                    <StyledSelect {...input} className={`${this.name}__item ${this.props.className}`}
+                    <Element {...props} {...input} className={`${this.name}__item ${this.props.className}`}
                         aria-invalid={isInvalid ? 1 : 0}>
                         {this.renderOptions()}
-                    </StyledSelect>
+                    </Element>
                     <IconChevronDown size={10}
                         style={{ opacity: 0.6, position: "absolute", bottom: "9px",
                                  right: "10px", pointerEvents: "none"}}/>
@@ -58,7 +59,7 @@ class Select extends React.Component<Props, {}> {
     }
 }
 
-const StyledSelect = css("select")({
+const styles = {
     boxSizing: "border-box",
     width: "100%",
     height: "40px",
@@ -90,7 +91,8 @@ const StyledSelect = css("select")({
         color: "transparent",
         textShadow: "0 0 0 #000",
     },
-},(props: any) => {
+}
+const stylesProps = (props) => {
     const theme = props.theme
 
     let disabled = {}
@@ -113,6 +115,9 @@ const StyledSelect = css("select")({
         },
         ...disabled,
     }
-})
+}
+
+const StyledSelect = css("select")(styles,stylesProps)
+const StyledLightSelect = css(LightSelect)(styles,stylesProps)
 
 export default Select

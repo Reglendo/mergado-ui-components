@@ -6,6 +6,7 @@ import * as Color from "color"
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
+import {Input} from "light-form/dist/es"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -45,10 +46,11 @@ class TextInput extends React.Component<Props, State> {
             delete inputProps.value
         }
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
+        const Element = props.name ? StyledLightInput : StyledInput
         return (
             <Field {...props} name={this.name}>
                 <Div position="relative">
-                <StyledInput
+                <Element
                     {...props}
                     {...inputProps}
                     placeholder={this.props.labels.placeholder}
@@ -138,6 +140,7 @@ export const stylesProps = (props) => {
 }
 
 const StyledInput = css("input")(styles,stylesProps)
+const StyledLightInput = css(Input)(styles,stylesProps)
 
 const ButtonEye = css(Button)({
     right: "5px",

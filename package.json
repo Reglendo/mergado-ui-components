@@ -36,7 +36,8 @@
     "react-input-color": "^1.7.2",
     "react-router": "^2.6.1",
     "react-sortablejs": "^1.0.1",
-    "sortablejs": "^1.4.2"
+    "sortablejs": "^1.4.2",
+    "light-form": "^2.4.0"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
