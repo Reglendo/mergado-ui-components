@@ -1,3 +1,16 @@
+Light input
+
+    <Section>
+        <Radio name='lightvideo' labels={{main: 'Choose one:' }}
+                items={[
+                        { value: "Radio", label: "Radio"  },
+                        { value: "Video", label: "Video"  },
+                        { value: "Kills the star", label: "Kills the star"  }
+                ]}
+        />
+    </Section>
+
+
 Example
 
     var Field = require('redux-form').Field;

@@ -1,6 +1,7 @@
 import * as React from "react"
 import css from "cxs/component"
 import Button from "../../../components/Forms/Button"
+import {Input as LightInput} from "light-form/dist/es"
 
 interface IInputProps {
     name: string
@@ -15,13 +16,17 @@ interface IInputProps {
 
 const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                                              onChange, bigButtons, hideInput, ...props}) => {
+    console.log(name)
+    console.log(value)
+    const Element = name ? StyledLightInput : Input
     if(bigButtons) {
         return <BigLabel className={`${name}__item ${props.className}`} key={value}>
                 <Button secondary={checked ? false : true}
                         style={{display: "block"}}
                         color={checked ? "blue" : "decoration"}
                         type="void" input={{onClick: () => false }}>
-                    <Input
+                    <Element
+                        name={name}
                         value={value}
                         checked={checked}
                         onChange={onChange}
@@ -46,7 +51,8 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
     }
 
     return <Label className={`${name}__item ${props.className}`} key={value}>
-                    <Input
+                    <Element
+                        name={name}
                         value={value}
                         checked={checked}
                         onChange={onChange}
@@ -103,8 +109,7 @@ const BigLabel = css("label")({
     }
 })
 
-const Input = css("input")({
-}, (props: any) => {
+const styledProps = (props: any) => {
     if(props["data-big"]) {
         return {
             ":checked + span span": {
@@ -118,7 +123,11 @@ const Input = css("input")({
             },
         }
     }
-})
+}
+
+const Input = css("input")(styledProps)
+const StyledLightInput = css(LightInput)(styledProps)
+
 
 const StyledInput = css("span")({
     marginRight: "5px",

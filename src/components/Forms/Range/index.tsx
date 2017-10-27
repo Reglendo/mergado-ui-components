@@ -2,6 +2,7 @@ import * as React from "react"
 import css from "cxs/component"
 import * as Color from "color"
 import debounce from "lodash/debounce"
+import {Input as LightInput} from "light-form/dist/es"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -39,6 +40,7 @@ class Range extends React.Component<Props,State> {
                      props.input.value : props.default !== null ?
                      props.default : (props.max - props.min) / 2 + props.min,
         }
+        console.log(this.state.value)
         this.handleChange = debounce(this.handleChange.bind(this), 200);
     }
 
@@ -57,6 +59,8 @@ class Range extends React.Component<Props,State> {
         const { labels, meta, input } = this.props
         const { children, ...props } = this.props
         const value = this.state.value
+        const Element = props.name ? StyledLightInput : StyledInput
+        console.log(value)
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>
@@ -73,7 +77,7 @@ class Range extends React.Component<Props,State> {
                     />
                     </GridCell>
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
-                        <Input
+                        <Element
                             {...input}
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
@@ -151,11 +155,13 @@ const StyledField = css(Field)({
     }
 })
 
-const Input = css("input")({
+const styles = {
     padding: 0,
     border: "none",
     background: "transparent",
     appearance: "none",
-})
+}
+const StyledInput = css("input")(styles)
+const StyledLightInput = css(LightInput)(styles)
 
 export default Range
