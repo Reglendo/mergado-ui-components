@@ -26,14 +26,12 @@ class Textarea extends React.Component<Props, {}> {
         const { children, ...props } = this.props
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         const Element = props.name ? StyledLightTextarea : StyledTextarea
-        if(props.name) {
-            delete input.value
-        }
+
         return (
             <Field {...props} name={this.name}>
                 <Element
                     {...props}
-                    {...input}
+                    {...(props.name && input)}
                     height={this.props.height}
                     aria-invalid={isInvalid ? 1 : 0}
                     className={`${this.name}__input

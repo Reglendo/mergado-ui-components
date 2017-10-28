@@ -29,7 +29,7 @@ class Checkbox extends React.Component<Props, {}> {
                         <Element
                             {...props}
                             checked={input.value}
-                            {...input}
+                            {...(!props.name && input)}
                             type="checkbox"
                             className={`${this.name}__item ${input.className}`}
                             style={{display: "none"}}

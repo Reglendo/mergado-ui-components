@@ -51,7 +51,7 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
     return <Label className={`${name}__item ${props.className}`} key={value}>
                     <Element
                         name={name}
-                        {...(name && { value })}
+                        value={value}
                         checked={checked}
                         onChange={onChange}
                         type="radio"

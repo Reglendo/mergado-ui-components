@@ -56,12 +56,12 @@ class ColorPicker extends React.Component<Props, State> {
         const { children, ...props} = this.props
         const background = `${color}`
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
-        if(props.name) {
-            delete input.value
-        }
+
         return(
             <StyledField {...props} name={this.name} aria-invalid={isInvalid ? 1 : 0}>
-                <Input {...props} {...input} type="hidden" value={background} />
+                <Input {...props}
+                    {...(!props.name && input)}
+                    type="hidden" value={background} />
                 <InputColor
                     value={color}
                     defaultValue="#345678"

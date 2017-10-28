@@ -42,13 +42,12 @@ class Select extends React.Component<Props, {}> {
         const { children, ...props } = this.props
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         const Element = props.name ? StyledLightSelect : StyledSelect
-        if(props.name) {
-            delete input.value
-        }
         return (
             <Field {...props} name={this.name}>
                 <Div position="relative">
-                    <Element {...props} {...input} className={`${this.name}__item ${this.props.className}`}
+                    <Element {...props}
+                        {...(props.name && input)}
+                        className={`${this.name}__item ${this.props.className}`}
                         aria-invalid={isInvalid ? 1 : 0}>
                         {this.renderOptions()}
                     </Element>

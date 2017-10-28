@@ -59,9 +59,6 @@ class Range extends React.Component<Props,State> {
         const { children, ...props } = this.props
         const value = this.state.value
         const Element = props.name ? StyledLightInput : StyledInput
-        if(props.name) {
-            delete input.value
-        }
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>
@@ -79,7 +76,7 @@ class Range extends React.Component<Props,State> {
                     </GridCell>
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
                         <Element
-                            {...input}
+                            {...(props.name && input)}
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
                             type="range"
