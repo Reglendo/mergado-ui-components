@@ -13,7 +13,6 @@ export interface Props extends IFieldProps {
 }
 
 class Checkbox extends React.Component<Props, {}> {
-
     protected readonly name = prefix + "input-checkbox"
 
     public static defaultProps: Props = {
