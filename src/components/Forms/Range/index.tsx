@@ -76,7 +76,7 @@ class Range extends React.Component<Props,State> {
                     </GridCell>
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
                         <Element
-                            {...(props.name && input)}
+                            {...(!props.name && input)}
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
                             type="range"

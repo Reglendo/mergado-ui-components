@@ -46,7 +46,7 @@ class Select extends React.Component<Props, {}> {
             <Field {...props} name={this.name}>
                 <Div position="relative">
                     <Element {...props}
-                        {...(props.name && input)}
+                        {...(!props.name && input)}
                         className={`${this.name}__item ${this.props.className}`}
                         aria-invalid={isInvalid ? 1 : 0}>
                         {this.renderOptions()}

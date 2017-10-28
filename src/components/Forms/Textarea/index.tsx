@@ -31,7 +31,7 @@ class Textarea extends React.Component<Props, {}> {
             <Field {...props} name={this.name}>
                 <Element
                     {...props}
-                    {...(props.name && input)}
+                    {...(!props.name && input)}
                     height={this.props.height}
                     aria-invalid={isInvalid ? 1 : 0}
                     className={`${this.name}__input
