@@ -7,7 +7,6 @@ import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {Input as LightInput} from "light-form/dist/es"
 
-
 export interface Props extends IFieldProps {
     halfway?: boolean
 }
@@ -25,7 +24,6 @@ class Checkbox extends React.Component<Props, {}> {
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         const Element = name ? StyledLightInput : Input
-
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
                         <Element

@@ -40,7 +40,6 @@ class Range extends React.Component<Props,State> {
                      props.input.value : props.default !== null ?
                      props.default : (props.max - props.min) / 2 + props.min,
         }
-        console.log(this.state.value)
         this.handleChange = debounce(this.handleChange.bind(this), 200);
     }
 
@@ -60,7 +59,9 @@ class Range extends React.Component<Props,State> {
         const { children, ...props } = this.props
         const value = this.state.value
         const Element = props.name ? StyledLightInput : StyledInput
-        console.log(value)
+        if(props.name) {
+            delete input.value
+        }
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>

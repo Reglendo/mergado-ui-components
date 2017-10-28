@@ -42,7 +42,7 @@ class TextInput extends React.Component<Props, State> {
         const { type, meta, input } = this.props
         const {children, ...props} = this.props
         const inputProps: any = this.props.input
-        if(type === "file") {
+        if(props.name || type === "file") {
             delete inputProps.value
         }
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
@@ -52,7 +52,7 @@ class TextInput extends React.Component<Props, State> {
                 <Div position="relative">
                 <Element
                     {...props}
-                    {...(!props.name && inputProps)}
+                    {...inputProps}
                     placeholder={this.props.labels.placeholder}
                     ref={"input"}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)

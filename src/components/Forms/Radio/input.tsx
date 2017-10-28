@@ -16,8 +16,6 @@ interface IInputProps {
 
 const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                                              onChange, bigButtons, hideInput, ...props}) => {
-    console.log(name)
-    console.log(value)
     const Element = name ? StyledLightInput : Input
     if(bigButtons) {
         return <BigLabel className={`${name}__item ${props.className}`} key={value}>
@@ -53,7 +51,7 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
     return <Label className={`${name}__item ${props.className}`} key={value}>
                     <Element
                         name={name}
-                        value={value}
+                        {...(name && { value })}
                         checked={checked}
                         onChange={onChange}
                         type="radio"
