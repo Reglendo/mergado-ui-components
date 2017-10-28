@@ -52,7 +52,7 @@ class TextInput extends React.Component<Props, State> {
                 <Div position="relative">
                 <Element
                     {...props}
-                    {...inputProps}
+                    {...(!props.name && inputProps)}
                     placeholder={this.props.labels.placeholder}
                     ref={"input"}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)
