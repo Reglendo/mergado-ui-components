@@ -10,6 +10,7 @@ import LittleStatus from "../../../components/LittleStatus"
 interface IQueryItemProps {
     name: string
     option: any
+    value: string
     index: number
     onClick: (evt: any) => void
     checked: boolean
@@ -45,15 +46,13 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                             value: checked ? option.id : null,
                             onChange: onClick,
                         }}
+                        name={name}
                         key="input"
                         style={{display: showInput ? "inline-block" : "none", pointerEvents: "none" }}
                     />
                 :
                     <Checkbox
-                        input={{
-                            checked: checked,
-                            onChange: onClick,
-                        }}
+                        name={name +"."+props.value}
                         key="input"
                         style={{display: showInput ? "inline-block" : "none", pointerEvents: "none", paddingRight: "5px" }}
                     />
