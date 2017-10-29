@@ -23,12 +23,12 @@ class Checkbox extends React.Component<Props, {}> {
         const { input, labels,...props } = this.props
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
-        const Element = name ? StyledLightInput : Input
+        const Element = props.name ? StyledLightInput : Input
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
                         <Element
                             {...props}
-                            checked={input.value}
+                            {...(!props.name && { checked: input.value })}
                             {...(!props.name && input)}
                             type="checkbox"
                             className={`${this.name}__item ${input.className}`}
