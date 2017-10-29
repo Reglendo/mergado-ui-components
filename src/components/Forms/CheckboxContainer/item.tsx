@@ -52,7 +52,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                     />
                 :
                     <Checkbox
-                        name={name +"."+props.value}
+                        name={name + "." + option.id}
                         key="input"
                         style={{display: showInput ? "inline-block" : "none", pointerEvents: "none", paddingRight: "5px" }}
                     />
