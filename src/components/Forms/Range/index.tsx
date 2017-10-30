@@ -64,27 +64,24 @@ class Range extends React.Component<Props,State> {
                 <Grid cols={"100px auto"}>
                     <GridCell>
                     <TextInput
+                        name={props.name}
                         type="number"
                         max={this.props.max}
                         min={this.props.min}
                         step={this.props.step}
-                        input={{
-                            value,
-                            onChange: this.handleChange,
-                        }}
+                        value={this.props.value}
                     />
                     </GridCell>
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
                         <Element
                             {...(!props.name && input)}
+                            name={props.name}
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
                             type="range"
                             max={this.props.max}
                             min={this.props.min}
                             step={this.props.step}
-                            onChange={this.handleChange}
-                            value={value}
                             />
                     </GridCell>
                 </Grid>
