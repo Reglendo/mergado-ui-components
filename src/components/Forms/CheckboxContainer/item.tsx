@@ -35,6 +35,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
             key={option.id}
             data-link={option.link !== undefined}
             onClick={!option.subheader && onClick}>
+            <label>
             {showInput &&
                 <span>
                 {singleChoice ?
@@ -48,18 +49,19 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                         }}
                         name={name}
                         key="input"
-                        style={{display: showInput ? "inline-block" : "none", pointerEvents: "none" }}
+                        style={{display: showInput ? "inline-block" : "none",}}
                     />
                 :
                     <Checkbox
                         name={name + "." + option.id}
                         key="input"
-                        style={{display: showInput ? "inline-block" : "none", pointerEvents: "none", paddingRight: "5px" }}
+                        style={{display: showInput ? "inline-block" : "none", paddingRight: "5px" }}
                     />
                 }
                 </span>
             }
             <QueryItemLabel name={name} option={option} allProducts={labels.allProducts} showInput={showInput}/>
+            </label>
         </Li>
     )
 }
@@ -100,7 +102,11 @@ export const Li = css("li")({
     background: "white",
     fontWeight: "normal",
     width: "100%",
-    padding: "10px",
+    " > label": {
+        padding: "10px",
+        display: "block",
+        cursor: "pointer",
+    },
     "& span.muk-icon--check": {
         top: "-2px !important",
     }
@@ -115,7 +121,9 @@ export const Li = css("li")({
     let disabled = {}
     if(props.disabled) {
         disabled = {
-            cursor: "default",
+            " > label": {
+                cursor: "default",
+            },
             ":hover": {
                 background: "white",
             },
@@ -143,7 +151,7 @@ export const Li = css("li")({
     }
 })
 
-const Label = css("label")({
+const Label = css("span")({
     cursor: "pointer",
     margin: "0 5px",
     " a": {
