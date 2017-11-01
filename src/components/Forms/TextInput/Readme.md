@@ -1,7 +1,7 @@
 Light form input
 
     <Section>
-        <TextInput name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} />
+        <TextInput name="firstname" labels={{ main: "Your name:", placeholder: "Please enter your name here"}} meta={{invalid: "hello world"}} />
     </Section>
 
 

@@ -195,7 +195,7 @@ export const Field = css(FieldComponent)({
 },(props: any) => {
     const theme: any = props.theme
     let styles = {}
-    if((props.input && props.input.name)) {
+    if((props.input && props.input.name) || props.name) {
         styles = {
             marginBottom: "30px",
             paddingRight: "10px",

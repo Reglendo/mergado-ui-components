@@ -51,55 +51,53 @@ Example form
 
     <Section>
         <h2>Inquiry form</h2>
-        <Field component={TextInput} name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
+        <TextInput name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Identification</h3>
-            <Field component={TextInput} name="firstname" labels={{ main: 
+            <TextInput name="firstname" labels={{ main: 
                                                                         <span>
                                                                             First name*:&nbsp;
                                                                             <PopupHint hint={true}>Help me!</PopupHint>
                                                                         </span>, invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
-            <Field component={TextInput} name="lastname" labels={{main:  <span>
+            <TextInput name="lastname" labels={{main:  <span>
                                                                             Last name:&nbsp;
                                                                             <PopupHint icon={<Icon type="info-circle" />} >Help me!</PopupHint>
                                                                           </span> }} />
         </div>
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Contact</h3>
-            <Field component={TextInput} name="tel" labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
-            <Field component={TextInput} name="email" labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
+            <TextInput name="tel" labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
+            <TextInput name="email" labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
         </div>
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-            <Field name="favcolor" component={Radio}
-                    props={{
-                        items: [
-                                {value: "black", label: "black"},
-                                {value: "blue", label: "blue"},
-                                {value: "orange", label: "orange"},
-                                {value: "pink", label: "pink"}
-                        ]
-                    }}
+            <Radio name="favcolor"
+                    items={[
+                        {value: "black", label: "black"},
+                        {value: "blue", label: "blue"},
+                        {value: "orange", label: "orange"},
+                        {value: "pink", label: "pink"}
+                    ]}
                     label="Your favourite color:" />
         </div>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
                 <FieldLabel>Your favourite superpower</FieldLabel>
-                <Field name="superpower1" component={Checkbox} labels={{main: "invisibility"}} />
-                <Field name="superpower2" component={Checkbox} labels={{main: "immortality"}} />
-                <Field name="superpower3" component={Checkbox} labels={{main: "stupidity"}} />
-                <Field name="superpower4" component={Checkbox} labels={{main: "other-ity"}} />
+                <Checkbox name="superpower1" labels={{main: "invisibility"}} />
+                <Checkbox name="superpower2" labels={{main: "immortality"}} />
+                <Checkbox name="superpower3" labels={{main: "stupidity"}} />
+                <Checkbox name="superpower4" labels={{main: "other-ity"}} />
         </div>
 
         <h3>Other information</h3>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-            <Field component={ColorPicker} name="colorpicker"  labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
+            <ColorPicker name="colorpicker"  labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
         </div>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
-            <Field component={Textarea} name="textarea" labels={{main: 'Leave us message:'}} />
+            <Textarea name="textarea" labels={{main: 'Leave us message:'}} />
         </div>
 
         <div style={{textAlign: "center"}}>
-            <Field name="submit" props={{icon: <Icon type="check" />}} component={Button} type="button" labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
+            <Button name="submit" props={{icon: <Icon type="check" />}} type="button" labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
             <code>&nbsp;</code>
-            <Field name="reset" props={{icon: <Icon type="close" />}}  component={Button} type="button" color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
+            <Button name="reset" props={{icon: <Icon type="close" />}} type="button" color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
         </div>
     </Section>
