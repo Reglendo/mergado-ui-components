@@ -1,3 +1,11 @@
+Light select
+
+    <Section>
+        <Select name="select1" labels={{main: 'I, select'}}
+                options={ [{ title: 'foo', value: '1'},{ title: 'bar', value: '2'}] }  />
+    </Section>
+
+
 Example
 
     var Field = require('redux-form').Field;

@@ -1,3 +1,10 @@
+Light input
+
+    <Section>
+        <ColorPicker name='color1' labels={{ main: 'Pick me' }} color={{ r:0, g:0, b:0, a:1 }} />
+    </Section>
+    
+
 Field example
 
     var Field = require('redux-form').Field;

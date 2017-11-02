@@ -1,6 +1,7 @@
 import * as React from "react"
 import css from "cxs/component"
 import Button from "../../../components/Forms/Button"
+import {Input as LightInput} from "light-form/dist/es"
 
 interface IInputProps {
     name: string
@@ -15,24 +16,24 @@ interface IInputProps {
 
 const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                                              onChange, bigButtons, hideInput, ...props}) => {
+    const Element = name ? StyledLightInput : Input
     if(bigButtons) {
         return <BigLabel className={`${name}__item ${props.className}`} key={value}>
-                <Button secondary={checked ? false : true}
-                        style={{display: "block"}}
-                        color={checked ? "blue" : "decoration"}
-                        type="void" input={{onClick: () => false }}>
-                    <Input
-                        value={value}
-                        checked={checked}
-                        onChange={onChange}
-                        type="radio"
-                        className={`${this.name}__item`}
-                        style={{display: "none"}}
-                        data-big={bigButtons}
-                        />
+                <Element
+                    name={name}
+                    value={value}
+                    type="radio"
+                    className={`${this.name}__item`}
+                    style={{display: "none"}}
+                    data-big={true}
+                    />
+                <Button
+                    secondary={true}
+                    style={{display: "block"}}
+                    type="void" input={{onClick: () => false }}>
                     {!hideInput ?
-                        <span>
-                            <StyledInput
+                        <span style={{verticalAlign: "middle"}}>
+                            <StyledInput className="muk-checkbox-input"
                                 />&nbsp;
                         </span>
                     :
@@ -46,17 +47,16 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
     }
 
     return <Label className={`${name}__item ${props.className}`} key={value}>
-                    <Input
+                    <Element
+                        name={name}
                         value={value}
-                        checked={checked}
-                        onChange={onChange}
                         type="radio"
                         className={`${this.name}__item`}
                         style={{display: "none"}}
-                        data-big={bigButtons}
+                        data-big={false}
                         />
-                    <span>
-                        <StyledInput
+                    <span className="muk-button__item">
+                        <StyledInput className="muk-checkbox-input"
                             />
                         &nbsp;{label}
                     </span>
@@ -80,6 +80,12 @@ const Label = css("label")({
 const BigLabel = css("label")({
     display: "table-cell",
     marginRight: "5px",
+    " .muk-icon": {
+        verticalAlign: "top !important",
+    },
+    " .muk-popup_hint__trigger": {
+        lineHeight: "16px",
+    },
     " .muk-button__item": {
         borderRadius: 0,
         margin: "0 0 0 -1px",
@@ -103,22 +109,34 @@ const BigLabel = css("label")({
     }
 })
 
-const Input = css("input")({
-}, (props: any) => {
+const styledProps = (props: any) => {
+    const styledInput = {
+    }
     if(props["data-big"]) {
         return {
-            ":checked + span span": {
+            "&:checked + .muk-button__item .muk-checkbox-input": {
                 border: `6px solid white`,
+            },
+            "&:checked + .muk-button__item": {
+                background: props.theme.blue,
+                color: "white",
+            },
+            "&:checked + .muk-button__item *": {
+                color: "white !importat",
+                fill: "white !important",
             },
         }
     } else {
         return {
-            ":checked + span span": {
-                border: `6px solid ${props.theme.blue}`,
+            "&:checked + .muk-button__item .muk-checkbox-input": {
+                border: `6px solid` + props.theme.blue,
             },
         }
     }
-})
+}
+
+const Input = css("input")(styledProps)
+const StyledLightInput = css(LightInput)(styledProps)
 
 const StyledInput = css("span")({
     marginRight: "5px",
@@ -127,7 +145,7 @@ const StyledInput = css("span")({
     width: "18px",
     height: "18px",
     position: "relative",
-    verticalAlign: "text-top !important",
+    verticalAlign: "middle !important",
     transition: "border-color 0.2s",
     borderRadius: "100%",
     ":focus": {

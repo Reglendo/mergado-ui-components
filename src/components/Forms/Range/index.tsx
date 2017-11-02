@@ -2,6 +2,7 @@ import * as React from "react"
 import css from "cxs/component"
 import * as Color from "color"
 import debounce from "lodash/debounce"
+import {Input as LightInput} from "light-form/dist/es"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
@@ -57,32 +58,30 @@ class Range extends React.Component<Props,State> {
         const { labels, meta, input } = this.props
         const { children, ...props } = this.props
         const value = this.state.value
+        const Element = props.name ? StyledLightInput : StyledInput
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>
                     <GridCell>
                     <TextInput
+                        name={props.name}
                         type="number"
                         max={this.props.max}
                         min={this.props.min}
                         step={this.props.step}
-                        input={{
-                            value,
-                            onChange: this.handleChange,
-                        }}
+                        value={this.props.value}
                     />
                     </GridCell>
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
-                        <Input
-                            {...input}
+                        <Element
+                            {...(!props.name && input)}
+                            name={props.name}
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
                             type="range"
                             max={this.props.max}
                             min={this.props.min}
                             step={this.props.step}
-                            onChange={this.handleChange}
-                            value={value}
                             />
                     </GridCell>
                 </Grid>
@@ -151,11 +150,13 @@ const StyledField = css(Field)({
     }
 })
 
-const Input = css("input")({
+const styles = {
     padding: 0,
     border: "none",
     background: "transparent",
     appearance: "none",
-})
+}
+const StyledInput = css("input")(styles)
+const StyledLightInput = css(LightInput)(styles)
 
 export default Range

@@ -132,11 +132,10 @@ export const FieldLabel = css(LabelComponent)({
 })
 
 const FieldErrorComponent = ({...props}) => {
-        if((props.meta.error || props.labels.invalid) &&
-            props.meta.invalid && (props.meta.dirty || props.meta.touched)) {
+        if(props.meta.error) {
             return (
                 <div className={`${props.className}`}>
-                    {props.meta.error || props.labels.invalid}
+                    {props.meta.error}
                 </div>
             )
         } else {
@@ -162,7 +161,7 @@ export const FieldError = css(FieldErrorComponent)({
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
     const { meta, input, labels, group, ...others } = props
-    const isInvalid = props.meta.invalid && (props.meta.dirty || props.meta.touched)
+    const isInvalid = !!props.meta.error || props.meta.invalid
     return (
         <div
             {...domOnlyProps(group)}
@@ -196,7 +195,7 @@ export const Field = css(FieldComponent)({
 },(props: any) => {
     const theme: any = props.theme
     let styles = {}
-    if((props.input && props.input.name)) {
+    if((props.input && props.input.name) || props.name) {
         styles = {
             marginBottom: "30px",
             paddingRight: "10px",

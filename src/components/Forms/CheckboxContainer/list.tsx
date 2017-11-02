@@ -69,6 +69,7 @@ const renderOptions = (name, options, value, input, singleChoice, showInput, lab
                             index={index} onClick={handler}
                             checked={value.indexOf(option.id) > -1}
                             singleChoice={singleChoice}
+                            value={value}
                             showInput={showInput}
                             labels={labels}
                             key={option.id + option.name}

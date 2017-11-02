@@ -1,3 +1,10 @@
+Light input
+
+    <Section>
+        <Checkbox labels={{main: <span>I'm checked</span>}} name="checkbox001" input={{value: true, onChange: () => alert('Hello') }} />
+    </Section>
+
+
 Example
 
     var Field = require('redux-form').Field;

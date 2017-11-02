@@ -5,13 +5,13 @@ import {Span} from "../../../components/Layout"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {Input as LightInput} from "light-form/dist/es"
 
 export interface Props extends IFieldProps {
     halfway?: boolean
 }
 
 class Checkbox extends React.Component<Props, {}> {
-
     protected readonly name = prefix + "input-checkbox"
 
     public static defaultProps: Props = {
@@ -20,15 +20,16 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
     protected renderLabel() {
-        const { input, labels } = this.props
+        const { input, labels,...props } = this.props
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
-
+        const Element = props.name ? StyledLightInput : Input
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
-                        <Input
-                            checked={input.value}
-                            {...input}
+                        <Element
+                            {...props}
+                            {...(!props.name && { checked: input.value })}
+                            {...(!props.name && input)}
                             type="checkbox"
                             className={`${this.name}__item ${input.className}`}
                             style={{display: "none"}}
@@ -71,16 +72,23 @@ const StyledField = css(Field)({
 
 })
 
-const Input = css("input")({
+const styles = {
     ":checked + span + span.muk-icon--check": {
         display: "inline-block",
     },
-}, (props: any) => { return {
-    ":checked + span": {
-        borderColor: `${props.theme.blue}`,
-        background: `${props.theme.blue}`,
-    },
-}})
+}
+
+const stylesProps =  (props) => {
+    return {
+        ":checked + span": {
+            borderColor: `${props.theme.blue}`,
+            background: `${props.theme.blue}`,
+        },
+    }
+}
+
+const Input = css("input")(styles , stylesProps)
+const StyledLightInput = css(LightInput)(styles , stylesProps)
 
 const StyledInput = css("span")({
     display: "inline-block",

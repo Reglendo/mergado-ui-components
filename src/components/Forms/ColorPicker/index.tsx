@@ -5,6 +5,7 @@ import debounce from "lodash/debounce"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {Input} from "light-form/dist/es"
 
 export interface Color {
     r: number
@@ -55,9 +56,12 @@ class ColorPicker extends React.Component<Props, State> {
         const { children, ...props} = this.props
         const background = `${color}`
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
+
         return(
             <StyledField {...props} name={this.name} aria-invalid={isInvalid ? 1 : 0}>
-                <input {...input} type="hidden" value={background} />
+                <Input {...props}
+                    {...(!props.name && input)}
+                    type="hidden" value={background} />
                 <InputColor
                     value={color}
                     defaultValue="#345678"

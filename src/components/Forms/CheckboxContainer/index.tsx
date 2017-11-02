@@ -107,7 +107,7 @@ class CheckboxContainer extends React.Component<Props,State> {
                 labels={labels} className={`${this.name}__queries`}>
                 {withoutFilter === false && this.renderFilter()}
                 <QueryList className={`${this.name}__list ${isInvalid ? `${form}__group--invalid` : ""}`}
-                    name={this.name} height={height}
+                    name={this.props.name} height={height}
                     activeFirst={props.activeFirst}
                     options={options} value={this.props.input.value ? this.props.input.value : []}
                     input={this.props.input} singleChoice={this.props.singleChoice}

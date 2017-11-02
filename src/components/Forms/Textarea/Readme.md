@@ -1,3 +1,10 @@
+Light textarea
+
+    <Section>
+        <Textarea name="description" id="customid" labels={{ main: "Your name:", placeholder: "Please describe me" }} />
+    </Section>
+
+
 Text input with placeholder and label
 
     var Field = require('redux-form').Field;
