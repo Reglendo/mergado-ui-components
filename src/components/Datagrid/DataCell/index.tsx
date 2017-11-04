@@ -48,7 +48,6 @@ const Cell = {
         padding: "0 5px",
         verticalAlign: "middle",
         height: "auto",
-        lineHeight: "initial",
     },
 }
 

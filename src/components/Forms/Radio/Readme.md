@@ -45,7 +45,7 @@ Big buttons
                 items={[
                         { value: "Radio", label: <span><Icon type="angellist" />Radio</span>  },
                         { value: "Video", label: <span><Icon type="cab" />Video</span>  },
-                        { value: "kills", label: <span><Icon type="medkit" />kills</span>  },
+                        { value: "kills", label: <span><Icon type="medkit" />kills <PopupHint hint={true}>Hello world</PopupHint></span>  },
                         { value: "the", label: <span><Icon name="IconHandORight" />the</span>   },
                         { value: "star", label: <span><Icon name="IconReglendo" size={20} />star <PopupHint hint={true}>Hello world</PopupHint></span> },
                 ]}

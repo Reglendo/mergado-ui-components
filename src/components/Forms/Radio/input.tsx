@@ -80,15 +80,15 @@ const Label = css("label")({
 const BigLabel = css("label")({
     display: "table-cell",
     marginRight: "5px",
-    " .muk-icon": {
-        verticalAlign: "top !important",
-    },
+    verticalAlign: "top",
     " .muk-popup_hint__trigger": {
         lineHeight: "16px",
     },
     " .muk-button__item": {
         borderRadius: 0,
         margin: "0 0 0 -1px",
+        lineHeight: "16px",
+        padding: "16px",
     },
     " span span": {
         fontWeight: "normal",

@@ -101,7 +101,7 @@ const StyledInput = css("span")({
         display: "none",
         position: "absolute",
         left: "2px",
-        top: "-5px",
+        top: "-3px",
     },
     " + span.muk-icon--check path": {
         fill: "white !important",

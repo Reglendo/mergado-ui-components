@@ -83,7 +83,7 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
     " .muk-icon": {
         margin: "0 0 0 0",
         position: "relative",
-        top: "-3px",
+        top: "auto",
         verticalAlign: "middle",
     },
     " .muk-icon svg": {
