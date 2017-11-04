@@ -10338,7 +10338,7 @@ const Li = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("li")({
         cursor: "pointer",
     },
     "& span.muk-icon--check": {
-        top: "-2px !important",
+        top: "-1px !important",
     }
 }, (props) => {
     let checked = {};
