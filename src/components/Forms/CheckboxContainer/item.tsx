@@ -108,7 +108,7 @@ export const Li = css("li")({
         cursor: "pointer",
     },
     "& span.muk-icon--check": {
-        top: "-2px !important",
+        top: "-1px !important",
     }
 }, (props: any) => {
     let checked = {}
