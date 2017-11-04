@@ -2611,7 +2611,7 @@ const StyledInput = __WEBPACK_IMPORTED_MODULE_2_cxs_component___default()("span"
         display: "none",
         position: "absolute",
         left: "2px",
-        top: "-5px",
+        top: "-3px",
     },
     " + span.muk-icon--check path": {
         fill: "white !important",
@@ -3424,7 +3424,6 @@ const Cell = {
         padding: "0 5px",
         verticalAlign: "middle",
         height: "auto",
-        lineHeight: "initial",
     },
 };
 const Td = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("td")(Cell, (props) => {
@@ -10022,7 +10021,7 @@ const UniversalButton = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(Un
     " .muk-icon": {
         margin: "0 0 0 0",
         position: "relative",
-        top: "-3px",
+        top: "auto",
         verticalAlign: "middle",
     },
     " .muk-icon svg": {
@@ -10856,15 +10855,15 @@ const Label = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("label")({
 const BigLabel = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("label")({
     display: "table-cell",
     marginRight: "5px",
-    " .muk-icon": {
-        verticalAlign: "top !important",
-    },
+    verticalAlign: "top",
     " .muk-popup_hint__trigger": {
         lineHeight: "16px",
     },
     " .muk-button__item": {
         borderRadius: 0,
         margin: "0 0 0 -1px",
+        lineHeight: "16px",
+        padding: "16px",
     },
     " span span": {
         fontWeight: "normal",
