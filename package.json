@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
@@ -28,9 +28,8 @@
   "dependencies": {
     "@reglendo/mergado-ui-icons": "^1.1.4",
     "color": "^2.0.0",
-    "cross-env": "^5.1.1",
     "cxs": "https://github.com/Reglendo/cxs#v6.1.0-12-mod",
-    "light-form": "https://github.com/Reglendo/light-form.git#v2.4.0-8",
+    "light-form": "https://github.com/Reglendo/light-form.git#v2.4.0-9",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
     "react-color": "^2.11.6",
