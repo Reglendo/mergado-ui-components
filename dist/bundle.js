@@ -7520,7 +7520,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var UPDATE_INPUT_VALUE = 'UPDATE_INPUT_VALUE';
-
+var INIT_FORM = 'INIT_FORM';
 var changeField = function changeField(type, name, value) {
     return {
         type: type,
@@ -7535,16 +7535,23 @@ var createBoundType = function createBoundType(namespace) {
 
 /* unused harmony default export */ var _unused_webpack_default_export = (function (namespace, defaultState, onStateChange, actionHandlers) {
     return function () {
+        var _extends2;
+
         var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState || {};
         var action = arguments[1];
 
         var boundType = createBoundType(namespace);
 
-        var reducer = _extends(_defineProperty({}, boundType, function () {
+        var reducer = _extends((_extends2 = {}, _defineProperty(_extends2, INIT_FORM, function (state, action) {
+            if (namespace === action.payload.form) {
+                return action.payload.data;
+            }
+            return state;
+        }), _defineProperty(_extends2, boundType, function () {
             var fieldPathWithoutNamespace = action.name.replace(namespace + '.', '');
             var newState = __WEBPACK_IMPORTED_MODULE_0_dot_prop_immutable___default.a.set(state, fieldPathWithoutNamespace, action.value);
             return onStateChange && onStateChange(newState) || newState;
-        }), actionHandlers);
+        }), _extends2), actionHandlers);
 
         return reducer[action.type] ? reducer[action.type](state, action) : state;
     };
@@ -15017,10 +15024,11 @@ var InputContainer = function InputContainer(component) {
             return dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, value));
         };
 
-        var value = own.type === "radio" && own.value || own.name && __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) || '';
+        var value = own.type === "radio" && own.value !== null ? own.value : own.name && __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) !== undefined ? __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) : '';
 
         return _extends({}, own, {
             value: value,
+            checked: own.type === "radio" && own.value == __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) || own.type === "checkbox" && __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name),
             onChange: function onChange(event) {
                 var processedEvent = own.onChange ? own.onChange(event) : event;
                 return processedEvent && _onChange(processedEvent);
