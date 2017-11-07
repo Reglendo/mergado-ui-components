@@ -30,7 +30,7 @@ class DataRow extends React.Component {
         return (React.createElement(Row, { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, disabled: inactive, "data-id": dataId, style: style },
             actions.length > 0 &&
                 React.createElement(DataCell_1.default, null,
-                    React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.props.handleSelectRow(dataId),
+                    React.createElement(Checkbox_1.default, { addClass: "bulk-action-item", input: { "onChange": evt => this.props.handleSelectRow(dataId),
                             "checked": this.props.selectedRows.indexOf(dataId) !== -1,
                             "data-id": dataId,
                             "className": "bulk-action-item",

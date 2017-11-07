@@ -27,7 +27,7 @@ class Checkbox extends React.Component<Props, {}> {
                         checked={input.value}
                         {...input}
                         type="checkbox"
-                        className={`${this.name}__item`}
+                        className={`${this.name}__item ${input.className ? input.className : ""}`}
                         />
                     {label && " " }{label}
                 </div>

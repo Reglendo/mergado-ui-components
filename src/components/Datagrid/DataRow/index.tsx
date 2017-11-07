@@ -63,6 +63,7 @@ class DataRow extends React.Component<Props, State> {
                     {actions.length > 0 &&
                         <DataCell>
                             <Checkbox
+                                addClass={"bulk-action-item"}
                                 input={{ "onChange": evt => this.props.handleSelectRow(dataId),
                                          "checked": this.props.selectedRows.indexOf(dataId) !== -1,
                                          "data-id": dataId,

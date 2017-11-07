@@ -6711,7 +6711,7 @@ class Checkbox extends React.Component {
         const label = this.props.label ? this.props.label : labels.main;
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
         return React.createElement("div", { className: `${isInvalid ? `${config_1.form}__group--invalid` : ""}` },
-            React.createElement("input", Object.assign({ checked: input.value }, input, { type: "checkbox", className: `${this.name}__item` })),
+            React.createElement("input", Object.assign({ checked: input.value }, input, { type: "checkbox", className: `${this.name}__item ${input.className ? input.className : ""}` })),
             label && " ",
             label);
     }
@@ -19077,7 +19077,7 @@ class DataRow extends React.Component {
         return (React.createElement(Row, { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass}`, disabled: inactive, "data-id": dataId, style: style },
             actions.length > 0 &&
                 React.createElement(DataCell_1.default, null,
-                    React.createElement(Checkbox_1.default, { input: { "onChange": evt => this.props.handleSelectRow(dataId),
+                    React.createElement(Checkbox_1.default, { addClass: "bulk-action-item", input: { "onChange": evt => this.props.handleSelectRow(dataId),
                             "checked": this.props.selectedRows.indexOf(dataId) !== -1,
                             "data-id": dataId,
                             "className": "bulk-action-item",
@@ -19879,6 +19879,7 @@ const ColorBox = styled_components_1.default.div `
     padding: 5px;
     border-radius: 1px;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1);
+    outline: 1px solid #dbcba3;
 `;
 const Popover = styled_components_1.default.div `
     position: absolute;

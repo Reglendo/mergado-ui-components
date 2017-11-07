@@ -16,7 +16,7 @@ class Checkbox extends React.Component {
         const label = this.props.label ? this.props.label : labels.main;
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
         return React.createElement("div", { className: `${isInvalid ? `${config_1.form}__group--invalid` : ""}` },
-            React.createElement("input", Object.assign({ checked: input.value }, input, { type: "checkbox", className: `${this.name}__item` })),
+            React.createElement("input", Object.assign({ checked: input.value }, input, { type: "checkbox", className: `${this.name}__item ${input.className ? input.className : ""}` })),
             label && " ",
             label);
     }
