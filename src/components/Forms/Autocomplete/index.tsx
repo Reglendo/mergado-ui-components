@@ -114,11 +114,11 @@ class Autocomplete extends  React.Component<Props, State> {
     }
 
     protected setMenuPositions() {
-        const node: any = this._inputRef
-        const rect = node.base.getBoundingClientRect()
+        const node: any = document.getElementById("autocomplete-input")
+        const rect = node.getBoundingClientRect()
         const glob: any = global
         const computedStyle = glob
-            .getComputedStyle(node.base)
+            .getComputedStyle(node)
         const marginBottom = parseInt(computedStyle.marginBottom, 10) || 0
         const marginLeft = parseInt(computedStyle.marginLeft, 10) || 0
         const marginRight = parseInt(computedStyle.marginRight, 10) || 0
@@ -281,7 +281,7 @@ class Autocomplete extends  React.Component<Props, State> {
     }
 
     protected isInputFocused() {
-        const el: any = this._inputRef.base
+        const el: any = document.getElementById("autocomplete-input")
         return el.ownerDocument && (el === el.ownerDocument.activeElement)
     }
 
@@ -361,8 +361,7 @@ class Autocomplete extends  React.Component<Props, State> {
         return (
             <Field label="">
                 <TextInput
-                    innerRef={r => (this._inputRef = r)}
-                    type="search"
+                    id={"autocomplete-input"}
                     labels={labels}
                     meta={meta}
                     input={inputProps}
@@ -383,7 +382,7 @@ const Menu = cxs("div")({
     left: "2px !important",
     margin: "1px 0",
     overflow: "auto",
-    maxHeight: "50vh",
+    maxHeight: "250px",
     zIndex: 1000,
     marginTop: "5px",
 }, props => {
