@@ -9687,11 +9687,11 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         }
     }
     setMenuPositions() {
-        const node = this._inputRef;
-        const rect = node.base.getBoundingClientRect();
+        const node = document.getElementById("autocomplete-input");
+        const rect = node.getBoundingClientRect();
         const glob = global;
         const computedStyle = glob
-            .getComputedStyle(node.base);
+            .getComputedStyle(node);
         const marginBottom = parseInt(computedStyle.marginBottom, 10) || 0;
         const marginLeft = parseInt(computedStyle.marginLeft, 10) || 0;
         const marginRight = parseInt(computedStyle.marginRight, 10) || 0;
@@ -9835,7 +9835,7 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.setState({ isOpen: true });
     }
     isInputFocused() {
-        const el = this._inputRef.base;
+        const el = document.getElementById("autocomplete-input");
         return el.ownerDocument && (el === el.ownerDocument.activeElement);
     }
     handleInputClick() {
@@ -9903,7 +9903,7 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         });
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */], { label: "" },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Forms_TextInput__["a" /* default */], { innerRef: r => (this._inputRef = r), type: "search", labels: labels, meta: meta, input: inputProps }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Forms_TextInput__["a" /* default */], { id: "autocomplete-input", labels: labels, meta: meta, input: inputProps }),
             open && this.renderMenu()));
     }
 }
@@ -9928,7 +9928,7 @@ const Menu = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     left: "2px !important",
     margin: "1px 0",
     overflow: "auto",
-    maxHeight: "50vh",
+    maxHeight: "250px",
     zIndex: 1000,
     marginTop: "5px",
 }, props => {
