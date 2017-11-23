@@ -223,7 +223,7 @@ class PopupHint extends React.Component<Props, State> {
                      onBlur={ this.state.expanded ? this.collapse : () => {} }
                  >
                     <Div position={"relative"} padding={"0 0 10px 0"} className={`${this.name}__innerwrapper`}>
-                        <HintContent hint={this.props.hint} className={`${this.name}__content`}>{this.props.children}</HintContent>
+                        <HintContent hover={this.props.hover} className={`${this.name}__content`}>{this.props.children}</HintContent>
                         <div ref={"arrow"} style={{
                             width: "12px",
                             height: "12px",
@@ -233,7 +233,7 @@ class PopupHint extends React.Component<Props, State> {
                             bottom: "9px"
                         }}>
                             <HintArrow
-                                hint={this.props.hint}
+                                hover={this.props.hover}
                                 className={`${this.name}__arrow`} />
                         </div>
                     </Div>
@@ -242,11 +242,11 @@ class PopupHint extends React.Component<Props, State> {
         )
 
         return (
-            <Div cursor={this.props.hint || this.props.help ? "help" : (this.props.hover ? "normal" : "pointer")} verticalAlign={"text-bottom"} display="inline-block" className={this.name} style={{...this.props.style}}>
+            <Div cursor={"help"} verticalAlign={"text-bottom"} display="inline-block" className={this.name} style={{...this.props.style}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
-                     onMouseEnter={(!this.props.hover && !this.props.hover) || this.state.expanded ? () => {} : this.expand}
-                     onMouseLeave={(this.props.hover || this.props.hint) && this.state.expanded ? this.collapse : () => {} }
+                     onMouseEnter={!this.props.hover || this.state.expanded ? () => {} : this.expand}
+                     onMouseLeave={this.props.hover && this.state.expanded ? this.collapse : () => {} }
                      onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
@@ -274,8 +274,8 @@ const HintArrow = css("div")({
     borderRight: "1px solid " + Color(colors.yellow).darken(0.3).string(),
     borderBottom: "1px solid " + Color(colors.yellow).darken(0.3).string(),
 },(props:any) => ({
-    background: props.hint ? "rgba(0,0,0,0.9)" : colors.yellow,
-    borderWidth:  props.hint ? "0px!important" : "1px",
+    background: props.hover ? "rgba(0,0,0,0.9)" : colors.yellow,
+    borderWidth:  props.hover ? "0px!important" : "1px",
 }))
 
 const HintContent = css("div")({
@@ -291,11 +291,11 @@ const HintContent = css("div")({
     borderColor: Color(colors.yellow).darken(0.3).string(),
     borderRadius: "2px"
 },(props:any) => ({
-    fontSize: props.hint ? "13px" : "16px",
-    background: props.hint ? "rgba(0,0,0,0.9)" : colors.yellow,
-    borderWidth:  props.hint ? "0px" : "1px",
-    padding: props.hint ? "2px 10px" : "10px",
-    color: props.hint ? "white" : "#333",
+    fontSize: props.hover ? "13px" : "16px",
+    background: props.hover ? "rgba(0,0,0,0.9)" : colors.yellow,
+    borderWidth:  props.hover ? "0px" : "1px",
+    padding: props.hover ? "2px 10px" : "10px",
+    color: props.hover ? "white" : "#333",
 }))
 
 export default PopupHint
