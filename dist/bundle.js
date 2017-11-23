@@ -11946,7 +11946,7 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                         } },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintArrow, { hint: this.props.hint, className: `${this.name}__arrow` }))))));
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { cursor: this.props.hint || this.props.help ? "help" : (this.props.hover ? "normal" : "pointer"), verticalAlign: "text-bottom", display: "inline-block", className: this.name, style: Object.assign({}, this.props.style) },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onMouseEnter: !this.props.hover || this.state.expanded ? () => { } : this.expand, onMouseLeave: this.props.hover && this.state.expanded ? this.collapse : () => { }, onClick: (e) => {
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onMouseEnter: (!this.props.hover && !this.props.hover) || this.state.expanded ? () => { } : this.expand, onMouseLeave: (this.props.hover || this.props.hint) && this.state.expanded ? this.collapse : () => { }, onClick: (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                 } },
@@ -11974,7 +11974,7 @@ const HintArrow = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     borderBottom: "1px solid " + __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
 }, (props) => ({
     background: props.hint ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
-    borderWidth: props.hint ? "0px" : "1px",
+    borderWidth: props.hint ? "0px!important" : "1px",
 }));
 const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     fontFamily: fontFamily,
