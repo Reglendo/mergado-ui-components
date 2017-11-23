@@ -9633,6 +9633,15 @@ const Tr = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("tr")({}, (prop
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Forms_TextInput__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_unique_id__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__ = __webpack_require__(6);
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 
 
 
@@ -9893,7 +9902,7 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
     render() {
         const open = this.isOpen();
-        const { labels, meta, input } = this.props;
+        const _a = this.props, { labels, meta, input } = _a, props = __rest(_a, ["labels", "meta", "input"]);
         const inputProps = Object.assign({}, this.props.input, {
             onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
             onBlur: this.handleInputBlur.bind(this),
@@ -9903,7 +9912,7 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
         });
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */], { label: "" },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Forms_TextInput__["a" /* default */], { id: "autocomplete-input", labels: labels, meta: meta, input: inputProps }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Forms_TextInput__["a" /* default */], Object.assign({}, props, { id: "autocomplete-input", labels: labels, meta: meta, input: inputProps })),
             open && this.renderMenu()));
     }
 }
@@ -9916,7 +9925,7 @@ Autocomplete.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_5__compo
     }, getItemValue: (item) => {
         return item.text;
     }, shouldItemRender: (item, value) => {
-        return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1);
+        return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1 || item.text);
     } });
 const Menu = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
