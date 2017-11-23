@@ -59,7 +59,7 @@ class Autocomplete extends  React.Component<Props, State> {
             return item.text
         },
         shouldItemRender: (item, value) => {
-            return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1)
+            return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1 || item.text)
         },
     }
 
@@ -348,7 +348,7 @@ class Autocomplete extends  React.Component<Props, State> {
 
     public render() {
         const open = this.isOpen()
-        const {labels, meta, input} = this.props
+        const {labels, meta, input, ...props} = this.props
         const inputProps = Object.assign({}, this.props.input, {
                 onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
                 onBlur: this.handleInputBlur.bind(this),
@@ -361,6 +361,7 @@ class Autocomplete extends  React.Component<Props, State> {
         return (
             <Field label="">
                 <TextInput
+                    {...props}
                     id={"autocomplete-input"}
                     labels={labels}
                     meta={meta}
