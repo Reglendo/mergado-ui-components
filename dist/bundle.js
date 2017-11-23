@@ -11935,7 +11935,7 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const hint = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Bubble__["a" /* default */], null,
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.state.expanded ? this.collapse : () => { } },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative", padding: "0 0 10px 0", className: `${this.name}__innerwrapper` },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintContent, { hint: this.props.hint, className: `${this.name}__content` }, this.props.children),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintContent, { hover: this.props.hover, className: `${this.name}__content` }, this.props.children),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "arrow", style: {
                             width: "12px",
                             height: "12px",
@@ -11944,9 +11944,9 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                             zIndex: 1000,
                             bottom: "9px"
                         } },
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintArrow, { hint: this.props.hint, className: `${this.name}__arrow` }))))));
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { cursor: this.props.hint || this.props.help ? "help" : (this.props.hover ? "normal" : "pointer"), verticalAlign: "text-bottom", display: "inline-block", className: this.name, style: Object.assign({}, this.props.style) },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onMouseEnter: (!this.props.hover && !this.props.hover) || this.state.expanded ? () => { } : this.expand, onMouseLeave: (this.props.hover || this.props.hint) && this.state.expanded ? this.collapse : () => { }, onClick: (e) => {
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintArrow, { hover: this.props.hover, className: `${this.name}__arrow` }))))));
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { cursor: "help", verticalAlign: "text-bottom", display: "inline-block", className: this.name, style: Object.assign({}, this.props.style) },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `${this.name}__trigger ${this.state.expanded ? "active" : ""}`, onMouseDown: this.state.expanded ? () => { } : this.expand, onMouseEnter: !this.props.hover || this.state.expanded ? () => { } : this.expand, onMouseLeave: this.props.hover && this.state.expanded ? this.collapse : () => { }, onClick: (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                 } },
@@ -11973,8 +11973,8 @@ const HintArrow = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     borderRight: "1px solid " + __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
     borderBottom: "1px solid " + __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
 }, (props) => ({
-    background: props.hint ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
-    borderWidth: props.hint ? "0px!important" : "1px",
+    background: props.hover ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
+    borderWidth: props.hover ? "0px!important" : "1px",
 }));
 const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     fontFamily: fontFamily,
@@ -11989,11 +11989,11 @@ const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")
     borderColor: __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
     borderRadius: "2px"
 }, (props) => ({
-    fontSize: props.hint ? "13px" : "16px",
-    background: props.hint ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
-    borderWidth: props.hint ? "0px" : "1px",
-    padding: props.hint ? "2px 10px" : "10px",
-    color: props.hint ? "white" : "#333",
+    fontSize: props.hover ? "13px" : "16px",
+    background: props.hover ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
+    borderWidth: props.hover ? "0px" : "1px",
+    padding: props.hover ? "2px 10px" : "10px",
+    color: props.hover ? "white" : "#333",
 }));
 /* harmony default export */ __webpack_exports__["a"] = (PopupHint);
 
