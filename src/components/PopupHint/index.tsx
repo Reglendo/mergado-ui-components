@@ -245,8 +245,8 @@ class PopupHint extends React.Component<Props, State> {
             <Div cursor={this.props.hint || this.props.help ? "help" : (this.props.hover ? "normal" : "pointer")} verticalAlign={"text-bottom"} display="inline-block" className={this.name} style={{...this.props.style}}>
                 <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
-                     onMouseEnter={!this.props.hover || this.state.expanded ? () => {} : this.expand}
-                     onMouseLeave={this.props.hover && this.state.expanded ? this.collapse : () => {} }
+                     onMouseEnter={(!this.props.hover && !this.props.hover) || this.state.expanded ? () => {} : this.expand}
+                     onMouseLeave={(this.props.hover || this.props.hint) && this.state.expanded ? this.collapse : () => {} }
                      onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
@@ -275,7 +275,7 @@ const HintArrow = css("div")({
     borderBottom: "1px solid " + Color(colors.yellow).darken(0.3).string(),
 },(props:any) => ({
     background: props.hint ? "rgba(0,0,0,0.9)" : colors.yellow,
-    borderWidth:  props.hint ? "0px" : "1px",
+    borderWidth:  props.hint ? "0px!important" : "1px",
 }))
 
 const HintContent = css("div")({

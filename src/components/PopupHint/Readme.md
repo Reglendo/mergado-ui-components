@@ -9,9 +9,9 @@
         What is this? <PopupHint hint={true} hover={true}>I'm hint on hover.</PopupHint><br/>
         What is this? <PopupHint hint={true} hover={true}>I'm hint on hover.</PopupHint><br/>
         What is this? <PopupHint help={true}>I'm help on click.</PopupHint><br/>
-        What is this? <PopupHint hint={true} hover={true}>I'm hint on hover.</PopupHint><br/>
-        What is this? <PopupHint hint={true} hover={true}>I'm hint on hover.</PopupHint><br/>
+        What is this? <PopupHint hint={true} >I'm hint on hover.</PopupHint><br/>
+        What is this? <PopupHint hint={true} >I'm hint on hover.</PopupHint><br/>
         What is this? <PopupHint help={true}>I'm help on click.</PopupHint><br/>
-        What is this? <PopupHint hint={true} hover={true}>I'm hint on hover.</PopupHint><br/>
+        What is this? <PopupHint hint={true}>I'm hint on hover.</PopupHint><br/>
         What is this? <PopupHint help={true}>I'm help on click.</PopupHint><br/>
     </Section>
