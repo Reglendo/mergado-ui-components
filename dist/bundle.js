@@ -4807,9 +4807,6 @@ Radio.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_2__components_F
 
 const Grid = (props) => {
     const { children } = props;
-    if (children === "" || children === null) {
-        return null;
-    }
     return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](GridStyle, Object.assign({}, props), children));
 };
 const GridStyle = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({}, (props) => {
@@ -4838,9 +4835,6 @@ const GridStyle = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
 
 const GridCell = (props) => {
     const { children } = props;
-    if (children === "" || children === null) {
-        return null;
-    }
     return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](GridCellStyle, Object.assign({}, props), children));
 };
 const GridCellStyle = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({}, (props) => {
@@ -11852,7 +11846,6 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             newX = buttonPosition.left - hint.offsetWidth + 14;
             arrowLeft = "";
             arrowRight = 0 + "px";
-            console.log("arrowRight");
         }
         else {
             newX = (buttonPosition.left - 2) > 0 ? (buttonPosition.left - 8) : 0;
