@@ -123,14 +123,14 @@ class PopupHint extends React.Component<Props, State> {
         let arrowRight: string
 
         if (renderLeft) {
-            newX = buttonPosition.left - hint.offsetWidth + 10
+            newX = buttonPosition.left - hint.offsetWidth + 14
             arrowLeft = ""
             arrowRight = 0 + "px"
             console.log("arrowRight")
 
         } else {
-            newX = (buttonPosition.left - 0) > 0 ? (buttonPosition.left - 0) : 0
-            arrowLeft = buttonPosition.left + 4 - newX + "px"
+            newX = (buttonPosition.left - 2) > 0 ? (buttonPosition.left - 8) : 0;
+            arrowLeft = buttonPosition.left - newX + "px"
             arrowRight = ""
         }
 
