@@ -123,12 +123,14 @@ class PopupHint extends React.Component<Props, State> {
         let arrowRight: string
 
         if (renderLeft) {
-            newX = buttonPosition.left - hint.offsetWidth + 30
+            newX = buttonPosition.left - hint.offsetWidth + 10
             arrowLeft = ""
-            arrowRight = 11 + "px"
+            arrowRight = 0 + "px"
+            console.log("arrowRight")
+
         } else {
-            newX = (buttonPosition.left - 10) > 0 ? (buttonPosition.left - 10) : 0
-            arrowLeft = buttonPosition.left - newX + "px"
+            newX = (buttonPosition.left - 0) > 0 ? (buttonPosition.left - 0) : 0
+            arrowLeft = buttonPosition.left + 4 - newX + "px"
             arrowRight = ""
         }
 
@@ -184,7 +186,7 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     protected getPosition(element: any): Position {
-        let top = 8
+        let top = 10
         let left = 0
         do {
             top += element.offsetTop || 0
@@ -198,39 +200,32 @@ class PopupHint extends React.Component<Props, State> {
         }
     }
 
-    protected getArrowPosition(buttonPosition: Position): Position {
-        return {
-            top: buttonPosition.top - 15 / 2,
-            left: buttonPosition.left - 21 / 2,
-        }
-    }
-
     public render() {
         const object: any = Object
         const style = object.assign({
-                                        display: this.state.expanded ? "" : "none",
-                                        position: "absolute",
-                                        zIndex: 10000,
-                                        outline: "none",
-                                        maxWidth: "600px",
-                                    },
-                                    this.props.style)
+                display: this.state.expanded ? "" : "none",
+                position: "absolute",
+                zIndex: 10000,
+                outline: "none",
+                maxWidth: "600px",
+            },
+            this.props.style)
 
         const hint: JSX.Element = (
             <Bubble>
                 <div ref={"hint"} className={`${this.name}__bubble`}
                      style={style} tabIndex={0}
                      onBlur={ this.state.expanded ? this.collapse : () => {} }
-                 >
+                >
                     <Div position={"relative"} padding={"0 0 10px 0"} className={`${this.name}__innerwrapper`}>
-                        <HintContent hover={this.props.hover} className={`${this.name}__content`}>{this.props.children}</HintContent>
+                        <HintContent hover={this.props.hover} className={`${this.name}__content`} id={`${this.name}__content`}>{this.props.children}</HintContent>
                         <div ref={"arrow"} style={{
                             width: "12px",
                             height: "12px",
                             position: "absolute",
                             display: "inline-block",
                             zIndex: 1000,
-                            bottom: "9px"
+                            bottom: "11px"
                         }}>
                             <HintArrow
                                 hover={this.props.hover}
@@ -248,10 +243,10 @@ class PopupHint extends React.Component<Props, State> {
                      onMouseEnter={!this.props.hover || this.state.expanded ? () => {} : this.expand}
                      onMouseLeave={this.props.hover && this.state.expanded ? this.collapse : () => {} }
                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                    }}
-                 >
+                         e.preventDefault()
+                         e.stopPropagation()
+                     }}
+                >
                     {this.props.hint ? <IconHintInfo size={16} /> : null}
                     {this.props.help ? <IconHintHelp size={16} /> : null}
                     {this.props.icon ? this.props.icon : null }
@@ -267,15 +262,15 @@ const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
 /* <style> */
 const HintArrow = css("div")({
     display: "inline-block",
-    width: "12px",
-    height: "12px",
+    width: "8px",
+    height: "8px",
     transform: "rotate(45deg)",
     zIndex: 11,
     borderRight: "1px solid " + Color(colors.yellow).darken(0.3).string(),
     borderBottom: "1px solid " + Color(colors.yellow).darken(0.3).string(),
 },(props:any) => ({
-    background: props.hover ? "rgba(0,0,0,0.9)" : colors.yellow,
-    borderWidth:  props.hover ? "0px!important" : "1px",
+    background: props.hover ? "rgba(50,50,50,1)" : colors.yellow,
+    borderColor:  props.hover ? "rgba(0,0,0,0.9)!important" : Color(colors.yellow).darken(0.3).string(),
 }))
 
 const HintContent = css("div")({
@@ -289,11 +284,11 @@ const HintContent = css("div")({
     border: "1px solid black",
     boxShadow: "3px 3px 12px -3px rgba(0,0,0,0.25)",
     borderColor: Color(colors.yellow).darken(0.3).string(),
-    borderRadius: "2px"
+    borderRadius: "3px"
 },(props:any) => ({
     fontSize: props.hover ? "13px" : "16px",
-    background: props.hover ? "rgba(0,0,0,0.9)" : colors.yellow,
-    borderWidth:  props.hover ? "0px" : "1px",
+    background: props.hover ? "rgba(50,50,50,1)" : colors.yellow,
+    borderColor: props.hover ?  "rgba(0,0,0,0.9) !important" : Color(colors.yellow).darken(0.3).string(),
     padding: props.hover ? "2px 10px" : "10px",
     color: props.hover ? "white" : "#333",
 }))
