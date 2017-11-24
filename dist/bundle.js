@@ -11849,13 +11849,14 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         let arrowLeft;
         let arrowRight;
         if (renderLeft) {
-            newX = buttonPosition.left - hint.offsetWidth + 30;
+            newX = buttonPosition.left - hint.offsetWidth + 10;
             arrowLeft = "";
-            arrowRight = 11 + "px";
+            arrowRight = 0 + "px";
+            console.log("arrowRight");
         }
         else {
-            newX = (buttonPosition.left - 10) > 0 ? (buttonPosition.left - 10) : 0;
-            arrowLeft = buttonPosition.left - newX + "px";
+            newX = (buttonPosition.left - 0) > 0 ? (buttonPosition.left - 0) : 0;
+            arrowLeft = buttonPosition.left + 4 - newX + "px";
             arrowRight = "";
         }
         if (hint.style.top === `${buttonPosition.top - hint.offsetHeight}px` &&
@@ -11905,7 +11906,7 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         })();
     }
     getPosition(element) {
-        let top = 8;
+        let top = 10;
         let left = 0;
         do {
             top += element.offsetTop || 0;
@@ -11915,12 +11916,6 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return {
             top,
             left,
-        };
-    }
-    getArrowPosition(buttonPosition) {
-        return {
-            top: buttonPosition.top - 15 / 2,
-            left: buttonPosition.left - 21 / 2,
         };
     }
     render() {
@@ -11935,14 +11930,14 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const hint = (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_8__Bubble__["a" /* default */], null,
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "hint", className: `${this.name}__bubble`, style: style, tabIndex: 0, onBlur: this.state.expanded ? this.collapse : () => { } },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative", padding: "0 0 10px 0", className: `${this.name}__innerwrapper` },
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintContent, { hover: this.props.hover, className: `${this.name}__content` }, this.props.children),
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintContent, { hover: this.props.hover, className: `${this.name}__content`, id: `${this.name}__content` }, this.props.children),
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "arrow", style: {
                             width: "12px",
                             height: "12px",
                             position: "absolute",
                             display: "inline-block",
                             zIndex: 1000,
-                            bottom: "9px"
+                            bottom: "11px"
                         } },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](HintArrow, { hover: this.props.hover, className: `${this.name}__arrow` }))))));
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { cursor: "help", verticalAlign: "text-bottom", display: "inline-block", className: this.name, style: Object.assign({}, this.props.style) },
@@ -11966,15 +11961,15 @@ PopupHint.defaultProps = {
 const fontFamily = "Arial, Helvetica, Verdana, Sans-serif";
 const HintArrow = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     display: "inline-block",
-    width: "12px",
-    height: "12px",
+    width: "8px",
+    height: "8px",
     transform: "rotate(45deg)",
     zIndex: 11,
     borderRight: "1px solid " + __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
     borderBottom: "1px solid " + __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
 }, (props) => ({
-    background: props.hover ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
-    borderWidth: props.hover ? "0px!important" : "1px",
+    background: props.hover ? "rgba(50,50,50,1)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
+    borderColor: props.hover ? "rgba(0,0,0,0.9)!important" : __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
 }));
 const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")({
     fontFamily: fontFamily,
@@ -11987,11 +11982,11 @@ const HintContent = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()("div")
     border: "1px solid black",
     boxShadow: "3px 3px 12px -3px rgba(0,0,0,0.25)",
     borderColor: __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
-    borderRadius: "2px"
+    borderRadius: "3px"
 }, (props) => ({
     fontSize: props.hover ? "13px" : "16px",
-    background: props.hover ? "rgba(0,0,0,0.9)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
-    borderWidth: props.hover ? "0px" : "1px",
+    background: props.hover ? "rgba(50,50,50,1)" : __WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow,
+    borderColor: props.hover ? "rgba(0,0,0,0.9) !important" : __WEBPACK_IMPORTED_MODULE_3_color__(__WEBPACK_IMPORTED_MODULE_6__styled_themes_default__["a" /* default */].yellow).darken(0.3).string(),
     padding: props.hover ? "2px 10px" : "10px",
     color: props.hover ? "white" : "#333",
 }));
