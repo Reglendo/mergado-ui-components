@@ -19,9 +19,6 @@ interface Props {
 
 const Grid = (props: Props) => {
     const { children } = props
-    if(children === "" || children === null) {
-        return null
-    }
 
     return (
         <GridStyle  {...props}>

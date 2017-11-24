@@ -16,9 +16,6 @@ interface Props {
 
 const GridCell = (props: Props) => {
     const { children } = props
-    if(children === "" || children === null) {
-        return null
-    }
 
     return (
         <GridCellStyle  {...props}>

@@ -126,7 +126,6 @@ class PopupHint extends React.Component<Props, State> {
             newX = buttonPosition.left - hint.offsetWidth + 14
             arrowLeft = ""
             arrowRight = 0 + "px"
-            console.log("arrowRight")
 
         } else {
             newX = (buttonPosition.left - 2) > 0 ? (buttonPosition.left - 8) : 0;
