@@ -3,6 +3,15 @@ Light select
     <Section>
         <Select name="select1" labels={{main: 'I, select'}}
                 options={ [{ title: 'foo', value: '1'},{ title: 'bar', value: '2'}] }  />
+                
+                
+       <Select name="select1" labels={{main: 'I, select'}}>
+                <option>1</option>
+                <optgroup label="hello world">
+                <option>2</option>
+                <option>3</option>
+                </optgroup>
+        </Select>
     </Section>
 
 

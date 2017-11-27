@@ -49,7 +49,7 @@ class Select extends React.Component<Props, {}> {
                         {...(!props.name && input)}
                         className={`${this.name}__item ${this.props.className}`}
                         aria-invalid={isInvalid ? 1 : 0}>
-                        {this.renderOptions()}
+                        {children ? children : this.renderOptions()}
                     </Element>
                     <IconChevronDown size={10}
                         style={{ opacity: 0.6, position: "absolute", bottom: "9px",
