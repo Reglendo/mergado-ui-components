@@ -19,6 +19,10 @@ module.exports = {
             content: './src/docs/Helpers.md'
         },
         {
+            name: 'Animations',
+            content: './src/docs/Helpers.md'
+        },
+        {
             name: 'Datagrid',
             components: './src/components/Datagrid/**/*.tsx',
             content: './src/docs/Datagrid.md'
