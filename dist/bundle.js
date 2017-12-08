@@ -9563,12 +9563,12 @@ class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const kids = [...this.props.children];
         const lastKid = kids.pop();
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Header, { className: `${this.name} ${this.name}--header ${addClass} ${className}`, selected: selectedRows.length > 0, style: style },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Header, { className: `${this.name} ${this.name}--header ${addClass} ${className}`, selected: selectedRows && selectedRows.length > 0, style: style },
                 actions.length > 0 &&
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__DataCell__["a" /* default */], { type: "header", style: { width: "1%" } },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__components_Forms_Checkbox__["a" /* default */], { input: { onChange: this.props.handleSelectAll, checked: this.props.selectedAll } })),
                 kids,
-                selectedRows.length > 0 ?
+                selectedRows && selectedRows.length > 0 ?
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__DataCell__["a" /* default */], { type: "header" },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout__["a" /* Div */], { display: "inline-block", verticalAlign: "bottom", className: `${this.name}__actions_bar` },
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](ActionsIcons, { className: `${this.name}__actions_icons` }, this.renderBulkActions())))
