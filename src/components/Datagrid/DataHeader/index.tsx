@@ -50,7 +50,7 @@ class DataHeader extends React.Component<Props, State> {
         const lastKid = kids.pop()
         return (
             <thead>
-                <Header className={`${this.name} ${this.name}--header ${addClass} ${className}`} selected={selectedRows.length > 0}
+                <Header className={`${this.name} ${this.name}--header ${addClass} ${className}`} selected={selectedRows && selectedRows.length > 0}
                         style={style}>
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
@@ -60,7 +60,7 @@ class DataHeader extends React.Component<Props, State> {
                         </DataCell>
                     }
                     {kids}
-                    {selectedRows.length > 0 ?
+                    {selectedRows && selectedRows.length > 0 ?
                         <DataCell type="header">
                             <Div display={"inline-block"} verticalAlign={"bottom"} className={`${this.name}__actions_bar`}>
                                 <ActionsIcons className={`${this.name}__actions_icons`}>
