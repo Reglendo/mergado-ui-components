@@ -3,7 +3,8 @@ import css from "cxs/component"
 import {Div} from "../../components/Layout"
 import * as Color from "color"
 import {prefix} from "../../config"
-
+import {animation as pulseAnimation} from "../../components/Animations/Pulse"
+import {animation as rotateAnimation} from "../../components/Animations/Rotate"
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado"
     /** Maximum dimension (width or height) */
@@ -145,27 +146,8 @@ const Wrapper = css("div")({
 
 const animations = props => {
     if(props.type === "mergado") {
-        const animation = {
-            "@keyframes pulse": {
-                "0%:": {
-                    borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
-                },
-                "25%": {
-                    borderColor: `${mergadoColors.bottom} ${mergadoColors.left} ${mergadoColors.top} ${mergadoColors.right}`
-                },
-                "50%": {
-                    borderColor: `${mergadoColors.right} ${mergadoColors.top} ${mergadoColors.left} ${mergadoColors.bottom}`
-                },
-                "75%": {
-                    borderColor: `${mergadoColors.left} ${mergadoColors.bottom} ${mergadoColors.right} ${mergadoColors.top}`
-                },
-                "100%": {
-                    borderColor: `${mergadoColors.top} ${mergadoColors.right} ${mergadoColors.bottom} ${mergadoColors.left}`
-                }
-            }
-        }
         return {
-            ...animation,
+            ...pulseAnimation,
             animation: `pulse 10s infinite linear`
         }
     } else {
@@ -180,8 +162,8 @@ const animations = props => {
             }
         }
         return {
-            ...animation,
-            animation: `spin 1.2s infinite linear`
+            ...rotateAnimation,
+            animation: `rotate 1.2s infinite linear`
         }
     }
 }
