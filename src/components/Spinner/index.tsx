@@ -66,7 +66,7 @@ class Spinner extends React.Component<Props, State> {
         }
         const { size, type, color, speed } = this.props
 
-        const containerStyle: any = {  width: size, height: size }
+        const containerStyle: any = {  width: size, height: type === "bubbles" ? size/1.5 : size }
         return (
             <Div display={"inline-block"} overflow={"hidden"}
                 className={`${this.name} ${this.name}--${this.props.type}`}
