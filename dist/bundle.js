@@ -12116,7 +12116,7 @@ class Spinner extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { style: { opacity: 1 } }, this.props.children));
         }
         const { size, type, color, speed } = this.props;
-        const containerStyle = { width: size, height: size };
+        const containerStyle = { width: size, height: type === "bubbles" ? size / 1.5 : size };
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { display: "inline-block", overflow: "hidden", className: `${this.name} ${this.name}--${this.props.type}`, style: containerStyle },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](AnimatedWrapper, Object.assign({}, this.props, { className: `${this.name}__wrapper` }),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: `${this.name}__content` }))));
