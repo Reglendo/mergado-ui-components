@@ -14,6 +14,10 @@ Spinner
         <div style={{display: 'table-cell', verticalAlign: 'top'}}>
             <Spinner loaded={state.loaded} type="mergado"><Icon type="mergado" text="I'm Mergado" /></Spinner>
         </div>
+        
+        <div style={{display: 'table-cell', verticalAlign: 'top'}}>
+            <Spinner loaded={state.loaded} type="bubbles">Hello world</Spinner>
+        </div>
         {! state.loaded ? (
             <button onClick={(e) => { e.preventDefault(); setState( { loaded: true }); }}>Stop loading</button>
          ) : (

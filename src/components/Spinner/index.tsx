@@ -5,12 +5,13 @@ import * as Color from "color"
 import {prefix} from "../../config"
 import {animation as pulseAnimation} from "../../components/Animations/Pulse"
 import {animation as rotateAnimation} from "../../components/Animations/Rotate"
+import theme from "../../styled/themes/ryzlink"
 export interface Props {
-    type?: "default" | "dashed" | "dotted" | "mergado"
+    type?: "default" | "dashed" | "dotted" | "mergado" | "bubbles"
     /** Maximum dimension (width or height) */
     size?: number
     loaded?: boolean
-    color?: "black" | "white" | "green" | "blue"
+    color?: string
     speed?: number
     style?: any
 }
@@ -33,7 +34,7 @@ class Spinner extends React.Component<Props, State> {
         type: "default",
         size: 30,
         loaded: false,
-        color: "white",
+        color: theme.decoration,
         style: {},
         speed: 1,
     }
@@ -71,7 +72,7 @@ class Spinner extends React.Component<Props, State> {
                 className={`${this.name} ${this.name}--${this.props.type}`}
                 style={containerStyle}>
                 <AnimatedWrapper {...this.props} className={`${this.name}__wrapper`}>
-                    <div className={`${this.name}__content`} style={{opacity: 0}}>{this.props.children}</div>
+                    <div className={`${this.name}__content`}></div>
                 </AnimatedWrapper>
             </Div>
         )
@@ -103,6 +104,33 @@ const Wrapper = css("div")({
                 maxWidth: 0,
                 maxHeight: 0,
                 overflow: "hidden",
+            },
+        }
+    } else if(props.type === "bubbles") {
+        type = {
+            borderRadius: "50%",
+            position: "relative",
+            textIndent: "-9999em",
+            color: props.color ? props.color : props.theme.decoration,
+            width: `${props.size / 3 - 2}px`,
+            height: `${props.size / 3 - 2}px`,
+            margin: "0 auto",
+            borderWidth: 0,
+            ":before,:after": {
+                content: " ",
+                display: "inline-block",
+                color: props.color ? props.color : props.theme.decoration,
+                position: "absolute",
+                borderRadius: "50%",
+                top: "0",
+                height: `${props.size / 3 - 2}px`,
+                width: `${props.size / 3 - 2}px`,
+            },
+            ":before": {
+                left: `-${props.size / 3}px`,
+            },
+            ":after": {
+                left: `${props.size / 3}px`,
             },
         }
     } else {
@@ -150,19 +178,35 @@ const animations = props => {
             ...pulseAnimation,
             animation: `pulse 10s infinite linear`
         }
-    } else {
-        const animation = {
-            "@keyframes spin": {
-                "0%": {
-                    transform: "rotate(0deg)",
+    } else if(props.type === "bubbles") {
+        return {
+            "@keyframes bubbles": {
+                "0%, 80%, 100%": {
+                    boxShadow: `0 ${props.size/3}px 0 -${props.size/5}px`,
                 },
-                "100%": {
-                    transform: "rotate(360deg)",
-                }
-            }
+                "40%": {
+                    boxShadow: `0 ${props.size/3}px 0 0`,
+                },
+            },
+            animationDelay: "-0.16s",
+            "&,:before,:after": {
+                animation: `bubbles 1.8s infinite ease-in-out`,
+                animationFillMode: "both",
+                transform: "translateZ(0)",
+                willChange: "box-shadow",
+            },
+            ":before": {
+                animationDelay: "-0.32s",
+            },
+            ":after": {
+                animationDelay: "0s",
+            },
         }
+    } else {
         return {
             ...rotateAnimation,
+            willChange: "transform",
+            transform: "translateZ(0)",
             animation: `rotate 1.2s infinite linear`
         }
     }
