@@ -64,7 +64,7 @@ Icon button
 
     <Section>
         <h3>Big icons</h3>
-        <Button icon={<Icon type="reglendo" size="25" />} /><code>&nbsp;</code>
+        <Button  keepColors={true} color="nocolor"  icon={<Icon type="reglendo" size="25" />} /><code>&nbsp;</code>
         <Button icon={<Icon type="search" size="25" />} color="nocolor" />
         <Button icon={<Icon type="pencil" size="25" />} color="nocolor" />
         <Button icon={<Icon type="play" size="25"/>} color="nocolor" />

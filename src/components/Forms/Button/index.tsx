@@ -15,6 +15,7 @@ export interface Props extends IFieldProps {
     disabled?: boolean
     onClick?: (evt: any) => any
     secondary?: boolean
+    keepColors?: boolean
 }
 
 class Button extends React.Component<Props, {}> {

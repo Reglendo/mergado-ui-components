@@ -15,7 +15,6 @@ const UniversalButtonComponent = ({...props}) => {
                     icon={icon}
                     children={children}
                     label={others.label ? others.label : labels.main}
-                    // styleClass={UniversalStyle}
                 />
     } else if(type === "button") {
         return <Button
@@ -26,7 +25,6 @@ const UniversalButtonComponent = ({...props}) => {
                     input={input}
                     children={children}
                     label={others.label ? others.label : labels.main}
-                    // styleClass={UniversalStyle}
                 />
     } else if(type === "link") {
         return <Link
@@ -37,7 +35,6 @@ const UniversalButtonComponent = ({...props}) => {
                     children={children}
                     link={to ? to : link}
                     label={others.label ? others.label : labels.main}
-                    // styleClass={UniversalStyle}
                 />
     } else if(type === "submit") {
         return <Submit
@@ -46,7 +43,6 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     input={input}
                     label={others.label ? others.label : labels.main}
-                    // styleClass={UniversalStyle}
                 />
     } else if(type === "void") {
         return <Void
@@ -56,7 +52,6 @@ const UniversalButtonComponent = ({...props}) => {
                     title={labels.title}
                     children={children}
                     label={others.label ? others.label : labels.main}
-                    // styleClass={UniversalStyle}
                 />
     } else {
         return <div/>
@@ -128,7 +123,7 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
               background: "rgba(200,200,200,0.2)",
             },
             " path": {
-                fill: props.theme.blue + "!important",
+                fill: props.keepColors ? "keep" : (props.theme.blue + "!important"),
             },
         }
     } else {
@@ -151,7 +146,7 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
                   color: "white",
                 },
                 " path": {
-                    fill: (props.color === "decoration" ? props.theme.blue : c) + "!important",
+                    fill: props.keepColors ? "keep" : ( (props.color === "decoration" ? props.theme.blue : c) + "!important"),
                 },
             }
         } else {
@@ -168,7 +163,7 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
                       borderColor: Color(c).darken(0.2).string(),
                 },
                 " path": {
-                    fill: (props.color === "decoration" ? props.theme.blue : "white") + "!important",
+                    fill: props.keepColors ? "keep" : ((props.color === "decoration" ? props.theme.blue : "white") + "!important"),
                 },
             }
         }
