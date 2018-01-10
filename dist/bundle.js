@@ -10156,7 +10156,7 @@ const UniversalButton = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(Un
                 background: "rgba(200,200,200,0.2)",
             },
             " path": {
-                fill: props.theme.blue + "!important",
+                fill: props.keepColors ? "keep" : (props.theme.blue + "!important"),
             },
         };
     }
@@ -10180,7 +10180,7 @@ const UniversalButton = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(Un
                     color: "white",
                 },
                 " path": {
-                    fill: (props.color === "decoration" ? props.theme.blue : c) + "!important",
+                    fill: props.keepColors ? "keep" : ((props.color === "decoration" ? props.theme.blue : c) + "!important"),
                 },
             };
         }
@@ -10198,7 +10198,7 @@ const UniversalButton = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(Un
                     borderColor: __WEBPACK_IMPORTED_MODULE_2_color__(c).darken(0.2).string(),
                 },
                 " path": {
-                    fill: (props.color === "decoration" ? props.theme.blue : "white") + "!important",
+                    fill: props.keepColors ? "keep" : ((props.color === "decoration" ? props.theme.blue : "white") + "!important"),
                 },
             };
         }
