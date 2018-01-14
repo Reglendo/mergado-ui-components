@@ -2508,6 +2508,8 @@ class Button extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__button__["a" /* UniversalButton */], Object.assign({}, this.props, { name: this.name }))));
     }
 }
+/* unused harmony export Button */
+
 Button.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_3__components_Forms_Field__["b" /* defaultFieldProps */], { type: "button", icon: null, color: "blue", disabled: false, size: "", secondary: false });
 const StyledField = __WEBPACK_IMPORTED_MODULE_1_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_3__components_Forms_Field__["a" /* Field */])({
     display: "inline-block",
