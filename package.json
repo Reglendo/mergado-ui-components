@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
@@ -26,7 +26,7 @@
   ],
   "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
-    "@reglendo/mergado-ui-icons": "1.1.5",
+    "@reglendo/mergado-ui-icons": "1.1.6",
     "color": "^2.0.0",
     "cxs": "https://github.com/Reglendo/cxs#v6.1.0-12-mod",
     "light-form": "https://github.com/Reglendo/light-form.git#v2.4.0-9",
