@@ -18,7 +18,7 @@ export interface Props extends IFieldProps {
     keepColors?: boolean
 }
 
-class Button extends React.Component<Props, {}> {
+export class Button extends React.Component<Props, {}> {
     protected readonly name = prefix + "button";
 
     public static defaultProps: Props = {
