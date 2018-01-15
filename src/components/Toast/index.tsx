@@ -107,7 +107,7 @@ class Toast extends React.Component<Props, State> {
                     className={`${this.name}__wrapper ${this.state.visible ? "" : this.name+"--hidden"}`}>
                     <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
                     <Content className={`${this.name}__content`}>
-                            {this.props.text ?
+                            {this.props.text && typeof this.props.text == "string" ?
                                 this.props.text.replace("%seconds%",this.state.secondsLeft + "s")
                             :
                                 this.props.children }
