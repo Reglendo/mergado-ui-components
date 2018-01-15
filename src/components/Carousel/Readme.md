@@ -1,11 +1,12 @@
 Carousel example:
 
     <Section>
-        <Carousel>
+        <Carousel topLayer={<div style={{position: "absolute", right: 0, top: 0}}>Hello, i'm on top layer</div>}>
             <div>
                 Slide 1
                 <div style={{maxWidth: "200px", margin: "auto"}}>
                     <Placeholder height={30} width={50} />
+                   
                 </div>
             </div>
             <div>

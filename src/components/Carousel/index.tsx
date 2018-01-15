@@ -7,6 +7,8 @@ import {Div} from "../Layout"
 import {Button} from "../Forms/Button"
 export interface Props {
     children: any
+    style?: any
+    topLayer?: JSX.Element
 }
 export interface State {
     active: number
@@ -36,11 +38,11 @@ export class Carousel extends React.Component<Props, State> {
         const translate = -((this.state.active - 1) / steps) * 100
 
         return (
-            <Wrapper> 
+            <Wrapper className={className} style={this.props.style}>
                 <BigButton color="nocolor" left={true} onClick={decreaseActive} icon={<IconChevronLeft size={20} />} />
 
-
-                <Div padding="10px 30px">
+                {this.props.topLayer}
+                <Div padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
                 <Slides count={steps} translate={translate}>
                     {this.props.children.map(o => {
                         return  <Slide active={this.state.active === i} data-next={i++}>
@@ -80,7 +82,9 @@ const Wrapper = css("div")({
     maxWidth: "100%",
     position: "relative",
     textAlign: "center",
-})
+}, props => ({
+        ...props.style,
+    }))
 
 const BigButton = css(Button)({
     position: "absolute", 
