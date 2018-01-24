@@ -4688,9 +4688,15 @@ class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
     renderChildren(children) {
-        return children.map(obj => {
-            return __WEBPACK_IMPORTED_MODULE_0_react__["cloneElement"](obj, Object.assign({}, obj.props, { actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
-        });
+        const ch = !Array.isArray(children) ? [children] : children;
+        if (Array.isArray(ch)) {
+            return ch.map(obj => {
+                return __WEBPACK_IMPORTED_MODULE_0_react__["cloneElement"](obj, Object.assign({}, obj.props, { actions: this.props.bulkActions, labels: this.props.labels, selectedAll: this.state.selectedAll, handleSelectAll: this.handleSelectAll.bind(this), handleSelectRow: this.handleSelectRow.bind(this), selectedRows: this.state.selectedRows }));
+            });
+        }
+        else {
+            return false;
+        }
     }
     renderFiltersBar() {
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { marginBottom: "10px", verticalAlign: "middle", className: `${this.name}__filters_bar` },
@@ -5051,7 +5057,7 @@ class Toast extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "wrapper" },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Wrapper, { type: this.props.type, style: this.props.style, hidden: !this.state.visible, className: `${this.name}__wrapper ${this.state.visible ? "" : this.name + "--hidden"}` },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Icon, { className: `${this.name}__icon` }, this.props.icon),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Content, { className: `${this.name}__content` }, this.props.text ?
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Content, { className: `${this.name}__content` }, this.props.text && typeof this.props.text == "string" ?
                     this.props.text.replace("%seconds%", this.state.secondsLeft + "s")
                     :
                         this.props.children),
