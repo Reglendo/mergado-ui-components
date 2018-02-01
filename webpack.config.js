@@ -32,7 +32,6 @@ const config = {
         alias: {
             "react": "preact-compat",
             "react-dom": "preact-compat",
-            "moment": "moment-mini",
         }
 	}
 };
