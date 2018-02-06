@@ -75,7 +75,6 @@ const StyledField = css(Field)({
         ...inputStyles
     }
 }, props => {
-    console.log(inputStylesProps)
     return {
     " input[type=text]": inputStylesProps(props)
 }})
