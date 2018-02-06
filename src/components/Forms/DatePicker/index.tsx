@@ -15,14 +15,11 @@ import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInp
 export interface Props extends IFieldProps {
 
 }
-
-
 export interface State {
     startDate: any
-
 }
 
-class DatePicker extends React.Component<Props, State> {
+export class DatePicker extends React.Component<Props, State> {
 
     protected readonly name = prefix + "colorpicker"
 
@@ -75,9 +72,6 @@ const StyledField = css(Field)({
         ...inputStyles
     }
 }, props => {
-    console.log(inputStylesProps)
     return {
     " input[type=text]": inputStylesProps(props)
 }})
-
-export default DatePicker

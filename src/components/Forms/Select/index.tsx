@@ -12,7 +12,7 @@ export interface Props extends IFieldProps {
     options?: any
 }
 
-class Select extends React.Component<Props, {}> {
+export class Select extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "select";
 
@@ -120,5 +120,3 @@ const stylesProps = (props) => {
 
 const StyledSelect = css("select")(styles,stylesProps)
 const StyledLightSelect = css(LightSelect)(styles,stylesProps)
-
-export default Select

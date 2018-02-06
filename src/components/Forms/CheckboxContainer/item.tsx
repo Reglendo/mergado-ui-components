@@ -2,10 +2,10 @@ import * as React from "react"
 import {Link} from "react-router"
 import css from "cxs/component"
 
-import Radio from "../../../components/Forms/Radio"
-import Checkbox from "../../../components/Forms/Checkbox"
+import {Radio} from "../../../components/Forms/Radio"
+import {Checkbox} from "../../../components/Forms/Checkbox"
 
-import LittleStatus from "../../../components/LittleStatus"
+import {LittleStatus} from "../../../components/LittleStatus"
 
 interface IQueryItemProps {
     name: string

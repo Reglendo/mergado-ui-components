@@ -10,7 +10,7 @@ import {Input} from "light-form/dist/es"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import Button from "../../../components/Forms/Button"
+import {Button} from "../../../components/Forms/Button"
 
 export interface Props extends IFieldProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
@@ -22,7 +22,7 @@ interface State {
     passwordVisible: boolean
 }
 
-class TextInput extends React.Component<Props, State> {
+export class TextInput extends React.Component<Props, State> {
     protected _inputRef = null
     protected readonly name = prefix + "input-text"
     public static defaultProps: Props = {
@@ -153,5 +153,3 @@ const ButtonClose = css(Button)({
     bottom: "8px",
     position: "absolute",
 })
-
-export default TextInput

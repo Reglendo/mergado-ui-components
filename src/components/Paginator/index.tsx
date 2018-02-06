@@ -36,7 +36,7 @@ export interface State {
     current: number
 }
 
-class Paginator extends React.Component<Props, State> {
+export class Paginator extends React.Component<Props, State> {
 
     private readonly name = prefix + "paginator";
 
@@ -218,5 +218,3 @@ const Active = css(Button)({
         },
     }
 })
-
-export default Paginator

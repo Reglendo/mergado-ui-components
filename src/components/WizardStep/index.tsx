@@ -12,7 +12,7 @@ export interface Props {
 export interface State {
 }
 
-class WizardStep extends React.Component<Props, State> {
+export class WizardStep extends React.Component<Props, State> {
 
     private readonly name = prefix + "wizard_nav__item";
 
@@ -95,4 +95,3 @@ const Link = css("a")({
         color: "#fff",
     }
 })
-export default WizardStep

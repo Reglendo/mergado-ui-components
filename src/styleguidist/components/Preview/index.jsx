@@ -112,7 +112,6 @@ export default class Preview extends PureComponent {
 		if (!code) {
 			return;
 		}
-
 			const compiledCode = compileCode(code);
 
 			// Initiate state and set with the callback in the bottom component;
@@ -145,7 +144,6 @@ export default class Preview extends PureComponent {
 			`;
 
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
-
 			// Wrap everything in a react component to leverage the state management of this component
 			class PreviewComponent extends PureComponent { // eslint-disable-line react/no-multi-comp
 				constructor() {

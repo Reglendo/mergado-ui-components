@@ -2,12 +2,12 @@ import * as React from "react"
 import cxs from "cxs/component"
 import {Div} from "../../../components/Layout"
 import {prefix} from "../../../config"
-import TextInput from "../../../components/Forms/TextInput"
-import Checkbox from "../../../components/Forms/Checkbox"
+import {TextInput} from "../../../components/Forms/TextInput"
+import {Checkbox} from "../../../components/Forms/Checkbox"
 import { ID, Action, Filter } from "../../../helpers/types"
 import domOnlyProps from "../../../helpers/dom-only-props"
-import Grid from "../../../components/Layout/Grid"
-import GridCell from "../../../components/Layout/GridCell"
+import {Grid} from "../../../components/Layout/Grid"
+import {GridCell} from "../../../components/Layout/GridCell"
 
 export interface Props {
     bulkActions?: Action[]
@@ -25,7 +25,7 @@ export interface State {
     selectedRows: ID[]
 }
 
-class DataTable extends React.Component<Props, State> {
+export class DataTable extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         bulkActions: [],
@@ -179,5 +179,3 @@ const CheckboxFilter = cxs(Checkbox)({
     whiteSpace: "nowrap",
     display: "inline-block",
 })
-
-export default DataTable

@@ -6,7 +6,7 @@ interface Props {
     children?: any
 }
 
-const Widget = (props: Props) => {
+export const Widget = (props: Props) => {
     const { children } = props
     if(children === "" || children === null) {
         return null
@@ -35,9 +35,7 @@ const WidgetStyle = css("div")({
         display: "table-cell",
         verticalAlign: "middle"
     },
-    ".widget-status": {
+    " .widget-status": {
         width: "100%"
     }
 })
-
-export default Widget

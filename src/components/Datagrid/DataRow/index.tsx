@@ -1,8 +1,8 @@
 import * as React from "react"
 import cxs from "cxs/component"
 import {prefix} from "../../../config"
-import DataCell from "../DataCell"
-import Checkbox from "../../../components/Forms/Checkbox"
+import {DataCell} from "../DataCell"
+import {Checkbox} from "../../../components/Forms/Checkbox"
 import { ID, Action } from "../../../helpers/types"
 
 export interface Props {
@@ -25,7 +25,7 @@ export interface Props {
 export interface State {
 }
 
-class DataRow extends React.Component<Props, State> {
+export class DataRow extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
@@ -84,5 +84,3 @@ const Tr = cxs("tr")({
         },
     }
 })
-
-export default DataRow

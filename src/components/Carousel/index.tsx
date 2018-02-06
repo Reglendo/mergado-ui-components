@@ -126,5 +126,3 @@ const Circle = css(Button)({
     padding: "5px",
     color: "#333",
 })
-
-export default Carousel

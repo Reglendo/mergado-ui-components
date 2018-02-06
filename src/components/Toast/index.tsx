@@ -3,7 +3,7 @@ import css from "cxs/component"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
-import Button from "../Forms/Button"
+import {Button} from "../Forms/Button"
 import {Type} from "../../helpers/types"
 
 
@@ -25,7 +25,7 @@ export interface State {
     secondsLeft: number
 }
 
-class Toast extends React.Component<Props, State> {
+export class Toast extends React.Component<Props, State> {
     private readonly name = prefix + "toast";
     private countdown;
     public static defaultProps: Props = {
@@ -183,5 +183,3 @@ const CloseButton = css("div")({
         },
     }
 })
-
-export default Toast

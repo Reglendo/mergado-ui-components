@@ -3,7 +3,7 @@ import cxs from "cxs/component"
 import * as Color from "color"
 
 import {prefix,form} from "../../../config"
-import TextInput from "../../../components/Forms/TextInput"
+import {TextInput} from "../../../components/Forms/TextInput"
 import uniqueId from "../../../helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 
@@ -32,7 +32,7 @@ export interface State {
     menuWidth: number
 }
 
-class Autocomplete extends  React.Component<Props, State> {
+export class Autocomplete extends  React.Component<Props, State> {
     public readonly props: Props;
     public state: State;
 
@@ -413,5 +413,3 @@ const MenuItem = cxs("div")({
         }
     }
 })
-
-export default Autocomplete

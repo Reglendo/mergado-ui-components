@@ -14,7 +14,7 @@ interface Props {
     style?: any
 }
 
-const GridCell = (props: Props) => {
+export const GridCell = (props: Props) => {
     const { children } = props
 
     return (
@@ -35,5 +35,3 @@ const GridCellStyle = css("div")({
         alignSelf: props.valign ? props.valign : "stretch",
     }
 })
-
-export default GridCell

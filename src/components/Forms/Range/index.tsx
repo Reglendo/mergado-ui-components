@@ -6,9 +6,9 @@ import {Input as LightInput} from "light-form/dist/es"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import TextInput from "../../../components/Forms/TextInput"
-import Grid from "../../../components/Layout/Grid"
-import GridCell from "../../../components/Layout/GridCell"
+import {TextInput} from "../../../components/Forms/TextInput"
+import {Grid} from "../../../components/Layout/Grid"
+import {GridCell} from "../../../components/Layout/GridCell"
 
 export interface Props extends IFieldProps {
     max: number
@@ -21,7 +21,7 @@ export interface State {
     value: any
 }
 
-class Range extends React.Component<Props,State> {
+export class Range extends React.Component<Props,State> {
 
     protected readonly name = prefix + "input-range";
 
@@ -158,5 +158,3 @@ const styles = {
 }
 const StyledInput = css("input")(styles)
 const StyledLightInput = css(LightInput)(styles)
-
-export default Range

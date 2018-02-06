@@ -2,8 +2,8 @@ import * as React from "react"
 import {Link} from "react-router"
 import css from "cxs/component"
 import {prefix, form} from "../../../config"
-import LittleStatus from "../../../components/LittleStatus"
-import TextInput from "../../../components/Forms/TextInput"
+import {LittleStatus} from "../../../components/LittleStatus"
+import {TextInput} from "../../../components/Forms/TextInput"
 import uniqueId from "../../../helpers/unique_id"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {QueryList} from "./list"
@@ -44,7 +44,7 @@ export interface State {
     filter: string
 }
 
-class CheckboxContainer extends React.Component<Props,State> {
+export class CheckboxContainer extends React.Component<Props,State> {
 
     protected readonly name = prefix + "checkbox_container";
     public readonly props: Props;
@@ -125,5 +125,3 @@ const StyledField = css(Field)({
         border: "none !important",
     },
 })
-
-export default CheckboxContainer

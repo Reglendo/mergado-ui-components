@@ -8,7 +8,7 @@ interface Props {
     children?: any
 }
 
-const Header = (props: Props) => {
+export const Header = (props: Props) => {
     const { children, type } = props
     if(children === "" || children === null) {
         return null
@@ -85,6 +85,3 @@ const H5 =  css("h5")({
     margin:  "20px 0 0 0",
     fontWeight: 700,
 })
-
-
-export default Header

@@ -16,7 +16,7 @@ export interface Props {
 }
 export interface State {
 }
-class Icon extends React.Component<Props, State> {
+export class Icon extends React.Component<Props, State> {
 
     private readonly name = prefix + "icon";
 
@@ -50,5 +50,3 @@ class Icon extends React.Component<Props, State> {
         )
     }
 }
-
-export default Icon

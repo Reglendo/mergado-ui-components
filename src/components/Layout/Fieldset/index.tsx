@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "cxs/component"
 
-import Header from "../Header"
+import {Header} from "../Header"
 import domOnlyProps from "../../../helpers/dom-only-props"
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
     children?: any
 }
 
-const Fieldset = (props: Props) => {
+export const Fieldset = (props: Props) => {
         const { children, header } = props
         if(children === "" || children === null) {
             return null
@@ -27,5 +27,3 @@ const FFieldset = css("fieldset")({
     padding: 0,
     margin: 0,
 })
-
-export default Fieldset

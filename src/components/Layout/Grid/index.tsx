@@ -1,6 +1,5 @@
 import * as React from "react"
 import css from "cxs/component"
-import domOnlyProps from "../../../helpers/dom-only-props"
 
 interface Props {
     inline?: boolean
@@ -17,7 +16,7 @@ interface Props {
     style?: any
 }
 
-const Grid = (props: Props) => {
+export const Grid = (props: Props) => {
     const { children } = props
 
     return (
@@ -40,5 +39,3 @@ const GridStyle = css("div")({
         gridAutoFlow: props.autoFlow ? props.autoFlow : "row",
     }
 })
-
-export default Grid

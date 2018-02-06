@@ -12,7 +12,7 @@ export interface Props extends IFieldProps {
     reverse?: boolean
 }
 
-class Toggler extends React.Component<Props, {}> {
+export class Toggler extends React.Component<Props, {}> {
     protected readonly name = prefix + "input-toggler"
 
     public static defaultProps: Props = {
@@ -139,5 +139,3 @@ const StyledInput = css("span")({
         borderColor: `${props.theme.blue}`,
     },
 }})
-
-export default Toggler

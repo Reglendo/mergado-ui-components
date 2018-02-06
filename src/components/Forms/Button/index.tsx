@@ -57,5 +57,3 @@ const StyledField = cxs(Field)({
     display: "inline-block",
     verticalAlign: "top",
 })
-
-export default Button

@@ -12,7 +12,7 @@ export interface Props extends IFieldProps {
 const StyledTextarea = css("textarea")(styles, stylesProps)
 const StyledLightTextarea = css(LightTextarea)(styles, stylesProps)
 
-class Textarea extends React.Component<Props, {}> {
+export class Textarea extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "textarea";
 
@@ -44,5 +44,3 @@ class Textarea extends React.Component<Props, {}> {
         )
     }
 }
-
-export default Textarea

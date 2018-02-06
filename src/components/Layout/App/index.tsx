@@ -8,7 +8,7 @@ interface Props {
     children?: any
 }
 
-const App = (props: Props) => {
+export const App = (props: Props) => {
     const {children, className, style} = props
     return  <AppStyles className={className} style={style}>
                 {children}
@@ -299,5 +299,3 @@ const AppStyles = css("div")({
     ...helpers,
     ...typo,
 })
-
-export default App

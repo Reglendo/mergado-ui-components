@@ -7,8 +7,7 @@ import IconHintInfo from "@reglendo/mergado-ui-icons/lib/icons/IconHintInfo"
 import IconHintHelp from "@reglendo/mergado-ui-icons/lib/icons/IconHintHelp"
 import colors from "../../styled/themes/default"
 import {prefix} from "../../config"
-import Bubble from "./Bubble"
-import _debounce from "lodash/debounce"
+import {Bubble} from "./Bubble"
 
 export interface Props {
     icon?: JSX.Element
@@ -29,7 +28,7 @@ export interface Position {
 
 /* </style> */
 
-class PopupHint extends React.Component<Props, State> {
+export class PopupHint extends React.Component<Props, State> {
 
     private readonly name = prefix + "popup_hint";
 
@@ -291,5 +290,3 @@ const HintContent = css("div")({
     padding: props.hover ? "2px 10px" : "10px",
     color: props.hover ? "white" : "#333",
 }))
-
-export default PopupHint

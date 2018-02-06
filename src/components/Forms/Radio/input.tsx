@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "cxs/component"
-import Button from "../../../components/Forms/Button"
+import {Button} from "../../../components/Forms/Button"
 import {Input as LightInput} from "light-form/dist/es"
 
 interface IInputProps {
@@ -14,7 +14,7 @@ interface IInputProps {
     hideInput?: boolean
 }
 
-const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
+export const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                                              onChange, bigButtons, hideInput, ...props}) => {
     const Element = name ? StyledLightInput : Input
     if(bigButtons) {
@@ -167,5 +167,3 @@ const StyledInput = css("span")({
         }
     }
 })
-
-export default RadioInput

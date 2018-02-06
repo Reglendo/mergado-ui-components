@@ -13,7 +13,7 @@ export interface State {
 
 /* </style> */
 
-class WizardNav extends React.Component<Props, State> {
+export class WizardNav extends React.Component<Props, State> {
 
     private readonly name = prefix + "wizard_nav";
 
@@ -57,5 +57,3 @@ const Nav = css("nav")({
         backgroundColor: props.theme.grey,
     }
 })
-
-export default WizardNav

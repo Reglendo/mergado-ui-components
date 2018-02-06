@@ -23,7 +23,7 @@ export interface State {
     color: string
 }
 
-class ColorPicker extends React.Component<Props, State> {
+export class ColorPicker extends React.Component<Props, State> {
 
     protected readonly name = prefix + "colorpicker"
 
@@ -334,5 +334,3 @@ const style = `
   padding-top: 2px;
 }
 `
-
-export default ColorPicker

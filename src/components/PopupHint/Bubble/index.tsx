@@ -11,7 +11,7 @@ export interface State {
 /**
  * disable-styleguide
  */
-class Bubble extends React.Component<Props, State> {
+export class Bubble extends React.Component<Props, State> {
 
     private readonly name = prefix + "popup_hint__bubble";
     public popup;
@@ -47,5 +47,3 @@ class Bubble extends React.Component<Props, State> {
         return (<div/>)
     }
 }
-
-export default Bubble

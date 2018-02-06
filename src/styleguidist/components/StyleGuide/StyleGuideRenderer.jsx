@@ -10,7 +10,7 @@ import p from '../Playground/Playground.css';
 
 import rc from '../ReactComponent/ReactComponent.css';
 
-import Root from "/src/components/Layout/App/index.tsx";
+import {App as Root} from "/src/components/Layout/App/index.tsx";
 
 var json = require("../../../../package.json")
 
@@ -179,7 +179,6 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
 
                         </div>
     				}
-
                     <style>
                         {compact && compactStyle}
                     </style>
@@ -187,7 +186,6 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
     		</main>
             <style>
                 {style}
-
             </style>
     	</div>
     </Root>

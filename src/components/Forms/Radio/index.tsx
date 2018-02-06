@@ -2,7 +2,7 @@ import * as React from "react"
 
 import {prefix} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import RadioInput from "./input"
+import {RadioInput} from "./input"
 
 interface IItem {
     value: string
@@ -14,7 +14,7 @@ export interface Props extends IFieldProps {
     bigButtons?: boolean
 }
 
-class Radio extends React.Component<Props, {}> {
+export class Radio extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "input-radio";
 
@@ -54,5 +54,3 @@ class Radio extends React.Component<Props, {}> {
     }
 
 }
-
-export default Radio

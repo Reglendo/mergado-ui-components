@@ -19,7 +19,7 @@ export interface State {
     loaded: boolean
 }
 
-class Spinner extends React.Component<Props, State> {
+export class Spinner extends React.Component<Props, State> {
 
     private readonly name = prefix + "spinner";
     constructor(props: Props) {
@@ -213,5 +213,3 @@ const animations = props => {
 }
 
 const AnimatedWrapper = css(Wrapper)(animations)
-
-export default Spinner

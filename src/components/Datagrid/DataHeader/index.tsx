@@ -2,10 +2,10 @@ import * as React from "react"
 import {Div} from "../../../components/Layout"
 import cxs from "cxs/component"
 import {prefix} from "../../../config"
-import DataCell from "../DataCell"
-import Checkbox from "../../../components/Forms/Checkbox"
+import {DataCell} from "../DataCell"
+import {Checkbox} from "../../../components/Forms/Checkbox"
 import { ID, Action } from "../../../helpers/types"
-import Button from "../../../components/Forms/Button"
+import {Button} from "../../../components/Forms/Button"
 
 export interface Props {
     style?: any
@@ -22,7 +22,7 @@ export interface Props {
 export interface State {
 }
 
-class DataHeader extends React.Component<Props, State> {
+export class DataHeader extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
@@ -82,10 +82,7 @@ export const ActionsIcons = cxs("div")({
         fill: "white!important",
     },
 })
-
 const Header = cxs("tr")(
 (props: any) => { return {
     background: props.selected ? props.theme.blue : "#333",
 }})
-
-export default DataHeader

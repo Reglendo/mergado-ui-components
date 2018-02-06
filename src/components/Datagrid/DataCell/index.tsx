@@ -13,7 +13,7 @@ export interface Props {
 export interface State {
 }
 
-class DataCell extends React.Component<Props, State> {
+export class DataCell extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
@@ -74,5 +74,3 @@ const Th = cxs("th")({
     fontSize: props.theme.table_header_text_size,
     textTransform: props.theme.table_header_text_transform,
 }})
-
-export default DataCell

@@ -11,7 +11,7 @@ export interface Props extends IFieldProps {
     halfway?: boolean
 }
 
-class Checkbox extends React.Component<Props, {}> {
+export class Checkbox extends React.Component<Props, {}> {
     protected readonly name = prefix + "input-checkbox"
 
     public static defaultProps: Props = {
@@ -115,5 +115,3 @@ const StyledInput = css("span")({
         borderColor: `${props.theme.blue}`,
     },
 }})
-
-export default Checkbox

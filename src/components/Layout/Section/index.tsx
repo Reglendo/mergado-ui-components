@@ -10,7 +10,7 @@ interface Props {
     children?: any
 }
 
-const Section = (props: Props) => {
+export const Section = (props: Props) => {
     const { children, header } = props
     if(children === "" || children === null) {
         return null
@@ -77,5 +77,3 @@ const SSection = css("section")({
         padding: props.theme.section_padding,
     }
 })
-
-export default Section

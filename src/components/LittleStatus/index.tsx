@@ -12,9 +12,9 @@ export interface Props {
 export interface State {
 }
 
-class LittleStatus extends React.Component<Props, State> {
+export class LittleStatus extends React.Component<Props, State> {
 
-    private readonly name = prefix + "little_status";
+    private readonly name = prefix + "little_status"
 
     public static defaultProps: Props = {
         title: "",
@@ -69,5 +69,3 @@ const Text = css("span")({
         textDecoration: "none",
     },
 })
-
-export default LittleStatus

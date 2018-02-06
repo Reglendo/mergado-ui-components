@@ -14,7 +14,7 @@ export interface Props {
 export interface State {
 }
 
-class Placeholder extends React.Component<Props, State> {
+export class Placeholder extends React.Component<Props, State> {
 
     private readonly name = prefix + "placeholder";
 
@@ -67,5 +67,3 @@ const Container = css("div")({
     textAlign: "center",
     verticalAlign: "middle",
 })
-
-export default Placeholder

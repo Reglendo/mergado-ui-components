@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import {prefix} from "../../config"
-import Toast from "../Toast"
+import {Toast} from "../Toast"
 import uniqueId from "../../helpers/unique_id"
 
 export interface Props {
@@ -13,7 +13,7 @@ export interface State {
     toasts: Array<Toast|JSX.Element>
 }
 
-class Toasts extends React.Component<Props, State> {
+export class Toasts extends React.Component<Props, State> {
 
     private readonly name = prefix + "toasts-container";
 
@@ -53,5 +53,3 @@ class Toasts extends React.Component<Props, State> {
         )
     }
 }
-
-export default Toasts
