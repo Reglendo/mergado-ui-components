@@ -1,6 +1,5 @@
 import * as React from "react"
 import css from "cxs/component"
-import domOnlyProps from "../../../helpers/dom-only-props"
 
 interface Props {
     children?: any
@@ -13,7 +12,7 @@ const Widget = (props: Props) => {
     }
 
     return (
-        <WidgetStyle  {...domOnlyProps(props)}>
+        <WidgetStyle>
             {children}
         </WidgetStyle>
     )
@@ -37,7 +36,16 @@ const WidgetStyle = css("div")({
     },
     ".widget-status": {
         width: "100%"
-    }
+    },
+    "!::-webkit-scrollbar": {
+        display: "none",
+    },
+    "!body": {
+        backgroundColor: "white",
+        marginTop: 0,
+        fontFamily: "Arial, Helvetica, Verdana, Sans-serif",
+    },
+
 })
 
 export default Widget
