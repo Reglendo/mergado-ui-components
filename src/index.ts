@@ -11,6 +11,7 @@ export {Range} from "./components/Forms/Range"
 export {Select} from "./components/Forms/Select"
 export {TextInput} from "./components/Forms/TextInput"
 export {Textarea} from "./components/Forms/Textarea"
+export {Toggler} from "./components/Forms/Toggler"
 
 
 // Components
@@ -37,6 +38,7 @@ export {DataRow} from "./components/Datagrid/DataRow"
 export {DataTable} from "./components/Datagrid/DataTable"
 
 // Layout
+export {App} from "./components/Layout/App"
 export {Fieldset} from "./components/Layout/Fieldset"
 export {Header} from "./components/Layout/Header"
 export {Section} from "./components/Layout/Section"
