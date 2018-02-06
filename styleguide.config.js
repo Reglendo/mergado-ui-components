@@ -5,9 +5,7 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
     title: ' MUK / Mergado UI Kit',
-    highlightTheme: 'rubyblue',
-    serverPort: '3001',
-    template: path.join(__dirname, './src/styleguidist/templates/index.html'),
+    serverPort: 3001,
     sections: [
         {
             name: 'Layout',
@@ -46,81 +44,31 @@ module.exports = {
     propsParser: require('react-docgen-typescript').parse,
     showCode: true,
     styleguideDir: path.join(__dirname, 'docs'),
-    updateWebpackConfig(webpackConfig) {
-        // Your source files folder or array of folders, should not include node_modules
-        const dir = path.join(__dirname, 'src', 'styleguidist');
-
-        webpackConfig.resolve.extensions = ['.js', '.jsx', '.ts', '.tsx','.json'];
-
-        webpackConfig.resolve.modules.push(path.resolve(__dirname, "src/components"));
-        webpackConfig.resolve.modules.push(path.resolve(__dirname, "src"));
-
-
-        webpackConfig.resolve.alias['react'] = "preact-compat"
-        webpackConfig.resolve.alias['react-dom'] = "preact-compat"
-
-        webpackConfig.resolve.alias['rsg-components/Props'] =
-            path.join(dir, 'components/Props');
-
-
-
-        webpackConfig.resolve.alias['rsg-components/StyleGuide'] =
-            path.join(dir, 'components/StyleGuide/StyleGuide');
-
-        webpackConfig.resolve.alias['rsg-components/StyleGuide/StyleGuideRenderer'] =
-            path.join(dir, 'components/StyleGuide/StyleGuideRenderer');
-
-        webpackConfig.resolve.alias['rsg-components/Playground'] =
-            path.join(dir, 'components/Playground');
-
-        webpackConfig.resolve.alias['rsg-components/Playground/PlaygroundRenderer'] =
-            path.join(dir, 'components/Playground/PlaygroundRenderer');
-
-        webpackConfig.resolve.alias['rsg-components/Preview'] =
-            path.join(dir, 'components/Preview');
-
-        webpackConfig.resolve.alias['rsg-components/ReactComponent/ReactComponentRenderer'] =
-            path.join(dir, 'components/ReactComponent');
-
-
-
-        webpackConfig.resolve.alias['rsg-components/Editor'] =
-            path.join(dir, 'components/Editor');
-
-
-        webpackConfig.resolve.alias['rsg-components/Markdown'] = path.join(dir, 'components/Markdown');
-
-
-        webpackConfig.module.loaders.push(
-            {
-                test: /\.(jsx|js)$/,
-                exclude: /node_modules/,
-                loader: 'babel',
-            },
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                loader: 'style!css?modules&importLoaders=1'
-            },
-            {
-                include: /.*/,
-                loader: 'awesome-typescript-loader',
-                test: /\.(ts|tsx)$/,
-                options: {
-                    configFileName: "./tsconfig.json"
-
-                }
-            }
-
-        );
-
-
-        webpackConfig.plugins.push(
-            new ExtractTextPlugin({ filename: 'dist/css/styleguide.css',
-                allChunks: true
-            })
-        );
-
-        return webpackConfig;
-    },
+    webpackConfig: {
+        devtool: "cheap-module-source-map",
+        entry: [
+            './src/index.ts',
+        ],
+        output: {
+            path: path.join(__dirname,'dist'),
+            publicPath: './',
+            filename: "bundle.js"
+        },
+        module: {
+            loaders: [
+                {
+                    exclude: /node_modules/,
+                    loader: 'awesome-typescript-loader',
+                    test: /\.tsx?$/,
+                    options: {
+                        silent: true
+                    },
+                },
+            ]
+        },
+        resolve: {
+            extensions: ['.js', '.jsx', '.ts', '.tsx', '.css'],
+            modules: [ path.resolve(__dirname, "src"), path.resolve(__dirname, "src/components"), 'node_modules'],
+        }
+    }
 };
