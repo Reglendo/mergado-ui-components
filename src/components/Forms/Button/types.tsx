@@ -1,6 +1,4 @@
 import * as React from "react"
-import {Link as RouterLink} from "react-router"
-
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix,form} from "../../../config"
 
@@ -45,26 +43,6 @@ export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, class
         </button>
     )
 }
-
-interface ILinkProps {
-    name: string
-    icon?: JSX.Element | string
-    label?: string | JSX.Element
-    title?: string
-    className?: string
-    link?: string
-    [propName: string]: any
-}
-
-export const Link: React.SFC<ILinkProps> = ({name, icon, label, title, className,
-                                             styleClass, link, children, ...props}) =>
-        <RouterLink
-            {...domOnlyProps(props)}
-            to={link}
-            className={`${name}__item ${className ? className : ""} ${styleClass}`}
-            title={title}>
-                {icon}{icon && " "}{label}{children}
-        </RouterLink>
 
 interface ISubmitProps {
     name: string

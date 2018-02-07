@@ -2,7 +2,7 @@ import * as React from "react"
 import cxs from "cxs/component"
 import * as Color from "color"
 
-import {Href, Button, Link, Submit, Void} from "./types"
+import {Href, Button, Submit, Void} from "./types"
 
 const UniversalButtonComponent = ({...props}) => {
     const { name, type, link, labels, icon, input, to, children, ...others } = props
@@ -24,16 +24,6 @@ const UniversalButtonComponent = ({...props}) => {
                     icon={icon}
                     input={input}
                     children={children}
-                    label={others.label ? others.label : labels.main}
-                />
-    } else if(type === "link") {
-        return <Link
-                    {...others}
-                    name={name}
-                    title={labels.title}
-                    icon={icon}
-                    children={children}
-                    link={to ? to : link}
                     label={others.label ? others.label : labels.main}
                 />
     } else if(type === "submit") {

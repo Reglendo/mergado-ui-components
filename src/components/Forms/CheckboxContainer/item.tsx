@@ -1,5 +1,4 @@
 import * as React from "react"
-import {Link} from "react-router"
 import css from "cxs/component"
 
 import Radio from "../../../components/Forms/Radio"
@@ -79,7 +78,7 @@ export const QueryItemLabel: React.SFC<IQueryItemLabelProps> = ({ name, option, 
     let label = (option.name === "♥ALLPRODUCTS♥" ? allProducts : option.name)
 
     if(option.link !== undefined) {
-        label = <Link to={option.link}>{label}</Link>
+        label = <a href={option.link}>{label}</a>
     }
 
     return (

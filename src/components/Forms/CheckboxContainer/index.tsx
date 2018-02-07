@@ -1,5 +1,4 @@
 import * as React from "react"
-import {Link} from "react-router"
 import css from "cxs/component"
 import {prefix, form} from "../../../config"
 import LittleStatus from "../../../components/LittleStatus"
@@ -14,7 +13,7 @@ export interface Query {
     name: string
     product_count?: number
     active?: boolean
-    link?: Link | JSX.Element
+    link?: JSX.Element
     subheader?: boolean
 }
 

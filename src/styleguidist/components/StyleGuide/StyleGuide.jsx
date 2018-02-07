@@ -5,7 +5,7 @@ import TableOfContents from 'rsg-components/TableOfContents';
 import Message from 'rsg-components/Message';
 import StyleGuideRenderer from './StyleGuideRenderer';
 import cookie from 'react-cookie';
-import { browserHistory } from "react-router";
+// import { browserHistory } from "react-router";
 import _debounce from "lodash/debounce";
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
@@ -147,15 +147,15 @@ var scrollChangeHash = function() {
         var section = range.startContainer.parentNode.closest(".ReactStyleguidist-Section__heading"); // this an upper onscreen element
         if(section) {
             hashLocator.innerHTML = '#'+section.getAttribute('id');
-            browserHistory.push(location.pathname+'#'+section.getAttribute('id'));
+            document.location.hash = '#'+section.getAttribute('id');
             return;
         }
         var element = range.startContainer.parentNode.closest(".Styleguidist-Component"); // this an upper onscreen element
         if(element) {
             hashLocator.innerHTML = '#'+element.getAttribute('id');
-            browserHistory.push(location.pathname+'#'+element.getAttribute('id'));
+            document.location.hash = '#'+element.getAttribute('id');
         }
     }
 }
 
-window.addEventListener('scroll', _debounce(scrollChangeHash,250));
+window.addEventListener('scroll', _debounce(scrollChangeHash,100));

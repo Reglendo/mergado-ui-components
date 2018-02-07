@@ -14,7 +14,6 @@ Buttons with icons
     var Field = require('redux-form').Field;
     <Section>
         <Button labels={{main: 'I have icon'}} icon={<Icon type="reglendo" />} /><code>&nbsp;</code>
-        <Button type="link" labels={{main: 'Me too'}} icon={<Icon type="mergado" />} /><code>&nbsp;</code>
         <Field component={Button} name="first-name" props={{ type: 'submit', labels: { main: "I\'m submit!" }}} />
     </Section>
 

@@ -6,7 +6,7 @@ import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/F
 import {UniversalButton} from "./button"
 
 export interface Props extends IFieldProps {
-    type?: "button" | "link" | "submit" | "void" | "href"
+    type?: "button" | "submit" | "void" | "href"
     link?: string
     to?: string
     icon?: JSX.Element | string
