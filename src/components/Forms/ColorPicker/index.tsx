@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as InputColor from "react-input-color"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 import debounce from "lodash/debounce"
 
 import {prefix,form} from "../../../config"

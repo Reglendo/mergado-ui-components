@@ -1,5 +1,5 @@
 import * as React from "react"
-import cxs from "cxs/component"
+import cxs from "@reglendo/cxs/component"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix} from "../../../config"
 

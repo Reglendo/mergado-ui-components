@@ -1,5 +1,5 @@
 import * as React from "react"
-import cxs from "cxs/component"
+import cxs from "@reglendo/cxs/component"
 import * as Color from "color"
 
 import {Href, Button, Submit, Void} from "./types"

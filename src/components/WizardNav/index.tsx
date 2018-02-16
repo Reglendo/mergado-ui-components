@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 import {Ul} from "../../components/Layout"
 import {prefix} from "../../config"
 

@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 import {prefix} from "../../../config"
 import {animation as pulseAnimation} from "../Pulse"
 import {animation as rotateAnimation} from "../Rotate"

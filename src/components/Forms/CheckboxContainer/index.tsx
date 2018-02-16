@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 import {prefix, form} from "../../../config"
 import LittleStatus from "../../../components/LittleStatus"
 import TextInput from "../../../components/Forms/TextInput"

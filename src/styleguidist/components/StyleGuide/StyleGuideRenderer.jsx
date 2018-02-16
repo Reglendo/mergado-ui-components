@@ -1,7 +1,7 @@
 import update from 'react-addons-update';
 import { PropTypes } from 'react';
 import IconMuk from "@reglendo/mergado-ui-icons/lib/icons/IconMuk"
-import cxs from 'cxs';
+import cxs from '@reglendo/cxs';
 
 import s from './StyleGuide.css';
 import c from '../ReactComponent/ReactComponent.css';

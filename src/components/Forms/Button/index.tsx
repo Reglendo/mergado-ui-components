@@ -1,5 +1,5 @@
 import * as React from "react"
-import cxs from "cxs/component"
+import cxs from "@reglendo/cxs/component"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"

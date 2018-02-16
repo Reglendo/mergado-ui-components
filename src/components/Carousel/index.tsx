@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 import {prefix} from "../../config"
 import IconChevronLeft from "@reglendo/mergado-ui-icons/lib/icons/IconChevronLeft"
 import IconChevronRight from "@reglendo/mergado-ui-icons/lib/icons/IconChevronRight"

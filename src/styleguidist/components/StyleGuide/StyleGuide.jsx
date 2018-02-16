@@ -9,7 +9,7 @@ import cookie from 'react-cookie';
 import _debounce from "lodash/debounce";
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
-import ThemeProvider from 'cxs/ThemeProvider';
+import ThemeProvider from '@reglendo/cxs/ThemeProvider';
 
 export default class StyleGuide extends PureComponent {
 	static propTypes = {

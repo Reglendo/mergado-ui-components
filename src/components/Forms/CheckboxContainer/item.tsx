@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 
 import Radio from "../../../components/Forms/Radio"
 import Checkbox from "../../../components/Forms/Checkbox"

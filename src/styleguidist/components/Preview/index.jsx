@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
 import PlaygroundError from 'rsg-components/PlaygroundError';
 import Wrapper from 'rsg-components/Wrapper';
-import ThemeProvider from 'cxs/ThemeProvider';
+import ThemeProvider from '@reglendo/cxs/ThemeProvider';
 
 import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';

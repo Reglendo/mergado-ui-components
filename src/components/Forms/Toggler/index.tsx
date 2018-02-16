@@ -1,6 +1,6 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import css from "cxs/component"
+import css from "@reglendo/cxs/component"
 import {Span} from "../../../components/Layout"
 
 import {prefix,form} from "../../../config"
