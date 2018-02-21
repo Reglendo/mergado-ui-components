@@ -16,7 +16,11 @@ const UniversalButtonComponent = ({...props}) => {
                     children={children}
                     label={others.label ? others.label : labels.main}
                 />
-    } else if(type === "button") {
+    } else if(type === "link") {
+        const Element:any = {...props.element, props: props, attributes: {...props} }
+        return Element
+
+   } else if(type === "button") {
         return <Button
                     {...others}
                     name={name}

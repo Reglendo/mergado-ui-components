@@ -3,7 +3,7 @@ Simple button
     var Field = require('redux-form').Field;
     <Section>
         <Button labels={{main: 'I\'m button!'}} onClick={() => alert('Hello')} /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m link!'}} type="link" /><code>&nbsp;</code>
+        <Button element={<a href="google.com" >Hello</a>} labels={{main: 'I\'m link!'}} type="link" /><code>&nbsp;</code>
         <Button labels={{main: 'I\'m <a href>!'}} type="href" /><code>&nbsp;</code>
         <Field component={Button} name="first-name" props={{ type: 'submit', labels: { main: "I\'m submit!" }}} /><code>&nbsp;</code>
         <Button labels={{main: 'I\'m void!'}} type="void" /><code>&nbsp;</code>
