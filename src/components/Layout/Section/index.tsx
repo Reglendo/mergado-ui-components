@@ -1,5 +1,7 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
+import Grid from "../Grid"
+import GridCell from "../GridCell"
 
 import domOnlyProps from "../../../helpers/dom-only-props"
 
@@ -16,16 +18,20 @@ const Section = (props: Props) => {
         return null
     }
 
-    const prefix = props.prefix ? <Prefix>{props.prefix}</Prefix> : ""
-    const suffix = props.suffix ? <Suffix>{props.suffix}</Suffix> : ""
+    const prefix = props.prefix ? <Prefix row={"1"}>{props.prefix}</Prefix> : ""
+    const suffix = props.suffix ? <Suffix row={"1"}>{props.suffix}</Suffix> : ""
 
     return (
         <SSection  {...domOnlyProps(props)}>
             {header &&
                 <Header>
+                    <Grid cols={"auto 1fr auto"}>
                     {prefix}
-                    {header}
+                    <GridCell row={"1"}>
+                        {header}
+                    </GridCell>
                     {suffix}
+                    </Grid>
                 </Header>
             }
             {children}
@@ -33,25 +39,26 @@ const Section = (props: Props) => {
     )
 }
 
-const Prefix = css("div")({
-    float: "left",
+const Prefix = css(GridCell)({
     margin: "-10px",
     padding: "10px",
     marginRight: "15px",
     paddingRight: "15px",
     borderRight: "1px solid #ccc",
+    justifySelf: "left",
 })
 
-const Suffix = css("div")({
+const Suffix = css(GridCell)({
     float: "right",
     margin: "-10px",
     padding: "10px",
     marginLeft: "15px",
     paddingLeft: "15px",
     borderLeft: "1px solid #ccc",
+    justifySelf: "right",
 })
 
-const Header = css("h3")({
+const Header = css(GridCell)({
     fontWeight: "normal",
     fontSize: "15px",
     height: "63px",
