@@ -7022,6 +7022,10 @@ const UniversalButtonComponent = (_a) => {
     if (type === "href") {
         return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__types__["a" /* Href */], Object.assign({}, others, { name: name, title: labels.title, link: to ? to : link, icon: icon, children: children, label: others.label ? others.label : labels.main }));
     }
+    else if (type === "link") {
+        const Element = Object.assign({}, props.element, { props: props, attributes: Object.assign({}, props) });
+        return Element;
+    }
     else if (type === "button") {
         return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__types__["b" /* Button */], Object.assign({}, others, { name: name, title: labels.title, icon: icon, input: input, children: children, label: others.label ? others.label : labels.main }));
     }
