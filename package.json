@@ -29,7 +29,7 @@
     "@reglendo/cxs": "*",
     "@reglendo/mergado-ui-icons": "*",
     "color": "^2.0.0",
-    "light-form": "https://github.com/Reglendo/light-form.git#81b61751889a05a3b7e9efdfc4541d8b5b08e60c",
+    "light-form": "https://github.com/Reglendo/light-form.git#8e2bf901f8d9eee347587a4669a9b307d2c3b025",
     "moment-mini": "^2.19.4",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
