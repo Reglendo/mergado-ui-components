@@ -9014,7 +9014,7 @@ class Select extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const Element = props.name ? StyledLightSelect : StyledSelect;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { name: this.name }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledLightSelect, Object.assign({}, props, (!props.name && input), { closeOnChange: true, options: props.options, selectItem: true, "aria-invalid": isInvalid ? 1 : 0 })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledLightSelect, Object.assign({ closeOnChange: true, selectItem: true }, props, (!props.name && input), { "aria-invalid": isInvalid ? 1 : 0 })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__reglendo_mergado_ui_icons_lib_icons_IconChevronDown__["a" /* default */], { size: 10, style: {
                         opacity: 0.6, position: "absolute", bottom: "9px",
                         right: "10px", pointerEvents: "none"

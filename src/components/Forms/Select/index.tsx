@@ -47,11 +47,11 @@ class Select extends React.Component<Props, {}> {
         return (
             <Field {...props} name={this.name}>
                 <Div position="relative">
-                    <StyledLightSelect {...props}
-                             {...(!props.name && input)}
-                             closeOnChange={true}
-                             options={props.options}
-                             selectItem={true}
+                    <StyledLightSelect
+                           closeOnChange={true}
+                           selectItem={true}
+                           {...props}
+                           {...(!props.name && input)}
                              aria-invalid={isInvalid ? 1 : 0} />
                     <IconChevronDown size={10}
                                      style={{
