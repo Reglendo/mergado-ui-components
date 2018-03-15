@@ -2,6 +2,7 @@ Light select
 
     <Section>
         <Select name="select1" labels={{main: 'I, select'}}
+                multiple={true}
                 options={ [{ name: 'foo', value: '1'},{ name: 'bar', value: '2'}] }  />
                 
                 

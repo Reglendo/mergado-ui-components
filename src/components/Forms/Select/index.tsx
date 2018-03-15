@@ -48,7 +48,7 @@ class Select extends React.Component<Props, {}> {
             <Field {...props} name={this.name}>
                 <Div position="relative">
                     <StyledLightSelect
-                           closeOnChange={true}
+                           closeOnChange={!props.multiple}
                            selectItem={true}
                            placeholder={"- - -"}
                            searchEmptyPlaceholder={""}
@@ -56,6 +56,13 @@ class Select extends React.Component<Props, {}> {
                            clearText={""}
                            searchText={""}
                            {...props}
+                           options={props.options.map(o => {
+                               if(o.title) {
+                                   return { name: o.title, value: o.value}
+                               }
+                               return o
+                           })}
+
                            {...(!props.name && input)}
                              aria-invalid={isInvalid ? 1 : 0} />
                     <IconChevronDown size={10}
@@ -246,6 +253,7 @@ const stylesSelectItem = {
         background: "#c4c4c4",
         color: "#fff",
         opacity: 0.5,
+        pointerEvents: "none",
     },
     "& .react-select-item-option-disabled:focus": {
         color: "#fff"
@@ -326,6 +334,7 @@ const stylesProps = (props) => {
             color: "#999",
             background: "#eee",
             borderColor: Color(theme.grey).fade(0.5).string(),
+            pointerEvents: "none",
         }
     }
 
