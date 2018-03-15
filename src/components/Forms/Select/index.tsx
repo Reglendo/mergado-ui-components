@@ -50,14 +50,17 @@ class Select extends React.Component<Props, {}> {
                     <StyledLightSelect
                            closeOnChange={true}
                            selectItem={true}
+                           placeholder={"- - -"}
+                           searchEmptyPlaceholder={""}
+                           searchPlaceholder={""}
+                           clearText={""}
+                           searchText={""}
                            {...props}
                            {...(!props.name && input)}
                              aria-invalid={isInvalid ? 1 : 0} />
                     <IconChevronDown size={10}
-                                     style={{
-                                         opacity: 0.6, position: "absolute", bottom: "9px",
-                                         right: "10px", pointerEvents: "none"
-                                     }}/>
+                                     className={"icon-select-open"}
+                                     />
                 </Div>
             </Field>
         )
@@ -66,8 +69,19 @@ class Select extends React.Component<Props, {}> {
 
 
 const stylesSelectItem = {
+    "! .react-select-item-container + .icon-select-open": {
+        opacity: 0,
+        position: "absolute", bottom: "9px",
+        right: "10px", pointerEvents: "none"
+    },
+    "! .react-select-item-empty + .icon-select-open": {
+      opacity: 0.6,
+    },
     "& .react-select-item-container": {
         position: "relative",
+    },
+    "& .react-select-item-container.active": {
+        background: "rgb(255, 255, 196) !important",
     },
     "& .react-select-item": {
         padding: "12px 0",
@@ -119,7 +133,7 @@ const stylesSelectItem = {
     // },
     "& .react-select-item-label, .react-select-item-option": {
         lineHeight: "16px",
-        fontSize: "12px",
+        fontSize: "14px",
         // fontWeight: "bold",
         // color: "#7B8E9B",
         textOverflow: "ellipsis",
@@ -153,10 +167,10 @@ const stylesSelectItem = {
     "& .react-select-item-clear:before": {
         content: "×",
         position: "absolute",
-        top: "2px",
+        top: "1px",
         left: "10px",
         zIndex: "1",
-        backgroundColor: "white",
+        backgroundColor: "transparent",
         borderRadius: "100%",
         fontSize: "16px",
         lineHeight: "1.1",
@@ -199,7 +213,7 @@ const stylesSelectItem = {
     "& .select-item-no-results": {
         color: "#707070",
         padding: "9px 10px",
-        fontSize: "12px",
+        fontSize: "14px",
         fontWeight: "600"
     },
     "& .react-select-item-option": {
@@ -263,7 +277,7 @@ const stylesSelectItem = {
     },
     "& .react-select-item-off-screen.no-items": {
         padding: "10px 20px",
-        fontSize: "12px",
+        fontSize: "14px",
         color: "#7B8E9B",
         fontWeight: "bold"
     }

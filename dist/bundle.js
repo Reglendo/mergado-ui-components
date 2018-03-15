@@ -9014,17 +9014,25 @@ class Select extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const Element = props.name ? StyledLightSelect : StyledSelect;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { name: this.name }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledLightSelect, Object.assign({ closeOnChange: true, selectItem: true }, props, (!props.name && input), { "aria-invalid": isInvalid ? 1 : 0 })),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__reglendo_mergado_ui_icons_lib_icons_IconChevronDown__["a" /* default */], { size: 10, style: {
-                        opacity: 0.6, position: "absolute", bottom: "9px",
-                        right: "10px", pointerEvents: "none"
-                    } }))));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledLightSelect, Object.assign({ closeOnChange: true, selectItem: true, placeholder: "- - -", searchEmptyPlaceholder: "", searchPlaceholder: "", clearText: "", searchText: "" }, props, (!props.name && input), { "aria-invalid": isInvalid ? 1 : 0 })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__reglendo_mergado_ui_icons_lib_icons_IconChevronDown__["a" /* default */], { size: 10, className: "icon-select-open" }))));
     }
 }
 Select.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_7__components_Forms_Field__["b" /* defaultFieldProps */], { options: [], size: 0 });
 const stylesSelectItem = {
+    "! .react-select-item-container + .icon-select-open": {
+        opacity: 0,
+        position: "absolute", bottom: "9px",
+        right: "10px", pointerEvents: "none"
+    },
+    "! .react-select-item-empty + .icon-select-open": {
+        opacity: 0.6,
+    },
     "& .react-select-item-container": {
         position: "relative",
+    },
+    "& .react-select-item-container.active": {
+        background: "rgb(255, 255, 196) !important",
     },
     "& .react-select-item": {
         padding: "12px 0",
@@ -9040,7 +9048,7 @@ const stylesSelectItem = {
     },
     "& .react-select-item-label, .react-select-item-option": {
         lineHeight: "16px",
-        fontSize: "12px",
+        fontSize: "14px",
         textOverflow: "ellipsis",
         overflow: "hidden",
     },
@@ -9071,10 +9079,10 @@ const stylesSelectItem = {
     "& .react-select-item-clear:before": {
         content: "×",
         position: "absolute",
-        top: "2px",
+        top: "1px",
         left: "10px",
         zIndex: "1",
-        backgroundColor: "white",
+        backgroundColor: "transparent",
         borderRadius: "100%",
         fontSize: "16px",
         lineHeight: "1.1",
@@ -9117,7 +9125,7 @@ const stylesSelectItem = {
     "& .select-item-no-results": {
         color: "#707070",
         padding: "9px 10px",
-        fontSize: "12px",
+        fontSize: "14px",
         fontWeight: "600"
     },
     "& .react-select-item-option": {
@@ -9180,7 +9188,7 @@ const stylesSelectItem = {
     },
     "& .react-select-item-off-screen.no-items": {
         padding: "10px 20px",
-        fontSize: "12px",
+        fontSize: "14px",
         color: "#7B8E9B",
         fontWeight: "bold"
     }
@@ -12406,18 +12414,27 @@ var InputContainer = function InputContainer(component) {
         };
     }, function (state, dispatch, own) {
         var _onChange = function _onChange(event) {
-            var value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
             var namespace = getFieldNamespace(own.name);
             var type = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["a" /* createBoundType */])(namespace);
 
-            if (event.target.type === 'select-multiple') {
-                var arry = Array.from(event.target.selectedOptions);
+            if (!event.target) {
                 var selected = [];
-                arry.map(function (o) {
+                event.map(function (o) {
                     selected.push(o.value);
                 });
+                dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, selected.pop()));
+                return dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, event.join('|')));
+            }
+            var value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+
+            if (event.target.type === 'select-multiple') {
+                var arry = Array.from(event.target.selectedOptions);
+                var _selected = [];
+                arry.map(function (o) {
+                    _selected.push(o.value);
+                });
                 dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, value));
-                return dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, selected.join('|')));
+                return dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, _selected.join('|')));
             } else {
                 return dispatch.dispatch(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__ducks_Input__["b" /* changeField */])(type, own.name, value));
             }
@@ -12428,7 +12445,7 @@ var InputContainer = function InputContainer(component) {
         var value = own.type === "radio" && own.value !== null ? own.value : own.name && __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) !== undefined ? __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) : '';
 
         return _extends({}, own, {
-            value: own.selectItem ? value.split('|') : value,
+            value: own.selectItem ? value ? value.split('|') : [] : value,
             checked: own.type === "radio" && own.value == __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name) || own.type === "checkbox" && __WEBPACK_IMPORTED_MODULE_1_dot_prop_immutable___default.a.get(state, own.name),
             onChange: function onChange(event) {
                 var processedEvent = own.onChange ? own.onChange(event) : event;

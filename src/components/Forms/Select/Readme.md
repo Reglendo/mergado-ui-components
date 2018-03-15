@@ -2,7 +2,7 @@ Light select
 
     <Section>
         <Select name="select1" labels={{main: 'I, select'}}
-                options={ [{ title: 'foo', value: '1'},{ title: 'bar', value: '2'}] }  />
+                options={ [{ name: 'foo', value: '1'},{ name: 'bar', value: '2'}] }  />
                 
                 
        <Select name="select1" labels={{main: 'I, select'}} multiple={true}>
