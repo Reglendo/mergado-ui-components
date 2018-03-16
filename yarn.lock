@@ -3466,7 +3466,7 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-"light-form@https://github.com/Reglendo/light-form.git#7f6a55b12c739aab9decdc2879c18c9cba378a5e":
+"light-form@https://github.com/Reglendo/light-form.git#v2.4.0-10":
   version "2.4.0"
   resolved "https://github.com/Reglendo/light-form.git#7f6a55b12c739aab9decdc2879c18c9cba378a5e"
   dependencies:

@@ -249,20 +249,16 @@ const stylesSelectItem = {
     "& .react-select-item-option-selected:hover": {
         backgroundColor: "#00A3D7"
     },
+    "& .react-select-item-option-selected:after": {
+        color: "#fff !important",
+        content: "×",
+        float: 'right'
+    },
     "& .react-select-item-option-disabled": {
         background: "#c4c4c4",
-        color: "#fff",
+        color: "#000",
         opacity: 0.5,
         pointerEvents: "none",
-    },
-    "& .react-select-item-option-disabled:focus": {
-        color: "#fff"
-    },
-
-    "& .react-select-item-option-disabled:hover": {
-        background: "#c4c4c4",
-        color: "#fff",
-        cursor: "not-allowed"
     },
     "& .react-select-item-close": {
         textTransform: "uppercase",
