@@ -9014,7 +9014,12 @@ class Select extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const Element = props.name ? StyledLightSelect : StyledSelect;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { name: this.name }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledLightSelect, Object.assign({ closeOnChange: true, selectItem: true, placeholder: "- - -", searchEmptyPlaceholder: "", searchPlaceholder: "", clearText: "", searchText: "" }, props, (!props.name && input), { "aria-invalid": isInvalid ? 1 : 0 })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledLightSelect, Object.assign({ closeOnChange: !props.multiple, selectItem: true, placeholder: "- - -", searchEmptyPlaceholder: "", searchPlaceholder: "", clearText: "", searchText: "" }, props, { options: props.options.map(o => {
+                        if (o.title) {
+                            return { name: o.title, value: o.value };
+                        }
+                        return o;
+                    }) }, (!props.name && input), { "aria-invalid": isInvalid ? 1 : 0 })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__reglendo_mergado_ui_icons_lib_icons_IconChevronDown__["a" /* default */], { size: 10, className: "icon-select-open" }))));
     }
 }
@@ -9154,18 +9159,16 @@ const stylesSelectItem = {
     "& .react-select-item-option-selected:hover": {
         backgroundColor: "#00A3D7"
     },
+    "& .react-select-item-option-selected:after": {
+        color: "#fff !important",
+        content: "×",
+        float: 'right'
+    },
     "& .react-select-item-option-disabled": {
         background: "#c4c4c4",
-        color: "#fff",
+        color: "#000",
         opacity: 0.5,
-    },
-    "& .react-select-item-option-disabled:focus": {
-        color: "#fff"
-    },
-    "& .react-select-item-option-disabled:hover": {
-        background: "#c4c4c4",
-        color: "#fff",
-        cursor: "not-allowed"
+        pointerEvents: "none",
     },
     "& .react-select-item-close": {
         textTransform: "uppercase",
@@ -9213,6 +9216,7 @@ const stylesProps = (props) => {
             color: "#999",
             background: "#eee",
             borderColor: __WEBPACK_IMPORTED_MODULE_3_color__(theme.grey).fade(0.5).string(),
+            pointerEvents: "none",
         };
     }
     return Object.assign({ borderRadius: theme.radius, border: props["aria-invalid"] ? theme.input_border_error : theme.input_border, ":active": {
