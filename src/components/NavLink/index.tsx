@@ -7,6 +7,7 @@ export interface Props {
     active?: boolean
     link?: JSX.Element
     style?: any
+    className?: string
 }
 
 export interface State {
@@ -24,7 +25,7 @@ class NavLink extends React.Component<Props, State> {
 
     public render() {
         const {link, active} = this.props
-        let className = `${this.name}`
+        let className = `${this.name} ${this.props.className || ""}`
         if (active) {
             className += ` ${this.name}--active`
         }
