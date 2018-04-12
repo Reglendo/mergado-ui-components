@@ -9463,7 +9463,7 @@ class NavLink extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
     render() {
         const { link, active } = this.props;
-        let className = `${this.name}`;
+        let className = `${this.name} ${this.props.className || ""}`;
         if (active) {
             className += ` ${this.name}--active`;
         }
