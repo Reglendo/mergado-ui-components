@@ -146,11 +146,11 @@ class DataTable extends React.Component<Props, State> {
     public render() {
         const { addClass, className, style } = this.props
         return (
-            <div className={`${this.name}`}>
+            <div className={`${this.name} ${className}`}>
                 <div style={{whiteSpace: "nowrap"}}>
                     {this.props.filters.length > 0 && this.renderFiltersBar()}
                 </div>
-                <Table className={`${this.name}__table ${addClass} ${className}`} style={style} {...domOnlyProps(this.props)}>
+                <Table className={`${this.name}__table ${addClass}`} style={style} {...domOnlyProps(this.props)}>
                     {this.props.children && this.renderChildren(this.props.children)}
                 </Table>
             </div>
