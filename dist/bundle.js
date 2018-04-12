@@ -3146,9 +3146,9 @@ class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
     render() {
         const { addClass, className, style } = this.props;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: `${this.name}` },
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: `${this.name} ${className}` },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { style: { whiteSpace: "nowrap" } }, this.props.filters.length > 0 && this.renderFiltersBar()),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Table, Object.assign({ className: `${this.name}__table ${addClass} ${className}`, style: style }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__["a" /* default */])(this.props)), this.props.children && this.renderChildren(this.props.children))));
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Table, Object.assign({ className: `${this.name}__table ${addClass}`, style: style }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__["a" /* default */])(this.props)), this.props.children && this.renderChildren(this.props.children))));
     }
 }
 DataTable.defaultProps = {
