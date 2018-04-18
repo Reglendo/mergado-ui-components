@@ -1,5 +1,6 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
+import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import css from "@reglendo/cxs/component"
 import {Span} from "../../../components/Layout"
 
@@ -27,12 +28,12 @@ class Toggler extends React.Component<Props, {}> {
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         const Element = props.name ? StyledLightInput : Input
 
-        const offLabel = <Span fontSize={"16px"}>
-                            {props.offLabel}{props.offLabel && " "}
+        const offLabel = !props.big && <Span fontSize={"16px"} margin="0 3px" verticalAlign="top">
+                            {props.offLabel}{props.offLabel && ""}
                         </Span>
 
-        const onLabel = <Span fontSize={"16px"}>
-                            {label && " " }{label}
+        const onLabel = !props.big && <Span fontSize={"16px"} margin="0 3px" verticalAlign="top">
+                            {label && "" }{label}
                         </Span>
 
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
@@ -47,9 +48,16 @@ class Toggler extends React.Component<Props, {}> {
                             className={`${this.name}__item ${input.className}`}
                             style={{display: "none"}}
                             />
-                        <StyledInput reverse={reverse} label={label} className={"muk-checkbox-input"}
+                        <StyledInput big={props.big} boolean={props.boolean} width={props.width} reverse={reverse} onLabel={label} offLabel={props.offLabel} label={label} className={"muk-checkbox-input"}
                             />
-                        <Point className={"toggler-point"} reverse={reverse} />
+                        <Point big={props.big} boolean={props.boolean} width={props.width} className={"toggler-point"} reverse={reverse} />
+                        {props.big && props.boolean &&
+                            <IconCheck size={18} color="rgb(245, 236, 213)" style={{position: "absolute", left: "3px", top: "5px"}} />
+                        }
+                        {props.big && props.boolean &&
+                            <IconClose size={18} color="#888" style={{position: "absolute", right: "3px", top: "5px"}}  />
+                        }
+
                     </div>
                     {reverse ? offLabel : onLabel}
                 </Label>
@@ -84,18 +92,21 @@ const StyledField = css(Field)({
 
 const Point = css("span")({
     display: "inline-block",
-    width: "14px",
-    height: "14px",
     borderRadius: "999em",
     background: "white",
     position: "absolute",
-    left: "11px",
+    left: "2px",
     top: "2px",
-    transition: "transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1)",
-    willChange: "transform",
+    zIndex: 5,
+    transition: "all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1)",
 },props => ({
-    transform: props.reverse ? "translate3d(20px,0,0)" : "translate3d(0,0,0)",
+    width: props.big ? "28px" : "14px",
+    height: props.big ? "28px" : "14px",
+
+    transform: props.reverse ? "translate3d("+(props.big ? (props.boolean ? "23px" : props.width-32 + "px") : "18px")+",0,0)" : "translate3d(0,0,0)",
 }))
+
+
 
 const styles = {
 }
@@ -104,17 +115,38 @@ const stylesProps =  (props) => {
 
     return {
         ":checked + span + span.toggler-point": {
-            transform: props.reverse ? "translate3d(0,0,0)" : "translate3d(20px,0,0)",
+            transform: props.reverse ? "translate3d(0,0,0)" : "translate3d("+(props.big ? (props.boolean ? "23px" : props.width-32 + "px") : "18px")+",0,0)",
         },
         " + span": {
             borderColor: `${props.theme.inactive}`,
             background: `${props.theme.inactive}`,
             transition: "border-color 0.2s, background-color 0.2s",
             willChange: "background-color",
+            
+            ":before" :{
+                opacity: 0,
+                position: "absolute",
+                left: props.reverse ? "initial" : 0,
+                right: props.reverse ?  0 : "initial",
+            },
+            ":after" :{
+                opacity: 1,
+                position: "absolute",
+                right: props.reverse ? "initial" : 0,
+                left: props.reverse ?  0 : "initial",
+            },
+
         },
         ":checked + span": {
             borderColor: `${props.theme.green}`,
             background: `${props.theme.green}`,
+            ":before" :{
+                opacity: 1
+            },
+            ":after" :{
+                opacity: 0
+        },
+
         },
     }
 }
@@ -125,14 +157,36 @@ const StyledLightInput = css(LightInput)(styles , stylesProps)
 const StyledInput = css("span")({
     display: "inline-block",
     background: "transparent",
-    width: "36px",
-    height: "18px",
     position: "relative",
     transition: "border-color 0.1s",
 
-}, (props: any) => { return {
-    marginRight: props.label ? "10px" : "0px",
-    marginLeft: props.label ? "10px" : "0px",
+}, (props: any) => { 
+    const content = props.big && !props.boolean ? {
+        "&:before": {
+            content: props.onLabel,
+            transition: "opacity 0.1s",
+            lineHeight: "32px",
+            color: "white",
+            padding: "0 3px",
+            // position: "absolute",
+            // left: "0",
+        },
+        "&:after": {
+            content: props.offLabel,
+            transition: "opacity 0.1s",
+            lineHeight: "32px",
+            padding: "0 3px",
+            color: "#888",
+            // position: "absolute",
+            // right: "0",
+        },
+    } : {}
+    
+    return {
+    ...content,
+    width: props.big ? (props.boolean ?  "55px" : (props.width + "px")) : "36px",
+    height: props.big ? "32px" : "18px",
+
     borderRadius: `999em`,
     border: `1px solid ${props.theme.decoration}`,
     ":hover": {
