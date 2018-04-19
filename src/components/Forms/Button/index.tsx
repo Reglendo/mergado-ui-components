@@ -33,9 +33,9 @@ export class Button extends React.Component<Props, {}> {
 
     public render() {
         const { meta, input, labels, group } = this.props
-        const { children, ...props } = this.props
+        const { children, style, ...props } = this.props
         if(props.type !== "submit") {
-            return <UniversalButton {...this.props} name={this.name} />
+            return <UniversalButton {...this.props} s={style} name={this.name} />
         }
         return (
             <StyledField className={`${this.name}--${props.color}
@@ -45,9 +45,9 @@ export class Button extends React.Component<Props, {}> {
                                         ${props.disabled ? this.name+`--disabled`:``}
                 `}
                 {...this.props} name={this.name} label="" labels={{...labels,main: ""}}
-                s={{ marginBottom: 0, ...group.style }}
+                s={{ marginBottom: 0, ...style, ...group.style }}
                 >
-                    <UniversalButton {...this.props} name={this.name} />
+                    <UniversalButton {...this.props} s={style} name={this.name} />
             </StyledField>
         )
     }

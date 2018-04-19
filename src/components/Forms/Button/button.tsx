@@ -171,5 +171,6 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
         textTransform: props.theme.button_text_transform,
         fontWeight: props.theme.button_text_weight,
         fontSize: props.size === "tiny" ? "13px" : props.theme.button_text_size,
+        ...props.s,
     }
 })

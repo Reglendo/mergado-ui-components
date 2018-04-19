@@ -32,7 +32,7 @@ class Checkbox extends React.Component<Props, {}> {
                             {...(!props.name && input)}
                             type="checkbox"
                             className={`${this.name}__item ${input.className}`}
-                            s={{display: "none"}}
+                            s={{display: "none !important"}}
                             />
                         <StyledInput label={label} className={"muk-checkbox-input"}
                             />
