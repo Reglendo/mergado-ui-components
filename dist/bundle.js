@@ -1901,17 +1901,17 @@ class Button extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
     render() {
         const { meta, input, labels, group } = this.props;
-        const _a = this.props, { children } = _a, props = __rest(_a, ["children"]);
+        const _a = this.props, { children, style } = _a, props = __rest(_a, ["children", "style"]);
         if (props.type !== "submit") {
-            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__button__["a" /* UniversalButton */], Object.assign({}, this.props, { name: this.name }));
+            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__button__["a" /* UniversalButton */], Object.assign({}, this.props, { s: style, name: this.name }));
         }
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledField, Object.assign({ className: `${this.name}--${props.color}
                                         ${!labels.main ? this.name + `--notext` : ``}
                                         ${props.size ? this.name + `--` + props.size : ``}
                                         ${this.name}--${props.type}
                                         ${props.disabled ? this.name + `--disabled` : ``}
-                ` }, this.props, { name: this.name, label: "", labels: Object.assign({}, labels, { main: "" }), s: Object.assign({ marginBottom: 0 }, group.style) }),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__button__["a" /* UniversalButton */], Object.assign({}, this.props, { name: this.name }))));
+                ` }, this.props, { name: this.name, label: "", labels: Object.assign({}, labels, { main: "" }), s: Object.assign({ marginBottom: 0 }, style, group.style) }),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__button__["a" /* UniversalButton */], Object.assign({}, this.props, { s: style, name: this.name }))));
     }
 }
 /* unused harmony export Button */
@@ -1967,7 +1967,7 @@ class Checkbox extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const Element = props.name ? StyledLightInput : Input;
         return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Label, { className: `${isInvalid ? `${__WEBPACK_IMPORTED_MODULE_4__config__["b" /* form */]}__group--invalid` : ""}` },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__Layout__["a" /* Div */], { position: "relative", display: "inline-block", verticalAlign: "middle" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, Object.assign({}, props, (!props.name && { checked: input.value }), (!props.name && input), { type: "checkbox", className: `${this.name}__item ${input.className}`, s: { display: "none" } })),
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, Object.assign({}, props, (!props.name && { checked: input.value }), (!props.name && input), { type: "checkbox", className: `${this.name}__item ${input.className}`, s: { display: "none !important" } })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledInput, { label: label, className: "muk-checkbox-input" }),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__reglendo_mergado_ui_icons_lib_icons_IconCheck__["a" /* default */], { size: 14 })),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Layout__["c" /* Span */], { fontSize: "16px", fontWeight: "normal" },
@@ -8007,7 +8007,7 @@ const UniversalButton = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___de
             };
         }
     }
-    return Object.assign({}, size, disabled, color, { borderRadius: props.theme.radius, textTransform: props.theme.button_text_transform, fontWeight: props.theme.button_text_weight, fontSize: props.size === "tiny" ? "13px" : props.theme.button_text_size });
+    return Object.assign({}, size, disabled, color, { borderRadius: props.theme.radius, textTransform: props.theme.button_text_transform, fontWeight: props.theme.button_text_weight, fontSize: props.size === "tiny" ? "13px" : props.theme.button_text_size }, props.s);
 });
 /* harmony export (immutable) */ __webpack_exports__["a"] = UniversalButton;
 
