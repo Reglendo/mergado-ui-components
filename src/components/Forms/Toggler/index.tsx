@@ -72,7 +72,7 @@ class Toggler extends React.Component<Props, {}> {
 
 const Yes = css(IconCheck)({
     position: "absolute",
-    left: "3px",
+    left: "5px",
     top: "0px",
     bottom: "0px",
     margin: 'auto 0',
@@ -80,7 +80,7 @@ const Yes = css(IconCheck)({
 
 const No = css(IconClose)({
     position: "absolute",
-    right: "3px",
+    right: "5px",
     top: "0px",
     bottom: "0px",
     margin: 'auto 0',
@@ -146,14 +146,14 @@ const stylesProps =  (props) => {
             ":before" :{
                 opacity: 0,
                 position: "absolute",
-                left: props.reverse ? "initial" : 0,
-                right: props.reverse ?  0 : "initial",
+                left: props.reverse ? "initial" : "2px",
+                right: props.reverse ?  "2px" : "initial",
             },
             ":after" :{
                 opacity: 1,
                 position: "absolute",
-                right: props.reverse ? "initial" : 0,
-                left: props.reverse ?  0 : "initial",
+                right: props.reverseb ? "initial" : "2px",
+                left: props.reverse ?  "2px" : "initial",
             },
 
         },
@@ -161,10 +161,10 @@ const stylesProps =  (props) => {
             borderColor: `${props.theme.green}`,
             background: `${props.theme.green}`,
             ":before" :{
-                opacity: 1
+                opacity: 1,
             },
             ":after" :{
-                opacity: 0
+                opacity: 0,
         },
 
         },

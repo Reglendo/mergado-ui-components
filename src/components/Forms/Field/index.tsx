@@ -4,6 +4,7 @@ import css from "@reglendo/cxs/component"
 import {prefix, form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {Div} from "../../Layout"
+import PropTypes from 'prop-types'
 
 export interface IFieldProps {
     group?: {
@@ -106,17 +107,19 @@ const BigLabel = css("h3")({
     margin: "10px 0",
 })
 
-const LabelComponent = ({children, name, bigLabel, className = ""}) => {
+
+const LabelComponent = ({children, bigLabel, className = ""}) => {
     if(children === "" || children === null) {
         return null
     }
 
     return (
-            <label className={`${name}__label ${form}__label ${className}`}>
+            <label className={`${form}__label ${className}`}>
                 {bigLabel ? <BigLabel>{children}</BigLabel> : children }
             </label>
         )
 }
+
 
 export const FieldLabel = css(LabelComponent)({
     display: "inline-block",
@@ -132,8 +135,17 @@ export const FieldLabel = css(LabelComponent)({
     }
 })
 
+FieldLabel.propTypes = {
+    meta: PropTypes.any,
+    input: PropTypes.any,
+    labels: PropTypes.any,
+    group: PropTypes.any,
+    s: PropTypes.any,
+}
+
+
 const FieldErrorComponent = ({...props}) => {
-        if(props.meta.error) {
+        if(props.meta && props.meta.error) {
             return (
                 <div className={`${props.className}`}>
                     {props.meta.error}
@@ -159,22 +171,25 @@ export const FieldError = css(FieldErrorComponent)({
     }
 })
 
+FieldError.propTypes = {
+    meta: PropTypes.any,
+    input: PropTypes.any,
+    labels: PropTypes.any,
+    group: PropTypes.any,
+    s: PropTypes.any,
+}
+
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
     const { meta, input, labels, group, ...others } = props
     const isInvalid = !!props.meta.error || props.meta.invalid
     return (
         <Div
-            {...domOnlyProps(group)}
-            className={`${props.name ? props.name : ""}
-                        ${props.className ? props.className : ""}
-                        ${props.disabled ? props.name + `--disabled` : ""}
-                        ${props.required ? props.name + `--required` : ""}
-                        ${form}__group
-                        `}
+            {...props}
+            className={`${props.name ? props.name : ""} ${props.className || ""} ${props.disabled ? props.name + `--disabled` : ""} ${props.required ? props.name + `--required` : ""} ${form}__group`}
             title={props.labels.title}
             {...props.style}>
-                <FieldError {...props} className={`${form}__validation`} />
+                <FieldError {...others} meta={meta} className={`${form}__validation`} />
                 {(props.label || others.label || labels.main) &&
                     <FieldLabel name={props.name} bigLabel={group.bigLabel}>
                         {props.label ? props.label : (others.label ? others.label : labels.main)}
@@ -190,6 +205,15 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
 }
 
 FieldComponent.defaultProps = defaultFieldProps
+
+FieldComponent.propTypes = {
+    meta: PropTypes.any,
+    input: PropTypes.any,
+    labels: PropTypes.any,
+    group: PropTypes.any,
+    s: PropTypes.any,
+}
+
 
 export const Field = css(FieldComponent)({
     position: "relative",
@@ -212,3 +236,12 @@ export const Field = css(FieldComponent)({
         ...props.s,
     }
 })
+
+
+Field.propTypes = {
+    meta: PropTypes.any,
+    input: PropTypes.any,
+    labels: PropTypes.any,
+    group: PropTypes.any,
+    s: PropTypes.any,
+}

@@ -4,6 +4,7 @@ import {prefix} from "../../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../../../components/Forms/Checkbox"
 import { ID, Action } from "../../../helpers/types"
+import PropTypes from 'prop-types'
 
 export interface Props {
     style?: any
@@ -85,5 +86,11 @@ const Tr = cxs("tr")({
         ...props.s,
     }
 })
+
+Tr.propTypes = {
+    selected: PropTypes.bool,
+    disabled: PropTypes.bool,
+    s: PropTypes.any,
+}
 
 export default DataRow

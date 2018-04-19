@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import domOnlyProps from "../../../helpers/dom-only-props"
+import PropTypes from "prop-types"
 
 interface Props {
     inline?: boolean
@@ -13,15 +13,14 @@ interface Props {
     align?: "start" | "end" | "center" | "stretch"
     valign?: "start" | "end" | "center" | "stretch"
     autoFlow?: "row" | "column"
-
     style?: any
 }
 
 const Grid = (props: Props) => {
-    const { children } = props
+    const { children, ...p } = props
 
     return (
-        <GridStyle  {...props}>
+        <GridStyle {...p}>
             {children}
         </GridStyle>
     )
@@ -38,7 +37,21 @@ const GridStyle = css("div")({
         justifyItems: props.align ? props.align : "stretch",
         alignItems: props.valign ? props.valign : "stretch",
         gridAutoFlow: props.autoFlow ? props.autoFlow : "row",
+        ...props.style,
     }
 })
+
+GridStyle.propTypes = {
+    style: PropTypes.any,
+    inline: PropTypes.any,
+    cols: PropTypes.string,
+    rows: PropTypes.string,
+    rowgap: PropTypes.string,
+    colgap: PropTypes.string,
+    gap: PropTypes.string,
+    align: PropTypes.string,
+    valign: PropTypes.string,
+    autoFlow: PropTypes.string,
+}
 
 export default Grid

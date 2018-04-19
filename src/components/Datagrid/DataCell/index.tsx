@@ -2,6 +2,7 @@ import * as React from "react"
 import cxs from "@reglendo/cxs/component"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import {prefix} from "../../../config"
+import PropTypes from "prop-types"
 
 export interface Props {
     style?: any
@@ -79,4 +80,11 @@ const Th = cxs("th")({
     ...props.s,
 }})
 
+Th.propTypes = {
+    s: PropTypes.any,
+}
+
+Td.propTypes = {
+    s: PropTypes.any,
+}
 export default DataCell

@@ -29,6 +29,7 @@
     "moment-mini": "^2.19.4",
     "preact": "^8.2.5",
     "preact-compat": "^3.17.0",
+    "prop-types": "^15.6.1",
     "react-color": "^2.11.6",
     "react-datepicker": "^1.1.0",
     "react-group": "^1.0.5",
