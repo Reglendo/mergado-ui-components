@@ -12,3 +12,5 @@ const CssSpan = css("span")(
         const { className,theme,children,...style } = props
         return style
     })
+
+export default Span

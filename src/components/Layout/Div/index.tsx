@@ -12,3 +12,5 @@ const CssDiv = css("div")(
         const { className,theme,children,...style } = props
         return style
     })
+
+export default Div
