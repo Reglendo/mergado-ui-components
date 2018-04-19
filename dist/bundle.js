@@ -1767,7 +1767,7 @@ class TextInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         }
         const isInvalid = meta.invalid && (meta.dirty || meta.touched);
         const Element = props.name ? StyledLightInput : StyledInput;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { name: this.name }),
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { name: props.name }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { position: "relative" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, Object.assign({}, props, (!props.name && inputProps), { placeholder: this.props.labels.placeholder, ref: "input", type: type === "search" || (type === "password" && this.state.passwordVisible)
                         ? "text" : props.type, "aria-invalid": isInvalid ? 1 : 0, className: `${this.name}__input \
@@ -2160,27 +2160,36 @@ module.exports = function(r, g, b) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(2);
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 
 
 
 
-class DataCell extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class DataCell extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     constructor() {
         super(...arguments);
         this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "datagrid__cell";
     }
     render() {
-        const { style, type, addClass, onClick, className } = this.props;
+        const _a = this.props, { style, type, addClass, onClick, className } = _a, props = __rest(_a, ["style", "type", "addClass", "onClick", "className"]);
         return (type === "header")
             ?
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Th, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(this.props), { className: `${this.name} ${className} ${this.name}--header ${addClass}`, style: style, onClick: onClick }), this.props.children)
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Th, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(props), { className: `${this.name} ${className} ${this.name}--header ${addClass}`, s: style, onClick: onClick }), this.props.children)
             :
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Td, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(this.props), { className: `${this.name} ${addClass} ${className} `, style: style, onClick: onClick }), this.props.children);
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Td, Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__helpers_dom_only_props__["a" /* default */])(props), { className: `${this.name} ${addClass} ${className} `, s: style, onClick: onClick }), this.props.children);
     }
 }
 DataCell.defaultProps = {
     addClass: "",
-    style: null,
+    style: {},
     type: "cell",
     className: "",
 };
@@ -2200,23 +2209,12 @@ const Cell = {
     },
 };
 const Td = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("td")(Cell, (props) => {
-    return {
-        padding: props.theme.table_cell_padding,
-        borderBottom: props.theme.table_border_horizontal,
-        borderRight: props.theme.table_border_vertical,
-        fontSize: props.theme.table_cell_text_size,
-        " a, a:visited, a:hover, a:active": {
+    return Object.assign({ padding: props.theme.table_cell_padding, borderBottom: props.theme.table_border_horizontal, borderRight: props.theme.table_border_vertical, fontSize: props.theme.table_cell_text_size, " a, a:visited, a:hover, a:active": {
             color: props.theme.text,
-        }
-    };
+        } }, props.s);
 });
 const Th = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("th")(Object.assign({}, Cell, { borderColor: "transparent", whiteSpace: "nowrap", color: "#fff", fontWeight: "bold" }), (props) => {
-    return {
-        padding: props.theme.table_cell_padding,
-        borderBottom: props.theme.table_border_horizontal,
-        fontSize: props.theme.table_header_text_size,
-        textTransform: props.theme.table_header_text_transform,
-    };
+    return Object.assign({ padding: props.theme.table_cell_padding, borderBottom: props.theme.table_border_horizontal, fontSize: props.theme.table_header_text_size, textTransform: props.theme.table_header_text_transform }, props.s);
 });
 /* harmony default export */ __webpack_exports__["a"] = (DataCell);
 
@@ -3067,6 +3065,15 @@ function warning(message) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Layout_Grid__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Layout_GridCell__ = __webpack_require__(21);
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 
 
 
@@ -3076,7 +3083,7 @@ function warning(message) {
 
 
 
-class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     constructor(props) {
         super(props);
         this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "datagrid";
@@ -3131,7 +3138,7 @@ class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
     renderButtons() {
         return this.props.buttons.map(obj => {
-            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { style: { textAlign: "right", verticalAlign: "bottom" } }, obj);
+            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { textAlign: "right", verticalAlign: "bottom" }, obj);
         });
     }
     renderFilters() {
@@ -3145,10 +3152,10 @@ class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         });
     }
     render() {
-        const { addClass, className, style } = this.props;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: `${this.name} ${className}` },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { style: { whiteSpace: "nowrap" } }, this.props.filters.length > 0 && this.renderFiltersBar()),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Table, Object.assign({ className: `${this.name}__table ${addClass}`, style: style }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__["a" /* default */])(this.props)), this.props.children && this.renderChildren(this.props.children))));
+        const _a = this.props, { addClass, className, style } = _a, props = __rest(_a, ["addClass", "className", "style"]);
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { className: `${this.name} ${className}` },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout__["a" /* Div */], { whiteSpace: "nowrap" }, this.props.filters.length > 0 && this.renderFiltersBar()),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Table, Object.assign({ className: `${this.name}__table ${addClass}`, s: style }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__helpers_dom_only_props__["a" /* default */])(props)), this.props.children && this.renderChildren(this.props.children))));
     }
 }
 DataTable.defaultProps = {
@@ -3168,14 +3175,13 @@ const Table = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("t
         opacity: 0.1,
     },
 }, (props) => {
-    return {
-        borderLeft: props.theme.table_border_vertical,
-    };
+    return Object.assign({ borderLeft: props.theme.table_border_vertical, borderBottom: "5px solid #333" }, props.s);
 });
 const TextFilter = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_4__components_Forms_TextInput__["a" /* default */])({
     paddingRight: "20px",
     display: "inline-block",
     width: "70%",
+    marginBottom: 0,
 });
 const CheckboxFilter = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_5__components_Forms_Checkbox__["a" /* default */])({
     whiteSpace: "nowrap",
@@ -7321,7 +7327,7 @@ const animation = {
 
 
 
-class DataBody extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class DataBody extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     constructor() {
         super(...arguments);
         this.name = __WEBPACK_IMPORTED_MODULE_1__config__["a" /* prefix */] + "datagrid__body";
@@ -7377,7 +7383,7 @@ DataBody.defaultProps = {
 
 
 
-class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     constructor() {
         super(...arguments);
         this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "datagrid__row";
@@ -7392,7 +7398,7 @@ class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const kids = [...this.props.children];
         const lastKid = kids.pop();
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("thead", null,
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Header, { className: `${this.name} ${this.name}--header ${addClass} ${className}`, selected: selectedRows && selectedRows.length > 0, style: style },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Header, { className: `${this.name} ${this.name}--header ${addClass} ${className}`, selected: selectedRows && selectedRows.length > 0, s: style },
                 actions.length > 0 &&
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__DataCell__["a" /* default */], { type: "header", style: { width: "1%" } },
                         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__components_Forms_Checkbox__["a" /* default */], { input: { onChange: this.props.handleSelectAll, checked: this.props.selectedAll } })),
@@ -7414,17 +7420,16 @@ DataHeader.defaultProps = {
     selectedAll: false,
 };
 const ActionsIcons = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("div")({
+    marginTop: "-3px",
     whiteSpace: "nowrap",
-    " path": {
-        fill: "white!important",
+    " svg g path": {
+        fill: "white !important",
     },
 });
 /* unused harmony export ActionsIcons */
 
 const Header = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("tr")((props) => {
-    return {
-        background: props.selected ? props.theme.blue : "#333",
-    };
+    return Object.assign({ background: props.selected ? props.theme.blue : "#333" }, props.s);
 });
 /* harmony default export */ __webpack_exports__["a"] = (DataHeader);
 
@@ -7445,7 +7450,7 @@ const Header = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("
 
 
 
-class DataRow extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class DataRow extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     constructor() {
         super(...arguments);
         this.name = __WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "datagrid__row";
@@ -7453,7 +7458,7 @@ class DataRow extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     render() {
         const { style, addClass, inactive, dataId, actions, selectedRows, className } = this.props;
         const isSelected = selectedRows ? selectedRows.indexOf(dataId) > -1 : false;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Tr, { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass} ${className}`, disabled: inactive, selected: isSelected, "data-id": dataId, style: style },
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Tr, { className: `${this.name} ${inactive && this.name + `--inactive`} ${addClass} ${className}`, disabled: inactive, selected: isSelected, "data-id": dataId, s: style },
             actions.length > 0 &&
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__DataCell__["a" /* default */], null,
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__components_Forms_Checkbox__["a" /* default */], { input: { "onChange": evt => this.props.handleSelectRow(dataId),
@@ -7474,25 +7479,18 @@ DataRow.defaultProps = {
     selectedRows: [],
 };
 const Tr = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("tr")({}, (props) => {
-    return {
-        background: props.selected ? props.theme.selected_background : "#fff",
-        ":hover td": {
+    return Object.assign({ background: props.selected ? props.theme.selected_background : "#fff", ":hover td": {
             background: props.theme.hover_background,
-        },
-        color: props.disabled ? "#ccc" : "initial",
-        " *, path": {
+        }, color: props.disabled ? "#ccc" : "initial", " *, path": {
             color: props.disabled && "#ccc !important",
             fill: props.disabled && "#ccc !important",
-        },
-        " .muk-icon--pause *": {
+        }, " .muk-icon--pause *": {
             color: props.theme.blue + "!important",
             fill: props.theme.blue + "!important",
-        },
-        "& .muk-icon--play *": {
+        }, "& .muk-icon--play *": {
             color: props.theme.blue + "!important",
             fill: props.theme.blue + "!important",
-        },
-    };
+        } }, props.s);
 });
 /* harmony default export */ __webpack_exports__["a"] = (DataRow);
 
