@@ -48,7 +48,7 @@ class TextInput extends React.Component<Props, State> {
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         const Element = props.name ? StyledLightInput : StyledInput
         return (
-            <Field {...props} name={this.name}>
+            <Field {...props} name={props.name}>
                 <Div position="relative">
                 <Element
                     {...props}

@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "2.9.2",
+  "version": "2.10.0",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "dist/bundle.js",
   "scripts": {
@@ -18,10 +18,6 @@
     {
       "name": "Martin Hrncir",
       "companyEmail": "martin.hrncir@reglendo.com"
-    },
-    {
-      "name": "Samuel Hudec",
-      "email": "hudecsamuel@gmail.com"
     }
   ],
   "authors": "Reglendo technologies, s.r.o.",

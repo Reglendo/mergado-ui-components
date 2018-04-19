@@ -25,7 +25,7 @@ export interface Props {
 export interface State {
 }
 
-class DataRow extends React.Component<Props, State> {
+class DataRow extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
@@ -45,7 +45,7 @@ class DataRow extends React.Component<Props, State> {
             <Tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass} ${className}`}
                 disabled={inactive}
                 selected={isSelected}
-                data-id={dataId} style={style}>
+                data-id={dataId} s={style}>
                     {actions.length > 0 &&
                         <DataCell>
                             <Checkbox
@@ -82,6 +82,7 @@ const Tr = cxs("tr")({
             color: props.theme.blue + "!important",
             fill: props.theme.blue + "!important",
         },
+        ...props.s,
     }
 })
 

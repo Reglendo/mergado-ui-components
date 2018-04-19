@@ -6,7 +6,9 @@ Example test
     
     <Section>
     <DataTable
+                buttons={[ <span>Hello</span> ]}
                 labels={{actionsBar: "Actions:"}}
+                style={{ borderBottom: "5px solid black" }}
                 bulkActions={[
                     {icon: <IconPlay />, type: "play", action: () => { console.log('hello play')}},
                     {icon: <IconPause />, type: "pause", action: () => { console.log('hello pause')}},

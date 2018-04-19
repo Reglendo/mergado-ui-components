@@ -52,10 +52,10 @@ class Toggler extends React.Component<Props, {}> {
                             />
                         <Point big={props.big} boolean={props.boolean} width={props.width} className={"toggler-point"} reverse={reverse} />
                         {props.big && props.boolean &&
-                            <IconCheck size={18} color="rgb(245, 236, 213)" style={{position: "absolute", left: "3px", top: "5px"}} />
+                            <Yes size={15} color="rgb(245, 236, 213)" />
                         }
                         {props.big && props.boolean &&
-                            <IconClose size={18} color="#888" style={{position: "absolute", right: "3px", top: "5px"}}  />
+                            <No size={15} color="#888" />
                         }
 
                     </div>
@@ -68,6 +68,23 @@ class Toggler extends React.Component<Props, {}> {
                 label={this.renderLabel()} />
     }
 }
+
+
+const Yes = css(IconCheck)({
+    position: "absolute",
+    left: "3px",
+    top: "0px",
+    bottom: "0px",
+    margin: 'auto 0',
+})
+
+const No = css(IconClose)({
+    position: "absolute",
+    right: "3px",
+    top: "0px",
+    bottom: "0px",
+    margin: 'auto 0',
+})
 
 const Label = css("div")({
     cursor: "pointer",
@@ -90,6 +107,9 @@ const StyledField = css(Field)({
     },
 })
 
+const bigHeight = 20
+const bigBoolWidth = 45
+
 const Point = css("span")({
     display: "inline-block",
     borderRadius: "999em",
@@ -100,10 +120,10 @@ const Point = css("span")({
     zIndex: 5,
     transition: "all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1)",
 },props => ({
-    width: props.big ? "28px" : "14px",
-    height: props.big ? "28px" : "14px",
+    width: props.big ? `${bigHeight}px` : "14px",
+    height: props.big ? `${bigHeight}px` : "14px",
 
-    transform: props.reverse ? "translate3d("+(props.big ? (props.boolean ? "23px" : props.width-32 + "px") : "18px")+",0,0)" : "translate3d(0,0,0)",
+    transform: props.reverse ? "translate3d("+(props.big ? (props.boolean ? `${bigBoolWidth - bigHeight - 4}px` : (props.width-bigHeight-4) + "px") : "18px")+",0,0)" : "translate3d(0,0,0)",
 }))
 
 
@@ -115,10 +135,10 @@ const stylesProps =  (props) => {
 
     return {
         ":checked + span + span.toggler-point": {
-            transform: props.reverse ? "translate3d(0,0,0)" : "translate3d("+(props.big ? (props.boolean ? "23px" : props.width-32 + "px") : "18px")+",0,0)",
+            transform: props.reverse ? "translate3d(0,0,0)" : "translate3d("+(props.big ? (props.boolean ? `${bigBoolWidth - bigHeight - 4}px` : (props.width-bigHeight-4) + "px") : "18px")+",0,0)",
         },
         " + span": {
-            borderColor: `${props.theme.inactive}`,
+            borderColor: `#aaa`,
             background: `${props.theme.inactive}`,
             transition: "border-color 0.2s, background-color 0.2s",
             willChange: "background-color",
@@ -165,7 +185,7 @@ const StyledInput = css("span")({
         "&:before": {
             content: props.onLabel,
             transition: "opacity 0.1s",
-            lineHeight: "32px",
+            lineHeight: `${bigHeight+4}px`,
             color: "white",
             padding: "0 3px",
             // position: "absolute",
@@ -174,7 +194,7 @@ const StyledInput = css("span")({
         "&:after": {
             content: props.offLabel,
             transition: "opacity 0.1s",
-            lineHeight: "32px",
+            lineHeight: `${bigHeight+4}px`,
             padding: "0 3px",
             color: "#888",
             // position: "absolute",
@@ -184,11 +204,11 @@ const StyledInput = css("span")({
     
     return {
     ...content,
-    width: props.big ? (props.boolean ?  "55px" : (props.width + "px")) : "36px",
-    height: props.big ? "32px" : "18px",
+    width: props.big ? (props.boolean ?  `${bigBoolWidth}px` : (props.width + "px")) : "36px",
+    height: props.big ? `${bigHeight+4}px` : "18px",
 
     borderRadius: `999em`,
-    border: `1px solid ${props.theme.decoration}`,
+    border: `1px solid transparent`,
     ":hover": {
         borderColor: `${props.theme.blue}`,
     },

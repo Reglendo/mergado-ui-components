@@ -22,7 +22,7 @@ export interface Props {
 export interface State {
 }
 
-class DataHeader extends React.Component<Props, State> {
+class DataHeader extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
         addClass: "",
@@ -51,7 +51,7 @@ class DataHeader extends React.Component<Props, State> {
         return (
             <thead>
                 <Header className={`${this.name} ${this.name}--header ${addClass} ${className}`} selected={selectedRows && selectedRows.length > 0}
-                        style={style}>
+                        s={style}>
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
                             <Checkbox
@@ -77,15 +77,18 @@ class DataHeader extends React.Component<Props, State> {
 }
 
 export const ActionsIcons = cxs("div")({
+    marginTop: "-3px",
     whiteSpace: "nowrap",
-    " path": {
-        fill: "white!important",
+    " svg g path": {
+        fill: "white !important",
+
     },
 })
 
 const Header = cxs("tr")(
 (props: any) => { return {
     background: props.selected ? props.theme.blue : "#333",
+    ...props.s,
 }})
 
 export default DataHeader

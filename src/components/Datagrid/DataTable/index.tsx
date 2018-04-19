@@ -25,7 +25,7 @@ export interface State {
     selectedRows: ID[]
 }
 
-class DataTable extends React.Component<Props, State> {
+class DataTable extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
         bulkActions: [],
@@ -118,7 +118,7 @@ class DataTable extends React.Component<Props, State> {
 
     protected renderButtons() {
         return this.props.buttons.map(obj => {
-            return <div style={{ textAlign: "right", verticalAlign: "bottom" }}>{obj}</div>
+            return <Div textAlign="right" verticalAlign="bottom">{obj}</Div>
         })
     }
 
@@ -144,16 +144,16 @@ class DataTable extends React.Component<Props, State> {
     }
 
     public render() {
-        const { addClass, className, style } = this.props
+        const { addClass, className, style, ...props } = this.props
         return (
-            <div className={`${this.name} ${className}`}>
-                <div style={{whiteSpace: "nowrap"}}>
+            <Div className={`${this.name} ${className}`}>
+                <Div whiteSpace={"nowrap"}>
                     {this.props.filters.length > 0 && this.renderFiltersBar()}
-                </div>
-                <Table className={`${this.name}__table ${addClass}`} style={style} {...domOnlyProps(this.props)}>
+                </Div>
+                <Table className={`${this.name}__table ${addClass}`} s={style} {...domOnlyProps(props)}>
                     {this.props.children && this.renderChildren(this.props.children)}
                 </Table>
-            </div>
+            </Div>
         )
     }
 }
@@ -166,6 +166,8 @@ const Table = cxs("table")({
 },(props: any) => {
     return {
         borderLeft: props.theme.table_border_vertical,
+        borderBottom: "5px solid #333",
+        ...props.s,
     }
 })
 
@@ -173,6 +175,7 @@ const TextFilter = cxs(TextInput)({
     paddingRight: "20px",
     display: "inline-block",
     width: "70%",
+    marginBottom: 0,
 })
 
 const CheckboxFilter = cxs(Checkbox)({
