@@ -6,7 +6,7 @@ import {Span} from "../../../components/Layout"
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {Input as LightInput} from "light-form/dist/es"
-
+import {Div} from "../../Layout"
 export interface Props extends IFieldProps {
     halfway?: boolean
 }
@@ -25,19 +25,19 @@ class Checkbox extends React.Component<Props, {}> {
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         const Element = props.name ? StyledLightInput : Input
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
-                    <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
+                    <Div position="relative" display="inline-block" verticalAlign="middle">
                         <Element
                             {...props}
                             {...(!props.name && { checked: input.value })}
                             {...(!props.name && input)}
                             type="checkbox"
                             className={`${this.name}__item ${input.className}`}
-                            style={{display: "none"}}
+                            s={{display: "none"}}
                             />
                         <StyledInput label={label} className={"muk-checkbox-input"}
                             />
-                        <IconCheck size={14} style={{position: "absolute"}} />
-                    </div>
+                        <IconCheck size={14} />
+                    </Div>
                     <Span fontSize={"16px"} fontWeight={"normal"}>
                     {label && " " }{label}
                     </Span>
@@ -45,7 +45,7 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
     public render() {
-        return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }}
+        return <StyledField {...this.props} s={{ marginBottom: 0, padding: 0, ...this.props.style }}
                 label={this.renderLabel()} />
     }
 }
@@ -70,7 +70,9 @@ const StyledField = css(Field)({
         // verticalAlign: "initial",
     },
 
-})
+}, props => ({
+    ...props.s,
+}))
 
 const styles = {
     ":checked + span + span.muk-icon--check": {
@@ -84,6 +86,7 @@ const stylesProps =  (props) => {
             borderColor: `${props.theme.blue}`,
             background: `${props.theme.blue}`,
         },
+        ...props.s,
     }
 }
 

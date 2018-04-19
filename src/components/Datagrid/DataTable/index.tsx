@@ -165,7 +165,6 @@ const Table = cxs("table")({
     },
 },(props: any) => {
     return {
-        borderLeft: props.theme.table_border_vertical,
         borderBottom: "5px solid #333",
         ...props.s,
     }

@@ -27,10 +27,10 @@ class DataCell extends React.PureComponent<Props, State> {
         const { style, type, addClass, onClick, className, ...props } = this.props;
         return (type === "header")
             ?
-                <Th {...domOnlyProps(props)} className={`${this.name} ${className} ${this.name}--header ${addClass}`}
+                <Th {...props} className={`${this.name} ${className} ${this.name}--header ${addClass}`}
                     s={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Td {...domOnlyProps(props)} className={`${this.name} ${addClass} ${className} `} s={style}
+                <Td {...props} className={`${this.name} ${addClass} ${className} `} s={style}
                     onClick={onClick}>{this.props.children}</Td>
     }
 }
@@ -54,11 +54,14 @@ const Cell = {
 const Td = cxs("td")(Cell, (props: any) => {
 return {
     padding: props.theme.table_cell_padding,
-    borderBottom: props.theme.table_border_horizontal,
+    borderTop: props.theme.table_border_horizontal,
     borderRight: props.theme.table_border_vertical,
     fontSize: props.theme.table_cell_text_size,
     " a, a:visited, a:hover, a:active": {
         color: props.theme.text,
+    },
+    "&:first-child": {
+        borderLeft: props.theme.table_border_vertical,
     },
     ...props.s,
 }})
@@ -71,7 +74,6 @@ const Th = cxs("th")({
     fontWeight: "bold",
 }, (props: any) => { return {
     padding: props.theme.table_cell_padding,
-    borderBottom: props.theme.table_border_horizontal,
     fontSize: props.theme.table_header_text_size,
     textTransform: props.theme.table_header_text_transform,
     ...props.s,

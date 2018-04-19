@@ -3,6 +3,7 @@ import css from "@reglendo/cxs/component"
 
 import {prefix, form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
+import {Div} from "../../Layout"
 
 export interface IFieldProps {
     group?: {
@@ -163,7 +164,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
     const { meta, input, labels, group, ...others } = props
     const isInvalid = !!props.meta.error || props.meta.invalid
     return (
-        <div
+        <Div
             {...domOnlyProps(group)}
             className={`${props.name ? props.name : ""}
                         ${props.className ? props.className : ""}
@@ -172,7 +173,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                         ${form}__group
                         `}
             title={props.labels.title}
-            style={props.style}>
+            {...props.style}>
                 <FieldError {...props} className={`${form}__validation`} />
                 {(props.label || others.label || labels.main) &&
                     <FieldLabel name={props.name} bigLabel={group.bigLabel}>
@@ -184,7 +185,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                 `}>
                     {props.children}
                 </div>
-        </div>
+        </Div>
     )
 }
 
@@ -208,5 +209,6 @@ export const Field = css(FieldComponent)({
             borderRadius: `${parseInt(theme.radius,10) + 2}px`,
             border: `1px solid ${theme.red}`,
         },
+        ...props.s,
     }
 })

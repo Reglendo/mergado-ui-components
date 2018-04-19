@@ -45,7 +45,7 @@ export class Button extends React.Component<Props, {}> {
                                         ${props.disabled ? this.name+`--disabled`:``}
                 `}
                 {...this.props} name={this.name} label="" labels={{...labels,main: ""}}
-                style={{ marginBottom: 0, ...group.style }}
+                s={{ marginBottom: 0, ...group.style }}
                 >
                     <UniversalButton {...this.props} name={this.name} />
             </StyledField>
@@ -56,6 +56,8 @@ export class Button extends React.Component<Props, {}> {
 const StyledField = cxs(Field)({
     display: "inline-block",
     verticalAlign: "top",
-})
+}, props => ({
+    ...props.s,
+}))
 
 export default Button

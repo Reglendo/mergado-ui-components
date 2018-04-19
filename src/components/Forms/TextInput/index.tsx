@@ -40,7 +40,7 @@ class TextInput extends React.Component<Props, State> {
 
     public render() {
         const { type, meta, input } = this.props
-        const {children, ...props} = this.props
+        const {children, style, ...props} = this.props
         const inputProps: any = this.props.input
         if(type === "file") {
             delete inputProps.value
@@ -48,7 +48,7 @@ class TextInput extends React.Component<Props, State> {
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         const Element = props.name ? StyledLightInput : StyledInput
         return (
-            <Field {...props} name={props.name}>
+            <Field {...props} s={style} name={props.name}>
                 <Div position="relative">
                 <Element
                     {...props}
