@@ -1,8 +1,8 @@
 Example
 
-       <div style={{ width: '279px', height: '73px', border: '1px solid #dbcba3', borderTop: '30px solid #948254',
+       <div style={{ width: '279px', height: '100px', border: '1px solid #dbcba3', borderTop: '32px solid #948254',
                        boxSizing: 'content-box',
-                       backgroundColor: 'hsla(0, 0%, 100%, .5)',
+                       backgroundColor: 'white',
                        fontFamily: 'Arial, Helvetica, Verdana, Sans-serif'}}>
            <Widget>
                <div className="widget-row">

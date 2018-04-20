@@ -35,7 +35,7 @@ class LittleStatus extends React.Component<Props, State> {
                         this.props.children
 
         return (
-            <Wrapper className={className}  style={this.props.style}>
+            <Wrapper className={className}  s={this.props.style}>
                 <Indikator type={this.props.type}
                                 className={classIndikator}
                                 title={this.props.title} />
@@ -47,10 +47,12 @@ class LittleStatus extends React.Component<Props, State> {
 
 const Wrapper = css("span")({
     verticalAlign: "middle",
-})
+}, props => ({
+    ...props.s
+}))
 const Indikator = css("span")({
-    width: "8px",
-    height: "8px",
+    width: "10px",
+    height: "10px",
     borderRadius: "100%",
     borderBottom: "none",
     verticalAlign: "middle",
@@ -59,7 +61,7 @@ const Indikator = css("span")({
 }, (props: any) => {
     return {
         boxShadow: props.type === "info" ? "0px 0px 1px 0px rgba(0,0,0,0.5)" : "none",
-        backgroundColor: props.theme[props.type],
+        backgroundColor: props.type === "inactive" ? "#888" : props.theme[props.type],
     }
 });
 
