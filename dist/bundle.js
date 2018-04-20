@@ -3627,7 +3627,7 @@ class LittleStatus extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 this.props.text))
             :
                 this.props.children;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Wrapper, { className: className, style: this.props.style },
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Wrapper, { className: className, s: this.props.style },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Indikator, { type: this.props.type, className: classIndikator, title: this.props.title }),
             text));
     }
@@ -3640,10 +3640,10 @@ LittleStatus.defaultProps = {
 };
 const Wrapper = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("span")({
     verticalAlign: "middle",
-});
+}, props => (Object.assign({}, props.s)));
 const Indikator = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("span")({
-    width: "8px",
-    height: "8px",
+    width: "10px",
+    height: "10px",
     borderRadius: "100%",
     borderBottom: "none",
     verticalAlign: "middle",
@@ -3652,7 +3652,7 @@ const Indikator = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default(
 }, (props) => {
     return {
         boxShadow: props.type === "info" ? "0px 0px 1px 0px rgba(0,0,0,0.5)" : "none",
-        backgroundColor: props.theme[props.type],
+        backgroundColor: props.type === "inactive" ? "#888" : props.theme[props.type],
     };
 });
 const Text = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("span")({
