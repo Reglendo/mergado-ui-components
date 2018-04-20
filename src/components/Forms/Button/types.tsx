@@ -12,7 +12,7 @@ interface IHrefProps {
     [propName: string]: any
 }
 
-export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title,
+export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title, style,
                                              styleClass, className, children, ...props}) =>
         <a {...domOnlyProps(props)}
             href={link}
@@ -31,7 +31,7 @@ interface IButtonProps {
     [propName: string]: any
 }
 
-export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className,
+export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, style,
                                                  styleClass, input, children, ...props}) => {
     return (
         <button
@@ -53,7 +53,7 @@ interface ISubmitProps {
     [propName: string]: any
 }
 
-export const Submit: React.SFC<ISubmitProps> = ({name, label, title, className,
+export const Submit: React.SFC<ISubmitProps> = ({name, label, title, className, style,
                                                  styleClass, input, children, ...props}) =>
         <input type="submit"
                     {...input}
@@ -71,7 +71,7 @@ interface IVoidProps {
     className?: string
     [propName: string]: any
 }
-export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className,
+export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className, style,
                                              styleClass, children, ...props}) =>
         <span
             {...domOnlyProps(props)}
