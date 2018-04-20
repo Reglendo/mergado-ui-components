@@ -8371,7 +8371,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 const Href = (_a) => {
-    var { icon, label, link, name, title, styleClass, className, children } = _a, props = __rest(_a, ["icon", "label", "link", "name", "title", "styleClass", "className", "children"]);
+    var { icon, label, link, name, title, style, styleClass, className, children } = _a, props = __rest(_a, ["icon", "label", "link", "name", "title", "style", "styleClass", "className", "children"]);
     return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("a", Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_dom_only_props__["a" /* default */])(props), { href: link, className: `${name}__item ${className ? className : ""} ${styleClass}`, title: title }),
         icon,
         icon && " ",
@@ -8381,7 +8381,7 @@ const Href = (_a) => {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Href;
 
 const Button = (_a) => {
-    var { name, icon, label, title, className, styleClass, input, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "styleClass", "input", "children"]);
+    var { name, icon, label, title, className, style, styleClass, input, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "style", "styleClass", "input", "children"]);
     return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", Object.assign({}, input, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_dom_only_props__["a" /* default */])(props), { className: `${name}__item ${className ? className : ""} ${styleClass}`, title: title }),
         icon,
         icon && " ",
@@ -8391,13 +8391,13 @@ const Button = (_a) => {
 /* harmony export (immutable) */ __webpack_exports__["b"] = Button;
 
 const Submit = (_a) => {
-    var { name, label, title, className, styleClass, input, children } = _a, props = __rest(_a, ["name", "label", "title", "className", "styleClass", "input", "children"]);
+    var { name, label, title, className, style, styleClass, input, children } = _a, props = __rest(_a, ["name", "label", "title", "className", "style", "styleClass", "input", "children"]);
     return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("input", Object.assign({ type: "submit" }, input, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_dom_only_props__["a" /* default */])(props), { className: `${name}__item ${className ? className : ""} ${styleClass}`, value: label, title: title }));
 };
 /* harmony export (immutable) */ __webpack_exports__["c"] = Submit;
 
 const Void = (_a) => {
-    var { name, icon, label, title, className, styleClass, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "styleClass", "children"]);
+    var { name, icon, label, title, className, style, styleClass, children } = _a, props = __rest(_a, ["name", "icon", "label", "title", "className", "style", "styleClass", "children"]);
     return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", Object.assign({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__helpers_dom_only_props__["a" /* default */])(props), { className: `${name}__item ${className ? className : ""} ${styleClass}`, title: title }),
         icon,
         icon && " ",
