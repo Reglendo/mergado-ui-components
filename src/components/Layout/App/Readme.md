@@ -4,10 +4,13 @@ Application
     var IconPlay = require('@reglendo/mergado-ui-icons/lib/icons/IconPlay').default;
     var IconPause = require('@reglendo/mergado-ui-icons/lib/icons/IconPause').default;
     var IconTrash = require('@reglendo/mergado-ui-icons/lib/icons/IconTrashO').default;
-                
+    var Field = require('redux-form').Field;
+    var FieldLabel = require('../../Forms/Field').FieldLabel;
+    var Div = require('../../Layout/Div').Div;
+
     <div style={{overflow: 'auto'}}>
     <div style={{ minWidth: '500px'}}>
-        <section id="container">
+        <div id="container">
             <Section>
                 <Nav logo={<img src="https://www.bidding-fox.cz/sites/all/themes/fox/logo.svg" alt="Hlavní strana" class="img-responsive" />}>
                             <NavLink active={(state.activePage == 1) ? true : false } key={1} 
@@ -131,6 +134,59 @@ Application
                 </DataTable>
             </Section>
 
-        </section>
+            <Section>
+                <h2>Ukázkový formulář</h2>
+                <TextInput name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
+                <Div width='50%' display='inline-block' verticalAlign='middle'>
+                    <h3>Identification</h3>
+                    <TextInput name="firstname" labels={{ main: 
+                                                                                <span>
+                                                                                    First name*:&nbsp;
+                                                                                    <PopupHint hint={true}>Help me!</PopupHint>
+                                                                                </span>, invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
+                    <TextInput name="lastname" labels={{main:  <span>
+                                                                                    Last name:&nbsp;
+                                                                                    <PopupHint icon={<Icon type="info-circle" />} >Help me!</PopupHint>
+                                                                                </span> }} />
+                </Div>
+                <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
+                    <h3>Contact</h3>
+                    <TextInput name="tel" labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
+                    <TextInput name="email" labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
+                </div>
+                <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+                    <Radio name="favcolor"
+                            items={[
+                                {value: "black", label: "black"},
+                                {value: "blue", label: "blue"},
+                                {value: "orange", label: "orange"},
+                                {value: "pink", label: "pink"}
+                            ]}
+                            label="Your favourite color:" />
+                </div>
+                <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+                        <FieldLabel>Your favourite superpower</FieldLabel>
+                        <Checkbox name="superpower1" labels={{main: "invisibility"}} />
+                        <Checkbox name="superpower2" labels={{main: "immortality"}} />
+                        <Checkbox name="superpower3" labels={{main: "stupidity"}} />
+                        <Checkbox name="superpower4" labels={{main: "other-ity"}} />
+                </div>
+
+                <h3>Other information</h3>
+                <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+                    <ColorPicker name="colorpicker"  labels={{main: 'What is your favorite color:'}} color={{ r:0, g:140, b:0, a:1 }} />
+                </div>
+                <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
+                    <Textarea name="textarea" labels={{main: 'Leave us message:'}} />
+                </div>
+
+                <div style={{textAlign: "center"}}>
+                    <Button name="submit" props={{icon: <Icon type="check" />}} type="button" labels={{main: 'Submit' }} onClick={ () => { setState( { invalid: true }) }} />
+                    <code>&nbsp;</code>
+                    <Button name="reset" props={{icon: <Icon type="close" />}} type="button" color="gray" labels={{main: 'Reset' }} onClick={ () => { setState( { invalid: false }) }} />
+                </div>
+            </Section>
+
+        </div>
     </div>
     </div>

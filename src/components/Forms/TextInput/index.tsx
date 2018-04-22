@@ -53,7 +53,7 @@ class TextInput extends React.Component<Props, State> {
         delete elProps.group
         delete elProps.labels
         return (
-            <Field {...props} className={`${this.name} ${className}`} s={style} name={props.name}>
+            <Field {...props} className={`${this.name} ${className || ""}`} s={style} name={props.name}>
                 <Div className="m-textinput-wrapper" position="relative">
                 <Element
                     {...elProps}

@@ -23,7 +23,7 @@
   "authors": "Reglendo technologies, s.r.o.",
   "dependencies": {
     "@reglendo/cxs": "*",
-    "@reglendo/mergado-ui-icons": "*",
+    "@reglendo/mergado-ui-icons": "1.2.4",
     "color": "^2.0.0",
     "light-form": "https://github.com/Reglendo/light-form.git#v2.4.0-10",
     "moment-mini": "^2.19.4",

@@ -16,6 +16,7 @@ export interface Props {
     hint?: boolean
     help?: boolean
     hover?: boolean
+    className?: string
 }
 
 export interface State {
@@ -31,7 +32,7 @@ export interface Position {
 
 class PopupHint extends React.Component<Props, State> {
 
-    private readonly name = prefix + "popup_hint";
+    private readonly name = prefix + "popuphint";
 
     public static defaultProps: Props = {
         icon: null,
@@ -212,32 +213,42 @@ class PopupHint extends React.Component<Props, State> {
 
         const hint: JSX.Element = (
             <Bubble>
-                <div ref={"hint"} className={`${this.name}__bubble`}
+                <div ref={"hint"} className={`muk-bubble`}
                      style={style} tabIndex={0}
                      onBlur={ this.state.expanded ? this.collapse : () => {} }
                 >
-                    <Div position={"relative"} padding={"0 0 10px 0"} className={`${this.name}__innerwrapper`}>
-                        <HintContent hover={this.props.hover} className={`${this.name}__content`} id={`${this.name}__content`}>{this.props.children}</HintContent>
-                        <div ref={"arrow"} style={{
-                            width: "12px",
-                            height: "12px",
-                            position: "absolute",
-                            display: "inline-block",
-                            zIndex: 1000,
-                            bottom: "11px"
-                        }}>
-                            <HintArrow
-                                hover={this.props.hover}
-                                className={`${this.name}__arrow`} />
-                        </div>
+                    <Div position={"relative"} padding={"0 0 10px 0"} className={`m-innerwrapper`}>
+                        <HintContent hover={this.props.hover} 
+                            className={`m-content`} 
+                            id={`${this.name}__content`}>
+                                {this.props.children}
+                        </HintContent>
+                        <Div ref={"arrow"}
+                            className="m-arrow-wrapper"
+                            {...{
+                                width: "12px",
+                                height: "12px",
+                                position: "absolute",
+                                display: "inline-block",
+                                zIndex: 1000,
+                                bottom: "11px"
+                            }}>
+                                <HintArrow
+                                    hover={this.props.hover}
+                                    className={`m-arrow`} />
+                        </Div>
                     </Div>
                 </div>
             </Bubble>
         )
 
         return (
-            <Div cursor={"help"} verticalAlign={"text-bottom"} display="inline-block" className={this.name} style={{...this.props.style}}>
-                <div ref="button" className={`${this.name}__trigger ${this.state.expanded ? "active" : ""}`}
+            <Div className={`${this.name} ${this.props.className || ""}`} 
+                cursor={"help"} 
+                verticalAlign={"text-bottom"} 
+                display="inline-block"
+                style={{...this.props.style}}>
+                <div ref="button" className={`m-trigger ${this.state.expanded ? "m-active" : ""}`}
                      onMouseDown={this.state.expanded ? ()=> {} : this.expand}
                      onMouseEnter={!this.props.hover || this.state.expanded ? () => {} : this.expand}
                      onMouseLeave={this.props.hover && this.state.expanded ? this.collapse : () => {} }
@@ -246,8 +257,8 @@ class PopupHint extends React.Component<Props, State> {
                          e.stopPropagation()
                      }}
                 >
-                    {this.props.hint ? <IconHintInfo size={16} /> : null}
-                    {this.props.help ? <IconHintHelp size={16} /> : null}
+                    {this.props.hint ? <IconHintInfo className="m-icon" size={16} /> : null}
+                    {this.props.help ? <IconHintHelp className="m-icon" size={16} /> : null}
                     {this.props.icon ? this.props.icon : null }
                 </div>
                 {hint}

@@ -10,9 +10,9 @@
     inline-style-prefixer "^3.0.8"
     shallow-compare "^1.2.2"
 
-"@reglendo/mergado-ui-icons@*":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@reglendo/mergado-ui-icons/-/mergado-ui-icons-1.2.3.tgz#62318053a8fa29d210ab63101da48de9be85d171"
+"@reglendo/mergado-ui-icons@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@reglendo/mergado-ui-icons/-/mergado-ui-icons-1.2.4.tgz#4215a8345e0dcd7bcf49506cf6e35a5d6249e4b9"
   dependencies:
     shallow-compare "^1.2.2"
 

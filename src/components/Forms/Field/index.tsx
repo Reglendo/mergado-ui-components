@@ -187,7 +187,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
     return (
         <Div
             {...others}
-            className={`${form}-group ${props.name ? props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
+            className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
             title={props.labels.title}
             {...props.style}>
                 <FieldError {...others} meta={meta} className={`${form}__validation`} />
@@ -238,7 +238,6 @@ export const Field = css(FieldComponent)({
 
 Field.propTypes = {
     input: PropTypes.any,
-    labels: PropTypes.any,
     group: PropTypes.any,
     s: PropTypes.any,
 }

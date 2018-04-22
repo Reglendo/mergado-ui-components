@@ -7,6 +7,8 @@ import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {Input as LightInput} from "light-form/dist/es"
 import {Div} from "../../Layout/Div"
+import PropTypes from "prop-types"
+
 export interface Props extends IFieldProps {
     halfway?: boolean
 }
@@ -24,21 +26,20 @@ class Checkbox extends React.Component<Props, {}> {
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         const Element = props.name ? StyledLightInput : Input
-        return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
-                    <Div position="relative" display="inline-block" verticalAlign="middle">
+        return <Label  className={`${isInvalid ? `m-invalid` : ""}`}>
+                    <Div className="m-element-wrapper" position="relative" display="inline-block" verticalAlign="middle">
                         <Element
+                            className={`m-item`}
                             {...props}
                             {...(!props.name && { checked: input.value })}
                             {...(!props.name && input)}
                             type="checkbox"
-                            className={`${this.name}__item ${input.className}`}
                             s={{display: "none !important"}}
                             />
-                        <StyledInput label={label} className={"muk-checkbox-input"}
-                            />
-                        <IconCheck size={14} />
+                        <StyledInput className={"muk-checkbox-input"} label={label} />
+                        <IconCheck className="m-check" size={14} />
                     </Div>
-                    <Span fontSize={"16px"} fontWeight={"normal"}>
+                    <Span className="m-label-wrapper" fontSize={"16px"} fontWeight={"normal"}>
                     {label && " " }{label}
                     </Span>
                 </Label>
@@ -62,12 +63,8 @@ const Label = css("div")({
 })
 
 const StyledField = css(Field)({
-    "> .muk-form__group--invalid": {
+    "> .m-invalid": {
         border: "none !important",
-    },
-
-    " svg": {
-        // verticalAlign: "initial",
     },
 
 }, props => ({
@@ -75,14 +72,14 @@ const StyledField = css(Field)({
 }))
 
 const styles = {
-    ":checked + span + span.muk-icon--check": {
+    ":checked + .muk-checkbox-input + .m--check": {
         display: "inline-block",
     },
 }
 
 const stylesProps =  (props) => {
     return {
-        ":checked + span": {
+        ":checked + .muk-checkbox-input": {
             borderColor: `${props.theme.blue}`,
             background: `${props.theme.blue}`,
         },
@@ -100,13 +97,13 @@ const StyledInput = css("span")({
     height: "18px",
     position: "relative",
     transition: "border-color 0.2s",
-    " + span.muk-icon--check": {
+    " + .m--check": {
         display: "none",
         position: "absolute",
         left: "2px",
-        top: "-3px",
+        top: "0px",
     },
-    " + span.muk-icon--check path": {
+    " + .m--check path": {
         fill: "white !important",
     },
 
@@ -118,5 +115,14 @@ const StyledInput = css("span")({
         borderColor: `${props.theme.blue}`,
     },
 }})
+
+StyledInput.propTypes = {
+    label: PropTypes.string,
+    group: PropTypes.string,
+    meta: PropTypes.string,
+    s: PropTypes.string,
+}
+Input.propTypes = StyledInput.propTypes
+StyledLightInput.propTypes = StyledInput.propTypes
 
 export default Checkbox
