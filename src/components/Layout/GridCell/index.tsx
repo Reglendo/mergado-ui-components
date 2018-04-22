@@ -13,13 +13,14 @@ interface Props {
 
     autoFlow?: "row" | "column"
     style?: any
+    className?: string
 }
 
 const GridCell = (props: Props) => {
-    const { children, ...others } = props
+    const { children, style, className, ...p } = props
 
     return (
-        <GridCellStyle  {...others}>
+        <GridCellStyle className={`muk-gridcell ${className || ""}`} s={style} {...p}>
             {children}
         </GridCellStyle>
     )
@@ -45,7 +46,7 @@ GridCellStyle.propTypes = {
     align: PropTypes.string,
     valign: PropTypes.string,
     autoFlow: PropTypes.string,
-    style: PropTypes.any,
+    s: PropTypes.any,
 }
 
 export default GridCell

@@ -1,5 +1,5 @@
 import * as React from "react"
-import {Div} from "../../../components/Layout"
+import {Div} from "../../../components/Layout/Div"
 import cxs from "@reglendo/cxs/component"
 import {prefix} from "../../../config"
 import DataCell from "../DataCell"
@@ -9,7 +9,6 @@ import Button from "../../../components/Forms/Button"
 
 export interface Props {
     style?: any
-    addClass?: string
     className?: string
 
     actions?: Action[]
@@ -25,18 +24,18 @@ export interface State {
 class DataHeader extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
-        addClass: "",
         className: "",
         style: {},
         actions: [],
         handleSelectAll: () => {},
         selectedAll: false,
     }
-    private readonly name = prefix + "datagrid__row";
+    private readonly name = prefix + "datarow";
 
     protected renderBulkActions() {
         return this.props.actions.map(obj => {
-            return (<Button onClick={obj.action}
+            return (<Button className="m-bulk"
+                            onClick={obj.action}
                             key={obj.type}
                             icon={obj.icon}
                             color="nocolor"
@@ -45,12 +44,12 @@ class DataHeader extends React.PureComponent<Props, State> {
     }
 
     public render() {
-        const { actions, addClass, className, selectedRows, style } = this.props
+        const { actions, className, selectedRows, style } = this.props
         const kids: any = [...this.props.children]
         const lastKid = kids.pop()
         return (
-            <thead>
-                <Header className={`${this.name} ${this.name}--header ${addClass} ${className}`} selected={selectedRows && selectedRows.length > 0}
+            <thead className={`${this.name} ${className}`}>
+                <CssHeader className="m-row" selected={selectedRows && selectedRows.length > 0}
                         s={style}>
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
@@ -62,21 +61,22 @@ class DataHeader extends React.PureComponent<Props, State> {
                     {kids}
                     {selectedRows && selectedRows.length > 0 ?
                         <DataCell type="header">
-                            <Div display={"inline-block"} verticalAlign={"bottom"} className={`${this.name}__actions_bar`}>
-                                <ActionsIcons className={`${this.name}__actions_icons`}>
-                                    {this.renderBulkActions()}
-                                </ActionsIcons>
+                            <Div className={`m-actions`} 
+                                 display={"inline-block"} verticalAlign={"bottom"}>
+                                    <CssActionsIcons className={`m-icons`}>
+                                        {this.renderBulkActions()}
+                                    </CssActionsIcons>
                             </Div>
                         </DataCell>
                         :
                         lastKid}
-                </Header>
+                </CssHeader>
             </thead>
         )
     }
 }
 
-export const ActionsIcons = cxs("div")({
+export const CssActionsIcons = cxs("div")({
     marginTop: "-3px",
     whiteSpace: "nowrap",
     " svg g path": {
@@ -85,7 +85,7 @@ export const ActionsIcons = cxs("div")({
     },
 })
 
-const Header = cxs("tr")(
+const CssHeader = cxs("tr")(
 (props: any) => { return {
     background: props.selected ? props.theme.blue : "#333",
     ...props.s,

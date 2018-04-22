@@ -5,7 +5,6 @@ import {prefix} from "../../config"
 export interface Props {
     links: JSX.Element[]
     style?: any
-    addClass?: string
     className?: string
     logo?: JSX.Element
 }
@@ -15,19 +14,18 @@ export interface State {
 
 class Nav extends React.Component<Props, State> {
 
-    private readonly name = prefix + "top_nav";
+    private readonly name = prefix + "nav";
 
     public static defaultProps: Props = {
         links: [],
         style: {},
-        addClass: "",
         className: "",
     }
 
     protected renderLinks() {
         const {links} = this.props
         return (
-            <ul className={`${this.name}__list muk-helper-clearfix`}>
+            <ul className={`m-links muk-helper-clearfix`}>
                 {links.length > 0 ? links : this.props.children}
             </ul>
         )
@@ -35,21 +33,19 @@ class Nav extends React.Component<Props, State> {
 
     public render() {
 
-        const className = `${this.name} ${this.props.addClass} ${this.props.className}`
-
         return (
-            <Component className={className} style={this.props.style}>
+            <CssComponent className={`${this.name} ${this.props.className || ""}`} style={this.props.style}>
                 {this.props.logo &&
-                    <Logo>{this.props.logo}</Logo>
+                    <CssLogo className="m-logo">{this.props.logo}</CssLogo>
                 }
                 {this.renderLinks()}
-            </Component>
+            </CssComponent>
         )
     }
 }
 
 // /* <style> */
-const Logo = css("div")({
+const CssLogo = css("div")({
     display: "inline-block",
     float: "left",
     maxHeight: "40px",
@@ -60,7 +56,7 @@ const Logo = css("div")({
     }
 })
 
-const Component = css("nav")({
+const CssComponent = css("nav")({
     color: "#333",
     fontSize: "16px",
     fontWeight: "bold",

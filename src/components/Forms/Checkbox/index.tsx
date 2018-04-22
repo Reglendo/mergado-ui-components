@@ -1,12 +1,12 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import css from "@reglendo/cxs/component"
-import {Span} from "../../../components/Layout"
+import {Span} from "../../../components/Layout/Span"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {Input as LightInput} from "light-form/dist/es"
-import {Div} from "../../Layout"
+import {Div} from "../../Layout/Div"
 export interface Props extends IFieldProps {
     halfway?: boolean
 }

@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../../components/Layout"
+import {Div} from "../../../components/Layout/Div"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
@@ -24,7 +24,7 @@ interface State {
 
 class TextInput extends React.Component<Props, State> {
     protected _inputRef = null
-    protected readonly name = prefix + "input-text"
+    protected readonly name = prefix + "textinput"
     public static defaultProps: Props = {
         ...defaultFieldProps,
         type: "text",
@@ -39,41 +39,45 @@ class TextInput extends React.Component<Props, State> {
     }
 
     public render() {
-        const { type, meta, input } = this.props
-        const {children, style, ...props} = this.props
+        const { type, meta, input, ...p } = this.props
+        const {children, style, className, ...props} = this.props
         const inputProps: any = this.props.input
         if(type === "file") {
             delete inputProps.value
         }
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
-        const Element = props.name ? StyledLightInput : StyledInput
+        const Element = props.name ? CssLightInput : CssInput
+        const elProps = {...props}
+        delete elProps.input
+        delete elProps.meta
+        delete elProps.group
+        delete elProps.labels
         return (
-            <Field {...props} s={style} name={props.name}>
-                <Div position="relative">
+            <Field {...props} className={`${this.name} ${className}`} s={style} name={props.name}>
+                <Div className="m-textinput-wrapper" position="relative">
                 <Element
-                    {...props}
+                    {...elProps}
                     {...(!props.name && inputProps)}
                     placeholder={this.props.labels.placeholder}
                     ref={"input"}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)
                                                 ? "text" : props.type}
                     aria-invalid={isInvalid ? 1 : 0}
-                    className={`${this.name}__input \
-                                ${form}__input--text \
-                                ${form}__input--${type} \
-                                ${inputProps.className} \
-                                `}
+                    className={`m-textinput-input m-textinput-${type}`}
                 />
                 {type === "password" && this.state.passwordVisible === false &&
-                    <ButtonEye icon={<IconEye />} type={"void"}  color="nocolor" size="tiny"
+                    <CssButtonEye className="m-openedeye" icon={<IconEye />}
+                            type={"void"}  color="nocolor" size="tiny"
                             onClick={() => this.setState({ passwordVisible: true })} />
                 }
                 {type === "password" && this.state.passwordVisible === true &&
-                    <ButtonEye icon={<IconEyeSlash />}  type={"void"}  color="nocolor" size="tiny"
-                               onClick={() => this.setState({ passwordVisible: false })} />
+                    <CssButtonEye className="m-closedeye" icon={<IconEyeSlash />}  
+                            type={"void"}  color="nocolor" size="tiny"
+                            onClick={() => this.setState({ passwordVisible: false })} />
                 }{type === "search" &&
-                    <ButtonClose icon={<IconClose />} type={"void"} color={"nocolor"} size="tiny"
-                                 onClick={() => {
+                    <CssButtonClose className="m-clear" icon={<IconClose />}
+                                type={"void"} color={"nocolor"} size="tiny"
+                                onClick={() => {
                                             const input: any = this.refs.input
                                             this.props.onClear && this.props.onClear()
                                             if(input) {
@@ -130,25 +134,25 @@ export const stylesProps = (props) => {
         height: props.height ? props.height + "px" : "40px",
         border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
         borderRadius: theme.radius,
-        ":active": {
+        "&:active": {
             border: `${theme.input_border_active} !important`,
         },
-        ":focus": {
+        "&:focus": {
             border: `${theme.input_border_active} !important`,
         },
     }
 }
 
-const StyledInput = css("input")(styles,stylesProps)
-const StyledLightInput = css(Input)(styles,stylesProps)
+const CssInput = css("input")(styles,stylesProps)
+const CssLightInput = css(Input)(styles,stylesProps)
 
-const ButtonEye = css(Button)({
+const CssButtonEye = css(Button)({
     right: "5px",
     bottom: "8px",
     position: "absolute",
 })
 
-const ButtonClose = css(Button)({
+const CssButtonClose = css(Button)({
     right: "5px",
     bottom: "8px",
     position: "absolute",

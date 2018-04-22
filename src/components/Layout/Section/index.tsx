@@ -10,36 +10,38 @@ interface Props {
     prefix?: JSX.Element | string
     suffix?: JSX.Element | string
     children?: any
+    className?: string
 }
 
 const Section = (props: Props) => {
-    const { children, header } = props
+    const name = "muk-section"
+    const { children, header, prefix, suffix, className, ...p } = props
     if(children === "" || children === null) {
         return null
     }
 
-    const prefix = props.prefix ? <Prefix row={"1"}>{props.prefix}</Prefix> : ""
-    const suffix = props.suffix ? <Suffix row={"1"}>{props.suffix}</Suffix> : ""
+    const pref = prefix && <CssPrefix className="m-prefix" row={"1"}>{props.prefix}</CssPrefix>
+    const suff = suffix && <CssSuffix className="m-suffix" row={"1"}>{props.suffix}</CssSuffix>
 
     return (
-        <SSection  {...domOnlyProps(props)}>
+        <CssSection className={`${name} ${className || ""}`}  {...p}>
             {header &&
-                <Header>
-                    <Grid cols={"auto 1fr auto"}>
-                    {prefix}
-                    <GridCell row={"1"}>
+                <CssHeader className={"m-header"}>
+                    <Grid className={"m-header-wrap"} cols={"auto 1fr auto"}>
+                    {pref}
+                    <GridCell className="m-header-content" row={"1"}>
                         {header}
                     </GridCell>
-                    {suffix}
+                    {suff}
                     </Grid>
-                </Header>
+                </CssHeader>
             }
             {children}
-        </SSection>
+        </CssSection>
     )
 }
 
-const Prefix = css(GridCell)({
+const CssPrefix = css(GridCell)({
     margin: "-10px",
     padding: "10px",
     marginRight: "15px",
@@ -48,7 +50,7 @@ const Prefix = css(GridCell)({
     justifySelf: "left",
 })
 
-const Suffix = css(GridCell)({
+const CssSuffix = css(GridCell)({
     float: "right",
     margin: "-10px",
     padding: "10px",
@@ -58,7 +60,7 @@ const Suffix = css(GridCell)({
     justifySelf: "right",
 })
 
-const Header = css(GridCell)({
+const CssHeader = css(GridCell)({
     fontWeight: "normal",
     fontSize: "15px",
     height: "63px",
@@ -73,7 +75,7 @@ const Header = css(GridCell)({
     }
 })
 
-const SSection = css("section")({
+const CssSection = css("section")({
     marginBottom: "20px",
 },(props: any) => {
     return {

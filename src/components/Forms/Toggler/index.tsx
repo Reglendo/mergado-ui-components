@@ -2,7 +2,7 @@ import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import css from "@reglendo/cxs/component"
-import {Span} from "../../../components/Layout"
+import {Span} from "../../../components/Layout/Span"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"

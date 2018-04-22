@@ -3,7 +3,7 @@ import css from "@reglendo/cxs/component"
 
 import {prefix, form} from "../../../config"
 import domOnlyProps from "../../../helpers/dom-only-props"
-import {Div} from "../../Layout"
+import {Div} from "../../Layout/Div"
 import PropTypes from 'prop-types'
 
 export interface IFieldProps {
@@ -52,6 +52,7 @@ export interface IFieldProps {
         title?: string,
         placeholder?: string,
     }
+    className?: string
     [propName: string]: any,
 }
 
@@ -100,7 +101,7 @@ export const defaultFieldProps: IFieldProps = {
         },
 }
 
-const BigLabel = css("h3")({
+const CssBigLabel = css("h3")({
     paddingLeft: "10px",
     borderLeft: "5px solid hsla(43,44%,75%,.5)",
     fontSize: "1.2em",
@@ -114,8 +115,8 @@ const LabelComponent = ({children, bigLabel, className = ""}) => {
     }
 
     return (
-            <label className={`${form}__label ${className}`}>
-                {bigLabel ? <BigLabel>{children}</BigLabel> : children }
+            <label className={`${form}-label ${className}`}>
+                {bigLabel ? <CssBigLabel>{children}</CssBigLabel> : children }
             </label>
         )
 }
@@ -181,12 +182,12 @@ FieldError.propTypes = {
 
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
-    const { meta, input, labels, group, ...others } = props
+    const { meta, input, labels, group, style, ...others } = props
     const isInvalid = !!props.meta.error || props.meta.invalid
     return (
         <Div
-            {...props}
-            className={`${props.name ? props.name : ""} ${props.className || ""} ${props.disabled ? props.name + `--disabled` : ""} ${props.required ? props.name + `--required` : ""} ${form}__group`}
+            {...others}
+            className={`${form}-group ${props.name ? props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
             title={props.labels.title}
             {...props.style}>
                 <FieldError {...others} meta={meta} className={`${form}__validation`} />
@@ -195,9 +196,7 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
                         {props.label ? props.label : (others.label ? others.label : labels.main)}
                     </FieldLabel>
                 }
-                <div className={`\
-                    ${isInvalid ? `${form}__group--invalid` : ""}\
-                `}>
+                <div className={`m-isinvalid ${isInvalid ? `m-invalid` : ""}`}>
                     {props.children}
                 </div>
         </Div>
@@ -207,7 +206,6 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
 FieldComponent.defaultProps = defaultFieldProps
 
 FieldComponent.propTypes = {
-    meta: PropTypes.any,
     input: PropTypes.any,
     labels: PropTypes.any,
     group: PropTypes.any,
@@ -229,7 +227,7 @@ export const Field = css(FieldComponent)({
 
     return {
         ...styles,
-        "& .muk-form__group--invalid": {
+        "& .m-invalid": {
             borderRadius: `${parseInt(theme.radius,10) + 2}px`,
             border: `1px solid ${theme.red}`,
         },
@@ -239,7 +237,6 @@ export const Field = css(FieldComponent)({
 
 
 Field.propTypes = {
-    meta: PropTypes.any,
     input: PropTypes.any,
     labels: PropTypes.any,
     group: PropTypes.any,

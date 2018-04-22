@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 
 export interface Props {
     style?: any
-    addClass?: string
     className?: string
     inactive?: boolean
     /** optional attribute "data-id" for various uses */
@@ -29,7 +28,6 @@ export interface State {
 class DataRow extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
-        addClass: "",
         className: "",
         style: {},
         inactive: false,
@@ -37,33 +35,34 @@ class DataRow extends React.PureComponent<Props, State> {
         actions: [],
         selectedRows: [],
     }
-    private readonly name = prefix + "datagrid__row"
+    private readonly name = prefix + "datarow"
 
     public render() {
-        const { style, addClass, inactive, dataId, actions, selectedRows, className } = this.props
+        const { style, inactive, dataId, actions, selectedRows, className } = this.props
         const isSelected = selectedRows ? selectedRows.indexOf(dataId) > -1 : false
         return (
-            <Tr className={`${this.name} ${inactive && this.name+`--inactive`} ${addClass} ${className}`}
+            <CssTr className={`${this.name} ${inactive && `inactive`} ${className}`}
                 disabled={inactive}
                 selected={isSelected}
                 data-id={dataId} s={style}>
                     {actions.length > 0 &&
-                        <DataCell>
+                        <DataCell className="m-actions-cell">
                             <Checkbox
+                                className="m-actions-checkbox"
                                 input={{ "onChange": evt => this.props.handleSelectRow(dataId),
                                          "checked": this.props.selectedRows.indexOf(dataId) !== -1,
                                          "data-id": dataId,
-                                         "className": "bulk-action-item",
+                                         "className": "m-bulk-action-item",
                                       }} />
                         </DataCell>
                     }
                     {this.props.children}
-            </Tr>
+            </CssTr>
         )
     }
 }
 
-const Tr = cxs("tr")({
+const CssTr = cxs("tr")({
 },(props: any) => {
     return {
         background: props.selected ? props.theme.selected_background : "#fff",
@@ -87,7 +86,7 @@ const Tr = cxs("tr")({
     }
 })
 
-Tr.propTypes = {
+CssTr.propTypes = {
     selected: PropTypes.bool,
     disabled: PropTypes.bool,
     s: PropTypes.any,

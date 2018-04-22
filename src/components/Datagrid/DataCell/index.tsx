@@ -6,7 +6,6 @@ import PropTypes from "prop-types"
 
 export interface Props {
     style?: any
-    addClass?: string
     className?: string
     type?: "cell" | "header"
     onClick?: (event: any) => any
@@ -17,21 +16,20 @@ export interface State {
 class DataCell extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
-        addClass: "",
         style: {},
         type: "cell",
         className: "",
     }
-    private readonly name = prefix + "datagrid__cell";
+    private readonly name = prefix + "datacell";
 
     public render() {
-        const { style, type, addClass, onClick, className, ...props } = this.props;
+        const { style, type, onClick, className, ...props } = this.props;
         return (type === "header")
             ?
-                <Th {...props} className={`${this.name} ${className} ${this.name}--header ${addClass}`}
+                <Th {...props} className={`${this.name} m-header ${className}`}
                     s={style} onClick={onClick}>{this.props.children}</Th>
             :
-                <Td {...props} className={`${this.name} ${addClass} ${className} `} s={style}
+                <Td {...props} className={`${this.name} ${className}`} s={style}
                     onClick={onClick}>{this.props.children}</Td>
     }
 }

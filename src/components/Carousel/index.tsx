@@ -3,12 +3,13 @@ import css from "@reglendo/cxs/component"
 import {prefix} from "../../config"
 import IconChevronLeft from "@reglendo/mergado-ui-icons/lib/icons/IconChevronLeft"
 import IconChevronRight from "@reglendo/mergado-ui-icons/lib/icons/IconChevronRight"
-import {Div} from "../Layout"
+import {Div} from "../Layout/Div"
 import {Button} from "../Forms/Button"
 export interface Props {
     children: any
     style?: any
     topLayer?: JSX.Element
+    className?: string
 }
 export interface State {
     active: number
@@ -27,7 +28,6 @@ export class Carousel extends React.Component<Props, State> {
 
     public render() {
         const steps = this.props.children.length
-        const className = `${this.name}`
         const increaseActive = () => this.setState({ active: this.state.active%steps+1})
         const decreaseActive = () => this.setState({ active: (this.state.active-2 + steps)%steps + 1})
         const setActive = s => { this.setState({ active: parseInt(s.target.dataset.step,10)}) }
@@ -38,55 +38,60 @@ export class Carousel extends React.Component<Props, State> {
         const translate = -((this.state.active - 1) / steps) * 100
 
         return (
-            <Wrapper className={className} style={this.props.style}>
-                <BigButton color="nocolor" left={true} onClick={decreaseActive} icon={<IconChevronLeft size={20} />} />
+            <CssWrapper className={`${this.name} ${this.props.className || ""}`} s={this.props.style}>
+                <CssMukBigButton color="nocolor" left={true} 
+                              onClick={decreaseActive} 
+                              icon={<IconChevronLeft size={20} />} />
 
                 {this.props.topLayer}
-                <Div padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
-                <Slides count={steps} translate={translate}>
+                <Div className="slides" padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
+                <CssSlides className="slides__wrapper" count={steps} translate={translate}>
                     {this.props.children.map(o => {
-                        return  <Slide active={this.state.active === i} data-next={i++}>
+                        return  <CssSlide className={`slide ${this.state.active === 1 && "active"}`} 
+                                        active={this.state.active === i} data-next={i++}>
                                     {o}
-                                </Slide>
+                                </CssSlide>
                     })}
-                </Slides>
+                </CssSlides>
                 </Div>
 
                 <div className="controls">
-                    <Button color="nocolor"  style={{fontSize: "14px"}} 
+                    <Button className="prev" color="nocolor"  style={{fontSize: "14px"}} 
                         onClick={decreaseActive} icon={<IconChevronLeft size={12} text="Předchozí" />} />
                             &nbsp;
                             {this.props.children.map(o => {
                             j++
                             return this.state.active === j - 1 ? 
-                                    <Circle color="nocolor" size="tiny" 
-                                            onClick={setActive} type="void" data-step={j-1}>●</Circle> 
+                                    <CssMukCircle color="nocolor" size="tiny" 
+                                            onClick={setActive} type="void" data-step={j-1}>●</CssMukCircle> 
                                 : 
-                                    <Circle color="nocolor" size="tiny" 
-                                            onClick={setActive} type="void" data-step={j-1}>○</Circle>
+                                    <CssMukCircle color="nocolor" size="tiny" 
+                                            onClick={setActive} type="void" data-step={j-1}>○</CssMukCircle>
                             })}
                     <Button color="nocolor" style={{fontSize: "14px"}} 
                             onClick={increaseActive} 
                             icon={<IconChevronRight size={12} textFirst={true} text="Další" />} />
                 </div>
 
-                <BigButton color="nocolor" onClick={increaseActive} icon={<IconChevronRight size={20} />} />
+                <CssMukBigButton className="next" color="nocolor" 
+                    onClick={increaseActive} 
+                    icon={<IconChevronRight size={20} />} />
 
-        </Wrapper>
+        </CssWrapper>
         )
     }
 }
 
-const Wrapper = css("div")({
+const CssWrapper = css("div")({
     overflowX: "hidden",
     maxWidth: "100%",
     position: "relative",
     textAlign: "center",
 }, props => ({
-        ...props.style,
+        ...props.s,
     }))
 
-const BigButton = css(Button)({
+const CssMukBigButton = css(Button)({
     position: "absolute", 
     zIndex: 10, 
     top: 0, 
@@ -99,7 +104,7 @@ const BigButton = css(Button)({
 
 }))
 
-const Slides = css("div")({
+const CssSlides = css("div")({
     display: "table", 
     tableLayout: "fixed", 
     transition: "transform 0.2s", 
@@ -110,7 +115,7 @@ const Slides = css("div")({
 
 }))
 
-const Slide = css("div")({
+const CssSlide = css("div")({
     display: "table-cell",
     textAlign: "center",
     verticalAlign: "middle",
@@ -119,7 +124,7 @@ const Slide = css("div")({
     opacity: props.active ? 1 : 0,
 }))
 
-const Circle = css(Button)({
+const CssMukCircle = css(Button)({
     fontSize: "22px",
     opacity: 0.8,
     display: "inline-block",

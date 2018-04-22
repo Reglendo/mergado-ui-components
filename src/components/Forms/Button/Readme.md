@@ -2,11 +2,11 @@ Simple button
 
     var Field = require('redux-form').Field;
     <Section>
-        <Button labels={{main: 'I\'m button!'}} onClick={() => alert('Hello')} /><code>&nbsp;</code>
-        <Button element={<a href="google.com" >Hello</a>} labels={{main: 'I\'m link!'}} type="link" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m <a href>!'}} type="href" /><code>&nbsp;</code>
-        <Field component={Button} name="first-name" props={{ type: 'submit', labels: { main: "I\'m submit!" }}} /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m void!'}} type="void" /><code>&nbsp;</code>
+        <Button labels={{main: 'I\'m button!'}} onClick={() => alert('Hello')}  style={{marginRight: "5px"}} />
+        <Button element={<a href="google.com" >I'm link</a>} onClick={() => alert('Hello')} labels={{main: 'I\'m link!'}} type="link"  style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m <a href>!'}}  onClick={() => alert('Hello')} type="href"  style={{marginRight: "5px"}} />
+        <Field component={Button} name="first-name"  onClick={() => alert('Hello')}  props={{ type: 'submit', labels: { main: "I\'m submit!" }}}   style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m void!'}}  onClick={() => alert('Hello')} type="void"  style={{marginRight: "5px"}} />
     </Section>
 
 Buttons with icons
@@ -21,13 +21,13 @@ Button colors
 
     <Section>
     primary:<br/>
-        <Button labels={{main: 'I\'m blue'}} color="blue" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m grey'}} color="grey" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m green'}} color="green" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m red'}} color="red" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m orange'}} color="orange" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m yellow'}} color="yellow" /><code>&nbsp;</code>
-        <Button labels={{main: 'I\'m decoration'}} color="decoration" /><code>&nbsp;</code>
+        <Button labels={{main: 'I\'m blue'}} color="blue" style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m grey'}} color="grey"  style={{marginRight: "5px"}}/>
+        <Button labels={{main: 'I\'m green'}} color="green" style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m red'}} color="red" style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m orange'}} color="orange" style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m yellow'}} color="yellow" style={{marginRight: "5px"}} />
+        <Button labels={{main: 'I\'m decoration'}} color="decoration" style={{marginRight: "5px"}} />
 
         <Button labels={{main: 'I have no background'}} color="nocolor" /><br/>
     secondary:<br/>
@@ -55,6 +55,7 @@ Button sizes
     <Section>
         <Button labels={{main: 'I\'m big'}} /><code>&nbsp;</code>
         <Button labels={{main: 'I\'m small'}} size="small" /><code>&nbsp;</code>
+        <Button labels={{main: 'I\'m smaller'}} size="smaller" /><code>&nbsp;</code>
         <Button labels={{main: 'I\'m tiny'}} size="tiny" />
 
     </Section>

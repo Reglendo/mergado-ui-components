@@ -27,7 +27,7 @@ class DataBody extends React.PureComponent<Props, State> {
         style: {},
         actions: [],
     }
-    private readonly name = prefix + "datagrid__body";
+    private readonly name = prefix + "databody";
 
     protected renderChildren() {
         const children: any = !Array.isArray(this.props.children) ? [this.props.children] : this.props.children
@@ -45,14 +45,14 @@ class DataBody extends React.PureComponent<Props, State> {
         const { sortable, sortableProps, style, addClass, className } = this.props;
         if(sortable) {
             return (
-                <Sortable tag="tbody" {...sortableProps}>
+                <Sortable className={`${this.name} m-sortable ${className}`} tag="tbody" {...sortableProps}>
                     {this.props.children && this.renderChildren()}
                 </Sortable>
             )
 
         } else {
             return (
-                <tbody className={className}>
+                <tbody className={`${this.name} ${className}`}>
                     {this.props.children && this.renderChildren()}
                 </tbody>
             )

@@ -1,90 +1,102 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-
-import domOnlyProps from "../../../helpers/dom-only-props"
-
+import PropTypes from "prop-types"
 interface Props {
     type: "1" | "2" | "3" | "4" | "5"
     children?: any
+    className?: string
+    style?: any
 }
 
 const Header = (props: Props) => {
-    const { children, type } = props
+    const name = "muk-header"
+    const { children, type, className, style, ...p } = props
     if(children === "" || children === null) {
         return null
     }
 
     if(type === "1") {
         return (
-            <H1 {...domOnlyProps(props)}>
+            <CssH1 {...p} s={style} className={`muk-header m-h1 ${className}`}>
                 {children}
-            </H1>
+            </CssH1>
         )
     }
     if(type === "2") {
         return (
-            <H2 {...domOnlyProps(props)}>
+            <CssH2 {...p} s={style} className={`muk-header m-h2 ${className}`}>
                 {children}
-            </H2>
+            </CssH2>
         )
     }
     if(type === "3") {
         return (
-            <H3 {...domOnlyProps(props)}>
+            <CssH3 {...p} s={style} className={`muk-header m-h3 ${className}`}>
                 {children}
-            </H3>
+            </CssH3>
         )
     }
     if(type === "4") {
         return (
-            <H4 {...domOnlyProps(props)}>
+            <CssH4 {...p} s={style} className={`muk-header m-h4 ${className}`}>
                 {children}
-            </H4>
+            </CssH4>
         )
     }
     if(type === "5") {
         return (
-            <H5 {...domOnlyProps(props)}>
+            <CssH5 {...p} s={style} className={`muk-header m-h5 ${className}`}>
                 {children}
-            </H5>
+            </CssH5>
         )
     }
 }
 
-const H1 = css("h1")({
+const CssH1 = css("h1")({
     fontSize:  "28px",
     lineHeight:  "40px",
     margin:  "40px 0 0 0",
     fontWeight: 700,
 })
 
-const H2 = css("h2")({
+
+
+const CssH2 = css("h2")({
     fontSize:  "24px",
     lineHeight:  "32px",
     margin:  "32px 0 0 0",
     fontWeight: 700,
 })
 
-const H3 =  css("h3")({
+const CssH3 =  css("h3")({
     fontSize:  "20px",
     lineHeight:  "24px",
     margin:  "24px 0 0 0",
     fontWeight: 700,
 })
 
-const H4 =  css("h4")({
+const CssH4 =  css("h4")({
     fontSize:  "17px",
     lineHeight:  "24px",
     margin:  "24px 0 0 0",
     fontWeight: 700,
 })
 
-const H5 =  css("h5")({
+const CssH5 =  css("h5")({
     fontSize:  "14px",
     lineHeight:  "20px",
     margin:  "20px 0 0 0",
     fontWeight: 700,
 })
 
+CssH1.propTypes = {
+    selected: PropTypes.bool,
+    disabled: PropTypes.bool,
+    s: PropTypes.any,
+}
+CssH2.propTypes = CssH1.propTypes
+CssH3.propTypes = CssH1.propTypes
+CssH4.propTypes = CssH1.propTypes
+CssH5.propTypes = CssH1.propTypes
 
 export default Header

@@ -1,14 +1,17 @@
 import * as React from "react"
 import cxs from "@reglendo/cxs/component"
 import * as Color from "color"
-
+import PropTypes from "prop-types"
 import {Href, Button, Submit, Void} from "./types"
 
-const UniversalButtonComponent = ({...props}) => {
-    const { name, type, link, labels, icon, input, to, children, ...others } = props
+import Span from "../../Layout/Span"
+
+const UniversalButton = ({...props}) => {
+    const { className, name, type, link, labels, icon, input, to, children, ...others } = props
     if(type === "href") {
         return <Href
                     {...others}
+                    className={`m-button-href ${className || ""}`}
                     name={name}
                     title={labels.title}
                     link={to ? to : link}
@@ -17,11 +20,15 @@ const UniversalButtonComponent = ({...props}) => {
                     label={others.label ? others.label : labels.main}
                 />
     } else if(type === "link") {
-        const Element:any = {...props.element, props: props, attributes: {...props} }
-        return Element
+        const { group, meta, element, style, ...p } = others
+        delete p.input
+        delete p.labels
+        const Element: any = {...props.element, props: p, attributes: {...p} }
+        return <Span  className={`muk-button m-link`} {...style}>{Element}</Span>
 
    } else if(type === "button") {
         return <Button
+                    className={`muk-button m-button ${className || ""}`}
                     {...others}
                     name={name}
                     title={labels.title}
@@ -32,6 +39,7 @@ const UniversalButtonComponent = ({...props}) => {
                 />
     } else if(type === "submit") {
         return <Submit
+                    className={`m-button-submit ${className || ""}`}
                     {...others}
                     name={name}
                     title={labels.title}
@@ -40,6 +48,7 @@ const UniversalButtonComponent = ({...props}) => {
                 />
     } else if(type === "void") {
         return <Void
+                    className={`m-button-void ${className || ""}`}
                     {...others}
                     name={name}
                     icon={icon}
@@ -52,7 +61,7 @@ const UniversalButtonComponent = ({...props}) => {
     }
 }
 
-export const UniversalButton = cxs(UniversalButtonComponent)({
+export const CssUniversalButton = cxs(UniversalButton)({
     boxSizing: "border-box",
     display: "inline-block",
     cursor: "pointer",
@@ -95,6 +104,10 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
         size = {
             padding: "8px 15px",
         }
+    } else if(props.size === "smaller") {
+        size = {
+            padding: "5px 8px",
+        }
     }
     let disabled = {}
     if(props.disabled) {
@@ -111,7 +124,7 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
             padding: "0 2px",
             borderColor: "transparent",
             color: props.theme.blue,
-            ":active,:focus": {
+            "&:active,&:focus": {
               borderColor: "transparent",
               outline: "none",
               background: "rgba(200,200,200,0.2)",
@@ -130,11 +143,11 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
                 backgroundColor: "white",
                 borderColor: c,
                 color: props.color === "decoration" ? props.theme.blue : c,
-                ":hover": {
+                "&:hover": {
                     backgroundColor: Color(c).fade(0.8).string(),
                     borderColor: Color(c).string(),
                 },
-                ":active,:focus": {
+                "&:active,&:focus": {
                   background: Color(c).fade(0.2).string(),
                   borderColor: Color(c).fade(0.2).string(),
                   color: "white",
@@ -174,3 +187,13 @@ export const UniversalButton = cxs(UniversalButtonComponent)({
         ...props.s,
     }
 })
+
+CssUniversalButton.propTypes = {
+    size: PropTypes.string,
+    disabled: PropTypes.bool,
+    color: PropTypes.string,
+    secondary: PropTypes.bool,
+    keepColors: PropTypes.bool,
+
+    s: PropTypes.any,
+}

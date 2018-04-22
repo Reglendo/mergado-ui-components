@@ -3,6 +3,7 @@ import css from "@reglendo/cxs/component"
 import PropTypes from "prop-types"
 
 interface Props {
+    className?: string
     inline?: boolean
     children: any
     cols?: string
@@ -17,16 +18,16 @@ interface Props {
 }
 
 const Grid = (props: Props) => {
-    const { children, ...p } = props
+    const { children, style, className, ...p } = props
 
     return (
-        <GridStyle {...p}>
+        <CssGrid className={`muk-grid ${className || ""}`} s={style} {...p}>
             {children}
-        </GridStyle>
+        </CssGrid>
     )
 }
 
-const GridStyle = css("div")({
+const CssGrid = css("div")({
 
 },(props: any) => {
     return {
@@ -41,8 +42,8 @@ const GridStyle = css("div")({
     }
 })
 
-GridStyle.propTypes = {
-    style: PropTypes.any,
+CssGrid.propTypes = {
+    s: PropTypes.any,
     inline: PropTypes.any,
     cols: PropTypes.string,
     rows: PropTypes.string,

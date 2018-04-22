@@ -1,6 +1,6 @@
 import * as React from "react"
 import cxs from "@reglendo/cxs/component"
-import {Div} from "../../../components/Layout"
+import {Div} from "../../../components/Layout/Div"
 import {prefix} from "../../../config"
 import TextInput from "../../../components/Forms/TextInput"
 import Checkbox from "../../../components/Forms/Checkbox"
@@ -14,7 +14,6 @@ export interface Props {
     filters?: Filter[]
     buttons?: JSX.Element[]
     style?: any
-    addClass?: string
     className?: string
     labels?: {
         actionsBar: string
@@ -32,14 +31,13 @@ class DataTable extends React.PureComponent<Props, State> {
         filters: [],
         buttons: [],
         style: {},
-        addClass: "",
         className: "",
         labels: {
             actionsBar: "",
         },
     }
 
-    private readonly name = prefix + "datagrid"
+    private readonly name = prefix + "datatable"
 
     constructor(props) {
         super(props)
@@ -103,7 +101,7 @@ class DataTable extends React.PureComponent<Props, State> {
 
     protected renderFiltersBar() {
         return (
-            <Div marginBottom={"10px"} verticalAlign={"middle"} className={`${this.name}__filters_bar`}>
+            <Div className={`m-filters`} marginBottom={"10px"} verticalAlign={"middle"} >
                 <Grid cols="auto auto">
                     <GridCell>
                         {this.renderFilters()}
@@ -118,7 +116,7 @@ class DataTable extends React.PureComponent<Props, State> {
 
     protected renderButtons() {
         return this.props.buttons.map(obj => {
-            return <Div textAlign="right" verticalAlign="bottom">{obj}</Div>
+            return <Div className="m-buttons" textAlign="right" verticalAlign="bottom">{obj}</Div>
         })
     }
 
@@ -126,7 +124,8 @@ class DataTable extends React.PureComponent<Props, State> {
         return this.props.filters.map(obj => {
             switch(obj.type) {
                 case "text":
-                    return (<TextFilter
+                    return (<CssMTextFilter
+                                className="m-text-filter"
                                 type="search"
                                 onClear={() => obj.action({currentTarget: {value: "" }})}
                                 input={{ onKeyUp: (evt) => { obj.action(evt) }, value: obj.value }}
@@ -134,7 +133,8 @@ class DataTable extends React.PureComponent<Props, State> {
                                 key="text"
                             />)
                 case "checkbox":
-                    return (<CheckboxFilter
+                    return (<CssMCheckboxFilter
+                                className="m-checkbox-filter"
                                 input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }}
                                 labels={{main: obj.label }}
                                 key="checkbox"
@@ -144,21 +144,21 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     public render() {
-        const { addClass, className, style, ...props } = this.props
+        const { className, style, ...props } = this.props
         return (
-            <Div className={`${this.name} ${className}`}>
-                <Div whiteSpace={"nowrap"}>
+            <Div className={`${this.name} ${className || ""}`}>
+                <Div className="m-filters-wrapper" whiteSpace={"nowrap"}>
                     {this.props.filters.length > 0 && this.renderFiltersBar()}
                 </Div>
-                <Table className={`${this.name}__table ${addClass}`} s={style} {...domOnlyProps(props)}>
+                <CssTable className={`m-table`} s={style} {...domOnlyProps(props)}>
                     {this.props.children && this.renderChildren(this.props.children)}
-                </Table>
+                </CssTable>
             </Div>
         )
     }
 }
 
-const Table = cxs("table")({
+const CssTable = cxs("table")({
     width: "100%",
     " .sortable-ghost": {
       opacity: 0.1,
@@ -170,14 +170,14 @@ const Table = cxs("table")({
     }
 })
 
-const TextFilter = cxs(TextInput)({
+const CssMTextFilter = cxs(TextInput)({
     paddingRight: "20px",
     display: "inline-block",
     width: "70%",
     marginBottom: 0,
 })
 
-const CheckboxFilter = cxs(Checkbox)({
+const CssMCheckboxFilter = cxs(Checkbox)({
     whiteSpace: "nowrap",
     display: "inline-block",
 })

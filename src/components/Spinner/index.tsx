@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../components/Layout"
+import {Div} from "../../components/Layout/Div"
 import * as Color from "color"
 import {prefix} from "../../config"
 import {animation as pulseAnimation} from "../../components/Animations/Pulse"

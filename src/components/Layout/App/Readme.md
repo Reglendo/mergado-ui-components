@@ -23,7 +23,7 @@ Application
                             <span style="float: right">Heureka CZ (test)</span>
                 </Nav>
             </Section>
-            <Section header="Analytika">
+            <Section header="Analytika" prefix="Projekt" suffix="Heureka.cz">
             <Grid rows="100px 100px" gap="5px">
                 <GridCell col="1" row="1 / 3">
                    <Placeholder style={{paddingBottom: 0, height: "100%"}}/>

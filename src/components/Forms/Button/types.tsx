@@ -13,10 +13,12 @@ interface IHrefProps {
 }
 
 export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title, style,
-                                             styleClass, className, children, ...props}) =>
-        <a {...domOnlyProps(props)}
+                                            meta, labels, group,
+                                             className, children, ...props}) =>
+        <a 
+            className={`muk-button ${className ? className : ""}`}
+            {...props}
             href={link}
-            className={`${name}__item ${className ? className : ""} ${styleClass}`}
             title={title}>
                 {icon}{icon && " "}{label}{children}
         </a>
@@ -32,12 +34,12 @@ interface IButtonProps {
 }
 
 export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, style,
-                                                 styleClass, input, children, ...props}) => {
+                                                 labels,group,meta,
+                                                 input, children, ...props}) => {
     return (
-        <button
+        <button 
             {...input}
-            {...domOnlyProps(props)}
-            className={`${name}__item ${className ? className : ""} ${styleClass}`}
+            {...props}
             title={title}>
                 {icon}{icon && " "}{label}{children}
         </button>
@@ -54,13 +56,14 @@ interface ISubmitProps {
 }
 
 export const Submit: React.SFC<ISubmitProps> = ({name, label, title, className, style,
-                                                 styleClass, input, children, ...props}) =>
-        <input type="submit"
-                    {...input}
-                    {...domOnlyProps(props)}
-                    className={`${name}__item ${className ? className : ""} ${styleClass}`}
-                    value={label}
-                    title={title}
+                                                input, children, group, meta, labels, ...props}) =>
+        <input 
+            className={`muk-button ${className ? className : ""}`}
+            type="submit"
+            {...input}
+            {...props}
+            value={label}
+            title={title}
                 />
 
 interface IVoidProps {
@@ -72,10 +75,11 @@ interface IVoidProps {
     [propName: string]: any
 }
 export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className, style,
-                                             styleClass, children, ...props}) =>
+                                            labels,group,meta,
+                                             children, ...props}) =>
         <span
-            {...domOnlyProps(props)}
-            className={`${name}__item ${className ? className : ""} ${styleClass}`}
+            className={`muk-button ${className ? className : ""}`}
+            {...props}
             title={title}>
                 {icon}{icon && " "}{label}{children}
         </span>
