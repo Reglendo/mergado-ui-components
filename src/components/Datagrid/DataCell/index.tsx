@@ -26,11 +26,11 @@ class DataCell extends React.PureComponent<Props, State> {
         const { style, type, onClick, className, ...props } = this.props;
         return (type === "header")
             ?
-                <Th {...props} className={`${this.name} m-header ${className}`}
-                    s={style} onClick={onClick}>{this.props.children}</Th>
+                <CssTh {...props} className={`${this.name} m-header ${className || ""}`}
+                    s={style} onClick={onClick}>{this.props.children}</CssTh>
             :
-                <Td {...props} className={`${this.name} ${className}`} s={style}
-                    onClick={onClick}>{this.props.children}</Td>
+                <CssTd {...props} className={`${this.name} ${className || ""}`} s={style}
+                    onClick={onClick}>{this.props.children}</CssTd>
     }
 }
 
@@ -50,7 +50,7 @@ const Cell = {
     },
 }
 
-const Td = cxs("td")(Cell, (props: any) => {
+const CssTd = cxs("td")(Cell, (props: any) => {
 return {
     padding: props.theme.table_cell_padding,
     borderTop: props.theme.table_border_horizontal,
@@ -64,8 +64,12 @@ return {
     },
     ...props.s,
 }})
+CssTd.propTypes = {
+    s: PropTypes.any,
+}
 
-const Th = cxs("th")({
+
+const CssTh = cxs("th")({
     ...Cell,
     borderColor: "transparent",
     whiteSpace: "nowrap",
@@ -78,11 +82,8 @@ const Th = cxs("th")({
     ...props.s,
 }})
 
-Th.propTypes = {
+CssTh.propTypes = {
     s: PropTypes.any,
 }
 
-Td.propTypes = {
-    s: PropTypes.any,
-}
 export default DataCell

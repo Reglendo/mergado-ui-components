@@ -45,14 +45,14 @@ class DataBody extends React.PureComponent<Props, State> {
         const { sortable, sortableProps, style, addClass, className } = this.props;
         if(sortable) {
             return (
-                <Sortable className={`${this.name} m-sortable ${className}`} tag="tbody" {...sortableProps}>
+                <Sortable className={`${this.name} m-sortable ${className || ""}`} tag="tbody" {...sortableProps}>
                     {this.props.children && this.renderChildren()}
                 </Sortable>
             )
 
         } else {
             return (
-                <tbody className={`${this.name} ${className}`}>
+                <tbody className={`${this.name} ${className || ""}`}>
                     {this.props.children && this.renderChildren()}
                 </tbody>
             )

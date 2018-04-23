@@ -26,7 +26,7 @@ class Checkbox extends React.Component<Props, {}> {
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         const Element = props.name ? StyledLightInput : Input
-        return <Label  className={`${isInvalid ? `m-invalid` : ""}`}>
+        return <Label className={`m-label ${isInvalid ? `m-invalid` : ""}`}>
                     <Div className="m-element-wrapper" position="relative" display="inline-block" verticalAlign="middle">
                         <Element
                             className={`m-item`}
@@ -117,10 +117,10 @@ const StyledInput = css("span")({
 }})
 
 StyledInput.propTypes = {
-    label: PropTypes.string,
-    group: PropTypes.string,
-    meta: PropTypes.string,
-    s: PropTypes.string,
+    label: PropTypes.any,
+    group: PropTypes.any,
+    meta: PropTypes.any,
+    s: PropTypes.any,
 }
 Input.propTypes = StyledInput.propTypes
 StyledLightInput.propTypes = StyledInput.propTypes

@@ -6,6 +6,7 @@ import DataCell from "../DataCell"
 import Checkbox from "../../../components/Forms/Checkbox"
 import { ID, Action } from "../../../helpers/types"
 import Button from "../../../components/Forms/Button"
+import PropTypes from "prop-types"
 
 export interface Props {
     style?: any
@@ -48,7 +49,7 @@ class DataHeader extends React.PureComponent<Props, State> {
         const kids: any = [...this.props.children]
         const lastKid = kids.pop()
         return (
-            <thead className={`${this.name} ${className}`}>
+            <thead className={`${this.name} ${className || ""}`}>
                 <CssHeader className="m-row" selected={selectedRows && selectedRows.length > 0}
                         s={style}>
                     {actions.length > 0 &&
@@ -90,5 +91,10 @@ const CssHeader = cxs("tr")(
     background: props.selected ? props.theme.blue : "#333",
     ...props.s,
 }})
+
+CssHeader.propTypes = {
+    selected: PropTypes.bool,
+    s: PropTypes.any,
+}
 
 export default DataHeader

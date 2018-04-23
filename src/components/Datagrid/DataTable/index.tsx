@@ -8,6 +8,7 @@ import { ID, Action, Filter } from "../../../helpers/types"
 import domOnlyProps from "../../../helpers/dom-only-props"
 import Grid from "../../../components/Layout/Grid"
 import GridCell from "../../../components/Layout/GridCell"
+import PropTypes from "prop-types"
 
 export interface Props {
     bulkActions?: Action[]
@@ -144,13 +145,13 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     public render() {
-        const { className, style, ...props } = this.props
+        const { className, style, filters, bulkActions, buttons, labels, ...props } = this.props
         return (
             <Div className={`${this.name} ${className || ""}`}>
                 <Div className="m-filters-wrapper" whiteSpace={"nowrap"}>
-                    {this.props.filters.length > 0 && this.renderFiltersBar()}
+                    {filters.length > 0 && this.renderFiltersBar()}
                 </Div>
-                <CssTable className={`m-table`} s={style} {...domOnlyProps(props)}>
+                <CssTable className={`m-table`} s={style} {...props}>
                     {this.props.children && this.renderChildren(this.props.children)}
                 </CssTable>
             </Div>
@@ -169,6 +170,11 @@ const CssTable = cxs("table")({
         ...props.s,
     }
 })
+
+CssTable.propTypes = {
+    s: PropTypes.any,
+}
+
 
 const CssMTextFilter = cxs(TextInput)({
     paddingRight: "20px",
