@@ -2152,7 +2152,7 @@ const Label = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("d
     };
 });
 const StyledField = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */])({
-    "> .m-invalid": {
+    "& > .m-invalid": {
         border: "none !important",
     },
 }, props => (Object.assign({}, props.s)));
@@ -2176,13 +2176,13 @@ const StyledInput = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___defaul
     height: "18px",
     position: "relative",
     transition: "border-color 0.2s",
-    " + .muk-icon--check": {
+    "& + .muk-icon--check": {
         display: "none",
         position: "absolute",
         left: "2px",
         top: "0px",
     },
-    " + .muk-icon--check path": {
+    "& + .muk-icon--check path": {
         fill: "white !important",
     },
 }, (props) => {
@@ -2201,8 +2201,18 @@ StyledInput.propTypes = {
     meta: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
     s: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
 };
-Input.propTypes = StyledInput.propTypes;
-StyledLightInput.propTypes = StyledInput.propTypes;
+Input.propTypes = {
+    label: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+    group: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+    meta: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+    s: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+};
+StyledLightInput.propTypes = {
+    label: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+    group: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+    meta: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+    s: __WEBPACK_IMPORTED_MODULE_8_prop_types___default.a.any,
+};
 /* harmony default export */ __webpack_exports__["a"] = (Checkbox);
 
 
