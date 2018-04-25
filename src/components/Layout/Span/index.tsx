@@ -2,8 +2,17 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 import PropTypes from "prop-types"
 
-export const Span = ({children, style = {}, className = "", ...props}) => {
-    return <CssSpan className={`muk-span ${className}`} s={{...props,...style}} >
+interface Props {
+    children?: any
+    className?: string
+    style?: any
+    props?: any
+    [propName: string]: any
+}
+
+export const Span = (p: Props) => {
+    const {children, style, className, props, ...others} = p
+    return <CssSpan className={`muk-span ${className}`} {...props} s={{...others, ...style}}>
         {children}
     </CssSpan>
 }
@@ -16,6 +25,7 @@ const CssSpan = css("span")(
 
 CssSpan.propTypes = {
     s: PropTypes.any,
+    style: PropTypes.any,
 }
 
 

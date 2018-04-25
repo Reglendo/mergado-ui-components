@@ -142,15 +142,15 @@ Application
                     <TextInput name="firstname" labels={{ main: 
                                                                                 <span>
                                                                                     First name*:&nbsp;
-                                                                                    <PopupHint hint={true}>Help me!</PopupHint>
+                                                                                    <PopupHint hint={true}>First name hint!</PopupHint>
                                                                                 </span>, invalid: 'This field is required' }} meta={{invalid: state.invalid, dirty: true}} />
                     <TextInput name="lastname" labels={{main:  <span>
                                                                                     Last name:&nbsp;
-                                                                                    <PopupHint icon={<Icon type="info-circle" />} >Help me!</PopupHint>
+                                                                                    <PopupHint icon={<Icon type="info-circle" />} >Last!</PopupHint>
                                                                                 </span> }} />
                 </Div>
                 <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
-                    <h3>Contact</h3>
+                    <h3>Contact <PopupHint hover={true} hint={true}>Contact!</PopupHint></h3>
                     <TextInput name="tel" labels={{main: 'Your phone number:', placeholder: 'e.g. 777 123 456' }} type="tel" />
                     <TextInput name="email" labels={{main: 'Email address*:', invalid: 'This field is required', placeholder: 'e.g. email@email.cz' }} meta={{invalid: state.invalid, dirty: true}} type="email" />
                 </div>

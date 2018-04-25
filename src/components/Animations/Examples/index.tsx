@@ -23,7 +23,7 @@ class Spinner extends React.Component<Props, State> {
 
 
     public render() {
-        return <Div className={this.state.active ? "active" : ""} onClick={() => this.setState({active: !this.state.active})}>
+        return <Div className={this.state.active ? "active" : ""} props={{ onClick: () => this.setState({active: !this.state.active}) }}>
                 {this.props.children}
                 </Div>
     }

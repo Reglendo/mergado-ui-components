@@ -2,8 +2,17 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 import PropTypes from "prop-types"
 
-export const Div = ({children, style = {}, className = "", ...props}) => {
-    return <CssDiv className={`muk-div ${className}`} s={{...props, ...style}}>
+interface Props {
+    children?: any
+    className?: string
+    style?: any
+    props?: any
+    [propName: string]: any
+}
+
+export const Div = (p: Props) => {
+    const {children, style, className, props, ...others} = p
+    return <CssDiv className={`muk-div ${className}`} {...props} s={{...others, ...style}}>
         {children}
     </CssDiv>
 }
@@ -16,6 +25,7 @@ const CssDiv = css("div")(
 
 CssDiv.propTypes = {
     s: PropTypes.any,
+    style: PropTypes.any,
 }
 
 
