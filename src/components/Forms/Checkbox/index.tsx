@@ -56,7 +56,7 @@ const Label = css("div")({
 }, (props: any) => {
     const theme: any = props.theme
     return {
-        ":hover .muk-checkbox-input": {
+        "&:hover .muk-checkbox-input": {
             borderColor: theme.blue,
         },
     }
