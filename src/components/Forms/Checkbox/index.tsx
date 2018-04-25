@@ -63,7 +63,7 @@ const Label = css("div")({
 })
 
 const StyledField = css(Field)({
-    "> .m-invalid": {
+    "& > .m-invalid": {
         border: "none !important",
     },
 
@@ -97,13 +97,13 @@ const StyledInput = css("span")({
     height: "18px",
     position: "relative",
     transition: "border-color 0.2s",
-    " + .muk-icon--check": {
+    "& + .muk-icon--check": {
         display: "none",
         position: "absolute",
         left: "2px",
         top: "0px",
     },
-    " + .muk-icon--check path": {
+    "& + .muk-icon--check path": {
         fill: "white !important",
     },
 
@@ -122,7 +122,17 @@ StyledInput.propTypes = {
     meta: PropTypes.any,
     s: PropTypes.any,
 }
-Input.propTypes = StyledInput.propTypes
-StyledLightInput.propTypes = StyledInput.propTypes
+Input.propTypes = {
+    label: PropTypes.any,
+    group: PropTypes.any,
+    meta: PropTypes.any,
+    s: PropTypes.any,
+}
+StyledLightInput.propTypes = {
+    label: PropTypes.any,
+    group: PropTypes.any,
+    meta: PropTypes.any,
+    s: PropTypes.any,
+}
 
 export default Checkbox
