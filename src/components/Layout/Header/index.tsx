@@ -57,7 +57,7 @@ const CssH1 = css("h1")({
     lineHeight:  "40px",
     margin:  "40px 0 0 0",
     fontWeight: 700,
-})
+}, props => ({ ...props.s }))
 
 
 
@@ -66,28 +66,28 @@ const CssH2 = css("h2")({
     lineHeight:  "32px",
     margin:  "32px 0 0 0",
     fontWeight: 700,
-})
+}, props => ({ ...props.s }))
 
 const CssH3 =  css("h3")({
     fontSize:  "20px",
     lineHeight:  "24px",
     margin:  "24px 0 0 0",
     fontWeight: 700,
-})
+}, props => ({ ...props.s }))
 
 const CssH4 =  css("h4")({
     fontSize:  "17px",
     lineHeight:  "24px",
     margin:  "24px 0 0 0",
     fontWeight: 700,
-})
+}, props => ({ ...props.s }))
 
 const CssH5 =  css("h5")({
     fontSize:  "14px",
     lineHeight:  "20px",
     margin:  "20px 0 0 0",
     fontWeight: 700,
-})
+}, props => ({ ...props.s }))
 
 CssH1.propTypes = {
     selected: PropTypes.bool,

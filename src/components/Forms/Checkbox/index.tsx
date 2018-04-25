@@ -72,7 +72,7 @@ const StyledField = css(Field)({
 }))
 
 const styles = {
-    ":checked + .muk-checkbox-input + .m--check": {
+    ":checked + .muk-checkbox-input + .muk-icon--check": {
         display: "inline-block",
     },
 }
@@ -97,13 +97,13 @@ const StyledInput = css("span")({
     height: "18px",
     position: "relative",
     transition: "border-color 0.2s",
-    " + .m--check": {
+    " + .muk-icon--check": {
         display: "none",
         position: "absolute",
         left: "2px",
         top: "0px",
     },
-    " + .m--check path": {
+    " + .muk-icon--check path": {
         fill: "white !important",
     },
 
