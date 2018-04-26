@@ -230,10 +230,10 @@ CssElement.propTypes =  {
     offLabel: PropTypes.string,
     onLabel: PropTypes.string,
     label: PropTypes.string,
-    big: PropTypes.boolean,
+    big: PropTypes.bool,
     width: PropTypes.number,
-    reverse: PropTypes.boolean,
-    boolean: PropTypes.boolean,
+    reverse: PropTypes.bool,
+    boolean: PropTypes.bool,
 }
 CssElementLightInput.propTypes = CssElement.propTypes
 StyledInput.propTypes = CssElement.propTypes
