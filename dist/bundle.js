@@ -2151,11 +2151,7 @@ const Label = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("d
         },
     };
 });
-const StyledField = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */])({
-    "& > .m-invalid": {
-        border: "none !important",
-    },
-}, props => (Object.assign({}, props.s)));
+const StyledField = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */])({}, props => (Object.assign({}, props.s)));
 const styles = {
     ":checked + .muk-checkbox-input + .muk-icon--check": {
         display: "inline-block",
@@ -7323,8 +7319,9 @@ module.exports = function () {
 
   return styles.map(function (style) {
     if (typeof style === "object") {
-      console.log((0, _static2.default)(style));
-      return parse((0, _static2.default)(style));
+      try {
+        return parse((0, _static2.default)(style));
+      } catch (e) {}
     }
     return parse(style);
   }).join(' ').trim();
