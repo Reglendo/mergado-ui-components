@@ -1164,6 +1164,9 @@ FieldComponent.propTypes = {
 };
 const Field = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()(FieldComponent)({
     position: "relative",
+    ".muk-checkbox .m-isinvalid.m-invalid": {
+        borderColor: "transparent",
+    },
 }, (props) => {
     const theme = props.theme;
     let styles = {};
@@ -2137,7 +2140,7 @@ class Checkbox extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 label));
     }
     render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledField, Object.assign({}, this.props, { s: Object.assign({ marginBottom: 0, padding: 0 }, this.props.style), label: this.renderLabel() }));
+        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */], Object.assign({ className: "muk-checkbox" }, this.props, { s: Object.assign({ marginBottom: 0, padding: 0 }, this.props.style), label: this.renderLabel() }));
     }
 }
 Checkbox.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["b" /* defaultFieldProps */], { halfway: false });
@@ -2151,7 +2154,6 @@ const Label = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("d
         },
     };
 });
-const StyledField = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()(__WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["a" /* Field */])({}, props => (Object.assign({}, props.s)));
 const styles = {
     ":checked + .muk-checkbox-input + .muk-icon--check": {
         display: "inline-block",
