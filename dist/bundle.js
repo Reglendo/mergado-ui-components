@@ -993,7 +993,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 const Div = (p) => {
     const { children, style, className, props } = p, others = __rest(p, ["children", "style", "className", "props"]);
-    return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssDiv, Object.assign({ className: `muk-div ${className}` }, props, { s: Object.assign({}, others, style) }), children);
+    console.log(others);
+    return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssDiv, Object.assign({ className: `muk-div ${className || ""}` }, props, { s: Object.assign({}, others, style) }), children);
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = Div;
 
@@ -3622,7 +3623,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 const Span = (p) => {
     const { children, style, className, props } = p, others = __rest(p, ["children", "style", "className", "props"]);
-    return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssSpan, Object.assign({ className: `muk-span ${className}` }, props, { s: Object.assign({}, others, style) }), children);
+    return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssSpan, Object.assign({ className: `muk-span ${className || ""}` }, props, { s: Object.assign({}, others, style) }), children);
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = Span;
 
@@ -10376,7 +10377,7 @@ PopupHint.defaultProps = {
 
 
 
-class Spinner extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
+class Spinner extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     constructor(props) {
         super(props);
         this.name = __WEBPACK_IMPORTED_MODULE_4__config__["a" /* prefix */] + "spinner";
@@ -10404,8 +10405,8 @@ class Spinner extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { style: { opacity: 1 } }, this.props.children));
         }
         const { size, type, color, speed } = this.props;
-        const containerStyle = { width: size, height: type === "bubbles" ? size / 1.5 : size };
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout_Div__["a" /* Div */], { display: "inline-block", overflow: "hidden", className: `${this.name} ${this.name}--${this.props.type}`, style: containerStyle },
+        const containerStyle = { width: `${size}px`, height: `${type === "bubbles" ? size / 1.5 : size}px` };
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout_Div__["a" /* Div */], Object.assign({}, containerStyle, { display: "inline-block", overflow: "hidden", className: `${this.name} ${this.name}--${this.props.type}` }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](AnimatedWrapper, Object.assign({}, this.props, { className: `${this.name}__wrapper` }),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { className: `${this.name}__content` }))));
     }
