@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@reglendo/cxs@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@reglendo/cxs/-/cxs-1.1.1.tgz#93b45af2fec287059f529cf6d664eb66e57324fd"
+"@reglendo/cxs@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@reglendo/cxs/-/cxs-1.1.2.tgz#db258e4893ce8e0d14c31b21a9ce5dc87f4b7275"
   dependencies:
     css-in-js-utils "^2.0.0"
     inline-style-prefixer "^4.0.0"
