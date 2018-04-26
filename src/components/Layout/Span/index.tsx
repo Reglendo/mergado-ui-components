@@ -12,7 +12,7 @@ interface Props {
 
 export const Span = (p: Props) => {
     const {children, style, className, props, ...others} = p
-    return <CssSpan className={`muk-span ${className}`} {...props} s={{...others, ...style}}>
+    return <CssSpan className={`muk-span ${className || ""}`} {...props} s={{...others, ...style}}>
         {children}
     </CssSpan>
 }

@@ -19,7 +19,7 @@ export interface State {
     loaded: boolean
 }
 
-class Spinner extends React.Component<Props, State> {
+class Spinner extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "spinner";
     constructor(props: Props) {
@@ -66,11 +66,11 @@ class Spinner extends React.Component<Props, State> {
         }
         const { size, type, color, speed } = this.props
 
-        const containerStyle: any = {  width: size, height: type === "bubbles" ? size/1.5 : size }
+        const containerStyle: any = {  width: `${size}px`, height: `${type === "bubbles" ? size/1.5 : size}px` }
         return (
-            <Div display={"inline-block"} overflow={"hidden"}
+            <Div {...containerStyle} display={"inline-block"} overflow={"hidden"}
                 className={`${this.name} ${this.name}--${this.props.type}`}
-                style={containerStyle}>
+                >
                 <AnimatedWrapper {...this.props} className={`${this.name}__wrapper`}>
                     <div className={`${this.name}__content`}></div>
                 </AnimatedWrapper>

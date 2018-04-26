@@ -3,10 +3,13 @@ import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import css from "@reglendo/cxs/component"
 import {Span} from "../../../components/Layout/Span"
+import {Div} from "../../../components/Layout/Div"
 
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import {Input as LightInput} from "light-form/dist/es"
+import PropTypes from "prop-types"
+
 
 export interface Props extends IFieldProps {
     offLabel: string | JSX.Element
@@ -23,42 +26,42 @@ class Toggler extends React.Component<Props, {}> {
     }
 
     protected renderLabel() {
-        const { input, labels, reverse, ...props } = this.props
+        const { group, meta, input, labels, reverse, ...props } = this.props
         const label = this.props.label ? this.props.label : labels.main
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
-        const Element = props.name ? StyledLightInput : Input
+        const Element = props.name ? CssElementLightInput : CssElement
 
-        const offLabel = !props.big && <Span fontSize={"16px"} margin="0 3px" verticalAlign="top">
+        const offLabel = !props.big && <Span className={"m-offlabel"} fontSize={"16px"} margin="0 3px" verticalAlign="top">
                             {props.offLabel}{props.offLabel && ""}
                         </Span>
 
-        const onLabel = !props.big && <Span fontSize={"16px"} margin="0 3px" verticalAlign="top">
+        const onLabel = !props.big && <Span className={"m-onlabel"} fontSize={"16px"} margin="0 3px" verticalAlign="top">
                             {label && "" }{label}
                         </Span>
 
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
                     {reverse ? onLabel : offLabel}
-                    <div style={{ position: "relative", display: "inline-block", verticalAlign: "middle" }}>
+                    <Div className={"m-wrapper"} position="relative" display="inline-block" verticalAlign="middle">
                         <Element
                             {...props}
                             {...(!props.name && { checked: input.value })}
                             {...(!props.name && input)}
                             reverse={reverse}
                             type="checkbox"
-                            className={`${this.name}__item ${input.className}`}
-                            style={{display: "none"}}
+                            className={`m-input ${input.className || ""}`}
                             />
-                        <StyledInput big={props.big} boolean={props.boolean} width={props.width} reverse={reverse} onLabel={label} offLabel={props.offLabel} label={label} className={"muk-checkbox-input"}
+                        <StyledInput className={"m-checkbox"} big={props.big} boolean={props.boolean}
+                                     width={props.width} reverse={reverse} onLabel={label} offLabel={props.offLabel} label={label}
                             />
-                        <Point big={props.big} boolean={props.boolean} width={props.width} className={"toggler-point"} reverse={reverse} />
+                        <Point className={"m-toggler-point"}  big={props.big} boolean={props.boolean} width={props.width} reverse={reverse} />
                         {props.big && props.boolean &&
-                            <Yes size={15} color="rgb(245, 236, 213)" />
+                            <Yes className={"m-icon-yes"} size={15} color="rgb(245, 236, 213)" />
                         }
                         {props.big && props.boolean &&
-                            <No size={15} color="#888" />
+                            <No className={"m-icon-no"} size={15} color="#888" />
                         }
 
-                    </div>
+                    </Div>
                     {reverse ? offLabel : onLabel}
                 </Label>
     }
@@ -76,6 +79,9 @@ const Yes = css(IconCheck)({
     top: "0px",
     bottom: "0px",
     margin: 'auto 0',
+    " svg": {
+        verticalAlign: "middle"
+    }
 })
 
 const No = css(IconClose)({
@@ -84,6 +90,9 @@ const No = css(IconClose)({
     top: "0px",
     bottom: "0px",
     margin: 'auto 0',
+    " svg": {
+        verticalAlign: "middle"
+    }
 })
 
 const Label = css("div")({
@@ -91,7 +100,7 @@ const Label = css("div")({
 }, (props: any) => {
     const theme: any = props.theme
     return {
-        ":hover .muk-checkbox-input": {
+        ":hover .m-checkbox": {
             borderColor: theme.blue,
         },
     }
@@ -129,12 +138,13 @@ const Point = css("span")({
 
 
 const styles = {
+    display: "none",
 }
 
 const stylesProps =  (props) => {
 
     return {
-        ":checked + span + span.toggler-point": {
+        ":checked + span + .m-toggler-point": {
             transform: props.reverse ? "translate3d(0,0,0)" : "translate3d("+(props.big ? (props.boolean ? `${bigBoolWidth - bigHeight - 4}px` : (props.width-bigHeight-4) + "px") : "18px")+",0,0)",
         },
         " + span": {
@@ -171,8 +181,9 @@ const stylesProps =  (props) => {
     }
 }
 
-const Input = css("input")(styles , stylesProps)
-const StyledLightInput = css(LightInput)(styles , stylesProps)
+const CssElement = css("input")(styles , stylesProps)
+const CssElementLightInput = css(LightInput)(styles , stylesProps)
+
 
 const StyledInput = css("span")({
     display: "inline-block",
@@ -213,5 +224,17 @@ const StyledInput = css("span")({
         borderColor: `${props.theme.blue}`,
     },
 }})
+
+
+CssElement.propTypes =  {
+    offLabel: PropTypes.string,
+    onLabel: PropTypes.string,
+    label: PropTypes.string,
+    big: PropTypes.boolean,
+    width: PropTypes.number,
+    reverse: PropTypes.boolean,
+}
+CssElementLightInput.propTypes = CssElement.propTypes
+StyledInput.propTypes = CssElement.propTypes
 
 export default Toggler

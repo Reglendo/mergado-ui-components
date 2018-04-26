@@ -12,7 +12,8 @@ interface Props {
 
 export const Div = (p: Props) => {
     const {children, style, className, props, ...others} = p
-    return <CssDiv className={`muk-div ${className}`} {...props} s={{...others, ...style}}>
+    console.log(others)
+    return <CssDiv className={`muk-div ${className || ""}`} {...props} s={{...others, ...style}}>
         {children}
     </CssDiv>
 }

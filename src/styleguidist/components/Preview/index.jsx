@@ -72,14 +72,14 @@ export default class Preview extends PureComponent {
 
 	componentDidMount() {
         this.state.preserved = this.props.code
-        // try {
+        try {
           this.executeCode(this.props.code);
-        // } catch (err) {
-        //     console.log(err)
-        //     this.setState({
-        //         error: err.toString(),
-        //     });
-        // }
+        } catch (err) {
+            console.log(err)
+            this.setState({
+                error: err.toString(),
+            });
+        }
 
 	}
 
@@ -90,17 +90,17 @@ export default class Preview extends PureComponent {
     		});
 
             let source = this.props.code;
-            // try {
+            try {
                 this.executeCode(source);
                 this.state.preserved = source
-            // } catch (err) {
-             //    console.log(err)
-    		// 	this.setState({
-    		// 		error: err.toString(),
-    		// 	});
-             //    source = this.state.preserved
-             //    this.executeCode(source)
-    		// }
+            } catch (err) {
+                console.log(err)
+    			this.setState({
+    				error: err.toString(),
+    			});
+                source = this.state.preserved
+                this.executeCode(source)
+    		}
 
 
 		}
