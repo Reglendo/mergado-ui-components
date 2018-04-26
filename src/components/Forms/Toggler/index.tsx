@@ -138,7 +138,7 @@ const Point = css("span")({
 
 
 const styles = {
-    display: "none",
+    display: "none !important",
 }
 
 const stylesProps =  (props) => {
@@ -233,6 +233,7 @@ CssElement.propTypes =  {
     big: PropTypes.boolean,
     width: PropTypes.number,
     reverse: PropTypes.boolean,
+    boolean: PropTypes.boolean,
 }
 CssElementLightInput.propTypes = CssElement.propTypes
 StyledInput.propTypes = CssElement.propTypes
