@@ -2146,7 +2146,7 @@ const Label = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("d
 }, (props) => {
     const theme = props.theme;
     return {
-        ":hover .muk-checkbox-input": {
+        "&:hover .muk-checkbox-input": {
             borderColor: theme.blue,
         },
     };
@@ -7322,8 +7322,11 @@ module.exports = function () {
   }
 
   return styles.map(function (style) {
-    var prefixedStyle = (0, _static2.default)(style);
-    return parse(prefixedStyle);
+    if (typeof style === "object") {
+      console.log((0, _static2.default)(style));
+      return parse((0, _static2.default)(style));
+    }
+    return parse(style);
   }).join(' ').trim();
 };
 module.exports.css = function () {
@@ -12050,7 +12053,7 @@ function createPrefixer(_ref) {
           style[property] = _processedValue;
         }
 
-        (0, _prefixProperty2.default)(prefixMap, property, style);
+        style = (0, _prefixProperty2.default)(prefixMap, property, style);
       }
     }
 
@@ -12059,7 +12062,7 @@ function createPrefixer(_ref) {
 
   return prefixAll;
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 136 */
@@ -12128,7 +12131,7 @@ exports.default = (0, _createPrefixer2.default)({
   prefixMap: _staticData2.default.prefixMap,
   plugins: plugins
 });
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 137 */
@@ -12149,15 +12152,15 @@ var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // http://caniuse.com/#search=cross-fade
-var prefixes = ['-webkit-', ''];
+var prefixes = ["-webkit-", ""];
 function crossFade(property, value) {
-  if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('cross-fade(') > -1) {
+  if (typeof value === "string" && !(0, _isPrefixedValue2.default)(value) && value.indexOf("cross-fade(") > -1) {
     return prefixes.map(function (prefix) {
-      return value.replace(/cross-fade\(/g, prefix + 'cross-fade(');
+      return value.replace(/cross-fade\(/g, prefix + "cross-fade(");
     });
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 138 */
@@ -12170,23 +12173,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = cursor;
-var prefixes = ['-webkit-', '-moz-', ''];
+var prefixes = ["-webkit-", "-moz-", ""];
 
 var values = {
-  'zoom-in': true,
-  'zoom-out': true,
+  "zoom-in": true,
+  "zoom-out": true,
   grab: true,
   grabbing: true
 };
 
 function cursor(property, value) {
-  if (property === 'cursor' && values.hasOwnProperty(value)) {
+  if (property === "cursor" && values.hasOwnProperty(value)) {
     return prefixes.map(function (prefix) {
       return prefix + value;
     });
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 139 */
@@ -12207,15 +12210,15 @@ var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // http://caniuse.com/#feat=css-filter-function
-var prefixes = ['-webkit-', ''];
+var prefixes = ["-webkit-", ""];
 function filter(property, value) {
-  if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('filter(') > -1) {
+  if (typeof value === "string" && !(0, _isPrefixedValue2.default)(value) && value.indexOf("filter(") > -1) {
     return prefixes.map(function (prefix) {
-      return value.replace(/filter\(/g, prefix + 'filter(');
+      return value.replace(/filter\(/g, prefix + "filter(");
     });
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 140 */
@@ -12229,16 +12232,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = flex;
 var values = {
-  flex: ['-webkit-box', '-moz-box', '-ms-flexbox', '-webkit-flex', 'flex'],
-  'inline-flex': ['-webkit-inline-box', '-moz-inline-box', '-ms-inline-flexbox', '-webkit-inline-flex', 'inline-flex']
+  flex: ["-webkit-box", "-moz-box", "-ms-flexbox", "-webkit-flex", "flex"],
+  "inline-flex": ["-webkit-inline-box", "-moz-inline-box", "-ms-inline-flexbox", "-webkit-inline-flex", "inline-flex"]
 };
 
 function flex(property, value) {
-  if (property === 'display' && values.hasOwnProperty(value)) {
+  if (property === "display" && values.hasOwnProperty(value)) {
     return values[value];
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 141 */
@@ -12252,38 +12255,38 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = flexboxOld;
 var alternativeValues = {
-  'space-around': 'justify',
-  'space-between': 'justify',
-  'flex-start': 'start',
-  'flex-end': 'end',
-  'wrap-reverse': 'multiple',
-  wrap: 'multiple'
+  "space-around": "justify",
+  "space-between": "justify",
+  "flex-start": "start",
+  "flex-end": "end",
+  "wrap-reverse": "multiple",
+  wrap: "multiple"
 };
 
 var alternativeProps = {
-  alignItems: 'WebkitBoxAlign',
-  justifyContent: 'WebkitBoxPack',
-  flexWrap: 'WebkitBoxLines'
+  alignItems: "WebkitBoxAlign",
+  justifyContent: "WebkitBoxPack",
+  flexWrap: "WebkitBoxLines"
 };
 
 function flexboxOld(property, value, style) {
-  if (property === 'flexDirection' && typeof value === 'string') {
-    if (value.indexOf('column') > -1) {
-      style.WebkitBoxOrient = 'vertical';
+  if (property === "flexDirection" && typeof value === "string") {
+    if (value.indexOf("column") > -1) {
+      style.WebkitBoxOrient = "vertical";
     } else {
-      style.WebkitBoxOrient = 'horizontal';
+      style.WebkitBoxOrient = "horizontal";
     }
-    if (value.indexOf('reverse') > -1) {
-      style.WebkitBoxDirection = 'reverse';
+    if (value.indexOf("reverse") > -1) {
+      style.WebkitBoxDirection = "reverse";
     } else {
-      style.WebkitBoxDirection = 'normal';
+      style.WebkitBoxDirection = "normal";
     }
   }
   if (alternativeProps.hasOwnProperty(property)) {
     style[alternativeProps[property]] = alternativeValues[value] || value;
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 142 */
@@ -12303,18 +12306,18 @@ var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var prefixes = ['-webkit-', '-moz-', ''];
+var prefixes = ["-webkit-", "-moz-", ""];
 
 var values = /linear-gradient|radial-gradient|repeating-linear-gradient|repeating-radial-gradient/;
 
 function gradient(property, value) {
-  if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && values.test(value)) {
+  if (typeof value === "string" && !(0, _isPrefixedValue2.default)(value) && values.test(value)) {
     return prefixes.map(function (prefix) {
       return prefix + value;
     });
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 143 */
@@ -12335,15 +12338,15 @@ var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // http://caniuse.com/#feat=css-image-set
-var prefixes = ['-webkit-', ''];
+var prefixes = ["-webkit-", ""];
 function imageSet(property, value) {
-  if (typeof value === 'string' && !(0, _isPrefixedValue2.default)(value) && value.indexOf('image-set(') > -1) {
+  if (typeof value === "string" && !(0, _isPrefixedValue2.default)(value) && value.indexOf("image-set(") > -1) {
     return prefixes.map(function (prefix) {
-      return value.replace(/image-set\(/g, prefix + 'image-set(');
+      return value.replace(/image-set\(/g, prefix + "image-set(");
     });
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 144 */
@@ -12357,11 +12360,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = position;
 function position(property, value) {
-  if (property === 'position' && value === 'sticky') {
-    return ['-webkit-sticky', 'sticky'];
+  if (property === "position" && value === "sticky") {
+    return ["-webkit-sticky", "sticky"];
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 145 */
@@ -12374,7 +12377,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = sizing;
-var prefixes = ['-webkit-', '-moz-', ''];
+var prefixes = ["-webkit-", "-moz-", ""];
 
 var properties = {
   maxHeight: true,
@@ -12386,11 +12389,11 @@ var properties = {
   minHeight: true
 };
 var values = {
-  'min-content': true,
-  'max-content': true,
-  'fill-available': true,
-  'fit-content': true,
-  'contain-floats': true
+  "min-content": true,
+  "max-content": true,
+  "fill-available": true,
+  "fit-content": true,
+  "contain-floats": true
 };
 
 function sizing(property, value) {
@@ -12400,7 +12403,7 @@ function sizing(property, value) {
     });
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 146 */
@@ -12439,9 +12442,9 @@ var properties = {
 
 
 var prefixMapping = {
-  Webkit: '-webkit-',
-  Moz: '-moz-',
-  ms: '-ms-'
+  Webkit: "-webkit-",
+  Moz: "-moz-",
+  ms: "-ms-"
 };
 
 function prefixValue(value, propertyPrefixMap) {
@@ -12458,7 +12461,7 @@ function prefixValue(value, propertyPrefixMap) {
     for (var property in propertyPrefixMap) {
       var dashCaseProperty = (0, _hyphenateProperty2.default)(property);
 
-      if (singleValue.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== 'order') {
+      if (singleValue.indexOf(dashCaseProperty) > -1 && dashCaseProperty !== "order") {
         var prefixes = propertyPrefixMap[property];
         for (var j = 0, pLen = prefixes.length; j < pLen; ++j) {
           // join all prefixes and create a new value
@@ -12467,39 +12470,39 @@ function prefixValue(value, propertyPrefixMap) {
       }
     }
 
-    multipleValues[i] = values.join(',');
+    multipleValues[i] = values.join(",");
   }
 
-  return multipleValues.join(',');
+  return multipleValues.join(",");
 }
 
 function transition(property, value, style, propertyPrefixMap) {
   // also check for already prefixed transitions
-  if (typeof value === 'string' && properties.hasOwnProperty(property)) {
+  if (typeof value === "string" && properties.hasOwnProperty(property)) {
     var outputValue = prefixValue(value, propertyPrefixMap);
     // if the property is already prefixed
     var webkitOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
       return !/-moz-|-ms-/.test(val);
-    }).join(',');
+    }).join(",");
 
-    if (property.indexOf('Webkit') > -1) {
+    if (property.indexOf("Webkit") > -1) {
       return webkitOutput;
     }
 
     var mozOutput = outputValue.split(/,(?![^()]*(?:\([^()]*\))?\))/g).filter(function (val) {
       return !/-webkit-|-ms-/.test(val);
-    }).join(',');
+    }).join(",");
 
-    if (property.indexOf('Moz') > -1) {
+    if (property.indexOf("Moz") > -1) {
       return mozOutput;
     }
 
-    style['Webkit' + (0, _capitalizeString2.default)(property)] = webkitOutput;
-    style['Moz' + (0, _capitalizeString2.default)(property)] = mozOutput;
+    style["Webkit" + (0, _capitalizeString2.default)(property)] = webkitOutput;
+    style["Moz" + (0, _capitalizeString2.default)(property)] = mozOutput;
     return outputValue;
   }
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 147 */
@@ -12521,7 +12524,7 @@ var wmms = ["Webkit", "Moz", "ms"];
 
 exports.default = {
   plugins: [],
-  prefixMap: { "appearance": wm, "userSelect": wmms, "textEmphasisPosition": w, "textEmphasis": w, "textEmphasisStyle": w, "textEmphasisColor": w, "boxDecorationBreak": w, "clipPath": w, "maskImage": w, "maskMode": w, "maskRepeat": w, "maskPosition": w, "maskClip": w, "maskOrigin": w, "maskSize": w, "maskComposite": w, "mask": w, "maskBorderSource": w, "maskBorderMode": w, "maskBorderSlice": w, "maskBorderWidth": w, "maskBorderOutset": w, "maskBorderRepeat": w, "maskBorder": w, "maskType": w, "textDecorationStyle": w, "textDecorationSkip": w, "textDecorationLine": w, "textDecorationColor": w, "filter": w, "fontFeatureSettings": w, "breakAfter": wmms, "breakBefore": wmms, "breakInside": wmms, "columnCount": wm, "columnFill": wm, "columnGap": wm, "columnRule": wm, "columnRuleColor": wm, "columnRuleStyle": wm, "columnRuleWidth": wm, "columns": wm, "columnSpan": wm, "columnWidth": wm, "writingMode": wms, "flex": w, "flexBasis": w, "flexDirection": w, "flexGrow": w, "flexFlow": w, "flexShrink": w, "flexWrap": w, "alignContent": w, "alignItems": w, "alignSelf": w, "justifyContent": w, "order": w, "transform": w, "transformOrigin": w, "transformOriginX": w, "transformOriginY": w, "backfaceVisibility": w, "perspective": w, "perspectiveOrigin": w, "transformStyle": w, "transformOriginZ": w, "animation": w, "animationDelay": w, "animationDirection": w, "animationFillMode": w, "animationDuration": w, "animationIterationCount": w, "animationName": w, "animationPlayState": w, "animationTimingFunction": w, "backdropFilter": w, "fontKerning": w, "scrollSnapType": wms, "scrollSnapPointsX": wms, "scrollSnapPointsY": wms, "scrollSnapDestination": wms, "scrollSnapCoordinate": wms, "shapeImageThreshold": w, "shapeImageMargin": w, "shapeImageOutside": w, "hyphens": wmms, "flowInto": wms, "flowFrom": wms, "regionFragment": wms, "textAlignLast": m, "tabSize": m, "wrapFlow": ms, "wrapThrough": ms, "wrapMargin": ms, "gridTemplateColumns": ms, "gridTemplateRows": ms, "gridTemplateAreas": ms, "gridTemplate": ms, "gridAutoColumns": ms, "gridAutoRows": ms, "gridAutoFlow": ms, "grid": ms, "gridRowStart": ms, "gridColumnStart": ms, "gridRowEnd": ms, "gridRow": ms, "gridColumn": ms, "gridColumnEnd": ms, "gridColumnGap": ms, "gridRowGap": ms, "gridArea": ms, "gridGap": ms, "textSizeAdjust": wms, "borderImage": w, "borderImageOutset": w, "borderImageRepeat": w, "borderImageSlice": w, "borderImageSource": w, "borderImageWidth": w, "transitionDelay": w, "transitionDuration": w, "transitionProperty": w, "transitionTimingFunction": w }
+  prefixMap: { "appearance": wm, "textEmphasisPosition": w, "textEmphasis": w, "textEmphasisStyle": w, "textEmphasisColor": w, "boxDecorationBreak": w, "maskImage": w, "maskMode": w, "maskRepeat": w, "maskPosition": w, "maskClip": w, "maskOrigin": w, "maskSize": w, "maskComposite": w, "mask": w, "maskBorderSource": w, "maskBorderMode": w, "maskBorderSlice": w, "maskBorderWidth": w, "maskBorderOutset": w, "maskBorderRepeat": w, "maskBorder": w, "maskType": w, "textDecorationStyle": w, "textDecorationSkip": w, "textDecorationLine": w, "textDecorationColor": w, "userSelect": wmms, "backdropFilter": w, "fontKerning": w, "scrollSnapType": wms, "scrollSnapPointsX": wms, "scrollSnapPointsY": wms, "scrollSnapDestination": wms, "scrollSnapCoordinate": wms, "clipPath": w, "shapeImageThreshold": w, "shapeImageMargin": w, "shapeImageOutside": w, "filter": w, "hyphens": wms, "flowInto": wms, "flowFrom": wms, "breakBefore": wms, "breakAfter": wms, "breakInside": wms, "regionFragment": wms, "writingMode": wms, "tabSize": m, "fontFeatureSettings": w, "columnCount": w, "columnFill": w, "columnGap": w, "columnRule": w, "columnRuleColor": w, "columnRuleStyle": w, "columnRuleWidth": w, "columns": w, "columnSpan": w, "columnWidth": w, "wrapFlow": ms, "wrapThrough": ms, "wrapMargin": ms, "gridTemplateColumns": ms, "gridTemplateRows": ms, "gridTemplateAreas": ms, "gridTemplate": ms, "gridAutoColumns": ms, "gridAutoRows": ms, "gridAutoFlow": ms, "grid": ms, "gridRowStart": ms, "gridColumnStart": ms, "gridRowEnd": ms, "gridRow": ms, "gridColumn": ms, "gridColumnEnd": ms, "gridColumnGap": ms, "gridRowGap": ms, "gridArea": ms, "gridGap": ms, "textSizeAdjust": wms, "flex": w, "flexBasis": w, "flexDirection": w, "flexGrow": w, "flexFlow": w, "flexShrink": w, "flexWrap": w, "alignContent": w, "alignItems": w, "alignSelf": w, "justifyContent": w, "order": w, "transform": w, "transformOrigin": w, "transformOriginX": w, "transformOriginY": w, "backfaceVisibility": w, "perspective": w, "perspectiveOrigin": w, "transformStyle": w, "transformOriginZ": w, "animation": w, "animationDelay": w, "animationDirection": w, "animationFillMode": w, "animationDuration": w, "animationIterationCount": w, "animationName": w, "animationPlayState": w, "animationTimingFunction": w }
 };
 module.exports = exports["default"];
 
@@ -12589,13 +12592,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function prefixProperty(prefixProperties, property, style) {
   if (prefixProperties.hasOwnProperty(property)) {
+    var newStyle = {};
     var requiredPrefixes = prefixProperties[property];
-    for (var i = 0, len = requiredPrefixes.length; i < len; ++i) {
-      style[requiredPrefixes[i] + (0, _capitalizeString2.default)(property)] = style[property];
+    var capitalizedProperty = (0, _capitalizeString2.default)(property);
+    var keys = Object.keys(style);
+    for (var i = 0; i < keys.length; i++) {
+      var styleProperty = keys[i];
+      if (styleProperty === property) {
+        for (var j = 0; j < requiredPrefixes.length; j++) {
+          newStyle[requiredPrefixes[j] + capitalizedProperty] = style[property];
+        }
+      }
+      newStyle[styleProperty] = style[styleProperty];
     }
+    return newStyle;
   }
+  return style;
 }
-module.exports = exports['default'];
+module.exports = exports["default"];
 
 /***/ }),
 /* 151 */
