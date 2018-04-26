@@ -215,6 +215,10 @@ FieldComponent.propTypes = {
 
 export const Field = css(FieldComponent)({
     position: "relative",
+
+    ".muk-checkbox .m-isinvalid.m-invalid": {
+        borderColor: "transparent",
+    },
 },(props: any) => {
     const theme: any = props.theme
     let styles = {}

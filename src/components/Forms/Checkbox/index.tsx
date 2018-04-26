@@ -46,7 +46,7 @@ class Checkbox extends React.Component<Props, {}> {
     }
 
     public render() {
-        return <StyledField {...this.props} s={{ marginBottom: 0, padding: 0, ...this.props.style }}
+        return <Field className={"muk-checkbox"} {...this.props} s={{ marginBottom: 0, padding: 0, ...this.props.style }}
                 label={this.renderLabel()} />
     }
 }
@@ -61,11 +61,6 @@ const Label = css("div")({
         },
     }
 })
-
-const StyledField = css(Field)({
-}, props => ({
-    ...props.s,
-}))
 
 const styles = {
     ":checked + .muk-checkbox-input + .muk-icon--check": {
