@@ -993,7 +993,6 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 const Div = (p) => {
     const { children, style, className, props } = p, others = __rest(p, ["children", "style", "className", "props"]);
-    console.log(others);
     return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssDiv, Object.assign({ className: `muk-div ${className || ""}` }, props, { s: Object.assign({}, others, style) }), children);
 };
 /* harmony export (immutable) */ __webpack_exports__["a"] = Div;
