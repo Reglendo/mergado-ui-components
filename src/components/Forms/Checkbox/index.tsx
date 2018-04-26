@@ -63,10 +63,6 @@ const Label = css("div")({
 })
 
 const StyledField = css(Field)({
-    "& > .m-invalid": {
-        border: "none !important",
-    },
-
 }, props => ({
     ...props.s,
 }))
