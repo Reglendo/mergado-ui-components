@@ -100,15 +100,14 @@ export const Li = css("li")({
     display: "table",
     background: "white",
     fontWeight: "normal",
+    lineHeight: "24px",
     width: "100%",
     " > label": {
         padding: "10px",
         display: "block",
         cursor: "pointer",
+        lineHeight: "24px",
     },
-    "& span.muk-icon--check": {
-        top: "-1px !important",
-    }
 }, (props: any) => {
     let checked = {}
     if(props.checked) {

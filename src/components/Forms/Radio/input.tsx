@@ -94,12 +94,6 @@ const CssBigLabel = css("label")({
     " .m-label-wrapper": {
         fontWeight: "normal",
     },
-    " *": {
-        verticalAlign: "text-top !important"
-    },
-    " .muk-icon": {
-        verticalAlign: "middle !important"
-    },
 
 }, (props) => {
     const theme: any = props.theme

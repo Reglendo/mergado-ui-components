@@ -163,7 +163,6 @@ class PopupHint extends React.Component<Props, State> {
                     tabIndex: 0,
                 }}
                 cursor={"help"}
-                verticalAlign={"text-bottom"}
                 display="inline-block"
                 {...this.props.style}>
                 <Div props={{ id: `muk-popup-content-${this.id}` }} display={"none"}>

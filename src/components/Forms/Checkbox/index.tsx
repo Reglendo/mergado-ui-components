@@ -65,6 +65,8 @@ const Label = css("div")({
 const styles = {
     ":checked + .muk-checkbox-input + .muk-icon--check": {
         display: "inline-block",
+        verticalAlign: "middle",
+        height: "18px",
     },
 }
 
