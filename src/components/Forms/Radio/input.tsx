@@ -1,6 +1,8 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 import Button from "../../../components/Forms/Button"
+import Span from "../../../components/Layout/Span"
+
 import {Input as LightInput} from "light-form/dist/es"
 
 interface IInputProps {
@@ -16,94 +18,100 @@ interface IInputProps {
 
 const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                                              onChange, bigButtons, hideInput, ...props}) => {
-    const Element = name ? StyledLightInput : Input
+    const Element = name ? CssElementLightInput : CssElement
     if(bigButtons) {
-        return <BigLabel className={`${name}__item ${props.className}`} key={value}>
+        return <CssBigLabel className={`muk-radio ${props.className || ""}`} key={value}>
                 <Element
                     name={name}
                     value={value}
                     type="radio"
-                    className={`${this.name}__item`}
+                    className={`m-input`}
                     style={{display: "none"}}
                     data-big={true}
                     />
                 <Button
                     secondary={true}
                     style={{display: "block"}}
-                    type="void" input={{onClick: () => false }}>
-                    {!hideInput ?
-                        <span style={{verticalAlign: "middle"}}>
-                            <StyledInput className="muk-checkbox-input"
-                                />&nbsp;
-                        </span>
-                    :
-                        <span />
+                    className={"m-button"}
+                    type="void">
+                    {!hideInput &&
+                        <Span className="m-input-wrapper">
+                            <CssCheckbox className="m-checkbox-input"
+                                />
+                        </Span>
                     }
-                    <span style={{verticalAlign: "middle"}}>
+                    <Span className="m-label-wrapper">
                         {label}
-                    </span>
+                    </Span>
                </Button>
-               </BigLabel>
+               </CssBigLabel>
     }
 
-    return <Label className={`${name}__item ${props.className}`} key={value}>
+    return <CssLabel className={`muk-radio ${props.className || ""}`} key={value}>
                     <Element
                         name={name}
                         value={value}
                         type="radio"
-                        className={`${this.name}__item`}
+                        className={`m-input`}
                         style={{display: "none"}}
                         data-big={false}
                         />
-                    <span className="muk-button__item">
-                        <StyledInput className="muk-checkbox-input"
+                    <span className="m-button">
+                        <CssCheckbox className="m-checkbox-input"
                             />
                         &nbsp;{label}
                     </span>
-        </Label>
+        </CssLabel>
 }
 
-const Label = css("label")({
+const CssLabel = css("label")({
     cursor: "pointer",
     display: "block",
     padding: "5px 0",
 }, (props) => {
     const theme: any = props.theme
     return {
-        ":hover span span": {
+        ":hover .m-checkbox-input": {
             borderColor: theme.blue,
         },
     }
 
 })
 
-const BigLabel = css("label")({
+const CssBigLabel = css("label")({
     display: "table-cell",
     marginRight: "5px",
     verticalAlign: "top",
-    " .muk-popup_hint__trigger": {
+    " .muk-popuphint": {
         lineHeight: "16px",
     },
-    " .muk-button__item": {
+    " .m-button": {
         borderRadius: 0,
         margin: "0 0 0 -1px",
         lineHeight: "16px",
         padding: "16px",
     },
-    " span span": {
+    " .m-label-wrapper": {
         fontWeight: "normal",
     },
+    " *": {
+        verticalAlign: "text-top !important"
+    },
+    " .muk-icon": {
+        verticalAlign: "middle !important"
+    },
+
 }, (props) => {
     const theme: any = props.theme
     return {
-        ":hover span span": {
+        ":hover .m-checkbox-input": {
             borderColor: `${theme.blue}`,
         },
-        ":first-of-type .muk-button__item": {
+        ":first-of-type .m-button": {
             borderRadius: `${theme.radius} 0 0 ${theme.radius}`,
             margin: 0,
         },
-        ":last-of-type .muk-button__item": {
+        ":last-of-type .m-button": {
             borderRadius: `0 ${theme.radius} ${theme.radius} 0`,
         },
     }
@@ -114,38 +122,37 @@ const styledProps = (props: any) => {
     }
     if(props["data-big"]) {
         return {
-            "&:checked + .muk-button__item .muk-checkbox-input": {
+            "&:checked + .m-button .m-checkbox-input": {
                 border: `6px solid white`,
             },
-            "&:checked + .muk-button__item": {
+            "&:checked + .m-button": {
                 background: props.theme.blue,
                 color: "white",
             },
-            "&:checked + .muk-button__item *": {
+            "&:checked + .m-button *": {
                 color: "white !importat",
                 fill: "white !important",
             },
         }
     } else {
         return {
-            "&:checked + .muk-button__item .muk-checkbox-input": {
+            "&:checked + .m-button .m-checkbox-input": {
                 border: `6px solid` + props.theme.blue,
             },
         }
     }
 }
 
-const Input = css("input")(styledProps)
-const StyledLightInput = css(LightInput)(styledProps)
+const CssElement = css("input")(styledProps)
+const CssElementLightInput = css(LightInput)(styledProps)
 
-const StyledInput = css("span")({
+const CssCheckbox = css("span")({
     marginRight: "5px",
     display: "inline-block",
     background: "transparent",
     width: "18px",
     height: "18px",
     position: "relative",
-    verticalAlign: "middle !important",
     transition: "border-color 0.2s",
     borderRadius: "100%",
     ":focus": {

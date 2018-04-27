@@ -30,8 +30,9 @@ Big buttons
     var Field = require('redux-form').Field;
 
     <Section>
-        <Field component={Radio} name='video' labels={{main: 'Choose one:' }}
-                props={{group: {bigLabel: true}, bigButtons: true }}
+        <Radio name='video' labels={{main: 'Choose one:' }}
+                bigLabel={true} bigButtons={true}
+                
                 items={[
                         { value: "Radio", label: <span><Icon type="angellist" />Radio</span>  },
                         { value: "Video", label: <span><Icon type="cab" />Video</span>  },

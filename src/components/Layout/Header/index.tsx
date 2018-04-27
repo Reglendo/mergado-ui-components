@@ -17,35 +17,35 @@ const Header = (props: Props) => {
 
     if(type === "1") {
         return (
-            <CssH1 {...p} s={style} className={`muk-header m-h1 ${className}`}>
+            <CssH1 {...p} s={style} className={`muk-header m-h1 ${className || ""}`}>
                 {children}
             </CssH1>
         )
     }
     if(type === "2") {
         return (
-            <CssH2 {...p} s={style} className={`muk-header m-h2 ${className}`}>
+            <CssH2 {...p} s={style} className={`muk-header m-h2 ${className || ""}`}>
                 {children}
             </CssH2>
         )
     }
     if(type === "3") {
         return (
-            <CssH3 {...p} s={style} className={`muk-header m-h3 ${className}`}>
+            <CssH3 {...p} s={style} className={`muk-header m-h3 ${className || ""}`}>
                 {children}
             </CssH3>
         )
     }
     if(type === "4") {
         return (
-            <CssH4 {...p} s={style} className={`muk-header m-h4 ${className}`}>
+            <CssH4 {...p} s={style} className={`muk-header m-h4 ${className || ""}`}>
                 {children}
             </CssH4>
         )
     }
     if(type === "5") {
         return (
-            <CssH5 {...p} s={style} className={`muk-header m-h5 ${className}`}>
+            <CssH5 {...p} s={style} className={`muk-header m-h5 ${className || ""}`}>
                 {children}
             </CssH5>
         )
