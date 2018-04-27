@@ -87,10 +87,11 @@ export const CssActionsIcons = cxs("div")({
 })
 
 const CssHeader = cxs("tr")(
-(props: any) => { return {
-    background: props.selected ? props.theme.blue : "#333",
-    ...props.s,
-}})
+(props: any) => {
+    return {
+        background: props.selected ? props.theme.blue : "#333",
+        ...props.s,
+    }})
 
 CssHeader.propTypes = {
     selected: PropTypes.bool,

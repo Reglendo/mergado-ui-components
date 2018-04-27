@@ -23,8 +23,8 @@ const UniversalButton = ({...props}) => {
         const { group, meta, element, style, ...p } = others
         delete p.input
         delete p.labels
-        const Element: any = {...props.element, props: p, attributes: {...p} }
-        return <Span  className={`muk-button m-link`} {...style}>{Element}</Span>
+        const Element: any = {...props.element, props: {...p,className: `muk-button m-link ${className || ""}`}, attributes: {...p,class: `muk-button m-link ${className || ""}`} }
+        return Element
 
    } else if(type === "button") {
         return <Button

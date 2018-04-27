@@ -5,7 +5,7 @@ Types
             <Toast text="Info" type="info" icon={<Icon type="mergado" />} />,
             <Toast text="Success" type="success" icon={<Icon type="check" />} />,
             <Toast text="Warning" type="warning" icon={<Icon type="exclamation-triangle" />}/>,
-            <Toast text="Error" type="error" icon={<Icon type="exclamation-circle" />}/>,
+            <Toast text="Error" type="error" icon={<Icon type="exclamation-circle" color="white" />}/>,
             <Toast text="Message" type="message" icon={<Icon type="reglendo" />} />,
             <Toast text="Inactive" type="inactive" icon={<Icon type="heureka-small" />} />,
 

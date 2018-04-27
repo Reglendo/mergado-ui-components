@@ -176,7 +176,7 @@ const CloseButton = css("div")({
 },(props: any) => {
     const type = props.type ? props.type : "info"
     return {
-        "& .muk-button__item": {
+        "& .muk-button": {
             fontSize: "18px",
             color:  (type === "info" || type === "inactive" || type === "message")
                     ? "#333 !important" : "white !important",

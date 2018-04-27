@@ -26,6 +26,7 @@ export interface State {
 }
 
 class DataTable extends React.PureComponent<Props, State> {
+    private readonly name = prefix + "datatable"
 
     public static defaultProps: Props = {
         bulkActions: [],
@@ -38,7 +39,6 @@ class DataTable extends React.PureComponent<Props, State> {
         },
     }
 
-    private readonly name = prefix + "datatable"
 
     constructor(props) {
         super(props)
@@ -49,6 +49,10 @@ class DataTable extends React.PureComponent<Props, State> {
         }
     }
 
+    shouldComponentUpdate(nextProps,nextState) {
+        return (this.state.selectedRows.length !== nextState.selectedRows.length || this.state.selectedAll !== nextState.selectedAll)
+    }
+
     protected handleSelectAll() {
         if(this.state.selectedAll) {
             this.setState({
@@ -57,7 +61,7 @@ class DataTable extends React.PureComponent<Props, State> {
             })
         } else {
             const selected = []
-            for ( const checkbox of document.querySelectorAll(".bulk-action-item")) {
+            for ( const checkbox of document.querySelectorAll(".m-bulk-action-item ")) {
                 const item: any = checkbox
                 selected.push(parseInt(item.getAttribute("data-id"), 10))
             }
@@ -69,7 +73,7 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     protected handleSelectRow(id) {
-        const selected = this.state.selectedRows
+        const selected = [...this.state.selectedRows]
         const index = selected.indexOf(id)
 
         index === -1 ? selected.push(id) : selected.splice(index,1)
@@ -84,7 +88,6 @@ class DataTable extends React.PureComponent<Props, State> {
 
         if(Array.isArray(ch)) {
             return ch.map(obj => {
-
                 return React.cloneElement(obj, {
                     ...obj.props,
                     actions: this.props.bulkActions,
