@@ -2689,7 +2689,7 @@ const Grid = (props) => {
     return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssGrid, Object.assign({ className: `muk-grid ${className || ""}`, s: style }, p), children));
 };
 const CssGrid = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("div")({}, (props) => {
-    return Object.assign({ display: props.inline ? "inline-grid" : "grid", gridTemplateColumns: props.cols ? props.cols : "auto", gridTemplateRows: props.rows ? props.rows : "auto", gridGap: `${props.rowgap ? props.rowgap : props.gap} ${props.colgap ? props.colgap : props.gap}`, justifyItems: props.align ? props.align : "stretch", alignItems: props.valign ? props.valign : "stretch", gridAutoFlow: props.autoFlow ? props.autoFlow : "row" }, props.style);
+    return Object.assign({ display: props.inline ? "inline-grid" : "grid", gridTemplateColumns: props.cols ? props.cols : "auto", gridTemplateRows: props.rows ? props.rows : "auto", gridGap: `${props.rowgap ? props.rowgap : props.gap} ${props.colgap ? props.colgap : props.gap}`, justifyItems: props.align ? props.align : "stretch", alignItems: props.valign ? props.valign : "stretch", gridAutoFlow: props.autoFlow ? props.autoFlow : "row" }, props.s);
 });
 CssGrid.propTypes = {
     s: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.any,
@@ -2733,7 +2733,7 @@ const GridCell = (props) => {
     return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](GridCellStyle, Object.assign({ className: `muk-gridcell ${className || ""}`, s: style }, p), children));
 };
 const GridCellStyle = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("div")({}, (props) => {
-    return Object.assign({ gridColumn: props.col ? props.col : "auto auto", gridRow: props.row ? props.row : "auto auto", gridArea: props.name ? props.name : null, justifySelf: props.align ? props.align : "stretch", alignSelf: props.valign ? props.valign : "stretch" }, props.style);
+    return Object.assign({ gridColumn: props.col ? props.col : "auto auto", gridRow: props.row ? props.row : "auto auto", gridArea: props.name ? props.name : null, justifySelf: props.align ? props.align : "stretch", alignSelf: props.valign ? props.valign : "stretch" }, props.a);
 });
 GridCellStyle.propTypes = {
     col: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
@@ -3361,7 +3361,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 
 
-class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
+class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     constructor(props) {
         super(props);
         this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "datatable";
@@ -3369,9 +3369,6 @@ class DataTable extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
             selectedAll: false,
             selectedRows: [],
         };
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-        return (this.state.selectedRows.length !== nextState.selectedRows.length || this.state.selectedAll !== nextState.selectedAll);
     }
     handleSelectAll() {
         if (this.state.selectedAll) {
@@ -9662,13 +9659,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 
 const Section = (props) => {
     const name = "muk-section";
-    const { children, header, prefix, suffix, className } = props, p = __rest(props, ["children", "header", "prefix", "suffix", "className"]);
+    const { children, style, header, prefix, suffix, className } = props, p = __rest(props, ["children", "style", "header", "prefix", "suffix", "className"]);
     if (children === "" || children === null) {
         return null;
     }
     const pref = prefix && __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssPrefix, { className: "m-prefix", row: "1" }, props.prefix);
     const suff = suffix && __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssSuffix, { className: "m-suffix", row: "1" }, props.suffix);
-    return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssSection, Object.assign({ className: `${name} ${className || ""}` }, p),
+    return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssSection, Object.assign({ className: `${name} ${className || ""}`, s: style }, p),
         header &&
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssHeader, { className: "m-header" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__Grid__["a" /* default */], { className: "m-header-wrap", cols: "auto 1fr auto" },
@@ -9711,13 +9708,7 @@ const CssHeader = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default(
 const CssSection = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("section")({
     marginBottom: "20px",
 }, (props) => {
-    return {
-        background: props.theme.background,
-        color: props.theme.text,
-        borderRadius: props.theme.radius,
-        border: props.theme.section_border,
-        padding: props.theme.section_padding,
-    };
+    return Object.assign({ background: props.theme.background, color: props.theme.text, borderRadius: props.theme.radius, border: props.theme.section_border, padding: props.theme.section_padding }, props.s);
 });
 /* harmony default export */ __webpack_exports__["a"] = (Section);
 
