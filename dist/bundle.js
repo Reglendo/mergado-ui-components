@@ -2157,6 +2157,8 @@ const Label = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("d
 const styles = {
     ":checked + .muk-checkbox-input + .muk-icon--check": {
         display: "inline-block",
+        verticalAlign: "middle",
+        height: "18px",
     },
 };
 const stylesProps = (props) => {
@@ -8536,15 +8538,14 @@ const Li = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("li")
     display: "table",
     background: "white",
     fontWeight: "normal",
+    lineHeight: "24px",
     width: "100%",
     " > label": {
         padding: "10px",
         display: "block",
         cursor: "pointer",
+        lineHeight: "24px",
     },
-    "& span.muk-icon--check": {
-        top: "-1px !important",
-    }
 }, (props) => {
     let checked = {};
     if (props.checked) {
@@ -9071,12 +9072,6 @@ const CssBigLabel = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___defaul
     },
     " .m-label-wrapper": {
         fontWeight: "normal",
-    },
-    " *": {
-        verticalAlign: "text-top !important"
-    },
-    " .muk-icon": {
-        verticalAlign: "middle !important"
     },
 }, (props) => {
     const theme = props.theme;
@@ -10336,7 +10331,7 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 onMouseDown: this.props.hover ? this.doNothing : this.expand,
                 onBlur: this.props.hover ? this.doNothing : this.collapse,
                 tabIndex: 0,
-            }, cursor: "help", verticalAlign: "text-bottom", display: "inline-block" }, this.props.style),
+            }, cursor: "help", display: "inline-block" }, this.props.style),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { props: { id: `muk-popup-content-${this.id}` }, display: "none" }, this.props.children),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { pointerEvents: "none" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `m-trigger` },
