@@ -38,7 +38,7 @@ const CssGrid = css("div")({
         justifyItems: props.align ? props.align : "stretch",
         alignItems: props.valign ? props.valign : "stretch",
         gridAutoFlow: props.autoFlow ? props.autoFlow : "row",
-        ...props.style,
+        ...props.s,
     }
 })
 

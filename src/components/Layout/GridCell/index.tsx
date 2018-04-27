@@ -35,7 +35,7 @@ const GridCellStyle = css("div")({
         gridArea: props.name ? props.name : null,
         justifySelf: props.align ? props.align : "stretch",
         alignSelf: props.valign ? props.valign : "stretch",
-        ...props.style,
+        ...props.a,
     }
 })
 

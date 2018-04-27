@@ -11,11 +11,12 @@ interface Props {
     suffix?: JSX.Element | string
     children?: any
     className?: string
+    style?: any
 }
 
 const Section = (props: Props) => {
     const name = "muk-section"
-    const { children, header, prefix, suffix, className, ...p } = props
+    const { children, style, header, prefix, suffix, className, ...p } = props
     if(children === "" || children === null) {
         return null
     }
@@ -24,7 +25,7 @@ const Section = (props: Props) => {
     const suff = suffix && <CssSuffix className="m-suffix" row={"1"}>{props.suffix}</CssSuffix>
 
     return (
-        <CssSection className={`${name} ${className || ""}`}  {...p}>
+        <CssSection className={`${name} ${className || ""}`} s={style} {...p}>
             {header &&
                 <CssHeader className={"m-header"}>
                     <Grid className={"m-header-wrap"} cols={"auto 1fr auto"}>
@@ -84,6 +85,7 @@ const CssSection = css("section")({
         borderRadius: props.theme.radius,
         border: props.theme.section_border,
         padding: props.theme.section_padding,
+        ...props.s,
     }
 })
 

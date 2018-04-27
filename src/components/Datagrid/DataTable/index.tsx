@@ -25,7 +25,7 @@ export interface State {
     selectedRows: ID[]
 }
 
-class DataTable extends React.PureComponent<Props, State> {
+class DataTable extends React.Component<Props, State> {
     private readonly name = prefix + "datatable"
 
     public static defaultProps: Props = {
@@ -47,10 +47,6 @@ class DataTable extends React.PureComponent<Props, State> {
             selectedAll: false,
             selectedRows: [],
         }
-    }
-
-    shouldComponentUpdate(nextProps,nextState) {
-        return (this.state.selectedRows.length !== nextState.selectedRows.length || this.state.selectedAll !== nextState.selectedAll)
     }
 
     protected handleSelectAll() {
