@@ -10214,6 +10214,15 @@ const HintContent = __WEBPACK_IMPORTED_MODULE_4__reglendo_cxs_component___defaul
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Bubble__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash_throttle__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash_throttle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_lodash_throttle__);
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 
 
 
@@ -10315,20 +10324,14 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         };
     }
     render() {
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], Object.assign({ className: `${this.name} ${this.props.className || ""}`, props: {
-                id: `muk-popup-toggler-${this.id}`,
-                onMouseEnter: this.props.hover ? this.expand : this.doNothing,
-                onMouseLeave: this.props.hover ? this.collapse : this.doNothing,
-                onMouseDown: this.props.hover ? this.doNothing : this.expand,
-                onBlur: this.props.hover ? this.doNothing : this.collapse,
-                tabIndex: 0,
-            }, cursor: "help", display: "inline-block" }, this.props.style),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { props: { id: `muk-popup-content-${this.id}` }, display: "none" }, this.props.children),
+        const _a = this.props, { children, className, hover, icon, style, hint, help, arrowLeft, arrowRight } = _a, p = __rest(_a, ["children", "className", "hover", "icon", "style", "hint", "help", "arrowLeft", "arrowRight"]);
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], Object.assign({ className: `${this.name} ${className || ""}`, props: Object.assign({ id: `muk-popup-toggler-${this.id}`, onMouseEnter: hover ? this.expand : this.doNothing, onMouseLeave: hover ? this.collapse : this.doNothing, onMouseDown: hover ? this.doNothing : this.expand, onBlur: hover ? this.doNothing : this.collapse, tabIndex: 0 }, p), cursor: "help", display: "inline-block" }, style),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { props: { id: `muk-popup-content-${this.id}` }, display: "none" }, children),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { pointerEvents: "none" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `m-trigger` },
-                    this.props.hint ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__reglendo_mergado_ui_icons_lib_icons_IconHintInfo__["a" /* default */], { className: "m-icon", size: 16 }) : null,
-                    this.props.help ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__reglendo_mergado_ui_icons_lib_icons_IconHintHelp__["a" /* default */], { className: "m-icon", size: 16 }) : null,
-                    this.props.icon ? this.props.icon : null)),
+                    hint ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__reglendo_mergado_ui_icons_lib_icons_IconHintInfo__["a" /* default */], { className: "m-icon", size: 16 }) : null,
+                    help ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__reglendo_mergado_ui_icons_lib_icons_IconHintHelp__["a" /* default */], { className: "m-icon", size: 16 }) : null,
+                    icon ? icon : null)),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__Bubble__["a" /* default */], null)));
     }
 }
