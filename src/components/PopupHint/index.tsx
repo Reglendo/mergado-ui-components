@@ -152,27 +152,30 @@ class PopupHint extends React.Component<Props, State> {
     }
 
     public render() {
+        const { children, className, hover, icon, style, hint, help, arrowLeft, arrowRight, ...p } = this.props
+
         return (
-            <Div className={`${this.name} ${this.props.className || ""}`}
+            <Div className={`${this.name} ${className || ""}`}
                 props={{
                     id: `muk-popup-toggler-${this.id}`,
-                    onMouseEnter: this.props.hover ? this.expand : this.doNothing,
-                    onMouseLeave: this.props.hover ? this.collapse : this.doNothing,
-                    onMouseDown: this.props.hover ? this.doNothing : this.expand,
-                    onBlur: this.props.hover ? this.doNothing : this.collapse,
+                    onMouseEnter: hover ? this.expand : this.doNothing,
+                    onMouseLeave: hover ? this.collapse : this.doNothing,
+                    onMouseDown: hover ? this.doNothing : this.expand,
+                    onBlur: hover ? this.doNothing : this.collapse,
                     tabIndex: 0,
+                    ...p,
                 }}
                 cursor={"help"}
                 display="inline-block"
-                {...this.props.style}>
+                {...style}>
                 <Div props={{ id: `muk-popup-content-${this.id}` }} display={"none"}>
-                    {this.props.children}
+                    {children}
                 </Div>
                 <Div pointerEvents={"none"}>
                     <div ref="button" className={`m-trigger`}>
-                        {this.props.hint ? <IconHintInfo className="m-icon" size={16} /> : null}
-                        {this.props.help ? <IconHintHelp className="m-icon" size={16} /> : null}
-                        {this.props.icon ? this.props.icon : null }
+                        {hint ? <IconHintInfo className="m-icon" size={16} /> : null}
+                        {help ? <IconHintHelp className="m-icon" size={16} /> : null}
+                        {icon ? icon : null }
                     </div>
                 </Div>
                 <Bubble />
