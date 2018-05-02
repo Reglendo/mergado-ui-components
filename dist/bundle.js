@@ -9809,6 +9809,15 @@ const CssComponent = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___defau
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_prop_types__);
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 
 
 
@@ -9820,8 +9829,8 @@ class NavLink extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         this.name = __WEBPACK_IMPORTED_MODULE_3__config__["a" /* prefix */] + "navlink";
     }
     render() {
-        const { link, active, className, style } = this.props;
-        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssLink, { className: `${this.name} ${this.props.className || ""} ${active ? "active" : ""}`, active: active, s: style }, link));
+        const _a = this.props, { link, active, className, style } = _a, p = __rest(_a, ["link", "active", "className", "style"]);
+        return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssLink, Object.assign({ className: `${this.name} ${this.props.className || ""} ${active ? "active" : ""}`, active: active, s: style }, p), link));
     }
 }
 NavLink.defaultProps = {
@@ -10327,11 +10336,10 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const _a = this.props, { children, className, hover, icon, style, hint, help, arrowLeft, arrowRight } = _a, p = __rest(_a, ["children", "className", "hover", "icon", "style", "hint", "help", "arrowLeft", "arrowRight"]);
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], Object.assign({ className: `${this.name} ${className || ""}`, props: Object.assign({ id: `muk-popup-toggler-${this.id}`, onMouseEnter: hover ? this.expand : this.doNothing, onMouseLeave: hover ? this.collapse : this.doNothing, onMouseDown: hover ? this.doNothing : this.expand, onBlur: hover ? this.doNothing : this.collapse, tabIndex: 0 }, p), cursor: "help", display: "inline-block" }, style),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { props: { id: `muk-popup-content-${this.id}` }, display: "none" }, children),
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { pointerEvents: "none" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `m-trigger` },
-                    hint ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__reglendo_mergado_ui_icons_lib_icons_IconHintInfo__["a" /* default */], { className: "m-icon", size: 16 }) : null,
-                    help ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__reglendo_mergado_ui_icons_lib_icons_IconHintHelp__["a" /* default */], { className: "m-icon", size: 16 }) : null,
-                    icon ? icon : null)),
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", { ref: "button", className: `m-trigger` },
+                hint ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__reglendo_mergado_ui_icons_lib_icons_IconHintInfo__["a" /* default */], { className: "m-icon", size: 16 }) : null,
+                help ? __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__reglendo_mergado_ui_icons_lib_icons_IconHintHelp__["a" /* default */], { className: "m-icon", size: 16 }) : null,
+                icon ? icon : null),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_5__Bubble__["a" /* default */], null)));
     }
 }
