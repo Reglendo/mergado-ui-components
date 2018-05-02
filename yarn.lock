@@ -1976,6 +1976,10 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
+dayjs@^1.5.16:
+  version "1.5.16"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.5.16.tgz#f500ba23a573bca7b15b8e8e35c9c548bb527af7"
+
 debug@2.2.0, debug@^2.1.1, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
@@ -5048,6 +5052,12 @@ react-datepicker@^1.1.0:
     prop-types "^15.6.0"
     react-onclickoutside "^6.7.1"
     react-popper "^0.7.4"
+
+react-day-picker@^7.1.6:
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.1.6.tgz#b7e99c2c4a66192f6a0b205accaad9e61c80c9ef"
+  dependencies:
+    prop-types "^15.6.1"
 
 react-docgen-displayname-handler@^1.0.0:
   version "1.0.0"

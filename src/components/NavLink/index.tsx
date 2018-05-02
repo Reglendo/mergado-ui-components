@@ -25,11 +25,11 @@ class NavLink extends React.Component<Props, State> {
     }
 
     public render() {
-        const {link, active, className, style} = this.props
+        const {link, active, className, style, ...p} = this.props
 
         return (
             <CssLink className={`${this.name} ${this.props.className || ""} ${active ? "active" : ""}`}
-                              active={active} s={style}>
+                              active={active} s={style} {...p}>
                 {link}
             </CssLink>
         )

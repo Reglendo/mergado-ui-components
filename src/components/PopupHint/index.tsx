@@ -168,17 +168,15 @@ class PopupHint extends React.Component<Props, State> {
                 cursor={"help"}
                 display="inline-block"
                 {...style}>
-                <Div props={{ id: `muk-popup-content-${this.id}` }} display={"none"}>
-                    {children}
-                </Div>
-                <Div pointerEvents={"none"}>
+                    <Div props={{ id: `muk-popup-content-${this.id}` }} display={"none"}>
+                        {children}
+                    </Div>
                     <div ref="button" className={`m-trigger`}>
                         {hint ? <IconHintInfo className="m-icon" size={16} /> : null}
                         {help ? <IconHintHelp className="m-icon" size={16} /> : null}
                         {icon ? icon : null }
                     </div>
-                </Div>
-                <Bubble />
+                    <Bubble />
             </Div>
         );
     }
