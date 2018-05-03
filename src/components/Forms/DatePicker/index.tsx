@@ -15,6 +15,7 @@ import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInp
 
 export interface Props extends IFieldProps {
     locale?: "cs" | "sk"
+    pickerProps?: any
 }
 
 export interface State {
@@ -52,23 +53,23 @@ class DatePicker extends React.Component<Props, State> {
 
     protected handleChanged(evt) {
         this.setState({ startDate: evt })
-        return this.props.input.onChange(evt)
+        if(this.props.onChange) {
+            return this.props.onChange(evt)
+        }
     }
 
     public render() {
-        const { input, meta } = this.props
-        const { children, ...props} = this.props
+        const { locale, input, meta, children, labels, pickerProps, ...props } = this.props
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         const FORMAT = "DD. MM. YYYY"
 
         return(
-            <StyledField>
+            <StyledField labels={labels}>
                 <ReactDatePicker
                     aria-invalid={isInvalid ? 1 : 0}
                     placeholder={FORMAT}
                     selectedDays={this.state.startDate}
                     onDayChange={this.handleChanged}
-                    locale="cs"
                     dayPickerProps={{
                         firstDayOfWeek: 1,
                         months: this.locale.MONTHS,
@@ -82,7 +83,7 @@ class DatePicker extends React.Component<Props, State> {
                     }}
                     formatDate={(a,b) => dayjs(a).format(b)}
                     format={FORMAT}
-                    {...input.props}
+                    {...pickerProps}
                 />
                 <style>
                     {factoryStyle}
