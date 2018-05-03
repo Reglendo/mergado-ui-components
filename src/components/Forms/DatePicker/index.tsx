@@ -25,7 +25,7 @@ export interface State {
 
 class DatePicker extends React.Component<Props, State> {
 
-    protected readonly name = prefix + "colorpicker"
+    protected readonly name = prefix + "datepicker"
     protected locale;
 
     public static defaultProps: Props = {
@@ -62,19 +62,19 @@ class DatePicker extends React.Component<Props, State> {
         const { locale, input, meta, children, labels, pickerProps, ...props } = this.props
         const isInvalid = meta.invalid && (meta.dirty || meta.touched)
         const FORMAT = "DD. MM. YYYY"
-
         return(
             <StyledField labels={labels}>
                 <ReactDatePicker
                     aria-invalid={isInvalid ? 1 : 0}
-                    placeholder={FORMAT}
-                    selectedDays={this.state.startDate}
+                    placeholder={this.state.startDate ? dayjs(this.state.startDate).format(FORMAT) : FORMAT}
                     onDayChange={this.handleChanged}
                     dayPickerProps={{
                         firstDayOfWeek: 1,
                         months: this.locale.MONTHS,
                         weekdaysLong: this.locale.WEEKDAYS_LONG,
                         weekdaysShort: this.locale.WEEKDAYS_SHORT,
+                        selectedDays: dayjs(this.state.startDate).toDate(),
+                        month: dayjs(this.state.startDate).toDate(),
                         ...props,
                     }}
                     parseDate={(a) => {
