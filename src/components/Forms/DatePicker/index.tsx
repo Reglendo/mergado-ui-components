@@ -30,6 +30,7 @@ class DatePicker extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         locale: "cs",
+        pickerProps: {},
         ...defaultFieldProps,
     }
 
@@ -73,9 +74,9 @@ class DatePicker extends React.Component<Props, State> {
                         months: this.locale.MONTHS,
                         weekdaysLong: this.locale.WEEKDAYS_LONG,
                         weekdaysShort: this.locale.WEEKDAYS_SHORT,
-                        selectedDays: dayjs(this.state.startDate).toDate(),
-                        month: dayjs(this.state.startDate).toDate(),
-                        ...props,
+                        selectedDays: this.state.startDate ? dayjs(this.state.startDate).toDate() : [],
+                        month: this.state.startDate ?  dayjs(this.state.startDate).toDate() : null,
+                        ...pickerProps,
                     }}
                     parseDate={(a) => {
                         const parsed = a.split(" ").map(o => parseInt(o, 10))
@@ -83,7 +84,7 @@ class DatePicker extends React.Component<Props, State> {
                     }}
                     formatDate={(a,b) => dayjs(a).format(b)}
                     format={FORMAT}
-                    {...pickerProps}
+                    {...props}
                 />
                 <style>
                     {factoryStyle}
