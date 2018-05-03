@@ -74,6 +74,7 @@ class DatePicker extends React.Component<Props, State> {
                         months: this.locale.MONTHS,
                         weekdaysLong: this.locale.WEEKDAYS_LONG,
                         weekdaysShort: this.locale.WEEKDAYS_SHORT,
+                        ...props,
                     }}
                     parseDate={(a) => {
                         const parsed = a.split(" ").map(o => parseInt(o, 10))
@@ -81,7 +82,7 @@ class DatePicker extends React.Component<Props, State> {
                     }}
                     formatDate={(a,b) => dayjs(a).format(b)}
                     format={FORMAT}
-                    {...props}
+                    {...input.props}
                 />
                 <style>
                     {factoryStyle}
