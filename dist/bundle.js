@@ -1869,7 +1869,7 @@ class TextInput extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         delete elProps.labels;
         return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_9__components_Forms_Field__["a" /* Field */], Object.assign({}, props, { className: `${this.name} ${className || ""}`, s: style, name: props.name }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Layout_Div__["a" /* Div */], { className: "m-textinput-wrapper", position: "relative" },
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, Object.assign({}, elProps, (!props.name && inputProps), { placeholder: this.props.labels.placeholder, ref: "input", type: type === "search" || (type === "password" && this.state.passwordVisible)
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, Object.assign({}, (!props.name && inputProps), elProps, { placeholder: this.props.labels.placeholder, ref: "input", type: type === "search" || (type === "password" && this.state.passwordVisible)
                         ? "text" : props.type, "aria-invalid": isInvalid ? 1 : 0, className: `m-textinput-input m-textinput-${type}` })),
                 type === "password" && this.state.passwordVisible === false &&
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssButtonEye, { className: "m-openedeye", icon: __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__reglendo_mergado_ui_icons_lib_icons_IconEye__["a" /* default */], null), type: "void", color: "nocolor", size: "tiny", onClick: () => this.setState({ passwordVisible: true }) }),
@@ -2131,7 +2131,7 @@ class Checkbox extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched);
         const Element = props.name ? StyledLightInput : Input;
         return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Label, { className: `m-label ${isInvalid ? `m-invalid` : ""}` },
-            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__Layout_Div__["a" /* Div */], { className: "m-element-wrapper", position: "relative", display: "inline-block", verticalAlign: "middle" },
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_7__Layout_Div__["a" /* Div */], { className: "m-element-wrapper", lineHeight: "16px", position: "relative", display: "inline-block", verticalAlign: "middle" },
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, Object.assign({ className: `m-item` }, props, (!props.name && { checked: input.value }), (!props.name && input), { type: "checkbox", s: { display: "none !important" } })),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](StyledInput, { className: "muk-checkbox-input", label: label }),
                 __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__reglendo_mergado_ui_icons_lib_icons_IconCheck__["a" /* default */], { className: "m-check", size: 14 })),
@@ -7692,7 +7692,7 @@ class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
     }
     renderBulkActions() {
         return this.props.actions.map(obj => {
-            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6__components_Forms_Button__["a" /* default */], { className: "m-bulk", onClick: obj.action, key: obj.type, icon: obj.icon, color: "nocolor", size: "small" }));
+            return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6__components_Forms_Button__["a" /* default */], { className: "m-bulk", onClick: obj.action, key: obj.type, icon: obj.icon, color: "nocolor", style: { margin: "0 2px" }, size: "small" }));
         });
     }
     render() {
@@ -7707,7 +7707,7 @@ class DataHeader extends __WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"] {
                 kids,
                 selectedRows && selectedRows.length > 0 ?
                     __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__DataCell__["a" /* default */], { type: "header" },
-                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { className: `m-actions`, display: "inline-block", verticalAlign: "bottom" },
+                        __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1__components_Layout_Div__["a" /* Div */], { className: `m-actions`, textAlign: "center", verticalAlign: "bottom" },
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssActionsIcons, { className: `m-icons` }, this.renderBulkActions())))
                     :
                         lastKid)));
@@ -7723,7 +7723,7 @@ DataHeader.defaultProps = {
 const CssActionsIcons = __WEBPACK_IMPORTED_MODULE_2__reglendo_cxs_component___default()("div")({
     marginTop: "-3px",
     whiteSpace: "nowrap",
-    " svg g path": {
+    " .m-image g path": {
         fill: "white !important",
     },
 });
@@ -9644,6 +9644,8 @@ const FFieldset = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default(
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Grid__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GridCell__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_prop_types__);
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -9653,6 +9655,7 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
+
 
 
 
@@ -9710,6 +9713,9 @@ const CssSection = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default
 }, (props) => {
     return Object.assign({ background: props.theme.background, color: props.theme.text, borderRadius: props.theme.radius, border: props.theme.section_border, padding: props.theme.section_padding }, props.s);
 });
+CssSection.propTypes = {
+    s: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.any,
+};
 /* harmony default export */ __webpack_exports__["a"] = (Section);
 
 
