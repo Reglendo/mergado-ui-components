@@ -245,7 +245,10 @@ const typo = {
     },
     "!a, a:visited, a:hover, a:active": {
         color: ryzlinkTheme.blue,
-    }
+    },
+    "!.muk-icon .m-image": {
+        verticalAlign: "middle",
+    },
 }
 
 const helpers = {

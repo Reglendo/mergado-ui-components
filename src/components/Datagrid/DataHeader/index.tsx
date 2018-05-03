@@ -40,6 +40,7 @@ class DataHeader extends React.PureComponent<Props, State> {
                             key={obj.type}
                             icon={obj.icon}
                             color="nocolor"
+                            style={{margin: "0 2px"}}
                             size="small" />)
         })
     }
@@ -62,8 +63,7 @@ class DataHeader extends React.PureComponent<Props, State> {
                     {kids}
                     {selectedRows && selectedRows.length > 0 ?
                         <DataCell type="header">
-                            <Div className={`m-actions`} 
-                                 display={"inline-block"} verticalAlign={"bottom"}>
+                            <Div className={`m-actions`} textAlign={"center"} verticalAlign={"bottom"}>
                                     <CssActionsIcons className={`m-icons`}>
                                         {this.renderBulkActions()}
                                     </CssActionsIcons>
@@ -80,7 +80,7 @@ class DataHeader extends React.PureComponent<Props, State> {
 export const CssActionsIcons = cxs("div")({
     marginTop: "-3px",
     whiteSpace: "nowrap",
-    " svg g path": {
+    " .m-image g path": {
         fill: "white !important",
 
     },

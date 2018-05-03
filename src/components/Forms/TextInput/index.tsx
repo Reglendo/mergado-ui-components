@@ -56,8 +56,8 @@ class TextInput extends React.Component<Props, State> {
             <Field {...props} className={`${this.name} ${className || ""}`} s={style} name={props.name}>
                 <Div className="m-textinput-wrapper" position="relative">
                 <Element
-                    {...elProps}
                     {...(!props.name && inputProps)}
+                    {...elProps}
                     placeholder={this.props.labels.placeholder}
                     ref={"input"}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)

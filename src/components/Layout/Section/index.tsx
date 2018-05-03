@@ -2,8 +2,7 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-
-import domOnlyProps from "../../../helpers/dom-only-props"
+import PropTypes from "prop-types"
 
 interface Props {
     header?: JSX.Element | string
@@ -89,4 +88,7 @@ const CssSection = css("section")({
     }
 })
 
+CssSection.propTypes = {
+    s: PropTypes.any,
+}
 export default Section

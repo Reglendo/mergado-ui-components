@@ -27,7 +27,7 @@ class Checkbox extends React.Component<Props, {}> {
         const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
         const Element = props.name ? StyledLightInput : Input
         return <Label className={`m-label ${isInvalid ? `m-invalid` : ""}`}>
-                    <Div className="m-element-wrapper" position="relative" display="inline-block" verticalAlign="middle">
+                    <Div className="m-element-wrapper" lineHeight={"16px"} position="relative" display="inline-block" verticalAlign="middle">
                         <Element
                             className={`m-item`}
                             {...props}
