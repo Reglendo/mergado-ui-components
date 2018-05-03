@@ -173,7 +173,6 @@ export const FieldError = css(FieldErrorComponent)({
 })
 
 FieldError.propTypes = {
-    meta: PropTypes.any,
     input: PropTypes.any,
     labels: PropTypes.any,
     group: PropTypes.any,
