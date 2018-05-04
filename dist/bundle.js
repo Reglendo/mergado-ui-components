@@ -1140,7 +1140,6 @@ const FieldError = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default
 /* unused harmony export FieldError */
 
 FieldError.propTypes = {
-    meta: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.any,
     input: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.any,
     labels: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.any,
     group: __WEBPACK_IMPORTED_MODULE_4_prop_types___default.a.any,
