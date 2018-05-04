@@ -2,7 +2,9 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 
 interface Props {
+    className?: string
     children?: any
+    style?: any
 }
 
 const Widget = (props: Props) => {
@@ -12,21 +14,26 @@ const Widget = (props: Props) => {
     }
 
     return (
-        <WidgetStyle>
+        <WidgetStyle className={`muk-widget ${props.className || ""}`} s={props.style}>
+            <div style={{display: "table", width: "100%"}}>
             {children}
+            </div>
         </WidgetStyle>
     )
 }
 
 const WidgetStyle = css("div")({
-    display: "table",
-    padding: "10px",
+    maxWidth: "350px",
+    minWidth: "200px",
+    height: "100px",
     marginTop: "0",
     fontSize: "14px",
     width: "100%",
-    lineHeight: "20px",
+    lineHeight: "18px",
+    background: "white",
     " .widget-row": {
         display: "table-row",
+        lineHeight: "18px",
     },
     " .widget-cell": {
         display: "table-cell",
@@ -55,6 +62,8 @@ const WidgetStyle = css("div")({
         display: "none",
     },
 
-})
+}, p => ({
+    ...p.s,
+}))
 
 export default Widget
