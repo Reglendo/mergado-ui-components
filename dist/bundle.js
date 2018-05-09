@@ -9037,21 +9037,22 @@ const RadioInput = (_a) => {
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, { name: formName, value: value, type: checkboxes ? "checkbox" : "radio", className: `m-input`, style: { display: "none" }, "data-big": true }),
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_2__components_Forms_Button__["a" /* default */], { secondary: true, style: { display: "block" }, className: "m-button", type: "void" },
                 !hideInput &&
-                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Layout_Span__["a" /* default */], { className: "m-input-wrapper", position: "relative" },
+                    __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Layout_Span__["a" /* default */], { className: "m-input-wrapper", display: "inline-block", verticalAlign: "middle", height: "18px", position: "relative" },
                         checkboxes &&
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_6__components_Forms_Checkbox__["b" /* StyledInput */], { className: "m-checkbox-input", label: label }),
                         checkboxes &&
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4__reglendo_mergado_ui_icons_lib_icons_IconCheck__["a" /* default */], { className: "m-check", size: 14 }),
                         !checkboxes &&
                             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssCheckbox, { className: "m-radio-input" })),
-                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Layout_Span__["a" /* default */], { className: "m-label-wrapper" }, label)));
+                __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Layout_Span__["a" /* default */], { className: "m-label-wrapper", verticalAlign: "middle" }, label)));
     }
     return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssLabel, { className: `muk-radio ${props.className || ""}`, key: value },
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, { name: name, value: value, type: "radio", className: `m-input`, style: { display: "none" }, "data-big": false }),
         __WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("span", { className: "m-button" },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssCheckbox, { className: "m-radio-input" }),
-            "\u00A0",
-            label));
+            __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_3__components_Layout_Span__["a" /* default */], { className: "m-label-wrapper", verticalAlign: "middle" },
+                "\u00A0",
+                label)));
 };
 const CssLabel = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("label")({
     cursor: "pointer",
@@ -9081,6 +9082,9 @@ const CssBigLabel = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___defaul
     " .m-label-wrapper": {
         fontWeight: "normal",
     },
+    " .m-label-wrapper .m-image": {
+        verticalAlign: "initial !important",
+    }
 }, (props) => {
     const theme = props.theme;
     return {
@@ -9116,7 +9120,6 @@ const styledProps = (props) => {
             },
             "&:checked + .m-button .muk-icon--check": {
                 display: "inline-block",
-                top: "-3px",
             },
         };
     }
@@ -9137,6 +9140,7 @@ const CssCheckbox = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___defaul
     width: "18px",
     height: "18px",
     position: "relative",
+    verticalAlign: "middle",
     transition: "border-color 0.2s",
     borderRadius: "100%",
     ":focus": {
