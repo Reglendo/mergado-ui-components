@@ -38,7 +38,7 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, checkb
                     className={"m-button"}
                     type="void">
                     {!hideInput &&
-                        <Span className="m-input-wrapper" position={"relative"}>
+                        <Span className="m-input-wrapper" display={"inline-block"} verticalAlign={"middle"} height={"18px"} position={"relative"}>
                             {checkboxes &&
                             <StyledCheckbox className={"m-checkbox-input"} label={label} />
                             }
@@ -50,7 +50,7 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, checkb
                             }
                         </Span>
                     }
-                    <Span className="m-label-wrapper">
+                    <Span className="m-label-wrapper" verticalAlign={"middle"}>
                         {label}
                     </Span>
                </Button>
@@ -69,7 +69,8 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, checkb
                     <span className="m-button">
                         <CssCheckbox className="m-radio-input"
                             />
-                        &nbsp;{label}
+                        <Span className="m-label-wrapper" verticalAlign={"middle"}>&nbsp;{label}
+                        </Span>
                     </span>
         </CssLabel>
 }
@@ -104,6 +105,10 @@ const CssBigLabel = css("label")({
     " .m-label-wrapper": {
         fontWeight: "normal",
     },
+
+    " .m-label-wrapper .m-image": {
+        verticalAlign: "initial !important",
+    }
 
 }, (props) => {
     const theme: any = props.theme
@@ -142,7 +147,6 @@ const styledProps = (props: any) => {
             },
             "&:checked + .m-button .muk-icon--check": {
                 display: "inline-block",
-                top: "-3px",
             },
 
     }
@@ -165,6 +169,7 @@ const CssCheckbox = css("span")({
     width: "18px",
     height: "18px",
     position: "relative",
+    verticalAlign: "middle",
     transition: "border-color 0.2s",
     borderRadius: "100%",
     ":focus": {
