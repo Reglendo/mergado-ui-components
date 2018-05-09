@@ -9031,7 +9031,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 const RadioInput = (_a) => {
     var { name, value, checked, label, checkboxes, onChange, bigButtons, hideInput } = _a, props = __rest(_a, ["name", "value", "checked", "label", "checkboxes", "onChange", "bigButtons", "hideInput"]);
     const Element = name ? CssElementLightInput : CssElement;
-    const formName = checkboxes ? name + "[" + value + "]" : name;
+    const formName = checkboxes ? (name + "." + value) : name;
     if (bigButtons) {
         return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](CssBigLabel, { className: `muk-radio ${props.className || ""}`, key: value },
             __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Element, { name: formName, value: value, type: checkboxes ? "checkbox" : "radio", className: `m-input`, style: { display: "none" }, "data-big": true }),
