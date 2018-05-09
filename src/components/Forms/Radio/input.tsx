@@ -21,7 +21,7 @@ interface IInputProps {
 const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, checkboxes,
                                              onChange, bigButtons, hideInput, ...props}) => {
     const Element = name ? CssElementLightInput : CssElement
-    const formName = checkboxes ? name+"["+value+"]" : name
+    const formName = checkboxes ? (name+"."+value) : name
     if(bigButtons) {
         return <CssBigLabel className={`muk-radio ${props.className || ""}`} key={value}>
                 <Element
