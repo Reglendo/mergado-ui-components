@@ -2732,7 +2732,7 @@ const GridCell = (props) => {
     return (__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](GridCellStyle, Object.assign({ className: `muk-gridcell ${className || ""}`, s: style }, p), children));
 };
 const GridCellStyle = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("div")({}, (props) => {
-    return Object.assign({ gridColumn: props.col ? props.col : "auto auto", gridRow: props.row ? props.row : "auto auto", gridArea: props.name ? props.name : null, justifySelf: props.align ? props.align : "stretch", alignSelf: props.valign ? props.valign : "stretch" }, props.a);
+    return Object.assign({ gridColumn: props.col ? props.col : "auto auto", gridRow: props.row ? props.row : "auto auto", gridArea: props.name ? props.name : null, justifySelf: props.align ? props.align : "stretch", alignSelf: props.valign ? props.valign : "stretch" }, props.s);
 });
 GridCellStyle.propTypes = {
     col: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
