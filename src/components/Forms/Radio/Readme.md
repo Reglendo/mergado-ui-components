@@ -8,6 +8,15 @@ Light input
                         { value: "Kills the star", label: "Kills the star"  }
                 ]}
         />
+        
+        <Radio name='lightvideo' checkboxes={true} bigButtons={true} labels={{main: 'Choose many:' }}
+                items={[
+                        { value: "Radio", label: "Radio"  },
+                        { value: "Video", label: "Video"  },
+                        { value: "Kills the star", label: "Kills the star"  }
+                ]}
+        />
+        
     </Section>
 
 

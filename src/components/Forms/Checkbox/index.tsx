@@ -83,7 +83,7 @@ const stylesProps =  (props) => {
 const Input = css("input")(styles , stylesProps)
 const StyledLightInput = css(LightInput)(styles , stylesProps)
 
-const StyledInput = css("span")({
+export const StyledInput = css("span")({
     display: "inline-block",
     background: "transparent",
     width: "18px",

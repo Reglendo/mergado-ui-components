@@ -12,6 +12,7 @@ interface IItem {
 export interface Props extends IFieldProps {
     items: IItem[]
     bigButtons?: boolean
+    checkboxes?: boolean
 }
 
 class Radio extends React.Component<Props, {}> {
@@ -25,7 +26,7 @@ class Radio extends React.Component<Props, {}> {
     }
 
     public renderInputs() {
-        const { input, meta, labels, bigButtons, hideInput } = this.props
+        const { input, meta, labels, checkboxes, bigButtons, hideInput } = this.props
         return this.props.items.map((obj: IItem) => {
             return (
                 <RadioInput name={this.props.name} label={obj.label}
@@ -35,6 +36,7 @@ class Radio extends React.Component<Props, {}> {
                             onChange={input.onChange}
                             bigButtons={bigButtons}
                             hideInput={hideInput}
+                            checkboxes={checkboxes}
                 />
             )
         })

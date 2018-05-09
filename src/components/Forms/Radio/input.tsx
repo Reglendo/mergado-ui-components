@@ -3,8 +3,9 @@ import css from "@reglendo/cxs/component"
 import Button from "../../../components/Forms/Button"
 import Span from "../../../components/Layout/Span"
 
+import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import {Input as LightInput} from "light-form/dist/es"
-
+import {StyledInput as StyledCheckbox} from "../../../components/Forms/Checkbox"
 interface IInputProps {
     name: string
     value: string
@@ -14,17 +15,19 @@ interface IInputProps {
     bigButtons: boolean
     className?: string
     hideInput?: boolean
+    checkboxes?: boolean
 }
 
-const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
+const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label, checkboxes,
                                              onChange, bigButtons, hideInput, ...props}) => {
     const Element = name ? CssElementLightInput : CssElement
+    const formName = checkboxes ? name+"["+value+"]" : name
     if(bigButtons) {
         return <CssBigLabel className={`muk-radio ${props.className || ""}`} key={value}>
                 <Element
-                    name={name}
+                    name={formName}
                     value={value}
-                    type="radio"
+                    type={checkboxes ? "checkbox" : "radio"}
                     className={`m-input`}
                     style={{display: "none"}}
                     data-big={true}
@@ -35,9 +38,16 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                     className={"m-button"}
                     type="void">
                     {!hideInput &&
-                        <Span className="m-input-wrapper">
-                            <CssCheckbox className="m-checkbox-input"
-                                />
+                        <Span className="m-input-wrapper" position={"relative"}>
+                            {checkboxes &&
+                            <StyledCheckbox className={"m-checkbox-input"} label={label} />
+                            }
+                            {checkboxes &&
+                            <IconCheck className="m-check" size={14} />
+                            }
+                            {!checkboxes &&
+                                <CssCheckbox className="m-radio-input"/>
+                            }
                         </Span>
                     }
                     <Span className="m-label-wrapper">
@@ -57,7 +67,7 @@ const RadioInput: React.SFC<IInputProps> = ({name, value, checked, label,
                         data-big={false}
                         />
                     <span className="m-button">
-                        <CssCheckbox className="m-checkbox-input"
+                        <CssCheckbox className="m-radio-input"
                             />
                         &nbsp;{label}
                     </span>
@@ -71,7 +81,7 @@ const CssLabel = css("label")({
 }, (props) => {
     const theme: any = props.theme
     return {
-        ":hover .m-checkbox-input": {
+        ":hover .m-radio-input": {
             borderColor: theme.blue,
         },
     }
@@ -98,7 +108,7 @@ const CssBigLabel = css("label")({
 }, (props) => {
     const theme: any = props.theme
     return {
-        ":hover .m-checkbox-input": {
+        ":hover .m-radio-input, &:hover .m-checkbox-input": {
             borderColor: `${theme.blue}`,
         },
         ":first-of-type .m-button": {
@@ -116,8 +126,11 @@ const styledProps = (props: any) => {
     }
     if(props["data-big"]) {
         return {
-            "&:checked + .m-button .m-checkbox-input": {
+            "&:checked + .m-button .m-radio-input": {
                 border: `6px solid white`,
+            },
+            "&:checked + .m-button .m-checkbox-input": {
+                border: `1px solid white`,
             },
             "&:checked + .m-button": {
                 background: props.theme.blue,
@@ -127,10 +140,15 @@ const styledProps = (props: any) => {
                 color: "white !importat",
                 fill: "white !important",
             },
-        }
+            "&:checked + .m-button .muk-icon--check": {
+                display: "inline-block",
+                top: "-3px",
+            },
+
+    }
     } else {
         return {
-            "&:checked + .m-button .m-checkbox-input": {
+            "&:checked + .m-button .m-radio-input": {
                 border: `6px solid` + props.theme.blue,
             },
         }

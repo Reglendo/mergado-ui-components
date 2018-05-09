@@ -29,6 +29,7 @@ const WidgetStyle = css("div")({
     marginTop: "0",
     fontSize: "14px",
     width: "100%",
+    padding: "10px",
     lineHeight: "18px",
     background: "white",
     " .widget-row": {
