@@ -10310,6 +10310,7 @@ class PopupHint extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         const widthLeft = buttonPosition.left;
         const renderLeft = widthLeft > windowWidth / 2;
         this.styleHint(buttonPosition, renderLeft);
+        this.styleHint(buttonPosition, renderLeft);
     }
     styleArrow(left, right) {
         const arrow = document.getElementById('muk-bubble-arrow');
