@@ -97,6 +97,7 @@ class PopupHint extends React.Component<Props, State> {
         const widthLeft = buttonPosition.left
         const renderLeft: boolean = widthLeft > windowWidth / 2
         this.styleHint(buttonPosition, renderLeft)
+        this.styleHint(buttonPosition, renderLeft) // this is not error, repeat, this is not error
     }
 
     protected styleArrow(left: string, right: string) {
