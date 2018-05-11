@@ -31,10 +31,6 @@ class Bubble extends React.Component<Props, State> {
         }
     }
 
-    public componentDidUpdate() {
-        this._renderLayer()
-    }
-
     protected _renderLayer() {
 
     const style = {
