@@ -10,6 +10,7 @@ export interface Props {
     style?: any
     topLayer?: JSX.Element
     className?: string
+    timeout?: number
 }
 export interface State {
     active: number
@@ -18,20 +19,46 @@ export interface State {
 export class Carousel extends React.Component<Props, State> {
 
     private readonly name = prefix + "carousel";
-
+    private timer = null
     public constructor(props) {
         super(props)
         this.state = {
             active: 1,
         }
+
+        this.increaseActive = this.increaseActive.bind(this)
+        this.decreaseActive = this.decreaseActive.bind(this)
+        this.setActive = this.setActive.bind(this)
+
     }
+
+    public componentWillMount() {
+        if(this.props.timeout) {
+            this.timer = setInterval(this.increaseActive,this.props.timeout*1000)
+        }
+    }
+
+    public componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+
+
+    protected increaseActive() {
+        const steps = this.props.children.length
+        this.setState({ active: this.state.active%steps+1})
+    }
+    protected decreaseActive() {
+        const steps = this.props.children.length
+        this.setState({ active: (this.state.active-2 + steps)%steps + 1})
+    }
+    protected setActive(s) {
+        const steps = this.props.children.length
+        this.setState({ active: parseInt(s.target.dataset.step,10)})
+    }
+
 
     public render() {
         const steps = this.props.children.length
-        const increaseActive = () => this.setState({ active: this.state.active%steps+1})
-        const decreaseActive = () => this.setState({ active: (this.state.active-2 + steps)%steps + 1})
-        const setActive = s => { this.setState({ active: parseInt(s.target.dataset.step,10)}) }
-
 
         let i = 1
         let j = 1
@@ -39,15 +66,16 @@ export class Carousel extends React.Component<Props, State> {
 
         return (
             <CssWrapper className={`${this.name} ${this.props.className || ""}`} s={this.props.style}>
-                <CssMukBigButton color="nocolor" left={true} 
-                              onClick={decreaseActive} 
+                <CssMukBigButton color="nocolor" left={true}
+                             className="m-big-prev"
+                              onClick={this.decreaseActive}
                               icon={<IconChevronLeft size={20} />} />
 
                 {this.props.topLayer}
-                <Div className="slides" padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
-                <CssSlides className="slides__wrapper" count={steps} translate={translate}>
+                <Div className="m-slides" padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
+                <CssSlides className="m-slides-wrapper" count={steps} translate={translate}>
                     {this.props.children.map(o => {
-                        return  <CssSlide className={`slide ${this.state.active === 1 && "active"}`} 
+                        return  <CssSlide className={`m-slide ${this.state.active === 1 && "active"}`}
                                         active={this.state.active === i} data-next={i++}>
                                     {o}
                                 </CssSlide>
@@ -55,26 +83,28 @@ export class Carousel extends React.Component<Props, State> {
                 </CssSlides>
                 </Div>
 
-                <div className="controls">
-                    <Button className="prev" color="nocolor"  style={{fontSize: "14px"}} 
-                        onClick={decreaseActive} icon={<IconChevronLeft size={12} text="Předchozí" />} />
+                <div className="m-controls">
+                    <Button className="m-prev" color="nocolor"  style={{fontSize: "14px"}}
+                        onClick={this.decreaseActive} icon={<IconChevronLeft size={12} text="Předchozí" />} />
                             &nbsp;
                             {this.props.children.map(o => {
                             j++
                             return this.state.active === j - 1 ? 
-                                    <CssMukCircle color="nocolor" size="tiny" 
-                                            onClick={setActive} type="void" data-step={j-1}>●</CssMukCircle> 
+                                    <CssMukCircle color="nocolor" size="tiny"
+                                          className={"m-point"}
+                                          onClick={this.setActive} type="void" data-step={j-1}>●</CssMukCircle>
                                 : 
-                                    <CssMukCircle color="nocolor" size="tiny" 
-                                            onClick={setActive} type="void" data-step={j-1}>○</CssMukCircle>
+                                    <CssMukCircle color="nocolor" size="tiny"
+                                            className={"m-point"}
+                                            onClick={this.setActive} type="void" data-step={j-1}>○</CssMukCircle>
                             })}
-                    <Button color="nocolor" style={{fontSize: "14px"}} 
-                            onClick={increaseActive} 
+                    <Button className="m-next" color="nocolor" style={{fontSize: "14px"}}
+                            onClick={this.increaseActive}
                             icon={<IconChevronRight size={12} textFirst={true} text="Další" />} />
                 </div>
 
-                <CssMukBigButton className="next" color="nocolor" 
-                    onClick={increaseActive} 
+                <CssMukBigButton className="m-big-next" color="nocolor"
+                    onClick={this.increaseActive}
                     icon={<IconChevronRight size={20} />} />
 
         </CssWrapper>
@@ -107,12 +137,10 @@ const CssMukBigButton = css(Button)({
 const CssSlides = css("div")({
     display: "table", 
     tableLayout: "fixed", 
-    transition: "transform 0.2s", 
-
+    transition: "transform 0.2s",
 }, props => ({
     width: props.count * 100 + "%",
     transform: "translate3d("+props.translate+"%,0,0)",
-
 }))
 
 const CssSlide = css("div")({
