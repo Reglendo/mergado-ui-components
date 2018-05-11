@@ -10166,9 +10166,6 @@ class Bubble extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             this.popup = document.getElementById("muk-popuphint");
         }
     }
-    componentDidUpdate() {
-        this._renderLayer();
-    }
     _renderLayer() {
         const style = {
             position: "absolute",
