@@ -82,8 +82,11 @@ class DatePicker extends React.Component<Props, State> {
                         ...pickerProps,
                     }}
                     parseDate={(a) => {
-                        const parsed = a.split(" ").map(o => parseInt(o, 10))
-                        return new Date(parsed[2],parsed[1]-1,parsed[0])
+                        const parsed = a.split(".").map(o => parseInt(o, 10))
+                        if(parsed.length === 3 && parsed[0] && parsed[2]) {
+                            return new Date(parsed[2],parsed[1]-1,parsed[0])
+                        }
+                        return new Date(2018,0,1)
                     }}
                     formatDate={(a,b) => dayjs(a).format(b)}
                     format={FORMAT}
