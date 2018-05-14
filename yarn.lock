@@ -5034,7 +5034,7 @@ react-cookie@^1.0.5:
     is-node "^1.0.2"
     object-assign "^4.1.0"
 
-react-day-picker@^7.1.6:
+react-day-picker@7.1.6:
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.1.6.tgz#b7e99c2c4a66192f6a0b205accaad9e61c80c9ef"
   dependencies:
