@@ -53,6 +53,9 @@ class DatePicker extends React.Component<Props, State> {
     }
 
     protected handleChanged(evt) {
+        if(!dayjs(evt).isValid()) {
+            return
+        }
         this.setState({ startDate: evt })
         if(this.props.onChange) {
             return this.props.onChange(evt)
