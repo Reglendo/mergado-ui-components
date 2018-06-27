@@ -33,7 +33,6 @@ class Spinner extends React.Component<Props, State> {
     public static defaultProps: Props = {
         type: "default",
         size: 30,
-        loaded: false,
         color: theme.decoration,
         style: {},
         speed: 1,
@@ -64,7 +63,7 @@ class Spinner extends React.Component<Props, State> {
         if(this.state.loaded) {
             return (<span style={{opacity: 1}}>{this.props.children}</span>)
         }
-        const { size, type, color, speed } = this.props
+        const { size, type, color, speed, ...others } = this.props
 
         const containerStyle: any = {  width: `${size}px`, height: `${type === "bubbles" ? size/1.5 : size}px` }
         return (

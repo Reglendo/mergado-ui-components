@@ -92,4 +92,5 @@ CssTr.propTypes = {
     s: PropTypes.any,
 }
 
+
 export default DataRow

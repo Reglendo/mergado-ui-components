@@ -7,7 +7,7 @@ import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
 import {Input} from "light-form/dist/es"
-
+import PropTypes from "prop-types"
 import {prefix,form} from "../../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
 import Button from "../../../components/Forms/Button"
@@ -157,5 +157,13 @@ const CssButtonClose = css(Button)({
     bottom: "8px",
     position: "absolute",
 })
+
+CssButtonClose.propTypes = {
+    onClear: PropTypes.any,
+}
+
+CssInput.propTypes = {
+    onClear: PropTypes.any,
+}
 
 export default TextInput

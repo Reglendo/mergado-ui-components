@@ -18,7 +18,6 @@ class Checkbox extends React.Component<Props, {}> {
 
     public static defaultProps: Props = {
         ...defaultFieldProps,
-        halfway: false,
     }
 
     protected renderLabel() {

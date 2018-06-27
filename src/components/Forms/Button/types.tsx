@@ -37,8 +37,9 @@ export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, class
                                                  labels,group,meta,
                                                  input, children, ...props}) => {
     return (
-        <button 
+        <button
             {...input}
+            className={`muk-button ${className ? className : ""}`}
             {...props}
             title={title}>
                 {icon}{icon && " "}{label}{children}

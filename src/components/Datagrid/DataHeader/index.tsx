@@ -29,7 +29,6 @@ class DataHeader extends React.Component<Props, State> {
         style: {},
         actions: [],
         handleSelectAll: () => {},
-        selectedAll: false,
     }
     private readonly name = prefix + "datarow";
 
