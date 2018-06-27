@@ -175,7 +175,3 @@ export default function PropsRenderer({ props }) {
 		);
 	}
 }
-
-PropsRenderer.propTypes = {
-	props: PropTypes.object.isRequired,
-};

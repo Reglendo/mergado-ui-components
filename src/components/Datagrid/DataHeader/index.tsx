@@ -22,7 +22,7 @@ export interface Props {
 export interface State {
 }
 
-class DataHeader extends React.PureComponent<Props, State> {
+class DataHeader extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         className: "",

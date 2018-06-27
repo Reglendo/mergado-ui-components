@@ -37,11 +37,7 @@ Example test
                 <DataCell key={4}>1200x628</DataCell>
                 <DataCell key={5}>8. 3. 2017</DataCell>
                 <DataCell key={6}>
-                    <Button color="nocolor" size="tiny" icon={<Icon type="search" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="edit" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="pause" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="copy" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="trash" />} />
+
                 </DataCell>
             </DataRow>
             <DataRow dataId={2} key={2} inactive={true}>
@@ -51,11 +47,7 @@ Example test
                 <DataCell key={4}>600x600</DataCell>
                 <DataCell key={5}>8. 3. 2017</DataCell>
                 <DataCell key={6}>
-                    <Button color="nocolor" size="tiny" icon={<Icon type="search" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="edit" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="pause" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="copy" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="trash" />} />
+
                 </DataCell>
             </DataRow>
             <DataRow dataId={3} key={3}>
@@ -65,11 +57,7 @@ Example test
                 <DataCell key={4}>1200x628</DataCell>
                 <DataCell key={5}>18. 3. 2017</DataCell>
                 <DataCell key={6} style={{width: "1%", whiteSpace: "nowrap"}}>
-                    <Button color="nocolor" size="tiny" icon={<Icon type="search" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="edit" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="pause" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="copy" />} />
-                    <Button color="nocolor" size="tiny" icon={<Icon type="trash" />} />
+
                 </DataCell>
             </DataRow>
         </DataBody>

@@ -194,11 +194,5 @@ const StyleGuideRenderer = ({ title, components, toc, sidebar, compact, theme, s
     );
 }
 
-StyleGuideRenderer.propTypes = {
-	title: PropTypes.string.isRequired,
-	components: PropTypes.object.isRequired,
-	toc: PropTypes.node.isRequired,
-	sidebar: PropTypes.bool,
-};
 
 export default StyleGuideRenderer;

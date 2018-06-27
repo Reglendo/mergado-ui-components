@@ -84,16 +84,5 @@ return (
 )
 };
 
-PlaygroundRenderer.propTypes = {
-	code: PropTypes.string.isRequired,
-	showCode: PropTypes.bool.isRequired,
-	name: PropTypes.string,
-	index: PropTypes.number.isRequired,
-	evalInContext: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	onCodeToggle: PropTypes.func.isRequired,
-	singleExample: PropTypes.bool,
-    innerHtml: PropTypes.string
-};
 
 export default PlaygroundRenderer;

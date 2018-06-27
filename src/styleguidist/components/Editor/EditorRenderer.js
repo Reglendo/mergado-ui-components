@@ -8,8 +8,5 @@ const EditorRenderer = ({ children }) => (
     </div>
 );
 
-EditorRenderer.propTypes = {
-    children: PropTypes.node.isRequired,
-};
 
 export default EditorRenderer;

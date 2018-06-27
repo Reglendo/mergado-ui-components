@@ -25,7 +25,7 @@ export interface Props {
 export interface State {
 }
 
-class DataRow extends React.PureComponent<Props, State> {
+class DataRow extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         className: "",

@@ -14,7 +14,7 @@ export interface Props {
 export interface State {
 }
 
-class Placeholder extends React.PureComponent<Props, State> {
+class Placeholder extends React.Component<Props, State> {
 
     private readonly name = prefix + "placeholder";
 

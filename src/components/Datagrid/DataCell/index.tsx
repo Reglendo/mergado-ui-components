@@ -13,7 +13,7 @@ export interface Props {
 export interface State {
 }
 
-class DataCell extends React.PureComponent<Props, State> {
+class DataCell extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         style: {},

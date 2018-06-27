@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 import Components from 'rsg-components/Components';
 import TableOfContents from 'rsg-components/TableOfContents';
@@ -11,22 +11,12 @@ import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
 import ThemeProvider from '@reglendo/cxs/ThemeProvider';
 
-export default class StyleGuide extends PureComponent {
-	static propTypes = {
-		config: PropTypes.object.isRequired,
-		components: PropTypes.array.isRequired,
-		sections: PropTypes.array.isRequired,
-		sidebar: PropTypes.bool,
-		singleExample: PropTypes.bool,
-	};
+export default class StyleGuide extends React.Component {
+
 	static defaultProps = {
 		sidebar: true,
 	};
-	static childContextTypes = {
-		codeKey: PropTypes.number.isRequired,
-		config: PropTypes.object.isRequired,
-		singleExample: PropTypes.bool,
-	};
+
 
     constructor(props) {
       super(props);
@@ -49,17 +39,6 @@ export default class StyleGuide extends PureComponent {
 		};
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-    	if(
-    		(this.props.components.length !== nextProps.components.length) ||
-			(this.props.components.length > 0 && nextProps.components.length > 0 &&
-             this.props.components[0].filepath !== nextProps.components[0].filepath)
-		) {
-    		return true
-		}
-
-		return false
-	}
 
 	renderComponents(components, sections, sidebar, singleExample) {
 		if (!isEmpty(components) || !isEmpty(sections)) {

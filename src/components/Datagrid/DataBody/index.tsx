@@ -17,7 +17,7 @@ export interface Props {
 export interface State {
 }
 
-class DataBody extends React.PureComponent<Props, State> {
+class DataBody extends React.Component<Props, State> {
 
     public static defaultProps: Props = {
         sortable: false,

@@ -1,20 +1,9 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React from 'react';
 import debounce from 'lodash/debounce';
 import PlaygroundRenderer from './PlaygroundRenderer';
 import cookie from 'react-cookie';
 
-export default class Playground extends PureComponent {
-	static propTypes = {
-		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
-		index: PropTypes.number.isRequired,
-		name: PropTypes.string,
-        innerHtml: PropTypes.string,
-	};
-	static contextTypes = {
-		config: PropTypes.object.isRequired,
-		singleExample: PropTypes.bool,
-	};
+export default class Playground extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);
@@ -37,14 +26,6 @@ export default class Playground extends PureComponent {
 		});
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return (
-			nextState.code !== this.state.code ||
-			nextState.showCode !== this.state.showCode ||
-			nextState.showHtml !== this.state.showHtml ||
-            nextState.innerHtml !== this.state.innerHtml
-        );
-	}
 
 	componentWillUnmount() {
 		// clear pending changes before unmount

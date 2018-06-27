@@ -30,7 +30,3 @@ export default function Markdown({
 	return renderMarkdown(text, options);
 }
 
-Markdown.propTypes = {
-	text: PropTypes.string.isRequired,
-	inline: PropTypes.bool,
-};

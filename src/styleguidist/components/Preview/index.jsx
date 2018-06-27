@@ -1,6 +1,6 @@
 // Based on https://github.com/joelburget/react-live-editor/blob/master/live-compile.jsx
 
-import React, { PureComponent, PropTypes } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import { transform } from 'buble';
@@ -41,13 +41,7 @@ const rootReducer = combineReducers({
 
 var store = createStore(rootReducer)
 
-export default class Preview extends PureComponent {
-	static propTypes = {
-		code: PropTypes.string.isRequired,
-		evalInContext: PropTypes.func.isRequired,
-        innerHtml: PropTypes.string,
-        config: PropTypes.object,
-	};
+export default class Preview extends React.Component {
 
 	constructor() {
 		super();
@@ -147,7 +141,7 @@ export default class Preview extends PureComponent {
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
 
 			// Wrap everything in a react component to leverage the state management of this component
-			class PreviewComponent extends PureComponent { // eslint-disable-line react/no-multi-comp
+			class PreviewComponent extends React.Component { // eslint-disable-line react/no-multi-comp
 				constructor() {
 					super();
 
@@ -203,10 +197,6 @@ export default class Preview extends PureComponent {
                 this.props.changeHtml(htmlcode)
             }
 
-    }
-
-    shouldComponentUpdate() {
-	    return false
     }
 
 	render() {

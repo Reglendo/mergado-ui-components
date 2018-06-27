@@ -43,14 +43,4 @@ const ReactComponentRenderer = ({ name, pathLine, description, props, examples, 
 	);
 };
 
-ReactComponentRenderer.propTypes = {
-	name: PropTypes.string.isRequired,
-	pathLine: PropTypes.string.isRequired,
-	description: PropTypes.node,
-	props: PropTypes.node,
-	examples: PropTypes.node,
-	sidebar: PropTypes.bool,
-};
-
-
 export default ReactComponentRenderer;

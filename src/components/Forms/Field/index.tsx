@@ -184,12 +184,10 @@ const FieldComponent: React.SFC<IFieldProps> = (props) => {
     const { meta, input, labels, group, style, ...others } = props
     const isInvalid = !!props.meta.error || props.meta.invalid
     return (
-        <Div
-            {...others}
-            className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
+        <Div className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
             title={props.labels.title}
-            {...props.style}>
-                <FieldError {...others} meta={meta} className={`${form}__validation`} />
+            {...style}>
+                <FieldError meta={meta} className={`${form}__validation`} />
                 {(props.label || others.label || labels.main) &&
                     <FieldLabel name={props.name} bigLabel={group.bigLabel}>
                         {props.label ? props.label : (others.label ? others.label : labels.main)}
@@ -208,9 +206,7 @@ FieldComponent.propTypes = {
     input: PropTypes.any,
     labels: PropTypes.any,
     group: PropTypes.any,
-    s: PropTypes.any,
 }
-
 
 export const Field = css(FieldComponent)({
     position: "relative",
