@@ -101,7 +101,7 @@ class DataTable extends React.Component<Props, State> {
 
     protected renderFiltersBar() {
         return (
-            <Div className={`m-filters`} marginBottom={"10px"} verticalAlign={"middle"} >
+            <Div key={"filtersbar"} className={`m-filters`} marginBottom={"10px"} verticalAlign={"middle"} >
                 <Grid cols="auto auto">
                     <GridCell>
                         {this.renderFilters()}
@@ -115,9 +115,9 @@ class DataTable extends React.Component<Props, State> {
     }
 
     protected renderButtons() {
-        return this.props.buttons.map(obj => {
-            return <Div className="m-buttons" textAlign="right" verticalAlign="bottom">{obj}</Div>
-        })
+        return <Div key="button" className="m-buttons" textAlign="right" verticalAlign="bottom">
+            {this.props.buttons.map(obj => obj)}
+        </Div>
     }
 
     protected renderFilters() {
@@ -130,14 +130,14 @@ class DataTable extends React.Component<Props, State> {
                                 onClear={() => obj.action({currentTarget: {value: "" }})}
                                 input={{ onKeyUp: (evt) => { obj.action(evt) }, value: obj.value }}
                                 labels={{placeholder: obj.label }}
-                                key="text"
+                                key={'textfilter_'+obj.label}
                             />)
                 case "checkbox":
                     return (<CssMCheckboxFilter
                                 className="m-checkbox-filter"
                                 input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }}
                                 labels={{main: obj.label }}
-                                key="checkbox"
+                                key={'checkbox_'+obj.label}
                             />)
             }
         })
