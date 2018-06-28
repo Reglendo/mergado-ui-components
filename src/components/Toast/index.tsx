@@ -118,7 +118,6 @@ class Toast extends React.Component<Props, State> {
                                     color="nocolor"
                                     size="tiny"
                                     type="void"
-                                    toastType={this.props.type}
                                     onClick={evt => this.onClose(evt) }
                                 >×</Button>
                             </CloseButton>

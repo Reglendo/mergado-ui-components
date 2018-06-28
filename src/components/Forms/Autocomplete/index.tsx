@@ -330,7 +330,7 @@ class Autocomplete extends  React.Component<Props, State> {
                     onMouseDown: () => this.selectItemFromMouse(item),
                     onMouseEnter: () => this.highlightItemFromMouse(index),
                     onClick: () => { this.selectItemFromMouse(item) },
-                    ref: e => this.refs[`item-${index}`] = e,
+                    // ref: e => this.refs[`item-${index}`] = e,
                 })
             })
         const style = {
@@ -342,13 +342,13 @@ class Autocomplete extends  React.Component<Props, State> {
             .props
             .renderMenu(items, this.state.value, style)
         return React.cloneElement(menu, {
-            ref: e => this.refs.menu = e,
+            // ref: e => this.refs.menu = e,
         })
     }
 
     public render() {
         const open = this.isOpen()
-        const {labels, meta, input, ...props} = this.props
+        const {labels, meta, input, shouldItemRender, renderMenu, onMenuVisibilityChange, renderItem, getItemValue,  ...props} = this.props
         const inputProps = Object.assign({}, this.props.input, {
                 onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
                 onBlur: this.handleInputBlur.bind(this),
