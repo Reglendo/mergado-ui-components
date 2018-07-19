@@ -46,7 +46,10 @@ class Autocomplete extends  React.Component<Props, State> {
         ...defaultFieldProps,
         items: [],
         renderMenu: (items, value, style) => {
-            return <Menu className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
+            if(items.length > 0) {
+                return <Menu className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
+            }
+            return false
         },
         onMenuVisibilityChange: () => {},
         renderItem: (item: Item, highlighted, style) => {
