@@ -7660,9 +7660,9 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
                 .props
                 .renderItem(item, this.state.highlightedIndex === index, { cursor: "default" });
             return __WEBPACK_IMPORTED_MODULE_0_react__["cloneElement"](element, {
-                onMouseDown: () => this.selectItemFromMouse(item),
-                onMouseEnter: () => this.highlightItemFromMouse(index),
-                onClick: () => { this.selectItemFromMouse(item); },
+                onMouseDown: () => { item.disabled ? null : this.selectItemFromMouse(item); },
+                onMouseEnter: () => { item.disabled ? null : this.highlightItemFromMouse(index); },
+                onClick: () => { item.disabled ? null : this.selectItemFromMouse(item); },
             });
         });
         const style = {
@@ -7670,6 +7670,9 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
             top: this.state.menuTop,
             minWidth: this.state.menuWidth,
         };
+        if (items.length === 0) {
+            return false;
+        }
         const menu = this
             .props
             .renderMenu(items, this.state.value, style);
