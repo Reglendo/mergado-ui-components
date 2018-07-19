@@ -7709,37 +7709,37 @@ Autocomplete.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_5__compo
         return (item.value.toLowerCase().indexOf(value.toLowerCase()) > -1 || item.text);
     } });
 const Menu = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("div")({
-    boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
+    boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)",
     background: "rgba(255, 255, 255, 0.95)",
     padding: 0,
     fontSize: "90%",
     position: "absolute",
     top: "100% !important",
-    left: "2px !important",
+    left: "3px !important",
     margin: "1px 0",
     overflow: "auto",
     maxHeight: "250px",
     zIndex: 1000,
-    marginTop: "5px",
+    marginTop: "0",
 }, props => {
     const theme = props.theme;
     return {
         border: `1px solid ${theme.decoration}`,
-        borderRadius: theme.radius,
+        borderTop: "none",
     };
 });
 const MenuItem = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()("div")({
-    padding: "9px 10px",
-    fontSize: "12px",
+    padding: "5px 20px",
+    fontSize: "0.9em",
     cursor: "pointer",
-    transition: "border-color 0.2s",
     borderRadius: 0,
+    borderBottom: "1px solid #eee",
 }, props => {
     const p = props;
     const theme = props.theme;
     if (p.selected) {
         return {
-            background: theme.selected_background,
+            background: "#f4f4f4",
         };
     }
     else {
@@ -8742,11 +8742,12 @@ const stylesSelectItem = {
         position: "absolute",
         padding: "0",
         top: "100%",
-        left: "0",
-        width: "100%",
+        left: "3px",
+        width: "calc(100% - 6px)",
         zIndex: "4",
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.95)",
         border: "1px solid #CBD2D7",
+        fontSize: "13px",
     },
     "& .react-select-item-options:focus": {
         outline: "none"
@@ -8767,7 +8768,7 @@ const stylesSelectItem = {
         margin: "0",
         cursor: "pointer",
         display: "block",
-        lineHeight: "1.2",
+        lineHeight: "1.5",
         textDecoration: "none",
         borderBottom: "1px solid #F9F9F9"
     },
