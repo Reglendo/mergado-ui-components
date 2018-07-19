@@ -139,7 +139,7 @@ const stylesSelectItem = {
     //     borderRight: "5px solid transparent"
     // },
     "& .react-select-item-label, .react-select-item-option": {
-        fontSize: "0.9em",
+        fontSize: "13px",
         // fontWeight: "bold",
         // color: "#7B8E9B",
         textOverflow: "ellipsis",
@@ -208,7 +208,8 @@ const stylesSelectItem = {
         backgroundColor: "rgba(255, 255, 255, 0.95)",
         border: "1px solid #CBD2D7",
         borderTop: "none",
-        marginTop: "-1px",
+        marginTop: "0",
+        fontSize: "13px",
     },
     "& .react-select-item-options:focus": {
         outline: "none"
