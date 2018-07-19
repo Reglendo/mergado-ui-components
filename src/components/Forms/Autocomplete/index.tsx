@@ -10,6 +10,7 @@ import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/F
 export interface Item {
     value: string
     text: string
+    disabled?: boolean
 }
 
 export interface Props extends IFieldProps {
@@ -330,9 +331,9 @@ class Autocomplete extends  React.Component<Props, State> {
                     .props
                     .renderItem(item, this.state.highlightedIndex === index, {cursor: "default"})
                 return React.cloneElement(element, {
-                    onMouseDown: () => this.selectItemFromMouse(item),
-                    onMouseEnter: () => this.highlightItemFromMouse(index),
-                    onClick: () => { this.selectItemFromMouse(item) },
+                    onMouseDown: () => { item.disabled ? null : this.selectItemFromMouse(item) },
+                    onMouseEnter: () => { item.disabled ? null : this.highlightItemFromMouse(index) },
+                    onClick: () => { item.disabled ? null : this.selectItemFromMouse(item) },
                     // ref: e => this.refs[`item-${index}`] = e,
                 })
             })
@@ -341,6 +342,11 @@ class Autocomplete extends  React.Component<Props, State> {
             top: this.state.menuTop,
             minWidth: this.state.menuWidth,
         }
+
+        if(items.length === 0) {
+            return false
+        }
+
         const menu = this
             .props
             .renderMenu(items, this.state.value, style)
