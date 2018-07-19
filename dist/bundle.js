@@ -3210,8 +3210,8 @@ const Wrapper = __WEBPACK_IMPORTED_MODULE_1__reglendo_cxs_component___default()(
     return {
         borderRadius: props.theme.radius,
         opacity: props.hidden ? 0 : 1,
-        background: props.theme[type],
-        color: (type === "info" || type === "inactive" || type === "message")
+        background: type === "transparent" ? "transparent" : props.theme[type],
+        color: (type === "transparent" || type === "info" || type === "inactive" || type === "message")
             ? "#333" : "white",
     };
 });
@@ -7692,7 +7692,10 @@ class Autocomplete extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     }
 }
 Autocomplete.defaultProps = Object.assign({}, __WEBPACK_IMPORTED_MODULE_5__components_Forms_Field__["b" /* defaultFieldProps */], { items: [], renderMenu: (items, value, style) => {
-        return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Menu, { className: `${__WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "autocomplete"}__menu`, style: Object.assign({}, style), children: items });
+        if (items.length > 0) {
+            return __WEBPACK_IMPORTED_MODULE_0_react__["createElement"](Menu, { className: `${__WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "autocomplete"}__menu`, style: Object.assign({}, style), children: items });
+        }
+        return false;
     }, onMenuVisibilityChange: () => { }, renderItem: (item, highlighted, style) => {
         let className = `${__WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "autocomplete"}__item `;
         className += highlighted ? className + `${__WEBPACK_IMPORTED_MODULE_2__config__["a" /* prefix */] + "autocomplete"}__item--selected` : "";
