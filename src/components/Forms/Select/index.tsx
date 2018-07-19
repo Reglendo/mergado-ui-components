@@ -203,11 +203,12 @@ const stylesSelectItem = {
         position: "absolute",
         padding: "0",
         top: "100%",
-        left: "0",
-        width: "100%",
+        left: "3px",
+        width: "calc(100% - 6px)",
         zIndex: "4",
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.95)",
         border: "1px solid #CBD2D7",
+        fontSize: "13px",
     },
     "& .react-select-item-options:focus": {
         outline: "none"
@@ -228,7 +229,7 @@ const stylesSelectItem = {
         margin: "0",
         cursor: "pointer",
         display: "block",
-        lineHeight: "1.2",
+        lineHeight: "1.5",
         textDecoration: "none",
         borderBottom: "1px solid #F9F9F9"
     },
