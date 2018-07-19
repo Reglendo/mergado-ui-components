@@ -8681,8 +8681,7 @@ const stylesSelectItem = {
         outline: "0"
     },
     "& .react-select-item-label, .react-select-item-option": {
-        lineHeight: "16px",
-        fontSize: "14px",
+        fontSize: "0.9em",
         textOverflow: "ellipsis",
         overflow: "hidden",
     },
@@ -8747,7 +8746,8 @@ const stylesSelectItem = {
         zIndex: "4",
         backgroundColor: "rgba(255, 255, 255, 0.95)",
         border: "1px solid #CBD2D7",
-        fontSize: "13px",
+        borderTop: "none",
+        marginTop: "-1px",
     },
     "& .react-select-item-options:focus": {
         outline: "none"
@@ -8770,7 +8770,7 @@ const stylesSelectItem = {
         display: "block",
         lineHeight: "1.5",
         textDecoration: "none",
-        borderBottom: "1px solid #F9F9F9"
+        borderBottom: "1px solid #eee"
     },
     "& .react-select-item-option:hover": {
         color: "#3A3A3A",
