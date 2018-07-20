@@ -8669,13 +8669,14 @@ const stylesSelectItem = {
         background: "rgb(255, 255, 196) !important",
     },
     "& .react-select-item": {
-        padding: "12px 0",
+        padding: "0",
         display: "inline-block",
         cursor: "pointer",
         border: "none",
         width: "100%",
         textAlign: "left",
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        fontSize: "14px",
     },
     "& .react-select-item:focus": {
         outline: "0"
