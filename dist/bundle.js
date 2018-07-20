@@ -8681,7 +8681,7 @@ const stylesSelectItem = {
         outline: "0"
     },
     "& .react-select-item-label, .react-select-item-option": {
-        fontSize: "0.9em",
+        fontSize: "13px",
         textOverflow: "ellipsis",
         overflow: "hidden",
     },
@@ -8747,7 +8747,8 @@ const stylesSelectItem = {
         backgroundColor: "rgba(255, 255, 255, 0.95)",
         border: "1px solid #CBD2D7",
         borderTop: "none",
-        marginTop: "-1px",
+        marginTop: "0",
+        fontSize: "13px",
     },
     "& .react-select-item-options:focus": {
         outline: "none"
