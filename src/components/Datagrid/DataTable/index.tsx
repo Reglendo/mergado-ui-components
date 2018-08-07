@@ -128,7 +128,7 @@ class DataTable extends React.Component<Props, State> {
                                 className="m-text-filter"
                                 type="search"
                                 onClear={() => obj.action({currentTarget: {value: "" }})}
-                                input={{ onKeyUp: (evt) => { obj.action(evt) }, value: obj.value }}
+                                input={{ onKeyUp: (evt) => { obj.action(evt) } }}
                                 labels={{placeholder: obj.label }}
                                 key={'textfilter_'+obj.label}
                             />)

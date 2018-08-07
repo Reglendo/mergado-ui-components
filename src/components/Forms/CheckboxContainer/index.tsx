@@ -71,7 +71,7 @@ class CheckboxContainer extends React.Component<Props,State> {
             filter: "",
         }
 
-        this.handleFilter = _debounce(this.handleFilter.bind(this),150)
+        this.handleFilter = this.handleFilter.bind(this)
 
     }
 
@@ -81,8 +81,7 @@ class CheckboxContainer extends React.Component<Props,State> {
                         type="search"
                         onClear={() => this.setState({ filter: "" }) }
                         style={{marginBottom: "5px"}}
-                        input={{ value: this.state.filter,
-                                 onKeyUp: this.handleFilter }}
+                        input={{ onKeyUp: this.handleFilter }}
                         labels={{ placeholder: this.props.labels.placeholder, main: "" }}
             />
         )
