@@ -16,7 +16,7 @@ export interface Props {
 }
 export interface State {
 }
-class Icon extends React.Component<Props, State> {
+class Icon extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "icon";
 

@@ -12,7 +12,7 @@ export interface Props {
 export interface State {
 }
 
-class LittleStatus extends React.Component<Props, State> {
+class LittleStatus extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "little_status";
 

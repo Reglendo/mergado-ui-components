@@ -3,8 +3,8 @@ import css from "@reglendo/cxs/component"
 import {prefix} from "../../config"
 import IconChevronLeft from "@reglendo/mergado-ui-icons/lib/icons/IconChevronLeft"
 import IconChevronRight from "@reglendo/mergado-ui-icons/lib/icons/IconChevronRight"
-import {Div} from "../Layout/Div"
-import {Button} from "../Forms/Button"
+import Div from "../Div"
+import {Button} from "../Button"
 export interface Props {
     children: any
     style?: any
@@ -16,7 +16,7 @@ export interface State {
     active: number
 }
 
-export class Carousel extends React.Component<Props, State> {
+export class Carousel extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "carousel";
     private timer = null

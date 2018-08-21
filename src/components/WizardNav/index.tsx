@@ -13,7 +13,7 @@ export interface State {
 
 /* </style> */
 
-class WizardNav extends React.Component<Props, State> {
+class WizardNav extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "wizard_nav";
 

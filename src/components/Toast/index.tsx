@@ -25,7 +25,7 @@ export interface State {
     secondsLeft: number
 }
 
-class Toast extends React.Component<Props, State> {
+class Toast extends React.PureComponent<Props, State> {
     private readonly name = prefix + "toast";
     private countdown;
     public static defaultProps: Props = {

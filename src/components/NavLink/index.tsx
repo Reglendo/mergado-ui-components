@@ -14,7 +14,7 @@ export interface Props {
 export interface State {
 }
 
-class NavLink extends React.Component<Props, State> {
+class NavLink extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "navlink";
 

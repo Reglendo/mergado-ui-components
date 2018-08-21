@@ -20,7 +20,7 @@ const codemirrorOptions = {
 
 const UPDATE_DELAY = 10;
 
-export default class Editor extends React.Component {
+export default class Editor extends React.PureComponent {
 
     constructor() {
         super();

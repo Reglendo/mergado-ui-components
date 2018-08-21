@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce';
 import PlaygroundRenderer from './PlaygroundRenderer';
 import cookie from 'react-cookie';
 
-export default class Playground extends React.Component {
+export default class Playground extends React.PureComponent {
 
 	constructor(props, context) {
 		super(props, context);

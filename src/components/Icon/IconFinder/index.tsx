@@ -15,7 +15,7 @@ export interface State {
 /**
  * disable-styleguide
  */
-class IconFinder extends React.Component<Props, State> {
+class IconFinder extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "icon-finder";
 

@@ -12,7 +12,7 @@ export interface Props {
 export interface State {
 }
 
-class WizardStep extends React.Component<Props, State> {
+class WizardStep extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "wizard_nav__item";
 
