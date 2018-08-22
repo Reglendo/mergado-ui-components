@@ -1,10 +1,11 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 
-import {prefix, form} from "../../config"
-import domOnlyProps from "../../helpers/dom-only-props"
+import {form} from "../../config"
 import Div from "../Div"
 import PropTypes from 'prop-types'
+import FieldLabel from "../FieldLabel"
+import FieldError from "../FieldError"
 
 export interface IFieldProps {
     group?: {
@@ -99,84 +100,6 @@ export const defaultFieldProps: IFieldProps = {
             title: "",
             placeholder: "",
         },
-}
-
-const CssBigLabel = css("h3")({
-    paddingLeft: "10px",
-    borderLeft: "5px solid hsla(43,44%,75%,.5)",
-    fontSize: "1.2em",
-    margin: "10px 0",
-})
-
-
-const LabelComponent = ({children, bigLabel, className = ""}) => {
-    if(children === "" || children === null) {
-        return null
-    }
-
-    return (
-            <label className={`${form}-label ${className}`}>
-                {bigLabel ? <CssBigLabel>{children}</CssBigLabel> : children }
-            </label>
-        )
-}
-
-
-export const FieldLabel = css(LabelComponent)({
-    display: "inline-block",
-    height: "25px",
-    " .muk-popup-hint": {
-        verticalAlign: "middle",
-    },
-}, (props: any) => {
-    const theme: any = props.theme
-    return {
-        fontSize: theme.form_label_text_size,
-        fontWeight: theme.form_label_text_weight,
-    }
-})
-
-FieldLabel.propTypes = {
-    meta: PropTypes.any,
-    input: PropTypes.any,
-    labels: PropTypes.any,
-    group: PropTypes.any,
-    s: PropTypes.any,
-}
-
-
-const FieldErrorComponent = ({...props}) => {
-        if(props.meta && props.meta.error) {
-            return (
-                <div className={`${props.className}`}>
-                    {props.meta.error}
-                </div>
-            )
-        } else {
-            return null
-        }
-}
-
-export const FieldError = css(FieldErrorComponent)({
-    color: "white",
-    fontSize: "12px",
-    zIndex: 1,
-    padding: "1px 5px",
-    position: "absolute",
-    top: "100%",
-},(props: any) => {
-    const theme: any = props.theme
-    return {
-        left: theme.radius,
-        background: theme.red,
-    }
-})
-
-FieldError.propTypes = {
-    input: PropTypes.any,
-    labels: PropTypes.any,
-    group: PropTypes.any,
-    s: PropTypes.any,
 }
 
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
