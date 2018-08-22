@@ -6,7 +6,7 @@ const config = {
     './src/index.ts',
   ],
   output: {
-    path: path.join(__dirname,'build'),
+    path: path.join(__dirname,'dist'),
     publicPath: './',
     filename: "bundle.js"
   },
