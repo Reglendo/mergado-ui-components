@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Ul} from "../../components/Layout"
+import Ul from "../Ul"
 import {prefix} from "../../config"
 
 export interface Props {
@@ -13,7 +13,7 @@ export interface State {
 
 /* </style> */
 
-class WizardNav extends React.Component<Props, State> {
+class WizardNav extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "wizard_nav";
 

@@ -11,7 +11,7 @@ import defaultTheme from '/src/styled/themes/default.ts';
 import ryzlinkTheme from '/src/styled/themes/ryzlink.ts';
 import ThemeProvider from '@reglendo/cxs/ThemeProvider';
 
-export default class StyleGuide extends React.Component {
+export default class StyleGuide extends React.PureComponent {
 
 	static defaultProps = {
 		sidebar: true,

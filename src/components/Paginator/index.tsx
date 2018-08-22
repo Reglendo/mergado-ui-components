@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../components/Layout/Div"
+import Div from "../Div"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
@@ -36,7 +36,7 @@ export interface State {
     current: number
 }
 
-class Paginator extends React.Component<Props, State> {
+class Paginator extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "paginator";
 

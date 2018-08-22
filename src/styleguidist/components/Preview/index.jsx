@@ -41,7 +41,7 @@ const rootReducer = combineReducers({
 
 var store = createStore(rootReducer)
 
-export default class Preview extends React.Component {
+export default class Preview extends React.PureComponent {
 
 	constructor() {
 		super();
@@ -141,7 +141,7 @@ export default class Preview extends React.Component {
 			const exampleComponent = this.props.evalInContext(exampleComponentCode);
 
 			// Wrap everything in a react component to leverage the state management of this component
-			class PreviewComponent extends React.Component { // eslint-disable-line react/no-multi-comp
+			class PreviewComponent extends React.PureComponent { // eslint-disable-line react/no-multi-comp
 				constructor() {
 					super();
 

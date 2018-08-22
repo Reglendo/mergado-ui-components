@@ -1,34 +1,25 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../components/Layout/Div"
+import Div from "../Div"
 import * as Color from "color"
 import {prefix} from "../../config"
-import {animation as pulseAnimation} from "../../components/Animations/Pulse"
-import {animation as rotateAnimation} from "../../components/Animations/Rotate"
+import {animation as pulseAnimation} from "../Animations/Pulse"
+import {animation as rotateAnimation} from "../Animations/Rotate"
 import theme from "../../styled/themes/ryzlink"
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado" | "bubbles"
     /** Maximum dimension (width or height) */
     size?: number
-    loaded?: boolean
     color?: string
     speed?: number
     style?: any
 }
 export interface State {
-    loaded: boolean
 }
 
-class Spinner extends React.Component<Props, State> {
+class Spinner extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "spinner";
-    constructor(props: Props) {
-        super(props)
-
-        this.state = {
-            loaded: false,
-        }
-    }
 
     public static defaultProps: Props = {
         type: "default",
@@ -38,31 +29,8 @@ class Spinner extends React.Component<Props, State> {
         speed: 1,
     }
 
-    protected updateState(props) {
-        let loaded = this.state.loaded
-
-        if(props.loaded) {
-            loaded = !!props.loaded;
-        }
-
-        this.setState({
-            loaded,
-        })
-    }
-
-    public componentDidMount() {
-        this.updateState(this.props);
-    }
-
-    public componentWillReceiveProps(nextProps) {
-        this.updateState(nextProps);
-    }
-
     public render() {
 
-        if(this.state.loaded) {
-            return (<span style={{opacity: 1}}>{this.props.children}</span>)
-        }
         const { size, type, color, speed, ...others } = this.props
 
         const containerStyle: any = {  width: `${size}px`, height: `${type === "bubbles" ? size/1.5 : size}px` }
@@ -78,7 +46,6 @@ class Spinner extends React.Component<Props, State> {
     }
 }
 
-
 const mergadoColors = {
     left: "#7fba2c",
     bottom: "#007b20",
@@ -89,7 +56,6 @@ const mergadoColors = {
 const Wrapper = css("div")({
 
 }, (props: any) => {
-
     let type = {}
     let color = {}
     if(props.type === "mergado") {

@@ -13,7 +13,7 @@ export interface State {
     toasts: Array<Toast|JSX.Element>
 }
 
-class Toasts extends React.Component<Props, State> {
+class Toasts extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "toasts-container";
 

@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../components/Layout/Div"
+import Div from "../Div"
 import * as Color from "color"
 
 import {prefix} from "../../config"
@@ -14,7 +14,7 @@ export interface Props {
 export interface State {
 }
 
-class Placeholder extends React.Component<Props, State> {
+class Placeholder extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "placeholder";
 

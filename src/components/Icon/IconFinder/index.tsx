@@ -3,8 +3,8 @@ import * as Icons from "@reglendo/mergado-ui-icons/lib"
 import css from "@reglendo/cxs/component"
 
 import {prefix} from "../../../config"
-import Icon from "../../../components/Icon"
-import TextInput from "../../../components/Forms/TextInput"
+import Icon from "../"
+import TextInput from "../../TextInput"
 
 export interface Props {
 }
@@ -15,7 +15,7 @@ export interface State {
 /**
  * disable-styleguide
  */
-class IconFinder extends React.Component<Props, State> {
+class IconFinder extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "icon-finder";
 

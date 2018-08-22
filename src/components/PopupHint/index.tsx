@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../components/Layout/Div"
+import Div from "../Div"
 
 import IconHintInfo from "@reglendo/mergado-ui-icons/lib/icons/IconHintInfo"
 import IconHintHelp from "@reglendo/mergado-ui-icons/lib/icons/IconHintHelp"
@@ -29,7 +29,7 @@ export interface Position {
 
 /* </style> */
 
-class PopupHint extends React.Component<Props, State> {
+class PopupHint extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "popuphint";
     private id:number = null

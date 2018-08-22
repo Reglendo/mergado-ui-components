@@ -11,7 +11,7 @@ export interface State {
     active: boolean
 }
 
-class Spinner extends React.Component<Props, State> {
+class Spinner extends React.PureComponent<Props, State> {
 
     constructor(props: Props) {
         super(props)
