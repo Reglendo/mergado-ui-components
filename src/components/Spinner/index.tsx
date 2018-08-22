@@ -1,10 +1,10 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../components/Layout/Div"
+import Div from "../Div"
 import * as Color from "color"
 import {prefix} from "../../config"
-import {animation as pulseAnimation} from "../../components/Animations/Pulse"
-import {animation as rotateAnimation} from "../../components/Animations/Rotate"
+import {animation as pulseAnimation} from "../Animations/Pulse"
+import {animation as rotateAnimation} from "../Animations/Rotate"
 import theme from "../../styled/themes/ryzlink"
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado" | "bubbles"

@@ -2,7 +2,7 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 
 import Header from "../Header"
-import domOnlyProps from "../../../helpers/dom-only-props"
+import domOnlyProps from "../../helpers/dom-only-props"
 
 interface Props {
     header?: JSX.Element

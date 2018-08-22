@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {prefix,form} from "../../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {prefix,form} from "../../config"
+import {Field, IFieldProps, defaultFieldProps} from "../Field"
 import {styles,stylesProps} from "../TextInput"
 import {TextArea as LightTextarea} from "light-form/dist/es"
 

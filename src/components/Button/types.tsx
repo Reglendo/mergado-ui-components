@@ -1,6 +1,4 @@
 import * as React from "react"
-import domOnlyProps from "../../../helpers/dom-only-props"
-import {prefix,form} from "../../../config"
 
 interface IHrefProps {
     name: string

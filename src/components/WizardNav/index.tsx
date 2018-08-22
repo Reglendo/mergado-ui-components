@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Ul} from "../../components/Layout"
+import Ul from "../Ul"
 import {prefix} from "../../config"
 
 export interface Props {

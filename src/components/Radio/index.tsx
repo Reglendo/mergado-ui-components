@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import {prefix} from "../../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {prefix} from "../../config"
+import {Field, IFieldProps, defaultFieldProps} from "../Field"
 import RadioInput from "./input"
 
 interface IItem {

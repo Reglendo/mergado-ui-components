@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import {Div} from "../../../components/Layout/Div"
+import Div from "../Div"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
@@ -8,9 +8,9 @@ import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
 import {Input} from "light-form/dist/es"
 import PropTypes from "prop-types"
-import {prefix,form} from "../../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
-import Button from "../../../components/Forms/Button"
+import {prefix,form} from "../../config"
+import {Field, IFieldProps, defaultFieldProps} from "../Field"
+import Button from "../Button"
 
 export interface Props extends IFieldProps {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"

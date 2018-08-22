@@ -1,8 +1,8 @@
 import * as React from "react"
 import cxs from "@reglendo/cxs/component"
 
-import {prefix,form} from "../../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../../../components/Forms/Field"
+import {prefix,form} from "../../config"
+import {Field, IFieldProps, defaultFieldProps} from "../Field"
 import { CssUniversalButton } from "./button"
 
 export interface Props extends IFieldProps {

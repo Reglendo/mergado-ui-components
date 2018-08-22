@@ -3,7 +3,7 @@ import css from "@reglendo/cxs/component"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
-import Button from "../Forms/Button"
+import Button from "../Button"
 import {Type} from "../../helpers/types"
 
 

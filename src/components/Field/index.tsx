@@ -240,3 +240,5 @@ Field.propTypes = {
     group: PropTypes.any,
     s: PropTypes.any,
 }
+
+export default Field
