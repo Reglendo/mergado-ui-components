@@ -3,6 +3,6 @@
 build
 \.idea/
 /.awcache
-
+dist
 npm-debug\.log
 lib

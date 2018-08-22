@@ -1,16 +1,12 @@
 const webpack = require("webpack");
 const path = require("path");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const config = {
   devtool: "cheap-module-source-map",
   entry: [
     './src/index.ts',
   ],
   output: {
-    path: path.join(__dirname,'dist'),
+    path: path.join(__dirname,'build'),
     publicPath: './',
     filename: "bundle.js"
   },
@@ -34,7 +30,6 @@ const config = {
 };
 
 config.plugins = [
-//    new BundleAnalyzerPlugin(),
 ]
 
 module.exports = config;
