@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const config = {
-  devtool: "cheap-module-source-map",
+  mode: "development",
   entry: [
     './src/index.ts',
   ],
