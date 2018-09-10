@@ -57,7 +57,8 @@ class DataTable extends React.PureComponent<Props, State> {
             })
         } else {
             const selected = []
-            for ( const checkbox of document.querySelectorAll(".m-bulk-action-item ")) {
+            const selector: any = document.querySelectorAll(".m-bulk-action-item ")
+            for ( const checkbox of selector) {
                 const item: any = checkbox
                 selected.push(parseInt(item.getAttribute("data-id"), 10))
             }

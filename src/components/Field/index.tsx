@@ -77,23 +77,6 @@ export const defaultFieldProps: IFieldProps = {
             onKeyUp: (value: any) => {},
             onClick: (value: any) => {},
         },
-        meta: {
-            active: false,
-            asyncValidating: false,
-            autofilled: false,
-            dirty: false,
-            dispatch: Function,
-            error: "",
-            form: "",
-            invalid: false,
-            pristine: true,
-            submitting: false,
-            submitFailed: false,
-            touched: false,
-            valid: true,
-            visited: false,
-            warning: "",
-        },
         labels: {
             main: "",
             invalid: "",
@@ -129,6 +112,8 @@ FieldComponent.propTypes = {
     input: PropTypes.any,
     labels: PropTypes.any,
     group: PropTypes.any,
+    meta: PropTypes.any,
+    className: PropTypes.string,
 }
 
 export const Field = css(FieldComponent)({

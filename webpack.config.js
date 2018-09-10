@@ -11,7 +11,7 @@ const config = {
     filename: "bundle.js"
   },
   module: {
-    loaders: [
+    rules: [
     {
       exclude: /node_modules/,
       loader: 'awesome-typescript-loader',

@@ -1,18 +1,30 @@
 {
-    "compileOnSave": true,
     "compilerOptions": {
+        "module": "esnext",
         "target": "es6",
-        "jsx": "react",
+        "moduleResolution": "node",
         "outDir": "./lib",
-        "sourceMap": false,
-        "declaration": false,
-        "removeComments": true,
-        "moduleResolution": "node"
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "jsx": "react",
+        "lib": [
+            "es2015",
+            "dom"
+        ],
     },
-    "awesomeTypescriptLoaderOptions": {
-        "useCache": true
-    },
+    "exclude": [
+        "node_modules"
+    ],
     "include": [
         "src/"
-    ]
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true,
+        "silent": true,
+        "reportFiles": [
+            "src/**/*.{ts,tsx}"
+        ]
+    }
 }
