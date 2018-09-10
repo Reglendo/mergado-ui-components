@@ -3,6 +3,7 @@ import css from "@reglendo/cxs/component"
 import {prefix} from "../../config"
 import IconChevronLeft from "@reglendo/mergado-ui-icons/lib/icons/IconChevronLeft"
 import IconChevronRight from "@reglendo/mergado-ui-icons/lib/icons/IconChevronRight"
+import PropTypes from "prop-types"
 import Div from "../Div"
 import {Button} from "../Button"
 export interface Props {
@@ -75,7 +76,7 @@ export class Carousel extends React.PureComponent<Props, State> {
                 <Div className="m-slides" padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
                 <CssSlides className="m-slides-wrapper" count={steps} translate={translate}>
                     {this.props.children.map(o => {
-                        return  <CssSlide className={`m-slide ${this.state.active === 1 && "active"}`}
+                        return  <CssSlide key={'slide_'+i} className={`m-slide ${this.state.active === 1 && "active"}`}
                                         active={this.state.active === i} data-next={i++}>
                                     {o}
                                 </CssSlide>
@@ -90,13 +91,13 @@ export class Carousel extends React.PureComponent<Props, State> {
                             {this.props.children.map(o => {
                             j++
                             return this.state.active === j - 1 ? 
-                                    <CssMukCircle color="nocolor" size="tiny"
+                                    <CssMukCircle key={j-1} color="nocolor" size="tiny"
                                           className={"m-point"}
                                           onClick={this.setActive} type="void" data-step={j-1}>●</CssMukCircle>
                                 : 
                                     <CssMukCircle color="nocolor" size="tiny"
                                             className={"m-point"}
-                                            onClick={this.setActive} type="void" data-step={j-1}>○</CssMukCircle>
+                                            onClick={this.setActive} type="void" key={j-1} data-step={j-1}>○</CssMukCircle>
                             })}
                     <Button className="m-next" color="nocolor" style={{fontSize: "14px"}}
                             onClick={this.increaseActive}
@@ -106,7 +107,6 @@ export class Carousel extends React.PureComponent<Props, State> {
                 <CssMukBigButton className="m-big-next" color="nocolor"
                     onClick={this.increaseActive}
                     icon={<IconChevronRight size={20} />} />
-
         </CssWrapper>
         )
     }
@@ -134,6 +134,11 @@ const CssMukBigButton = css(Button)({
 
 }))
 
+CssMukBigButton.propTypes = {
+    left: PropTypes.bool,
+    right: PropTypes.bool
+}
+
 const CssSlides = css("div")({
     display: "table", 
     tableLayout: "fixed", 
@@ -143,6 +148,11 @@ const CssSlides = css("div")({
     transform: "translate3d("+props.translate+"%,0,0)",
 }))
 
+CssSlides.propTypes = {
+    count: PropTypes.number,
+    translate: PropTypes.number
+}
+
 const CssSlide = css("div")({
     display: "table-cell",
     textAlign: "center",
@@ -151,6 +161,11 @@ const CssSlide = css("div")({
 }, props => ({
     opacity: props.active ? 1 : 0,
 }))
+
+
+CssSlide.propTypes = {
+    active: PropTypes.bool,
+}
 
 const CssMukCircle = css(Button)({
     fontSize: "22px",

@@ -12,4 +12,7 @@ module.exports = {
     require: [path.resolve(__dirname, 'src/styleguidist/setup.js')],
     skipComponentsWithoutExample: true,
     styleguideDir: path.resolve(__dirname, "docs"),
+    styleguideComponents: {
+        Wrapper: path.join(__dirname, 'lib/styleguidist/Wrapper')
+    }
 };

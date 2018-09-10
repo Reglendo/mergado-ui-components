@@ -33,7 +33,7 @@ Example test
             <DataRow dataId={1} key={1}>
                 <DataCell key={1} style={{textAlign: 'center'}}><Icon style={{cursor: 'move'}} type="arrows-v" /></DataCell>
                 <DataCell key={2} style={{textAlign: 'center'}}>1</DataCell>
-                <DataCell key={3}><a href="#"><Icon name="IconBadgePno" /> [Ukázková šablona] Akce</a></DataCell>
+                <DataCell key={3}><a href="#">[Ukázková šablona] Akce</a></DataCell>
                 <DataCell key={4}>1200x628</DataCell>
                 <DataCell key={5}>8. 3. 2017</DataCell>
                 <DataCell key={6}>
@@ -43,7 +43,7 @@ Example test
             <DataRow dataId={2} key={2} inactive={true}>
                 <DataCell key={1} style={{textAlign: 'center'}}><Icon style={{cursor: 'move'}} type="arrows-v" /></DataCell>
                 <DataCell key={2} style={{textAlign: 'center'}}>2</DataCell>
-                <DataCell key={3}><Icon name="IconBadgePno" /> <a href="#">[Ukázková šablona] Skladem</a></DataCell>
+                <DataCell key={3}><a href="#">[Ukázková šablona] Skladem</a></DataCell>
                 <DataCell key={4}>600x600</DataCell>
                 <DataCell key={5}>8. 3. 2017</DataCell>
                 <DataCell key={6}>

@@ -135,7 +135,12 @@ const Point = css("span")({
     transform: props.reverse ? "translate3d("+(props.big ? (props.boolean ? `${bigBoolWidth - bigHeight - 4}px` : (props.width-bigHeight-4) + "px") : "18px")+",0,0)" : "translate3d(0,0,0)",
 }))
 
-
+Point.propTypes = {
+    big: PropTypes.bool,
+    width: PropTypes.number,
+    reverse: PropTypes.bool,
+    boolean: PropTypes.bool,
+}
 
 const styles = {
     display: "none !important",
