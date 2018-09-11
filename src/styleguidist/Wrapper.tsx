@@ -11,11 +11,10 @@ const rootReducer = combineReducers({
 });
 const store = createStore(rootReducer)
 
-console.log(store)
-
 export default class Wrapper extends React.PureComponent {
   render() {
     return (
+        <div id="app">
         <Provider store={store}>
             <App>
                 <ThemeProvider theme={theme}>
@@ -23,6 +22,7 @@ export default class Wrapper extends React.PureComponent {
                 </ThemeProvider>
             </App>
         </Provider>
+        </div>
     )
   }
 }
