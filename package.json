@@ -1,12 +1,12 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "3.1.7",
+  "version": "3.1.8",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "scripts": {
     "start": "tsc --build && npm run styleguide-server",
     "build": "tsc --build && npm run styleguide-build",
-    "tsc": "tsc",
+    "tsc": "tsc --build",
     "test": "NODE_PATH=./src NODE_ENV=test mocha -r ts-node/register --",
     "test:watch": "npm run test -- --watch",
     "styleguide-server": "styleguidist server",
