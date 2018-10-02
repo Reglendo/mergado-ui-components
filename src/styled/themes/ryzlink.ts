@@ -11,6 +11,7 @@ const colors = {
     grey: "#ccc",
     yellow: "#ffec88",
     orange: "#FF9500",
+    purple: "#793979",
 
     background: "white",
     decoration: "#dbcba3",

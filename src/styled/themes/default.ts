@@ -7,6 +7,7 @@ export const colors = {
     grey: "#ccc",
     yellow: "#FFEC88",
     orange: "#FF9500",
+    purple: "#793979",
 
     text: "#333",
     background: "transparent",
