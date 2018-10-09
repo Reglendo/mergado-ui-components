@@ -30,9 +30,13 @@ class DataBody extends React.PureComponent<Props, State> {
     private readonly name = prefix + "databody";
 
     protected renderChildren() {
+        if(this.props.actions.length === 0) {
+            return this.props.children
+        }
+
         const children: any = !Array.isArray(this.props.children) ? [this.props.children] : this.props.children
 
-        return children.map(obj => {
+        return children.filter(o => o).map(obj => {
             return React.cloneElement(obj, {
                 actions: this.props.actions,
                 handleSelectRow: this.props.handleSelectRow,

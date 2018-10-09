@@ -75,7 +75,7 @@ export class Carousel extends React.PureComponent<Props, State> {
                 {this.props.topLayer}
                 <Div className="m-slides" padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
                 <CssSlides className="m-slides-wrapper" count={steps} translate={translate}>
-                    {this.props.children.map(o => {
+                    {this.props.children.filter(o => o).map(o => {
                         return  <CssSlide key={'slide_'+i} className={`m-slide ${this.state.active === 1 && "active"}`}
                                         active={this.state.active === i} data-next={i++}>
                                     {o}
@@ -88,13 +88,13 @@ export class Carousel extends React.PureComponent<Props, State> {
                     <Button className="m-prev" color="nocolor"  style={{fontSize: "14px"}}
                         onClick={this.decreaseActive} icon={<IconChevronLeft size={12} text="Předchozí" />} />
                             &nbsp;
-                            {this.props.children.map(o => {
+                            {this.props.children.filter(o => o).map(o => {
                             j++
-                            return this.state.active === j - 1 ? 
+                            return this.state.active === j - 1 ?
                                     <CssMukCircle key={j-1} color="nocolor" size="tiny"
                                           className={"m-point"}
                                           onClick={this.setActive} type="void" data-step={j-1}>●</CssMukCircle>
-                                : 
+                                :
                                     <CssMukCircle color="nocolor" size="tiny"
                                             className={"m-point"}
                                             onClick={this.setActive} type="void" key={j-1} data-step={j-1}>○</CssMukCircle>
@@ -122,15 +122,15 @@ const CssWrapper = css("div")({
     }))
 
 const CssMukBigButton = css(Button)({
-    position: "absolute", 
-    zIndex: 10, 
-    top: 0, 
-    bottom: 0, 
+    position: "absolute",
+    zIndex: 10,
+    top: 0,
+    bottom: 0,
     margin: "auto"
 
 }, props => ({
-    left: props.left ? "0px" : "auto", 
-    right: props.left ? "auto" : "0px", 
+    left: props.left ? "0px" : "auto",
+    right: props.left ? "auto" : "0px",
 
 }))
 
@@ -140,8 +140,8 @@ CssMukBigButton.propTypes = {
 }
 
 const CssSlides = css("div")({
-    display: "table", 
-    tableLayout: "fixed", 
+    display: "table",
+    tableLayout: "fixed",
     transition: "transform 0.2s",
 }, props => ({
     width: props.count * 100 + "%",

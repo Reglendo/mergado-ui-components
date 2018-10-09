@@ -81,22 +81,27 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     protected renderChildren(children) {
-        const ch: any = !Array.isArray(children) ? [children] : children
 
-        if(Array.isArray(ch)) {
-            return ch.map(obj => {
-                return React.cloneElement(obj, {
-                    ...obj.props,
-                    actions: this.props.bulkActions,
-                    labels: this.props.labels,
-                    selectedAll: this.state.selectedAll,
-                    handleSelectAll: this.handleSelectAll.bind(this),
-                    handleSelectRow: this.handleSelectRow.bind(this),
-                    selectedRows: this.state.selectedRows,
+        if(this.props.bulkActions.length > 0) {
+            const ch: any = !Array.isArray(children) ? [children] : children
+
+            if(Array.isArray(ch)) {
+                return ch.filter(o => o).map(obj => {
+                    return React.cloneElement(obj, {
+                        ...obj.props,
+                        actions: this.props.bulkActions,
+                        labels: this.props.labels,
+                        selectedAll: this.state.selectedAll,
+                        handleSelectAll: this.handleSelectAll.bind(this),
+                        handleSelectRow: this.handleSelectRow.bind(this),
+                        selectedRows: this.state.selectedRows,
+                    })
                 })
-            })
+            } else {
+                return false
+            }
         } else {
-            return false
+            return children
         }
     }
 
