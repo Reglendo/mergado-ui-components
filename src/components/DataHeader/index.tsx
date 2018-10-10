@@ -45,8 +45,8 @@ class DataHeader extends React.PureComponent<Props, State> {
     }
 
     public render() {
-        const { actions, className, selectedRows, style } = this.props
-        const kids: any = [...this.props.children]
+        const { actions, className, selectedRows, style,children } = this.props
+        const kids = !Array.isArray(children) ? [children] : [...children]
         const lastKid = kids.pop()
         return (
             <thead className={`${this.name} ${className || ""}`}>
