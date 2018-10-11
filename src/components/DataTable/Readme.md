@@ -3,9 +3,9 @@ Example test
     var IconPlay = require('@reglendo/mergado-ui-icons/lib/icons/IconPlay').default;
     var IconPause = require('@reglendo/mergado-ui-icons/lib/icons/IconPause').default;
     var IconTrash = require('@reglendo/mergado-ui-icons/lib/icons/IconTrashO').default;
-    
+
     <Section>
-    <DataTable
+    <DataTable onRowSelected={(e) => console.log(e)}
                 buttons={[ <span>Hello</span> ]}
                 labels={{actionsBar: "Actions:"}}
                 style={{ borderBottom: "5px solid black" }}

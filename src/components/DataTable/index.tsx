@@ -19,6 +19,7 @@ export interface Props {
     labels?: {
         actionsBar: string
     }
+    onRowSelected?: (selected: number) => void
 }
 export interface State {
     selectedAll: boolean
@@ -46,6 +47,12 @@ class DataTable extends React.PureComponent<Props, State> {
         this.state = {
             selectedAll: false,
             selectedRows: [],
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if(nextProps.onRowSelected !== undefined && nextState.selectedRows.length !== this.state.selectedRows.length) {
+            nextProps.onRowSelected(nextState.selectedRows.length)
         }
     }
 
