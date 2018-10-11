@@ -51,7 +51,7 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if(nextProps.onRowSelected !== undefined && nextState.selectedRows.length !== this.state.selectedRows.length) {
+        if(nextState.selectedRows.length !== this.state.selectedRows.length && nextProps.onRowSelected !== undefined ) {
             nextProps.onRowSelected(nextState.selectedRows.length)
         }
     }
