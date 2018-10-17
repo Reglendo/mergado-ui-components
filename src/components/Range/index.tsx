@@ -15,6 +15,7 @@ export interface Props extends IFieldProps {
     min: number
     step: number
     default?: number
+    disabled?: boolean
 }
 
 export interface State {
@@ -31,6 +32,7 @@ class Range extends React.PureComponent<Props,State> {
         min: 0,
         step: 1,
         default: null,
+        disabled: false,
     }
 
     constructor(props) {
@@ -64,6 +66,7 @@ class Range extends React.PureComponent<Props,State> {
                 <Grid cols={"100px auto"}>
                     <GridCell>
                     <TextInput
+                        disabled={props.disabled}
                         name={props.name}
                         type="number"
                         max={this.props.max}
@@ -75,6 +78,7 @@ class Range extends React.PureComponent<Props,State> {
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
                         <Element
                             {...(!props.name && input)}
+                            disabled={props.disabled}
                             name={props.name}
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
