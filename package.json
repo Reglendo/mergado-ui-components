@@ -5,13 +5,13 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "tsc --build ./tsconfig.json && npm run styleguide-server",
-    "build": "tsc --build ./tsconfig.json && npm run styleguide-build",
+    "build": "tsc --build ./tsconfig.json",
     "tsc": "tsc --build ./tsconfig.json",
     "test": "NODE_PATH=./src NODE_ENV=test mocha -r ts-node/register --",
     "test:watch": "npm run test -- --watch",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
-    "build-prod": "NODE_ENV='production' webpack && tsc --build ./tsconfig.json && npm run styleguide-build",
+    "build-prod": "NODE_ENV='production' webpack && tsc --build ./tsconfig.json",
     "build-tsc": "tsc --build ./tsconfig.json"
   },
   "license": "MIT",
