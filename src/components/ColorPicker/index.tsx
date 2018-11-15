@@ -5,16 +5,12 @@ import debounce from "lodash/debounce"
 import {prefix} from "../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../../components/Field"
 import TextInput from "../TextInput"
-import { SketchPicker as InputColor } from 'react-color';
-
-export interface Color {
-    r: number
-    g: number
-    b: number
-    a: number
-}
-
-export interface Props extends IFieldProps {
+import { SketchPicker as InputColor } from "react-color"
+import {Input} from "light-form/dist/es"
+export interface Props {
+    value: string
+    label: string
+    onChange: (value) => void
 }
 
 export interface State {
@@ -26,13 +22,9 @@ class ColorPicker extends React.PureComponent<Props, State> {
 
     protected readonly name = prefix + "colorpicker"
 
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
-    }
-
     constructor(props) {
         super(props)
-        const color = (typeof props.value == 'string' || props.value instanceof String)
+        const color = (typeof props.value == "string" || props.value instanceof String)
                             ? {hex: props.value}
                             : null
         this.state = {
@@ -47,23 +39,20 @@ class ColorPicker extends React.PureComponent<Props, State> {
 
     handleChanged = (evt) => {
         this.setState({color: evt})
-        return this.props.input.onChange(evt.hex)
+        return this.props.onChange(evt.hex)
     }
 
     public render() {
         const { color, displayColorPicker } = this.state
-        const { input, meta } = this.props
-        const { children, ...props} = this.props
-        const background = `${color.hex}`
-        const isInvalid = meta.invalid && (meta.dirty || meta.touched)
+        const { label, value, onChange, ...props} = this.props
+        const background = `${this.props.value || (this.state.color && this.state.color.hex)}`
+
         return(
-            <StyledField {...props} name={this.name} aria-invalid={isInvalid ? 1 : 0}>
+            <StyledField {...props} name={this.name}>
                     <div onClick={this.handleClick}>
-                        <TextInput {...props}
+                        <TextInput {...this.props}
                             value={background}
-                            {...(!props.name && input)}
-                            label={null}
-                            style={{" .m-textinput-input": {background: background, color: color.hsl && color.hsl.l > 0.45 ? "#333" : "#fff"}}} />
+                            style={{" .m-textinput-input": {background: background, color: color && color.hsl && color.hsl.l > 0.45 ? "#333" : "#fff"}}} />
                     </div>
                     {displayColorPicker &&
                     <Popover>
