@@ -34,7 +34,7 @@ class ColorPicker extends React.PureComponent<Props, State> {
         super(props)
         const color = (typeof props.value == 'string' || props.value instanceof String)
                             ? {hex: props.value}
-                            : {hex : `rgba(${props.color.r},${props.color.g},${props.color.b},${props.color.a})`}
+                            : null
         this.state = {
             displayColorPicker: false,
             color,
