@@ -13,7 +13,7 @@ import {Field, IFieldProps, defaultFieldProps} from "../Field"
 import Button from "../Button"
 
 export interface Props extends IFieldProps {
-    type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file"
+    type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file" | "time"
     onClear?: Function
     change?: Function
 }
@@ -71,7 +71,7 @@ class TextInput extends React.PureComponent<Props, State> {
                             onClick={() => this.setState({ passwordVisible: true })} />
                 }
                 {type === "password" && this.state.passwordVisible === true &&
-                    <CssButtonEye className="m-closedeye" icon={<IconEyeSlash />}  
+                    <CssButtonEye className="m-closedeye" icon={<IconEyeSlash />}
                             type={"void"}  color="nocolor" size="tiny"
                             onClick={() => this.setState({ passwordVisible: false })} />
                 }{type === "search" &&
@@ -113,10 +113,11 @@ export const stylesProps = (props) => {
 
     const theme = props.theme
     let type = {}
-    if(props.type === "file") {
+    if(props.type === "file" || props.type === "time") {
+        console.log(props.type)
         type = {
             lineHeight: "initial",
-            padding: "8px",
+            padding: "8px !important",
             height: "auto",
         }
     }
@@ -129,11 +130,11 @@ export const stylesProps = (props) => {
         }
     }
     return {
-        ...type,
         ...disabled,
         height: props.height ? props.height + "px" : "40px",
         border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
         borderRadius: theme.radius,
+        ...type,
         "&:active": {
             border: `${theme.input_border_active} !important`,
         },

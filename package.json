@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "3.1.16",
+  "version": "3.2.0",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "scripts": {
@@ -30,12 +30,12 @@
     "dayjs": "^1.5.16",
     "react": "^16.4.1",
     "react-codemirror": "^1.0.0",
-    "react-color": "^2.11.6",
+    "react-color": "^2.14.1",
     "react-day-picker": "7.1.6",
     "react-docgen": "^2.21.0",
     "react-dom": "^16.4.1",
     "react-group": "^1.0.5",
-    "react-input-color": "^1.7.2",
+    "react-input-color": "^1.7.5",
     "react-input-slider": "^4.0.1",
     "react-select-item": "^3.1.0",
     "react-sortablejs": "^1.0.1",
