@@ -108,12 +108,16 @@ class DatePicker extends React.PureComponent<Props, State> {
                 <Popover>
                     <Cover onClick={this.handleHide} />
                     <Picker>
+                        {datetime &&
+                        <>
                         <FieldLabel>Čas:</FieldLabel><br/>
                         <TextInput type={"time"} value={this.state.startTime}
                                 style={{width: "80%", margin: "auto"}}
                                 step={1}
                                 onChange={this.handleTimeChanged} />
                         <FieldLabel style={{marginBottom: "-20px", marginTop: "10px"}}>Den:</FieldLabel><br/>
+                        </>
+                        }
                         <ReactDatePicker
                             aria-invalid={isInvalid ? 1 : 0}
                             onDayClick={this.handleChanged}

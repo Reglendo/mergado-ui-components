@@ -1,3 +1,3 @@
 Example
 
-    <ColorPicker />
+    <ColorPicker label="Pick a color:" name="HelloWorld" />

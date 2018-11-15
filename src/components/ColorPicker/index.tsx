@@ -15,7 +15,6 @@ export interface Color {
 }
 
 export interface Props extends IFieldProps {
-    color?: string | Color
 }
 
 export interface State {
@@ -29,13 +28,12 @@ class ColorPicker extends React.PureComponent<Props, State> {
 
     public static defaultProps: Props = {
         ...defaultFieldProps,
-        color: "#1e9458",
     }
 
     constructor(props) {
         super(props)
-        const color = (typeof props.color == 'string' || props.color instanceof String)
-                            ? {hex: props.color}
+        const color = (typeof props.value == 'string' || props.value instanceof String)
+                            ? {hex: props.value}
                             : {hex : `rgba(${props.color.r},${props.color.g},${props.color.b},${props.color.a})`}
         this.state = {
             displayColorPicker: false,
@@ -62,8 +60,9 @@ class ColorPicker extends React.PureComponent<Props, State> {
             <StyledField {...props} name={this.name} aria-invalid={isInvalid ? 1 : 0}>
                     <div onClick={this.handleClick}>
                         <TextInput {...props}
-                            {...(!props.name && input)}
                             value={background}
+                            {...(!props.name && input)}
+                            label={null}
                             style={{" .m-textinput-input": {background: background, color: color.hsl && color.hsl.l > 0.45 ? "#333" : "#fff"}}} />
                     </div>
                     {displayColorPicker &&
