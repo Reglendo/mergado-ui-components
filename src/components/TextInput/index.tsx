@@ -114,7 +114,6 @@ export const stylesProps = (props) => {
     const theme = props.theme
     let type = {}
     if(props.type === "file" || props.type === "time") {
-        console.log(props.type)
         type = {
             lineHeight: "initial",
             padding: "8px !important",

@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "scripts": {
@@ -35,7 +35,6 @@
     "react-docgen": "^2.21.0",
     "react-dom": "^16.4.1",
     "react-group": "^1.0.5",
-    "react-input-color": "^1.7.5",
     "react-input-slider": "^4.0.1",
     "react-select-item": "^3.1.0",
     "react-sortablejs": "^1.0.1",
@@ -72,7 +71,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-plugin-module-resolver": "^2.7.0",
     "css-loader": "^0.27.3",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "http-server": "^0.9.0",
     "light-form": "https://github.com/Reglendo/light-form.git#v2.4.0-10",
     "node-sass": "^4.5.0",
@@ -93,6 +92,6 @@
     "typescript": "^3.0.3",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^3.1.10"
   }
 }

@@ -1,11 +1,8 @@
 import * as React from "react"
-import * as InputColor from "react-input-color"
 import css from "@reglendo/cxs/component"
-import debounce from "lodash/debounce"
 
-import {prefix,form} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
-import {Input} from "light-form/dist/es"
+import {prefix} from "../../config"
+import {Field} from "../Field"
 import ReactDatePicker from "react-day-picker"
 import dayjs from "dayjs"
 import TextInput from "../TextInput"
@@ -15,7 +12,12 @@ import {style as factoryStyle} from "./style"
 
 import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInput"
 
-export interface Props extends IFieldProps {
+export interface Props {
+    value: string
+    onChange: (value) => void
+    label: string
+    placeholder: string
+
     locale?: "cs" | "sk"
     pickerProps?: any
     datetime?: boolean
@@ -32,23 +34,13 @@ class DatePicker extends React.PureComponent<Props, State> {
     protected readonly name = prefix + "datepicker"
     protected locale;
 
-    public static defaultProps: Props = {
-        locale: "cs",
-        pickerProps: {},
-        datetime: false,
-        ...defaultFieldProps,
-    }
-
     constructor(props) {
         super(props)
-        this.handleChanged = this.handleChanged.bind(this);
-
         this.state = {
             showPicker: false,
-            startDate: props.input.value ?
-                            props.input.value : props.default ?
-                            props.default : null,
-            startTime: "00:00:00"
+            startDate: props.value ?
+                            props.value : null,
+            startTime: "00:00:00",
         }
 
         if(this.props.locale === "sk") {
@@ -85,23 +77,22 @@ class DatePicker extends React.PureComponent<Props, State> {
     handleHide = () => this.setState({showPicker: false})
 
     public render() {
-        const { locale, input, meta, children, labels, pickerProps, datetime, ...props } = this.props
+        const { label, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
         const {showPicker} = this.state
-        const isInvalid = meta.invalid && (meta.dirty || meta.touched)
+
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
+
         return(
-            <StyledField labels={labels}>
+            <StyledField labels={{labels: label}}>
                 <div onClick={this.handleClick}>
                     {/* visible */}
                     <TextInput {...props}
-                            input={!props.name && {...input, onChange: null}}
-                            labels={{placeholder: this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT}}
+                            labels={{placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
 
                     {/* hidden */}
                     <TextInput {...props}
                             type={"hidden"}
-                            {...(!props.name && input)}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(datetime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD' ) : null} />
                 </div>
                 {showPicker &&
@@ -119,7 +110,6 @@ class DatePicker extends React.PureComponent<Props, State> {
                         </>
                         }
                         <ReactDatePicker
-                            aria-invalid={isInvalid ? 1 : 0}
                             onDayClick={this.handleChanged}
                             {...{
                                 firstDayOfWeek: 1,
@@ -145,6 +135,7 @@ const Picker = css("div")({
     ...factoryStyle,
     background: "white",
     boxShadow: "1px 2px 5px 0px rgba(122,122,122,0.5)",
+    paddingTop: "10px",
     " .muk-form-label": {
         marginLeft: "5px",
     },
