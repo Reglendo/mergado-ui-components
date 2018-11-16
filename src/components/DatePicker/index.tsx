@@ -55,7 +55,7 @@ class DatePicker extends React.PureComponent<Props, State> {
         if(!dayjs(evt).isValid()) {
             return
         }
-        const value = dayjs(evt + " " + this.state.startTime).format("YYYY-MM-DD HH:mm:ss")
+        const value = dayjs(dayjs(evt).format("YYYY-MM-DD") + " " + this.state.startTime).format("YYYY-MM-DD HH:mm:ss")
         this.setState({ startDate: value, showPicker: this.props.datetime, })
 
         if(this.props.onChange) {
