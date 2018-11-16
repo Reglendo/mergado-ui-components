@@ -7,6 +7,7 @@ import {Field, IFieldProps, defaultFieldProps} from "../../components/Field"
 import TextInput from "../TextInput"
 import { SketchPicker as InputColor } from "react-color"
 import {Input} from "light-form/dist/es"
+import Color from "color"
 export interface Props {
     value: string
     label: string
@@ -45,14 +46,15 @@ class ColorPicker extends React.PureComponent<Props, State> {
     public render() {
         const { color, displayColorPicker } = this.state
         const { label, value, onChange, ...props} = this.props
-        const background = `${this.props.value || (this.state.color && this.state.color.hex)}`
+        const background = this.props.value || (this.state.color && this.state.color.hex) || "#ffffff"
+        const textColor = Color(background).contrast(Color('#fff')) > 2.2 ? "#ffffff" : "#333"
 
         return(
             <StyledField {...props} name={this.name}>
                     <div onClick={this.handleClick}>
                         <TextInput {...this.props}
                             value={background}
-                            style={{" .m-textinput-input": {background: background, color: color && color.hsl && color.hsl.l > 0.45 ? "#333" : "#fff"}}} />
+                            style={{" .m-textinput-input": {background: background, color: textColor }}} />
                     </div>
                     {displayColorPicker &&
                     <Popover>
