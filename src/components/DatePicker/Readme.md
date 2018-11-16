@@ -4,4 +4,4 @@ Example
 
 Datetime
 
-    <DatePicker datetime={true} label="Pick a datetime:" placeholder="DD. MM. YYYY"/>
+    <DatePicker datetime={true} onChange={e => console.log(e)} label="Pick a datetime:" placeholder="DD. MM. YYYY"/>

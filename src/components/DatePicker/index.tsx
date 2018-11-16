@@ -55,17 +55,17 @@ class DatePicker extends React.PureComponent<Props, State> {
         if(!dayjs(evt).isValid()) {
             return
         }
-        const value = dayjs(evt).format("YYYY-MM-DD")
+        const value = dayjs(evt + " " + this.state.startTime).format("YYYY-MM-DD HH:mm:ss")
         this.setState({ startDate: value, showPicker: this.props.datetime, })
 
-        if(!this.props.datetime && this.props.onChange) {
+        if(this.props.onChange) {
             return this.props.onChange(value)
         }
     }
 
 
     handleTimeChanged = (evt) => {
-        const value = dayjs(this.state.startDate + " " + evt.target.value)
+        const value = dayjs(this.state.startDate + " " + evt.target.value).format("YYYY-MM-DD HH:mm:ss")
         this.setState({ startTime: evt.target.value })
 
         if(this.props.onChange) {
@@ -125,7 +125,6 @@ class DatePicker extends React.PureComponent<Props, State> {
                     </Picker>
                 </Popover>
                 }
-
             </StyledField>
         )
     }
@@ -155,7 +154,7 @@ const Cover = css("div")({
 })
 
 const StyledField = css(Field)({
-    display: "inline-block",
+    display: "block",
     width: "100%",
 
     " input": {
