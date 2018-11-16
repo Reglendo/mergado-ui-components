@@ -1,7 +1,7 @@
 Example
 
-    <DatePicker value="2018-01-01" onChange={e => console.log(e)} />
+    <DatePicker value="2018-01-01" onChange={e => console.log(e)} label="Pick a date:" />
 
 Datetime
 
-    <DatePicker datetime={true} />
+    <DatePicker datetime={true} label="Pick a datetime:" placeholder="DD. MM. YYYY"/>

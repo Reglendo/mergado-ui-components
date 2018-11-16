@@ -83,11 +83,11 @@ class DatePicker extends React.PureComponent<Props, State> {
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
 
         return(
-            <StyledField labels={{labels: label}}>
+            <StyledField>
                 <div onClick={this.handleClick}>
                     {/* visible */}
                     <TextInput {...props}
-                            labels={{placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
+                            labels={{main: label, placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
 
                     {/* hidden */}
