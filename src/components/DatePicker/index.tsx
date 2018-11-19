@@ -36,11 +36,13 @@ class DatePicker extends React.PureComponent<Props, State> {
 
     constructor(props) {
         super(props)
+        const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : dayjs().format('YYYY-MM-DD')
+        const startTime = props.value ? dayjs(props.value).format('HH:mm:ss') : "00:00:00"
+
         this.state = {
             showPicker: false,
-            startDate: props.value ?
-                            props.value : null,
-            startTime: "00:00:00",
+            startDate,
+            startTime,
         }
 
         if(this.props.locale === "sk") {
@@ -51,25 +53,23 @@ class DatePicker extends React.PureComponent<Props, State> {
 
     }
 
-    handleChanged = (evt) => {
-        if(!dayjs(evt).isValid()) {
+    handleChanged = (date) => {
+        if(!dayjs(date).isValid()) {
             return
         }
-        const value = dayjs(dayjs(evt).format("YYYY-MM-DD") + " " + this.state.startTime).format("YYYY-MM-DD HH:mm:ss")
-        this.setState({ startDate: value, showPicker: this.props.datetime, })
-
+        const set =  `${dayjs(date).format("YYYY-MM-DD")} ${(this.state.startTime || "00:00:00")}`
+        this.setState({ startDate: dayjs(set).format("YYYY-MM-DD"), showPicker: this.props.datetime, })
         if(this.props.onChange) {
-            return this.props.onChange(value)
+            return this.props.onChange(set)
         }
     }
 
-
     handleTimeChanged = (evt) => {
-        const value = dayjs(this.state.startDate + " " + evt.target.value).format("YYYY-MM-DD HH:mm:ss")
-        this.setState({ startTime: evt.target.value })
-
+        const time = evt.target.value
+        const set = dayjs(`${this.state.startDate} ${time}`)
+        this.setState({ startTime: set.format("HH:mm:ss") })
         if(this.props.onChange) {
-            return this.props.onChange(value)
+            return this.props.onChange(set.format("YYYY-MM-DD HH:mm:ss"))
         }
     }
 
@@ -79,7 +79,6 @@ class DatePicker extends React.PureComponent<Props, State> {
     public render() {
         const { label, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
         const {showPicker} = this.state
-
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
 
         return(
@@ -99,15 +98,15 @@ class DatePicker extends React.PureComponent<Props, State> {
                 <Popover>
                     <Cover onClick={this.handleHide} />
                     <Picker>
-                        {datetime &&
-                        <>
+                    {datetime &&
+                    <>
                         <FieldLabel>Čas:</FieldLabel><br/>
                         <TextInput type={"time"} value={this.state.startTime}
                                 style={{width: "80%", margin: "auto"}}
                                 step={1}
                                 onChange={this.handleTimeChanged} />
                         <FieldLabel style={{marginBottom: "-20px", marginTop: "10px"}}>Den:</FieldLabel><br/>
-                        </>
+                    </>
                         }
                         <ReactDatePicker
                             onDayClick={this.handleChanged}
@@ -124,7 +123,7 @@ class DatePicker extends React.PureComponent<Props, State> {
                         />
                     </Picker>
                 </Popover>
-                }
+            }
             </StyledField>
         )
     }
