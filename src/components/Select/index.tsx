@@ -29,7 +29,9 @@ class Select extends React.PureComponent<Props, State> {
     protected readonly name = prefix + "select";
 
     onChange = debounce(e => {
-        const value = e.join('|')
+        console.log(e)
+        const value = e.filter(o => o).join('|')
+        console.log('value: ',value)
         this.setState({value})
         if(this.props.onChange) {
             this.props.onChange(value)
@@ -44,7 +46,7 @@ class Select extends React.PureComponent<Props, State> {
         const { value } = this.state
         const Element = name ? StyledLightSelect : StyledSelect
         return (
-            <Field {...props} name={this.name}>
+            <Field {...this.props} name={this.name}>
                 <Div position="relative">
                     <Element
                            closeOnChange={!multiple}
@@ -57,7 +59,7 @@ class Select extends React.PureComponent<Props, State> {
                            {...props}
                            name={name}
                            multiple={multiple}
-                           value={name ? undefined : value.split(",")}
+                           value={name ? undefined : value.split("|")}
                            onChange={name ? undefined : this.onChange}
                            options={props.options.map(this.renderOption)}
                            aria-invalid={invalid ? 1 : 0} />
