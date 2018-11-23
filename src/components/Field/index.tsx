@@ -7,6 +7,20 @@ import PropTypes from 'prop-types'
 import FieldLabel from "../FieldLabel"
 import FieldError from "../FieldError"
 
+
+export interface IField {
+    options: any
+
+    name?: string
+    label?: string
+    placeholder?: string
+    value?: string
+    onChange?: Function
+    invalid?: boolean
+
+    updateInputValue?: Function
+}
+
 export interface IFieldProps {
     group?: {
         className?: string,
@@ -105,7 +119,7 @@ export const defaultFieldProps: IFieldProps = {
 const FieldComponent: React.SFC<IFieldProps> = (props) => {
 
     const { meta, input, labels, group, style, ...others } = props
-    const isInvalid = !!props.meta.error || props.meta.invalid
+    const isInvalid = !!props.meta.error || props.meta.invalid || props.invalid
     return (
         <Div className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
             title={props.labels.title}
@@ -165,5 +179,14 @@ Field.propTypes = {
     group: PropTypes.any,
     s: PropTypes.any,
 }
+
+export function updateInputValue(form: string, name, value) {
+    return {
+        type: "UPDATE_INPUT_VALUE."+form,
+        name,
+        value,
+    }
+}
+
 
 export default Field

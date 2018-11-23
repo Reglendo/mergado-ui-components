@@ -3,18 +3,15 @@ import css from "@reglendo/cxs/component"
 import debounce from "lodash/debounce"
 
 import {prefix} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../../components/Field"
+import {Field, IField,} from "../../components/Field"
 import TextInput from "../TextInput"
 import { SketchPicker as InputColor } from "react-color"
 import {Input} from "light-form/dist/es"
 import Color from "color"
-export interface Props {
-    value: string
-    label: string
-    onChange: (value) => void
+interface Props extends IField {
 }
 
-export interface State {
+interface State {
     displayColorPicker: boolean
     color: any
 }
@@ -40,7 +37,16 @@ class ColorPicker extends React.PureComponent<Props, State> {
 
     handleChanged = (evt) => {
         this.setState({color: evt})
-        return this.props.onChange(evt.hex)
+        if(this.props.onChange) {
+            this.props.onChange(evt.hex)
+        }
+    }
+
+    setValue = (event) => {
+        const eventCopy = { ...event };
+        const background = this.props.value || (this.state.color && this.state.color.hex) || "#ffffff"
+        eventCopy.target.value = background
+        return eventCopy;
     }
 
     public render() {
@@ -119,5 +125,6 @@ const Cover = css("div")({
     bottom: "0px",
     left: "0px",
 })
+
 
 export default ColorPicker

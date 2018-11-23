@@ -1,54 +1,53 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 import Div from "../Div"
-import * as Color from "color"
 import IconChevronDown from "@reglendo/mergado-ui-icons/lib/icons/IconChevronDown"
 import {prefix} from "../../config"
-import uniqueId from "../../helpers/unique_id"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
+import {Field,IField} from "../Field"
 import {Select as LightSelect} from "light-form/dist/es"
 import {Select as SelectItem} from "react-select-item"
+import {styles, stylesProps} from "./style"
+import debounce from "lodash/debounce"
 
-export interface Props extends IFieldProps {
-    options?: any
+interface Props extends IField {
+    multiple?: boolean
 }
 
-class Select extends React.PureComponent<Props, {}> {
+interface State {
+  value: string
+}
+
+class Select extends React.PureComponent<Props, State> {
+
+    constructor(props) {
+      super(props)
+        this.state = {
+          value: props.value || "",
+        }
+    }
 
     protected readonly name = prefix + "select";
 
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
-        options: [],
-        size: 0,
-    }
+    onChange = debounce(e => {
+        const value = e.join('|')
+        this.setState({value})
+        if(this.props.onChange) {
+            this.props.onChange(value)
+        }
+    }, 500)
 
-    protected renderOptions() {
-        return this.props.options.map(option => {
-            if (React.isValidElement(option)) {
-                if (option.key) {
-                    return option;
-                } else {
-                    const object: any = Object
-                    return object.assign({}, option, {key: uniqueId()})
-                }
-            } else {
-                return (<option value={option.value} key={uniqueId()}>{option.title}</option>)
-            }
-        })
-    }
+
+    renderOption = o => o.title ? ({ name: o.title, value: o.value}) : o
 
     public render() {
-        const {meta, input, labels} = this.props
-        const {children, ...props} = this.props
-        const isInvalid = meta.invalid && (meta.dirty || meta.touched)
-        const Element = props.name ? StyledLightSelect : StyledSelect
-
+        const {onChange, label, placeholder, multiple, invalid, name, ...props} = this.props
+        const { value } = this.state
+        const Element = name ? StyledLightSelect : StyledSelect
         return (
             <Field {...props} name={this.name}>
                 <Div position="relative">
-                    <StyledLightSelect
-                           closeOnChange={!props.multiple}
+                    <Element
+                           closeOnChange={!multiple}
                            selectItem={true}
                            placeholder={"- - -"}
                            searchEmptyPlaceholder={""}
@@ -56,15 +55,12 @@ class Select extends React.PureComponent<Props, {}> {
                            clearText={""}
                            searchText={""}
                            {...props}
-                           options={props.options.map(o => {
-                               if(o.title) {
-                                   return { name: o.title, value: o.value}
-                               }
-                               return o
-                           })}
-
-                           {...(!props.name && input)}
-                             aria-invalid={isInvalid ? 1 : 0} />
+                           name={name}
+                           multiple={multiple}
+                           value={name ? undefined : value.split(",")}
+                           onChange={name ? undefined : this.onChange}
+                           options={props.options.map(this.renderOption)}
+                           aria-invalid={invalid ? 1 : 0} />
                     <IconChevronDown size={10}
                                      className={"icon-select-open"}
                                      />
@@ -74,284 +70,7 @@ class Select extends React.PureComponent<Props, {}> {
     }
 }
 
-
-const stylesSelectItem = {
-    "! .react-select-item-container + .icon-select-open": {
-        opacity: 0,
-        position: "absolute", bottom: "9px",
-        right: "10px", pointerEvents: "none"
-    },
-    "! .react-select-item-empty + .icon-select-open": {
-      opacity: 0.6,
-    },
-    "& .react-select-item-container": {
-        position: "relative",
-    },
-    "& .react-select-item-container.active": {
-        background: "rgb(255, 255, 196) !important",
-    },
-    "& .react-select-item": {
-        padding: "0",
-        display: "inline-block",
-        cursor: "pointer",
-        border: "none",
-        width: "100%",
-        textAlign: "left",
-        backgroundColor: "transparent",
-        fontSize: "14px",
-
-    },
-    // "& .react-select-item-search": {
-    //     padding: "18px 20px",
-    //     display: "inline-block",
-    //     width: "100%",
-    //     height: "40px",
-    //     boxSizing: "border-box",
-    //     border: "none",
-    //     fontSize: "12px",
-    //     fontWeight: "bold",
-    //     color: "#7B8E9B",
-    // },
-    // "!.react-select-item-search, .react-select-item-search:focus": {
-    //     outline: "none"
-    // },
-    // "!.react-select-item-search::-webkit-input-placeholder": {
-    //     color: "#CECECE"
-    // },
-    "& .react-select-item:focus": {
-        outline: "0"
-    },
-    // "& .react-select-item:before": {
-        // content: "' '",
-        // zIndex: "1",
-        // position: "absolute",
-        // height: "20px",
-        // top: "10px",
-        // right: "34px",
-        // borderLeft: "1px solid #CBD2D7"
-    // },
-    // "& .react-select-item:after": {
-    //     content: "' '",
-    //     position: "absolute",
-    //     zIndex: "1",
-    //     top: "18px",
-    //     right: "13px",
-    //     borderTop: "6px solid #7B8E9B",
-    //     borderLeft: "5px solid transparent",
-    //     borderRight: "5px solid transparent"
-    // },
-    "& .react-select-item-label, .react-select-item-option": {
-        fontSize: "13px",
-        // fontWeight: "bold",
-        // color: "#7B8E9B",
-        textOverflow: "ellipsis",
-        overflow: "hidden",
-    },
-
-    "& .react-select-item-label .highlighter, .react-select-item-option .highlighter": {
-        backgroundColor: "#ACC1C8"
-    },
-    "& .react-select-item-label": {
-        padding: "0 40px 0 0px",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis"
-    },
-    "& .react-select-item-empty .react-select-item-label": {
-        color: "#CECECE"
-    },
-    "& .react-select-item-clear": {
-        position: "absolute",
-        top: "12px",
-        right: "0",
-        width: "35px",
-        height: "20px",
-        textIndent: "-9999em",
-        zIndex: "3",
-        border: "none",
-        color: "#7B8E9B",
-        backgroundColor: "transparent",
-    },
-    "& .react-select-item-clear:before": {
-        content: "×",
-        position: "absolute",
-        top: "1px",
-        left: "10px",
-        zIndex: "1",
-        backgroundColor: "transparent",
-        borderRadius: "100%",
-        fontSize: "16px",
-        lineHeight: "1.1",
-        width: "16px",
-        height: "16px",
-        textIndent: "0",
-        textAlign: "center",
-    },
-    "& .react-select-item-clear:hover, .react-select-item-clear:focus": {
-        outline: "0",
-        cursor: "pointer"
-    },
-    "& .react-select-item-clear:focus:hover:before, .react-select-item-clear:hover:before": {
-        color: "black"
-    },
-    "& .react-select-item-clear:focus:before": {
-        color: "black"
-    },
-    "& .react-select-item-hidden": {
-        display: "none"
-    },
-    "& .react-select-item-options": {
-        position: "absolute",
-        padding: "0",
-        top: "100%",
-        left: "3px",
-        width: "calc(100% - 6px)",
-        zIndex: "4",
-        backgroundColor: "rgba(255, 255, 255, 0.95)",
-        border: "1px solid #CBD2D7",
-        borderTop: "none",
-        marginTop: "0",
-        fontSize: "13px",
-    },
-    "& .react-select-item-options:focus": {
-        outline: "none"
-    },
-    "& .react-select-item-options-list": {
-        listStyle: "none outside",
-        margin: "0",
-        padding: "0"
-    },
-    "& .select-item-no-results": {
-        color: "#707070",
-        padding: "9px 10px",
-        fontSize: "14px",
-        fontWeight: "600"
-    },
-    "& .react-select-item-option": {
-        padding: "5px 20px",
-        margin: "0",
-        cursor: "pointer",
-        display: "block",
-        lineHeight: "1.5",
-        textDecoration: "none",
-        borderBottom: "1px solid #eee"
-    },
-    "& .react-select-item-option:hover": {
-        color: "#3A3A3A",
-        backgroundColor: "#f4f4f4",
-        textDecoration: "none",
-    },
-    "& .react-select-item-option:focus": {
-        outline: "0",
-        textDecoration: "none",
-        color: "#7B8E9B"
-    },
-    "& .react-select-item-option-selected": {
-        color: "#fff !important",
-        backgroundColor: "#00A3D7"
-    },
-    "& .react-select-item-option-selected:hover": {
-        backgroundColor: "#00A3D7"
-    },
-    "& .react-select-item-option-selected:after": {
-        color: "#fff !important",
-        content: "×",
-        float: 'right'
-    },
-    "& .react-select-item-option-disabled": {
-        background: "#c4c4c4",
-        color: "#000",
-        opacity: 0.5,
-        pointerEvents: "none",
-    },
-    "& .react-select-item-close": {
-        textTransform: "uppercase",
-        backgroundColor: "transparent",
-        border: "none",
-        padding: "5px 0",
-        display: "block",
-        textAlign: "center",
-        width: "100%",
-        fontWeight: "bold",
-        cursor: "pointer",
-        outline: "none"
-    },
-    "& .react-select-item-empty .react-select-item-close": {
-        color: "#CBD2D7"
-    },
-    "& .react-select-item-native": {
-        position: "absolute",
-        left: "-99999em"
-    },
-    "& .react-select-item-off-screen.no-items": {
-        padding: "10px 20px",
-        fontSize: "14px",
-        color: "#7B8E9B",
-        fontWeight: "bold"
-    }
-}
-
-const styles = {
-    ...stylesSelectItem,
-    boxSizing: "border-box",
-    width: "100%",
-    height: "40px",
-    lineHeight: "40px",
-    outline: "none",
-    display: "inline-block",
-    margin: "0",
-    background: "white",
-    color: "#333333",
-    verticalAlign: "middle",
-    padding: "0 10px",
-    borderWidth: "1px",
-    borderStyle: "solid",
-    appearance: "none",
-    transition: "border-color 0.2s",
-    willChange: "border-color",
-    ":focus": {
-        outline: "none",
-        border: "none",
-    },
-    ":active": {
-        outline: "none",
-        border: "none",
-    },
-    "::-ms-expand": {
-        display: "none",
-    },
-    "::-moz-focusring": {
-        color: "transparent",
-        textShadow: "0 0 0 #000",
-    },
-}
-const stylesProps = (props) => {
-    const theme = props.theme
-
-    let disabled = {}
-    if (props.disabled) {
-        disabled = {
-            color: "#999",
-            background: "#eee",
-            borderColor: Color(theme.grey).fade(0.5).string(),
-            pointerEvents: "none",
-        }
-    }
-
-    return {
-        borderRadius: theme.radius,
-        border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
-        ":active": {
-            border: theme.input_border_active,
-        },
-        ":focus": {
-            border: theme.input_border_active,
-        },
-        ...disabled,
-    }
-}
-
-const StyledSelect = css(SelectItem)(styles, stylesProps)
 const StyledLightSelect = css(LightSelect)(styles, stylesProps)
+const StyledSelect = css(SelectItem)(styles, stylesProps)
 
 export default Select

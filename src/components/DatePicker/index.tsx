@@ -2,28 +2,24 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 
 import {prefix} from "../../config"
-import {Field} from "../Field"
+import {Field, IField, updateInputValue} from "../Field"
 import ReactDatePicker from "react-day-picker"
 import dayjs from "dayjs"
 import TextInput from "../TextInput"
 import FieldLabel from "../FieldLabel"
+import {connect} from "react-redux"
 
 import {style as factoryStyle} from "./style"
 
 import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInput"
 
-export interface Props {
-    value: string
-    onChange: (value) => void
-    label: string
-    placeholder: string
-
+interface Props extends IField {
     locale?: "cs" | "sk"
     pickerProps?: any
     datetime?: boolean
 }
 
-export interface State {
+interface State {
     startDate: string
     startTime: string
     showPicker: boolean
@@ -36,8 +32,8 @@ class DatePicker extends React.PureComponent<Props, State> {
 
     constructor(props) {
         super(props)
-        const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : dayjs().format('YYYY-MM-DD')
-        const startTime = props.value ? dayjs(props.value).format('HH:mm:ss') : "00:00:00"
+        const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : null
+        const startTime = props.value ? dayjs(props.value).format('HH:mm:ss') : null
 
         this.state = {
             showPicker: false,
@@ -50,7 +46,16 @@ class DatePicker extends React.PureComponent<Props, State> {
         } else {
             this.locale = require("./locale.cs").default
         }
+    }
 
+    componentWillUpdate(props) {
+        const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : null
+        const startTime = props.value ? dayjs(props.value).format('HH:mm:ss') : null
+
+        this.setState({
+            startDate,
+            startTime,
+        })
     }
 
     handleChanged = (date) => {
