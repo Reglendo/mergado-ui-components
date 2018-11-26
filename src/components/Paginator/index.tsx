@@ -148,11 +148,11 @@ class Paginator extends React.PureComponent<Props, State> {
         return (
             <Div margin="10px 0" textAlign="center" className={this.name}
                     data-active={this.props.currentPage} style={this.props.style}>
-                {this.props.showFirstAndLast && this.renderFirstButton()}
-                {this.props.showPrevAndNext && this.renderPreviousButton()}
+                {!!this.props.showFirstAndLast && this.renderFirstButton()}
+                {!!this.props.showPrevAndNext && this.renderPreviousButton()}
                 {this.renderMainButtons()}
-                {this.props.showPrevAndNext && this.renderNextButton()}
-                {this.props.showFirstAndLast && this.renderLastButton()}
+                {!!this.props.showPrevAndNext && this.renderNextButton()}
+                {!!this.props.showFirstAndLast && this.renderLastButton()}
             </Div>
         )
     }
