@@ -44,7 +44,7 @@ class Select extends React.PureComponent<Props, State> {
         const { value } = this.state
         const Element = name ? StyledLightSelect : StyledSelect
         return (
-            <Field {...props} name={this.name}>
+            <Field {...this.props} name={this.name}>
                 <Div position="relative">
                     <Element
                            closeOnChange={!multiple}
