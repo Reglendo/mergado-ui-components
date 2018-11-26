@@ -94,7 +94,7 @@ class DatePicker extends React.PureComponent<Props, State> {
                     {/* visible */}
                     <TextInput {...props}
                             onClick={this.handleClick}
-                            type="search"
+                            type={this.props.onClear ? "search" : "text"}
                             onClear={this.props.onClear}
                             labels={{main: label, placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
