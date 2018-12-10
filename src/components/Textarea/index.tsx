@@ -17,7 +17,7 @@ class Textarea extends React.PureComponent<Props, {}> {
     protected readonly name = prefix + "textarea";
 
     public render() {
-        const { label, value, onChange, invalid, height, children, ...props } = this.props
+        const { label, invalid, height, children, ...props } = this.props
         const Element = props.name ? StyledLightTextarea : StyledTextarea
         return (
             <Field {...this.props} name={this.name}>
@@ -29,7 +29,7 @@ class Textarea extends React.PureComponent<Props, {}> {
                                 ${form}__input--text
                                 ${form}__input--textarea
                     `}
-                >{value}</Element>
+                />
             </Field>
         )
     }
