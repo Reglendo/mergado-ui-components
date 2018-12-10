@@ -17,6 +17,8 @@ interface Props extends IField {
     locale?: "cs" | "sk"
     pickerProps?: any
     datetime?: boolean
+
+    onClear?: () => void
 }
 
 interface State {
@@ -88,9 +90,12 @@ class DatePicker extends React.PureComponent<Props, State> {
 
         return(
             <StyledField>
-                <div onClick={this.handleClick}>
+                <div>
                     {/* visible */}
                     <TextInput {...props}
+                            onClick={this.handleClick}
+                            type={this.props.onClear ? "search" : "text"}
+                            onClear={this.props.onClear}
                             labels={{main: label, placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
 

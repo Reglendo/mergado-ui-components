@@ -80,11 +80,12 @@ class TextInput extends React.PureComponent<Props, State> {
                                 onClick={() => {
                                             const input: any = this.refs.input
                                             this.props.onClear && this.props.onClear()
-                                            if(input) {
+                                            if(input && input.getDOMNode !== undefined ) {
                                                 input.getDOMNode().value = ""
                                             }
                                             inputProps.value = ""
                                             this.props.change ? this.props.change(inputProps.name, "") : true
+
                                  }}
                     />
                 }

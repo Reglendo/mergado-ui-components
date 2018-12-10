@@ -10,6 +10,7 @@ import {styles, stylesProps} from "./style"
 import debounce from "lodash/debounce"
 
 interface Props extends IField {
+    options: any
     multiple?: boolean
 }
 
@@ -29,9 +30,7 @@ class Select extends React.PureComponent<Props, State> {
     protected readonly name = prefix + "select";
 
     onChange = debounce(e => {
-        console.log(e)
         const value = e.filter(o => o).join('|')
-        console.log('value: ',value)
         this.setState({value})
         if(this.props.onChange) {
             this.props.onChange(value)

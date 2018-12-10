@@ -48,8 +48,8 @@ class Paginator extends React.PureComponent<Props, State> {
         lastPage: 1,
         showPrevAndNext: true,
         showFirstAndLast: false,
-        labelLast: "« Last",
-        labelFirst: "First »",
+        labelLast: "Last",
+        labelFirst: "First",
         labelNext: "Next",
         labelPrevious: "Previous",
         maxLinks: 5,
@@ -65,8 +65,8 @@ class Paginator extends React.PureComponent<Props, State> {
         }
     }
 
-    protected renderButton(label: any, page: number, clickable: boolean, active: boolean = false): JSX.Element {
-        const key = `${this.state.id}-${label}-${page}`
+    protected renderButton(label: string|number, page: number, clickable: boolean, active: boolean = false, id: string): JSX.Element {
+        const key = `${this.state.id}-${id}-${page}`
         const classLink = `${this.name}__item link-class`
         let classDisabled = `${this.name}__item ${this.name}__item--disabled`
         if (active) {
@@ -112,7 +112,7 @@ class Paginator extends React.PureComponent<Props, State> {
         }
 
         for (let i = bottomLimit; i <= topLimit; i++) {
-            const button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage)
+            const button = this.renderButton(i, i, i !== this.props.currentPage, i === this.props.currentPage, 'page')
             buttons.push(button)
         }
 
@@ -120,23 +120,29 @@ class Paginator extends React.PureComponent<Props, State> {
     }
 
     protected renderPreviousButton(): JSX.Element {
-        return this.renderButton(this.props.labelPrevious, this.props.currentPage - 1, this.props.currentPage !== 1)
+        return this.renderButton(this.props.labelPrevious,
+                                this.props.currentPage - 1,
+                                this.props.currentPage !== 1,
+                                false,
+                                'prev')
     }
 
     protected renderNextButton(): JSX.Element {
         return this.renderButton(this.props.labelNext,
                                  this.props.currentPage + 1,
-                                 this.props.currentPage !== this.props.lastPage)
+                                 this.props.currentPage !== this.props.lastPage,
+                                 false,
+                                 'next')
     }
 
     protected renderFirstButton(): JSX.Element {
-        return this.renderButton(this.props.labelFirst, 1, this.props.currentPage !== 1)
+        return this.renderButton(this.props.labelFirst, 1, this.props.currentPage !== 1, false, 'first')
     }
 
     protected renderLastButton(): JSX.Element {
         return this.renderButton(this.props.labelLast,
                                  this.props.lastPage,
-                                 this.props.currentPage !== this.props.lastPage)
+                                 this.props.currentPage !== this.props.lastPage, false, 'last')
     }
 
     protected pageClicked(evt: any, pageNumber: number) {

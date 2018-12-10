@@ -9,16 +9,12 @@ import FieldError from "../FieldError"
 
 
 export interface IField {
-    options: any
-
     name?: string
     label?: string
     placeholder?: string
     value?: string
     onChange?: Function
     invalid?: boolean
-
-    updateInputValue?: Function
 }
 
 export interface IFieldProps {
