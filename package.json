@@ -4,7 +4,7 @@
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "scripts": {
-    "start": "tsc --build ./tsconfig.json && npm run styleguide-server",
+    "start": "nodejs ./bin/create.js && tsc --build ./tsconfig.json && npm run styleguide-server",
     "build": "tsc --build ./tsconfig.json",
     "tsc": "tsc --build ./tsconfig.json",
     "test": "NODE_PATH=./src NODE_ENV=test mocha -r ts-node/register --",
