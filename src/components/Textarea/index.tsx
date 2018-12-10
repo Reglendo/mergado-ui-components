@@ -9,18 +9,19 @@ export interface Props extends IField {
     height: number
 }
 
-const StyledTextarea = css(LightTextarea)(styles, stylesProps)
+const StyledLightTextarea = css(LightTextarea)(styles, stylesProps)
+const StyledTextarea = css("textarea")(styles, stylesProps)
 
 class Textarea extends React.PureComponent<Props, {}> {
 
     protected readonly name = prefix + "textarea";
 
     public render() {
-        const { label, value, onChange, invalid, height, ...props } = this.props
-
+        const { label, value, onChange, invalid, height, children, ...props } = this.props
+        const Element = props.name ? StyledLightTextarea : StyledTextarea
         return (
             <Field {...this.props} name={this.name}>
-                <StyledTextarea
+                <Element
                     {...props}
                     height={height || '100'}
                     aria-invalid={invalid ? 1 : 0}
@@ -28,7 +29,7 @@ class Textarea extends React.PureComponent<Props, {}> {
                                 ${form}__input--text
                                 ${form}__input--textarea
                     `}
-                >{value}</StyledTextarea>
+                >{value}</Element>
             </Field>
         )
     }
