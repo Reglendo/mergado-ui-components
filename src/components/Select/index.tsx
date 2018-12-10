@@ -10,6 +10,7 @@ import {styles, stylesProps} from "./style"
 import debounce from "lodash/debounce"
 
 interface Props extends IField {
+    options: any
     multiple?: boolean
 }
 
