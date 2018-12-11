@@ -1,4 +1,3 @@
-export { default as Examples } from './components/Animations/Examples';
 export { default as Pulse } from './components/Animations/Pulse';
 export { default as Rotate } from './components/Animations/Rotate';
 export { default as App } from './components/App';

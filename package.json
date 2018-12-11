@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "3.2.21",
+  "version": "3.2.22",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "module": "lib/index.js",

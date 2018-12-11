@@ -25,3 +25,6 @@ export const animation = {
                 }
             }
 }
+
+export default animation
+
