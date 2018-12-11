@@ -6,7 +6,7 @@ import {prefix} from "../../config"
 import {Field, IField,} from "../../components/Field"
 import TextInput from "../TextInput"
 import { SketchPicker as InputColor } from "react-color"
-import {Input} from "light-form/dist/es"
+import {Input} from "@reglendo/light-form/dist/es"
 import Color from "color"
 interface Props extends IField {
 }

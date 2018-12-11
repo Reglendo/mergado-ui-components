@@ -5,7 +5,7 @@ import Span from "../Span"
 
 import {prefix,form} from "../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../Field"
-import {Input as LightInput} from "light-form/dist/es"
+import {Input as LightInput} from "@reglendo/light-form/dist/es"
 import Div from "../Div"
 import PropTypes from "prop-types"
 

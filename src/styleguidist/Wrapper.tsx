@@ -4,7 +4,7 @@ import ThemeProvider from "@reglendo/cxs/ThemeProvider";
 import theme from "../styled/themes/ryzlink";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from 'redux';
-import { Reducer } from '../../node_modules/light-form/dist/es';
+import { Reducer } from '@reglendo/light-form/dist/es';
 const rootReducer = combineReducers({
     form: Reducer('form'),
 });

@@ -2,7 +2,7 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 import * as Color from "color"
 import debounce from "lodash/debounce"
-import {Input as LightInput} from "light-form/dist/es"
+import {Input as LightInput} from "@reglendo/light-form/dist/es"
 
 import {prefix,form} from "../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../Field"

@@ -7,7 +7,7 @@ import Div from "../Div"
 
 import {prefix,form} from "../../config"
 import {Field, IFieldProps, defaultFieldProps} from "../Field"
-import {Input as LightInput} from "light-form/dist/es"
+import {Input as LightInput} from "@reglendo/light-form/dist/es"
 import PropTypes from "prop-types"
 
 
@@ -157,7 +157,7 @@ const stylesProps =  (props) => {
             background: `${props.theme.inactive}`,
             transition: "border-color 0.2s, background-color 0.2s",
             willChange: "background-color",
-            
+
             ":before" :{
                 opacity: 0,
                 position: "absolute",
@@ -196,7 +196,7 @@ const StyledInput = css("span")({
     position: "relative",
     transition: "border-color 0.1s",
 
-}, (props: any) => { 
+}, (props: any) => {
     const content = props.big && !props.boolean ? {
         "&:before": {
             content: props.onLabel,
@@ -217,7 +217,7 @@ const StyledInput = css("span")({
             // right: "0",
         },
     } : {}
-    
+
     return {
     ...content,
     width: props.big ? (props.boolean ?  `${bigBoolWidth}px` : (props.width + "px")) : "36px",

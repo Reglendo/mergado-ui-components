@@ -3,7 +3,7 @@ import css from "@reglendo/cxs/component"
 import {prefix,form} from "../../config"
 import {Field, IField} from "../Field"
 import {styles,stylesProps} from "../TextInput"
-import {TextArea as LightTextarea} from "light-form/dist/es"
+import {TextArea as LightTextarea} from "@reglendo/light-form/dist/es"
 
 export interface Props extends IField {
     height: number
