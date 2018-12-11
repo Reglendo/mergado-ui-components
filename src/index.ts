@@ -22,8 +22,6 @@ export { default as Fieldset } from './components/Fieldset';
 export { default as Grid } from './components/Grid';
 export { default as GridCell } from './components/GridCell';
 export { default as Header } from './components/Header';
-export { default as IconFinder } from './components/Icon/IconFinder';
-export { default as Icon } from './components/Icon';
 export { default as LittleStatus } from './components/LittleStatus';
 export { default as Nav } from './components/Nav';
 export { default as NavLink } from './components/NavLink';
