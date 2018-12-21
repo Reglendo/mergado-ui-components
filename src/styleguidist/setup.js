@@ -1,4 +1,4 @@
-import IconFinder from '../../lib/components/Icon/IconFinder'
+import IconFinder from '../../lib/components/Icon/IconFinder/index2'
 global.IconFinder = IconFinder
 
 import Div from '../../lib/components/Div'

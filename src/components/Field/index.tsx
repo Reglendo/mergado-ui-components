@@ -13,8 +13,10 @@ export interface IField {
     label?: string
     placeholder?: string
     value?: string
-    onChange?: Function
+    onChange?: (evt) => void
+    setValue?: (value) => void
     invalid?: boolean
+
 }
 
 export interface IFieldProps {
@@ -176,13 +178,6 @@ Field.propTypes = {
     s: PropTypes.any,
 }
 
-export function updateInputValue(form: string, name, value) {
-    return {
-        type: "UPDATE_INPUT_VALUE."+form,
-        name,
-        value,
-    }
-}
 
 
 export default Field

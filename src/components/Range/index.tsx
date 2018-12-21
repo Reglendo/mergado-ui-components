@@ -3,90 +3,57 @@ import css from "@reglendo/cxs/component"
 import * as Color from "color"
 import debounce from "lodash/debounce"
 import {Input as LightInput} from "@reglendo/light-form/dist/es"
-
+import InputContainer  from "../Field/InputContainer"
 import {prefix,form} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
+import {Field, IField} from "../Field"
 import TextInput from "../TextInput"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
+import FieldLabel from "../../../lib/components/FieldLabel";
+import Button from "../Button"
 
-export interface Props extends IFieldProps {
+export interface Props extends IField {
     max: number
     min: number
     step: number
-    default?: number
-    disabled?: boolean
+    setValue: any
 }
 
 export interface State {
-    value: any
 }
 
-class Range extends React.PureComponent<Props,State> {
+export class Range extends React.PureComponent<Props,State> {
 
     protected readonly name = prefix + "input-range";
 
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
-        max: 50,
-        min: 0,
-        step: 1,
-        default: null,
-        disabled: false,
-    }
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: props.input.value ?
-                     props.input.value : props.default !== null ?
-                     props.default : (props.max - props.min) / 2 + props.min,
-        }
-        this.handleChange = debounce(this.handleChange.bind(this), 200);
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-        if(nextProps.input.value !== this.props.input.value) {
-            this.handleChange({target: { value: nextProps.input.value } })
-        }
-    }
-
-    protected handleChange(evt) {
-        this.setState({value: evt.target.value});
-        return this.props.input.onChange(evt.target.value);
+    handleChange = (evt) => {
+        this.props.onChange(evt.target.value);
     }
 
     public render() {
-        const { labels, meta, input } = this.props
-        const { children, ...props } = this.props
-        const value = this.state.value
-        const Element = props.name ? StyledLightInput : StyledInput
+        const { label, name, ...props } = this.props
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>
+                {!!label &&
+                    <GridCell col="span 2">
+                        <FieldLabel>{label}</FieldLabel>
+                    </GridCell>
+                }
                     <GridCell>
                     <TextInput
-                        disabled={props.disabled}
-                        name={props.name}
-                        type="number"
-                        max={this.props.max}
-                        min={this.props.min}
-                        step={this.props.step}
-                        value={this.props.value}
+                        {...props}
+                        onChange={this.handleChange}
                     />
                     </GridCell>
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
-                        <Element
-                            {...(!props.name && input)}
-                            disabled={props.disabled}
-                            name={props.name}
+                        <StyledInput
                             className={`${this.name}__item
                                         ${form}__input--text ${form}__input--range`}
                             type="range"
-                            max={this.props.max}
-                            min={this.props.min}
-                            step={this.props.step}
-                            />
+                            {...props}
+                            onChange={this.handleChange}
+                        />
                     </GridCell>
                 </Grid>
             </StyledField>
@@ -163,4 +130,4 @@ const styles = {
 const StyledInput = css("input")(styles)
 const StyledLightInput = css(LightInput)(styles)
 
-export default Range
+export default InputContainer(Range)

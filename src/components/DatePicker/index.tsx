@@ -2,7 +2,7 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 
 import {prefix} from "../../config"
-import {Field, IField, updateInputValue} from "../Field"
+import {Field, IField} from "../Field"
 import ReactDatePicker from "react-day-picker"
 import dayjs from "dayjs"
 import TextInput from "../TextInput"
