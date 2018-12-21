@@ -7,7 +7,7 @@ import {Field, IField} from "../Field"
 import TextInput from "../TextInput"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-import FieldLabel from "../../../lib/components/FieldLabel";
+import FieldLabel from "../FieldLabel";
 
 export interface Props extends IField {
     max: number
