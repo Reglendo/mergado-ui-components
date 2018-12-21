@@ -1,8 +1,6 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 import * as Color from "color"
-import debounce from "lodash/debounce"
-import {Input as LightInput} from "@reglendo/light-form/dist/es"
 import InputContainer  from "../Field/InputContainer"
 import {prefix,form} from "../../config"
 import {Field, IField} from "../Field"
@@ -10,7 +8,6 @@ import TextInput from "../TextInput"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
 import FieldLabel from "../../../lib/components/FieldLabel";
-import Button from "../Button"
 
 export interface Props extends IField {
     max: number
@@ -128,6 +125,5 @@ const styles = {
     appearance: "none",
 }
 const StyledInput = css("input")(styles)
-const StyledLightInput = css(LightInput)(styles)
 
 export default InputContainer(Range)
