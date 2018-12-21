@@ -26,7 +26,6 @@ export class Range extends React.PureComponent<Props,State> {
     handleChange = (evt) => {
         this.props.setValue(evt.target.value);
     }
-
     public render() {
         const { label, name, ...props } = this.props
         return (
