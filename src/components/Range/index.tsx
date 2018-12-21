@@ -24,7 +24,7 @@ export class Range extends React.PureComponent<Props,State> {
     protected readonly name = prefix + "input-range";
 
     handleChange = (evt) => {
-        this.props.onChange(evt.target.value);
+        this.props.setValue(evt.target.value);
     }
 
     public render() {
