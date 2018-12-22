@@ -2,10 +2,11 @@ import * as React from "react"
 import cxs from "@reglendo/cxs/component"
 import * as Color from "color"
 
+import InputContainer from "../Field/InputContainer"
 import {prefix,form} from "../../config"
 import TextInput from "../TextInput"
 import uniqueId from "../../helpers/unique_id"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
+import {Field, IField} from "../Field"
 
 export interface Item {
     value: string
@@ -13,7 +14,7 @@ export interface Item {
     disabled?: boolean
 }
 
-export interface Props extends IFieldProps {
+export interface Props extends IField {
     items: Item[]
     shouldItemRender?: (item: any, value: any) => any
     sortItems?: (a: any, b: any, value: any) => any
@@ -25,7 +26,6 @@ export interface Props extends IFieldProps {
     open?: boolean
 }
 export interface State {
-    value: string
     isOpen: boolean
     highlightedIndex: number
     menuLeft: number
@@ -33,10 +33,7 @@ export interface State {
     menuWidth: number
 }
 
-class Autocomplete extends  React.PureComponent<Props, State> {
-    public readonly props: Props;
-    public state: State;
-
+export class Autocomplete extends  React.PureComponent<Props, State> {
     protected readonly name = prefix + "autocomplete";
     protected performAutoCompleteOnUpdate = true
     protected performAutoCompleteOnKeyUp = true
@@ -44,7 +41,6 @@ class Autocomplete extends  React.PureComponent<Props, State> {
     protected _inputRef = null
 
     public static defaultProps: Props = {
-        ...defaultFieldProps,
         items: [],
         renderMenu: (items, value, style) => {
             if(items.length > 0) {
@@ -71,7 +67,6 @@ class Autocomplete extends  React.PureComponent<Props, State> {
         super(props)
 
         this.state = {
-            value: props.value ? props.value : "",
             isOpen: false,
             highlightedIndex: null,
             menuLeft: 0,
@@ -134,7 +129,7 @@ class Autocomplete extends  React.PureComponent<Props, State> {
     }
 
     protected maybeAutoCompleteText() {
-        if (!this.props.autoHighlight || this.state.value === "") {
+        if (!this.props.autoHighlight || this.props.value === "") {
             return
         }
         const {highlightedIndex} = this.state
@@ -148,7 +143,7 @@ class Autocomplete extends  React.PureComponent<Props, State> {
         const itemValue = this
             .props
             .getItemValue(matchedItem)
-        const itemValueDoesMatch = (itemValue.toLowerCase().indexOf(this.state.value.toLowerCase()) === 0)
+        const itemValueDoesMatch = (itemValue.toLowerCase().indexOf(this.props.value.toLowerCase()) === 0)
         if (itemValueDoesMatch && highlightedIndex === null) {
             this.setState({highlightedIndex: 0})
         }
@@ -157,26 +152,36 @@ class Autocomplete extends  React.PureComponent<Props, State> {
     protected getFilteredItems() {
         let items = this.props.items
         if (this.props.shouldItemRender) {
-            items = items.filter((item) => (this.props.shouldItemRender(item, this.state.value)))
+            items = items.filter((item) => (this.props.shouldItemRender(item, this.props.value)))
         }
 
         if (this.props.sortItems) {
-            items.sort((a, b) => (this.props.sortItems(a, b, this.state.value)))
+            items.sort((a, b) => (this.props.sortItems(a, b, this.props.value)))
         }
 
         return items
     }
 
     protected onSelect(value, item) {
-        this.setState({ value })
         this.setIgnoreBlur(false)
-        this.props.input.onChange(value)
+        if(this.props.setValue) {
+            this.props.setValue(value)
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(value)
+        }
     }
 
     protected handleChange(event) {
         this.performAutoCompleteOnKeyUp = true
-        this.setState({ highlightedIndex: null, value: event.target.value })
-        this.props.input.onChange(event)
+        this.setState({ highlightedIndex: null })
+        const value = event.target.value
+        if(this.props.setValue) {
+            this.props.setValue(value)
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(value)
+        }
     }
 
     protected handleKeyUp() {
@@ -349,7 +354,7 @@ class Autocomplete extends  React.PureComponent<Props, State> {
 
         const menu = this
             .props
-            .renderMenu(items, this.state.value, style)
+            .renderMenu(items, this.props.value, style)
         return React.cloneElement(menu, {
             // ref: e => this.refs.menu = e,
         })
@@ -357,24 +362,23 @@ class Autocomplete extends  React.PureComponent<Props, State> {
 
     public render() {
         const open = this.isOpen()
-        const {labels, meta, input, shouldItemRender, renderMenu, onMenuVisibilityChange, renderItem, getItemValue,  ...props} = this.props
-        const inputProps = Object.assign({}, this.props.input, {
-                onFocus: this.composeEventHandlers(this.handleInputFocus.bind(this), input.onFocus),
+        const {name, shouldItemRender, renderMenu, onMenuVisibilityChange, renderItem, getItemValue,  ...props} = this.props
+        const inputProps = {
+                onFocus: this.handleInputFocus.bind(this),
                 onBlur: this.handleInputBlur.bind(this),
                 onChange: this.handleChange.bind(this),
-                onKeyDown: this.composeEventHandlers(this.handleKeyDown.bind(this), input.onKeyDown),
-                onKeyUp: this.composeEventHandlers(this.handleKeyUp.bind(this), input.onKeyUp),
-                onClick: this.composeEventHandlers(this.handleInputClick.bind(this), input.onClick),
-        })
+                onKeyDown: this.handleKeyDown.bind(this),
+                onKeyUp: this.handleKeyUp.bind(this),
+                onClick: this.handleInputClick.bind(this),
+        }
 
         return (
             <Field label="">
                 <TextInput
                     {...props}
+                    {...inputProps}
+
                     id={"autocomplete-input"}
-                    labels={labels}
-                    meta={meta}
-                    input={inputProps}
                 />
                 {open && this.renderMenu()}
             </Field>
@@ -423,4 +427,4 @@ const MenuItem = cxs("div")({
     }
 })
 
-export default Autocomplete
+export default InputContainer(Autocomplete)

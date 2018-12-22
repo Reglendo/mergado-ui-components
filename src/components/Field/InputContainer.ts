@@ -47,18 +47,25 @@ const InputContainer = component =>
         dispatch,
     }),
     (state, dispatch, own) => {
+        if(!own.name) {
+            return own
+        }
         const namespace = getFieldNamespace(own.name);
         const onChange = event => {
             const namespace = getFieldNamespace(own.name);
             const type = createBoundType(namespace);
 
             if(!event.target) {
-                const selected = [];
-                event.map(function (o: any) {
-                    selected.push(o.value);
-                });
-                dispatch.dispatch(changeField(type, own.name, selected.pop()));
-                return dispatch.dispatch(changeField(type, own.name, event.join('|')));
+                console.log(event);
+                if(event.map) {
+                    const selected = [];
+                    event.map(function (o: any) {
+                        selected.push(o.value);
+                    });
+                    return dispatch.dispatch(changeField(type, own.name, event.join('|')));
+                } else {
+                    return dispatch.dispatch(changeField(type, own.name, event));
+                }
             }
             const value = event.target.type === 'checkbox'
                 ? event.target.checked

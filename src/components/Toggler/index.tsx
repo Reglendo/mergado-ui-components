@@ -6,49 +6,61 @@ import Span from "../Span"
 import Div from "../Div"
 
 import {prefix,form} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
-import {Input as LightInput} from "@reglendo/light-form/dist/es"
+import {Field, IField} from "../Field"
 import PropTypes from "prop-types"
+import InputContainer from "../Field/InputContainer"
+import FieldLabel from "../FieldLabel"
 
-
-export interface Props extends IFieldProps {
+export interface Props extends IField {
+    onLabel: string | JSX.Element
     offLabel: string | JSX.Element
     reverse?: boolean
+    boolean?: boolean
+    big?: boolean
+    width?: number
 }
 
-class Toggler extends React.PureComponent<Props, {}> {
+export class Toggler extends React.PureComponent<Props, {}> {
     protected readonly name = prefix + "input-toggler"
 
     public static defaultProps: Props = {
-        ...defaultFieldProps,
+        onLabel: "",
         offLabel: "",
         reverse: false,
     }
 
+    handleChange = (e) => {
+        if(this.props.setValue) {
+            this.props.setValue(e.target.checked ? 1 : 0)
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(e.target.checked ? 1 : 0)
+        }
+    }
+
     protected renderLabel() {
-        const { group, meta, input, labels, reverse, ...props } = this.props
-        const label = this.props.label ? this.props.label : labels.main
-        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
-        const Element = props.name ? CssElementLightInput : CssElement
+        const { setValue, label, reverse, name, ...props } = this.props
+        const isInvalid = this.props.invalid
 
         const offLabel = !props.big && <Span className={"m-offlabel"} fontSize={"16px"} margin="0 3px" verticalAlign="top">
                             {props.offLabel}{props.offLabel && ""}
                         </Span>
 
         const onLabel = !props.big && <Span className={"m-onlabel"} fontSize={"16px"} margin="0 3px" verticalAlign="top">
-                            {label && "" }{label}
+                            {props.onLabel}{props.onLabel && ""}
                         </Span>
 
         return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
+                    {!!label && <><FieldLabel>{label}</FieldLabel><br/></>}
                     {reverse ? onLabel : offLabel}
                     <Div className={"m-wrapper"} position="relative" display="inline-block" verticalAlign="middle">
-                        <Element
+                        <CssElement
                             {...props}
-                            {...(!props.name && { checked: input.value })}
-                            {...(!props.name && input)}
+                            onChange={this.handleChange}
                             reverse={reverse}
+                            checked={this.props.value}
                             type="checkbox"
-                            className={`m-input ${input.className || ""}`}
+                            className={`m-input ${props.className || ""}`}
                             />
                         <StyledInput className={"m-checkbox"} big={props.big} boolean={props.boolean}
                                      width={props.width} reverse={reverse} onLabel={label} offLabel={props.offLabel} label={label}
@@ -187,7 +199,6 @@ const stylesProps =  (props) => {
 }
 
 const CssElement = css("input")(styles , stylesProps)
-const CssElementLightInput = css(LightInput)(styles , stylesProps)
 
 
 const StyledInput = css("span")({
@@ -240,7 +251,6 @@ CssElement.propTypes =  {
     reverse: PropTypes.bool,
     boolean: PropTypes.bool,
 }
-CssElementLightInput.propTypes = CssElement.propTypes
 StyledInput.propTypes = CssElement.propTypes
 
-export default Toggler
+export default InputContainer(Toggler)

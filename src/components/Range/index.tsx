@@ -24,10 +24,15 @@ export class Range extends React.PureComponent<Props,State> {
     protected readonly name = prefix + "input-range";
 
     handleChange = (evt) => {
-        this.props.setValue(evt.target.value);
+        if(this.props.setValue) {
+            this.props.setValue(evt.target.value);
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(evt.target.value);
+        }
     }
     public render() {
-        const { label, name, ...props } = this.props
+        const { label, name, setValue, ...props } = this.props
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>

@@ -58,7 +58,8 @@ class TextInput extends React.PureComponent<Props, State> {
                 <Element
                     {...(!props.name && inputProps)}
                     {...elProps}
-                    placeholder={this.props.labels.placeholder}
+                    value={elProps.value || ''}
+                    placeholder={this.props.labels.placeholder || this.props.placeholder}
                     ref={"input"}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)
                                                 ? "text" : props.type}
@@ -165,6 +166,7 @@ CssButtonClose.propTypes = {
 
 CssInput.propTypes = {
     onClear: PropTypes.any,
+    setValue: PropTypes.any,
 }
 
 export default TextInput

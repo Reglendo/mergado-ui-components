@@ -15,8 +15,10 @@ export interface IField {
     value?: string
     onChange?: (evt) => void
     setValue?: (value) => void
+    formatter?: (value) => any
     invalid?: boolean
-
+    style?: any
+    className?: string
 }
 
 export interface IFieldProps {

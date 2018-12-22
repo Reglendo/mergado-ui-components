@@ -1,16 +1,13 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-
+import InputContainer from "../Field/InputContainer"
 import {prefix} from "../../config"
 import {Field, IField} from "../Field"
 import ReactDatePicker from "react-day-picker"
 import dayjs from "dayjs"
 import TextInput from "../TextInput"
 import FieldLabel from "../FieldLabel"
-import {connect} from "react-redux"
-
 import {style as factoryStyle} from "./style"
-
 import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInput"
 
 interface Props extends IField {
@@ -27,7 +24,7 @@ interface State {
     showPicker: boolean
 }
 
-class DatePicker extends React.PureComponent<Props, State> {
+export class DatePicker extends React.PureComponent<Props, State> {
 
     protected readonly name = prefix + "datepicker"
     protected locale;
@@ -66,6 +63,10 @@ class DatePicker extends React.PureComponent<Props, State> {
         }
         const set =  `${dayjs(date).format("YYYY-MM-DD")} ${(this.state.startTime || "00:00:00")}`
         this.setState({ startDate: dayjs(set).format("YYYY-MM-DD"), showPicker: this.props.datetime, })
+
+        if(this.props.setValue) {
+            this.props.setValue(set)
+        } else
         if(this.props.onChange) {
             return this.props.onChange(set)
         }
@@ -75,16 +76,20 @@ class DatePicker extends React.PureComponent<Props, State> {
         const time = evt.target.value
         const set = dayjs(`${this.state.startDate} ${time}`)
         this.setState({ startTime: set.format("HH:mm:ss") })
+        if(this.props.setValue) {
+            this.props.setValue(set.format("YYYY-MM-DD HH:mm:ss"))
+        } else
         if(this.props.onChange) {
             return this.props.onChange(set.format("YYYY-MM-DD HH:mm:ss"))
         }
+
     }
 
     handleClick = () => this.setState({showPicker: true})
     handleHide = () => this.setState({showPicker: false})
 
     public render() {
-        const { label, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
+        const { label, name, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
         const {showPicker} = this.state
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
 
@@ -98,11 +103,6 @@ class DatePicker extends React.PureComponent<Props, State> {
                             onClear={this.props.onClear}
                             labels={{main: label, placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
-
-                    {/* hidden */}
-                    <TextInput {...props}
-                            type={"hidden"}
-                            value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(datetime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD' ) : null} />
                 </div>
                 {showPicker &&
                 <Popover>
@@ -174,4 +174,4 @@ const StyledField = css(Field)({
     " input": inputStylesProps(props)
 }})
 
-export default DatePicker
+export default InputContainer(DatePicker)

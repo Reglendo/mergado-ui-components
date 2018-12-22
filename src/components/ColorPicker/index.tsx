@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 import debounce from "lodash/debounce"
-
+import InputContainer from "../Field/InputContainer"
 import {prefix} from "../../config"
 import {Field, IField,} from "../../components/Field"
 import TextInput from "../TextInput"
@@ -13,21 +13,16 @@ interface Props extends IField {
 
 interface State {
     displayColorPicker: boolean
-    color: any
 }
 
-class ColorPicker extends React.PureComponent<Props, State> {
+export class ColorPicker extends React.PureComponent<Props, State> {
 
     protected readonly name = prefix + "colorpicker"
 
     constructor(props) {
         super(props)
-        const color = (typeof props.value == "string" || props.value instanceof String)
-                            ? {hex: props.value}
-                            : null
         this.state = {
             displayColorPicker: false,
-            color,
         }
 
     }
@@ -35,31 +30,33 @@ class ColorPicker extends React.PureComponent<Props, State> {
 
     handleClose = () => this.setState({ displayColorPicker: false })
 
-    handleChanged = (evt) => {
-        this.setState({color: evt})
+    handleChange = (evt) => {
+        const value = evt.target ? evt.target.value : evt.hex
+        // if(value.length === 7 && value[0] === "#") {
+        //     this.setState({color: Color(value)})
+        // }
+        if(this.props.setValue) {
+            this.props.setValue(value)
+        } else
         if(this.props.onChange) {
-            this.props.onChange(evt.hex)
+            this.props.onChange(value)
         }
     }
 
-    setValue = (event) => {
-        const eventCopy = { ...event };
-        const background = this.props.value || (this.state.color && this.state.color.hex) || "#ffffff"
-        eventCopy.target.value = background
-        return eventCopy;
-    }
-
     public render() {
-        const { color, displayColorPicker } = this.state
-        const { label, value, onChange, ...props} = this.props
-        const background = this.props.value || (this.state.color && this.state.color.hex) || "#ffffff"
-        const textColor = Color(background).contrast(Color('#fff')) > 2.2 ? "#ffffff" : "#333"
-
+        const { displayColorPicker } = this.state
+        const { label, name, ...props} = this.props
+        const background = this.props.value || "#ffffff"
+        let textColor = "#333"
+        try {
+            textColor = Color(background).contrast(Color('#fff')) > 2.2 ? "#ffffff" : "#333"
+        } catch(e) {
+        }
         return(
             <StyledField {...props} name={this.name}>
                     <div onClick={this.handleClick}>
-                        <TextInput {...this.props}
-                            value={background}
+                        <TextInput {...props}
+                            onChange={this.handleChange}
                             style={{" .m-textinput-input": {background: background, color: textColor }}} />
                     </div>
                     {displayColorPicker &&
@@ -67,7 +64,7 @@ class ColorPicker extends React.PureComponent<Props, State> {
                             <Cover onClick={ this.handleClose } />
                             <InputColor
                                 color={background}
-                                onChangeComplete={this.handleChanged}
+                                onChangeComplete={this.handleChange}
                             />
                     </Popover>
                     }
@@ -127,4 +124,4 @@ const Cover = css("div")({
 })
 
 
-export default ColorPicker
+export default InputContainer(ColorPicker)

@@ -1,9 +1,13 @@
 Light input
 
+        <Toggler label={"Little bit different checkbox"}
+                onLabel={"On"} offLabel="Off"
+                name="form.toggler"
+        />
 
-    <Section>
-        <Toggler labels={{main: <span>On</span>}}
-                offLabel="Off" input={{value: true, onChange: () => alert('Hello') }} />
+Uncontrolled
 
-    </Section>
-    
+        <Toggler onLabel={"On"} offLabel="Off"
+                onChange={(value) => alert(value)}
+                value={1}
+        />
