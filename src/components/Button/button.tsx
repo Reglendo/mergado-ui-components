@@ -7,44 +7,35 @@ import {Href, Button, Submit, Void} from "./types"
 import Span from "../Span"
 
 const UniversalButton = ({...props}) => {
-    const { className, name, type, link, labels, icon, input, to, children, ...others } = props
+    const { className, name, type, link, icon, to, children, ...others } = props
     if(type === "href") {
         return <Href
                     {...others}
                     className={`m-button-href ${className || ""}`}
                     name={name}
-                    title={labels.title}
+                    title={others.title}
                     link={to ? to : link}
                     icon={icon}
                     children={children}
-                    label={others.label ? others.label : labels.main}
+                    label={others.label}
                 />
-    } else if(type === "link") {
-        const { group, meta, element, style, ...p } = others
-        delete p.input
-        delete p.labels
-        const Element: any = {...props.element, props: {...p,className: `muk-button m-link ${className || ""}`}, attributes: {...p,class: `muk-button m-link ${className || ""}`} }
-        return Element
-
    } else if(type === "button") {
         return <Button
                     className={`muk-button m-button ${className || ""}`}
                     {...others}
                     name={name}
-                    title={labels.title}
+                    title={others.title}
                     icon={icon}
-                    input={input}
                     children={children}
-                    label={others.label ? others.label : labels.main}
+                    label={others.label}
                 />
     } else if(type === "submit") {
         return <Submit
                     className={`m-button-submit ${className || ""}`}
                     {...others}
                     name={name}
-                    title={labels.title}
-                    input={input}
-                    label={others.label ? others.label : labels.main}
+                    title={others.title}
+                    label={others.label}
                 />
     } else if(type === "void") {
         return <Void
@@ -52,9 +43,9 @@ const UniversalButton = ({...props}) => {
                     {...others}
                     name={name}
                     icon={icon}
-                    title={labels.title}
+                    title={others.title}
                     children={children}
-                    label={others.label ? others.label : labels.main}
+                    label={others.label}
                 />
     } else {
         return <div/>

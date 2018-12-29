@@ -9,9 +9,19 @@ export interface Props extends IField {
     height: number
 }
 
-export class Textarea extends React.PureComponent<Props, {}> {
+export class Textarea extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "textarea";
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value
+        ) {
+            return true
+        }
+        return false
+    }
+
 
     handleChange = (e) => {
         if(this.props.setValue) {
@@ -24,6 +34,7 @@ export class Textarea extends React.PureComponent<Props, {}> {
 
     public render() {
         const { name, label, setValue, invalid, height, children, ...props } = this.props
+        console.log('render textarea', this.props.name)
         return (
             <Field {...this.props} name={this.name}>
                 <StyledTextarea

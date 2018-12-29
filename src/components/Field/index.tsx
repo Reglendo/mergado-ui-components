@@ -13,12 +13,17 @@ export interface IField {
     label?: string
     placeholder?: string
     value?: string
-    onChange?: (evt) => void
-    setValue?: (value) => void
-    formatter?: (value) => any
     invalid?: boolean
     style?: any
     className?: string
+    id?: string
+
+    onChange?: (evt) => void
+    onClick?: (evt) => void
+    onClear?: () => void
+    setValue?: (value) => void
+    formatter?: (value) => any
+
 }
 
 export interface IFieldProps {

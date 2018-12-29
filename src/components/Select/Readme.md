@@ -12,4 +12,4 @@ Uncontrolled
 
 Uncontrolled multi select
 
-    <Select value={""} onChange={e => alert(e.target.value)} multiple={true} options={[{ name: 'First', value: 'first'}, { name: 'Second', value: 'second'}, { name: 'Third', value: 'third'} ]} />
+    <Select value={""} onChange={e => alert(e)} multiple={true} options={[{ name: 'First', value: 'first'}, { name: 'Second', value: 'second'}, { name: 'Third', value: 'third'} ]} />

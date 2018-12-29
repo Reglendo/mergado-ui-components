@@ -23,16 +23,13 @@ class IconFinder extends React.PureComponent<Props, State> {
 
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
+    state = {
             value: "",
-        }
     }
 
-    protected handleChange(evt) {
+    handleChange = (evt) => {
         this.setState({
-           value: evt.target.value,
+           value: evt,
         });
     }
 
@@ -69,11 +66,10 @@ class IconFinder extends React.PureComponent<Props, State> {
         return (
             <div className={`${className}`}>
                 <TextInput
-                    labels={{ main: "",
-                             placeholder: "Type icon name here...",
-                             invalid: "Invalid input",
-                             title: "" }}
-                    input={{onChange: this.handleChange.bind(this), value: this.state.value }} />
+                    label=""
+                    placeholder="Type icon name here..."
+                    onChange={this.handleChange}
+                    value={this.state.value} />
                 {this.renderIcons()}
             </div>
         )

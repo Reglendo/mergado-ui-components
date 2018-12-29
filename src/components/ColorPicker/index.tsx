@@ -15,7 +15,7 @@ interface State {
     displayColorPicker: boolean
 }
 
-export class ColorPicker extends React.PureComponent<Props, State> {
+export class ColorPicker extends React.Component<Props, State> {
 
     protected readonly name = prefix + "colorpicker"
 
@@ -26,6 +26,17 @@ export class ColorPicker extends React.PureComponent<Props, State> {
         }
 
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value ||
+            this.state.displayColorPicker !== nextState.displayColorPicker
+        ) {
+            return true
+        }
+        return false
+    }
+
     handleClick = () => this.setState({ displayColorPicker: !this.state.displayColorPicker })
 
     handleClose = () => this.setState({ displayColorPicker: false })

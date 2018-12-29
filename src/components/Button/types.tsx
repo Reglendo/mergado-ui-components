@@ -13,7 +13,7 @@ interface IHrefProps {
 export const Href: React.SFC<IHrefProps> = ({icon, label, link, name, title, style,
                                             meta, labels, group,
                                              className, children, ...props}) =>
-        <a 
+        <a
             className={`muk-button ${className ? className : ""}`}
             {...props}
             href={link}
@@ -27,16 +27,13 @@ interface IButtonProps {
     label?: string | JSX.Element
     title?: string
     className?: string
-    input?: any
     [propName: string]: any
 }
 
 export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, className, style,
-                                                 labels,group,meta,
-                                                 input, children, ...props}) => {
+                                                 children, ...props}) => {
     return (
         <button
-            {...input}
             className={`muk-button ${className ? className : ""}`}
             {...props}
             title={title}>
@@ -47,19 +44,17 @@ export const Button: React.SFC<IButtonProps> = ({name, icon, label, title, class
 
 interface ISubmitProps {
     name: string
-    label?: string | JSX.Element
+    label?: string
     title?: string
     className?: string
-    input?: any
     [propName: string]: any
 }
 
 export const Submit: React.SFC<ISubmitProps> = ({name, label, title, className, style,
-                                                input, children, group, meta, labels, ...props}) =>
-        <input 
+                                                 children, ...props}) =>
+        <input
             className={`muk-button ${className ? className : ""}`}
             type="submit"
-            {...input}
             {...props}
             value={label}
             title={title}
@@ -74,7 +69,6 @@ interface IVoidProps {
     [propName: string]: any
 }
 export const Void: React.SFC<IVoidProps> = ({name, icon, label, title, className, style,
-                                            labels,group,meta,
                                              children, ...props}) =>
         <span
             className={`muk-button ${className ? className : ""}`}

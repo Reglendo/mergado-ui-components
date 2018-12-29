@@ -55,7 +55,8 @@ class DataHeader extends React.PureComponent<Props, State> {
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
                             <Checkbox
-                                input={{ onChange: this.props.handleSelectAll, checked: this.props.selectedAll}}
+                                onChange={this.props.handleSelectAll}
+                                checked={this.props.selectedAll}
                             />
                         </DataCell>
                     }

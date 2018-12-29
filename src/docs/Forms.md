@@ -54,7 +54,7 @@ Example form
         <TextInput name="searching" labels={{main: 'I\'m looking for:', placeholder: 'Describe something'}} type="search" />
         <div style={{ width: '50%', display: 'inline-block', verticalAlign: 'middle' }}>
             <h3>Identification</h3>
-            <TextInput name="firstname" labels={{ main: 
+            <TextInput name="firstname" labels={{ main:
                                                                         <span>
                                                                             First name*:&nbsp;
                                                                             <PopupHint hint={true}>Help me!</PopupHint>
@@ -81,10 +81,10 @@ Example form
         </div>
         <div style={{width: '50%', display: 'inline-block', verticalAlign: 'top' }}>
                 <FieldLabel>Your favourite superpower</FieldLabel>
-                <Checkbox name="superpower1" labels={{main: "invisibility"}} />
-                <Checkbox name="superpower2" labels={{main: "immortality"}} />
-                <Checkbox name="superpower3" labels={{main: "stupidity"}} />
-                <Checkbox name="superpower4" labels={{main: "other-ity"}} />
+                <Checkbox name="superpower1" label={"invisibility"} />
+                <Checkbox name="superpower2" label={"immortality"} />
+                <Checkbox name="superpower3" labels={"stupidity"} />
+                <Checkbox name="superpower4" labels={"other-ity"} />
         </div>
 
         <h3>Other information</h3>

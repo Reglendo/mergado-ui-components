@@ -1,42 +1,53 @@
 import * as React from "react"
-
 import {prefix} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
+import {Field, IField} from "../Field"
 import RadioInput from "./input"
+import InputContainer from "../Field/InputContainer"
 
 interface IItem {
     value: string
     label: string | JSX.Element
 }
 
-export interface Props extends IFieldProps {
+interface Props extends IField {
     items: IItem[]
-    bigButtons?: boolean
-    checkboxes?: boolean
 }
 
-class Radio extends React.PureComponent<Props, {}> {
+export class Radio extends React.Component<Props, {}> {
 
     protected readonly name = prefix + "input-radio";
 
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
-        bigButtons: false,
-        items: [],
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value
+        ) {
+            return true
+        }
+        return false
+    }
+
+
+    handleChange = (evt) => {
+        if(this.props.setValue) {
+            this.props.setValue(evt.target.value);
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(evt.target.value);
+        }
     }
 
     public renderInputs() {
-        const { input, meta, labels, checkboxes, bigButtons, hideInput } = this.props
-        return this.props.items.map((obj: IItem) => {
+        const { value, items } = this.props
+        if(!items) {
+            return false
+        }
+        return items.map((obj: IItem) => {
             return (
-                <RadioInput name={this.props.name} label={obj.label}
+                <RadioInput label={obj.label}
                             value={obj.value}
                             key={obj.value}
-                            checked={obj.value == input.value}
-                            onChange={input.onChange}
-                            bigButtons={bigButtons}
-                            hideInput={hideInput}
-                            checkboxes={checkboxes}
+                            checked={obj.value == value}
+                            onChange={this.handleChange}
                 />
             )
         })
@@ -44,9 +55,10 @@ class Radio extends React.PureComponent<Props, {}> {
 
     public render() {
         const {children, ...props} = this.props
+        console.log('render radio', this.props.name)
         return (
             <Field {...props} name={this.name}>
-                <div style={{display: "table", width: this.props.bigButtons ? "100%": "auto", tableLayout: "fixed"}}>
+                <div style={{display: "table", width: "auto", tableLayout: "fixed"}}>
                     <div style={{display: "table-row"}}>
                     {this.renderInputs()}
                     </div>
@@ -57,4 +69,4 @@ class Radio extends React.PureComponent<Props, {}> {
 
 }
 
-export default Radio
+export default InputContainer(Radio)

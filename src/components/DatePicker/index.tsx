@@ -24,7 +24,7 @@ interface State {
     showPicker: boolean
 }
 
-export class DatePicker extends React.PureComponent<Props, State> {
+export class DatePicker extends React.Component<Props, State> {
 
     protected readonly name = prefix + "datepicker"
     protected locale;
@@ -46,6 +46,20 @@ export class DatePicker extends React.PureComponent<Props, State> {
             this.locale = require("./locale.cs").default
         }
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value ||
+            this.state.showPicker !== nextState.showPicker ||
+            this.state.startDate !== nextState.startDate ||
+            this.state.startTime !== nextState.startTime
+
+        ) {
+            return true
+        }
+        return false
+    }
+
 
     componentWillUpdate(props) {
         const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : null
@@ -73,7 +87,7 @@ export class DatePicker extends React.PureComponent<Props, State> {
     }
 
     handleTimeChanged = (evt) => {
-        const time = evt.target.value
+        const time = evt
         const set = dayjs(`${this.state.startDate} ${time}`)
         this.setState({ startTime: set.format("HH:mm:ss") })
         if(this.props.setValue) {
@@ -92,7 +106,7 @@ export class DatePicker extends React.PureComponent<Props, State> {
         const { label, name, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
         const {showPicker} = this.state
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
-
+        console.log('render datepicker', this.props.name)
         return(
             <StyledField>
                 <div>
@@ -101,7 +115,8 @@ export class DatePicker extends React.PureComponent<Props, State> {
                             onClick={this.handleClick}
                             type={this.props.onClear ? "search" : "text"}
                             onClear={this.props.onClear}
-                            labels={{main: label, placeholder: placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}}
+                            label={label}
+                            placeholder={placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
                 </div>
                 {showPicker &&

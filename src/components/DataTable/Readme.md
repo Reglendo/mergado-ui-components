@@ -15,8 +15,8 @@ Example test
                     {icon: <IconTrash />, type: "trash", action: () => { console.log('hello world')}},
                 ]}
                 filters={[
-                    { type: "text", label: "Name:", action: (evt) => {  console.log(evt.currentTarget.value)  }},
-                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt.currentTarget.value)  }},
+                    { type: "text", label: "Name:", action: (evt) => {  console.log(evt)  }},
+                    { type: "checkbox", label: "Active only", action: (evt) => {  console.log(evt)  }},
                 ]}
     >
         <DataHeader key="dataheader">

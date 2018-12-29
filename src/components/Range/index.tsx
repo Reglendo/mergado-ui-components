@@ -19,20 +19,31 @@ export interface Props extends IField {
 export interface State {
 }
 
-export class Range extends React.PureComponent<Props,State> {
+export class Range extends React.Component<Props,State> {
 
     protected readonly name = prefix + "input-range";
 
-    handleChange = (evt) => {
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value
+        ) {
+            return true
+        }
+        return false
+    }
+
+    handleChange = (e) => {
+        const value = e.target ? e.target.value : e
         if(this.props.setValue) {
-            this.props.setValue(evt.target.value);
+            this.props.setValue(value)
         } else
         if(this.props.onChange) {
-            this.props.onChange(evt.target.value);
+            this.props.onChange(value)
         }
     }
     public render() {
         const { label, name, setValue, ...props } = this.props
+
         return (
             <StyledField {...props} name={this.name}>
                 <Grid cols={"100px auto"}>

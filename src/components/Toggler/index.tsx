@@ -20,8 +20,18 @@ export interface Props extends IField {
     width?: number
 }
 
-export class Toggler extends React.PureComponent<Props, {}> {
+export class Toggler extends React.Component<Props, {}> {
     protected readonly name = prefix + "input-toggler"
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value
+        ) {
+            return true
+        }
+        return false
+    }
+
 
     public static defaultProps: Props = {
         onLabel: "",
@@ -79,6 +89,7 @@ export class Toggler extends React.PureComponent<Props, {}> {
     }
 
     public render() {
+        console.log('render toggle', this.props.name)
         return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }}
                 label={this.renderLabel()} />
     }

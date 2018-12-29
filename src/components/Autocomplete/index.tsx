@@ -7,6 +7,7 @@ import {prefix,form} from "../../config"
 import TextInput from "../TextInput"
 import uniqueId from "../../helpers/unique_id"
 import {Field, IField} from "../Field"
+import { randomBytes } from "crypto";
 
 export interface Item {
     value: string
@@ -39,6 +40,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
     protected performAutoCompleteOnKeyUp = true
     protected ignoreBlur = false
     protected _inputRef = null
+    protected randid = Math.random()
 
     public static defaultProps: Props = {
         items: [],
@@ -113,7 +115,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
     }
 
     protected setMenuPositions() {
-        const node: any = document.getElementById("autocomplete-input")
+        const node: any = document.getElementById("autocomplete-input-"+this.randid)
         const rect = node.getBoundingClientRect()
         const glob: any = global
         const computedStyle = glob
@@ -290,7 +292,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
     }
 
     protected isInputFocused() {
-        const el: any = document.getElementById("autocomplete-input")
+        const el: any = document.getElementById("autocomplete-input-"+this.randid)
         return el.ownerDocument && (el === el.ownerDocument.activeElement)
     }
 
@@ -378,7 +380,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
                     {...props}
                     {...inputProps}
 
-                    id={"autocomplete-input"}
+                    id={"autocomplete-input-"+this.randid}
                 />
                 {open && this.renderMenu()}
             </Field>

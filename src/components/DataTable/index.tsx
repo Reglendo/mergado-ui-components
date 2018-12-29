@@ -5,7 +5,6 @@ import {prefix} from "../../config"
 import TextInput from "../TextInput"
 import Checkbox from "../Checkbox"
 import { ID, Action, Filter } from "../../helpers/types"
-import domOnlyProps from "../../helpers/dom-only-props"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
 import PropTypes from "prop-types"
@@ -40,14 +39,9 @@ class DataTable extends React.PureComponent<Props, State> {
         },
     }
 
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            selectedAll: false,
-            selectedRows: [],
-        }
+    state = {
+        selectedAll: false,
+        selectedRows: [],
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -57,6 +51,7 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     protected handleSelectAll() {
+        console.log('select all')
         if(this.state.selectedAll) {
             this.setState({
                 selectedRows: [],
@@ -93,9 +88,10 @@ class DataTable extends React.PureComponent<Props, State> {
             const ch: any = !Array.isArray(children) ? [children] : children
 
             if(Array.isArray(ch)) {
-                return ch.filter(o => o).map(obj => {
+                return ch.filter(o => o).map((obj,index) => {
                     return React.cloneElement(obj, {
                         ...obj.props,
+                        key: index,
                         actions: this.props.bulkActions,
                         labels: this.props.labels,
                         selectedAll: this.state.selectedAll,
@@ -140,16 +136,16 @@ class DataTable extends React.PureComponent<Props, State> {
                     return (<CssMTextFilter
                                 className="m-text-filter"
                                 type="search"
-                                onClear={() => obj.action({currentTarget: {value: "" }})}
-                                input={{ onKeyUp: (evt) => { obj.action(evt) } }}
-                                labels={{placeholder: obj.label }}
+                                onKeyUp={(evt) => obj.action(evt.target.value) }
+                                placeholder={obj.label}
                                 key={'textfilter_'+obj.label}
                             />)
                 case "checkbox":
                     return (<CssMCheckboxFilter
                                 className="m-checkbox-filter"
-                                input={{ onChange: (evt) => { obj.action(evt) }, value: obj.value }}
-                                labels={{main: obj.label }}
+                                onChange={(evt) => obj.action(evt) }
+                                value={obj.value}
+                                label={obj.label}
                                 key={'checkbox_'+obj.label}
                             />)
             }
@@ -185,6 +181,7 @@ const CssTable = cxs("table")({
 
 CssTable.propTypes = {
     s: PropTypes.any,
+    onRowSelected: PropTypes.any,
 }
 
 

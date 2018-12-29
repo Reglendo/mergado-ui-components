@@ -16,14 +16,19 @@ interface Props extends IField {
 interface State {
 }
 
-export class Select extends React.PureComponent<Props, State> {
-
-    constructor(props) {
-      super(props)
-
-    }
+export class Select extends React.Component<Props, State> {
 
     protected readonly name = prefix + "select";
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value
+        ) {
+            return true
+        }
+        return false
+    }
+
 
     onChange = e => {
         const value = e.filter(o => o).join('|')
@@ -40,6 +45,7 @@ export class Select extends React.PureComponent<Props, State> {
 
     public render() {
         const {onChange, label, placeholder, multiple, invalid, name, ...props} = this.props
+        console.log('render select', this.props.name)
         return (
             <Field {...this.props} name={this.name}>
                 <Div position="relative">

@@ -48,12 +48,11 @@ class DataRow extends React.PureComponent<Props, State> {
                     {actions.length > 0 &&
                         <DataCell className="m-actions-cell">
                             <Checkbox
-                                className="m-actions-checkbox"
-                                input={{ "onChange": evt => this.props.handleSelectRow(dataId),
-                                         "checked": this.props.selectedRows.indexOf(dataId) !== -1,
-                                         "data-id": dataId,
-                                         "className": "m-bulk-action-item",
-                                      }} />
+                                className="m-bulk-action-item"
+                                onChange={evt => this.props.handleSelectRow(dataId)}
+                                checked={this.props.selectedRows.indexOf(dataId) !== -1}
+                                dataId={dataId}
+                            />
                         </DataCell>
                     }
                     {this.props.children}

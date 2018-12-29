@@ -6,89 +6,93 @@ import * as Color from "color"
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
-import {Input} from "@reglendo/light-form/dist/es"
 import PropTypes from "prop-types"
 import {prefix,form} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
+import {Field, IField} from "../Field"
 import Button from "../Button"
+import InputContainer from "../Field/InputContainer"
 
-export interface Props extends IFieldProps {
+export interface Props extends IField {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file" | "time"
-    onClear?: Function
-    change?: Function
+    min?: number | string
+    max?: number | string
+    step?: number | string
 }
 
 interface State {
     passwordVisible: boolean
 }
 
-class TextInput extends React.PureComponent<Props, State> {
-    protected _inputRef = null
+export class TextInput extends React.Component<Props, State> {
+
     protected readonly name = prefix + "textinput"
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
-        type: "text",
+
+    state = {
+        passwordVisible: false,
     }
 
-    public constructor(props) {
-        super(props)
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.props.value !== nextProps.value ||
+            this.state.passwordVisible !== nextState.passwordVisible) {
+            return true
+        }
+        return false
+    }
 
-        this.state = {
-            passwordVisible: false,
+
+    handleChange = (evt) => {
+        if(this.props.setValue) {
+            this.props.setValue(evt.target.value);
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(evt.target.value);
         }
     }
+
+    handleClear = () => {
+        if(this.props.onClear) {
+            this.props.onClear()
+        } else
+        if(this.props.setValue) {
+            this.props.setValue("");
+        } else
+        if(this.props.onChange) {
+            this.props.onChange("");
+        }
+    }
+
+    showPassword = () => this.setState({ passwordVisible: true })
+    hidePassword = () => this.setState({ passwordVisible: false })
 
     public render() {
-        const { type, meta, input, ...p } = this.props
-        const {children, style, className, ...props} = this.props
-        const inputProps: any = this.props.input
-        if(type === "file") {
-            delete inputProps.value
-        }
-        const isInvalid = meta.invalid && (meta.dirty || meta.touched)
-        const Element = props.name ? CssLightInput : CssInput
-        const elProps = {...props}
-        delete elProps.input
-        delete elProps.meta
-        delete elProps.group
-        delete elProps.labels
+        console.log('render', this.props.name)
+        const { value, invalid, placeholder, children, style, className, ...props} = this.props
+        const type = this.props.type ? this.props.type : "text"
+        const isInvalid = invalid
         return (
             <Field {...props} className={`${this.name} ${className || ""}`} s={style} name={props.name}>
                 <Div className="m-textinput-wrapper" position="relative">
-                <Element
-                    {...(!props.name && inputProps)}
-                    {...elProps}
-                    value={elProps.value || ''}
-                    placeholder={this.props.labels.placeholder || this.props.placeholder}
-                    ref={"input"}
+                <CssInput
+                    {...props}
+                    value={value || ''}
+                    onChange={this.handleChange}
+                    placeholder={placeholder}
                     type={type === "search" || (type === "password" && this.state.passwordVisible)
-                                                ? "text" : props.type}
+                                                ? "text" : type}
                     aria-invalid={isInvalid ? 1 : 0}
                     className={`m-textinput-input m-textinput-${type}`}
                 />
                 {type === "password" && this.state.passwordVisible === false &&
                     <CssButtonEye className="m-openedeye" icon={<IconEye />}
                             type={"void"}  color="nocolor" size="tiny"
-                            onClick={() => this.setState({ passwordVisible: true })} />
+                            onClick={this.showPassword} />
                 }
                 {type === "password" && this.state.passwordVisible === true &&
                     <CssButtonEye className="m-closedeye" icon={<IconEyeSlash />}
                             type={"void"}  color="nocolor" size="tiny"
-                            onClick={() => this.setState({ passwordVisible: false })} />
-                }{type === "search" &&
-                    <CssButtonClose className="m-clear" icon={<IconClose />}
-                                type={"void"} color={"nocolor"} size="tiny"
-                                onClick={() => {
-                                            const input: any = this.refs.input
-                                            this.props.onClear && this.props.onClear()
-                                            if(input && input.getDOMNode !== undefined ) {
-                                                input.getDOMNode().value = ""
-                                            }
-                                            inputProps.value = ""
-                                            this.props.change ? this.props.change(inputProps.name, "") : true
-
-                                 }}
-                    />
+                            onClick={this.hidePassword} />
+                }{(type === "search" || props.onClear) &&
+                    <button className="react-select-item-clear" onClick={this.handleClear} />
                 }
                 </Div>
             </Field>
@@ -146,7 +150,6 @@ export const stylesProps = (props) => {
 }
 
 const CssInput = css("input")(styles,stylesProps)
-const CssLightInput = css(Input)(styles,stylesProps)
 
 const CssButtonEye = css(Button)({
     right: "5px",
@@ -167,6 +170,8 @@ CssButtonClose.propTypes = {
 CssInput.propTypes = {
     onClear: PropTypes.any,
     setValue: PropTypes.any,
+    items: PropTypes.any,
 }
 
-export default TextInput
+export default InputContainer(TextInput)
+

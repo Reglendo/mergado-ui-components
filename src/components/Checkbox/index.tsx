@@ -4,34 +4,51 @@ import css from "@reglendo/cxs/component"
 import Span from "../Span"
 
 import {prefix,form} from "../../config"
-import {Field, IFieldProps, defaultFieldProps} from "../Field"
-import {Input as LightInput} from "@reglendo/light-form/dist/es"
+import {Field, IField, } from "../Field"
+import InputContainer from "../Field/InputContainer"
 import Div from "../Div"
 import PropTypes from "prop-types"
 
-export interface Props extends IFieldProps {
+export interface Props extends IField {
+    checked?: boolean
     halfway?: boolean
+    dataId?: string | number
 }
 
-class Checkbox extends React.PureComponent<Props, {}> {
+export class Checkbox extends React.Component<Props, {}> {
     protected readonly name = prefix + "input-checkbox"
 
-    public static defaultProps: Props = {
-        ...defaultFieldProps,
+    shouldComponentUpdate(nextProps, nextState) {
+        if(
+            this.props.value !== nextProps.value ||
+            this.props.checked !== nextProps.checked
+        ) {
+            return true
+        }
+        return false
+    }
+
+    handleChange = (evt) => {
+        const value = evt.target ? evt.target.checked : evt
+        if(this.props.setValue) {
+            this.props.setValue(value ? 1 : 0)
+        } else
+        if(this.props.onChange) {
+            this.props.onChange(value ? 1 : 0)
+        }
     }
 
     protected renderLabel() {
-        const { input, labels,...props } = this.props
-        const label = this.props.label ? this.props.label : labels.main
-        const isInvalid = this.props.meta.invalid && (this.props.meta.dirty || this.props.meta.touched)
-        const Element = props.name ? StyledLightInput : Input
+        const { label, dataId, invalid, value, checked, setValue, ...props } = this.props
+        const isInvalid = invalid
         return <Label className={`m-label ${isInvalid ? `m-invalid` : ""}`}>
                     <Div className="m-element-wrapper" lineHeight={"16px"} position="relative" display="inline-block" verticalAlign="middle">
-                        <Element
+                        <Input
                             className={`m-item`}
                             {...props}
-                            {...(!props.name && { checked: input.value })}
-                            {...(!props.name && input)}
+                            data-id={dataId}
+                            onChange={this.handleChange}
+                            checked={checked !== undefined ? checked : !!value}
                             type="checkbox"
                             s={{display: "none !important"}}
                             />
@@ -45,6 +62,7 @@ class Checkbox extends React.PureComponent<Props, {}> {
     }
 
     public render() {
+        console.log('render checkbox',this.props.name)
         return <Field className={"muk-checkbox"} {...this.props} s={{ marginBottom: 0, padding: 0, ...this.props.style }}
                 label={this.renderLabel()} />
     }
@@ -80,7 +98,6 @@ const stylesProps =  (props) => {
 }
 
 const Input = css("input")(styles , stylesProps)
-const StyledLightInput = css(LightInput)(styles , stylesProps)
 
 export const StyledInput = css("span")({
     display: "inline-block",
@@ -120,11 +137,5 @@ Input.propTypes = {
     meta: PropTypes.any,
     s: PropTypes.any,
 }
-StyledLightInput.propTypes = {
-    label: PropTypes.any,
-    group: PropTypes.any,
-    meta: PropTypes.any,
-    s: PropTypes.any,
-}
 
-export default Checkbox
+export default InputContainer(Checkbox)
