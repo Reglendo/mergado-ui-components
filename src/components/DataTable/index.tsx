@@ -136,15 +136,16 @@ class DataTable extends React.PureComponent<Props, State> {
                     return (<CssMTextFilter
                                 className="m-text-filter"
                                 type="search"
-                                onKeyUp={(evt) => obj.action(evt.target.value) }
+                                value={obj.value}
+                                onChange={obj.action}
                                 placeholder={obj.label}
                                 key={'textfilter_'+obj.label}
                             />)
                 case "checkbox":
                     return (<CssMCheckboxFilter
                                 className="m-checkbox-filter"
-                                onChange={(evt) => obj.action(evt) }
-                                value={obj.value}
+                                onChange={obj.action}
+                                checked={obj.value}
                                 label={obj.label}
                                 key={'checkbox_'+obj.label}
                             />)
