@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 
-import Radio from "../Radio"
+import Radio from "../Radio/input"
 import Checkbox from "../Checkbox"
 
 import LittleStatus from "../LittleStatus"
@@ -32,35 +32,27 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
             checked={checked}
             key={option.value}
             data-link={option.link !== undefined}
-            onClick={!option.subheader && onClick}>
-            {showInput &&
-                <Checkbox
-                        checked={checked}
-                        onChange={null}
-                        key="input"
-                        style={{ float: "left", margin: "10px", pointerEvents: "none", }}
-                    />
-                // <span>
-                // {singleChoice ?
-                //     <Radio
-                //         items={[
-                //             {value: option.value, label: ""}
-                //         ]}
-                //         input={{
-                //             value: checked ? option.value : null,
-                //             onChange: onClick,
-                //         }}
-                //         key="input"
-                //     />
-                // :
-                //     <Checkbox
-                //         checked={checked}
-                //         onChange={null}
-                //         key="input"
-                //         style={{ pointerEvents: "none", paddingRight: "5px" }}
-                //     />
-                // }
-                // </span>
+            onClick={!option.subheader && !option.disabled ? onClick : undefined}>
+            {showInput && !option.subheader && !option.disabled &&
+                <>
+                    {!singleChoice ?
+                        <Checkbox
+                                checked={checked}
+                                onChange={undefined}
+                                key="input"
+                                style={{ float: "left", margin: "10px", pointerEvents: "none", }}
+                            />
+                        :
+                        <Radio
+                                value=""
+                                checked={checked}
+                                label={""}
+                                onChange={undefined}
+                                key="input"
+                                style={{ float: "left", margin: "0px", marginRight: "-10px", pointerEvents: "none", }}
+                            />
+                    }
+                </>
             }
             <label>
             <QueryItemLabel name={name} option={option} showInput={showInput}/>
@@ -134,10 +126,10 @@ export const Li = css("li")({
     let subheader = {}
     if(props["data-subheader"]) {
         subheader = {
-            background: props.theme.decoration,
+            background: props.theme.blue,
             color: "white",
-            padding: "5px",
             fontWeight: "bold",
+            fontSize: "80%",
             pointerEvents: "none",
         }
     }

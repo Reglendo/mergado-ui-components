@@ -31,7 +31,7 @@ interface State {
     filter: string
 }
 
-export interface Query {
+export type Query = {
     value: number
     label: string
     product_count?: number

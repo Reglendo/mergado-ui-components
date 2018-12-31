@@ -12,12 +12,13 @@ interface IInputProps {
     label: string | JSX.Element
     onChange: (evt: any) => void
     className?: string
+    style?: any
 }
 
 const RadioInput: React.SFC<IInputProps> = ({ value, checked, label,
                                              onChange, ...props}) => {
 
-    return <CssLabel className={`muk-radio ${props.className || ""}`} key={value}>
+    return <CssLabel s={props.style} className={`muk-radio ${props.className || ""}`} key={value}>
                     <CssElement
                         value={value}
                         onChange={onChange}
@@ -43,6 +44,7 @@ const CssLabel = css("label")({
 }, (props) => {
     const theme: any = props.theme
     return {
+        ...props.s,
         ":hover .m-radio-input": {
             borderColor: theme.blue,
         },
