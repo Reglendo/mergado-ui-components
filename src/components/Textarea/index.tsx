@@ -34,7 +34,7 @@ export class Textarea extends React.Component<Props, {}> {
 
     public render() {
         const { name, label, setValue, invalid, height, children, ...props } = this.props
-        console.log('render textarea', this.props.name)
+        console.debug('render textarea', this.props.name)
         return (
             <Field {...this.props} name={this.name}>
                 <StyledTextarea

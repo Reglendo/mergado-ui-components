@@ -62,7 +62,7 @@ export class Checkbox extends React.Component<Props, {}> {
     }
 
     public render() {
-        console.log('render checkbox',this.props.name)
+        console.debug('render checkbox',this.props.name)
         return <Field className={"muk-checkbox"} {...this.props} s={{ marginBottom: 0, padding: 0, ...this.props.style }}
                 label={this.renderLabel()} />
     }

@@ -67,6 +67,7 @@ export class ColorPicker extends React.Component<Props, State> {
             <StyledField {...props} name={this.name}>
                     <div onClick={this.handleClick}>
                         <TextInput {...props}
+                            label={label}
                             onChange={this.handleChange}
                             style={{" .m-textinput-input": {background: background, color: textColor }}} />
                     </div>

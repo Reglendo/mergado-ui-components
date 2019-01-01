@@ -89,7 +89,7 @@ export class Toggler extends React.Component<Props, {}> {
     }
 
     public render() {
-        console.log('render toggle', this.props.name)
+        console.debug('render toggle', this.props.name)
         return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }}
                 label={this.renderLabel()} />
     }

@@ -83,7 +83,7 @@ export class InputGroupV extends React.Component<Props,State> {
                             })
         const isInvalid = invalid
         const value: any = this.props.value
-        console.log('render inputpropsv', this.props.name)
+        console.debug('render inputpropsv', this.props.name)
         return (
             <StyledField {...props} className={`${this.name}__queries`}>
                 {!withoutFilter &&

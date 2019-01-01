@@ -45,7 +45,7 @@ export class Select extends React.Component<Props, State> {
 
     public render() {
         const {onChange, label, placeholder, multiple, invalid, name, ...props} = this.props
-        console.log('render select', this.props.name)
+        console.debug('render select', this.props.name)
         const value = typeof this.props.value  === "string" ? this.props.value.split("|") : this.props.value
         return (
             <Field {...this.props} name={this.name}>

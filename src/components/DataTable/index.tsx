@@ -51,7 +51,6 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     protected handleSelectAll() {
-        console.log('select all')
         if(this.state.selectedAll) {
             this.setState({
                 selectedRows: [],

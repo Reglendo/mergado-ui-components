@@ -65,7 +65,7 @@ export class TextInput extends React.Component<Props, State> {
     hidePassword = () => this.setState({ passwordVisible: false })
 
     public render() {
-        console.log('render', this.props.name)
+        console.debug('render textinput', this.props.name)
         const { value, invalid, placeholder, children, style, className, ...props} = this.props
         const type = this.props.type ? this.props.type : "text"
         const isInvalid = invalid
