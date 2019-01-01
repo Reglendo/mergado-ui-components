@@ -8,7 +8,7 @@ interface Props {
     children: any
     cols?: string
     rows?: string
-    gap?: number
+    gap?: number | string
     colgap?: number
     rowgap?: number
     align?: "start" | "end" | "center" | "stretch"
@@ -34,7 +34,7 @@ const CssGrid = css("div")({
         display: props.inline ? "inline-grid" : "grid",
         gridTemplateColumns: props.cols ? props.cols : "auto",
         gridTemplateRows: props.rows ? props.rows : "auto",
-        gridGap: `${props.rowgap ? props.rowgap : props.gap} ${props.colgap ? props.colgap : props.gap}`,
+        gridGap: props.gap ? props.gap : `${props.rowgap ? props.rowgap : ''} ${props.colgap ? props.colgap : ''}`,
         justifyItems: props.align ? props.align : "stretch",
         alignItems: props.valign ? props.valign : "stretch",
         gridAutoFlow: props.autoFlow ? props.autoFlow : "row",

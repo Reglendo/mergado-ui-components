@@ -46,6 +46,7 @@ export class Select extends React.Component<Props, State> {
     public render() {
         const {onChange, label, placeholder, multiple, invalid, name, ...props} = this.props
         console.log('render select', this.props.name)
+        const value = typeof this.props.value  === "string" ? this.props.value.split("|") : this.props.value
         return (
             <Field {...this.props} name={this.name}>
                 <Div position="relative">
@@ -59,7 +60,7 @@ export class Select extends React.Component<Props, State> {
                            searchText={""}
                            {...props}
                            multiple={multiple}
-                           value={this.props.value.split("|")}
+                           value={value}
                            onChange={this.onChange}
                            options={props.options.map(this.renderOption)}
                            aria-invalid={invalid ? 1 : 0} />

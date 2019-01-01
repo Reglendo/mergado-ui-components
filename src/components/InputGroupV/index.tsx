@@ -42,7 +42,7 @@ export type Query = {
 
 export class InputGroupV extends React.Component<Props,State> {
 
-    protected readonly name = prefix + "checkbox_container";
+    protected readonly name = prefix + "inputgroupv";
 
     state = {
         filter: "",

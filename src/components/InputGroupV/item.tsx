@@ -23,8 +23,8 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                                                           singleChoice, showInput,
                                                           ...props}) => {
     return (
-        <Li className={`${name}__item ${index >= 0 ? `${name}__item--active` : ""}
-                        ${option.disabled ? `${name}__item--disabled` : ""}
+        <Li className={`muk-inputgroupv__item ${index >= 0 ? `muk-inputgroupv__item--active` : ""}
+                        ${option.disabled ? `muk-inputgroupv__item--disabled` : ""}
                         ${className}
             `}
             data-subheader={option.subheader}
@@ -77,10 +77,10 @@ export const QueryItemLabel: React.SFC<IQueryItemLabelProps> = ({ name, option,
     }
 
     return (
-        <Label className={`${name}__label ${className}`} key="label" disabled={option.disabled}>
+        <Label className={`muk-inputgroupv__label ${className}`} key="label" disabled={option.disabled}>
             {label}
             {" "}
-            <Count className={`${name}__count`}>
+            <Count className={`muk-inputgroupv__count`}>
                 {typeof option.product_count !== "undefined" ? `(${option.product_count})` : "" }
             </Count>
             {option.active !== undefined &&

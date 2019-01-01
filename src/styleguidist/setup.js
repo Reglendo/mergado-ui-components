@@ -7,3 +7,6 @@ global.Div = Div
 import Span from '../../lib/components/Span'
 global.Span = Span
 
+
+import FieldLabel from '../../lib/components/FieldLabel'
+global.FieldLabel = FieldLabel

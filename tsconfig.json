@@ -21,10 +21,10 @@
         "src/"
     ],
     "awesomeTypescriptLoaderOptions": {
-        "useCache": true,
+        "useCache": false,
         "silent": true,
         "reportFiles": [
-            "src/**/*.{ts,tsx}"
+            "src/**/*.{js,ts,tsx}"
         ]
     }
 }

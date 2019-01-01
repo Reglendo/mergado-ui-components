@@ -3,30 +3,38 @@ import css from "@reglendo/cxs/component"
 
 import {form} from "../../config"
 import PropTypes from 'prop-types'
+import Theme from "../Theme";
 
 
 const CssBigLabel = css("h3")({
-    paddingLeft: "10px",
-    borderLeft: "5px solid hsla(43,44%,75%,.5)",
-    fontSize: "1.2em",
-    margin: "10px 0",
+    borderLeft: `10px solid ${Theme.blue}`,
+    padding: "5px",
+    paddingLeft: "15px",
+    fontSize: "1.1rem",
 })
 
+interface Props {
+    children?: any
+    bigLabel?: boolean
+    className?: string
+    [propName: string]: any
+}
 
-const LabelComponent = ({children, bigLabel, className = ""}) => {
+
+export const FieldLabel = ({children, bigLabel, className} : Props): any => {
     if(children === "" || children === null) {
-        return null
+        return false
     }
 
     return (
-            <label className={`${form}-label ${className}`}>
+            <Label className={`${form}-label ${className}`} bigLabel={bigLabel}>
                 {bigLabel ? <CssBigLabel>{children}</CssBigLabel> : children }
-            </label>
+            </Label>
         )
 }
 
 
-export const FieldLabel = css(LabelComponent)({
+const Label = css("label")({
     display: "inline-block",
     height: "25px",
     " .muk-popup-hint": {
@@ -35,16 +43,11 @@ export const FieldLabel = css(LabelComponent)({
 }, (props: any) => {
     const theme: any = props.theme
     return {
+        ...props.s,
+        height: props.bigLabel ? "50px" : "25px",
         fontSize: theme.form_label_text_size,
         fontWeight: theme.form_label_text_weight,
     }
 })
 
-FieldLabel.propTypes = {
-    meta: PropTypes.any,
-    input: PropTypes.any,
-    labels: PropTypes.any,
-    group: PropTypes.any,
-    s: PropTypes.any,
-}
 export default FieldLabel

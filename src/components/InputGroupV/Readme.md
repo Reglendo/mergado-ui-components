@@ -12,8 +12,8 @@ Example
         ]}
         name="form.inputgroupv" />
 
+    <FieldLabel bigLabel={true}>Single choice checkboxes</FieldLabel>
     <InputGroupV
-        label={"Single choice checkboxes"}
         placeholder={"Filter options"}
         showInput={true}
         singleChoice={true}

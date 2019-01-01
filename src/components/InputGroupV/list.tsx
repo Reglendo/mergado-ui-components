@@ -78,7 +78,7 @@ const Options = ({name, options, value, singleChoice, showInput, onChange}) => {
 export const QueryList: React.SFC<IQueryListProps> = ({ name, className, options, value, height,
                                                             singleChoice, showInput, activeFirst, onChange, }) => {
     return (
-        <List className={`${name}__list ${className}`} height={height}>
+        <List className={`muk-inputgroupv__list ${className}`} height={height}>
             <Options name={name}
                     options={activeFirst ? options.sort(sortOptions(value)) : options}
                     value={value}
