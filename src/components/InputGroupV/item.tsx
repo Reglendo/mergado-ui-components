@@ -37,6 +37,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                 <>
                     {!singleChoice ?
                         <Checkbox
+                                readOnly={true}
                                 checked={checked}
                                 onChange={undefined}
                                 key="input"
@@ -46,6 +47,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onC
                         <Radio
                                 value=""
                                 checked={checked}
+                                readOnly={true}
                                 label={""}
                                 onChange={undefined}
                                 key="input"

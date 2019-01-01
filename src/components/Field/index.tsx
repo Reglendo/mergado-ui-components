@@ -10,13 +10,17 @@ import FieldError from "../FieldError"
 
 export interface IField {
     name?: string
-    label?: string
+    label?: string | JSX.Element
     placeholder?: string
     value?: string
     invalid?: boolean
     style?: any
     className?: string
     id?: string
+    checked?: boolean
+
+    readOnly?: boolean
+    disabled?: boolean
 
     onChange?: (evt) => void
     onClick?: (evt) => void

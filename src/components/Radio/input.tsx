@@ -5,14 +5,16 @@ import Span from "../Span"
 
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import {StyledInput as StyledCheckbox} from "../Checkbox"
+import {IField} from "../Field"
 
-interface IInputProps {
-    value: string
-    checked: boolean
-    label: string | JSX.Element
-    onChange: (evt: any) => void
-    className?: string
-    style?: any
+
+interface IInputProps extends IField {
+    // value: string
+    // checked: boolean
+    // label: string | JSX.Element
+    // onChange: (evt: any) => void
+    // className?: string
+    // style?: any
 }
 
 const RadioInput: React.SFC<IInputProps> = ({ value, checked, label,

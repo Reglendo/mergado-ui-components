@@ -21,7 +21,7 @@ interface Props {
 }
 
 
-export const FieldLabel = ({children, bigLabel, className} : Props): any => {
+export const FieldLabel: React.SFC<Props> = ({children, bigLabel, className}): any => {
     if(children === "" || children === null) {
         return false
     }
@@ -32,6 +32,7 @@ export const FieldLabel = ({children, bigLabel, className} : Props): any => {
             </Label>
         )
 }
+
 
 
 const Label = css("label")({
@@ -49,5 +50,9 @@ const Label = css("label")({
         fontWeight: theme.form_label_text_weight,
     }
 })
+
+Label.propTypes = {
+    bigLabel: PropTypes.bool,
+}
 
 export default FieldLabel
