@@ -10,6 +10,7 @@ import {Field, IField} from "../Field"
 import PropTypes from "prop-types"
 import InputContainer from "../Field/InputContainer"
 import FieldLabel from "../FieldLabel"
+import FieldError from "../FieldError"
 
 export interface Props extends IField {
     onLabel: string | JSX.Element
@@ -50,7 +51,7 @@ export class Toggler extends React.Component<Props, {}> {
 
     protected renderLabel() {
         const { setValue, label, reverse, name, ...props } = this.props
-        const isInvalid = this.props.invalid
+        const isInvalid = this.props.invalid || this.props.error
 
         const offLabel = !props.big && <Span className={"m-offlabel"} fontSize={"16px"} margin="0 3px" verticalAlign="top">
                             {props.offLabel}{props.offLabel && ""}
@@ -60,10 +61,11 @@ export class Toggler extends React.Component<Props, {}> {
                             {props.onLabel}{props.onLabel && ""}
                         </Span>
 
-        return <Label  className={`${isInvalid ? `${form}__group--invalid` : ""}`}>
+        return <>
+                <Label className={`m-isinvalid ${isInvalid ? `m-invalid` : ""}`}>
                     {!!label && <><FieldLabel>{label}</FieldLabel><br/></>}
                     {reverse ? onLabel : offLabel}
-                    <Div className={"m-wrapper"} position="relative" display="inline-block" verticalAlign="middle">
+                    <Div className={`m-wrapper`} position="relative" display="inline-block" verticalAlign="middle">
                         <CssElement
                             {...props}
                             onChange={this.handleChange}
@@ -86,11 +88,13 @@ export class Toggler extends React.Component<Props, {}> {
                     </Div>
                     {reverse ? offLabel : onLabel}
                 </Label>
+                <FieldError error={this.props.error} className={`${form}__validation`} />
+
+            </>
     }
 
     public render() {
-        console.debug('render toggle', this.props.name)
-        return <StyledField {...this.props} style={{ margin: 0, padding: 0, ...this.props.style }}
+        return <StyledField {...this.props} invalid={false} error={null} style={this.props.style}
                 label={this.renderLabel()} />
     }
 }

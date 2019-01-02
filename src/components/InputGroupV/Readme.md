@@ -12,6 +12,32 @@ Example
         ]}
         name="form.inputgroupv" />
 
+    <InputGroupV
+        label={"Multi checkboxes"}
+        placeholder={"Filter options"}
+        showInput={true}
+        invalid={true}
+        items={[
+            {value: 1, label: "First option"},
+            {value: 2, label: "Second option"},
+            {value: 3, label: "Third option"},
+            {value: 4, label: "Fourth option"},
+        ]}
+        name="form.inputgroupv" />
+
+    <InputGroupV
+        label={"Multi checkboxes"}
+        placeholder={"Filter options"}
+        showInput={true}
+        error={"Error!"}
+        items={[
+            {value: 1, label: "First option"},
+            {value: 2, label: "Second option"},
+            {value: 3, label: "Third option"},
+            {value: 4, label: "Fourth option"},
+        ]}
+        name="form.inputgroupv" />
+
     <FieldLabel bigLabel={true}>Single choice checkboxes</FieldLabel>
     <InputGroupV
         placeholder={"Filter options"}

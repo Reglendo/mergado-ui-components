@@ -37,6 +37,7 @@ export const FieldLabel: React.SFC<Props> = ({children, bigLabel, className}): a
 
 const Label = css("label")({
     display: "inline-block",
+    width: "100%",
     height: "25px",
     " .muk-popup-hint": {
         verticalAlign: "middle",

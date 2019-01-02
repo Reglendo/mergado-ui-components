@@ -6,6 +6,10 @@ Date picker
 
     <DatePicker name="form.datepicker" label="Pick a date:" />
 
+    <DatePicker invalid={true} name="form.datepicker" label="Pick a date:" />
+
+    <DatePicker error="Error!" name="form.datepicker" label="Pick a date:" />
+
 
 Uncontrolled
 

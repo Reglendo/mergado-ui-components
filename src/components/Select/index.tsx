@@ -44,8 +44,7 @@ export class Select extends React.Component<Props, State> {
     renderOption = o => o.title ? ({ name: o.title, value: o.value}) : o
 
     public render() {
-        const {onChange, label, placeholder, multiple, invalid, name, ...props} = this.props
-        console.debug('render select', this.props.name)
+        const {onChange, label, placeholder, multiple, name, ...props} = this.props
         const value = typeof this.props.value  === "string" ? this.props.value.split("|") : this.props.value
         return (
             <Field {...this.props} name={this.name}>
@@ -63,7 +62,7 @@ export class Select extends React.Component<Props, State> {
                            value={value}
                            onChange={this.onChange}
                            options={props.options.map(this.renderOption)}
-                           aria-invalid={invalid ? 1 : 0} />
+                           aria-invalid={props.invalid || props.error ? 1 : 0} />
                     <IconChevronDown size={10}
                                      className={"icon-select-open"}
                                      />

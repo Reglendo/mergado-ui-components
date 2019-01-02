@@ -1,29 +1,26 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-
-import {prefix, form} from "../../config"
-import domOnlyProps from "../../helpers/dom-only-props"
-import Div from "../Div"
 import PropTypes from 'prop-types'
 
-const FieldErrorComponent = ({...props}) => {
-        if(props.meta && props.meta.error) {
-            return (
-                <div className={`${props.className}`}>
-                    {props.meta.error}
-                </div>
-            )
-        } else {
-            return null
-        }
+const FieldError = ({error, className, style = {}}) => {
+    if(error) {
+        return (
+            <Styled className={`${className}`} style={style}>
+                {error}
+            </Styled>
+        )
+    } else {
+        return null
+    }
 }
 
-export const FieldError = css(FieldErrorComponent)({
+export const Styled = css("div")({
     color: "white",
     fontSize: "12px",
     zIndex: 1,
     padding: "1px 5px",
     position: "absolute",
+    fontWeight: "normal",
     top: "100%",
 },(props: any) => {
     const theme: any = props.theme
@@ -34,10 +31,8 @@ export const FieldError = css(FieldErrorComponent)({
 })
 
 FieldError.propTypes = {
-    input: PropTypes.any,
-    labels: PropTypes.any,
-    group: PropTypes.any,
-    s: PropTypes.any,
+    error: PropTypes.string,
+    className: PropTypes.string,
 }
 
 export default FieldError

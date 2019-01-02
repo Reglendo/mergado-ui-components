@@ -34,13 +34,12 @@ export class Textarea extends React.Component<Props, {}> {
 
     public render() {
         const { name, label, setValue, invalid, height, children, ...props } = this.props
-        console.debug('render textarea', this.props.name)
         return (
             <Field {...this.props} name={this.name}>
                 <StyledTextarea
                     {...props}
                     height={height || '100'}
-                    aria-invalid={invalid ? 1 : 0}
+                    aria-invalid={invalid || this.props.error ? 1 : 0}
                     className={`${this.name}__input
                                 ${form}__input--text
                                 ${form}__input--textarea

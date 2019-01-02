@@ -65,12 +65,11 @@ export class TextInput extends React.Component<Props, State> {
     hidePassword = () => this.setState({ passwordVisible: false })
 
     public render() {
-        console.debug('render textinput', this.props.name)
-        const { value, invalid, placeholder, children, style, className, ...props} = this.props
+        const { value, placeholder, children, style, className, ...props} = this.props
         const type = this.props.type ? this.props.type : "text"
-        const isInvalid = invalid
+        const isInvalid = props.invalid || props.error
         return (
-            <Field {...props} className={`${this.name} ${className || ""}`} s={style} name={props.name}>
+            <Field {...props} className={`${this.name} ${className || ""}`} style={style} name={props.name}>
                 <Div className="m-textinput-wrapper" position="relative">
                 <CssInput
                     {...props}
@@ -137,14 +136,15 @@ export const stylesProps = (props) => {
     return {
         ...disabled,
         height: props.height ? props.height + "px" : "40px",
-        border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
+        border: theme.input_border,
+        borderWidth: props['aria-invalid'] ? "0px !important" : "1px",
         borderRadius: theme.radius,
         ...type,
         "&:active": {
-            border: `${theme.input_border_active} !important`,
+            border: `${theme.input_border_active}`,
         },
         "&:focus": {
-            border: `${theme.input_border_active} !important`,
+            border: `${theme.input_border_active}`,
         },
     }
 }

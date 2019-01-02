@@ -74,7 +74,6 @@ export class InputGroupH extends React.Component<Props, {}> {
 
     public render() {
         const {children, ...props} = this.props
-        console.debug('render inputgrouph', this.props.name)
         return (
             <Field {...props} name={this.name}>
                 <Grid style={{gridAutoFlow: "column"}}>

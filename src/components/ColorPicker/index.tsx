@@ -56,7 +56,7 @@ export class ColorPicker extends React.Component<Props, State> {
 
     public render() {
         const { displayColorPicker } = this.state
-        const { label, name, ...props} = this.props
+        const { label, name, error, invalid, ...props} = this.props
         const background = this.props.value || "#ffffff"
         let textColor = "#333"
         try {
@@ -68,6 +68,8 @@ export class ColorPicker extends React.Component<Props, State> {
                     <div onClick={this.handleClick}>
                         <TextInput {...props}
                             label={label}
+                            error={error}
+                            invalid={invalid}
                             onChange={this.handleChange}
                             style={{" .m-textinput-input": {background: background, color: textColor }}} />
                     </div>

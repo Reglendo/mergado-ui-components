@@ -10,17 +10,22 @@ import FieldError from "../FieldError"
 
 export interface IField {
     name?: string
-    label?: string | JSX.Element
-    placeholder?: string
     value?: string
     invalid?: boolean
+    error?: string
     style?: any
     className?: string
     id?: string
     checked?: boolean
 
+    label?: string | JSX.Element
+    placeholder?: string
+    title?: string
+    bigLabel?: boolean
+
     readOnly?: boolean
     disabled?: boolean
+    required?: boolean
 
     onChange?: (evt) => void
     onClick?: (evt) => void
@@ -28,6 +33,7 @@ export interface IField {
     setValue?: (value) => void
     formatter?: (value) => any
 
+    renderError?: () => any
 }
 
 export interface IFieldProps {
@@ -81,91 +87,41 @@ export interface IFieldProps {
 }
 
 export const defaultFieldProps: IFieldProps = {
-        group: {
-            className: "",
-            style: {},
-            bigLabel: false,
-        },
-        meta: {
-            active: false,
-            asyncValidating: false,
-            autofilled: false,
-            dirty: false,
-            dispatch: Function,
-            error: "",
-            form: "",
-            invalid: false,
-            pristine: true,
-            submitting: false,
-            submitFailed: false,
-            touched: false,
-            valid: true,
-            visited: false,
-            warning: "",
-        },
-        input: {
-            className: "",
-            name: "",
-            value: "",
-            checked: false,
-            onBlur: (value: any) => {},
-            onChange: (value: any) => {},
-            onDragStart: (value: any) => {},
-            onDrop: (value: any) => {},
-            onFocus: (value: any) => {},
-            onKeyDown: (value: any) => {},
-            onKeyUp: (value: any) => {},
-            onClick: (value: any) => {},
-        },
-        labels: {
-            main: "",
-            invalid: "",
-            title: "",
-            placeholder: "",
-        },
+
 }
 
-const FieldComponent: React.SFC<IFieldProps> = (props) => {
-
-    const { meta, input, labels, group, style, ...others } = props
-    const isInvalid = !!props.meta.error || props.meta.invalid || props.invalid
+export const Field: React.SFC<IField> = (props) => {
+    const { style, error, renderError, ...others } = props
+    const isInvalid = props.invalid || error
     return (
-        <Div className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
-            title={props.labels.title}
-            {...style}>
-                <FieldError meta={meta} className={`${form}__validation`} />
-                {(props.label || others.label || labels.main) &&
-                    <FieldLabel name={props.name} bigLabel={group.bigLabel}>
-                        {props.label ? props.label : (others.label ? others.label : labels.main)}
+        <FieldWrapper className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
+            title={props.title}
+            name={props.name}
+            s={style}>
+                <FieldError error={error} className={`${form}__validation`} />
+                {props.label &&
+                    <FieldLabel name={props.name} bigLabel={props.bigLabel}>
+                        {props.label}
                     </FieldLabel>
                 }
                 <div className={`m-isinvalid ${isInvalid ? `m-invalid` : ""}`}>
                     {props.children}
                 </div>
-        </Div>
+        </FieldWrapper>
     )
 }
 
-FieldComponent.defaultProps = defaultFieldProps
-
-FieldComponent.propTypes = {
-    input: PropTypes.any,
-    labels: PropTypes.any,
-    group: PropTypes.any,
-    meta: PropTypes.any,
+Field.propTypes = {
     className: PropTypes.string,
 }
 
-export const Field = css(FieldComponent)({
+const FieldWrapper = css("div")({
     position: "relative",
 
-    ".muk-checkbox .m-isinvalid.m-invalid": {
-        borderColor: "transparent",
-    },
 },(props: any) => {
     const theme: any = props.theme
     let styles = {}
-    if((props.input && props.input.name) || props.name) {
+    if(props.name) {
         styles = {
             marginBottom: "30px",
             paddingRight: "10px",
@@ -174,19 +130,22 @@ export const Field = css(FieldComponent)({
 
     return {
         ...styles,
-        "& .m-invalid": {
-            borderRadius: `${parseInt(theme.radius,10) + 2}px`,
-            border: `1px solid ${theme.red}`,
+        "& .m-isinvalid": {
+            borderRadius: `${parseInt(theme.radius,10)+2}px`,
+            border: `2px solid transparent`,
+        },
+
+        "& .m-isinvalid.m-invalid": {
+            borderColor: `${theme.red}`,
         },
         ...props.s,
     }
 })
 
 
-Field.propTypes = {
-    input: PropTypes.any,
-    group: PropTypes.any,
+FieldWrapper.propTypes = {
     s: PropTypes.any,
+    name: PropTypes.string,
 }
 
 

@@ -30,7 +30,6 @@ const RadioInput: React.SFC<IInputProps> = ({ value, checked, label, singleChoic
                     />
                 <Button
                     secondary={true}
-                    style={{display: "block"}}
                     className={"m-button"}
                     type="void">
                     {!hideInput &&
@@ -62,6 +61,7 @@ const CssBigLabel = css("label")({
         margin: "0 0 0 -1px",
         lineHeight: "16px",
         padding: "16px",
+        display: "block",
     },
     " .m-label-wrapper": {
         fontWeight: "normal",

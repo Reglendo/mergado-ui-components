@@ -35,7 +35,6 @@ export class Button extends React.PureComponent<Props, {}> {
         if(props.type !== "submit") {
             return <CssUniversalButton {...this.props} s={style} name={this.name} />
         }
-        console.debug("render button")
         return (
             <CssField className={`m-field  m-${props.color} ${!label ? `m-notext`:``} ${props.size ? `m-${props.size}` : ``} ${this.name}--${props.type} ${props.disabled ? `m-disabled`:``}`}
                 {...this.props} name={this.name}

@@ -106,7 +106,6 @@ export class DatePicker extends React.Component<Props, State> {
         const { label, name, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
         const {showPicker} = this.state
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
-        console.debug('render datepicker', this.props.name)
         return(
             <StyledField>
                 <div>

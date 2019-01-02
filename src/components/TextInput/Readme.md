@@ -16,4 +16,7 @@ Example types
 Uncontrolled
 
     <TextInput label="Text:" value="Test" onChange={value => alert(value)} />
+    <TextInput invalid={true} label="Text:" placeholder="Text" />
+    <TextInput error={"Error!"} label="Text:" placeholder="Text" />
+
 

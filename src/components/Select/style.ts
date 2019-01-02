@@ -46,15 +46,15 @@ export const stylesProps = (props) => {
             pointerEvents: "none",
         }
     }
-
     return {
+        border: theme.input_border,
+        borderWidth: props['aria-invalid'] ? "0px !important" : "1px",
         borderRadius: theme.radius,
-        border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
-        ":active": {
-            border: theme.input_border_active,
+        "&:active": {
+            border: `${theme.input_border_active}`,
         },
-        ":focus": {
-            border: theme.input_border_active,
+        "&:focus": {
+            border: `${theme.input_border_active}`,
         },
         ...disabled,
     }

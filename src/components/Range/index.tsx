@@ -42,7 +42,7 @@ export class Range extends React.Component<Props,State> {
         }
     }
     public render() {
-        const { label, name, setValue, ...props } = this.props
+        const { label, name, setValue, error, invalid, ...props } = this.props
 
         return (
             <StyledField {...props} name={this.name}>
@@ -54,6 +54,7 @@ export class Range extends React.Component<Props,State> {
                 }
                     <GridCell>
                     <TextInput
+                        error={error} invalid={invalid}
                         {...props}
                         onChange={this.handleChange}
                     />

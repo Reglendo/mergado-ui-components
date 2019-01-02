@@ -11,4 +11,6 @@ Example
 Uncontrolled
 
     <Checkbox checked={true} onChange={(value) => alert(value) } label="Typical checkbox" />
+    <Checkbox error="Error!" checked={true} onChange={(value) => alert(value) } label="Typical checkbox" />
+
 
