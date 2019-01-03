@@ -46,10 +46,16 @@ const Options = ({name, options, value, singleChoice, showInput, onChange}) => {
         }
     })
 
+
     return options
         .map(option => {
-            const index = value.indexOf(option.value);
             const handler = () => {
+                if(singleChoice) {
+                    const selected = option.value
+                    onChange(selected)
+                    return
+                }
+                const index = value.indexOf(option.value);
                 let selected = [...value]
                 if (index < 0) { // wasn't selected
                     if( allProductsOption !== null && value.indexOf(allProductsOption) > -1 ) {
@@ -64,9 +70,11 @@ const Options = ({name, options, value, singleChoice, showInput, onChange}) => {
                 onChange(selected)
             }
 
-            return <QueryItem name={name} option={option}
-                            index={index} onClick={handler}
-                            checked={value.indexOf(option.value) > -1}
+            const checked = singleChoice ? value == option.value : value.indexOf(option.value) > -1
+            return <QueryItem name={name}
+                            option={option}
+                            onClick={handler}
+                            checked={checked}
                             singleChoice={singleChoice}
                             value={value}
                             showInput={showInput}

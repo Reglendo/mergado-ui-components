@@ -1,9 +1,26 @@
 Example
 
+
+    <InputGroupV
+        label={"Single radio"}
+        placeholder={"Filter options"}
+        showInput={true}
+        singleChoice={true}
+        onChange={value => console.log(value)}
+        items={[
+            {value: 1, label: "First option"},
+            {value: 2, label: "Second option"},
+            {value: 3, label: "Third option"},
+            {value: 4, label: "Fourth option"},
+        ]}
+        name="form.inputgroupvsingle" />
+
+
     <InputGroupV
         label={"Multi checkboxes"}
         placeholder={"Filter options"}
         showInput={true}
+        onChange={value => console.log(value)}
         items={[
             {value: 1, label: "First option"},
             {value: 2, label: "Second option"},

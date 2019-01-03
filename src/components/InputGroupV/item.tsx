@@ -10,7 +10,6 @@ interface IQueryItemProps {
     name: string
     option: any
     value: string
-    index: number
     onClick: (evt: any) => void
     checked: boolean
     singleChoice: boolean
@@ -18,12 +17,12 @@ interface IQueryItemProps {
     className?: string
 }
 
-export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, index, onClick,
+export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, onClick,
                                                           checked, className,
                                                           singleChoice, showInput,
                                                           ...props}) => {
     return (
-        <Li className={`muk-inputgroupv__item ${index >= 0 ? `muk-inputgroupv__item--active` : ""}
+        <Li className={`muk-inputgroupv__item ${checked ? `muk-inputgroupv__item--active` : ""}
                         ${option.disabled ? `muk-inputgroupv__item--disabled` : ""}
                         ${className}
             `}

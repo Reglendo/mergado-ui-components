@@ -46,23 +46,29 @@ export class InputGroupH extends React.Component<Props, {}> {
             return false
         }
         return items.map((obj: IItem) => {
-            const index = value.indexOf(obj.value);
             const handler = () => {
+                if(singleChoice) {
+                    const selected = obj.value
+                    this.handleChange(selected)
+                    return
+                }
+                const index = value.indexOf(obj.value);
                 let selected = [...this.props.value]
                 if (index < 0) { // wasn't selected
                     // select item
-                    selected = singleChoice ? [obj.value] : selected.concat(obj.value)
+                    selected = selected.concat(obj.value)
                 } else {
                     // unselect item
                     selected.splice(index, 1)
                 }
                 this.handleChange(selected)
             }
+            const checked = singleChoice ? value == obj.value : value.indexOf(obj.value) > -1
             return (
                 <GridCell key={obj.value}>
                 <RadioInput label={obj.label}
                             value={obj.value}
-                            checked={value.indexOf(obj.value) > -1}
+                            checked={checked}
                             onChange={handler}
                             hideInput={hideInput}
                             singleChoice={singleChoice}

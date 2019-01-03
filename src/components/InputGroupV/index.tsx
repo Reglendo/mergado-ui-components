@@ -67,7 +67,7 @@ export class InputGroupV extends React.Component<Props,State> {
 
         if(this.props.setValue) {
             this.props.setValue(value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value)
         }
