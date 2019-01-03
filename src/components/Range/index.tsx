@@ -56,6 +56,7 @@ export class Range extends React.Component<Props,State> {
                     <TextInput
                         error={error} invalid={invalid}
                         {...props}
+                        type="number"
                         onChange={this.handleChange}
                     />
                     </GridCell>

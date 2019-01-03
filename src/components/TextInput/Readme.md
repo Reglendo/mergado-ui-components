@@ -1,6 +1,6 @@
 Example types
 
-    <TextInput label="Text:" placeholder="Text" name="form.textinput" />
+    <TextInput label="Text:" onChange={(e) => console.log(e)} placeholder="Text" name="form.textinput" />
     <TextInput label="Number:" type="number" placeholder="Number" name="form.numberinput" />
     <TextInput label="Password:" type="password" placeholder="Password" name="form.passwordinput" />
     <TextInput label="Email:"  type="email" placeholder="Email" name="form.emailinput" />
