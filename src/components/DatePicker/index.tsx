@@ -50,6 +50,7 @@ export class DatePicker extends React.Component<Props, State> {
     shouldComponentUpdate(nextProps, nextState) {
         if(
             this.props.value !== nextProps.value ||
+            this.props.error !== nextProps.error ||
             this.state.showPicker !== nextState.showPicker ||
             this.state.startDate !== nextState.startDate ||
             this.state.startTime !== nextState.startTime

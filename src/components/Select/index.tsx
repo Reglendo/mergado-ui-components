@@ -22,6 +22,7 @@ export class Select extends React.Component<Props, State> {
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
+            this.props.error !== nextProps.error ||
             this.props.value !== nextProps.value
         ) {
             return true
@@ -41,7 +42,7 @@ export class Select extends React.Component<Props, State> {
     }
 
 
-    renderOption = o => o.title ? ({ name: o.title, value: o.value}) : o
+    renderOption = o => ({ name: o.title ? o.title : o.label ? o.label : o.name, value: o.value})
 
     public render() {
         const {onChange, label, placeholder, multiple, name, ...props} = this.props

@@ -50,6 +50,7 @@ export class InputGroupV extends React.Component<Props,State> {
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
+            this.props.error !== nextProps.error ||
             this.props.value !== nextProps.value ||
             this.state.filter !== nextState.filter
         ) {

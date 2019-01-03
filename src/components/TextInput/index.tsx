@@ -33,6 +33,7 @@ export class TextInput extends React.Component<Props, State> {
 
     shouldComponentUpdate(nextProps, nextState) {
         if(this.props.value !== nextProps.value ||
+            this.props.error !== nextProps.error ||
             this.state.passwordVisible !== nextState.passwordVisible) {
             return true
         }

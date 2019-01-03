@@ -71,7 +71,7 @@ export const CssUniversalButton = cxs(UniversalButton)({
     },
     " .muk-icon": {
         margin: "0 0 0 0",
-        position: "relative",
+        // position: "relative",
         top: "auto",
         verticalAlign: "middle",
     },

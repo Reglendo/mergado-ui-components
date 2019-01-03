@@ -30,6 +30,7 @@ export class ColorPicker extends React.Component<Props, State> {
     shouldComponentUpdate(nextProps, nextState) {
         if(
             this.props.value !== nextProps.value ||
+            this.props.error !== nextProps.error ||
             this.state.displayColorPicker !== nextState.displayColorPicker
         ) {
             return true

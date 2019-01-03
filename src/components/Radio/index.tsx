@@ -19,6 +19,7 @@ export class Radio extends React.Component<Props, {}> {
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
+            this.props.error !== nextProps.error ||
             this.props.value !== nextProps.value
         ) {
             return true

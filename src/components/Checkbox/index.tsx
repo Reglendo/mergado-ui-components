@@ -22,6 +22,7 @@ export class Checkbox extends React.Component<Props, {}> {
     shouldComponentUpdate(nextProps, nextState) {
         if(
             this.props.value !== nextProps.value ||
+            this.props.error !== nextProps.error ||
             this.props.checked !== nextProps.checked
         ) {
             return true
