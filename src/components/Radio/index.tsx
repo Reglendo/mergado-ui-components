@@ -31,7 +31,7 @@ export class Radio extends React.Component<Props, {}> {
     handleChange = (evt) => {
         if(this.props.setValue) {
             this.props.setValue(evt.target.value);
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(evt.target.value);
         }

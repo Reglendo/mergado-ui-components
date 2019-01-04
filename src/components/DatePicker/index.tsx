@@ -81,7 +81,7 @@ export class DatePicker extends React.Component<Props, State> {
 
         if(this.props.setValue) {
             this.props.setValue(set)
-        } else
+        }
         if(this.props.onChange) {
             return this.props.onChange(set)
         }

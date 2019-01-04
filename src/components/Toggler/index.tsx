@@ -44,7 +44,7 @@ export class Toggler extends React.Component<Props, {}> {
     handleChange = (e) => {
         if(this.props.setValue) {
             this.props.setValue(e.target.checked ? 1 : 0)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(e.target.checked ? 1 : 0)
         }

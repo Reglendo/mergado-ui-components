@@ -35,7 +35,7 @@ export class InputGroupH extends React.Component<Props, {}> {
     handleChange = (value) => {
         if(this.props.setValue) {
             this.props.setValue(value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value)
         }

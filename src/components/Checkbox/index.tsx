@@ -34,7 +34,7 @@ export class Checkbox extends React.Component<Props, {}> {
         const value = evt.target ? evt.target.checked : evt
         if(this.props.setValue) {
             this.props.setValue(value ? 1 : 0)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value ? 1 : 0)
         }

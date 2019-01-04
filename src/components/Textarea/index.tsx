@@ -27,7 +27,7 @@ export class Textarea extends React.Component<Props, {}> {
     handleChange = (e) => {
         if(this.props.setValue) {
             this.props.setValue(e.target.value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(e.target.value)
         }

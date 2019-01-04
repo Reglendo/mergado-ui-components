@@ -35,7 +35,7 @@ export class Select extends React.Component<Props, State> {
         const value = e.filter(o => o).join('|')
         if(this.props.setValue) {
             this.props.setValue(value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value)
         }

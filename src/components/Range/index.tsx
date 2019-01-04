@@ -37,7 +37,7 @@ export class Range extends React.Component<Props,State> {
         const value = e.target ? e.target.value : e
         if(this.props.setValue) {
             this.props.setValue(value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value)
         }
