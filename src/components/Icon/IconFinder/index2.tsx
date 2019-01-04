@@ -5,11 +5,13 @@ import css from "@reglendo/cxs/component"
 import {prefix} from "../../../config"
 import Icon from "../index2"
 import TextInput from "../../TextInput"
+import Button from "../../Button"
 
 export interface Props {
 }
 export interface State {
     value: string
+    showAll:boolean
 }
 
 /**
@@ -24,7 +26,8 @@ class IconFinder extends React.PureComponent<Props, State> {
     }
 
     state = {
-            value: "",
+        value: "",
+        showAll: false,
     }
 
     handleChange = (evt) => {
@@ -60,6 +63,8 @@ class IconFinder extends React.PureComponent<Props, State> {
         })
     }
 
+    toggleShowAll = () => this.setState(s => ({ showAll: !s.showAll }))
+
     public render() {
         const className = `${this.name}`
 
@@ -70,7 +75,12 @@ class IconFinder extends React.PureComponent<Props, State> {
                     placeholder="Type icon name here..."
                     onChange={this.handleChange}
                     value={this.state.value} />
-                {this.renderIcons()}
+                <Button onClick={this.toggleShowAll}>Show all icons</Button>
+                {this.state.showAll || this.state.value ?
+                    this.renderIcons()
+                    :
+                    false
+                }
             </div>
         )
     }

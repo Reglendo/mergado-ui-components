@@ -40,6 +40,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, onClick,
                                 checked={checked}
                                 onChange={undefined}
                                 key="input"
+                                data-name={name}
                                 style={{ float: "left", margin: "10px", pointerEvents: "none", }}
                             />
                         :
@@ -50,6 +51,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, onClick,
                                 label={""}
                                 onChange={undefined}
                                 key="input"
+                                data-name={name}
                                 style={{ float: "left", margin: "0px", marginRight: "-10px", pointerEvents: "none", }}
                             />
                     }

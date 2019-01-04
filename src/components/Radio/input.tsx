@@ -18,7 +18,7 @@ interface IInputProps extends IField {
 }
 
 const RadioInput: React.SFC<IInputProps> = ({ value, checked, label,
-                                             onChange, ...props}) => {
+                                             onChange, readOnly, ...props}) => {
 
     return <CssLabel s={props.style} className={`muk-radio ${props.className || ""}`} key={value}>
                     <CssElement
@@ -26,9 +26,10 @@ const RadioInput: React.SFC<IInputProps> = ({ value, checked, label,
                         onChange={onChange}
                         checked={checked}
                         type="radio"
+                        readOnly={readOnly}
+                        data-name={props['data-name']}
                         className={`m-input`}
                         style={{display: "none"}}
-                        data-big={false}
                         />
                     <span className="m-button">
                         <CssCheckbox className="m-radio-input"

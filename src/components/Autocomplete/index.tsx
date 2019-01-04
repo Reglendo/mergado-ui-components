@@ -379,7 +379,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
                 <TextInput
                     {...props}
                     {...inputProps}
-
+                    data-name={name}
                     id={"autocomplete-input-"+this.randid}
                 />
                 {open && this.renderMenu()}

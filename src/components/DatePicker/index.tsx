@@ -116,6 +116,7 @@ export class DatePicker extends React.Component<Props, State> {
                             type={this.props.onClear ? "search" : "text"}
                             onClear={this.props.onClear}
                             label={label}
+                            data-name={name}
                             placeholder={placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
                 </div>

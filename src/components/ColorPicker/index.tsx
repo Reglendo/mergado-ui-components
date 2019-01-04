@@ -71,6 +71,7 @@ export class ColorPicker extends React.Component<Props, State> {
                             label={label}
                             error={error}
                             invalid={invalid}
+                            data-name={name}
                             onChange={this.handleChange}
                             style={{" .m-textinput-input": {background: background, color: textColor }}} />
                     </div>

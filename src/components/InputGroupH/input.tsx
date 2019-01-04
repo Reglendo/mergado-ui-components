@@ -13,16 +13,18 @@ interface IInputProps {
     className?: string
     hideInput?: boolean
     singleChoice?: boolean
+    name?: string
 }
 
 const RadioInput: React.SFC<IInputProps> = ({ value, checked, label, singleChoice,
-                                             onChange, hideInput, ...props}) => {
+                                             onChange, hideInput, name, ...props}) => {
 
 
     return <CssBigLabel className={`muk-radio ${props.className || ""}`} key={value}>
                 <CssElement
                     checked={checked}
                     value={value}
+                    data-name={name}
                     onChange={onChange}
                     type={singleChoice ?  "radio" : "checkbox"}
                     className={`m-input`}

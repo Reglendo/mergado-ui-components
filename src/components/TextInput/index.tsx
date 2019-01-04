@@ -81,6 +81,7 @@ export class TextInput extends React.Component<Props, State> {
                                                 ? "text" : type}
                     aria-invalid={isInvalid ? 1 : 0}
                     className={`m-textinput-input m-textinput-${type}`}
+                    data-name={props.name}
                 />
                 {type === "password" && this.state.passwordVisible === false &&
                     <CssButtonEye className="m-openedeye" icon={<IconEye />}
@@ -172,6 +173,8 @@ CssInput.propTypes = {
     onClear: PropTypes.any,
     setValue: PropTypes.any,
     items: PropTypes.any,
+    error: PropTypes.any,
+    invalid: PropTypes.any,
 }
 
 export default InputContainer(TextInput)

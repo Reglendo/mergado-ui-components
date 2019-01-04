@@ -73,6 +73,7 @@ export class Toggler extends React.Component<Props, {}> {
                             reverse={reverse}
                             checked={this.props.value}
                             type="checkbox"
+                            data-name={name}
                             className={`m-input ${props.className || ""}`}
                             />
                         <StyledInput className={"m-checkbox"} big={props.big} boolean={props.boolean}
@@ -266,6 +267,8 @@ CssElement.propTypes =  {
     width: PropTypes.number,
     reverse: PropTypes.bool,
     boolean: PropTypes.bool,
+    invalid: PropTypes.any,
+    error: PropTypes.any,
 }
 StyledInput.propTypes = CssElement.propTypes
 

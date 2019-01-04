@@ -50,6 +50,7 @@ export class Checkbox extends React.Component<Props, {}> {
                             className={`m-item`}
                             {...props}
                             data-id={dataId}
+                            data-name={name}
                             onChange={this.handleChange}
                             checked={checked !== undefined ? checked : !!value}
                             type="checkbox"
@@ -132,16 +133,12 @@ export const StyledInput = css("span")({
 }})
 
 StyledInput.propTypes = {
-    label: PropTypes.any,
-    group: PropTypes.any,
-    meta: PropTypes.any,
     s: PropTypes.any,
+    error: PropTypes.any,
 }
 Input.propTypes = {
-    label: PropTypes.any,
-    group: PropTypes.any,
-    meta: PropTypes.any,
     s: PropTypes.any,
+    error: PropTypes.any,
 }
 
 export default InputContainer(Checkbox)

@@ -31,7 +31,7 @@ export const Styled = css("div")({
 })
 
 FieldError.propTypes = {
-    error: PropTypes.string,
+    error: PropTypes.any,
     className: PropTypes.string,
 }
 

@@ -47,6 +47,7 @@ export class Radio extends React.Component<Props, {}> {
                 <RadioInput label={obj.label}
                             value={obj.value}
                             key={obj.value}
+                            data-name={this.props.name}
                             checked={obj.value == value}
                             onChange={this.handleChange}
                 />

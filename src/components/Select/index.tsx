@@ -63,6 +63,7 @@ export class Select extends React.Component<Props, State> {
                            value={value}
                            onChange={this.onChange}
                            options={props.options.map(this.renderOption)}
+                           data-name={name}
                            aria-invalid={props.invalid || props.error ? 1 : 0} />
                     <IconChevronDown size={10}
                                      className={"icon-select-open"}

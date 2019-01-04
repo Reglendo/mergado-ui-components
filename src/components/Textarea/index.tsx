@@ -39,6 +39,7 @@ export class Textarea extends React.Component<Props, {}> {
             <Field {...this.props} name={this.name}>
                 <StyledTextarea
                     {...props}
+                    data-name={name}
                     height={height || '100'}
                     aria-invalid={invalid || this.props.error ? 1 : 0}
                     className={`${this.name}__input

@@ -71,6 +71,7 @@ export class InputGroupH extends React.Component<Props, {}> {
                             value={obj.value}
                             checked={checked}
                             onChange={handler}
+                            name={this.props.name}
                             hideInput={hideInput}
                             singleChoice={singleChoice}
                 />
