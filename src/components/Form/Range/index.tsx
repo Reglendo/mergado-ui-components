@@ -1,13 +1,13 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
 import * as Color from "color"
-import InputContainer  from "../Field/InputContainer"
-import {prefix,form} from "../../config"
-import {Field, IField} from "../Field"
-import TextInput from "../TextInput"
-import Grid from "../Grid"
-import GridCell from "../GridCell"
-import FieldLabel from "../FieldLabel";
+import InputContainer  from "../../Field/InputContainer"
+import {prefix,form} from "../../../config"
+import {Field, IField} from "../../Field"
+import TextInput from "../../TextInput"
+import Grid from "../../Grid"
+import GridCell from "../../GridCell"
+import FieldLabel from "../../FieldLabel";
 
 export interface Props extends IField {
     max: number

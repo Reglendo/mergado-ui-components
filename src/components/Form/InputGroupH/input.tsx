@@ -1,10 +1,10 @@
 import * as React from "react"
 import css from "@reglendo/cxs/component"
-import Button from "../Button"
-import Span from "../Span"
+import Button from "../../Button"
+import Span from "../../Span"
 
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import {StyledInput as StyledCheckbox} from "../Checkbox"
+import {StyledInput as StyledCheckbox} from "../../Checkbox"
 interface IInputProps {
     value: string
     checked: boolean

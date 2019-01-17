@@ -121,21 +121,23 @@ export class DatePicker extends React.Component<Props, State> {
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
                 </div>
                 {showPicker &&
-                <Popover>
-                    <Cover onClick={this.handleHide} />
-                    <Picker>
+                <Popover className="muk-datepicker-popover">
+                    <Cover onClick={this.handleHide} className="muk-datepicker-cover" />
+                    <Picker className="muk-datepicker-picker">
                     {datetime &&
                     <>
-                        <FieldLabel>Čas:</FieldLabel><br/>
+                        <FieldLabel className="muk-datepicker-pickerlabel">Čas:</FieldLabel><br/>
                         <TextInput type={"time"} value={this.state.startTime}
+                                    className="muk-datepicker-inputtime"
                                 style={{width: "80%", margin: "auto"}}
                                 step={1}
                                 onChange={this.handleTimeChanged} />
-                        <FieldLabel style={{marginBottom: "-20px", marginTop: "10px"}}>Den:</FieldLabel><br/>
+                        <FieldLabel className="muk-datepicker-pickerlabel" style={{marginBottom: "-20px", marginTop: "10px"}}>Den:</FieldLabel><br/>
                     </>
                         }
                         <ReactDatePicker
                             onDayClick={this.handleChanged}
+                            className="muk-datepicker-reactdatepicker"
                             {...{
                                 firstDayOfWeek: 1,
                                 months: this.locale.MONTHS,

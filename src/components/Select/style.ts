@@ -17,14 +17,14 @@ export const styles = {
     appearance: "none",
     transition: "border-color 0.2s",
     willChange: "border-color",
-    ":focus": {
-        outline: "none",
-        border: "none",
-    },
-    ":active": {
-        outline: "none",
-        border: "none",
-    },
+    // ":focus": {
+    //     outline: "none",
+    //     border: "none",
+    // },
+    // ":active": {
+    //     outline: "none",
+    //     border: "none",
+    // },
     "::-ms-expand": {
         display: "none",
     },

@@ -22,7 +22,6 @@
     ],
     "awesomeTypescriptLoaderOptions": {
         "useCache": false,
-        "silent": true,
         "reportFiles": [
             "src/**/*.{js,ts,tsx}"
         ]

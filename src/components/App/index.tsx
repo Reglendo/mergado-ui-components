@@ -239,8 +239,7 @@ const selectItem = {
     },
     "!.react-select-item-clear": {
         position: "absolute",
-        top: "12px",
-        right: "0",
+        top: "10px",
         width: "35px",
         height: "20px",
         textIndent: "-9999em",

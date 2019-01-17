@@ -1,10 +1,10 @@
 import * as React from "react"
-import {prefix} from "../../config"
-import {Field, IField} from "../Field"
+import {prefix} from "../../../config"
+import {Field, IField} from "../../Field"
 import RadioInput from "./input"
-import InputContainer from "../Field/InputContainer"
-import GC from "../GridCell"
-import Grid from "../Grid"
+import InputContainer from "../../Field/InputContainer"
+import GC from "../../GridCell"
+import Grid from "../../Grid"
 import css from "@reglendo/cxs/component"
 
 interface IItem {

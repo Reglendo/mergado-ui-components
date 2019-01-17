@@ -1,17 +1,17 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "3.3.15",
+  "version": "3.3.16",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "jsnext:main": "lib/index.js",
   "scripts": {
-    "start": "nodejs ./bin/create.js && tsc --build ./tsconfig.json && npm run styleguide-server",
-    "build": "tsc --build ./tsconfig.json",
-    "tsc": "tsc --build ./tsconfig.json",
+    "start": "nodejs ./bin/create.js && tsc -p ./tsconfig.json && npm run styleguide-server",
+    "build": "tsc ./tsconfig.json",
+    "tsc": "tsc -p ./tsconfig.json",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
-    "build-prod": "NODE_ENV='production' webpack && tsc --build ./tsconfig.json",
+    "build-prod": "NODE_ENV='production' webpack && tsc ./tsconfig.json",
     "build-tsc": "tsc --build ./tsconfig.json"
   },
   "license": "MIT",

@@ -2,9 +2,9 @@ import * as React from "react"
 import css from "@reglendo/cxs/component"
 
 import Radio from "../Radio/input"
-import Checkbox from "../Checkbox"
+import Checkbox from "../../Checkbox"
 
-import LittleStatus from "../LittleStatus"
+import LittleStatus from "../../LittleStatus"
 
 interface IQueryItemProps {
     name: string

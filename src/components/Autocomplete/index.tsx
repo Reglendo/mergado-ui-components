@@ -174,10 +174,9 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
         }
     }
 
-    protected handleChange(event) {
+    protected handleChange(value) {
         this.performAutoCompleteOnKeyUp = true
         this.setState({ highlightedIndex: null })
-        const value = event.target.value
         if(this.props.setValue) {
             this.props.setValue(value)
         } else
