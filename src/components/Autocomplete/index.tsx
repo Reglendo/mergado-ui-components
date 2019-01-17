@@ -168,7 +168,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
         this.setIgnoreBlur(false)
         if(this.props.setValue) {
             this.props.setValue(value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value)
         }
@@ -179,7 +179,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
         this.setState({ highlightedIndex: null })
         if(this.props.setValue) {
             this.props.setValue(value)
-        } else
+        }
         if(this.props.onChange) {
             this.props.onChange(value)
         }

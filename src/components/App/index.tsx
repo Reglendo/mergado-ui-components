@@ -240,6 +240,7 @@ const selectItem = {
     "!.react-select-item-clear": {
         position: "absolute",
         top: "10px",
+        right: "0",
         width: "35px",
         height: "20px",
         textIndent: "-9999em",

@@ -93,7 +93,7 @@ export class DatePicker extends React.Component<Props, State> {
         this.setState({ startTime: set.format("HH:mm:ss") })
         if(this.props.setValue) {
             this.props.setValue(set.format("YYYY-MM-DD HH:mm:ss"))
-        } else
+        }
         if(this.props.onChange) {
             return this.props.onChange(set.format("YYYY-MM-DD HH:mm:ss"))
         }
