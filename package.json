@@ -7,11 +7,11 @@
   "jsnext:main": "lib/index.js",
   "scripts": {
     "start": "nodejs ./bin/create.js && tsc -p ./tsconfig.json && npm run styleguide-server",
-    "build": "tsc ./tsconfig.json",
+    "build": "tsc -p ./tsconfig.json",
     "tsc": "tsc -p ./tsconfig.json",
     "styleguide-server": "styleguidist server",
     "styleguide-build": "styleguidist build",
-    "build-prod": "NODE_ENV='production' webpack && tsc ./tsconfig.json",
+    "build-prod": "NODE_ENV='production' webpack && tsc -p ./tsconfig.json",
     "build-tsc": "tsc --build ./tsconfig.json"
   },
   "license": "MIT",
