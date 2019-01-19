@@ -1,17 +1,17 @@
-import IconFinder from '../../lib/components/Icon/IconFinder/index2'
+import IconFinder from '../../src/components/Icon/IconFinder/index2'
 const g: any = global
 
 g.IconFinder = IconFinder
 
-import Div from '../../lib/components/Div'
+import {Div} from '../../'
 g.Div = Div
 
-import Span from '../../lib/components/Span'
+import {Span} from '../../'
 g.Span = Span
 
-import App from '../../lib/components/App'
+import {App} from '../../'
 g.App = App
 
 
-import FieldLabel from '../../lib/components/FieldLabel'
+import {FieldLabel} from '../../'
 g.FieldLabel = FieldLabel
