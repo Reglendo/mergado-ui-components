@@ -5,7 +5,7 @@
         "moduleResolution": "node",
         "outDir": "lib",
         "allowSyntheticDefaultImports": true,
-        "allowJs": true,
+        "allowJs": false,
         "noImplicitAny": false,
         "sourceMap": true,
         "jsx": "react",
@@ -21,9 +21,5 @@
         "src/"
     ],
     "awesomeTypescriptLoaderOptions": {
-        "useCache": false,
-        "reportFiles": [
-            "src/**/*.{js,ts,tsx}"
-        ]
     }
 }

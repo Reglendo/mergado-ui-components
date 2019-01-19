@@ -432,32 +432,78 @@ const typo = {
 }
 
 const helpers = {
+    "& .muk-helper-loading-line": {
+        position: "relative",
+        overflow: "hidden",
+        ".with-background:after": {
+            zIndex: 9,
+            overflow: "hidden",
+            content: "",
+            width: "100%",
+            height: "4px",
+            background: ryzlinkTheme.grey,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            margin: "auto",
+        },
+        ":before": {
+            zIndex: 10,
+            overflow: "hidden",
+            content: "",
+            width: "100%",
+            height: "4px",
+            background: ryzlinkTheme.blue,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            margin: "auto",
+            transformOrigin: "left",
+            transform: "scaleX(0.2) translateX(-100%)",
+
+            // backgroundSize: "20%",
+            // backgroundRepeat: "repeat-y",
+            // backgroundPosition: "-25% 0",
+            animation: "linesliding 2.2s ease-in-out infinite",
+
+        },
+        "@keyframes linesliding": {
+            "50%": {
+                transform: "scaleX(0.8) translateX(0%)",
+            },
+            "100%": {
+                transform: "translateX(125%)",
+            }
+        },
+    },
+
+
     "& .muk-helper-clearfix:after": {
         content: "",
         display: "table",
         clear: "both",
     },
     "& .muk-helper-loading": {
-        userSelect: "none",
+        overflow: "hidden",
         position: "relative",
-        pointerEvents: "none",
+        outline: "3px solid #ffecb8",
     },
     "& .muk-helper-loading:after": {
         position: "absolute",
         pointerEvents: "none",
         top: 0,
-        left: 0,
+        left: "-25px",
         content: " ",
-        width: "100%",
+        width: "calc(100% + 50px)",
         height: "100%",
         opacity: .5,
         background: "repeating-linear-gradient(-55deg,#ccc,#ccc 10px,#ddd 10px,#ddd 20px)",
         animation: "helpersliding 0.5s linear infinite",
-        transform: "translateZ(0)",
-        willChange: "background-position",
+        willChange: "transform",
         backgroundSize: "25px 100%",
         zIndex: 1000000,
-        outline: "3px solid #dbcba3",
     },
     "& .muk-helper-loading--in": {
         background: "repeating-linear-gradient(-55deg,rgba(220,220,220,0.8),rgba(200,220,220,0.8) 10px,rgba(230,230,230,0.8) 10px,rgba(230,230,230,0.8) 20px)",
@@ -469,19 +515,19 @@ const helpers = {
     },
     "@keyframes helpersliding": {
         "from": {
-            backgroundPositionX: 0
+            transform: "translateX(0)",
         },
         "to": {
-            backgroundPositionX: "25px",
+            transform: "translateX(25px)",
         }
     },
 }
 
 const AppStyles = css("div")({
     ...base,
-    ...helpers,
     ...typo,
     ...selectItem,
+    ...helpers,
 })
 
 export default App

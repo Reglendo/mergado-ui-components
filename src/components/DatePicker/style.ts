@@ -156,6 +156,7 @@ export const style = {
 " .DayPicker-Day--disabled": {
   color: '#dce0e0',
   cursor: 'default',
+  pointerEvents: "none",
 },
 
 " .DayPicker-Day--sunday": {
@@ -169,9 +170,19 @@ export const style = {
 " .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside)": {
   position: 'relative',
   color: '#f0f8ff',
-  backgroundColor: '#4a90e2',
-  borderRadius: '5px',
+  backgroundColor: 'rgba(81,150,250,0.8)',
 },
+
+" .DayPicker-Day--selected.DayPicker-Day--start:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside)": {
+  backgroundColor: 'rgba(81,150,250,1)',
+  borderRadius: '5px 0 0 5px',
+},
+
+" .DayPicker-Day--selected.DayPicker-Day--end:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside)": {
+  backgroundColor: 'rgba(81,150,250,1)',
+  borderRadius: '0 5px 5px 0',
+},
+
 
 " .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover": {
   backgroundColor: '#51a0fa',

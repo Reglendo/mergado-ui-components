@@ -14,8 +14,8 @@ const config = {
     rules: [
     {
       exclude: /node_modules/,
-      loader: 'awesome-typescript-loader',
-      test: /\.tsx?$/,
+      loader: 'ts-loader',
+      test: /\.tsx|ts?$/,
       options: {
         silent: true
       },

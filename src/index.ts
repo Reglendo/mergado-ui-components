@@ -12,6 +12,7 @@ export { default as DataHeader } from './components/DataHeader';
 export { default as DataRow } from './components/DataRow';
 export { default as DataTable } from './components/DataTable';
 export { default as DatePicker } from './components/DatePicker';
+export { default as DateRange } from './components/DateRange';
 export { default as Div } from './components/Div';
 export { default as Field } from './components/Field';
 export { default as FieldError } from './components/FieldError';

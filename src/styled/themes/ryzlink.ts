@@ -18,7 +18,7 @@ const colors = {
     decoration_background: "#FAF7F1",
 }
 
-const theme = {
+export const theme = {
     ...defaultTheme,
     ...colors,
     /* colors type */

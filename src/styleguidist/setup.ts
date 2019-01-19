@@ -1,12 +1,17 @@
 import IconFinder from '../../lib/components/Icon/IconFinder/index2'
-global.IconFinder = IconFinder
+const g: any = global
+
+g.IconFinder = IconFinder
 
 import Div from '../../lib/components/Div'
-global.Div = Div
+g.Div = Div
 
 import Span from '../../lib/components/Span'
-global.Span = Span
+g.Span = Span
+
+import App from '../../lib/components/App'
+g.App = App
 
 
 import FieldLabel from '../../lib/components/FieldLabel'
-global.FieldLabel = FieldLabel
+g.FieldLabel = FieldLabel
