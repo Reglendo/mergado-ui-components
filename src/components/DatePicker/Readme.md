@@ -1,6 +1,8 @@
 Datetime picker
 
+    <div style={{float: "right"}}>
     <DatePicker datetime={true} name="form.datetimepicker" label="Pick a datetime:" placeholder="DD. MM. YYYY"/>
+    </div>
 
 Date picker
 

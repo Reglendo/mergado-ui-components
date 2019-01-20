@@ -9,6 +9,8 @@ import TextInput from "../TextInput"
 import FieldLabel from "../FieldLabel"
 import {style as factoryStyle} from "./style"
 import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInput"
+import ReactDOM from "react-dom"
+import PropTypes from "prop-types";
 
 interface Props extends IField {
     locale?: "cs" | "sk"
@@ -22,6 +24,7 @@ interface State {
     startDate: string
     startTime: string
     showPicker: boolean
+    positionEdge: "left" | "right"
 }
 
 export class DatePicker extends React.Component<Props, State> {
@@ -38,6 +41,7 @@ export class DatePicker extends React.Component<Props, State> {
             showPicker: false,
             startDate,
             startTime,
+            positionEdge: "left",
         }
 
         if(this.props.locale === "sk") {
@@ -46,6 +50,8 @@ export class DatePicker extends React.Component<Props, State> {
             this.locale = require("./locale.cs").default
         }
     }
+
+    myRef = React.createRef();
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
@@ -70,6 +76,21 @@ export class DatePicker extends React.Component<Props, State> {
             startDate,
             startTime,
         })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(this.state.showPicker && !prevState.showPicker) {
+            const n:any = ReactDOM.findDOMNode(this.refs['popover'])
+            const c = n.getBoundingClientRect()
+            if(c.x + c.width > window.screen.availWidth) {
+                n.style.right = 0
+                n.style.left = 'initial'
+            } else {
+                n.style.left = 0
+                n.style.right = 'initial'
+            }
+        }
+
     }
 
     handleChanged = (date) => {
@@ -100,13 +121,14 @@ export class DatePicker extends React.Component<Props, State> {
 
     }
 
-    handleClick = () => this.setState({showPicker: true})
+    handleClick = () => { this.setState({showPicker: true}) }
     handleHide = () => this.setState({showPicker: false})
 
     public render() {
         const { label, name, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
         const {showPicker} = this.state
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
+
         return(
             <StyledField>
                 <div>
@@ -121,7 +143,7 @@ export class DatePicker extends React.Component<Props, State> {
                             value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
                 </div>
                 {showPicker &&
-                <Popover className="muk-datepicker-popover">
+                <Popover className="muk-datepicker-popover" ref={"popover"}>
                     <Cover onClick={this.handleHide} className="muk-datepicker-cover" />
                     <Picker className="muk-datepicker-picker">
                     {datetime &&
@@ -167,10 +189,10 @@ const Picker = css("div")({
     },
 })
 
-const Popover = css("div")({
+const Popover = css("div")(props => ({
     position: "absolute",
     zIndex: 200,
-})
+}))
 
 const Cover = css("div")({
     position: "fixed",
