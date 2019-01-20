@@ -431,66 +431,11 @@ const typo = {
     },
 }
 
-const helpers = {
-    "& .muk-helper-loading-line": {
-        position: "relative",
-        overflow: "hidden",
-        ".with-background:after": {
-            zIndex: 9,
-            overflow: "hidden",
-            content: "",
-            width: "100%",
-            height: "4px",
-            background: ryzlinkTheme.grey,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            margin: "auto",
-        },
-        ":before": {
-            zIndex: 10,
-            overflow: "hidden",
-            content: "",
-            width: "100%",
-            height: "4px",
-            background: ryzlinkTheme.blue,
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            margin: "auto",
-            transformOrigin: "left",
-            transform: "scaleX(0.2) translateX(-100%)",
+const loaders = {
+    position: "relative",
+    overflow: "hidden",
 
-            // backgroundSize: "20%",
-            // backgroundRepeat: "repeat-y",
-            // backgroundPosition: "-25% 0",
-            animation: "linesliding 2.2s ease-in-out infinite",
-
-        },
-        "@keyframes linesliding": {
-            "50%": {
-                transform: "scaleX(0.8) translateX(0%)",
-            },
-            "100%": {
-                transform: "translateX(125%)",
-            }
-        },
-    },
-
-
-    "& .muk-helper-clearfix:after": {
-        content: "",
-        display: "table",
-        clear: "both",
-    },
-    "& .muk-helper-loading": {
-        overflow: "hidden",
-        position: "relative",
-        outline: "3px solid #ffecb8",
-    },
-    "& .muk-helper-loading:after": {
+    ":after": {
         position: "absolute",
         pointerEvents: "none",
         top: 0,
@@ -504,6 +449,79 @@ const helpers = {
         willChange: "transform",
         backgroundSize: "25px 100%",
         zIndex: 1000000,
+    }
+}
+
+const helpers = {
+
+
+    "& .muk-helper-loading-line": {
+        ...loaders,
+        ":after": {
+            ...loaders[":after"],
+            left: 0,
+            right: 0,
+            width: "100%",
+            height: "4px",
+            opacity: 1,
+            background: ryzlinkTheme.blue,
+            transformOrigin: "left",
+            animation: "linesliding 2.2s ease-in-out infinite",
+        },
+
+        ".with-background:before": {
+            zIndex: 9,
+            overflow: "hidden",
+            content: "",
+            width: "100%",
+            height: "4px",
+            background: "#eee",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            margin: "auto",
+        },
+    },
+
+
+    "& .muk-helper-loading": {
+        outline: "3px solid #ffecb8",
+        ...loaders,
+    },
+
+
+
+    "@keyframes linesliding": {
+        "0%": {
+            transform: "scaleX(0.2) translateX(-1000px)",
+        },
+        "50%": {
+            transform: "scaleX(0.8)",
+        },
+        "100%": {
+            transform: "translateX(1000px)",
+        }
+    },
+
+
+    "@keyframes helpersliding": {
+        "from": {
+            transform: "translateX(0)",
+        },
+        "to": {
+            transform: "translateX(25px)",
+        }
+    },
+
+
+
+
+
+    "& .muk-helper-clearfix:after": {
+        content: "",
+        display: "table",
+        clear: "both",
     },
     "& .muk-helper-loading--in": {
         background: "repeating-linear-gradient(-55deg,rgba(220,220,220,0.8),rgba(200,220,220,0.8) 10px,rgba(230,230,230,0.8) 10px,rgba(230,230,230,0.8) 20px)",
@@ -512,14 +530,6 @@ const helpers = {
         transform: "translateZ(0)",
         willChange: "background-position",
         pointerEvents: "none",
-    },
-    "@keyframes helpersliding": {
-        "from": {
-            transform: "translateX(0)",
-        },
-        "to": {
-            transform: "translateX(25px)",
-        }
     },
 }
 
