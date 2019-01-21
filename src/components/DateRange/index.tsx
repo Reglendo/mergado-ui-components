@@ -1,5 +1,8 @@
 import * as React from 'react'
-import {Button,DatePicker,Grid, GridCell} from "../../"
+import DatePicker from "../DatePicker"
+import Grid from "../Grid"
+import GridCell from "../GridCell"
+
 import moment from "dayjs"
 import css from "@reglendo/cxs/component"
 interface Props {
@@ -21,7 +24,7 @@ interface State {
     dateTo: string
 }
 
-class DateRange extends React.PureComponent<Props, State> {
+export class DateRange extends React.PureComponent<Props, State> {
 
     constructor(props) {
         super(props)
@@ -83,8 +86,8 @@ class DateRange extends React.PureComponent<Props, State> {
             disabledDays: this.filterDaysTo,
         }
         return (
-            <Wrapper cols={"auto auto 1fr"} s={style} gap={"5px"} {...style}>
-                <GridCell valign={"center"} style={{ padding: "10px 0" }}>
+            <Wrapper cols={"auto auto"} style={style} gap={"5px"}>
+                <GridCell valign={"center"}>
                     <DatePicker
                         className="muk-picker-from"
                         pickerProps={pickerPropsFrom}
@@ -102,19 +105,15 @@ class DateRange extends React.PureComponent<Props, State> {
                         value={dateTo !== null ? moment(dateTo).format('YYYY-MM-DD') : null}
                         onChange={this.onChangeDateTo} />
                 </GridCell>
-                <GridCell valign={"center"} className="screenshot-hide">
-
-                </GridCell>
             </Wrapper>
         )
     }
 }
-const Wrapper = css(Grid)(props => ({
+const Wrapper = css(Grid)({
     " .muk-picker-to .muk-datepicker-popover": {
         right: 0,
         left: 'initial',
     },
-    ...props.s,
-}))
+})
 
 export default DateRange
