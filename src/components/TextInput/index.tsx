@@ -4,7 +4,6 @@ import Div from "../Div"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
-import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
 import PropTypes from "prop-types"
 import {prefix,form} from "../../config"
@@ -102,15 +101,12 @@ export class TextInput extends React.Component<Props, State> {
 }
 
 export const styles = {
-    fontSize: "14px",
     boxSizing: "border-box",
     backgroundColor: "#fff",
     display: "block",
     textAlign: "left",
     outline: "none",
-    padding: "0 10px",
     color: "#333",
-    lineHeight: "40px",
     transition: "border-color 0.2s",
     willChange: "border-color",
     width: "100%",
@@ -119,25 +115,34 @@ export const styles = {
 export const stylesProps = (props) => {
 
     const theme = props.theme
-    let type = {}
-    if(props.type === "file" || props.type === "time") {
-        type = {
+    const type = (props.type === "file" || props.type === "time") ? {
             lineHeight: "initial",
             padding: "8px !important",
             height: "auto",
-        }
-    }
-    let disabled = {}
-    if(props.disabled) {
-        disabled = {
+        } : {}
+
+    const disabled = props.disabled ? {
             color: "#999",
             background: "#eee",
             borderColor: Color(theme.grey).fade(0.5).string(),
-        }
+    } : {}
+
+    const size = props.small ? {
+        height: "28px !important",
+        lineHeight: "25px !important",
+        fontSize: "12px !important",
+        padding: "0 8px !important",
+    } : {
+        height: "40px",
+        lineHeight: "40px",
+        fontSize: "14px",
+        padding: "0 10px",
     }
+
+
     return {
         ...disabled,
-        height: props.height ? props.height + "px" : "40px",
+        ...size,
         border: theme.input_border,
         borderWidth: props['aria-invalid'] ? "0px !important" : "1px",
         borderRadius: theme.radius,
@@ -155,19 +160,12 @@ const CssInput = css("input")(styles,stylesProps)
 
 const CssButtonEye = css(Button)({
     right: "5px",
-    bottom: "8px",
+    bottom: 0,
+    top: 0,
     position: "absolute",
+    margin: "auto",
+    height: "25px",
 })
-
-const CssButtonClose = css(Button)({
-    right: "5px",
-    bottom: "8px",
-    position: "absolute",
-})
-
-CssButtonClose.propTypes = {
-    onClear: PropTypes.any,
-}
 
 CssInput.propTypes = {
     onClear: PropTypes.any,
@@ -175,6 +173,7 @@ CssInput.propTypes = {
     items: PropTypes.any,
     error: PropTypes.any,
     invalid: PropTypes.any,
+    small: PropTypes.any,
 }
 
 export default InputContainer(TextInput)

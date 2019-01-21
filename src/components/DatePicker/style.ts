@@ -151,6 +151,7 @@ export const style = {
 " .DayPicker-Day--outside": {
   cursor: 'default',
   color: '#8b9898',
+  opacity: "0.2 !important",
 },
 
 " .DayPicker-Day--disabled": {

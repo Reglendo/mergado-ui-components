@@ -11,12 +11,15 @@ interface Props {
     dateFrom?: string
     dateTo?: string
     style?: any
+    small?: boolean
 
     labelFrom?: string
     labelTo?: string
 
     placeholderFrom?: string
     placeholderTo?: string
+
+    inputProps?: any
 }
 
 interface State {
@@ -72,7 +75,7 @@ export class DateRange extends React.PureComponent<Props, State> {
     filterDaysTo = date => (this.props.disabledDays && this.props.disabledDays(date)) || (this.state.dateFrom && moment(date) < moment(this.state.dateFrom))
 
     render() {
-        const { style } = this.props
+        const { style, small, } = this.props
         const { dateFrom, dateTo } = this.state
         const pickerProps = {   showOverlay: true, showOutsideDays: true, className: "Range",
                                 modifiers: { start: moment(dateFrom).toDate(), end: moment(dateTo).toDate() },
@@ -85,8 +88,9 @@ export class DateRange extends React.PureComponent<Props, State> {
             ...pickerProps,
             disabledDays: this.filterDaysTo,
         }
+console.log(small)
         return (
-            <Wrapper cols={"auto auto"} style={style} gap={"5px"}>
+            <Wrapper cols={"auto auto"} style={style} gap={"5px"} small={small}>
                 <GridCell valign={"center"}>
                     <DatePicker
                         className="muk-picker-from"
@@ -94,7 +98,9 @@ export class DateRange extends React.PureComponent<Props, State> {
                         placeholder={this.props.placeholderFrom}
                         label={this.props.labelFrom}
                         value={dateFrom !== null ? moment(dateFrom).format('YYYY-MM-DD') : null}
-                        onChange={this.onChangeDateFrom} />
+                        onChange={this.onChangeDateFrom}
+                        small={small}
+                        />
                 </GridCell>
                 <GridCell valign={"center"}>
                     <DatePicker
@@ -103,17 +109,22 @@ export class DateRange extends React.PureComponent<Props, State> {
                         placeholder={this.props.placeholderTo}
                         label={this.props.labelTo}
                         value={dateTo !== null ? moment(dateTo).format('YYYY-MM-DD') : null}
-                        onChange={this.onChangeDateTo} />
+                        onChange={this.onChangeDateTo}
+                        small={small}
+                        />
                 </GridCell>
             </Wrapper>
         )
     }
 }
-const Wrapper = css(Grid)({
+const Wrapper = css(Grid)(props => ({
+    " .muk-datepicker-popover": {
+        fontSize: props.small ? "11px" : "14px",
+    },
     " .muk-picker-to .muk-datepicker-popover": {
         right: 0,
         left: 'initial',
     },
-})
+}))
 
 export default DateRange
