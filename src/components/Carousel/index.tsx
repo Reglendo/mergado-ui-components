@@ -7,11 +7,15 @@ import PropTypes from "prop-types"
 import Div from "../Div"
 import {Button} from "../Button"
 export interface Props {
-    children: any
+    children: (nextStep,prevStep) => any
     style?: any
     topLayer?: JSX.Element
     className?: string
     timeout?: number
+
+    active?: number
+    prevLabel: string
+    nextLabel: string
 }
 export interface State {
     active: number
@@ -24,7 +28,7 @@ export class Carousel extends React.PureComponent<Props, State> {
     public constructor(props) {
         super(props)
         this.state = {
-            active: 1,
+            active: props.active || 1,
         }
 
         this.increaseActive = this.increaseActive.bind(this)
@@ -43,39 +47,44 @@ export class Carousel extends React.PureComponent<Props, State> {
         clearInterval(this.timer)
     }
 
+    public componentWillUpdate(nextProps) {
+
+    }
+
 
     protected increaseActive() {
-        const steps = this.props.children.length
+        const steps = this.props.children(this.increaseActive, this.decreaseActive).length
         this.setState({ active: this.state.active%steps+1})
     }
     protected decreaseActive() {
-        const steps = this.props.children.length
+        const steps = this.props.children(this.increaseActive, this.decreaseActive).length
         this.setState({ active: (this.state.active-2 + steps)%steps + 1})
     }
     protected setActive(s) {
-        const steps = this.props.children.length
+        const steps = this.props.children(this.increaseActive, this.decreaseActive).length
         this.setState({ active: parseInt(s.target.dataset.step,10)})
     }
 
 
+
     public render() {
-        const steps = this.props.children.length
+        const steps = this.props.children(this.increaseActive, this.decreaseActive).length
 
         let i = 1
         let j = 1
         const translate = -((this.state.active - 1) / steps) * 100
-
+        const {prevLabel, nextLabel} = this.props
         return (
             <CssWrapper className={`${this.name} ${this.props.className || ""}`} s={this.props.style}>
                 <CssMukBigButton color="nocolor" left={true}
                              className="m-big-prev"
                               onClick={this.decreaseActive}
-                              icon={<IconChevronLeft size={20} />} />
+                              icon={<IconChevronLeft size={20} text={prevLabel} />} />
 
                 {this.props.topLayer}
                 <Div className="m-slides" padding="10px 30px" maxWidth={"100%"} overflowX={"hidden"}>
                 <CssSlides className="m-slides-wrapper" count={steps} translate={translate}>
-                    {this.props.children.filter(o => o).map(o => {
+                    {this.props.children(this.increaseActive, this.decreaseActive).filter(o => o).map(o => {
                         return  <CssSlide key={'slide_'+i} className={`m-slide ${this.state.active === 1 && "active"}`}
                                         active={this.state.active === i} data-next={i++}>
                                     {o}
@@ -86,9 +95,9 @@ export class Carousel extends React.PureComponent<Props, State> {
 
                 <div className="m-controls">
                     <Button className="m-prev" color="nocolor"  style={{fontSize: "14px"}}
-                        onClick={this.decreaseActive} icon={<IconChevronLeft size={12} text="Předchozí" />} />
+                        onClick={this.decreaseActive} icon={<IconChevronLeft size={12} text={prevLabel} />} />
                             &nbsp;
-                            {this.props.children.filter(o => o).map(o => {
+                            {this.props.children(this.increaseActive, this.decreaseActive).filter(o => o).map(o => {
                             j++
                             return this.state.active === j - 1 ?
                                     <CssMukCircle key={j-1} color="nocolor" size="tiny"
@@ -101,12 +110,12 @@ export class Carousel extends React.PureComponent<Props, State> {
                             })}
                     <Button className="m-next" color="nocolor" style={{fontSize: "14px"}}
                             onClick={this.increaseActive}
-                            icon={<IconChevronRight size={12} textFirst={true} text="Další" />} />
+                            icon={<IconChevronRight size={12} textFirst={true} text={nextLabel} />} />
                 </div>
 
                 <CssMukBigButton className="m-big-next" color="nocolor"
                     onClick={this.increaseActive}
-                    icon={<IconChevronRight size={20} />} />
+                    icon={<IconChevronRight size={20} textFirst={true} text={nextLabel} />} />
         </CssWrapper>
         )
     }
@@ -173,6 +182,7 @@ const CssMukCircle = css(Button)({
     display: "inline-block",
     padding: "5px",
     color: "#333",
+    verticalAlign: "middle",
 })
 
 export default Carousel

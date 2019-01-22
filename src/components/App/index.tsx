@@ -371,13 +371,13 @@ const base = {
     textAlign: "left",
     color: "#333",
     "!.muk-icon__text": {
-        margin: "0 0 0 5px",
+        margin: "0 0 0 0px",
         verticalAlign: "middle",
     },
-    "!.muk-icon__text + .muk-icon__image": {
+    "!.muk-icon__text + .m-image": {
         marginLeft: "5px",
     },
-    "!.muk-icon__image + .muk-icon__text": {
+    "!.m-image + .muk-icon__text": {
         marginLeft: "5px",
     },
     "!.muk-icon__image, .muk-popup_hint__trigger .muk-icon": {
