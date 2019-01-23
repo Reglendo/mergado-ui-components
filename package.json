@@ -1,6 +1,6 @@
 {
   "name": "@reglendo/mergado-ui-kit",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "Mergado UI KIT - react components for Mergado apps",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -47,7 +47,6 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
-    "ts-loader": "^5.3.3",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -97,6 +96,7 @@
     "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.14.0",
+    "ts-loader": "^5.3.3",
     "ts-node": "^2.1.0",
     "typescript": "^3.0.3",
     "webpack": "^4.16.3",

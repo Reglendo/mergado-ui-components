@@ -20,6 +20,7 @@ interface Props {
     placeholderTo?: string
 
     inputProps?: any
+    className?: string
 }
 
 interface State {
@@ -75,7 +76,7 @@ export class DateRange extends React.PureComponent<Props, State> {
     filterDaysTo = date => (this.props.disabledDays && this.props.disabledDays(date)) || (this.state.dateFrom && moment(date) < moment(this.state.dateFrom))
 
     render() {
-        const { style, small, } = this.props
+        const { style, small,className } = this.props
         const { dateFrom, dateTo } = this.state
         const pickerProps = {   showOverlay: true, showOutsideDays: true, className: "Range",
                                 modifiers: { start: moment(dateFrom).toDate(), end: moment(dateTo).toDate() },
@@ -88,9 +89,9 @@ export class DateRange extends React.PureComponent<Props, State> {
             ...pickerProps,
             disabledDays: this.filterDaysTo,
         }
-console.log(small)
+
         return (
-            <Wrapper cols={"auto auto"} style={style} gap={"5px"} small={small}>
+            <Wrapper className={`muk-daterange ${className}`} cols={"auto auto"} style={style} gap={"5px"} small={small}>
                 <GridCell valign={"center"}>
                     <DatePicker
                         className="muk-picker-from"

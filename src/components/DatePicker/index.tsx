@@ -24,6 +24,8 @@ interface State {
     startDate: string
     startTime: string
     showPicker: boolean
+    manual: string
+    invalid: boolean
     positionEdge: "left" | "right"
 }
 
@@ -42,6 +44,8 @@ export class DatePicker extends React.Component<Props, State> {
             startDate,
             startTime,
             positionEdge: "left",
+            manual: null,
+            invalid: false,
         }
 
         if(this.props.locale === "sk") {
@@ -57,6 +61,7 @@ export class DatePicker extends React.Component<Props, State> {
         if(
             this.props.value !== nextProps.value ||
             this.props.error !== nextProps.error ||
+            this.state.manual !== nextState.manual ||
             this.state.showPicker !== nextState.showPicker ||
             this.state.startDate !== nextState.startDate ||
             this.state.startTime !== nextState.startTime
@@ -68,14 +73,17 @@ export class DatePicker extends React.Component<Props, State> {
     }
 
 
-    componentWillUpdate(props) {
-        const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : null
-        const startTime = props.value ? dayjs(props.value).format('HH:mm:ss') : null
+    componentWillUpdate(props, state) {
+        if(state.manual === null) {
+            const startDate = props.value ? dayjs(props.value).format('YYYY-MM-DD') : null
+            const startTime = props.value ? dayjs(props.value).format('HH:mm:ss') : null
 
-        this.setState({
-            startDate,
-            startTime,
-        })
+            this.setState({
+                startDate,
+                startTime,
+                invalid: false,
+            })
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -93,12 +101,12 @@ export class DatePicker extends React.Component<Props, State> {
 
     }
 
-    handleChanged = (date) => {
+    handleDateChanged = (date) => {
         if(!dayjs(date).isValid()) {
             return
         }
         const set =  `${dayjs(date).format("YYYY-MM-DD")} ${(this.state.startTime || "00:00:00")}`
-        this.setState({ startDate: dayjs(set).format("YYYY-MM-DD"), showPicker: this.props.datetime, })
+        this.setState({ startDate: dayjs(set).format("YYYY-MM-DD"), showPicker: this.props.datetime, manual: null, })
 
         if(this.props.setValue) {
             this.props.setValue(set)
@@ -108,10 +116,39 @@ export class DatePicker extends React.Component<Props, State> {
         }
     }
 
+    handleChanged = (e) => {
+        const d = e.split(' ')
+        const date = dayjs(`${d[1] || ""} ${d[0] || ""} ${d[2] || ""} ${d[3] || ""}`);
+        const invalid = !date.isValid()
+        if(invalid) {
+            this.setState({
+                manual: e,
+                invalid,
+            })
+        } else {
+            const set =  `${date.format("YYYY-MM-DD HH:mm:ss")}`
+            this.setState({ startDate: date.format("YYYY-MM-DD"),
+                            startTime: date.format("HH:mm:ss"),
+            })
+
+            if(this.props.setValue) {
+                this.props.setValue(set)
+            }
+            if(this.props.onChange) {
+                this.props.onChange(set)
+            }
+            this.setState({
+                manual: e,
+                invalid: false,
+            })
+        }
+    }
+
+
     handleTimeChanged = (evt) => {
         const time = evt
         const set = dayjs(`${this.state.startDate} ${time}`)
-        this.setState({ startTime: set.format("HH:mm:ss") })
+        this.setState({ startTime: set.format("HH:mm:ss"), manual: null, })
         if(this.props.setValue) {
             this.props.setValue(set.format("YYYY-MM-DD HH:mm:ss"))
         }
@@ -125,12 +162,11 @@ export class DatePicker extends React.Component<Props, State> {
     handleHide = () => this.setState({showPicker: false})
 
     public render() {
-        const { label, name, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
-        const {showPicker} = this.state
+        const { className, label, name, placeholder, value, onChange, locale, children, pickerProps, datetime, ...props } = this.props
+        const {showPicker, manual, invalid} = this.state
         const FORMAT = datetime ?  "DD. MM. YYYY HH:mm:ss" : "DD. MM. YYYY"
-
         return(
-            <StyledField>
+            <StyledField className={`${className || ""} muk-datepicker`}>
                 <div>
                     {/* visible */}
                     <TextInput {...props}
@@ -138,9 +174,15 @@ export class DatePicker extends React.Component<Props, State> {
                             type={this.props.onClear ? "search" : "text"}
                             onClear={this.props.onClear}
                             label={label}
+                            style={{
+                                " input": {
+                                    background: invalid ? "rgba(255,0,0,0.2)" : undefined,
+                                }
+                            }}
                             data-name={name}
+                            onChange={this.handleChanged}
                             placeholder={placeholder || (this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : FORMAT)}
-                            value={this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
+                            value={manual ? manual : this.state.startDate ? dayjs(this.state.startDate + " " + this.state.startTime).format(FORMAT) : ""} />
                 </div>
                 {showPicker &&
                 <Popover className="muk-datepicker-popover" ref={"popover"}>
@@ -158,7 +200,7 @@ export class DatePicker extends React.Component<Props, State> {
                     </>
                         }
                         <ReactDatePicker
-                            onDayClick={this.handleChanged}
+                            onDayClick={this.handleDateChanged}
                             className="muk-datepicker-reactdatepicker"
                             {...{
                                 firstDayOfWeek: 1,
