@@ -17,6 +17,7 @@ export interface Props {
     hover?: boolean
     arrowRight?: number
     arrowLeft?: number
+    size?: number
 }
 
 export interface State {
@@ -172,9 +173,9 @@ class PopupHint extends React.PureComponent<Props, State> {
                     <Div props={{ id: `muk-popup-content-${this.id}` }} display={"none"}>
                         {children}
                     </Div>
-                    <div ref="button" className={`m-trigger`}>
-                        {hint ? <IconHintInfo className="m-icon" size={16} /> : null}
-                        {help ? <IconHintHelp className="m-icon" size={16} /> : null}
+                    <div ref="button" className={`m-trigger`} style={{position: "relative", top: "-1px"}}>
+                        {hint ? <IconHintInfo className="m-icon" color="#ccc" size={this.props.size || 14} /> : null}
+                        {help ? <IconHintHelp className="m-icon" color="#ccc" size={this.props.size || 14} /> : null}
                         {icon ? icon : null }
                     </div>
                     <Bubble />
