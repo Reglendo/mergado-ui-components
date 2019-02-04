@@ -42,7 +42,7 @@ export class Select extends React.Component<Props, State> {
     }
 
 
-    renderOption = o => ({ name: o.title ? o.title : o.label ? o.label : o.name, value: o.value})
+    renderOption = o => ({ ...o, name: o.title ? o.title : o.label ? o.label : o.name, value: o.value})
 
     public render() {
         const {onChange, label, placeholder, multiple, name, ...props} = this.props
