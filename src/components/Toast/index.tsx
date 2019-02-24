@@ -103,8 +103,8 @@ class Toast extends React.PureComponent<Props, State> {
         return (
             <div ref={"wrapper"}>
             <Wrapper type={this.props.type}
-                    style={this.props.style} hidden={!this.state.visible}
-                    className={`${this.name}__wrapper ${this.state.visible ? "" : this.name+"--hidden"}`}>
+                    s={this.props.style} hidden={!this.state.visible}
+                    className={`${this.name}__wrapper ${this.state.visible ? "" : "ended"}`}>
                     <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
                     <Content className={`${this.name}__content`}>
                             {this.props.text && typeof this.props.text == "string" ?
@@ -133,7 +133,7 @@ const Wrapper = css("div")({
     width: "100%",
     display: "table",
     margin: "10px 0",
-    boxShadow: "rgba(0, 0, 0, 0.5) 1px 1px 4px 0px",
+    boxShadow: "rgba(0, 0, 0, 0.8) 1px 1px 3px 0px",
     transition: "opacity 0.5s",
     transform: "translate3d(0,0,0)",
     willChange: "opacity",
@@ -141,11 +141,15 @@ const Wrapper = css("div")({
 },(props: any) => {
     const type = props.type ? props.type : "info"
     return {
-        borderRadius: props.theme.radius,
+        boxShadow: props.type === "success" ? "rgba(0, 0, 0, 0.3) 2px 3px 5px 0px"
+                 : props.type === "error" ? "rgba(0, 0, 0, 0.3) 2px 3px 5px 0px"
+                                            : "rgba(0, 0, 0, 0.3) 2px 3px 5px 0px",
+        borderRadius: "2px",
         opacity: props.hidden ? 0 : 1,
-        background: type === "transparent" ? "transparent" : props.theme[type],
+        background: type === "transparent" ? "transparent" : type === "material" ? "#222" : props.theme[type],
         color: (type === "transparent" || type === "info" || type === "inactive" || type === "message")
                     ? "#333" : "white",
+        ...props.s,
     }
 })
 
@@ -177,7 +181,7 @@ const CloseButton = css("div")({
     return {
         "& .muk-button": {
             fontSize: "18px",
-            color:  (type === "info" || type === "inactive" || type === "message")
+            color:  ( type === "inactive" || type === "message" || type === "info")
                     ? "#333 !important" : "white !important",
         },
     }

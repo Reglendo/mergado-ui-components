@@ -3,6 +3,7 @@ import * as React from "react"
 import {prefix} from "../../config"
 import Toast from "../Toast"
 import uniqueId from "../../helpers/unique_id"
+import css from "@reglendo/cxs/component"
 
 export interface Props {
     toasts?: Array<Toast|JSX.Element>
@@ -36,8 +37,8 @@ class Toasts extends React.PureComponent<Props, State> {
     }
 
     protected renderToasts() {
-        return this.props.toasts.map((toast) => {
-            return (<div key={uniqueId()} className={`${this.name}__item`}>
+        return this.props.toasts.map((toast: any) => {
+            return (<div key={toast.content} className={`${this.name}__item`}>
                         <Toast isPaused={this.isPaused.bind(this)} {...toast.props} />
                     </div>)
         })
@@ -45,13 +46,45 @@ class Toasts extends React.PureComponent<Props, State> {
 
     public render() {
         return (
-            <div className={`${this.name}`} style={this.props.style}>
-                <div className={`${this.name}__wrapper`}>
-                    {this.renderToasts()}
-                </div>
-            </div>
+            <Wrapper className={`${this.name}`} s={this.props.style}>
+                {this.props.children}
+            </Wrapper>
         )
     }
 }
+
+const Wrapper = css("div")(props => ({
+    overflow: "hidden",
+    position: "relative",
+    padding: "5px",
+    " .muk-toast__wrapper": {
+        opacity: 0.9,
+        minWidth: "300px",
+        animation: 'slidein 0.3s  ease-in-out',
+        transition: "transform 0.5s  ease-in-out",
+    },
+    " .muk-toast__wrapper.ended": {
+        transform: "translate3d(100vw, 0,0)",
+        transition: "transform 0.5s ease-in-out",
+    },
+
+    " .muk-toast__wrapper:hover": {
+        opacity: 1,
+    },
+
+    "@keyframes slidein": {
+        "0%": {
+            transform: "translate3d(100vw, 0,0)",
+        },
+        "100%": {
+            transform: "translate3d(0, 0,0)",
+        },
+    },
+
+    " .muk-toast__content": {
+        fontSize: "0.85rem",
+    },
+    ...props.s,
+}))
 
 export default Toasts
