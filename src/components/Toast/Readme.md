@@ -17,7 +17,7 @@ Some of our best toasts
 
     initialState = { paused: true };
     <Section>
-        <Toast icon={<Icon type="mergado" />}>
+        <Toast icon={<Icon type="mergado" />} style={{maxHeight: "200px"}}>
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPbpweYyc1mQOwkCQYsUmWUeRAo00tmYNzx7RfCynUzJhBEZb-' style={{float: "right", maxHeight: "90px", margin: "0 10px", width: "auto"}} />
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </Toast>

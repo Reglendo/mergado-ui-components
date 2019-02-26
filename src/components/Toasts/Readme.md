@@ -9,13 +9,13 @@ Toasts container, should be placed position: fixed, right: 5px
         {state.toasts.map(
             o => {
                 if(o === 0) {
-                    return ( <Toast text={`Toast ${o} `} type="material" icon={<Icon type="mergado" />} />)
+                    return ( <Toast text={`Toast ${o} `} onClick={o => console.log('hello')} timeout={30000} type="material" icon={<Icon type="mergado" />} />)
                 } else if(o === 1) {
-                    return ( <Toast text={`Toast ${o} `} type="info" icon={<Icon type="mergado" />} />)
+                    return ( <Toast text={`Toast ${o} `}  timeout={5000} type="info" icon={<Icon type="mergado" />} />)
                 } else if(o === 2) {
-                    return ( <Toast text={`Toast ${o} `} type="error" icon={<Icon type="mergado" />} />)
+                    return ( <Toast text={`Toast ${o} `}  timeout={7000} type="error" icon={<Icon type="mergado" />} />)
                 } else if(o === 3) {
-                    return ( <Toast text={`Toast ${o} `} type="success" icon={<Icon type="mergado" />} />)
+                    return ( <Toast text={`Toast ${o} `}  timeout={10000} type="success" icon={<Icon type="mergado" />} />)
                 }
             }
         )}
