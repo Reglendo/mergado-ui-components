@@ -61,7 +61,7 @@ class Toast extends React.PureComponent<Props, State> {
 
     public componentDidMount() {
         if(this.props.isPaused() !== true && this.props.timeout > 0) {
-            this.countdown = setInterval(this.timer.bind(this),500)
+            this.countdown = setInterval(this.timer.bind(this),1000)
         }
     }
 
@@ -102,7 +102,8 @@ class Toast extends React.PureComponent<Props, State> {
         evt.preventDefault()
         if(this.props.onClose(this.props.id) === true) {
             this.hideToast()
-            this.countdown = setInterval(this.timer.bind(this),500)
+            setTimeout(o => this.removeToast(), 300)
+            clearInterval(this.countdown)
         }
         evt.stopPropagation()
     }
@@ -119,6 +120,7 @@ class Toast extends React.PureComponent<Props, State> {
             <Wrapper type={this.props.type}
                     onClick={this.props.onClick ? this.onClick : undefined}
                     cols={"auto 1fr 40px"}
+                    valign="center"
                     removed={this.state.removed}
                     s={this.props.style} hidden={!this.state.visible}
                     className={`${this.name}__wrapper ${this.state.visible ? "" : "ended"} ${this.props.className || ""}`}>
@@ -154,7 +156,7 @@ const Wrapper = css(Grid)({
     const type = props.type ? props.type : "info"
     return {
         cursor: props.onClick !== undefined ? "pointer" : undefined,
-        transition: props.removed ? "max-height 0.3s !important" : undefined,
+        transition: props.removed ? "max-height 0.2s !important" : undefined,
         margin: props.removed ? "0px" : "10px 0",
         boxShadow: props.type === "success" ? "rgba(0, 0, 0, 0.3) 2px 3px 5px 0px"
                  : props.type === "error" ? "rgba(0, 0, 0, 0.3) 2px 3px 5px 0px"
@@ -177,7 +179,6 @@ Wrapper.propTypes = {
 }
 
 const Icon = css("div")({
-    width: "20px",
     padding: "0 10px",
     alignSelf: "center",
 })
@@ -188,8 +189,8 @@ const Content = css("div")({
 
 const CloseButton = css("div")({
     padding: "5px 6px 0 10px",
-    width: "20px",
     textAlign: "right",
+    alignSelf: "start",
 },(props: any) => {
     const type = props.type ? props.type : "info"
     return {
