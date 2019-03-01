@@ -118,7 +118,7 @@ class Toast extends React.PureComponent<Props, State> {
         return (
             <Wrapper type={this.props.type}
                     onClick={this.props.onClick ? this.onClick : undefined}
-                    cols={"40px 1fr 40px"}
+                    cols={"auto 1fr 40px"}
                     removed={this.state.removed}
                     s={this.props.style} hidden={!this.state.visible}
                     className={`${this.name}__wrapper ${this.state.visible ? "" : "ended"} ${this.props.className || ""}`}>
