@@ -1,13 +1,11 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Span from "../Span"
-
 import {prefix,form} from "../../config"
 import {Field, IField, } from "../Field"
 import InputContainer from "../Field/InputContainer"
 import Div from "../Div"
-import PropTypes from "prop-types"
 import FieldError from "../FieldError"
 
 export interface Props extends IField {
@@ -44,7 +42,7 @@ export class Checkbox extends React.Component<Props, {}> {
         const { label, dataId, value, checked, setValue, ...props } = this.props
         const isInvalid = props.invalid || props.error
         return <>
-                <Label className={`m-label m-isinvalid ${isInvalid ? `m-invalid` : ""}`}>
+                <Label>
                     <Div className="m-element-wrapper" lineHeight={"16px"} position="relative" display="inline-block" verticalAlign="middle">
                         <Input
                             className={`m-item`}
@@ -54,7 +52,7 @@ export class Checkbox extends React.Component<Props, {}> {
                             onChange={this.handleChange}
                             checked={checked !== undefined ? checked : !!value}
                             type="checkbox"
-                            s={{display: "none !important"}}
+                            style={{display: "none !important"}}
                             />
                         <StyledInput className={"muk-checkbox-input"} label={label} />
                         <IconCheck className="m-check" size={14} />
@@ -100,7 +98,6 @@ const stylesProps =  (props) => {
             borderColor: `${props.theme.blue}`,
             background: `${props.theme.blue}`,
         },
-        ...props.s,
     }
 }
 
@@ -123,22 +120,13 @@ export const StyledInput = css("span")({
         fill: "white !important",
     },
 
-}, (props: any) => { return {
+}, (props: any) => ({
     marginRight: props.label ? "5px" : "0px",
     borderRadius: `${props.theme.radius}`,
     border: `1px solid ${props.theme.decoration}`,
     ":hover": {
         borderColor: `${props.theme.blue}`,
     },
-}})
-
-StyledInput.propTypes = {
-    s: PropTypes.any,
-    error: PropTypes.any,
-}
-Input.propTypes = {
-    s: PropTypes.any,
-    error: PropTypes.any,
-}
+}))
 
 export default InputContainer(Checkbox)

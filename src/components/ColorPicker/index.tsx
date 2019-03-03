@@ -1,13 +1,12 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import debounce from "lodash/debounce"
+import css from "css"
 import InputContainer from "../Field/InputContainer"
 import {prefix} from "../../config"
 import {Field, IField,} from "../../components/Field"
 import TextInput from "../TextInput"
 import { SketchPicker as InputColor } from "react-color"
-import {Input} from "@reglendo/light-form/dist/es"
 import Color from "color"
+
 interface Props extends IField {
 }
 

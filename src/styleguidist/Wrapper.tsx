@@ -1,6 +1,8 @@
 import * as React from 'react';
 import App from "../components/App";
 import ThemeProvider from "@reglendo/cxs/ThemeProvider";
+import { ThemeProvider as Theme } from 'emotion-theming'
+
 import theme from "../styled/themes/ryzlink";
 import { Provider } from "react-redux";
 import { createStore, combineReducers } from 'redux';
@@ -15,9 +17,11 @@ const store = createStore(rootReducer, w.__REDUX_DEVTOOLS_EXTENSION__ && w.__RED
 export default class Wrapper extends React.PureComponent {
     render() {
         return <ThemeProvider theme={theme}>
-		        <Provider store={store}>
-                {this.props.children}
-                </Provider>
+                <Theme theme={theme}>
+                    <Provider store={store}>
+                        {this.props.children}
+                    </Provider>
+                </Theme>
                 </ThemeProvider>
     }
 }

@@ -1,8 +1,6 @@
 import * as React from "react"
-import cxs from "@reglendo/cxs/component"
-import domOnlyProps from "../../helpers/dom-only-props"
+import css from "css"
 import {prefix} from "../../config"
-import PropTypes from "prop-types"
 
 export interface Props {
     style?: any
@@ -23,13 +21,13 @@ class DataCell extends React.PureComponent<Props, State> {
     private readonly name = prefix + "datacell";
 
     public render() {
-        const { style, type, onClick, className, ...props } = this.props;
+        const { type, onClick, className, ...props } = this.props;
         return (type === "header")
             ?
                 <CssTh {...props} className={`${this.name} m-header ${className || ""}`}
-                    s={style} onClick={onClick}>{this.props.children}</CssTh>
+                   onClick={onClick}>{this.props.children}</CssTh>
             :
-                <CssTd {...props} className={`${this.name} ${className || ""}`} s={style}
+                <CssTd {...props} className={`${this.name} ${className || ""}`}
                     onClick={onClick}>{this.props.children}</CssTd>
     }
 }
@@ -50,7 +48,7 @@ const Cell = {
     },
 }
 
-const CssTd = cxs("td")(Cell, (props: any) => {
+const CssTd = css("td")(Cell, (props: any) => {
 return {
     padding: props.theme.table_cell_padding,
     borderTop: props.theme.table_border_horizontal,
@@ -62,14 +60,9 @@ return {
     "&:first-child": {
         borderLeft: props.theme.table_border_vertical,
     },
-    ...props.s,
 }})
-CssTd.propTypes = {
-    s: PropTypes.any,
-}
 
-
-const CssTh = cxs("th")({
+const CssTh = css("th")({
     ...Cell,
     borderColor: "transparent",
     whiteSpace: "nowrap",
@@ -79,11 +72,7 @@ const CssTh = cxs("th")({
     padding: props.theme.table_cell_padding,
     fontSize: props.theme.table_header_text_size,
     textTransform: props.theme.table_header_text_transform,
-    ...props.s,
 }})
 
-CssTh.propTypes = {
-    s: PropTypes.any,
-}
 
 export default DataCell

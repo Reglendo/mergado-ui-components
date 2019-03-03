@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import InputContainer from "../Field/InputContainer"
 import {prefix} from "../../config"
 import {Field, IField} from "../Field"
@@ -10,7 +10,6 @@ import FieldLabel from "../FieldLabel"
 import {style as factoryStyle} from "./style"
 import {styles as inputStyles, stylesProps as inputStylesProps} from "../TextInput"
 import ReactDOM from "react-dom"
-import PropTypes from "prop-types";
 
 interface Props extends IField {
     locale?: "cs" | "sk"
@@ -231,10 +230,10 @@ const Picker = css("div")({
     },
 })
 
-const Popover = css("div")(props => ({
+const Popover = css("div")({
     position: "absolute",
     zIndex: 200,
-}))
+})
 
 const Cover = css("div")({
     position: "fixed",

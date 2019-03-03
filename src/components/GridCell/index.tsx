@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import PropTypes from "prop-types"
+import css from "@emotion/styled"
 
 interface Props {
     children?: any
@@ -38,15 +37,5 @@ const GridCellStyle = css("div")({
         ...props.s,
     }
 })
-
-GridCellStyle.propTypes = {
-    col: PropTypes.string,
-    row: PropTypes.string,
-    name: PropTypes.string,
-    align: PropTypes.string,
-    valign: PropTypes.string,
-    autoFlow: PropTypes.string,
-    s: PropTypes.any,
-}
 
 export default GridCell

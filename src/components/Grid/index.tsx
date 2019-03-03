@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "@emotion/styled"
 import PropTypes from "prop-types"
 
 interface Props {
@@ -42,17 +42,5 @@ const CssGrid = css("div")({
     }
 })
 
-CssGrid.propTypes = {
-    s: PropTypes.any,
-    inline: PropTypes.any,
-    cols: PropTypes.string,
-    rows: PropTypes.string,
-    rowgap: PropTypes.string,
-    colgap: PropTypes.string,
-    gap: PropTypes.string,
-    align: PropTypes.string,
-    valign: PropTypes.string,
-    autoFlow: PropTypes.string,
-}
 
 export default Grid

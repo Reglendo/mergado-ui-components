@@ -1,13 +1,10 @@
 import * as React from "react"
-import cxs from "@reglendo/cxs/component"
-import * as Color from "color"
-
+import css from "css"
 import InputContainer from "../Field/InputContainer"
 import {prefix,form} from "../../config"
 import TextInput from "../TextInput"
 import uniqueId from "../../helpers/unique_id"
 import {Field, IField} from "../Field"
-import { randomBytes } from "crypto";
 
 export interface Item {
     value: string
@@ -387,7 +384,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
     }
 }
 
-const Menu = cxs("div")({
+const Menu = css("div")({
     boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)",
     background: "rgba(255, 255, 255, 0.95)",
     padding: 0,
@@ -408,16 +405,14 @@ const Menu = cxs("div")({
     }
 })
 
-const MenuItem = cxs("div")({
+const MenuItem = css("div")({
     padding: "5px 20px",
     fontSize: "0.9em",
     cursor: "pointer",
     borderRadius: 0,
     borderBottom: "1px solid #eee",
-}, props => {
-    const p: any = props
-    const theme: any = props.theme
-    if(p.selected) {
+}, (props:any) => {
+    if(props.selected) {
         return {
             background: "#f4f4f4",
         }

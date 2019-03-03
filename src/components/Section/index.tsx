@@ -1,8 +1,8 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
 import PropTypes from "prop-types"
+import css from '@emotion/styled'
 
 interface Props {
     header?: JSX.Element | string
@@ -20,19 +20,16 @@ const Section = (props: Props) => {
         return null
     }
 
-    const pref = prefix && <CssPrefix className="m-prefix" row={"1"}>{props.prefix}</CssPrefix>
-    const suff = suffix && <CssSuffix className="m-suffix" row={"1"}>{props.suffix}</CssSuffix>
-
     return (
         <CssSection className={`${name} ${className || ""}`} s={style} {...p}>
             {header &&
                 <CssHeader className={"m-header"}>
-                    <Grid className={"m-header-wrap"} cols={"auto 1fr auto"}>
-                    {pref}
-                    <GridCell className="m-header-content" row={"1"}>
+                    <Grid className={"m-header-wrap"} cols={`${prefix ? "auto" : ""} 1fr ${suffix ? "auto" : ""}`}>
+                    {prefix && <CssPrefix className="m-prefix">{props.prefix}</CssPrefix>}
+                    <GridCell className="m-header-content">
                         {header}
                     </GridCell>
-                    {suff}
+                    {suffix && <CssSuffix className="m-suffix">{props.suffix}</CssSuffix>}
                     </Grid>
                 </CssHeader>
             }
@@ -47,7 +44,6 @@ const CssPrefix = css(GridCell)({
     marginRight: "15px",
     paddingRight: "15px",
     borderRight: "1px solid #ccc",
-    justifySelf: "left",
 })
 
 const CssSuffix = css(GridCell)({

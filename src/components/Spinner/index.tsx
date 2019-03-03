@@ -82,7 +82,7 @@ const Wrapper = css("div")({
             margin: "0 auto",
             borderWidth: 0,
             ":before,:after": {
-                content: " ",
+                content: '" "',
                 display: "inline-block",
                 color: props.color ? props.color : props.theme.decoration,
                 position: "absolute",
@@ -107,9 +107,9 @@ const Wrapper = css("div")({
             color = { borderColor: `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)` }
         } else {
             color = { borderColor: `
-                                        ${Color(props.theme.decoration).fade(1).string()} 
-                                        ${Color(props.theme.decoration).fade(0.8).string()} 
-                                        ${Color(props.theme.decoration).fade(0.6).string()} 
+                                        ${Color(props.theme.decoration).fade(1).string()}
+                                        ${Color(props.theme.decoration).fade(0.8).string()}
+                                        ${Color(props.theme.decoration).fade(0.6).string()}
                                         ${Color(props.theme.decoration).fade(0.4).string()}
                                         `}
         }

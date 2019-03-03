@@ -1,5 +1,5 @@
 import * as React from "react"
-import cxs from "@reglendo/cxs/component"
+import css from "css"
 import {prefix} from "../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../Checkbox"
@@ -44,7 +44,7 @@ class DataRow extends React.PureComponent<Props, State> {
             <CssTr className={`${this.name} ${inactive && `inactive`} ${className}`}
                 disabled={inactive}
                 selected={isSelected}
-                data-id={dataId} s={style}>
+                data-id={dataId} style={style}>
                     {actions.length > 0 &&
                         <DataCell className="m-actions-cell">
                             <Checkbox
@@ -61,7 +61,7 @@ class DataRow extends React.PureComponent<Props, State> {
     }
 }
 
-const CssTr = cxs("tr")({
+const CssTr = css("tr")({
 },(props: any) => {
     return {
         background: props.selected ? props.theme.selected_background : "#fff",
@@ -81,15 +81,7 @@ const CssTr = cxs("tr")({
             color: props.theme.blue + "!important",
             fill: props.theme.blue + "!important",
         },
-        ...props.s,
     }
 })
-
-CssTr.propTypes = {
-    selected: PropTypes.bool,
-    disabled: PropTypes.bool,
-    s: PropTypes.any,
-}
-
 
 export default DataRow

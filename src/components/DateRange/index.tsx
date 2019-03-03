@@ -2,9 +2,9 @@ import * as React from 'react'
 import DatePicker from "../DatePicker"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-
 import moment from "dayjs"
-import css from "@reglendo/cxs/component"
+import css from "css"
+
 interface Props {
     getter: (dateFrom: string, dateTo: string) => void
     disabledDays?: Function
@@ -91,7 +91,7 @@ export class DateRange extends React.PureComponent<Props, State> {
         }
 
         return (
-            <Wrapper className={`muk-daterange ${className}`} cols={"auto auto"} s={style} gap={"5px"} small={small}>
+            <Wrapper className={`muk-daterange ${className}`} cols={"auto auto"} style={style} gap={"5px"} small={small}>
                 <GridCell valign={"center"}>
                     <DatePicker
                         className="muk-picker-from"
@@ -118,11 +118,10 @@ export class DateRange extends React.PureComponent<Props, State> {
         )
     }
 }
-const Wrapper = css(Grid)(props => ({
+const Wrapper = css(Grid)({}, props => ({
     " .muk-datepicker-popover": {
         fontSize: props.small ? "11px" : "14px",
     },
-    ...props.s,
 }))
 
 export default DateRange
