@@ -1,7 +1,8 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Div from "../Div"
 import * as Color from "color"
+import Theme from "components/Theme"
 
 import {prefix} from "../../config"
 
@@ -28,7 +29,6 @@ class Placeholder extends React.PureComponent<Props, State> {
     public render() {
         const { className, style, width, height } = this.props
 
-        const object: any = Object
         const styles = { paddingBottom: `${(height * 100 / width)}%`, ...style }
 
         return (
@@ -53,11 +53,8 @@ const CssShadow = css("div")({
     right: "0px",
     margin: "auto",
     border: "1px solid white",
-},(props: any) => {
-    return {
-        background: Color(props.theme.decoration).fade(0.8).string(),
-        borderColor: Color(props.theme.decoration).fade(0.2).string(),
-    }
+    background: Color(Theme.decoration).fade(0.8).string(),
+    borderColor: Color(Theme.decoration).fade(0.2).string(),
 })
 
 const CssContainer = css("div")({

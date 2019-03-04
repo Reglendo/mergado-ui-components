@@ -5,6 +5,7 @@ import {prefix,form} from "../../config"
 import TextInput from "../TextInput"
 import uniqueId from "../../helpers/unique_id"
 import {Field, IField} from "../Field"
+import Theme from "components/Theme"
 
 export interface Item {
     value: string
@@ -386,7 +387,7 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
 
 const Menu = css("div")({
     boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)",
-    background: "rgba(255, 255, 255, 0.95)",
+    background: "rgba(255, 255, 255, 0.98)",
     padding: 0,
     fontSize: "90%",
     position: "absolute",
@@ -397,12 +398,8 @@ const Menu = css("div")({
     maxHeight: "250px",
     zIndex: 1000,
     marginTop: "0",
-}, props => {
-    const theme: any = props.theme
-    return {
-        border: `1px solid ${theme.decoration}`,
-        borderTop: "none",
-    }
+    border: `1px solid ${Theme.decoration}`,
+    borderTop: "none",
 })
 
 const MenuItem = css("div")({

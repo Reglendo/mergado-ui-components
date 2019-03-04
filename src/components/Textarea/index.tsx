@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import {prefix,form} from "../../config"
 import {Field, IField} from "../Field"
 import {styles,stylesProps} from "../TextInput"
@@ -40,7 +40,7 @@ export class Textarea extends React.Component<Props, {}> {
                 <StyledTextarea
                     {...props}
                     data-name={name}
-                    height={height || '100'}
+                    height={height || 100}
                     aria-invalid={invalid || this.props.error ? 1 : 0}
                     className={`${this.name}__input
                                 ${form}__input--text
@@ -53,6 +53,12 @@ export class Textarea extends React.Component<Props, {}> {
     }
 }
 
-const StyledTextarea = css("textarea")(styles, stylesProps)
+const StyledTextarea = css("textarea")(styles, (props) => {
+    const styles = stylesProps(props)
+    return {
+        ...styles,
+        height: `${props.height}px`
+    }
+})
 
 export default InputContainer(Textarea)

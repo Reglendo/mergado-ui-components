@@ -4,7 +4,7 @@ import {prefix} from "../../config"
 import DataCell from "../DataCell"
 import Checkbox from "../Checkbox"
 import { ID, Action } from "../../helpers/types"
-import PropTypes from 'prop-types'
+import Theme from "components/Theme"
 
 export interface Props {
     style?: any
@@ -64,9 +64,9 @@ class DataRow extends React.PureComponent<Props, State> {
 const CssTr = css("tr")({
 },(props: any) => {
     return {
-        background: props.selected ? props.theme.selected_background : "#fff",
+        background: props.selected ? Theme.selected_background : "#fff",
         ":hover td": {
-            background: props.theme.hover_background,
+            background: Theme.hover_background,
         },
         color: props.disabled ? "#ccc" : "initial",
         " *, path": {
@@ -74,12 +74,12 @@ const CssTr = css("tr")({
             fill: props.disabled && "#ccc !important",
         },
         " .muk-icon--pause *": {
-            color: props.theme.blue + "!important",
-            fill: props.theme.blue + "!important",
+            color: Theme.blue + "!important",
+            fill: Theme.blue + "!important",
         },
         "& .muk-icon--play *": {
-            color: props.theme.blue + "!important",
-            fill: props.theme.blue + "!important",
+            color: Theme.blue + "!important",
+            fill: Theme.blue + "!important",
         },
     }
 })

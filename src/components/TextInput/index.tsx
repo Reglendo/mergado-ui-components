@@ -1,15 +1,15 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Div from "../Div"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
-import PropTypes from "prop-types"
 import {prefix,form} from "../../config"
 import {Field, IField} from "../Field"
 import Button from "../Button"
 import InputContainer from "../Field/InputContainer"
+import Theme from "components/Theme"
 
 export interface Props extends IField {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file" | "time"
@@ -114,7 +114,6 @@ export const styles = {
 
 export const stylesProps = (props) => {
 
-    const theme = props.theme
     const type = (props.type === "file" || props.type === "time") ? {
             lineHeight: "initial",
             padding: "8px !important",
@@ -124,7 +123,7 @@ export const stylesProps = (props) => {
     const disabled = props.disabled ? {
             color: "#999",
             background: "#eee",
-            borderColor: Color(theme.grey).fade(0.5).string(),
+            borderColor: Color(Theme.grey).fade(0.5).string(),
     } : {}
 
     const size = props.small ? {
@@ -143,15 +142,15 @@ export const stylesProps = (props) => {
     return {
         ...disabled,
         ...size,
-        border: theme.input_border,
+        border: Theme.input_border,
         borderWidth: props['aria-invalid'] ? "0px !important" : "1px",
-        borderRadius: theme.radius,
+        borderRadius: Theme.radius,
         ...type,
         "&:active": {
-            border: `${theme.input_border_active}`,
+            border: `${Theme.input_border_active}`,
         },
         "&:focus": {
-            border: `${theme.input_border_active}`,
+            border: `${Theme.input_border_active}`,
         },
     }
 }
@@ -166,15 +165,6 @@ const CssButtonEye = css(Button)({
     margin: "auto",
     height: "25px",
 })
-
-CssInput.propTypes = {
-    onClear: PropTypes.any,
-    setValue: PropTypes.any,
-    items: PropTypes.any,
-    error: PropTypes.any,
-    invalid: PropTypes.any,
-    small: PropTypes.any,
-}
 
 export default InputContainer(TextInput)
 

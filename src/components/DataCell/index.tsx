@@ -1,6 +1,7 @@
 import * as React from "react"
 import css from "css"
 import {prefix} from "../../config"
+import Theme from "components/Theme"
 
 export interface Props {
     style?: any
@@ -48,17 +49,16 @@ const Cell = {
     },
 }
 
-const CssTd = css("td")(Cell, (props: any) => {
-return {
-    padding: props.theme.table_cell_padding,
-    borderTop: props.theme.table_border_horizontal,
-    borderRight: props.theme.table_border_vertical,
-    fontSize: props.theme.table_cell_text_size,
+const CssTd = css("td")({...Cell,...{
+    padding: Theme.table_cell_padding,
+    borderTop: Theme.table_border_horizontal,
+    borderRight: Theme.table_border_vertical,
+    fontSize: Theme.table_cell_text_size,
     " a, a:visited, a:hover, a:active": {
-        color: props.theme.text,
+        color: Theme.text,
     },
-    "&:first-child": {
-        borderLeft: props.theme.table_border_vertical,
+    "&:first-of-type": {
+        borderLeft: Theme.table_border_vertical,
     },
 }})
 
@@ -67,12 +67,11 @@ const CssTh = css("th")({
     borderColor: "transparent",
     whiteSpace: "nowrap",
     color: "#fff",
+    padding: Theme.table_cell_padding,
+    fontSize: Theme.table_header_text_size,
+    textTransform: Theme.table_header_text_transform,
     fontWeight: "bold",
-}, (props: any) => { return {
-    padding: props.theme.table_cell_padding,
-    fontSize: props.theme.table_header_text_size,
-    textTransform: props.theme.table_header_text_transform,
-}})
+})
 
 
 export default DataCell

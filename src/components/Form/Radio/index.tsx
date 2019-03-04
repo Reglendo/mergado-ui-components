@@ -59,11 +59,7 @@ export class Radio extends React.Component<Props, {}> {
         const {children, ...props} = this.props
         return (
             <Field {...props} name={this.name}>
-                <div style={{display: "table", width: "auto", tableLayout: "fixed"}}>
-                    <div style={{display: "table-row"}}>
-                    {this.renderInputs()}
-                    </div>
-                </div>
+                {this.renderInputs()}
             </Field>
         )
     }

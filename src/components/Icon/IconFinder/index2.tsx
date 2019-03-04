@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
-import css from "@reglendo/cxs/component"
+import css from "css"
 
 import {prefix} from "../../../config"
 import Icon from "../index2"

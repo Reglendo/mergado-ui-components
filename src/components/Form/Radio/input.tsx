@@ -1,23 +1,16 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import Button from "../../Button"
+import css from "css"
 import Span from "../../Span"
 import {IField} from "../../Field"
+import Theme from "components/Theme"
 
-
-interface IInputProps extends IField {
-    // value: string
-    // checked: boolean
-    // label: string | JSX.Element
-    // onChange: (evt: any) => void
-    // className?: string
-    // style?: any
+interface IInput extends IField {
 }
 
-const RadioInput: React.SFC<IInputProps> = ({ value, checked, label,
+const RadioInput: React.SFC<IInput> = ({ value, checked, label,
                                              onChange, readOnly, ...props}) => {
 
-    return <CssLabel s={props.style} className={`muk-radio ${props.className || ""}`} key={value}>
+    return <CssLabel style={props.style} className={`muk-radio ${props.className || ""}`} key={value}>
                     <CssElement
                         value={value}
                         onChange={onChange}
@@ -26,7 +19,6 @@ const RadioInput: React.SFC<IInputProps> = ({ value, checked, label,
                         readOnly={readOnly}
                         data-name={props['data-name']}
                         className={`m-input`}
-                        style={{display: "none"}}
                         />
                     <span className="m-button">
                         <CssCheckbox className="m-radio-input"
@@ -41,26 +33,18 @@ const CssLabel = css("label")({
     cursor: "pointer",
     display: "block",
     padding: "5px 0",
-}, (props) => {
-    const theme: any = props.theme
-    return {
-        ...props.s,
-        ":hover .m-radio-input": {
-            borderColor: theme.blue,
-        },
-    }
-
+    ":hover .m-radio-input": {
+        borderColor: Theme.blue,
+    },
 })
 
-const styledProps = (props: any) => {
-    return {
-        "&:checked + .m-button .m-radio-input": {
-            border: `6px solid` + props.theme.blue,
-        },
-    }
-}
 
-const CssElement = css("input")(styledProps)
+const CssElement = css("input")({
+    display: "none",
+    "&:checked + .m-button .m-radio-input": {
+        border: `6px solid ` + Theme.blue,
+    }
+})
 
 const CssCheckbox = css("span")({
     marginRight: "5px",
@@ -72,16 +56,13 @@ const CssCheckbox = css("span")({
     verticalAlign: "middle",
     transition: "border-color 0.2s",
     borderRadius: "100%",
+    border: `1px solid ${Theme.decoration}`,
     ":focus": {
         outline: "none",
     },
     ":active": {
         outline: "none",
     },
-}, (props: any) => {
-    return {
-        border: `1px solid ${props.theme.decoration}`,
-    }
 })
 
 export default RadioInput

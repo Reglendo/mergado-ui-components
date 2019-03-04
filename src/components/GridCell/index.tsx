@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "@emotion/styled"
+import css from "css"
 
 interface Props {
     children?: any
@@ -16,10 +16,10 @@ interface Props {
 }
 
 const GridCell = (props: Props) => {
-    const { children, style, className, ...p } = props
+    const { children, className, ...p } = props
 
     return (
-        <GridCellStyle className={`muk-gridcell ${className || ""}`} s={style} {...p}>
+        <GridCellStyle className={`muk-gridcell ${className || ""}`} {...p}>
             {children}
         </GridCellStyle>
     )
@@ -34,7 +34,6 @@ const GridCellStyle = css("div")({
         gridArea: props.name ? props.name : null,
         justifySelf: props.align ? props.align : "stretch",
         alignSelf: props.valign ? props.valign : "stretch",
-        ...props.s,
     }
 })
 

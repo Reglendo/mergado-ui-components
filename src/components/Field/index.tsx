@@ -1,12 +1,9 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-
+import css from "css"
 import {form} from "../../config"
-import Div from "../Div"
-import PropTypes from 'prop-types'
 import FieldLabel from "../FieldLabel"
 import FieldError from "../FieldError"
-
+import Theme from "components/Theme"
 
 export interface IField {
     name?: string
@@ -97,7 +94,7 @@ export const Field: React.SFC<IField> = (props) => {
         <FieldWrapper className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
             title={props.title}
             name={props.name}
-            s={style}>
+            style={style}>
                 <FieldError error={error} className={`${form}__validation`} />
                 {props.label &&
                     <FieldLabel name={props.name} bigLabel={props.bigLabel}>
@@ -111,15 +108,9 @@ export const Field: React.SFC<IField> = (props) => {
     )
 }
 
-Field.propTypes = {
-    className: PropTypes.string,
-}
-
 const FieldWrapper = css("div")({
     position: "relative",
-
 },(props: any) => {
-    const theme: any = props.theme
     let styles = {}
     if(props.name) {
         styles = {
@@ -131,23 +122,14 @@ const FieldWrapper = css("div")({
     return {
         ...styles,
         "& .m-isinvalid": {
-            borderRadius: `${parseInt(theme.radius,10)+2}px`,
+            borderRadius: `${parseInt(Theme.radius,10)+2}px`,
             border: `2px solid transparent`,
         },
 
         "& .m-isinvalid.m-invalid": {
-            borderColor: `${theme.red}`,
+            borderColor: `${Theme.red}`,
         },
-        ...props.s,
     }
 })
-
-
-FieldWrapper.propTypes = {
-    s: PropTypes.any,
-    name: PropTypes.string,
-}
-
-
 
 export default Field

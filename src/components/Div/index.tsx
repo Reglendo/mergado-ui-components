@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import PropTypes from "prop-types"
+import css from "css"
 
 interface Props {
     children?: any
@@ -13,22 +12,12 @@ interface Props {
 class Div extends React.PureComponent<Props, {}> {
     render() {
         const {children, style, className, props, ...others} = this.props
-        return <CssDiv className={`muk-div ${className || ""}`} {...props} s={{...others, ...style}}>
+        return <CssDiv className={`muk-div ${className || ""}`} {...props} style={{...others, ...style}}>
             {children}
         </CssDiv>
     }
 }
 
-const CssDiv = css("div")(
-    (props) => {
-        const { className,theme,children,s,...style } = props
-        return {...s, ...style}
-    })
-
-CssDiv.propTypes = {
-    s: PropTypes.any,
-    style: PropTypes.any,
-}
-
+const CssDiv = css("div")({})
 
 export default Div

@@ -369,6 +369,19 @@ const base = {
     ".muk-icon__image, .muk-popup_hint__trigger .muk-icon": {
         verticalAlign: "middle"
     },
+    "#muk-popuphint .muk-bubble": {
+        opacity: 0,
+        transition: "opacity 0.2s",
+        willChange: "opacity",
+        pointerEvents: "none",
+    },
+
+    "#muk-popuphint.m-active .muk-bubble": {
+        opacity: 1,
+        transition: "opacity 0.2s",
+        willChange: "opacity",
+    }
+
 }
 
 const typo = {

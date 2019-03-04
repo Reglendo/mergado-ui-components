@@ -7,7 +7,6 @@ import Checkbox from "../Checkbox"
 import { ID, Action, Filter } from "../../helpers/types"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-import PropTypes from "prop-types"
 
 export interface Props {
     bulkActions?: Action[]
@@ -18,7 +17,7 @@ export interface Props {
     labels?: {
         actionsBar: string
     }
-    onRowSelected?: (selected: number) => void
+    rowSelected?: (selected: number) => void
 }
 export interface State {
     selectedAll: boolean

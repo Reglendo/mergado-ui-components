@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import {prefix} from "../../config"
 
 export interface Props {

@@ -1,9 +1,10 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Div from "../Div"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
+import Theme from "components/Theme"
 
 export interface Props {
     /** Active page number */
@@ -153,7 +154,7 @@ class Paginator extends React.PureComponent<Props, State> {
     public render() {
         return (
             <Div margin="10px 0" textAlign="center" className={this.name}
-                    data-active={this.props.currentPage} style={this.props.style}>
+                    props={{ ['data-active']: this.props.currentPage }} style={this.props.style}>
                 {!!this.props.showFirstAndLast && this.renderFirstButton()}
                 {!!this.props.showPrevAndNext && this.renderPreviousButton()}
                 {this.renderMainButtons()}
@@ -184,18 +185,13 @@ const Button = css("a")({
     ":focus": {
         textDecoration: "none",
     },
-},(props: any) => {
-    return {
-        "&": {
-            borderRadius: props.theme.radius,
-            color: props.theme.blue,
-        },
-        ":hover": {
-            background: props.theme.blue,
-            color: "white",
-            textDecoration: "none",
-        },
-    }
+    borderRadius: Theme.radius,
+    color: Theme.blue,
+    ":hover": {
+        background: Theme.blue,
+        color: "white",
+        textDecoration: "none",
+    },
 })
 
 const Disabled = css(Button)({
@@ -212,17 +208,14 @@ const Disabled = css(Button)({
 const Active = css(Button)({
     opacity: 1,
     color: "black !important",
-}, (props: any) => {
-    return {
-        background: props.theme.decoration_background,
-        border: `1px solid ${props.theme.decoration} !important`,
-        ":hover": {
-            background: props.theme.decoration_background,
-            border: `1px solid ${props.theme.decoration}`,
-            color: "black !important",
-            textDecoration: "none",
-        },
-    }
+    background: Theme.decoration_background,
+    border: `1px solid ${Theme.decoration} !important`,
+    ":hover": {
+        background: Theme.decoration_background,
+        border: `1px solid ${Theme.decoration}`,
+        color: "black !important",
+        textDecoration: "none",
+    },
 })
 
 export default Paginator

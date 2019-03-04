@@ -1,8 +1,6 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-
+import css from "css"
 import {form} from "../../config"
-import PropTypes from 'prop-types'
 import Theme from "../Theme";
 
 
@@ -17,17 +15,18 @@ interface Props {
     children?: any
     bigLabel?: boolean
     className?: string
+    style?: any
     [propName: string]: any
 }
 
 
-export const FieldLabel: React.SFC<Props> = ({children, bigLabel, className}): any => {
+export const FieldLabel: React.SFC<Props> = ({children, bigLabel, className, style, ...others}): any => {
     if(children === "" || children === null) {
         return false
     }
 
     return (
-            <Label className={`${form}-label ${className}`} bigLabel={bigLabel}>
+            <Label className={`${form}-label ${className || ""}`} bigLabel={bigLabel} {...others}>
                 {bigLabel ? <CssBigLabel>{children}</CssBigLabel> : children }
             </Label>
         )
@@ -42,18 +41,12 @@ const Label = css("label")({
     " .muk-popup-hint": {
         verticalAlign: "middle",
     },
+    fontSize: Theme.form_label_text_size,
+    fontWeight: Theme.form_label_text_weight,
 }, (props: any) => {
-    const theme: any = props.theme
     return {
-        ...props.s,
         height: props.bigLabel ? "50px" : "25px",
-        fontSize: theme.form_label_text_size,
-        fontWeight: theme.form_label_text_weight,
     }
 })
-
-Label.propTypes = {
-    bigLabel: PropTypes.bool,
-}
 
 export default FieldLabel

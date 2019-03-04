@@ -1,12 +1,12 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 
 import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
 import Button from "../Button"
 import {Type} from "../../helpers/types"
-import PropTypes from "prop-types"
 import Grid from "../Grid"
+import Theme from "components/Theme"
 
 export interface Props {
     id?: string,
@@ -116,23 +116,27 @@ class Toast extends React.PureComponent<Props, State> {
     }
 
     public render() {
+        const {type, onClick, style, text, children,className,icon,closeable,...others} = this.props
+        const {removed, visible,secondsLeft} = this.state
         return (
-            <Wrapper type={this.props.type}
-                    onClick={this.props.onClick ? this.onClick : undefined}
+            <Wrapper type={type}
+                    onClick={onClick ? this.onClick : undefined}
                     cols={"auto 1fr 40px"}
                     valign="center"
-                    removed={this.state.removed}
-                    s={this.props.style} hidden={!this.state.visible}
-                    className={`${this.name}__wrapper ${this.state.visible ? "" : "ended"} ${this.props.className || ""}`}>
-                    <Icon className={`${this.name}__icon`}>{this.props.icon}</Icon>
+                    removed={removed}
+                    s={style}
+                    hidden={!visible}
+                    className={`${this.name}__wrapper ${visible ? "" : "ended"} ${className || ""}`}
+                    >
+                    <Icon className={`${this.name}__icon`}>{icon}</Icon>
                     <Content className={`${this.name}__content`}>
-                            {this.props.text && typeof this.props.text == "string" ?
-                                this.props.text.replace("%seconds%",this.state.secondsLeft + "s")
+                            {text && typeof text == "string" ?
+                                text.replace("%seconds%",secondsLeft + "s")
                             :
-                                this.props.children }
+                                children }
                     </Content>
-                    {this.props.closeable &&
-                            <CloseButton type={this.props.type}>
+                    {closeable &&
+                            <CloseButton type={type}>
                                 <Button className={`${this.name}__button`}
                                     color="nocolor"
                                     size="tiny"
@@ -163,7 +167,7 @@ const Wrapper = css(Grid)({
                                             : "rgba(0, 0, 0, 0.3) 2px 3px 5px 0px",
         borderRadius: "2px",
         opacity: props.hidden ? 0 : 1,
-        background: type === "transparent" ? "transparent" : type === "material" ? "#222" : props.theme[type],
+        background: type === "transparent" ? "transparent" : type === "material" ? "#222" : Theme[type],
         color: (type === "transparent" || type === "info" || type === "inactive" || type === "message")
                     ? "#333" : "white",
         ...props.s,
@@ -171,12 +175,6 @@ const Wrapper = css(Grid)({
     }
 })
 
-Wrapper.propTypes = {
-    type: PropTypes.string,
-    removed: PropTypes.bool,
-    hidden: PropTypes.bool,
-    s: PropTypes.any,
-}
 
 const Icon = css("div")({
     padding: "0 10px",

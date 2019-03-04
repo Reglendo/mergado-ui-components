@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "@emotion/styled"
-import PropTypes from "prop-types"
+import css from "css"
 
 interface Props {
     className?: string
@@ -18,18 +17,16 @@ interface Props {
 }
 
 const Grid = (props: Props) => {
-    const { children, style, className, ...p } = props
+    const { children, className, ...p } = props
 
     return (
-        <CssGrid className={`muk-grid ${className || ""}`} s={style} {...p}>
+        <CssGrid className={`muk-grid ${className || ""}`} {...p}>
             {children}
         </CssGrid>
     )
 }
 
-const CssGrid = css("div")({
-
-},(props: any) => {
+const CssGrid = css("div")({},(props: any) => {
     return {
         display: props.inline ? "inline-grid" : "grid",
         gridTemplateColumns: props.cols ? props.cols : "auto",
@@ -38,7 +35,6 @@ const CssGrid = css("div")({
         justifyItems: props.align ? props.align : "stretch",
         alignItems: props.valign ? props.valign : "stretch",
         gridAutoFlow: props.autoFlow ? props.autoFlow : "row",
-        ...props.s,
     }
 })
 

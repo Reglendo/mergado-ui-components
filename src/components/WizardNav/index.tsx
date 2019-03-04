@@ -1,7 +1,8 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Ul from "../Ul"
 import {prefix} from "../../config"
+import Theme from "components/Theme"
 
 export interface Props {
     links: JSX.Element[]
@@ -51,11 +52,8 @@ const Nav = css("nav")({
     padding: "0",
     margin: "20px 0",
     listStyle: "none",
-},(props: any) => {
-    return {
-        borderRadius: props.theme.radius,
-        backgroundColor: props.theme.grey,
-    }
+    borderRadius: Theme.radius,
+    backgroundColor: Theme.grey,
 })
 
 export default WizardNav

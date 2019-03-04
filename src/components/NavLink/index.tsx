@@ -1,12 +1,12 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import * as Color from "color"
 import {prefix} from "../../config"
-import PropTypes from "prop-types"
+import Theme from "components/Theme"
 
 export interface Props {
     active?: boolean
-    link?: JSX.Element
+    link?: JSX.Element | false
     style?: any
     className?: string
 }
@@ -18,27 +18,19 @@ class NavLink extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "navlink";
 
-    public static defaultProps: Props = {
-        active: false,
-        link: (<a href="#"/>),
-        style: {},
-    }
-
     public render() {
-        const {link, active, className, style, ...p} = this.props
+        const {link, active, className, children, ...p} = this.props
 
         return (
             <CssLink className={`${this.name} ${this.props.className || ""} ${active ? "active" : ""}`}
-                              active={active} s={style} {...p}>
-                {link}
+                              active={active}  {...p}>
+                {link || <a href="#">{children}</a>}
             </CssLink>
         )
     }
 }
 
-
 const CssLink = css("li")({
-
     float: "left",
     marginRight: "1em",
     listStyleType: "none",
@@ -53,23 +45,19 @@ const CssLink = css("li")({
         textDecoration: "none",
         outline: "none",
     },
+    "& a:hover, & a:focus, & a:active": {
+        color: Theme.text,
+    },
 },(props: any) => {
     return {
         "& a, & a:visited": {
-            borderBottom: props.theme.nav_link_border,
-            borderBottomColor:  props.active ? props.theme.nav_link_color  : "transparent",
-            color: props.active ? props.theme.text : Color(props.theme.text).fade(0.3).string(),
-        },
-        "& a:hover, & a:focus, & a:active": {
-            color: props.theme.text,
+            borderBottom: Theme.nav_link_border,
+            borderBottomColor:  props.active ? Theme.nav_link_color  : "transparent",
+            color: props.active ? Theme.text : Color(Theme.text).fade(0.3).string(),
         },
     }
 })
 
-CssLink.propTypes = {
-    active: PropTypes.bool,
-    s: PropTypes.any,
-}
 
 
 export default NavLink

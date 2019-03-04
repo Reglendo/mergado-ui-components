@@ -7,6 +7,7 @@ import {Field, IField, } from "../Field"
 import InputContainer from "../Field/InputContainer"
 import Div from "../Div"
 import FieldError from "../FieldError"
+import Theme from "components/Theme"
 
 export interface Props extends IField {
     checked?: boolean
@@ -40,7 +41,6 @@ export class Checkbox extends React.Component<Props, {}> {
 
     protected renderLabel() {
         const { label, dataId, value, checked, setValue, ...props } = this.props
-        const isInvalid = props.invalid || props.error
         return <>
                 <Label>
                     <Div className="m-element-wrapper" lineHeight={"16px"} position="relative" display="inline-block" verticalAlign="middle">
@@ -75,13 +75,9 @@ export class Checkbox extends React.Component<Props, {}> {
 
 const Label = css("div")({
     cursor: "pointer",
-}, (props: any) => {
-    const theme: any = props.theme
-    return {
-        "&:hover .muk-checkbox-input": {
-            borderColor: theme.blue,
-        },
-    }
+    "&:hover .muk-checkbox-input": {
+        borderColor: Theme.blue,
+    },
 })
 
 const styles = {
@@ -90,18 +86,14 @@ const styles = {
         verticalAlign: "middle",
         height: "18px",
     },
+    ":checked + .muk-checkbox-input": {
+        borderColor: `${Theme.blue}`,
+        background: `${Theme.blue}`,
+    },
 }
 
-const stylesProps =  (props) => {
-    return {
-        ":checked + .muk-checkbox-input": {
-            borderColor: `${props.theme.blue}`,
-            background: `${props.theme.blue}`,
-        },
-    }
-}
 
-const Input = css("input")(styles , stylesProps)
+const Input = css("input")(styles)
 
 export const StyledInput = css("span")({
     display: "inline-block",
@@ -119,14 +111,13 @@ export const StyledInput = css("span")({
     "& + .muk-icon--check path": {
         fill: "white !important",
     },
-
+    borderRadius: `${Theme.radius}`,
+    border: `1px solid ${Theme.decoration}`,
+    ":hover": {
+        borderColor: `${Theme.blue}`,
+    },
 }, (props: any) => ({
     marginRight: props.label ? "5px" : "0px",
-    borderRadius: `${props.theme.radius}`,
-    border: `1px solid ${props.theme.decoration}`,
-    ":hover": {
-        borderColor: `${props.theme.blue}`,
-    },
 }))
 
 export default InputContainer(Checkbox)

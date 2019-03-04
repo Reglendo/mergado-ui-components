@@ -1,9 +1,7 @@
 import * as React from "react"
-
 import {prefix} from "../../config"
 import Toast from "../Toast"
-import uniqueId from "../../helpers/unique_id"
-import css from "@reglendo/cxs/component"
+import css from "css"
 
 export interface Props {
     toasts?: Array<Toast|JSX.Element>
@@ -46,7 +44,7 @@ class Toasts extends React.PureComponent<Props, State> {
 
     public render() {
         return (
-            <Wrapper className={`${this.name}`} s={this.props.style}>
+            <Wrapper className={`${this.name}`} style={this.props.style}>
                 {this.props.children}
             </Wrapper>
         )
@@ -84,7 +82,6 @@ const Wrapper = css("div")(props => ({
     " .muk-toast__content": {
         fontSize: "0.85rem",
     },
-    ...props.s,
 }))
 
 export default Toasts

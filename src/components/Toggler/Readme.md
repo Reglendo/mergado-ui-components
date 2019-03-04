@@ -3,6 +3,8 @@ Light input
         <Toggler label={"Little bit different checkbox"}
                 onLabel={"On"} offLabel="Off"
                 name="form.toggler"
+                boolean={true}
+                big={true}
         />
 
         <Toggler label={"Little bit different checkbox"}

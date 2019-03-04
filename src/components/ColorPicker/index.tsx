@@ -6,6 +6,7 @@ import {Field, IField,} from "../../components/Field"
 import TextInput from "../TextInput"
 import { SketchPicker as InputColor } from "react-color"
 import Color from "color"
+import Theme from "components/Theme"
 
 interface Props extends IField {
 }
@@ -105,22 +106,21 @@ const StyledField = css(Field)({
         transition: "border-color 0.2s",
         willChange: "border-color",
     },
+    " .m-input-color:focus": {
+        border: `${Theme.input_border_active} !important`,
+    },
+    " .m-input-color:active": {
+        border: `${Theme.input_border_active} !important`,
+    },
+    " .muk-form__group--invalid .muk-colorpicker__colorbox": {
+        borderColor: `${Theme.red} !important`,
+    },
 }, props => {
-    const theme: any = props.theme
     return {
         " .m-input-color": {
-            borderRadius: theme.radius,
-            borderColor: theme.decoration,
-            border: props["aria-invalid"] ? theme.input_border_error : theme.input_border,
-        },
-        " .m-input-color:focus": {
-            border: `${theme.input_border_active} !important`,
-        },
-        " .m-input-color:active": {
-            border: `${theme.input_border_active} !important`,
-        },
-        " .muk-form__group--invalid .muk-colorpicker__colorbox": {
-            borderColor: `${theme.red} !important`,
+            borderRadius: Theme.radius,
+            borderColor: Theme.decoration,
+            border: props["aria-invalid"] ? Theme.input_border_error : Theme.input_border,
         },
     }
 })

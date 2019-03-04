@@ -3,6 +3,7 @@ import css from "css"
 import {prefix} from "../../config"
 import {Field, IField} from "../Field"
 import * as Color from "color"
+import Theme from "components/Theme"
 
 export interface Props extends IField {
     type?: "button" | "submit" | "void" | "href"
@@ -108,7 +109,7 @@ const StyledButton = css("button")({
     " a": {
         color: "white",
     },
-}, (props: { size?: string, disabled?: boolean, color?: string, theme?: any, keepColors?: boolean, secondary?: boolean, simple?: boolean }) => {
+}, (props: { size?: string, disabled?: boolean, color?: string, keepColors?: boolean, secondary?: boolean, simple?: boolean }) => {
     let size = {}
     if(props.size === "tiny") {
         size = {
@@ -138,26 +139,26 @@ const StyledButton = css("button")({
             background: "transparent",
             padding: "0 2px",
             borderColor: "transparent",
-            color: props.theme.blue,
+            color: Theme.blue,
             "&:active,&:focus": {
               borderColor: "transparent",
               outline: "none",
               background: "rgba(200,200,200,0.2)",
             },
             " path": {
-                fill: props.keepColors ? "keep" : (props.theme.blue + "!important"),
+                fill: props.keepColors ? "keep" : (Theme.blue + "!important"),
             },
         }
     } else {
-        let c = props.theme[props.color === "gray" ? "grey" : props.color]
-        if(c === props.theme.grey) {
+        let c = Theme[props.color === "gray" ? "grey" : props.color]
+        if(c === Theme.grey) {
             c = Color(c).darken(0.2).string()
         }
         if(props.secondary) {
             color = {
                 backgroundColor: "transparent",
                 borderColor: c,
-                color: props.color === "decoration" ? props.theme.blue : c,
+                color: props.color === "decoration" ? Theme.blue : c,
                 "&:hover": {
                     backgroundColor: Color(c).fade(0.8).string(),
                     borderColor: Color(c).string(),
@@ -168,7 +169,7 @@ const StyledButton = css("button")({
                   color: "white",
                 },
                 " path": {
-                    fill: props.keepColors ? "keep" : ( (props.color === "decoration" ? props.theme.blue : c) + "!important"),
+                    fill: props.keepColors ? "keep" : ( (props.color === "decoration" ? Theme.blue : c) + "!important"),
                 },
             }
         } else if(props.simple) {
@@ -184,14 +185,14 @@ const StyledButton = css("button")({
                     border: "none",
                 },
                 " path": {
-                    fill: props.keepColors ? "keep" : ( (props.color === "decoration" ? props.theme.blue : c) + "!important"),
+                    fill: props.keepColors ? "keep" : ( (props.color === "decoration" ? Theme.blue : c) + "!important"),
                 },
             }
         } else {
             color = {
                 backgroundColor: c,
                 borderColor: c,
-                color: props.color === "decoration" ? props.theme.blue : "white",
+                color: props.color === "decoration" ? Theme.blue : "white",
                 ":hover": {
                     backgroundColor: Color(c).darken(0.1).string(),
                     borderColor: Color(c).darken(0.1).string(),
@@ -201,7 +202,7 @@ const StyledButton = css("button")({
                       borderColor: Color(c).darken(0.2).string(),
                 },
                 " path": {
-                    fill: props.keepColors ? "keep" : ((props.color === "decoration" ? props.theme.blue : "white") + "!important"),
+                    fill: props.keepColors ? "keep" : ((props.color === "decoration" ? Theme.blue : "white") + "!important"),
                 },
             }
         }
@@ -211,10 +212,10 @@ const StyledButton = css("button")({
         ...size,
         ...disabled,
         ...color,
-        borderRadius: props.theme.radius,
-        textTransform: props.theme.button_text_transform,
-        fontWeight: props.theme.button_text_weight,
-        fontSize: props.size === "tiny" ? "13px" : props.theme.button_text_size,
+        borderRadius: Theme.radius,
+        textTransform: Theme.button_text_transform,
+        fontWeight: Theme.button_text_weight,
+        fontSize: props.size === "tiny" ? "13px" : Theme.button_text_size,
     }
 })
 

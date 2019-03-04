@@ -1,16 +1,15 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Span from "../Span"
 import Div from "../Div"
-
 import {prefix,form} from "../../config"
 import {Field, IField} from "../Field"
-import PropTypes from "prop-types"
 import InputContainer from "../Field/InputContainer"
 import FieldLabel from "../FieldLabel"
 import FieldError from "../FieldError"
+import Theme from "components/Theme"
 
 export interface Props extends IField {
     onLabel: string | JSX.Element
@@ -126,22 +125,14 @@ const No = css(IconClose)({
 
 const Label = css("div")({
     cursor: "pointer",
-}, (props: any) => {
-    const theme: any = props.theme
-    return {
-        ":hover .m-checkbox": {
-            borderColor: theme.blue,
-        },
-    }
+    ":hover .m-checkbox": {
+        borderColor: Theme.blue,
+    },
 })
 
 const StyledField = css(Field)({
     "> .muk-form__group--invalid": {
         border: "none !important",
-    },
-
-    " svg": {
-        // verticalAlign: "initial",
     },
 })
 
@@ -164,13 +155,6 @@ const Point = css("span")({
     transform: props.reverse ? "translate3d("+(props.big ? (props.boolean ? `${bigBoolWidth - bigHeight - 4}px` : (props.width-bigHeight-4) + "px") : "18px")+",0,0)" : "translate3d(0,0,0)",
 }))
 
-Point.propTypes = {
-    big: PropTypes.bool,
-    width: PropTypes.number,
-    reverse: PropTypes.bool,
-    boolean: PropTypes.bool,
-}
-
 const styles = {
     display: "none !important",
 }
@@ -183,7 +167,7 @@ const stylesProps =  (props) => {
         },
         " + span": {
             borderColor: `#aaa`,
-            background: `${props.theme.inactive}`,
+            background: `${Theme.inactive}`,
             transition: "border-color 0.2s, background-color 0.2s",
             willChange: "background-color",
 
@@ -202,8 +186,8 @@ const stylesProps =  (props) => {
 
         },
         ":checked + span": {
-            borderColor: `${props.theme.green}`,
-            background: `${props.theme.green}`,
+            borderColor: `${Theme.green}`,
+            background: `${Theme.green}`,
             ":before" :{
                 opacity: 1,
             },
@@ -227,22 +211,18 @@ const StyledInput = css("span")({
 }, (props: any) => {
     const content = props.big && !props.boolean ? {
         "&:before": {
-            content: props.onLabel,
+            content: props.onLabel || '""',
             transition: "opacity 0.1s",
             lineHeight: `${bigHeight+4}px`,
             color: "white",
             padding: "0 3px",
-            // position: "absolute",
-            // left: "0",
         },
         "&:after": {
-            content: props.offLabel,
+            content: props.offLabel || '""',
             transition: "opacity 0.1s",
             lineHeight: `${bigHeight+4}px`,
             padding: "0 3px",
             color: "#888",
-            // position: "absolute",
-            // right: "0",
         },
     } : {}
 
@@ -254,22 +234,8 @@ const StyledInput = css("span")({
     borderRadius: `999em`,
     border: `1px solid transparent`,
     ":hover": {
-        borderColor: `${props.theme.blue}`,
+        borderColor: `${Theme.blue}`,
     },
 }})
-
-
-CssElement.propTypes =  {
-    offLabel: PropTypes.any,
-    onLabel: PropTypes.any,
-    label: PropTypes.any,
-    big: PropTypes.bool,
-    width: PropTypes.number,
-    reverse: PropTypes.bool,
-    boolean: PropTypes.bool,
-    invalid: PropTypes.any,
-    error: PropTypes.any,
-}
-StyledInput.propTypes = CssElement.propTypes
 
 export default InputContainer(Toggler)

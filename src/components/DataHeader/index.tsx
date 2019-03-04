@@ -6,7 +6,7 @@ import DataCell from "../DataCell"
 import Checkbox from "../Checkbox"
 import { ID, Action } from "../../helpers/types"
 import Button from "../Button"
-import PropTypes from "prop-types"
+import Theme from "components/Theme"
 
 export interface Props {
     style?: any
@@ -89,7 +89,7 @@ export const CssActionsIcons = css("div")({
 const CssHeader = css("tr")(
 (props: any) => {
     return {
-        background: props.selected ? props.theme.blue : "#333",
+        background: props.selected ? Theme.blue : "#333",
     }})
 
 

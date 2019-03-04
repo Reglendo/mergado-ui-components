@@ -1,8 +1,6 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-
+import css from "css"
 import Header from "../Header"
-import domOnlyProps from "../../helpers/dom-only-props"
 
 interface Props {
     header?: JSX.Element
@@ -16,14 +14,14 @@ const Fieldset = (props: Props) => {
         }
 
         return (
-            <FFieldset  {...domOnlyProps(props)}>
+            <Styled {...props}>
                 {header && <Header type={"3"}>{header}</Header>}
                 {children}
-            </FFieldset>
+            </Styled>
         )
 }
 
-const FFieldset = css("fieldset")({
+const Styled = css("fieldset")({
     padding: 0,
     margin: 0,
 })

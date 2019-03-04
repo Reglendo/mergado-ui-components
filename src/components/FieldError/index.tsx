@@ -1,6 +1,6 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import PropTypes from 'prop-types'
+import css from "css"
+import Theme from "components/Theme"
 
 const FieldError = ({error, className, style = {}}) => {
     if(error) {
@@ -22,17 +22,8 @@ export const Styled = css("div")({
     position: "absolute",
     fontWeight: "normal",
     top: "100%",
-},(props: any) => {
-    const theme: any = props.theme
-    return {
-        left: theme.radius,
-        background: theme.red,
-    }
+    left: Theme.radius,
+    background: Theme.red,
 })
-
-FieldError.propTypes = {
-    error: PropTypes.any,
-    className: PropTypes.string,
-}
 
 export default FieldError
