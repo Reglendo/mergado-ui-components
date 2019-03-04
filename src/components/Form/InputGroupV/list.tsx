@@ -1,9 +1,11 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
+
 import * as Color from "color"
 
 import { Query } from "./index"
 import { QueryItem } from "./item"
+import Theme from "components/Theme"
 
 interface IQueryListProps {
     name: string
@@ -86,7 +88,7 @@ const Options = ({name, options, value, singleChoice, showInput, onChange}) => {
 export const QueryList: React.SFC<IQueryListProps> = ({ name, className, options, value, height,
                                                             singleChoice, showInput, activeFirst, onChange, }) => {
     return (
-        <List className={`muk-inputgroupv__list ${className}`} height={height}>
+        <List className={`muk-inputgroupv__list ${className || ""}`} height={height}>
             <Options name={name}
                     options={activeFirst ? options.sort(sortOptions(value)) : options}
                     value={value}
@@ -106,10 +108,10 @@ const List = css("ul")({
     overflow: "auto",
     background: "rgb(255,255,255)",
     height: "auto",
+    borderRadius: Theme.radius,
+    " li + li": {
+        borderTop: `1px solid ${Color(Theme.decoration).fade(0.8)}`,
+    },
 }, (props: any) => { return {
     maxHeight: props.height === "auto" ? props.height : props.height + "px",
-    borderRadius: props.theme.radius,
-    " li + li": {
-        borderTop: `1px solid ${Color(props.theme.decoration).fade(0.8)}`,
-    },
 }})

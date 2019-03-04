@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import PropTypes from "prop-types"
+import css from "css"
 
 interface Props {
     children?: any
@@ -12,21 +11,11 @@ interface Props {
 
 export const Span = (p: Props) => {
     const {children, style, className, props, ...others} = p
-    return <CssSpan className={`muk-span ${className || ""}`} {...props} s={{...others, ...style}}>
+    return <CssSpan className={`muk-span ${className || ""}`} {...props} style={{...others, ...style}}>
         {children}
     </CssSpan>
 }
 
-const CssSpan = css("span")(
-    (props) => {
-        const { className,theme,children,s,...style } = props
-        return {...s, ...style}
-    })
-
-CssSpan.propTypes = {
-    s: PropTypes.any,
-    style: PropTypes.any,
-}
-
+const CssSpan = css("span")({})
 
 export default Span

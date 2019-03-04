@@ -1,13 +1,15 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
+
 import * as Color from "color"
-import InputContainer  from "../../Field/InputContainer"
-import {prefix,form} from "../../../config"
-import {Field, IField} from "../../Field"
-import TextInput from "../../TextInput"
-import Grid from "../../Grid"
-import GridCell from "../../GridCell"
-import FieldLabel from "../../FieldLabel";
+import InputContainer  from "../Field/InputContainer"
+import {prefix,form} from "config"
+import {Field, IField} from "../Field"
+import TextInput from "../TextInput"
+import Grid from "components/Grid"
+import GridCell from "components/GridCell"
+import FieldLabel from "../FieldLabel";
+import Theme from "components/Theme"
 
 export interface Props extends IField {
     max: number
@@ -88,8 +90,8 @@ const StyledField = css(Field)({
     },
 },(props) => {
 
-    const thumbColor = props.theme.blue
-    const sliderColor = Color(props.theme.decoration).fade(0.5).string()
+    const thumbColor = Theme.blue
+    const sliderColor = Color(Theme.decoration).fade(0.5).string()
 
     const slider = {
         width: "100%",
@@ -137,12 +139,11 @@ const StyledField = css(Field)({
     }
 })
 
-const styles = {
+const StyledInput = css("input")({
     padding: 0,
     border: "none",
     background: "transparent",
     appearance: "none",
-}
-const StyledInput = css("input")(styles)
+})
 
 export default InputContainer(Range)

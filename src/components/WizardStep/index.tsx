@@ -1,6 +1,7 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import {prefix} from "../../config"
+import Theme from "components/Theme"
 
 export interface Props {
     active?: boolean
@@ -61,13 +62,13 @@ const Item = css("li")({
     },
 },(props: any) => {
     return {
-        background: props.selected ? props.theme.blue : "transparent",
+        background: props.selected ? Theme.blue : "transparent",
         ":after": {
-            borderColor: props.theme.grey,
-            background: props.selected ? props.theme.blue : props.theme.grey,
+            borderColor: Theme.grey,
+            background: props.selected ? Theme.blue : Theme.grey,
         },
         ":first-of-type": {
-            borderRadius: props.theme.radius,
+            borderRadius: Theme.radius,
         },
     }
 })

@@ -1,5 +1,4 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
 import Div from "../Div"
 
 import IconHintInfo from "@reglendo/mergado-ui-icons/lib/icons/IconHintInfo"
@@ -52,8 +51,8 @@ class PopupHint extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props)
 
-        this.collapse = debounce(this.collapse.bind(this),50)
-        this.expand = debounce(this.expand.bind(this),50)
+        this.collapse = this.collapse.bind(this)
+        this.expand = this.expand.bind(this)
         this.styleHint = this.styleHint.bind(this)
         this.id = Math.round(Math.random() * 1000)
     }
@@ -72,7 +71,6 @@ class PopupHint extends React.PureComponent<Props, State> {
 
     protected collapse(): void {
         const hint: any = document.getElementById('muk-popuphint')
-        const bubble: any = document.getElementById('muk-bubble')
         hint.classList.remove("m-active")
     }
 
@@ -101,29 +99,16 @@ class PopupHint extends React.PureComponent<Props, State> {
         this.styleHint(buttonPosition, renderLeft) // this is not error, repeat, this is not error
     }
 
-    protected styleArrow(left: string, right: string) {
-        const arrow: any = document.getElementById('muk-bubble-arrow')
-
-        arrow.style.left = left
-        arrow.style.right = right
-    }
-
     protected styleHint(buttonPosition: Position, renderLeft: boolean) {
         const hint: any = document.getElementById('muk-bubble')
         hint.style.display = "block"
         hint.style.pointerEvents = "none"
         let newX: number
-        let arrowLeft: string
-        let arrowRight: string
         if (renderLeft) {
             newX = buttonPosition.left - hint.offsetWidth + 14
-            arrowLeft = ""
-            arrowRight = 0 + this.props.arrowRight + "px"
 
         } else {
             newX = (buttonPosition.left - 2) > 0 ? (buttonPosition.left - 8) : 0;
-            arrowLeft = buttonPosition.left - newX + this.props.arrowLeft + "px"
-            arrowRight = ""
         }
         if (hint.style.top === `${buttonPosition.top - hint.offsetHeight}px` &&
             hint.style.left === `${newX}px`) {
@@ -131,7 +116,6 @@ class PopupHint extends React.PureComponent<Props, State> {
             hint.style.top = `${buttonPosition.top - hint.offsetHeight}px`
             hint.style.left = `${newX}px`
         }
-        this.styleArrow(arrowLeft, arrowRight)
         if(!this.props.hover) {
             const toggler: any = document.getElementById('muk-popup-toggler-'+this.id)
             toggler.focus()

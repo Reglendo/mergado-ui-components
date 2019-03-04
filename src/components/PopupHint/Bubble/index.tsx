@@ -3,16 +3,13 @@ import * as ReactDOM from "react-dom"
 
 import {prefix} from "../../../config"
 import Div from "../../Div"
-import css from "@reglendo/cxs/component"
+import css from "css"
 
 export interface Props {
 }
 export interface State {
 }
 
-/**
- * disable-styleguide
- */
 class Bubble extends React.PureComponent<Props, State> {
 
     private readonly name = prefix + "popup_hint__bubble"
@@ -48,19 +45,6 @@ class Bubble extends React.PureComponent<Props, State> {
                             className={`m-content`}
                             id={`muk-popup-bubble`}>
                         </HintContent>
-                        <Div props={{ id: "muk-bubble-arrow" }}
-                             className="m-arrow-wrapper"
-                             {...{
-                                 width: "12px",
-                                 height: "12px",
-                                 position: "absolute",
-                                 display: "inline-block",
-                                 zIndex: 1000,
-                                 bottom: "11px"
-                             }}>
-                                <HintArrow
-                                    className={`m-arrow`} />
-                        </Div>
                     </Div>
                 </Div>
         </span>), this.popup)
@@ -75,16 +59,6 @@ class Bubble extends React.PureComponent<Props, State> {
 const fontFamily = "Arial, Helvetica, Verdana, Sans-serif"
 
 /* <style> */
-const HintArrow = css("div")({
-    display: "inline-block",
-    width: "8px",
-    height: "8px",
-    transform: "rotate(45deg)",
-    zIndex: 11,
-    background: "rgba(50,50,50,1)",
-    borderColor: "rgba(0,0,0,0.9)",
-})
-
 const HintContent = css("div")({
     fontFamily: fontFamily,
     maxHeight: "200px",
@@ -101,22 +75,10 @@ const HintContent = css("div")({
     padding: "2px 10px",
     color: "white",
 
-    "!.muk-popuphint:focus": {
+    ".muk-popuphint:focus": {
         border: "none",
         outline: "none",
     },
-    "!#muk-popuphint .muk-bubble": {
-        opacity: 0,
-        transition: "opacity 0.2s",
-        willChange: "opacity",
-        pointerEvents: "none",
-    },
-
-    "!#muk-popuphint.m-active .muk-bubble": {
-        opacity: 1,
-        transition: "opacity 0.2s",
-        willChange: "opacity",
-    }
 
 })
 

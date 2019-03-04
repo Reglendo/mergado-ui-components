@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import PropTypes from "prop-types"
+import css from "css"
 
 interface Props {
     children?: any
@@ -17,10 +16,10 @@ interface Props {
 }
 
 const GridCell = (props: Props) => {
-    const { children, style, className, ...p } = props
+    const { children, className, ...p } = props
 
     return (
-        <GridCellStyle className={`muk-gridcell ${className || ""}`} s={style} {...p}>
+        <GridCellStyle className={`muk-gridcell ${className || ""}`} {...p}>
             {children}
         </GridCellStyle>
     )
@@ -35,18 +34,7 @@ const GridCellStyle = css("div")({
         gridArea: props.name ? props.name : null,
         justifySelf: props.align ? props.align : "stretch",
         alignSelf: props.valign ? props.valign : "stretch",
-        ...props.s,
     }
 })
-
-GridCellStyle.propTypes = {
-    col: PropTypes.string,
-    row: PropTypes.string,
-    name: PropTypes.string,
-    align: PropTypes.string,
-    valign: PropTypes.string,
-    autoFlow: PropTypes.string,
-    s: PropTypes.any,
-}
 
 export default GridCell

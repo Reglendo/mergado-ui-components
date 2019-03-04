@@ -1,24 +1,9 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
 import ryzlinkTheme from "../../styled/themes/ryzlink"
+import { Global, css } from '@emotion/core'
 
-interface Props {
-    style?: any
-    className?: string
-    children?: any
-}
 
-const App = (props: Props) => {
-    const {children, className, style} = props
-    return  <AppStyles className={className} style={style}>
-                {children}
-                <style>
-                    {reset}
-                </style>
-            </AppStyles>
-}
-
-const reset = `
+const reset = css`
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin-ext')
 
 article, aside, details, figcaption, figure,
@@ -189,21 +174,22 @@ a:hover, a:focus, a:active {
 `
 
 const selectItem = {
-      "!.react-select-item-container + .icon-select-open": {
+    ".react-select-item-container + .icon-select-open": {
         opacity: 0,
-        position: "absolute", bottom: "9px",
+        position: "absolute" as "absolute",
+        bottom: "9px",
         right: "10px", pointerEvents: "none"
     },
-    "!.react-select-item-empty + .icon-select-open": {
+    ".react-select-item-empty + .icon-select-open": {
       opacity: 0.6,
     },
-    "! .react-select-item-container": {
-        position: "relative",
+    ".react-select-item-container": {
+        position: "relative" as "relative",
     },
-    "!.react-select-item-container.active": {
+    ".react-select-item-container.active": {
         background: "rgb(255, 255, 196) !important",
     },
-    "!.react-select-item": {
+    ".react-select-item": {
         padding: "0",
         display: "inline-block",
         cursor: "pointer",
@@ -215,30 +201,30 @@ const selectItem = {
 
     },
 
-    "!.react-select-item:focus": {
+    ".react-select-item:focus": {
         outline: "0"
     },
 
-    "!.react-select-item-label, .react-select-item-option": {
+    ".react-select-item-label, .react-select-item-option": {
         fontSize: "13px",
         textOverflow: "ellipsis",
         overflow: "hidden",
     },
 
-    "!.react-select-item-label .highlighter, .react-select-item-option .highlighter": {
+    ".react-select-item-label .highlighter, .react-select-item-option .highlighter": {
         backgroundColor: "#ACC1C8"
     },
-    "!.react-select-item-label": {
+    ".react-select-item-label": {
         padding: "0 40px 0 0px",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis"
     },
-    "!.react-select-item-empty .react-select-item-label": {
+    ".react-select-item-empty .react-select-item-label": {
         color: "#CECECE"
     },
-    "!.react-select-item-clear": {
-        position: "absolute",
+    ".react-select-item-clear": {
+        position: "absolute" as "absolute",
         top: 0,
         bottom: 0,
         right: "0",
@@ -250,32 +236,32 @@ const selectItem = {
         color: "#7B8E9B",
         backgroundColor: "transparent",
     },
-    "!.react-select-item-clear:before": {
-        content: "×",
+    ".react-select-item-clear:before": {
+        content: '"×"',
         display: "inline-block",
         lineHeight: "1",
         fontSize: "16px",
         width: "16px",
         height: "16px",
-        position: "relative",
+        position: "relative" as "relative",
         top: "1px",
         textAlign: "center",
     },
-    "!.react-select-item-clear:hover, .react-select-item-clear:focus": {
+    ".react-select-item-clear:hover, .react-select-item-clear:focus": {
         outline: "0",
         cursor: "pointer"
     },
-    "!.react-select-item-clear:focus:hover:before, .react-select-item-clear:hover:before": {
+    ".react-select-item-clear:focus:hover:before, .react-select-item-clear:hover:before": {
         color: "black"
     },
-    "!.react-select-item-clear:focus:before": {
+    ".react-select-item-clear:focus:before": {
         color: "black"
     },
-    "!.react-select-item-hidden": {
+    ".react-select-item-hidden": {
         display: "none"
     },
-    "!.react-select-item-options": {
-        position: "absolute",
+    ".react-select-item-options": {
+        position: "absolute" as "absolute",
         padding: "0",
         top: "100%",
         left: "3px",
@@ -287,21 +273,21 @@ const selectItem = {
         marginTop: "0",
         fontSize: "13px",
     },
-    "!.react-select-item-options:focus": {
+    ".react-select-item-options:focus": {
         outline: "none"
     },
-    "!.react-select-item-options-list": {
+    ".react-select-item-options-list": {
         listStyle: "none outside",
         margin: "0",
         padding: "0"
     },
-    "!.select-item-no-results": {
+    ".select-item-no-results": {
         color: "#707070",
         padding: "9px 10px",
         fontSize: "14px",
         fontWeight: "600"
     },
-    "!.react-select-item-option": {
+    ".react-select-item-option": {
         padding: "5px 20px",
         margin: "0",
         cursor: "pointer",
@@ -310,35 +296,35 @@ const selectItem = {
         textDecoration: "none",
         borderBottom: "1px solid #eee"
     },
-    "!.react-select-item-option:hover": {
+    ".react-select-item-option:hover": {
         color: "#3A3A3A",
         backgroundColor: "#f4f4f4",
         textDecoration: "none",
     },
-    "!.react-select-item-option:focus": {
+    ".react-select-item-option:focus": {
         outline: "0",
         textDecoration: "none",
         color: "#7B8E9B"
     },
-    "!.react-select-item-option-selected": {
+    ".react-select-item-option-selected": {
         color: "#fff !important",
         backgroundColor: "#00A3D7"
     },
-    "!.react-select-item-option-selected:hover": {
+    ".react-select-item-option-selected:hover": {
         backgroundColor: "#00A3D7"
     },
-    "!.react-select-item-option-selected:after": {
+    ".react-select-item-option-selected:after": {
         color: "#fff !important",
-        content: "×",
+        content: '"×"',
         float: 'right'
     },
-    "!.react-select-item-option-disabled": {
+    ".react-select-item-option-disabled": {
         background: "#c4c4c4",
         color: "#000",
         opacity: 0.5,
         pointerEvents: "none",
     },
-    "!.react-select-item-close": {
+    ".react-select-item-close": {
         textTransform: "uppercase",
         backgroundColor: "transparent",
         border: "none",
@@ -350,14 +336,14 @@ const selectItem = {
         cursor: "pointer",
         outline: "none"
     },
-    "!.react-select-item-empty .react-select-item-close": {
+    ".react-select-item-empty .react-select-item-close": {
         color: "#CBD2D7"
     },
-    "!.react-select-item-native": {
-        position: "absolute",
+    ".react-select-item-native": {
+        position: "absolute" as "absolute",
         left: "-99999em"
     },
-    "!.react-select-item-off-screen.no-items": {
+    ".react-select-item-off-screen.no-items": {
         padding: "10px 20px",
         fontSize: "14px",
         color: "#7B8E9B",
@@ -366,78 +352,91 @@ const selectItem = {
 }
 
 const base = {
-    position: "relative",
+    position: "relative" as "relative",
     margin: "0 auto",
     textAlign: "left",
     color: "#333",
-    "!.muk-icon__text": {
+    ".muk-icon__text": {
         margin: "0 0 0 0px",
         verticalAlign: "middle",
     },
-    "!.muk-icon__text + .m-image": {
+    ".muk-icon__text + .m-image": {
         marginLeft: "5px",
     },
-    "!.m-image + .muk-icon__text": {
+    ".m-image + .muk-icon__text": {
         marginLeft: "5px",
     },
-    "!.muk-icon__image, .muk-popup_hint__trigger .muk-icon": {
+    ".muk-icon__image, .muk-popup_hint__trigger .muk-icon": {
         verticalAlign: "middle"
     },
+    "#muk-popuphint .muk-bubble": {
+        opacity: 0,
+        transition: "opacity 0.2s",
+        willChange: "opacity",
+        pointerEvents: "none",
+    },
+
+    "#muk-popuphint.m-active .muk-bubble": {
+        opacity: 1,
+        transition: "opacity 0.2s",
+        willChange: "opacity",
+    }
+
 }
 
 const typo = {
 
-    "!html": {
+    "html": {
         fontSize: "16px",
         fontFamily: "'Roboto', Arial, Helvetica, Verdana, Sans-serif",
     },
-    "!body": {
+    "body": {
         fontSize: "1em",
         fontFamily: "'Roboto', Arial, Helvetica, Verdana, Sans-serif",
         lineHeight: "1.5em",
         background: "#f5ecd5",
     },
-    "!p,ul,ol,dl,blockquote,pre,caption": {
+    "p,ul,ol,dl,blockquote,pre,caption": {
         fontSize: "1em",
         lineHeight: "1.5",
         margin: "1.5em 0",
     },
-    "!li p,li ul": {
+    "li p,li ul": {
         marginTop: 0,
         marginBottom: 0,
     },
-    "!textarea,table,td,th,code,pre,samp,div,p": {
+    "textarea,table,td,th,code,pre,samp,div,p": {
         wordWrap: "break-word",
         hyphens: "auto",
     },
-    "!code, pre, samp": {
+    "code, pre, samp": {
         whiteSpace: "pre-wrap",
         fontFamily: "consolas, 'DejaVu Sans Mono', courier, monospace",
     },
-    "!code": {
+    "code": {
         lineHeight: 1,
     },
-    "!table": {
+    "table": {
         marginBottom: "1.5em",
     },
-    "!a, a:visited, a:hover, a:active": {
+    "a, a:visited, a:hover, a:active": {
         color: ryzlinkTheme.blue,
     },
-    "!.muk-icon .m-image": {
+    ".muk-icon .m-image": {
         verticalAlign: "middle",
     },
 }
 
 const loaders = {
-    position: "relative",
+    position: "relative" as "relative",
     overflow: "hidden",
 
     ":after": {
-        position: "absolute",
+        position: "absolute" as "absolute",
         pointerEvents: "none",
         top: 0,
         left: "-25px",
-        content: " ",
+        content: '" "',
         width: "calc(100% + 50px)",
         height: "100%",
         opacity: .5,
@@ -469,11 +468,11 @@ const helpers = {
         ".with-background:before": {
             zIndex: 9,
             overflow: "hidden",
-            content: "",
+            content: '""',
             width: "100%",
             height: "4px",
             background: "#eee",
-            position: "absolute",
+            position: "absolute" as "absolute",
             top: 0,
             left: 0,
             right: 0,
@@ -511,16 +510,12 @@ const helpers = {
         }
     },
 
-
-
-
-
-    "& .muk-helper-clearfix:after": {
-        content: "",
+    ".muk-helper-clearfix:after": {
+        content: '""',
         display: "table",
         clear: "both",
     },
-    "& .muk-helper-loading--in": {
+    ".muk-helper-loading--in": {
         background: "repeating-linear-gradient(-55deg,rgba(220,220,220,0.8),rgba(200,220,220,0.8) 10px,rgba(230,230,230,0.8) 10px,rgba(230,230,230,0.8) 20px)",
         backgroundSize: "25px 100%",
         animation: "helpersliding 0.5s linear infinite",
@@ -530,11 +525,19 @@ const helpers = {
     },
 }
 
-const AppStyles = css("div")({
+const styles = {
     ...base,
     ...typo,
     ...selectItem,
     ...helpers,
-})
+} as any;
+
+const App = ({children}) => {
+    return  <>
+              {children}
+              <Global styles={styles} />
+              <Global styles={reset} />
+            </>
+}
 
 export default App

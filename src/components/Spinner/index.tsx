@@ -1,11 +1,12 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Div from "../Div"
 import * as Color from "color"
 import {prefix} from "../../config"
 import {animation as pulseAnimation} from "../Animations/Pulse"
 import {animation as rotateAnimation} from "../Animations/Rotate"
-import theme from "../../styled/themes/ryzlink"
+import Theme from "components/Theme"
+
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado" | "bubbles"
     /** Maximum dimension (width or height) */
@@ -13,6 +14,7 @@ export interface Props {
     color?: string
     speed?: number
     style?: any
+    className?: string
 }
 export interface State {
 }
@@ -24,19 +26,20 @@ class Spinner extends React.PureComponent<Props, State> {
     public static defaultProps: Props = {
         type: "default",
         size: 30,
-        color: theme.decoration,
+        color: Theme.decoration,
         style: {},
         speed: 1,
     }
 
     public render() {
 
-        const { size, type, color, speed, ...others } = this.props
+        const { size, type, color, speed,className,...others } = this.props
 
         const containerStyle: any = {  width: `${size}px`, height: `${type === "bubbles" ? size/1.5 : size}px` }
         return (
             <Div {...containerStyle} display={"inline-block"} overflow={"hidden"}
-                className={`${this.name} ${this.name}--${this.props.type}`}
+                className={`${this.name} ${this.name}--${this.props.type} ${className || ""}`}
+                {...others}
                 >
                 <AnimatedWrapper {...this.props} className={`${this.name}__wrapper`}>
                     <div className={`${this.name}__content`}></div>
@@ -76,15 +79,15 @@ const Wrapper = css("div")({
             borderRadius: "50%",
             position: "relative",
             textIndent: "-9999em",
-            color: props.color ? props.color : props.theme.decoration,
+            color: props.color ? props.color : Theme.decoration,
             width: `${props.size / 3 - 2}px`,
             height: `${props.size / 3 - 2}px`,
             margin: "0 auto",
             borderWidth: 0,
             ":before,:after": {
-                content: " ",
+                content: '" "',
                 display: "inline-block",
-                color: props.color ? props.color : props.theme.decoration,
+                color: props.color ? props.color : Theme.decoration,
                 position: "absolute",
                 borderRadius: "50%",
                 top: "0",
@@ -107,10 +110,10 @@ const Wrapper = css("div")({
             color = { borderColor: `rgba(45, 149, 211,1)  rgba(45, 149, 211,.4) rgba(45, 149, 211,.6) rgba(45, 149, 211,.8)` }
         } else {
             color = { borderColor: `
-                                        ${Color(props.theme.decoration).fade(1).string()} 
-                                        ${Color(props.theme.decoration).fade(0.8).string()} 
-                                        ${Color(props.theme.decoration).fade(0.6).string()} 
-                                        ${Color(props.theme.decoration).fade(0.4).string()}
+                                        ${Color(Theme.decoration).fade(1).string()}
+                                        ${Color(Theme.decoration).fade(0.8).string()}
+                                        ${Color(Theme.decoration).fade(0.6).string()}
+                                        ${Color(Theme.decoration).fade(0.4).string()}
                                         `}
         }
         type =  {

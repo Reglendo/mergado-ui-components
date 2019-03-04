@@ -1,11 +1,12 @@
 import * as React from "react"
-import {prefix} from "../../../config"
-import {Field, IField} from "../../Field"
+import {prefix} from "config"
+import {Field, IField} from "../Field"
 import RadioInput from "./input"
-import InputContainer from "../../Field/InputContainer"
-import GC from "../../GridCell"
-import Grid from "../../Grid"
-import css from "@reglendo/cxs/component"
+import InputContainer from "../Field/InputContainer"
+import GC from "components/GridCell"
+import Grid from "components/Grid"
+import css from "css"
+import Theme from "components/Theme"
 
 interface IItem {
     value: string
@@ -84,7 +85,7 @@ export class InputGroupH extends React.Component<Props, {}> {
         const {children, ...props} = this.props
         return (
             <Field {...props} name={this.name}>
-                <Grid style={{gridAutoFlow: "column"}}>
+                <Grid autoFlow="column">
                     {this.renderInputs()}
                 </Grid>
             </Field>
@@ -92,20 +93,17 @@ export class InputGroupH extends React.Component<Props, {}> {
     }
 }
 
-const GridCell = css(GC)(props => {
-    const theme: any = props.theme
-    return {
-        ":hover .m-radio-input, &:hover .m-checkbox-input": {
-            borderColor: `${theme.blue}`,
-        },
-        ":first-of-type .m-button": {
-            borderRadius: `${theme.radius} 0 0 ${theme.radius}`,
-            margin: 0,
-        },
-        ":last-of-type .m-button": {
-            borderRadius: `0 ${theme.radius} ${theme.radius} 0`,
-        },
-    }
+const GridCell = css(GC)({
+    ":hover .m-radio-input, &:hover .m-checkbox-input": {
+        borderColor: `${Theme.blue}`,
+    },
+    ":first-of-type .m-button": {
+        borderRadius: `${Theme.radius} 0 0 ${Theme.radius} !important`,
+        margin: 0,
+    },
+    ":last-of-type .m-button": {
+        borderRadius: `0 ${Theme.radius} ${Theme.radius} 0 !important`,
+    },
 })
 
 export default InputContainer(InputGroupH)

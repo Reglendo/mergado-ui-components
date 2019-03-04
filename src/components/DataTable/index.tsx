@@ -1,13 +1,12 @@
 import * as React from "react"
-import cxs from "@reglendo/cxs/component"
+import css from "css"
 import Div from "../Div"
 import {prefix} from "../../config"
-import TextInput from "../TextInput"
-import Checkbox from "../Checkbox"
+import TextInput from "components/Form/TextInput"
+import Checkbox from "components/Form/Checkbox"
 import { ID, Action, Filter } from "../../helpers/types"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-import PropTypes from "prop-types"
 
 export interface Props {
     bulkActions?: Action[]
@@ -18,7 +17,7 @@ export interface Props {
     labels?: {
         actionsBar: string
     }
-    onRowSelected?: (selected: number) => void
+    rowSelected?: (selected: number) => void
 }
 export interface State {
     selectedAll: boolean
@@ -153,13 +152,13 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 
     public render() {
-        const { className, style, filters, bulkActions, buttons, labels, ...props } = this.props
+        const { className, filters, bulkActions, buttons, labels, ...props } = this.props
         return (
             <Div className={`${this.name} ${className || ""}`}>
                 <Div className="m-filters-wrapper" whiteSpace={"nowrap"}>
                     {filters.length > 0 && this.renderFiltersBar()}
                 </Div>
-                <CssTable className={`m-table`} s={style} {...props}>
+                <CssTable className={`m-table`} {...props}>
                     {this.props.children && this.renderChildren(this.props.children)}
                 </CssTable>
             </Div>
@@ -167,32 +166,22 @@ class DataTable extends React.PureComponent<Props, State> {
     }
 }
 
-const CssTable = cxs("table")({
+const CssTable = css("table")({
     width: "100%",
     " .sortable-ghost": {
       opacity: 0.1,
     },
-},(props: any) => {
-    return {
-        borderBottom: "5px solid #333",
-        ...props.s,
-    }
+    borderBottom: "5px solid #333",
 })
 
-CssTable.propTypes = {
-    s: PropTypes.any,
-    onRowSelected: PropTypes.any,
-}
-
-
-const CssMTextFilter = cxs(TextInput)({
+const CssMTextFilter = css(TextInput)({
     paddingRight: "20px",
     display: "inline-block",
     width: "70%",
     marginBottom: 0,
 })
 
-const CssMCheckboxFilter = cxs(Checkbox)({
+const CssMCheckboxFilter = css(Checkbox)({
     whiteSpace: "nowrap",
     display: "inline-block",
 })

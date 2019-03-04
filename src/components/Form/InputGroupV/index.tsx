@@ -1,12 +1,10 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
-import {prefix, form} from "../../../config"
-import TextInput from "../../TextInput"
-import {Field, IField} from "../../Field"
+import css from "css"
+import {prefix, form} from "config"
+import TextInput from "../TextInput"
+import {Field, IField} from "../Field"
 import {QueryList} from "./list"
-import InputContainer from "../../Field/InputContainer"
-
-
+import InputContainer from "../Field/InputContainer"
 
 interface Props extends IField {
 
@@ -61,8 +59,6 @@ export class InputGroupV extends React.Component<Props,State> {
     }
 
     handleChange = (value) => {
-        const values = this.props.value
-
         if(this.props.setValue) {
             this.props.setValue(value)
         }

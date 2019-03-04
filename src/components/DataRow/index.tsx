@@ -1,10 +1,10 @@
 import * as React from "react"
-import cxs from "@reglendo/cxs/component"
+import css from "css"
 import {prefix} from "../../config"
 import DataCell from "../DataCell"
-import Checkbox from "../Checkbox"
+import Checkbox from "components/Form/Checkbox"
 import { ID, Action } from "../../helpers/types"
-import PropTypes from 'prop-types'
+import Theme from "components/Theme"
 
 export interface Props {
     style?: any
@@ -44,7 +44,7 @@ class DataRow extends React.PureComponent<Props, State> {
             <CssTr className={`${this.name} ${inactive && `inactive`} ${className}`}
                 disabled={inactive}
                 selected={isSelected}
-                data-id={dataId} s={style}>
+                data-id={dataId} style={style}>
                     {actions.length > 0 &&
                         <DataCell className="m-actions-cell">
                             <Checkbox
@@ -61,12 +61,12 @@ class DataRow extends React.PureComponent<Props, State> {
     }
 }
 
-const CssTr = cxs("tr")({
+const CssTr = css("tr")({
 },(props: any) => {
     return {
-        background: props.selected ? props.theme.selected_background : "#fff",
+        background: props.selected ? Theme.selected_background : "#fff",
         ":hover td": {
-            background: props.theme.hover_background,
+            background: Theme.hover_background,
         },
         color: props.disabled ? "#ccc" : "initial",
         " *, path": {
@@ -74,22 +74,14 @@ const CssTr = cxs("tr")({
             fill: props.disabled && "#ccc !important",
         },
         " .muk-icon--pause *": {
-            color: props.theme.blue + "!important",
-            fill: props.theme.blue + "!important",
+            color: Theme.blue + "!important",
+            fill: Theme.blue + "!important",
         },
         "& .muk-icon--play *": {
-            color: props.theme.blue + "!important",
-            fill: props.theme.blue + "!important",
+            color: Theme.blue + "!important",
+            fill: Theme.blue + "!important",
         },
-        ...props.s,
     }
 })
-
-CssTr.propTypes = {
-    selected: PropTypes.bool,
-    disabled: PropTypes.bool,
-    s: PropTypes.any,
-}
-
 
 export default DataRow

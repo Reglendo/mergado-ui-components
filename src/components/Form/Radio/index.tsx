@@ -1,8 +1,8 @@
 import * as React from "react"
-import {prefix} from "../../../config"
-import {Field, IField} from "../../Field"
+import {prefix} from "config"
+import {Field, IField} from "../Field"
 import RadioInput from "./input"
-import InputContainer from "../../Field/InputContainer"
+import InputContainer from "../Field/InputContainer"
 
 interface IItem {
     value: string
@@ -59,11 +59,7 @@ export class Radio extends React.Component<Props, {}> {
         const {children, ...props} = this.props
         return (
             <Field {...props} name={this.name}>
-                <div style={{display: "table", width: "auto", tableLayout: "fixed"}}>
-                    <div style={{display: "table-row"}}>
-                    {this.renderInputs()}
-                    </div>
-                </div>
+                {this.renderInputs()}
             </Field>
         )
     }

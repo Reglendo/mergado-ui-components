@@ -1,10 +1,11 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import Button from "../../Button"
 import Span from "../../Span"
-
+import Theme from "components/Theme"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import {StyledInput as StyledCheckbox} from "../../Checkbox"
+import {StyledInput as StyledCheckbox} from "../Checkbox"
+
 interface IInputProps {
     value: string
     checked: boolean
@@ -28,7 +29,6 @@ const RadioInput: React.SFC<IInputProps> = ({ value, checked, label, singleChoic
                     onChange={onChange}
                     type={singleChoice ?  "radio" : "checkbox"}
                     className={`m-input`}
-                    style={{display: "none"}}
                     />
                 <Button
                     secondary={true}
@@ -75,8 +75,8 @@ const CssBigLabel = css("label")({
 
 })
 
-const styledProps = (props: any) => {
-    return {
+const CssElement = css("input")({
+        display: "none",
         "&:checked + .m-button .m-radio-input": {
             border: `6px solid white`,
         },
@@ -84,7 +84,7 @@ const styledProps = (props: any) => {
             border: `1px solid white`,
         },
         "&:checked + .m-button": {
-            background: props.theme.blue,
+            background: Theme.blue,
             color: "white",
         },
         "&:checked + .m-button *": {
@@ -94,10 +94,7 @@ const styledProps = (props: any) => {
         "&:checked + .m-button .muk-icon--check": {
             display: "inline-block",
         },
-    }
-}
-
-const CssElement = css("input")(styledProps)
+})
 
 const CssCheckbox = css("span")({
     marginRight: "5px",
@@ -115,10 +112,7 @@ const CssCheckbox = css("span")({
     ":active": {
         outline: "none",
     },
-}, (props: any) => {
-    return {
-        border: `1px solid ${props.theme.decoration}`,
-    }
+    border: `1px solid ${Theme.decoration}`,
 })
 
 export default RadioInput

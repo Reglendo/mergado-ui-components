@@ -1,9 +1,8 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 import {prefix} from "../../config"
 import IconChevronLeft from "@reglendo/mergado-ui-icons/lib/icons/IconChevronLeft"
 import IconChevronRight from "@reglendo/mergado-ui-icons/lib/icons/IconChevronRight"
-import PropTypes from "prop-types"
 import Div from "../Div"
 import {Button} from "../Button"
 export interface Props {
@@ -75,7 +74,7 @@ export class Carousel extends React.PureComponent<Props, State> {
         const translate = -((this.state.active - 1) / steps) * 100
         const {prevLabel, nextLabel} = this.props
         return (
-            <CssWrapper className={`${this.name} ${this.props.className || ""}`} s={this.props.style}>
+            <CssWrapper className={`${this.name} ${this.props.className || ""}`} style={this.props.style}>
                 <CssMukBigButton color="nocolor" left={true}
                              className="m-big-prev"
                               onClick={this.decreaseActive}
@@ -126,9 +125,7 @@ const CssWrapper = css("div")({
     maxWidth: "100%",
     position: "relative",
     textAlign: "center",
-}, props => ({
-        ...props.s,
-    }))
+})
 
 const CssMukBigButton = css(Button)({
     position: "absolute",
@@ -137,44 +134,29 @@ const CssMukBigButton = css(Button)({
     bottom: 0,
     margin: "auto"
 
-}, props => ({
+}, (props: { left?: boolean }) => ({
     left: props.left ? "0px" : "auto",
     right: props.left ? "auto" : "0px",
 
 }))
 
-CssMukBigButton.propTypes = {
-    left: PropTypes.bool,
-    right: PropTypes.bool
-}
-
 const CssSlides = css("div")({
     display: "table",
     tableLayout: "fixed",
     transition: "transform 0.2s",
-}, props => ({
+}, (props:{ count: number, translate: number }) => ({
     width: props.count * 100 + "%",
     transform: "translate3d("+props.translate+"%,0,0)",
 }))
-
-CssSlides.propTypes = {
-    count: PropTypes.number,
-    translate: PropTypes.number
-}
 
 const CssSlide = css("div")({
     display: "table-cell",
     textAlign: "center",
     verticalAlign: "middle",
     transition: "0.1s opacity",
-}, props => ({
+}, (props: { active: boolean }) => ({
     opacity: props.active ? 1 : 0,
 }))
-
-
-CssSlide.propTypes = {
-    active: PropTypes.bool,
-}
 
 const CssMukCircle = css(Button)({
     fontSize: "22px",

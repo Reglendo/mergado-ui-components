@@ -1,10 +1,11 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 
 import Radio from "../Radio/input"
-import Checkbox from "../../Checkbox"
+import Checkbox from "../Checkbox"
 
-import LittleStatus from "../../LittleStatus"
+import LittleStatus from "components/LittleStatus"
+import Theme from "components/Theme"
 
 interface IQueryItemProps {
     name: string
@@ -24,7 +25,7 @@ export const QueryItem: React.SFC<IQueryItemProps> = ({ name, option, onClick,
     return (
         <Li className={`muk-inputgroupv__item ${checked ? `muk-inputgroupv__item--active` : ""}
                         ${option.disabled ? `muk-inputgroupv__item--disabled` : ""}
-                        ${className}
+                        ${className || ""}
             `}
             data-subheader={option.subheader}
             disabled={option.disabled}
@@ -80,7 +81,7 @@ export const QueryItemLabel: React.SFC<IQueryItemLabelProps> = ({ name, option,
     }
 
     return (
-        <Label className={`muk-inputgroupv__label ${className}`} key="label" disabled={option.disabled}>
+        <Label className={`muk-inputgroupv__label ${className || ""}`} key="label" disabled={option.disabled}>
             {label}
             {" "}
             <Count className={`muk-inputgroupv__count`}>
@@ -110,7 +111,7 @@ export const Li = css("li")({
     let checked = {}
     if(props.checked) {
         checked = {
-            background: props.theme.selected_background,
+            background: Theme.selected_background,
         }
     }
 
@@ -129,7 +130,7 @@ export const Li = css("li")({
     let subheader = {}
     if(props["data-subheader"]) {
         subheader = {
-            background: props.theme.blue,
+            background: Theme.blue,
             color: "white",
             fontWeight: "bold",
             fontSize: "80%",
@@ -139,7 +140,7 @@ export const Li = css("li")({
     return {
         cursor: props["data-link"] ? "default" : "pointer",
         ":hover": {
-            background: props.theme.hover_background,
+            background: Theme.hover_background,
         },
         ...checked,
         ...disabled,

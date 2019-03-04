@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
+import css from "css"
 
 interface Props {
     className?: string
@@ -14,7 +14,7 @@ const Widget = (props: Props) => {
     }
 
     return (
-        <WidgetStyle className={`muk-widget ${props.className || ""}`} s={props.style}>
+        <WidgetStyle className={`muk-widget ${props.className || ""}`} style={props.style}>
             <div style={{display: "table", width: "100%"}}>
             {children}
             </div>
@@ -63,8 +63,6 @@ const WidgetStyle = css("div")({
         display: "none",
     },
 
-}, p => ({
-    ...p.s,
-}))
+})
 
 export default Widget

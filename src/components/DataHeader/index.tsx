@@ -1,12 +1,12 @@
 import * as React from "react"
 import Div from "../Div"
-import cxs from "@reglendo/cxs/component"
+import css from "css"
 import {prefix} from "../../config"
 import DataCell from "../DataCell"
-import Checkbox from "../Checkbox"
+import Checkbox from "components/Form/Checkbox"
 import { ID, Action } from "../../helpers/types"
 import Button from "../Button"
-import PropTypes from "prop-types"
+import Theme from "components/Theme"
 
 export interface Props {
     style?: any
@@ -51,7 +51,7 @@ class DataHeader extends React.PureComponent<Props, State> {
         return (
             <thead className={`${this.name} ${className || ""}`}>
                 <CssHeader className="m-row" selected={selectedRows && selectedRows.length > 0}
-                        s={style}>
+                        style={style}>
                     {actions.length > 0 &&
                         <DataCell type="header" style={{width: "1%"}}>
                             <Checkbox
@@ -77,7 +77,7 @@ class DataHeader extends React.PureComponent<Props, State> {
     }
 }
 
-export const CssActionsIcons = cxs("div")({
+export const CssActionsIcons = css("div")({
     marginTop: "-3px",
     whiteSpace: "nowrap",
     " .m-image g path": {
@@ -86,16 +86,11 @@ export const CssActionsIcons = cxs("div")({
     },
 })
 
-const CssHeader = cxs("tr")(
+const CssHeader = css("tr")(
 (props: any) => {
     return {
-        background: props.selected ? props.theme.blue : "#333",
-        ...props.s,
+        background: props.selected ? Theme.blue : "#333",
     }})
 
-CssHeader.propTypes = {
-    selected: PropTypes.bool,
-    s: PropTypes.any,
-}
 
 export default DataHeader

@@ -1,8 +1,8 @@
 import * as React from "react"
-import css from "@reglendo/cxs/component"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-import PropTypes from "prop-types"
+import css from 'css'
+import Theme from "components/Theme"
 
 interface Props {
     header?: JSX.Element | string
@@ -15,24 +15,21 @@ interface Props {
 
 const Section = (props: Props) => {
     const name = "muk-section"
-    const { children, style, header, prefix, suffix, className, ...p } = props
+    const { children, header, prefix, suffix, className, ...p } = props
     if(children === "" || children === null) {
         return null
     }
 
-    const pref = prefix && <CssPrefix className="m-prefix" row={"1"}>{props.prefix}</CssPrefix>
-    const suff = suffix && <CssSuffix className="m-suffix" row={"1"}>{props.suffix}</CssSuffix>
-
     return (
-        <CssSection className={`${name} ${className || ""}`} s={style} {...p}>
+        <CssSection className={`${name} ${className || ""}`} {...p}>
             {header &&
                 <CssHeader className={"m-header"}>
-                    <Grid className={"m-header-wrap"} cols={"auto 1fr auto"}>
-                    {pref}
-                    <GridCell className="m-header-content" row={"1"}>
+                    <Grid className={"m-header-wrap"} cols={`${prefix ? "auto" : ""} 1fr ${suffix ? "auto" : ""}`}>
+                    {prefix && <CssPrefix className="m-prefix">{props.prefix}</CssPrefix>}
+                    <GridCell className="m-header-content">
                         {header}
                     </GridCell>
-                    {suff}
+                    {suffix && <CssSuffix className="m-suffix">{props.suffix}</CssSuffix>}
                     </Grid>
                 </CssHeader>
             }
@@ -47,7 +44,6 @@ const CssPrefix = css(GridCell)({
     marginRight: "15px",
     paddingRight: "15px",
     borderRight: "1px solid #ccc",
-    justifySelf: "left",
 })
 
 const CssSuffix = css(GridCell)({
@@ -64,31 +60,21 @@ const CssHeader = css(GridCell)({
     fontWeight: "normal",
     fontSize: "15px",
     height: "63px",
-},(props: any) => {
-    return {
-        padding: `${props.theme.section_padding}`,
-        margin: `-${props.theme.section_padding}!important`,
-        marginBottom: "20px !important",
-        background: props.theme.decoration_background,
-        borderBottom: props.theme.section_border,
-        borderRadius: `${props.theme.radius} ${props.theme.radius} 0 0`,
-    }
+    padding: `${Theme.section_padding}`,
+    margin: `-${Theme.section_padding}!important`,
+    marginBottom: "20px !important",
+    background: Theme.decoration_background,
+    borderBottom: Theme.section_border,
+    borderRadius: `${Theme.radius} ${Theme.radius} 0 0`,
 })
 
 const CssSection = css("section")({
     marginBottom: "20px",
-},(props: any) => {
-    return {
-        background: props.theme.background,
-        color: props.theme.text,
-        borderRadius: props.theme.radius,
-        border: props.theme.section_border,
-        padding: props.theme.section_padding,
-        ...props.s,
-    }
+    background: Theme.background,
+    color: Theme.text,
+    borderRadius: Theme.radius,
+    border: Theme.section_border,
+    padding: Theme.section_padding,
 })
 
-CssSection.propTypes = {
-    s: PropTypes.any,
-}
 export default Section
