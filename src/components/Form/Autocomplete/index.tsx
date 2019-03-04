@@ -1,9 +1,9 @@
 import * as React from "react"
 import css from "css"
 import InputContainer from "../Field/InputContainer"
-import {prefix,form} from "../../config"
+import {prefix} from "config"
 import TextInput from "../TextInput"
-import uniqueId from "../../helpers/unique_id"
+import uniqueId from "helpers/unique_id"
 import {Field, IField} from "../Field"
 import Theme from "components/Theme"
 

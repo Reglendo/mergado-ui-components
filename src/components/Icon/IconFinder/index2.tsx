@@ -2,9 +2,9 @@ import * as React from "react"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
 import css from "css"
 
-import {prefix} from "../../../config"
+import {prefix} from "config"
 import Icon from "../index2"
-import TextInput from "../../TextInput"
+import TextInput from "components/Form/TextInput"
 import Button from "../../Button"
 
 export interface Props {

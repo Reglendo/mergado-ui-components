@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "css"
-import Header from "../Header"
+import Header from "components/Header"
 
 interface Props {
     header?: JSX.Element

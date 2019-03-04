@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "css"
 import {prefix} from "../../config"
-import {Field, IField} from "../Field"
+import {Field, IField} from "components/Form/Field"
 import * as Color from "color"
 import Theme from "components/Theme"
 

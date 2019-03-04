@@ -4,7 +4,7 @@ import Button from "../../Button"
 import Span from "../../Span"
 import Theme from "components/Theme"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import {StyledInput as StyledCheckbox} from "../../Checkbox"
+import {StyledInput as StyledCheckbox} from "../Checkbox"
 
 interface IInputProps {
     value: string

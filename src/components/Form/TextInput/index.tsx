@@ -1,13 +1,13 @@
 import * as React from "react"
 import css from "css"
-import Div from "../Div"
+import Div from "components/Div"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
-import {prefix,form} from "../../config"
+import {prefix,form} from "config"
 import {Field, IField} from "../Field"
-import Button from "../Button"
+import Button from "components/Button"
 import InputContainer from "../Field/InputContainer"
 import Theme from "components/Theme"
 

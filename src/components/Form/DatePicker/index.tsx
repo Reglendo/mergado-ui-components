@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "css"
 import InputContainer from "../Field/InputContainer"
-import {prefix} from "../../config"
+import {prefix} from "config"
 import {Field, IField} from "../Field"
 import ReactDatePicker from "react-day-picker"
 import dayjs from "dayjs"

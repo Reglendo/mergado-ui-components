@@ -1,7 +1,7 @@
 import * as React from "react"
 import css from "css"
-import {form} from "../../config"
-import Theme from "../Theme";
+import {form} from "config"
+import Theme from "components/Theme";
 
 
 const CssBigLabel = css("h3")({

@@ -2,9 +2,9 @@ import * as React from "react"
 import css from "css"
 
 import Radio from "../Radio/input"
-import Checkbox from "../../Checkbox"
+import Checkbox from "../Checkbox"
 
-import LittleStatus from "../../LittleStatus"
+import LittleStatus from "components/LittleStatus"
 import Theme from "components/Theme"
 
 interface IQueryItemProps {

@@ -1,10 +1,10 @@
 import * as React from "react"
 import css from "css"
-import {prefix, form} from "../../../config"
-import TextInput from "../../TextInput"
-import {Field, IField} from "../../Field"
+import {prefix, form} from "config"
+import TextInput from "../TextInput"
+import {Field, IField} from "../Field"
 import {QueryList} from "./list"
-import InputContainer from "../../Field/InputContainer"
+import InputContainer from "../Field/InputContainer"
 
 interface Props extends IField {
 

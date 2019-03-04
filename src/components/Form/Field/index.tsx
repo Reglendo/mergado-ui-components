@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "css"
-import {form} from "../../config"
+import {form} from "config"
 import FieldLabel from "../FieldLabel"
 import FieldError from "../FieldError"
 import Theme from "components/Theme"

@@ -1,6 +1,6 @@
 import * as React from "react"
 import css from "css"
-import {prefix,form} from "../../config"
+import {prefix,form} from "config"
 import {Field, IField} from "../Field"
 import {styles,stylesProps} from "../TextInput"
 import InputContainer from "../Field/InputContainer"

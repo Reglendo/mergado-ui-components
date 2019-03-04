@@ -2,7 +2,7 @@ import * as React from "react"
 import css from "css"
 import {prefix} from "../../config"
 import DataCell from "../DataCell"
-import Checkbox from "../Checkbox"
+import Checkbox from "components/Form/Checkbox"
 import { ID, Action } from "../../helpers/types"
 import Theme from "components/Theme"
 

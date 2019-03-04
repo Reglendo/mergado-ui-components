@@ -1,8 +1,8 @@
 import * as React from "react"
-import {prefix} from "../../../config"
-import {Field, IField} from "../../Field"
+import {prefix} from "config"
+import {Field, IField} from "../Field"
 import RadioInput from "./input"
-import InputContainer from "../../Field/InputContainer"
+import InputContainer from "../Field/InputContainer"
 
 interface IItem {
     value: string
