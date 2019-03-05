@@ -9,7 +9,7 @@ glob(rootDir + '/**/index.tsx', function(err, components) {
         const name = path.basename(path.dirname(c))
         const componentPath = path.dirname(c).replace(path.dirname(__dirname)+'/src','')
         return `export { default as ${name} } from '.${componentPath}';`;
-    }).join('\n') + '\n';
+    }).join('\n') + `\nexport { default as css } from './css'\n`;
 
     console.log(modules);
     fs.writeFileSync(path.join(__dirname, '../src/index.ts'), modules, 'utf-8');
