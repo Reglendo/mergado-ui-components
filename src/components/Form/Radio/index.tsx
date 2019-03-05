@@ -1,5 +1,4 @@
 import * as React from "react"
-import {prefix} from "config"
 import {Field, IField} from "../Field"
 import RadioInput from "./input"
 import InputContainer from "../Field/InputContainer"
@@ -15,7 +14,7 @@ interface Props extends IField {
 
 export class Radio extends React.Component<Props, {}> {
 
-    protected readonly name = prefix + "input-radio";
+    protected readonly name = "muk-input-radio";
 
     shouldComponentUpdate(nextProps, nextState) {
         if(

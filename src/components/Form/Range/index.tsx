@@ -1,15 +1,14 @@
 import * as React from "react"
-import css from "css"
+import css from "../../../css"
 
 import * as Color from "color"
 import InputContainer  from "../Field/InputContainer"
-import {prefix,form} from "config"
 import {Field, IField} from "../Field"
 import TextInput from "../TextInput"
-import Grid from "components/Grid"
-import GridCell from "components/GridCell"
+import Grid from "../../Grid"
+import GridCell from "../../GridCell"
 import FieldLabel from "../FieldLabel";
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export interface Props extends IField {
     max: number
@@ -23,7 +22,7 @@ export interface State {
 
 export class Range extends React.Component<Props,State> {
 
-    protected readonly name = prefix + "input-range";
+    protected readonly name = "muk-input-range";
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
@@ -67,7 +66,7 @@ export class Range extends React.Component<Props,State> {
                     <GridCell style={{padding: "5px 0 5px 10px"}}>
                         <StyledInput
                             className={`${this.name}__item
-                                        ${form}__input--text ${form}__input--range`}
+                                        muk-form__input--text muk-form__input--range`}
                             type="range"
                             {...props}
                             onChange={this.handleChange}

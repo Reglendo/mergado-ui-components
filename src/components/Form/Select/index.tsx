@@ -1,8 +1,7 @@
 import * as React from "react"
-import css from "css"
-import Div from "components/Div"
+import css from "../../../css"
+import Div from "../../Div"
 import IconChevronDown from "@reglendo/mergado-ui-icons/lib/icons/IconChevronDown"
-import {prefix} from "config"
 import {Field,IField} from "../Field"
 import {Select as SelectItem} from "react-select-item"
 import {styles, stylesProps} from "./style"
@@ -18,7 +17,7 @@ interface State {
 
 export class Select extends React.Component<Props, State> {
 
-    protected readonly name = prefix + "select";
+    protected readonly name = "muk-select";
 
     shouldComponentUpdate(nextProps, nextState) {
         if(

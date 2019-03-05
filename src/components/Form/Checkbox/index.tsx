@@ -1,13 +1,12 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
-import css from "css"
-import Span from "components/Span"
-import {prefix,form} from "config"
+import css from "../../../css"
+import Span from "../../Span"
 import {Field, IField, } from "../Field"
 import InputContainer from "../Field/InputContainer"
-import Div from "components/Div"
+import Div from "../../Div"
 import FieldError from "../FieldError"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export interface Props extends IField {
     checked?: boolean
@@ -16,7 +15,7 @@ export interface Props extends IField {
 }
 
 export class Checkbox extends React.Component<Props, {}> {
-    protected readonly name = prefix + "input-checkbox"
+    protected readonly name = "muk-input-checkbox"
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
@@ -61,12 +60,12 @@ export class Checkbox extends React.Component<Props, {}> {
                         {label && " " }{label}
                     </Span>
                 </Label>
-                <FieldError error={this.props.error} className={`${form}__validation`} style={{marginTop: "-1px"}} />
+                <FieldError error={this.props.error} className={`muk-form__validation`} style={{marginTop: "-1px"}} />
             </>
 
     }
 
-    renderError = () => <FieldError error={this.props.error} className={`${form}__validation`} />
+    renderError = () => <FieldError error={this.props.error} className={`muk-form__validation`} />
 
     public render() {
         return <Field className={`muk-checkbox`} {...this.props} invalid={false} error={null} label={this.renderLabel()} />

@@ -1,9 +1,8 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 
-import {prefix} from "../../config"
 import {Type} from "../../helpers/types"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     title?: string
@@ -16,7 +15,7 @@ export interface State {
 
 class LittleStatus extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "little_status";
+    private readonly name = "muk-little_status";
 
     public static defaultProps: Props = {
         title: "",

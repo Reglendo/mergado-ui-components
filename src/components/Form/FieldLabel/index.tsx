@@ -1,7 +1,6 @@
 import * as React from "react"
-import css from "css"
-import {form} from "config"
-import Theme from "components/Theme";
+import css from "../../../css"
+import Theme from "../../Theme";
 
 
 const CssBigLabel = css("h3")({
@@ -26,7 +25,7 @@ export const FieldLabel: React.SFC<Props> = ({children, bigLabel, className, sty
     }
 
     return (
-            <Label className={`${form}-label ${className || ""}`} bigLabel={bigLabel} {...others}>
+            <Label className={`muk-form-label ${className || ""}`} bigLabel={bigLabel} {...others}>
                 {bigLabel ? <CssBigLabel>{children}</CssBigLabel> : children }
             </Label>
         )

@@ -1,9 +1,8 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 
-import {prefix} from "../../../config"
 import Div from "../../Div"
-import css from "css"
+import css from "../../../css"
 
 export interface Props {
 }
@@ -12,7 +11,7 @@ export interface State {
 
 class Bubble extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "popup_hint__bubble"
+    private readonly name = "muk-popup_hint__bubble"
     public popup
 
     public componentDidMount() {

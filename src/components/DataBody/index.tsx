@@ -1,5 +1,4 @@
 import * as React from "react"
-import {prefix} from "../../config"
 import * as Sortable from "react-sortablejs"
 import { ID, Action } from "../../helpers/types"
 
@@ -27,7 +26,7 @@ class DataBody extends React.PureComponent<Props, State> {
         style: {},
         actions: [],
     }
-    private readonly name = prefix + "databody";
+    private readonly name = "muk-databody";
 
     protected renderChildren() {
         if(this.props.actions.length === 0) {

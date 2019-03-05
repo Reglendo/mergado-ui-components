@@ -1,7 +1,6 @@
 import * as React from "react"
-import css from "css"
-import {prefix} from "../../config"
-import Theme from "components/Theme"
+import css from "../../css"
+import Theme from "../Theme"
 
 export interface Props {
     active?: boolean
@@ -15,7 +14,7 @@ export interface State {
 
 class WizardStep extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "wizard_nav__item";
+    private readonly name = "muk-wizard_nav__item";
 
     public static defaultProps: Props = {
         active: false,

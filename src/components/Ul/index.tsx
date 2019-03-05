@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 
 export const Ul = ({children,className = "", ...props}) => {
     return <CssUl className={className} {...props}>

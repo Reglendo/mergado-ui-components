@@ -1,7 +1,6 @@
 import * as React from "react"
-import css from "css"
-import {prefix} from "../../config"
-import Theme from "components/Theme"
+import css from "../../css"
+import Theme from "../Theme"
 
 export interface Props {
     style?: any
@@ -19,7 +18,7 @@ class DataCell extends React.PureComponent<Props, State> {
         type: "cell",
         className: "",
     }
-    private readonly name = prefix + "datacell";
+    private readonly name = "muk-datacell";
 
     public render() {
         const { type, onClick, className, ...props } = this.props;

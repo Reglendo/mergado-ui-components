@@ -3,9 +3,7 @@ import Div from "../Div"
 
 import IconHintInfo from "@reglendo/mergado-ui-icons/lib/icons/IconHintInfo"
 import IconHintHelp from "@reglendo/mergado-ui-icons/lib/icons/IconHintHelp"
-import {prefix} from "../../config"
 import Bubble from "./Bubble"
-import debounce from "lodash/throttle"
 
 export interface Props {
     icon?: JSX.Element
@@ -31,7 +29,7 @@ export interface Position {
 
 class PopupHint extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "popuphint";
+    private readonly name = "muk-popuphint";
     private id:number = null
     public static defaultProps: Props = {
         icon: null,

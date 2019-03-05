@@ -1,10 +1,8 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 import Div from "../Div"
 import * as Color from "color"
-import Theme from "components/Theme"
-
-import {prefix} from "../../config"
+import Theme from "../Theme"
 
 export interface Props {
     width: number
@@ -17,7 +15,7 @@ export interface State {
 
 class Placeholder extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "placeholder";
+    private readonly name = "muk-placeholder";
 
     public static defaultProps: Props = {
         width: 100,

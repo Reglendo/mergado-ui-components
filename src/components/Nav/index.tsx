@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "css"
-import {prefix} from "../../config"
+import css from "../../css"
 
 export interface Props {
     links: JSX.Element[]
@@ -14,7 +13,7 @@ export interface State {
 
 class Nav extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "nav";
+    private readonly name = "muk-nav";
 
     public static defaultProps: Props = {
         links: [],

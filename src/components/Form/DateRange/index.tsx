@@ -1,9 +1,9 @@
 import * as React from 'react'
 import DatePicker from "../DatePicker"
-import Grid from "components/Grid"
-import GridCell from "components/GridCell"
+import Grid from "../../Grid"
+import GridCell from "../../GridCell"
 import moment from "dayjs"
-import css from "css"
+import css from "../../../css"
 
 interface Props {
     getter: (dateFrom: string, dateTo: string) => void

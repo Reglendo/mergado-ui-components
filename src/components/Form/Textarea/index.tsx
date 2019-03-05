@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "css"
-import {prefix,form} from "config"
+import css from "../../../css"
 import {Field, IField} from "../Field"
 import {styles,stylesProps} from "../TextInput"
 import InputContainer from "../Field/InputContainer"
@@ -11,7 +10,7 @@ export interface Props extends IField {
 
 export class Textarea extends React.Component<Props, {}> {
 
-    protected readonly name = prefix + "textarea";
+    protected readonly name = "muk-textarea";
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
@@ -43,8 +42,8 @@ export class Textarea extends React.Component<Props, {}> {
                     height={height || 100}
                     aria-invalid={invalid || this.props.error ? 1 : 0}
                     className={`${this.name}__input
-                                ${form}__input--text
-                                ${form}__input--textarea
+                                muk-form__input--text
+                                muk-form__input--textarea
                     `}
                     onChange={this.handleChange}
                 />

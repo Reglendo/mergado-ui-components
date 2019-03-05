@@ -1,10 +1,9 @@
 import * as React from "react"
-import css from "css"
-import {prefix} from "../../config"
+import css from "../../css"
 import DataCell from "../DataCell"
-import Checkbox from "components/Form/Checkbox"
+import Checkbox from "../Form/Checkbox"
 import { ID, Action } from "../../helpers/types"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     style?: any
@@ -35,7 +34,7 @@ class DataRow extends React.PureComponent<Props, State> {
         actions: [],
         selectedRows: [],
     }
-    private readonly name = prefix + "datarow"
+    private readonly name = "muk-datarow"
 
     public render() {
         const { style, inactive, dataId, actions, selectedRows, className } = this.props

@@ -1,11 +1,10 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 import Div from "../Div"
 import * as Color from "color"
-import {prefix} from "../../config"
 import {animation as pulseAnimation} from "../Animations/Pulse"
 import {animation as rotateAnimation} from "../Animations/Rotate"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     type?: "default" | "dashed" | "dotted" | "mergado" | "bubbles"
@@ -21,7 +20,7 @@ export interface State {
 
 class Spinner extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "spinner";
+    private readonly name = "muk-spinner";
 
     public static defaultProps: Props = {
         type: "default",

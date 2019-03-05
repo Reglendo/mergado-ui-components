@@ -1,12 +1,11 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 
-import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
 import Button from "../Button"
 import {Type} from "../../helpers/types"
 import Grid from "../Grid"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     id?: string,
@@ -30,7 +29,7 @@ export interface State {
 }
 
 class Toast extends React.PureComponent<Props, State> {
-    private readonly name = prefix + "toast";
+    private readonly name = "muk-toast";
     private countdown;
     public static defaultProps: Props = {
         id: uniqueId(),

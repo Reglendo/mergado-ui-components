@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "css"
-import {prefix, form} from "config"
+import css from "../../../css"
 import TextInput from "../TextInput"
 import {Field, IField} from "../Field"
 import {QueryList} from "./list"
@@ -37,7 +36,7 @@ export type Query = {
 
 export class InputGroupV extends React.Component<Props,State> {
 
-    protected readonly name = prefix + "inputgroupv";
+    protected readonly name = "muk-inputgroupv";
 
     state = {
         filter: "",
@@ -90,7 +89,7 @@ export class InputGroupV extends React.Component<Props,State> {
                         label=""
             />
                 }
-                <QueryList className={`${this.name}__list ${isInvalid ? `${form}__group--invalid` : ""}`}
+                <QueryList className={`${this.name}__list ${isInvalid ? `muk-form__group--invalid` : ""}`}
                     name={this.props.name}
                     height={height || 300}
                     activeFirst={props.activeFirst}

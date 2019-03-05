@@ -1,8 +1,8 @@
 import * as React from "react"
-import css from "css"
-import Span from "components/Span"
+import css from "../../../css"
+import Span from "../../Span"
 import {IField} from "../Field"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 interface IInput extends IField {
 }

@@ -1,5 +1,5 @@
 import Color from "color"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export const styles = {
     boxSizing: "border-box",

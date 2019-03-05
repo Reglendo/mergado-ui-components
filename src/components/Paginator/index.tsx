@@ -1,10 +1,9 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 import Div from "../Div"
 
-import {prefix} from "../../config"
 import uniqueId from "../../helpers/unique_id"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     /** Active page number */
@@ -39,7 +38,7 @@ export interface State {
 
 class Paginator extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "paginator";
+    private readonly name = "muk-paginator";
 
     public static defaultProps: Props = {
         currentPage: 1,

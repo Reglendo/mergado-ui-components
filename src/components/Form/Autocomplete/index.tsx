@@ -1,11 +1,10 @@
 import * as React from "react"
-import css from "css"
+import css from "../../../css"
 import InputContainer from "../Field/InputContainer"
-import {prefix} from "config"
 import TextInput from "../TextInput"
-import uniqueId from "helpers/unique_id"
+import uniqueId from "../../../helpers/unique_id"
 import {Field, IField} from "../Field"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export interface Item {
     value: string
@@ -33,7 +32,7 @@ export interface State {
 }
 
 export class Autocomplete extends  React.PureComponent<Props, State> {
-    protected readonly name = prefix + "autocomplete";
+    protected readonly name = "muk-autocomplete";
     protected performAutoCompleteOnUpdate = true
     protected performAutoCompleteOnKeyUp = true
     protected ignoreBlur = false
@@ -44,14 +43,14 @@ export class Autocomplete extends  React.PureComponent<Props, State> {
         items: [],
         renderMenu: (items, value, style) => {
             if(items.length > 0) {
-                return <Menu className={`${prefix + "autocomplete"}__menu`} style={{ ...style }} children={items}/>
+                return <Menu className={`${"muk-autocomplete"}__menu`} style={{ ...style }} children={items}/>
             }
             return false
         },
         onMenuVisibilityChange: () => {},
         renderItem: (item: Item, highlighted, style) => {
-            let className = `${prefix + "autocomplete"}__item `
-            className += highlighted ? className + `${prefix + "autocomplete"}__item--selected` : ""
+            let className = `muk-autocomplete__item `
+            className += highlighted ? className + `${"muk-autocomplete"}__item--selected` : ""
             return <MenuItem key={`${item.value}-${uniqueId()}`} selected={highlighted}
                             className={`${className}`}>{item.text}</MenuItem>
         },

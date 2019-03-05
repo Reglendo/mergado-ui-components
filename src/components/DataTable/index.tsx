@@ -1,9 +1,8 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 import Div from "../Div"
-import {prefix} from "../../config"
-import TextInput from "components/Form/TextInput"
-import Checkbox from "components/Form/Checkbox"
+import TextInput from "../Form/TextInput"
+import Checkbox from "../Form/Checkbox"
 import { ID, Action, Filter } from "../../helpers/types"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
@@ -25,7 +24,7 @@ export interface State {
 }
 
 class DataTable extends React.PureComponent<Props, State> {
-    private readonly name = prefix + "datatable"
+    private readonly name = "muk-datatable"
 
     public static defaultProps: Props = {
         bulkActions: [],

@@ -1,8 +1,7 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 import * as Color from "color"
-import {prefix} from "../../config"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     active?: boolean
@@ -16,7 +15,7 @@ export interface State {
 
 class NavLink extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "navlink";
+    private readonly name = "muk-navlink";
 
     public render() {
         const {link, active, className, children, ...p} = this.props

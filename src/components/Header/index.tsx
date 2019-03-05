@@ -1,5 +1,5 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 
 interface Props {
     type: "1" | "2" | "3" | "4" | "5" | "6" | 1 | 2 | 3 | 4 | 5 | 6

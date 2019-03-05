@@ -1,5 +1,4 @@
 import * as React from "react"
-import {prefix} from "../../config"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
 
 export interface Props {
@@ -18,7 +17,7 @@ export interface State {
 }
 class Icon extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "icon";
+    private readonly name = "muk-icon";
 
     public static defaultProps: Props = {
         type: "reglendo",

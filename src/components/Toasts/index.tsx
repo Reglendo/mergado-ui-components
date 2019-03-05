@@ -1,7 +1,6 @@
 import * as React from "react"
-import {prefix} from "../../config"
 import Toast from "../Toast"
-import css from "css"
+import css from "../../css"
 
 export interface Props {
     toasts?: Array<Toast|JSX.Element>
@@ -14,7 +13,7 @@ export interface State {
 
 class Toasts extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "toasts-container";
+    private readonly name = "muk-toasts-container";
 
     public static defaultProps: Props = {
         toasts: [],

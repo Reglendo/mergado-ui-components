@@ -1,15 +1,14 @@
 import * as React from "react"
 import IconCheck from "@reglendo/mergado-ui-icons/lib/icons/IconCheck"
 import IconClose from "@reglendo/mergado-ui-icons/lib/icons/IconClose"
-import css from "css"
-import Span from "components/Span"
-import Div from "components/Div"
-import {prefix,form} from "config"
+import css from "../../../css"
+import Span from "../../Span"
+import Div from "../../Div"
 import {Field, IField} from "../Field"
 import InputContainer from "../Field/InputContainer"
 import FieldLabel from "../FieldLabel"
 import FieldError from "../FieldError"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export interface Props extends IField {
     onLabel: string | JSX.Element
@@ -21,7 +20,7 @@ export interface Props extends IField {
 }
 
 export class Toggler extends React.Component<Props, {}> {
-    protected readonly name = prefix + "input-toggler"
+    protected readonly name = "muk-input-toggler"
 
     shouldComponentUpdate(nextProps, nextState) {
         if(
@@ -89,7 +88,7 @@ export class Toggler extends React.Component<Props, {}> {
                     </Div>
                     {reverse ? offLabel : onLabel}
                 </Label>
-                <FieldError error={this.props.error} className={`${form}__validation`} />
+                <FieldError error={this.props.error} className={`muk-form__validation`} />
 
             </>
     }

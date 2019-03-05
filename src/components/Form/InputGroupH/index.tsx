@@ -1,12 +1,11 @@
 import * as React from "react"
-import {prefix} from "config"
 import {Field, IField} from "../Field"
 import RadioInput from "./input"
 import InputContainer from "../Field/InputContainer"
-import GC from "components/GridCell"
-import Grid from "components/Grid"
-import css from "css"
-import Theme from "components/Theme"
+import GC from "../../GridCell"
+import Grid from "../../Grid"
+import css from "../../../css"
+import Theme from "../../Theme"
 
 interface IItem {
     value: string
@@ -21,7 +20,7 @@ interface Props extends IField {
 
 export class InputGroupH extends React.Component<Props, {}> {
 
-    protected readonly name = prefix + "input-radio";
+    protected readonly name = "muk-input-radio";
 
     shouldComponentUpdate(nextProps, nextState) {
         if(

@@ -1,7 +1,6 @@
 import * as React from "react"
-import css from "css"
+import css from "../../../css"
 import InputContainer from "../Field/InputContainer"
-import {prefix} from "config"
 import {Field, IField} from "../Field"
 import ReactDatePicker from "react-day-picker"
 import dayjs from "dayjs"
@@ -30,7 +29,7 @@ interface State {
 
 export class DatePicker extends React.Component<Props, State> {
 
-    protected readonly name = prefix + "datepicker"
+    protected readonly name = "muk-datepicker"
     protected locale;
 
     constructor(props) {

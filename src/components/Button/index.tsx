@@ -1,9 +1,8 @@
 import * as React from "react"
-import css from "css"
-import {prefix} from "../../config"
-import {Field, IField} from "components/Form/Field"
+import css from "../../css"
+import {Field, IField} from "../Form/Field"
 import * as Color from "color"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props extends IField {
     type?: "button" | "submit" | "void" | "href"
@@ -20,7 +19,7 @@ export interface Props extends IField {
 }
 
 export class Button extends React.PureComponent<Props, {}> {
-    protected readonly name = prefix + "button";
+    protected readonly name = "muk-button";
 
     public static defaultProps: Props = {
         type: "button",

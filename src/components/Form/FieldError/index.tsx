@@ -1,6 +1,6 @@
 import * as React from "react"
-import css from "css"
-import Theme from "components/Theme"
+import css from "../../../css"
+import Theme from "../../Theme"
 
 const FieldError = ({error, className, style = {}}) => {
     if(error) {

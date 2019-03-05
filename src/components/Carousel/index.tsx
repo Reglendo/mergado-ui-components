@@ -1,6 +1,5 @@
 import * as React from "react"
-import css from "css"
-import {prefix} from "../../config"
+import css from "../../css"
 import IconChevronLeft from "@reglendo/mergado-ui-icons/lib/icons/IconChevronLeft"
 import IconChevronRight from "@reglendo/mergado-ui-icons/lib/icons/IconChevronRight"
 import Div from "../Div"
@@ -22,7 +21,7 @@ export interface State {
 
 export class Carousel extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "carousel";
+    private readonly name = "muk-carousel";
     private timer = null
     public constructor(props) {
         super(props)

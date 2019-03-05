@@ -1,9 +1,8 @@
 import * as React from "react"
-import css from "css"
-import {form} from "config"
+import css from "../../../css"
 import FieldLabel from "../FieldLabel"
 import FieldError from "../FieldError"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export interface IField {
     name?: string
@@ -91,11 +90,11 @@ export const Field: React.SFC<IField> = (props) => {
     const { style, error, renderError, ...others } = props
     const isInvalid = props.invalid || error
     return (
-        <FieldWrapper className={`${form}-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
+        <FieldWrapper className={`muk-form-group ${props.name ? "m-field-" + props.name : ""} ${props.disabled ? "disabled" : ""} ${props.required ? "required" : ""}  ${props.className || ""}`}
             title={props.title}
             name={props.name}
             style={style}>
-                <FieldError error={error} className={`${form}__validation`} />
+                <FieldError error={error} className={`muk-form__validation`} />
                 {props.label &&
                     <FieldLabel name={props.name} bigLabel={props.bigLabel}>
                         {props.label}

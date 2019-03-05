@@ -1,15 +1,14 @@
 import * as React from "react"
-import css from "css"
-import Div from "components/Div"
+import css from "../../../css"
+import Div from "../../Div"
 import * as Color from "color"
 
 import IconEye from "@reglendo/mergado-ui-icons/lib/icons/IconEye"
 import IconEyeSlash from "@reglendo/mergado-ui-icons/lib/icons/IconEyeSlash"
-import {prefix,form} from "config"
 import {Field, IField} from "../Field"
-import Button from "components/Button"
+import Button from "../../Button"
 import InputContainer from "../Field/InputContainer"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 export interface Props extends IField {
     type?: "text" | "number" | "password" | "hidden" | "email" | "search" | "tel" | "url" | "file" | "time"
@@ -24,7 +23,7 @@ interface State {
 
 export class TextInput extends React.Component<Props, State> {
 
-    protected readonly name = prefix + "textinput"
+    protected readonly name = "muk-textinput"
 
     state = {
         passwordVisible: false,

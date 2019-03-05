@@ -1,11 +1,11 @@
 import * as React from "react"
-import css from "css"
+import css from "../../../css"
 
 import Radio from "../Radio/input"
 import Checkbox from "../Checkbox"
 
-import LittleStatus from "components/LittleStatus"
-import Theme from "components/Theme"
+import LittleStatus from "../../LittleStatus"
+import Theme from "../../Theme"
 
 interface IQueryItemProps {
     name: string

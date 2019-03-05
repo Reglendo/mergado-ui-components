@@ -1,11 +1,11 @@
 import * as React from "react"
-import css from "css"
+import css from "../../../css"
 
 import * as Color from "color"
 
 import { Query } from "./index"
 import { QueryItem } from "./item"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 interface IQueryListProps {
     name: string

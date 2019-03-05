@@ -1,10 +1,9 @@
 import * as React from "react"
 import * as Icons from "@reglendo/mergado-ui-icons/lib"
-import css from "css"
+import css from "../../../css"
 
-import {prefix} from "config"
 import Icon from "../index2"
-import TextInput from "components/Form/TextInput"
+import TextInput from "../../Form/TextInput"
 import Button from "../../Button"
 
 export interface Props {
@@ -19,7 +18,7 @@ export interface State {
  */
 class IconFinder extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "icon-finder";
+    private readonly name = "muk-icon-finder";
 
     public static defaultProps: Props = {
 

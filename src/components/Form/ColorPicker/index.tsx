@@ -1,12 +1,11 @@
 import * as React from "react"
-import css from "css"
+import css from "../../../css"
 import InputContainer from "../Field/InputContainer"
-import {prefix} from "config"
 import {Field, IField,} from "../Field"
 import TextInput from "../TextInput"
 import { SketchPicker as InputColor } from "react-color"
 import Color from "color"
-import Theme from "components/Theme"
+import Theme from "../../Theme"
 
 interface Props extends IField {
 }
@@ -17,7 +16,7 @@ interface State {
 
 export class ColorPicker extends React.Component<Props, State> {
 
-    protected readonly name = prefix + "colorpicker"
+    protected readonly name = "muk-colorpicker"
 
     constructor(props) {
         super(props)

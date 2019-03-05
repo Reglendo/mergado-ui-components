@@ -1,12 +1,11 @@
 import * as React from "react"
 import Div from "../Div"
-import css from "css"
-import {prefix} from "../../config"
+import css from "../../css"
 import DataCell from "../DataCell"
-import Checkbox from "components/Form/Checkbox"
+import Checkbox from "../Form/Checkbox"
 import { ID, Action } from "../../helpers/types"
 import Button from "../Button"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     style?: any
@@ -30,7 +29,7 @@ class DataHeader extends React.PureComponent<Props, State> {
         actions: [],
         handleSelectAll: () => {},
     }
-    private readonly name = prefix + "datarow";
+    private readonly name = "muk-datarow";
 
     protected renderBulkActions() {
         return this.props.actions.map(obj => {

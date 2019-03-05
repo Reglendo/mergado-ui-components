@@ -1,8 +1,8 @@
 import * as React from "react"
 import Grid from "../Grid"
 import GridCell from "../GridCell"
-import css from 'css'
-import Theme from "components/Theme"
+import css from '../../css'
+import Theme from "../Theme"
 
 interface Props {
     header?: JSX.Element | string

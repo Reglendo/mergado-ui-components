@@ -1,8 +1,7 @@
 import * as React from "react"
-import css from "css"
+import css from "../../css"
 import Ul from "../Ul"
-import {prefix} from "../../config"
-import Theme from "components/Theme"
+import Theme from "../Theme"
 
 export interface Props {
     links: JSX.Element[]
@@ -16,7 +15,7 @@ export interface State {
 
 class WizardNav extends React.PureComponent<Props, State> {
 
-    private readonly name = prefix + "wizard_nav";
+    private readonly name = "muk-wizard_nav";
 
     public static defaultProps: Props = {
         links: [],

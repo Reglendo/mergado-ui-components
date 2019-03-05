@@ -3,7 +3,6 @@
         "module": "esnext",
         "target": "es6",
         "moduleResolution": "node",
-        "baseUrl": "src",
         "outDir": "lib",
         "allowSyntheticDefaultImports": true,
         "allowJs": false,
