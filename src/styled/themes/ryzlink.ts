@@ -16,6 +16,11 @@ const colors = {
     background: "white",
     decoration: "#dbcba3",
     decoration_background: "#FAF7F1",
+
+    teal: "#6e9588",
+    steelblue: "#54809e",
+    olive: "#97843e",
+
 }
 
 export const theme = {
@@ -28,6 +33,9 @@ export const theme = {
     info: colors.decoration_background,
     inactive: colors.grey,
     message: colors.yellow,
+    validator: colors.teal,
+    custom: colors.steelblue,
+    suggestion: colors.olive,
 
     /* general */
     radius: "5px",
